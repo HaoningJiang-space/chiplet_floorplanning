@@ -111,3 +111,15 @@ opposing setup/hold responses; common delay largely cancels in setup. Thermal
 and TT timing objective conflicts are numerically resolved, but temperature
 is not applied to these pads. G4 remains gated on consistent interface
 characterization and physical/model error, not merely a different score winner.
+
+## v0.6 update — transistor-model gate remains closed
+
+The identical GF180 TX / SKY130 RX logical modes now have hash-locked transistor
+decks, source hierarchy/conversion audits, independent waveform measurements,
+half-step checks and a conditional fixed-TT/P/V GF180 temperature sweep. Nominal
+Liberty disagreement, reachable empty SKY130 subcircuits and simulator model
+warnings remain explicit failures. No synthetic hot-pad Liberty is produced.
+The next dependency is a complete, traceable pad netlist/model/characterization
+setup that reconciles nominal delay and slew, including its load convention.
+Temperature holdout consistency alone does not resolve that missing baseline.
+See `validation-v06.md`. G3's full-interface gate and G4 remain open work.

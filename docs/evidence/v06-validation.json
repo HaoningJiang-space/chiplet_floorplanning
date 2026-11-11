@@ -1,0 +1,1506 @@
+{
+  "software_checks_passed": true,
+  "software_checks": {
+    "upstream_conversion_preserves_all_210_elements": true,
+    "all_14_simulations_completed": true,
+    "all_waveform_measurements_valid": true,
+    "input_slews_match_stimulus_convention": true,
+    "timestep_convergence": true,
+    "receiver_active_tables_identical_in_spice_build": true
+  },
+  "qualification_gates": {
+    "io_structure_has_no_empty_or_unresolved_subcircuits": false,
+    "simulator_has_no_model_or_convergence_diagnostics": false,
+    "nominal_liberty_agreement": false,
+    "gf180_temperature_holdout_interpolation": true,
+    "same_interface_hot_link_ready": false
+  },
+  "conversion": {
+    "element_count": 210,
+    "original_types": {
+      "C": 2,
+      "M": 182,
+      "D": 14,
+      "R": 12
+    },
+    "converted_types": {
+      "X": 196,
+      "D": 14
+    },
+    "allowed_syntax_only": true
+  },
+  "records": [
+    {
+      "side": "gf180",
+      "temperature_c": 0,
+      "input_slew_ns": 0.5,
+      "external_load_pf": 6.0,
+      "max_step_ps": 10.0,
+      "name": "gf180_0_0.5_6.0_10.0",
+      "deck_sha256": "d2d12e94dec47faf8f311ae2372fd475106d378c6b6534e4413b76f6292f4d37",
+      "log_sha256": "a1bd57588e9c04d300cf7a5ad38bbfb1ae376760cfc9ae0c88074ac6d3b110e9",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "5b184b97244cc32bef3064bc98d8a2b861357b864fb07b44f7ab465368733aa4",
+      "metrics": {
+        "rise_delay_ns": 2.4195409156491046,
+        "rise_slew_ns": 0.8514856990071475,
+        "rise_input_slew_ns": 0.5000000000000036,
+        "fall_delay_ns": 2.5790938033431487,
+        "fall_slew_ns": 0.733500031697389,
+        "fall_input_slew_ns": 0.5000000000000071
+      },
+      "output_min_v": -0.08398075982050711,
+      "output_max_v": 3.394581273604018,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.433296567430778e-09,
+        "high_max_error_v": 4.023446233958339e-07,
+        "final_low_max_error_v": 1.736664299990804e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7062,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 25,
+      "input_slew_ns": 0.5,
+      "external_load_pf": 6.0,
+      "max_step_ps": 10.0,
+      "name": "gf180_25_0.5_6.0_10.0",
+      "deck_sha256": "0fc599bc6670902e9d275b311e079242c484841a15190bcefc526cbde0e03453",
+      "log_sha256": "c8615898d1f19dcad92f9a7c6e259bb8a7b6b286b006970cfa4026d605fe98cf",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "5e5c92d254211cbe2ac03413a6af35b8d6bf5f270d6e048c890dcefdbbc89984",
+      "metrics": {
+        "rise_delay_ns": 2.577164468051869,
+        "rise_slew_ns": 0.921207944763422,
+        "rise_input_slew_ns": 0.5000000000000053,
+        "fall_delay_ns": 2.749403952982071,
+        "fall_slew_ns": 0.7990155215931622,
+        "fall_input_slew_ns": 0.5
+      },
+      "output_min_v": -0.08406134103109794,
+      "output_max_v": 3.393782609172563,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.588023042685355e-09,
+        "high_max_error_v": 4.880855430933195e-07,
+        "final_low_max_error_v": 1.800453405928029e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7053,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 50,
+      "input_slew_ns": 0.5,
+      "external_load_pf": 6.0,
+      "max_step_ps": 10.0,
+      "name": "gf180_50_0.5_6.0_10.0",
+      "deck_sha256": "812be7128aed1dc3586deaa6133ea14bbd03ddb8c17765844b78cf68092159c1",
+      "log_sha256": "b2f7a7050460f954c629103d7a971a7fa61d7c9cd4c5565c732a6541eea9eb16",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "d70f008cbf09dcbd8f07d55d2bea457d311fc451499ba294f591d54f7b23a2ce",
+      "metrics": {
+        "rise_delay_ns": 2.7335559518215824,
+        "rise_slew_ns": 0.9901167872484749,
+        "rise_input_slew_ns": 0.5000000000000018,
+        "fall_delay_ns": 2.9185019212101366,
+        "fall_slew_ns": 0.8653288770447389,
+        "fall_input_slew_ns": 0.5
+      },
+      "output_min_v": -0.08395655771513921,
+      "output_max_v": 3.392731085593884,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.752228370438005e-09,
+        "high_max_error_v": 5.836198839759277e-07,
+        "final_low_max_error_v": 2.039484545355566e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7052,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 75,
+      "input_slew_ns": 0.5,
+      "external_load_pf": 6.0,
+      "max_step_ps": 10.0,
+      "name": "gf180_75_0.5_6.0_10.0",
+      "deck_sha256": "664d73c8df9bb303069eb07344ac10ff4942aa6a88e2b4f51d70e67ac6013ad1",
+      "log_sha256": "b17d9dca6fe84e51f4ef5d4c11abbe2de3d08eaaec8eb069c114bf0e988a0a2b",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "b1010c0c04954d4a3f7cb07b98bc8f3bcdf17105a69058ff0e8754e8ea33a39e",
+      "metrics": {
+        "rise_delay_ns": 2.8882764998751362,
+        "rise_slew_ns": 1.0582712567589887,
+        "rise_input_slew_ns": 0.5,
+        "fall_delay_ns": 3.085883627458479,
+        "fall_slew_ns": 0.9321704822884627,
+        "fall_input_slew_ns": 0.4999999999999929
+      },
+      "output_min_v": -0.083629716155651,
+      "output_max_v": 3.391526715402964,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.95580930536973e-09,
+        "high_max_error_v": 6.879453242625289e-07,
+        "final_low_max_error_v": 2.426944598928142e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7041,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 100,
+      "input_slew_ns": 0.5,
+      "external_load_pf": 6.0,
+      "max_step_ps": 10.0,
+      "name": "gf180_100_0.5_6.0_10.0",
+      "deck_sha256": "b44dcabfe2b3be77fa19fb66132ae60c854dc81978dffce2f290e00f8671b97d",
+      "log_sha256": "7d1245882f97099f4b20763d8f23c23a5541909589e53cdfd1390ce7c55d2ddb",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "e4395af047b13f3f1f933298e1ae68f9b7d5ad4bb876b115722c1351da3999b7",
+      "metrics": {
+        "rise_delay_ns": 3.040946647714801,
+        "rise_slew_ns": 1.1252237118192916,
+        "rise_input_slew_ns": 0.5000000000000018,
+        "fall_delay_ns": 3.2510968672982514,
+        "fall_slew_ns": 0.999316869966087,
+        "fall_input_slew_ns": 0.5
+      },
+      "output_min_v": -0.08310593622513461,
+      "output_max_v": 3.390257784520112,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 2.376911817528249e-09,
+        "high_max_error_v": 7.954046501446044e-07,
+        "final_low_max_error_v": 2.838066604951922e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7037,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 125,
+      "input_slew_ns": 0.5,
+      "external_load_pf": 6.0,
+      "max_step_ps": 10.0,
+      "name": "gf180_125_0.5_6.0_10.0",
+      "deck_sha256": "0c99454fde14d4604c6c30e9b9113eb59bc03eeca567ecdd0b111f490ba7cc76",
+      "log_sha256": "9f2670bcc38023b1b6de8681236ccf4b7f574f78fa30607bb3b44a38acd8c510",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "60226b2acc87119146d65eeef8f7f38bff5ce10c53ae7b3435f5cb5fac3399a8",
+      "metrics": {
+        "rise_delay_ns": 3.191203177411605,
+        "rise_slew_ns": 1.1908850139842269,
+        "rise_input_slew_ns": 0.5000000000000018,
+        "fall_delay_ns": 3.4137007979682465,
+        "fall_slew_ns": 1.0665434050251577,
+        "fall_input_slew_ns": 0.5
+      },
+      "output_min_v": -0.08239864535491757,
+      "output_max_v": 3.388923125270044,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 3.873965442124467e-09,
+        "high_max_error_v": 8.900276342593827e-07,
+        "final_low_max_error_v": 4.745472678273464e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7034,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 25,
+      "input_slew_ns": 0.08,
+      "external_load_pf": 6.0,
+      "max_step_ps": 10.0,
+      "name": "gf180_25_0.08_6.0_10.0",
+      "deck_sha256": "f4acebca0639f515cfb08b9db4ad3838e89ccc0238ed6c49abdeafbbe4e27ab5",
+      "log_sha256": "d90297688ac8fbf3a3b8e7887d3d9008ade5b08de13132362697351a86689f17",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "640f1e523e32d6640fde86b29e9fc253048237a0611db18b75c907633f567bb2",
+      "metrics": {
+        "rise_delay_ns": 2.51175172113218,
+        "rise_slew_ns": 0.921204155902009,
+        "rise_input_slew_ns": 0.0800000000000054,
+        "fall_delay_ns": 2.6344344095901917,
+        "fall_slew_ns": 0.79905450514498,
+        "fall_input_slew_ns": 0.0799999999999983
+      },
+      "output_min_v": -0.08407161763482206,
+      "output_max_v": 3.393776493287505,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.588023042685355e-09,
+        "high_max_error_v": 4.795278489844179e-07,
+        "final_low_max_error_v": 1.821445327424889e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7086,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 25,
+      "input_slew_ns": 1.0,
+      "external_load_pf": 6.0,
+      "max_step_ps": 10.0,
+      "name": "gf180_25_1.0_6.0_10.0",
+      "deck_sha256": "511f30da41e8fe1e41210edaa933bffb5050d868b41c0c3816b6eb7c687d2d8d",
+      "log_sha256": "4f218b50fe49ede5724bc45306cba34a93c2b85c8ccbd15c314dd420f86c3314",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "bd1e4c5863c1251f6f31fdc243b259d941b0289fe3b1c6d4b0812c8c4d7d401c",
+      "metrics": {
+        "rise_delay_ns": 2.606948300602605,
+        "rise_slew_ns": 0.9212023625221857,
+        "rise_input_slew_ns": 1.0000000000000018,
+        "fall_delay_ns": 2.8981295622476395,
+        "fall_slew_ns": 0.7990340012834309,
+        "fall_input_slew_ns": 1.0
+      },
+      "output_min_v": -0.08405999831014459,
+      "output_max_v": 3.393770675975632,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.588023042685355e-09,
+        "high_max_error_v": 4.972539580094804e-07,
+        "final_low_max_error_v": 1.912072303202909e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7053,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 25,
+      "input_slew_ns": 0.5,
+      "external_load_pf": 12.0,
+      "max_step_ps": 10.0,
+      "name": "gf180_25_0.5_12.0_10.0",
+      "deck_sha256": "c0b9f08ebc0bd53e1b3a2aa777db52f1d861bb05bd130cc03c276d9156cf34dd",
+      "log_sha256": "ba85e03cd215cb9d3423c365e38272a1ff0ea76c604d471a7981569d53511e75",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "cce10ae05661636a4b21b4a194d174db08a05dd2a6167a7de3f94ab884cf50c1",
+      "metrics": {
+        "rise_delay_ns": 2.8695732657896222,
+        "rise_slew_ns": 1.471410858149211,
+        "rise_input_slew_ns": 0.49999999999999467,
+        "fall_delay_ns": 2.9934158234898476,
+        "fall_slew_ns": 1.1456940836001124,
+        "fall_input_slew_ns": 0.5
+      },
+      "output_min_v": -0.0573565062976053,
+      "output_max_v": 3.362078342946554,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.588020565588318e-09,
+        "high_max_error_v": 5.192013672328244e-07,
+        "final_low_max_error_v": 1.890976252884919e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7053,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 25,
+      "input_slew_ns": 0.5,
+      "external_load_pf": 2.0,
+      "max_step_ps": 10.0,
+      "name": "gf180_25_0.5_2.0_10.0",
+      "deck_sha256": "df3bd505712d62a84761da0f281a41767099c5e9f3ea82f57894289b155965bc",
+      "log_sha256": "bc42f2aacb963c2bc0f423bf48b540c521ef2257cbbb2ebda6bbb251f499606f",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "10a9abc73a4e2694d9d9ab63818cb663b368cf882a3f5afcd9f5a0ed8cc6026f",
+      "metrics": {
+        "rise_delay_ns": 2.3676574479942527,
+        "rise_slew_ns": 0.5804588860564142,
+        "rise_input_slew_ns": 0.5000000000000018,
+        "fall_delay_ns": 2.5422533343334734,
+        "fall_slew_ns": 0.5518626272206646,
+        "fall_input_slew_ns": 0.5000000000000071
+      },
+      "output_min_v": -0.1243608058738912,
+      "output_max_v": 3.442267409609969,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.588026488159573e-09,
+        "high_max_error_v": 4.541290872239756e-07,
+        "final_low_max_error_v": 1.899833572273207e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7052,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 25,
+      "input_slew_ns": 0.5,
+      "external_load_pf": 6.0,
+      "max_step_ps": 5.0,
+      "name": "gf180_25_0.5_6.0_5.0",
+      "deck_sha256": "6ecc7de9fa7599ad06c6617cf1407e091c45672ac88c65ceb9ad8685198095c6",
+      "log_sha256": "9bf8ba4150135f09008457e80a6649f218b754202d5b81d9ccd945abf3945b07",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "691722f58c1923dd9d518c82423b9d60ad768a6b8b2f38dd89e4d657cc0000d6",
+      "metrics": {
+        "rise_delay_ns": 2.577084219248043,
+        "rise_slew_ns": 0.9211126426278877,
+        "rise_input_slew_ns": 0.4999999999999982,
+        "fall_delay_ns": 2.7493511449777515,
+        "fall_slew_ns": 0.7989875147162735,
+        "fall_input_slew_ns": 0.5
+      },
+      "output_min_v": -0.08406963976458115,
+      "output_max_v": 3.393803462535982,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.588018779301405e-09,
+        "high_max_error_v": 4.881512292165269e-07,
+        "final_low_max_error_v": 1.709469564729838e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 14024,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "gf180",
+      "temperature_c": 125,
+      "input_slew_ns": 0.5,
+      "external_load_pf": 6.0,
+      "max_step_ps": 5.0,
+      "name": "gf180_125_0.5_6.0_5.0",
+      "deck_sha256": "d9a527372de468805f9508fdad1d34ed2419decb61606fb77e1dcd627186bfb2",
+      "log_sha256": "4aaad9a6fd8f026eb00b42b14d7123f1160751717b33291001a311ee987d2fdb",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: IKK too small - model effect disabled!",
+        "Warning: IKK too small - model effect disabled!"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "ccb7148323506beecd9d93fea518295017c4d349beec16789660faf72dcd780b",
+      "metrics": {
+        "rise_delay_ns": 3.1911342873547177,
+        "rise_slew_ns": 1.1908097302074037,
+        "rise_input_slew_ns": 0.4999999999999982,
+        "fall_delay_ns": 3.4136557813495685,
+        "fall_slew_ns": 1.0664947174573456,
+        "fall_input_slew_ns": 0.5000000000000071
+      },
+      "output_min_v": -0.08242125492936227,
+      "output_max_v": 3.38894195509154,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 3.873962456713499e-09,
+        "high_max_error_v": 8.901667301053351e-07,
+        "final_low_max_error_v": 4.045898627689444e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 14020,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "sky130",
+      "temperature_c": 25,
+      "input_slew_ns": 1.0,
+      "external_load_pf": 0.022799,
+      "max_step_ps": 20.0,
+      "name": "sky130_25_1.0_0.022799_20.0",
+      "deck_sha256": "8c4841965ae052995603930a083d7ae2715a527043d7990abc7e69b43db37a50",
+      "log_sha256": "22366e62dcdd657a48aafefb6724e3540bf1e0e1070a096debebf5a78a36aae5",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "Warning: Model issue on line 153 :",
+        "unrecognized parameter (-tol_poly) - ignored",
+        "unrecognized parameter (/) - ignored",
+        "unrecognized parameter (-poly_dw) - ignored",
+        "unrecognized parameter (/) - ignored",
+        "Warning: Dynamic gmin stepping failed",
+        "Warning: True gmin stepping failed",
+        "Warning: source stepping failed"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "11cc0bd8ea5cea513d8fa96dc430087b00c86310333a0a18f9acda0aaf223e1f",
+      "metrics": {
+        "rise_delay_ns": 1.0721007327523342,
+        "rise_slew_ns": 0.033058438966000026,
+        "rise_input_slew_ns": 1.0000000000209983,
+        "fall_delay_ns": 1.175055000242331,
+        "fall_slew_ns": 0.04489467978501693,
+        "fall_input_slew_ns": 1.0000000000209965
+      },
+      "output_min_v": -0.1119679929404565,
+      "output_max_v": 1.88797322154646,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.493679208097731e-09,
+        "high_max_error_v": 1.5465700298200602e-07,
+        "final_low_max_error_v": 7.708354454738497e-08
+      },
+      "waveform_gate_passed": true,
+      "samples": 3698,
+      "measured_crossings": "one per edge per required threshold"
+    },
+    {
+      "side": "sky130",
+      "temperature_c": 25,
+      "input_slew_ns": 1.0,
+      "external_load_pf": 0.022799,
+      "max_step_ps": 10.0,
+      "name": "sky130_25_1.0_0.022799_10.0",
+      "deck_sha256": "bacc648964bb04df07a0c59862cf89b4b14072e01545e00de21e862e30d0e829",
+      "log_sha256": "3540ec26b09303d158360a0bb2946c60cd883d3e2aaf0e9420ed94fd5053f4c4",
+      "simulator_returncode": 0,
+      "diagnostics": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "Warning: Model issue on line 153 :",
+        "unrecognized parameter (-tol_poly) - ignored",
+        "unrecognized parameter (/) - ignored",
+        "unrecognized parameter (-poly_dw) - ignored",
+        "unrecognized parameter (/) - ignored",
+        "Warning: Dynamic gmin stepping failed",
+        "Warning: True gmin stepping failed",
+        "Warning: source stepping failed"
+      ],
+      "simulation_completed": true,
+      "waveform_sha256": "1d8ec7e1a001892523d981a9c589fecb6e6c91aea54bba480fda7e01687d9146",
+      "metrics": {
+        "rise_delay_ns": 1.0724960768598866,
+        "rise_slew_ns": 0.033058191470329845,
+        "rise_input_slew_ns": 1.0000000000210072,
+        "fall_delay_ns": 1.1751000135036378,
+        "fall_slew_ns": 0.04483782202909481,
+        "fall_input_slew_ns": 1.0000000000209965
+      },
+      "output_min_v": -0.1119687387364793,
+      "output_max_v": 1.888512424156924,
+      "settled_rail_errors": {
+        "initial_low_max_error_v": 1.347736033885383e-09,
+        "high_max_error_v": 3.5839320400299357e-09,
+        "final_low_max_error_v": 2.113389852009817e-09
+      },
+      "waveform_gate_passed": true,
+      "samples": 7116,
+      "measured_crossings": "one per edge per required threshold"
+    }
+  ],
+  "timestep_convergence": {
+    "gf180_25_0.5_6.0_10.0": {
+      "passed": true,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 8.024880382606625e-05,
+          "reference_ns": 2.577084219248043,
+          "candidate_ns": 2.577164468051869,
+          "limit_ns": 0.012885421096240215,
+          "passed": true
+        },
+        "fall_delay_ns": {
+          "error_ns": 5.280800431961552e-05,
+          "reference_ns": 2.7493511449777515,
+          "candidate_ns": 2.749403952982071,
+          "limit_ns": 0.013746755724888758,
+          "passed": true
+        },
+        "rise_slew_ns": {
+          "error_ns": 9.530213553432532e-05,
+          "reference_ns": 0.9211126426278877,
+          "candidate_ns": 0.921207944763422,
+          "limit_ns": 0.004605563213139438,
+          "passed": true
+        },
+        "fall_slew_ns": {
+          "error_ns": 2.800687688875314e-05,
+          "reference_ns": 0.7989875147162735,
+          "candidate_ns": 0.7990155215931622,
+          "limit_ns": 0.003994937573581368,
+          "passed": true
+        }
+      }
+    },
+    "gf180_125_0.5_6.0_10.0": {
+      "passed": true,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 6.889005688748284e-05,
+          "reference_ns": 3.1911342873547177,
+          "candidate_ns": 3.191203177411605,
+          "limit_ns": 0.015955671436773587,
+          "passed": true
+        },
+        "fall_delay_ns": {
+          "error_ns": 4.501661867806206e-05,
+          "reference_ns": 3.4136557813495685,
+          "candidate_ns": 3.4137007979682465,
+          "limit_ns": 0.017068278906747843,
+          "passed": true
+        },
+        "rise_slew_ns": {
+          "error_ns": 7.528377682319842e-05,
+          "reference_ns": 1.1908097302074037,
+          "candidate_ns": 1.1908850139842269,
+          "limit_ns": 0.0059540486510370185,
+          "passed": true
+        },
+        "fall_slew_ns": {
+          "error_ns": 4.8687567812066845e-05,
+          "reference_ns": 1.0664947174573456,
+          "candidate_ns": 1.0665434050251577,
+          "limit_ns": 0.005332473587286728,
+          "passed": true
+        }
+      }
+    },
+    "sky130_25_1.0_0.022799_20.0": {
+      "passed": true,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.0003953441075523756,
+          "reference_ns": 1.0724960768598866,
+          "candidate_ns": 1.0721007327523342,
+          "limit_ns": 0.005362480384299433,
+          "passed": true
+        },
+        "fall_delay_ns": {
+          "error_ns": 4.5013261306792174e-05,
+          "reference_ns": 1.1751000135036378,
+          "candidate_ns": 1.175055000242331,
+          "limit_ns": 0.0058755000675181895,
+          "passed": true
+        },
+        "rise_slew_ns": {
+          "error_ns": 2.4749567018034213e-07,
+          "reference_ns": 0.033058191470329845,
+          "candidate_ns": 0.033058438966000026,
+          "limit_ns": 0.002,
+          "passed": true
+        },
+        "fall_slew_ns": {
+          "error_ns": 5.685775592212394e-05,
+          "reference_ns": 0.04483782202909481,
+          "candidate_ns": 0.04489467978501693,
+          "limit_ns": 0.002,
+          "passed": true
+        }
+      }
+    }
+  },
+  "nominal_liberty_comparisons": {
+    "gf180_25_0.5_6.0_10.0": {
+      "liberty_load_axis_pf": 8.977816,
+      "load_mapping": "GF STA-net convention: external C plus Liberty inout-pin C; physical self C stays in transistor circuit",
+      "passed": false,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.5390945319481308,
+          "reference_ns": 3.116259,
+          "candidate_ns": 2.577164468051869,
+          "limit_ns": 0.3116259,
+          "passed": false
+        },
+        "fall_delay_ns": {
+          "error_ns": 0.5879610470179291,
+          "reference_ns": 3.337365,
+          "candidate_ns": 2.749403952982071,
+          "limit_ns": 0.33373650000000005,
+          "passed": false
+        },
+        "rise_slew_ns": {
+          "error_ns": 0.11117305523657794,
+          "reference_ns": 1.032381,
+          "candidate_ns": 0.921207944763422,
+          "limit_ns": 0.1032381,
+          "passed": false
+        },
+        "fall_slew_ns": {
+          "error_ns": 0.0896844784068378,
+          "reference_ns": 0.8887,
+          "candidate_ns": 0.7990155215931622,
+          "limit_ns": 0.08887,
+          "passed": false
+        }
+      },
+      "nominal_output_slew_check": {
+        "max_transition_ns": 1.0,
+        "measured_slews_within_limit": true,
+        "liberty_slews_within_limit": false,
+        "scope": "25 C output slew only; not a complete electrical qualification"
+      }
+    },
+    "gf180_25_0.08_6.0_10.0": {
+      "liberty_load_axis_pf": 8.977816,
+      "load_mapping": "GF STA-net convention: external C plus Liberty inout-pin C; physical self C stays in transistor circuit",
+      "passed": false,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.5263932788678201,
+          "reference_ns": 3.038145,
+          "candidate_ns": 2.51175172113218,
+          "limit_ns": 0.30381450000000004,
+          "passed": false
+        },
+        "fall_delay_ns": {
+          "error_ns": 0.5668965904098084,
+          "reference_ns": 3.201331,
+          "candidate_ns": 2.6344344095901917,
+          "limit_ns": 0.32013310000000006,
+          "passed": false
+        },
+        "rise_slew_ns": {
+          "error_ns": 0.11182484409799098,
+          "reference_ns": 1.033029,
+          "candidate_ns": 0.921204155902009,
+          "limit_ns": 0.1033029,
+          "passed": false
+        },
+        "fall_slew_ns": {
+          "error_ns": 0.08984549485502002,
+          "reference_ns": 0.8889,
+          "candidate_ns": 0.79905450514498,
+          "limit_ns": 0.08889000000000001,
+          "passed": false
+        }
+      },
+      "nominal_output_slew_check": {
+        "max_transition_ns": 1.0,
+        "measured_slews_within_limit": true,
+        "liberty_slews_within_limit": false,
+        "scope": "25 C output slew only; not a complete electrical qualification"
+      }
+    },
+    "gf180_25_1.0_6.0_10.0": {
+      "liberty_load_axis_pf": 8.977816,
+      "load_mapping": "GF STA-net convention: external C plus Liberty inout-pin C; physical self C stays in transistor circuit",
+      "passed": false,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.5440426993973948,
+          "reference_ns": 3.150991,
+          "candidate_ns": 2.606948300602605,
+          "limit_ns": 0.3150991,
+          "passed": false
+        },
+        "fall_delay_ns": {
+          "error_ns": 0.6020034377523604,
+          "reference_ns": 3.500133,
+          "candidate_ns": 2.8981295622476395,
+          "limit_ns": 0.3500133,
+          "passed": false
+        },
+        "rise_slew_ns": {
+          "error_ns": 0.11161163747781422,
+          "reference_ns": 1.032814,
+          "candidate_ns": 0.9212023625221857,
+          "limit_ns": 0.1032814,
+          "passed": false
+        },
+        "fall_slew_ns": {
+          "error_ns": 0.08919299871656905,
+          "reference_ns": 0.888227,
+          "candidate_ns": 0.7990340012834309,
+          "limit_ns": 0.0888227,
+          "passed": false
+        }
+      },
+      "nominal_output_slew_check": {
+        "max_transition_ns": 1.0,
+        "measured_slews_within_limit": true,
+        "liberty_slews_within_limit": false,
+        "scope": "25 C output slew only; not a complete electrical qualification"
+      }
+    },
+    "gf180_25_0.5_12.0_10.0": {
+      "liberty_load_axis_pf": 14.977816,
+      "load_mapping": "GF STA-net convention: external C plus Liberty inout-pin C; physical self C stays in transistor circuit",
+      "passed": false,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.5410747342103779,
+          "reference_ns": 3.410648,
+          "candidate_ns": 2.8695732657896222,
+          "limit_ns": 0.34106480000000006,
+          "passed": false
+        },
+        "fall_delay_ns": {
+          "error_ns": 0.5928941765101525,
+          "reference_ns": 3.58631,
+          "candidate_ns": 2.9934158234898476,
+          "limit_ns": 0.35863100000000003,
+          "passed": false
+        },
+        "rise_slew_ns": {
+          "error_ns": 0.10403814185078919,
+          "reference_ns": 1.575449,
+          "candidate_ns": 1.471410858149211,
+          "limit_ns": 0.15754490000000002,
+          "passed": true
+        },
+        "fall_slew_ns": {
+          "error_ns": 0.09571791639988758,
+          "reference_ns": 1.241412,
+          "candidate_ns": 1.1456940836001124,
+          "limit_ns": 0.12414120000000001,
+          "passed": true
+        }
+      },
+      "nominal_output_slew_check": {
+        "max_transition_ns": 1.0,
+        "measured_slews_within_limit": false,
+        "liberty_slews_within_limit": false,
+        "scope": "25 C output slew only; not a complete electrical qualification"
+      }
+    },
+    "gf180_25_0.5_2.0_10.0": {
+      "liberty_load_axis_pf": 4.977816,
+      "load_mapping": "GF STA-net convention: external C plus Liberty inout-pin C; physical self C stays in transistor circuit",
+      "passed": false,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.5235102186724139,
+          "reference_ns": 2.8911676666666666,
+          "candidate_ns": 2.3676574479942527,
+          "limit_ns": 0.2891167666666667,
+          "passed": false
+        },
+        "fall_delay_ns": {
+          "error_ns": 0.5599709989998596,
+          "reference_ns": 3.102224333333333,
+          "candidate_ns": 2.5422533343334734,
+          "limit_ns": 0.3102224333333333,
+          "passed": false
+        },
+        "rise_slew_ns": {
+          "error_ns": 0.1288514472769191,
+          "reference_ns": 0.7093103333333333,
+          "candidate_ns": 0.5804588860564142,
+          "limit_ns": 0.07093103333333332,
+          "passed": false
+        },
+        "fall_slew_ns": {
+          "error_ns": 0.07321737277933538,
+          "reference_ns": 0.62508,
+          "candidate_ns": 0.5518626272206646,
+          "limit_ns": 0.062508,
+          "passed": false
+        }
+      },
+      "nominal_output_slew_check": {
+        "max_transition_ns": 1.0,
+        "measured_slews_within_limit": true,
+        "liberty_slews_within_limit": true,
+        "scope": "25 C output slew only; not a complete electrical qualification"
+      }
+    },
+    "sky130_25_1.0_0.022799_20.0": {
+      "liberty_load_axis_pf": 0.022799,
+      "load_mapping": "external output capacitor",
+      "passed": false,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.3283981790265118,
+          "reference_ns": 1.400498911778846,
+          "candidate_ns": 1.0721007327523342,
+          "limit_ns": 0.1400498911778846,
+          "passed": false
+        },
+        "fall_delay_ns": {
+          "error_ns": 0.42547839398843834,
+          "reference_ns": 1.6005333942307693,
+          "candidate_ns": 1.175055000242331,
+          "limit_ns": 0.16005333942307695,
+          "passed": false
+        },
+        "rise_slew_ns": {
+          "error_ns": 0.05415052473592305,
+          "reference_ns": 0.08720896370192308,
+          "candidate_ns": 0.033058438966000026,
+          "limit_ns": 0.02,
+          "passed": false
+        },
+        "fall_slew_ns": {
+          "error_ns": 0.055026743772675385,
+          "reference_ns": 0.09992142355769232,
+          "candidate_ns": 0.04489467978501693,
+          "limit_ns": 0.02,
+          "passed": false
+        }
+      },
+      "nominal_output_slew_check": {
+        "max_transition_ns": 1.506935,
+        "measured_slews_within_limit": true,
+        "liberty_slews_within_limit": true,
+        "scope": "25 C output slew only; not a complete electrical qualification"
+      }
+    }
+  },
+  "gf180_temperature_holdouts": {
+    "25": {
+      "passed": true,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.0032911000502640064,
+          "reference_ns": 2.577164468051869,
+          "candidate_ns": 2.573873368001605,
+          "limit_ns": 0.05154328936103738,
+          "passed": true
+        },
+        "fall_delay_ns": {
+          "error_ns": 0.003388750713902766,
+          "reference_ns": 2.749403952982071,
+          "candidate_ns": 2.7460152022681683,
+          "limit_ns": 0.054988079059641426,
+          "passed": true
+        },
+        "rise_slew_ns": {
+          "error_ns": 0.0018423827608585741,
+          "reference_ns": 0.921207944763422,
+          "candidate_ns": 0.9193655620025635,
+          "limit_ns": 0.018424158895268442,
+          "passed": true
+        },
+        "fall_slew_ns": {
+          "error_ns": 0.0010931847697804864,
+          "reference_ns": 0.7990155215931622,
+          "candidate_ns": 0.8001087063629427,
+          "limit_ns": 0.015980310431863244,
+          "passed": true
+        }
+      }
+    },
+    "50": {
+      "passed": true,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.005350131467477759,
+          "reference_ns": 2.7335559518215824,
+          "candidate_ns": 2.7282058203541046,
+          "limit_ns": 0.05467111903643165,
+          "passed": true
+        },
+        "fall_delay_ns": {
+          "error_ns": 0.0055653200169487604,
+          "reference_ns": 2.9185019212101366,
+          "candidate_ns": 2.912936601193188,
+          "limit_ns": 0.058370038424202735,
+          "passed": true
+        },
+        "rise_slew_ns": {
+          "error_ns": 0.002871362250495557,
+          "reference_ns": 0.9901167872484749,
+          "candidate_ns": 0.9872454249979793,
+          "limit_ns": 0.019802335744969497,
+          "passed": true
+        },
+        "fall_slew_ns": {
+          "error_ns": 0.0013885039837575608,
+          "reference_ns": 0.8653288770447389,
+          "candidate_ns": 0.8667173810284965,
+          "limit_ns": 0.01730657754089478,
+          "passed": true
+        }
+      }
+    },
+    "75": {
+      "passed": true,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.005738227168531562,
+          "reference_ns": 2.8882764998751362,
+          "candidate_ns": 2.8825382727066047,
+          "limit_ns": 0.05776552999750273,
+          "passed": true
+        },
+        "fall_delay_ns": {
+          "error_ns": 0.0060256273402714555,
+          "reference_ns": 3.085883627458479,
+          "candidate_ns": 3.0798580001182074,
+          "limit_ns": 0.06171767254916958,
+          "passed": true
+        },
+        "rise_slew_ns": {
+          "error_ns": 0.0031459687655934765,
+          "reference_ns": 1.0582712567589887,
+          "candidate_ns": 1.0551252879933952,
+          "limit_ns": 0.021165425135179775,
+          "passed": true
+        },
+        "fall_slew_ns": {
+          "error_ns": 0.0011555734055874733,
+          "reference_ns": 0.9321704822884627,
+          "candidate_ns": 0.9333260556940501,
+          "limit_ns": 0.018643409645769254,
+          "passed": true
+        }
+      }
+    },
+    "100": {
+      "passed": true,
+      "metrics": {
+        "rise_delay_ns": {
+          "error_ns": 0.004075922655695674,
+          "reference_ns": 3.040946647714801,
+          "candidate_ns": 3.036870725059105,
+          "limit_ns": 0.060818932954296016,
+          "passed": true
+        },
+        "fall_delay_ns": {
+          "error_ns": 0.004317468255024437,
+          "reference_ns": 3.2510968672982514,
+          "candidate_ns": 3.246779399043227,
+          "limit_ns": 0.06502193734596504,
+          "passed": true
+        },
+        "rise_slew_ns": {
+          "error_ns": 0.0022185608304805537,
+          "reference_ns": 1.1252237118192916,
+          "candidate_ns": 1.123005150988811,
+          "limit_ns": 0.02250447423638583,
+          "passed": true
+        },
+        "fall_slew_ns": {
+          "error_ns": 0.0006178603935168558,
+          "reference_ns": 0.999316869966087,
+          "candidate_ns": 0.9999347303596039,
+          "limit_ns": 0.019986337399321742,
+          "passed": true
+        }
+      }
+    }
+  },
+  "same_build_receiver_table_identity": {
+    "cell_rise": true,
+    "cell_fall": true,
+    "rise_transition": true,
+    "fall_transition": true
+  },
+  "source": {
+    "commit": "731c03653b2efc1f3799e537c0b75232b2d66982",
+    "dirty": true
+  },
+  "source_code_sha256": {
+    "tools/validate_pad_spice.py": "6580f0b39952538dc0c448c724f53e367fe2b2bb0222b82350aa09cd951b4423",
+    "tools/validation/pad_sources.py": "29683ef639714a09b0d0d516a4d0dd0cc2fd26e597dab748d2164388b16aa126",
+    "tools/validation/pad_spice.py": "40c6a3499bbc75490a1972cede4740d2f75de7fae06c5c182d2f51428d4e0393",
+    "src/chiplet_floorplanning/interfaces.py": "859b1f7da45a71f45ae37c62c15390454b6f2446cd4f24a37897fb5d3029ca5a",
+    "src/chiplet_floorplanning/liberty_checks.py": "d9065b2a101a586a3518d354af973a2a722df89bd21f83d9e65d6fb657be46d8"
+  },
+  "liberty_source_hashes": {
+    "pdk-v03/sky_io_tt_1v8_3v3.lib": "3a96e91dded692bc4af4ad1a4813361829e2812ebce17de253bf45502242d16f",
+    "pdk-v03/gf_bi_t_tt_3v3.lib": "08bfec98e95f3f25da65b510fecafb9eedfb531c8c5b3587421fbe64ac5b32f3"
+  },
+  "ngspice_version": "******\n** ngspice-42 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2023, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sun Mar 31 20:15:14 UTC 2024\n******",
+  "ngspice_executable_sha256": "820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45",
+  "scope": "Transistor-model diagnostic, fixed TT/P/V. GF temperature sensitivity is conditional on source-model fidelity; not a released timing model.",
+  "coverage_gaps": [
+    "SKY130 reachable empty pad/parasitic-diode subcircuits",
+    "SKY130 original and same-build active receiver tables are identical, but no transistor/PEX equivalence proof",
+    "model warnings and nominal waveform/Liberty mismatch",
+    "GF load-axis convention inferred from self-capacitance offset and STA, not an original characterization deck",
+    "no complete pad-temperature PVT or temperature-dependent active core arcs in this interface",
+    "no measured package channel or silicon data"
+  ],
+  "physical_package_calibration": false,
+  "complete_package_signoff": false,
+  "source_lock_sha256": "9c4e82a9ca1026fd5601b488760b0409c62bdbe477a97b2563bf79af48b6bdf6",
+  "verified_source_file_count": 837,
+  "raw_report_sha256": "0ce5aec8404c469c0b04dd6d6a50d8c5e06e75183b02dbca9775f4b2f8eb992f",
+  "models": {
+    "gf180": {
+      "pins": [
+        "A",
+        "CS",
+        "DVDD",
+        "DVSS",
+        "IE",
+        "OE",
+        "PAD",
+        "PD",
+        "PDRV0",
+        "PDRV1",
+        "PU",
+        "SL",
+        "VDD",
+        "VSS",
+        "Y"
+      ],
+      "mapping": {
+        "VDD": "v33",
+        "DVDD": "v33",
+        "VSS": "0",
+        "DVSS": "0",
+        "A": "vin",
+        "PAD": "vout",
+        "Y": "nc_y",
+        "OE": "v33",
+        "IE": "0",
+        "PDRV0": "v33",
+        "PDRV1": "v33",
+        "CS": "0",
+        "SL": "0",
+        "PU": "0",
+        "PD": "0"
+      },
+      "control_supply_domains": {
+        "OE": "VDD",
+        "IE": "VDD",
+        "PDRV0": "VDD",
+        "PDRV1": "VDD",
+        "CS": "VDD",
+        "SL": "VDD",
+        "PU": "VDD",
+        "PD": "VDD"
+      },
+      "cell": "gf180mcu_fd_io__bi_t",
+      "output": "PAD",
+      "io_closure": {
+        "empty_subcircuits": [],
+        "unresolved_subcircuits": [],
+        "declared_external_primitives": [
+          "cap_nmos_06v0",
+          "nfet_06v0",
+          "nfet_06v0_dss",
+          "pfet_06v0",
+          "pfet_06v0_dss",
+          "ppolyf_u"
+        ],
+        "structural_gate_passed": true,
+        "scope": "IO X-instance hierarchy only; primitive behavior and active model sections require simulator checks",
+        "visited_io_subcircuit_count": 1
+      }
+    },
+    "sky130": {
+      "pins": [
+        "IN_H",
+        "PAD_A_NOESD_H",
+        "PAD_A_ESD_0_H",
+        "PAD_A_ESD_1_H",
+        "PAD",
+        "DM[2]",
+        "DM[1]",
+        "DM[0]",
+        "HLD_H_N",
+        "IN",
+        "INP_DIS",
+        "IB_MODE_SEL",
+        "ENABLE_H",
+        "ENABLE_VDDA_H",
+        "ENABLE_INP_H",
+        "OE_N",
+        "TIE_HI_ESD",
+        "TIE_LO_ESD",
+        "SLOW",
+        "VTRIP_SEL",
+        "HLD_OVR",
+        "ANALOG_EN",
+        "ANALOG_SEL",
+        "ENABLE_VDDIO",
+        "ENABLE_VSWITCH_H",
+        "ANALOG_POL",
+        "OUT",
+        "AMUXBUS_A",
+        "AMUXBUS_B",
+        "VSSA",
+        "VDDA",
+        "VSWITCH",
+        "VDDIO_Q",
+        "VCCHIB",
+        "VDDIO",
+        "VCCD",
+        "VSSIO",
+        "VSSD",
+        "VSSIO_Q"
+      ],
+      "mapping": {
+        "VDDIO": "v33",
+        "VDDIO_Q": "v33",
+        "VDDA": "v33",
+        "VSWITCH": "v33",
+        "VCCD": "v18",
+        "VCCHIB": "v18",
+        "VSSA": "0",
+        "VSSIO": "0",
+        "VSSD": "0",
+        "VSSIO_Q": "0",
+        "PAD": "vin",
+        "IN": "vout",
+        "IN_H": "nc_in_h",
+        "PAD_A_NOESD_H": "nc_pad_a_noesd_h",
+        "PAD_A_ESD_0_H": "nc_pad_a_esd_0_h",
+        "PAD_A_ESD_1_H": "nc_pad_a_esd_1_h",
+        "TIE_HI_ESD": "nc_tie_hi_esd",
+        "TIE_LO_ESD": "nc_tie_lo_esd",
+        "AMUXBUS_A": "nc_amuxbus_a",
+        "AMUXBUS_B": "nc_amuxbus_b",
+        "OE_N": "v18",
+        "INP_DIS": "0",
+        "SLOW": "0",
+        "HLD_H_N": "v33",
+        "HLD_OVR": "0",
+        "ENABLE_H": "v33",
+        "ENABLE_VDDA_H": "0",
+        "ENABLE_INP_H": "0",
+        "ENABLE_VDDIO": "v18",
+        "ENABLE_VSWITCH_H": "v33",
+        "VTRIP_SEL": "0",
+        "IB_MODE_SEL": "0",
+        "ANALOG_EN": "0",
+        "ANALOG_SEL": "0",
+        "ANALOG_POL": "0",
+        "OUT": "0",
+        "DM[2]": "0",
+        "DM[1]": "0",
+        "DM[0]": "v18"
+      },
+      "control_supply_domains": {
+        "OE_N": "VCCHIB",
+        "INP_DIS": "VCCD",
+        "SLOW": "VCCD",
+        "HLD_H_N": "VDDIO",
+        "HLD_OVR": "VCCD",
+        "ENABLE_H": "VDDIO",
+        "ENABLE_VDDA_H": "VDDA",
+        "ENABLE_INP_H": "VDDIO",
+        "ENABLE_VDDIO": "VCCHIB",
+        "ENABLE_VSWITCH_H": "VSWITCH",
+        "VTRIP_SEL": "VCCD",
+        "IB_MODE_SEL": "VCCD",
+        "ANALOG_EN": "VCCD",
+        "ANALOG_SEL": "VCCD",
+        "ANALOG_POL": "VCCD",
+        "OUT": "VCCHIB",
+        "DM[2]": "VCCD",
+        "DM[1]": "VCCD",
+        "DM[0]": "VCCD"
+      },
+      "cell": "sky130_ef_io__gpiov2_pad",
+      "output": "IN",
+      "io_closure": {
+        "empty_subcircuits": [
+          "sky130_fd_io__com_pad",
+          "sky130_fd_io__condiode"
+        ],
+        "unresolved_subcircuits": [],
+        "declared_external_primitives": [
+          "sky130_fd_pr__esd_nfet_g5v0d10v5",
+          "sky130_fd_pr__nfet_01v8",
+          "sky130_fd_pr__nfet_01v8_lvt",
+          "sky130_fd_pr__nfet_05v0_nvt",
+          "sky130_fd_pr__nfet_g5v0d10v5",
+          "sky130_fd_pr__pfet_01v8",
+          "sky130_fd_pr__pfet_01v8_hvt",
+          "sky130_fd_pr__pfet_g5v0d10v5"
+        ],
+        "structural_gate_passed": false,
+        "scope": "IO X-instance hierarchy only; primitive behavior and active model sections require simulator checks",
+        "visited_io_subcircuit_count": 96
+      }
+    }
+  },
+  "regression": {
+    "unit_tests": 55,
+    "unit_tests_passed": true,
+    "unit_log_sha256": "a6ec4ecee31c184190eb24040bffccb4d93f7366d7075ef4f8fdd0303d4ce24b",
+    "prototype_software_checks_passed": true,
+    "prototype_check_count": 16,
+    "prototype_nominal": {
+      "setup_slack_ns": 8.705309,
+      "hold_slack_ns": 11.00811,
+      "timing_constraints_met": true
+    },
+    "prototype_report_sha256": "164973bbd345bd4f8d7662735008ccc6d0b7963be72d1e64cbe02b84663dccb5",
+    "original_cli_report_sha256": "294700ef805f2c540c3ab7461f2e9a7c696cc36047f844def6ea6fe6026b061e",
+    "original_cli_report": {
+      "schema_version": 1,
+      "case": "two_chiplets",
+      "scope": "fixed_layout_assumption_driven_reference",
+      "validation": {
+        "geometry": "passed",
+        "power_conservation": "passed",
+        "thermal_residual_and_energy_balance": "passed",
+        "thermal_external_validation": "not_run",
+        "cross_die_setup_hold": "not_run"
+      },
+      "power": {
+        "input_w": 3.0,
+        "mapped_w": 3.0,
+        "error_w": 0.0,
+        "blocks": [
+          {
+            "chiplet": "tx",
+            "block": "compute",
+            "input_w": 1.5,
+            "mapped_w": 1.5,
+            "provenance": "Synthetic fixed-workload assumption; not RTL or measured power.",
+            "package_rect_mm": {
+              "x": 1.0,
+              "y": 2.0,
+              "width": 2.0,
+              "height": 2.0
+            }
+          },
+          {
+            "chiplet": "tx",
+            "block": "io",
+            "input_w": 0.5,
+            "mapped_w": 0.5,
+            "provenance": "Synthetic total I/O block power; no separate link power is added.",
+            "package_rect_mm": {
+              "x": 3.0,
+              "y": 2.0,
+              "width": 1.0,
+              "height": 2.0
+            }
+          },
+          {
+            "chiplet": "rx",
+            "block": "logic",
+            "input_w": 0.7,
+            "mapped_w": 0.7,
+            "provenance": "Synthetic fixed-workload assumption; not RTL or measured power.",
+            "package_rect_mm": {
+              "x": 8.0,
+              "y": 2.0,
+              "width": 2.0,
+              "height": 2.0
+            }
+          },
+          {
+            "chiplet": "rx",
+            "block": "io",
+            "input_w": 0.3,
+            "mapped_w": 0.3,
+            "provenance": "Synthetic total I/O block power; no separate link power is added.",
+            "package_rect_mm": {
+              "x": 7.0,
+              "y": 2.0,
+              "width": 1.0,
+              "height": 2.0
+            }
+          }
+        ]
+      },
+      "thermal": {
+        "model": "uniform_slab_steady",
+        "calibration": "not_calibrated",
+        "provenance": "Synthetic effective slab and distributed cooling; no calibrated package stack.",
+        "peak_c": 34.1886068258067,
+        "minimum_c": 25.837840813477314,
+        "mean_c": 28.125000000000053,
+        "mesh": {
+          "mode": "uniform",
+          "requested_nx": 48,
+          "requested_ny": 32,
+          "nx": 48,
+          "ny": 32,
+          "x_edges_mm": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0,
+            1.25,
+            1.5,
+            1.75,
+            2.0,
+            2.25,
+            2.5,
+            2.75,
+            3.0,
+            3.25,
+            3.5,
+            3.75,
+            4.0,
+            4.25,
+            4.5,
+            4.75,
+            5.0,
+            5.25,
+            5.5,
+            5.75,
+            6.0,
+            6.25,
+            6.5,
+            6.75,
+            7.0,
+            7.25,
+            7.5,
+            7.75,
+            8.0,
+            8.25,
+            8.5,
+            8.75,
+            9.0,
+            9.25,
+            9.5,
+            9.75,
+            10.0,
+            10.25,
+            10.5,
+            10.75,
+            11.0,
+            11.25,
+            11.5,
+            11.75,
+            12.0
+          ],
+          "y_edges_mm": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0,
+            1.25,
+            1.5,
+            1.75,
+            2.0,
+            2.25,
+            2.5,
+            2.75,
+            3.0,
+            3.25,
+            3.5,
+            3.75,
+            4.0,
+            4.25,
+            4.5,
+            4.75,
+            5.0,
+            5.25,
+            5.5,
+            5.75,
+            6.0,
+            6.25,
+            6.5,
+            6.75,
+            7.0,
+            7.25,
+            7.5,
+            7.75,
+            8.0
+          ],
+          "geometry_snapped": false
+        },
+        "removed_heat_w": 3.00000000000005,
+        "energy_balance_error_w": 5.0182080713057076e-14,
+        "linear_residual_inf_w": 6.661338147750939e-16
+      },
+      "links": [
+        {
+          "id": "lane_data",
+          "kind": "data",
+          "source_mm": [
+            4.0,
+            2.6
+          ],
+          "target_mm": [
+            7.0,
+            2.6
+          ],
+          "manhattan_length_mm": 3.0,
+          "modeled_length_mm": 3.0,
+          "route_geometry": "manhattan_lower_bound",
+          "route_points_mm": null,
+          "assumed_r_ohm": 0.30000000000000004,
+          "assumed_c_pf": 0.6000000000000001,
+          "model": "manhattan_lower_bound",
+          "provenance": "Synthetic per-length coefficients; no routed or extracted package parasitics."
+        },
+        {
+          "id": "lane_clock",
+          "kind": "clock",
+          "source_mm": [
+            4.0,
+            3.4
+          ],
+          "target_mm": [
+            7.0,
+            3.4
+          ],
+          "manhattan_length_mm": 3.0,
+          "modeled_length_mm": 3.0,
+          "route_geometry": "manhattan_lower_bound",
+          "route_points_mm": null,
+          "assumed_r_ohm": 0.30000000000000004,
+          "assumed_c_pf": 0.6000000000000001,
+          "model": "manhattan_lower_bound",
+          "provenance": "Synthetic per-length coefficients; no routed or extracted package parasitics."
+        }
+      ],
+      "timing": {
+        "status": "not_run",
+        "setup_slack_ns": null,
+        "hold_slack_ns": null
+      },
+      "qualification": {
+        "physical_package_calibration": "not_completed_no_measurement_data",
+        "full_PVT_signoff": "not_completed",
+        "pad_PHY_qualification": "not_completed",
+        "temperature_interpolation_holdout": "not_completed",
+        "complete_package_signoff": false
+      },
+      "provenance": {
+        "input_snapshot_sha256": "df949e1d36dffbcdefbba89c40c5deb6ad839894a5a70ebe00dd80deb8e626ba",
+        "tool_version": "0.6.0",
+        "source": {
+          "commit": "731c03653b2efc1f3799e537c0b75232b2d66982",
+          "dirty": true
+        },
+        "python": "3.12.3",
+        "numpy": "2.5.4",
+        "scipy": "1.18.1",
+        "timestamp_utc": "2026-11-11T10:48:39.745473+00:00"
+      }
+    }
+  }
+}
