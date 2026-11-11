@@ -1,0 +1,30 @@
+{
+  "remote_checked_commit": "c124aa982eb97f49a7f4be907554c94436ace2d2",
+  "fetch_succeeded": true,
+  "local_only": true,
+  "physical_model_qualified": false,
+  "tests_passed": 119,
+  "source_lock_sha256": "f1dcfded41ea345fa8b0dbbd702dd11b10e65faf1092e222c80527a547ee2b95",
+  "reports": {
+    "thermal-fit-v2": {
+      "path": "results/physical-calibration/thermal-fit-v2/report.json",
+      "sha256": "4c4b285e55030ad3f9ecf709866fe8a0fa9876e2013aca621d3cc9f6e5a6e181"
+    },
+    "pad-primitive-v1": {
+      "path": "results/physical-calibration/pad-primitive-v1/report.json",
+      "sha256": "4e9304d4299740b5bc967e34527c5b973beb09b749286473079e69a8f83d857c"
+    },
+    "thermal-transient-v1": {
+      "path": "results/physical-calibration/thermal-transient-v1/report.json",
+      "sha256": "a45c42594631592f19da26a4ae47484484dd509671dc77c779a4aaf7ad60a0ad"
+    },
+    "transient-audit-v1": {
+      "path": "results/physical-calibration/transient-audit-v1/report.json",
+      "sha256": "bd10923fe15886c0ef1a8cc0d60aa04803ea58dedcd3764837d40b4446090f0b"
+    }
+  },
+  "checks": {
+    "results/physical-calibration/unit-tests-final.log": "9ef25ae2fe5c1ecb5f5e378fe9c5ed18a9690dd204fdd032039931831bf6b28e",
+    "results/physical-calibration/basic-cli-final/report.json": "af9d3d8d254b8bd3607527847410210ee9ac85866acd98638e2fd29916d99e8a"
+  }
+}

@@ -243,6 +243,13 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
 早期波形误差、超时和中断仍完整保留。通道延迟差可正可负，不能统一加一个
 飞行时间常数。该结果只完成理想模型的数值审计，真实 PHY/热反馈仍未获准。
 
+公开实测进展见 [TTC 与高压晶体管测量对照](docs/measured-calibration-results.md)：
+26 个真实热实验完成含储热的条件拟合与预定留出评估，108 组实际硅晶体管
+曲线对照完成，119 项测试通过。原稳态方案因样本不满足准入而拒绝拟合；
+原始失败保留。风扇组热容触及数值下限，事件时标与测量边界仍有歧义，
+不能把平均误差或守恒通过当成真实物理参数已校准。完整 Pad、封装电气和
+目标 chiplet 热边界保持未校准；本地提交，无远端推送。
+
 ```bash
 python -m pip install -e '.[validation]'
 OPENBLAS_NUM_THREADS=1 python tools/validate_thermal_decomposition.py \
