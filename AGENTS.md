@@ -3,6 +3,11 @@
 This is the independent `chiplet_floorplanning` repository. Run Git commands
 here; do not place these changes in adjacent placement repositories.
 
+- At the start of every new research session, fetch `origin` and inspect remote
+  commits before drawing conclusions. Fast-forward a clean, behind `main` when
+  possible; preserve local changes and resolve divergence explicitly. Record the
+  analyzed commit and whether the fetch succeeded. If offline, label freshness
+  unverified. Recheck the remote before publishing; never force-push over new work.
 - Use Python 3.10+, four spaces, and explicit units in data fields.
 - Run `python -m unittest discover -s tests -p '*_unittest.py' -v` and the
   documented two-chiplet CLI case before publishing a milestone.

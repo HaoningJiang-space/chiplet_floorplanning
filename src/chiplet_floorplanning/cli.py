@@ -49,7 +49,7 @@ def evaluate(case, output, timing_options=None, coupling_options=None):
         from .characterization import run_coupled_timing
         timing = run_coupled_timing(case, temperature, output, **coupling_options)
     input_w = sum(block["input_w"] for block in blocks)
-    canonical = json.dumps(case.input_data, indent=2, sort_keys=True, allow_nan=False) + "\n"
+    canonical = (json.dumps(case.input_data, indent=2, sort_keys=True, allow_nan=False) + "\n").encode("utf-8")
     report = {
         "schema_version": 1,
         "case": case.name,
@@ -68,7 +68,7 @@ def evaluate(case, output, timing_options=None, coupling_options=None):
                           "pad_PHY_qualification": "not_completed",
                           "temperature_interpolation_holdout": "not_completed",
                           "complete_package_signoff": False},
-        "provenance": {"input_snapshot_sha256": hashlib.sha256(canonical.encode()).hexdigest(),
+        "provenance": {"input_snapshot_sha256": hashlib.sha256(canonical).hexdigest(),
                        "tool_version": __version__, "source": source_revision(),
                        "python": platform.python_version(), "numpy": np.__version__,
                        "scipy": scipy.__version__, "timestamp_utc": datetime.now(timezone.utc).isoformat()},
@@ -76,7 +76,8 @@ def evaluate(case, output, timing_options=None, coupling_options=None):
     encoded = json.dumps(report, indent=2, allow_nan=False) + "\n"
     if not timing_options and not coupling_options:
         output.mkdir(parents=True, exist_ok=False)
-    (output / "input.json").write_text(canonical, encoding="utf-8")
+    # Hash and persist the same bytes; text mode translates LF to CRLF on Windows.
+    (output / "input.json").write_bytes(canonical)
     xs, ys = case.mesh.x_centers_mm, case.mesh.y_centers_mm
     widths, heights, areas = case.mesh.widths_mm, case.mesh.heights_mm, case.mesh.areas_mm2
     with (output / "grid.csv").open("w", newline="", encoding="utf-8") as stream:

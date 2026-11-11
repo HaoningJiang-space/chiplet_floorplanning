@@ -1,0 +1,88 @@
+{
+  "scope": "assumed_linear_steady_model_diagnostics_only",
+  "physical_calibration": false,
+  "full_xyz_convergence_established": false,
+  "source_layer_refined": false,
+  "junction_temperature_validated": false,
+  "passive_refinement": [
+    {
+      "xy_scale": 1,
+      "passive_z_slices": 1,
+      "peak_c": 60.74730285302888,
+      "nodes": 912,
+      "energy_error_w": 2.5490720645393594e-13
+    },
+    {
+      "xy_scale": 1,
+      "passive_z_slices": 2,
+      "peak_c": 60.69841141130632,
+      "nodes": 1776,
+      "energy_error_w": -1.814992600657206e-12
+    },
+    {
+      "xy_scale": 1,
+      "passive_z_slices": 4,
+      "peak_c": 60.685880600256155,
+      "nodes": 3504,
+      "energy_error_w": 1.3911538587763062e-11
+    },
+    {
+      "xy_scale": 1,
+      "passive_z_slices": 8,
+      "peak_c": 60.68272546419263,
+      "nodes": 6960,
+      "energy_error_w": 1.4140244530835844e-11
+    },
+    {
+      "xy_scale": 2,
+      "passive_z_slices": 1,
+      "peak_c": 60.69891582239699,
+      "nodes": 3648,
+      "energy_error_w": -1.0791367799356522e-13
+    },
+    {
+      "xy_scale": 2,
+      "passive_z_slices": 2,
+      "peak_c": 60.6481867478876,
+      "nodes": 7104,
+      "energy_error_w": 4.3876013933186186e-13
+    },
+    {
+      "xy_scale": 2,
+      "passive_z_slices": 4,
+      "peak_c": 60.63477764750114,
+      "nodes": 14016,
+      "energy_error_w": -1.0254019855437946e-11
+    },
+    {
+      "xy_scale": 2,
+      "passive_z_slices": 8,
+      "peak_c": 60.63134408426282,
+      "nodes": 27840,
+      "energy_error_w": 5.92206284011354e-11
+    }
+  ],
+  "fixed_geometry_contributions": {
+    "hotspot_index_yx": [
+      5,
+      3
+    ],
+    "hotspot_xy_mm": [
+      1.75,
+      2.75
+    ],
+    "total_rise_k": 35.74730285302888,
+    "rise_by_source_k": {
+      "tx": 25.83263074234295,
+      "rx": 9.91467211068592
+    },
+    "superposition_error_k": 2.1316282072803006e-14,
+    "interpretation": "All material remains; contributions use the total-field hotspot, not separate maxima."
+  },
+  "source_revision": {
+    "commit": "a51c3d4feb195424b8c7c9fbc111448d16774975",
+    "dirty": true
+  },
+  "input_sha256": "9cfbe335fb90ec4c79fdfbce9ec743f90970758feb1d02742e83989128643230",
+  "script_sha256": "388fe92b853369e4afcfef397da6c86eceeaabd95c3f7928489f3f56f8b0111f"
+}
