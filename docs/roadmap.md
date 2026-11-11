@@ -217,3 +217,19 @@ Use charge/energy ledgers and compare both setup and hold at prespecified
 decision tolerances. Do not infer RC failure from a single frequency or add an
 ideal flight-time constant to STA. A sourced hardware case still requires
 independent material/channel/interface evidence.
+
+## Ideal passive-channel numerical milestone (2026-11-11)
+
+The 12-case RC/RLC mechanism study now supplies independently solved state
+equations, per-node charge and full energy ledgers, continuous-line frequency
+controls, retained failure history and lossless full-waveform evidence. The final
+96-record set passes its preregistered numerical screens; see
+`passive-channel-results.md`. Maximum channel-delay and same-edge clock-skew
+differences are 6.710 ps and 3.438 ps under the declared coefficients.
+
+Stable scalar delay alone did not detect waveform errors. The framework now
+checks both endpoint waveforms, source/receiver reference planes, all crossings,
+source energy return and local balance. Numerical passivity/convergence is not
+physical calibration; real pad/PEX, package RLGC and receiver requirements remain
+dependencies. Next source an interface decision margin and independent channel
+evidence before assessing timing-feasibility or thermal-ranking changes.

@@ -19,6 +19,7 @@ from validation.passive_channel import (Channel, GATES, VDD, STOP_S, network, or
                                         deck, crossings, crossing_difference,
                                         ledger, frequency_checks)
 from validation.sources import git_revision, write_json
+from validation.spice_waveform import read_real_binary
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -65,10 +66,24 @@ def negative_controls(t, u, v, current, branch, c, r, l, b, driver, load):
     return records
 
 
-def simulate(output, executable, init, channel, segments, model, step_ps, reference, integration='trap'):
+def simulate(output, executable, init, channel, segments, model, step_ps, reference, integration='trap', accuracy='standard', waveform_format='text'):
+    if accuracy not in ('standard', 'strict', 'balanced') or waveform_format not in ('text', 'binary'):
+        raise ValueError('unsupported numerical precision profile')
     run_dir = output / f'{channel.name}_{model}_n{segments}_dt{step_ps:g}'
     run_dir.mkdir()
     content = deck(channel, segments, model, step_ps, integration)
+    if accuracy == 'strict':
+        content = content.replace('reltol=1e-7 abstol=1e-14 vntol=1e-9',
+                                  'reltol=1e-9 abstol=1e-16 vntol=1e-11 chgtol=1e-20 trtol=1')
+        content = content.replace('wrdata waveform.txt', 'option\nwrdata waveform.txt')
+    elif accuracy == 'balanced':
+        content = content.replace('reltol=1e-7 abstol=1e-14 vntol=1e-9',
+                                  'reltol=1e-8 abstol=1e-14 vntol=1e-9 chgtol=1e-18 trtol=1')
+        content = content.replace('wrdata waveform.txt', 'option\nwrdata waveform.txt')
+    raw_name = 'waveform.txt'
+    if waveform_format == 'binary':
+        content = content.replace('wrdata waveform.txt', 'set filetype=binary\nwrite waveform.raw')
+        raw_name = 'waveform.raw'
     (run_dir / 'deck.sp').write_bytes(content.encode())
     tic = time.monotonic()
     timed_out = False
@@ -83,21 +98,26 @@ def simulate(output, executable, init, channel, segments, model, step_ps, refere
             timed_out, returncode = True, None
     record = dict(name=run_dir.name, channel=asdict(channel), segments=segments,
                   model=model, max_step_ps=step_ps, integration=integration,
+                  accuracy=accuracy,
+                  waveform_format=waveform_format, waveform_gzip_file=raw_name+'.gz',
                   returncode=returncode, timed_out=timed_out,
                   elapsed_s=time.monotonic()-tic, deck_sha256=sha(run_dir / 'deck.sp'),
                   log_sha256=sha(run_dir / 'ngspice.log'), completed=False,
                   numerical_gates_passed=False, physical_model_qualified=False)
     write_json(run_dir / 'measurement.json', record)
-    if timed_out or returncode or not (run_dir / 'waveform.txt').exists():
+    if timed_out or returncode or not (run_dir / raw_name).exists():
         return record
-    raw = run_dir / 'waveform.txt'
+    raw = run_dir / raw_name
     # Header, dimensions and source equation detect parser/sign/column mistakes.
-    with raw.open() as stream:
-        header = stream.readline().split()
     expected = ['time', 'v(src)', 'i(vs)'] + [f'v(n{j})' for j in range(segments+1)] + [f'i(vp{j})' for j in range(segments)]
-    if header != expected:
-        raise ValueError(f'waveform header mismatch: {header}')
-    samples = np.loadtxt(raw, skiprows=1)
+    if waveform_format == 'binary':
+        samples = read_real_binary(raw, expected)
+    else:
+        with raw.open() as stream:
+            header = stream.readline().split()
+        if header != expected:
+            raise ValueError(f'waveform header mismatch: {header}')
+        samples = np.loadtxt(raw, skiprows=1)
     if samples.shape[1] != 2*segments+4 or not np.all(np.isfinite(samples)):
         raise ValueError('invalid waveform array')
     if samples[0, 0] > 0:
@@ -136,7 +156,7 @@ def simulate(output, executable, init, channel, segments, model, step_ps, refere
                         oracle_time_s=ot, oracle_near_v=ov[:, 0], oracle_far_v=ov[:, 1])
     record['endpoints_sha256'] = sha(run_dir / 'endpoints.npz')
     original_hash = sha(raw)
-    compressed = run_dir / 'waveform.txt.gz'
+    compressed = run_dir / (raw_name+'.gz')
     with raw.open('rb') as src, compressed.open('wb') as dst:
         with gzip.GzipFile(filename='', fileobj=dst, mode='wb', compresslevel=1, mtime=0) as zipped:
             while chunk := src.read(1 << 20):

@@ -234,9 +234,14 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
 实际 STA 工作点与 17 对差分检查。已检查的测量定义与负载映射未消除不一致，
 没有据此释放温度 pad 模型；原始波形、工具失败和模型失败分别保留。
 
-最新一轮见 [表征来源、上游修正与物理必要条件](docs/pad-provenance-results.md)。
+表征来源审计见 [上游修正与物理必要条件](docs/pad-provenance-results.md)。
 研究遵循 [物理准入契约](docs/physical-admission-contract.md)：区分守恒/被动性、
 数值求解与真实系统校准。原始表征、PEX 和通道近似的适用性仍是未关闭的依赖。
+
+最新进展见 [理想通道 RC/RLC 守恒与独立求解对照](docs/passive-channel-results.md)：
+12 组条件的最终 96 条记录全部通过预声明数值检查，108 项软件测试通过；
+早期波形误差、超时和中断仍完整保留。通道延迟差可正可负，不能统一加一个
+飞行时间常数。该结果只完成理想模型的数值审计，真实 PHY/热反馈仍未获准。
 
 ```bash
 python -m pip install -e '.[validation]'

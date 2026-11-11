@@ -24,11 +24,11 @@ def summarize(root):
         if json.loads((directory / 'measurement.json').read_text()) != row:
             raise ValueError(f'measurement/report mismatch: {directory}')
         for filename, field in [('deck.sp', 'deck_sha256'), ('ngspice.log', 'log_sha256'),
-                                ('endpoints.npz', 'endpoints_sha256'), ('waveform.txt.gz', 'waveform_gzip_sha256')]:
+                                ('endpoints.npz', 'endpoints_sha256'), (row.get('waveform_gzip_file', 'waveform.txt.gz'), 'waveform_gzip_sha256')]:
             if row.get(field) and sha(directory / filename) != row[field]:
                 raise ValueError(f'archive changed: {directory / filename}')
         if row.get('waveform_sha256'):
-            with gzip.open(directory / 'waveform.txt.gz', 'rb') as stream:
+            with gzip.open(directory / row.get('waveform_gzip_file', 'waveform.txt.gz'), 'rb') as stream:
                 if hashlib.file_digest(stream, 'sha256').hexdigest() != row['waveform_sha256']:
                     raise ValueError(f'lossless archive mismatch: {directory}')
         if row.get('waveform_sha256'):

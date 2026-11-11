@@ -16,6 +16,8 @@ here; do not place these changes in adjacent placement repositories.
 - Commit coherent validated local milestones. The user's latest direction is
   to run research experiments locally; do not push or trigger remote CI unless
   the user subsequently requests publication. Continue fetching for freshness.
+- During long research, commit independently validated local sub-milestones
+  promptly. Keep unfinished experiments and failed controls explicitly labeled.
 - Maintain `main` as the only branch, locally and on `origin`. Commit validated
   changes directly on `main`; remove development branches after verifying they
   are fully merged.
