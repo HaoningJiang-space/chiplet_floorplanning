@@ -75,8 +75,9 @@ the decision. Do not attribute an improvement to coupling without this control.
 
 Maintain only `main`, both locally and on `origin`. Commit validated changes
 directly on `main`; remove development branches once fully merged.
-Commit source, tests, synthetic examples and compact validation receipts. Push
-each validated milestone. Exclude raw experiment outputs, environments,
+Commit source, tests, synthetic examples and compact validation receipts. The
+latest user direction is local experiments only: fetch for freshness, but do not
+push or trigger remote CI unless publication is subsequently requested. Exclude raw experiment outputs, environments,
 credentials, private host configuration and restricted third-party models.
 Public visibility is intentional; it does not itself select a software license.
 A redistribution license for original project code is not yet selected.
@@ -189,7 +190,10 @@ controls, explicit early/late corners and eight malformed-contract controls.
 See `timing-oracle-contract.md` and `windows-local.md`. No physical-calibration
 or optimizer gate is closed by this milestone.
 
-Next bridge the audited edge contract to the real-library interface field by
-field, retaining every electrical/table-domain gate. Admit a sourced resource
+The real-library contract bridge is now locally checked on two circuit families
+with 42 parameter cases and all four setup/hold rise/fall paths; see
+`local-multicase-results.md`. This is source-table/contract consistency, not an
+independent physical propagation oracle. Next diagnose the pad-model mismatch,
+retaining every electrical/table-domain gate. Admit a sourced resource
 case or clearly label a synthetic mechanism case, and set decision tolerances
 before testing whether routing can eliminate the thermal/timing conflict.

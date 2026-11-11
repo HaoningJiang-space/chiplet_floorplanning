@@ -99,7 +99,7 @@ def simulate(config, models, root, ngspice, output, init):
         info["pins"],
         **{k: v for k, v in config.items() if k != "side"},
     )
-    (folder / "deck.sp").write_text(content)
+    (folder / "deck.sp").write_bytes(content.encode("utf-8"))
     command = [str(ngspice), "-n"]
     if side == "sky130":
         command += ["-D", "ngbehavior=hsa"]
@@ -129,7 +129,7 @@ def simulate(config, models, root, ngspice, output, init):
             + "\nERROR: diagnostic timed out after 240 s\n"
         )
         returncode = None
-    (folder / "ngspice.log").write_text(log)
+    (folder / "ngspice.log").write_bytes(log.encode("utf-8"))
     record = dict(
         config,
         name=name,

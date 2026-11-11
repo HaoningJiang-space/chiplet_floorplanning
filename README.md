@@ -230,6 +230,10 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
 两类电路的真实库契约、逐路径源表核对、定量时钟控制和失败分类。仅本机实验，
 没有推送或触发远端 CI；数值一致性与物理校准分别报告。
 
+后续 [Pad 模型诊断](docs/pad-diagnostic-results.md) 已在本机完成 48 次瞬态运行、
+实际 STA 工作点与 17 对差分检查。已检查的测量定义与负载映射未消除不一致，
+没有据此释放温度 pad 模型；原始波形、工具失败和模型失败分别保留。
+
 ```bash
 python -m pip install -e '.[validation]'
 OPENBLAS_NUM_THREADS=1 python tools/validate_thermal_decomposition.py \

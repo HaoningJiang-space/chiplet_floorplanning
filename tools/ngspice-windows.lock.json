@@ -1,0 +1,110 @@
+{
+  "source": "MSYS2 official archived ngspice 42-1 plus pinned runtime packages, retrieved 2026-11-11; archive URL and SHA256 retained",
+  "expected_version": "ngspice-42",
+  "executable": "ucrt64/bin/ngspice_con.exe",
+  "packages": [
+    {
+      "name": "mingw-w64-ucrt-x86_64-ngspice",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-ngspice",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-ngspice-42-1-any.pkg.tar.zst",
+      "sha256": "0887b730002056ebc2dcc96990d1bddff39b97efa1450ffec7a167c4eb65b139",
+      "dependencies": [
+        "mingw-w64-ucrt-x86_64-fftw",
+        "mingw-w64-ucrt-x86_64-gcc-libs",
+        "mingw-w64-ucrt-x86_64-omp"
+      ],
+      "metadata_source": "archive .PKGINFO version 42-1; current package page describes 47"
+    },
+    {
+      "name": "mingw-w64-ucrt-x86_64-cc-libs",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-cc-libs",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-cc-libs-16.2.0-6-any.pkg.tar.zst",
+      "sha256": "d8fff9e62443168bcda8ce746697243519c4f090ea607357ce94feac0bd10a50",
+      "dependencies": [
+        "mingw-w64-ucrt-x86_64-libgcc",
+        "mingw-w64-ucrt-x86_64-libstdc++"
+      ]
+    },
+    {
+      "name": "mingw-w64-ucrt-x86_64-fftw",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-fftw",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-fftw-3.3.11-2-any.pkg.tar.zst",
+      "sha256": "8bcffc286600ae011726e9356f19ea8afba0a622427c77e89b5a09ecce252d95",
+      "dependencies": [
+        "mingw-w64-ucrt-x86_64-cc-libs",
+        "mingw-w64-ucrt-x86_64-libquadmath",
+        "mingw-w64-ucrt-x86_64-omp"
+      ]
+    },
+    {
+      "name": "mingw-w64-ucrt-x86_64-readline",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-readline",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-readline-8.3.003-1-any.pkg.tar.zst",
+      "sha256": "de2423c2e10fcd88272a0ab2f833f6a082cfe613d4c17c2f548cc50a5d2190c4",
+      "dependencies": [
+        "mingw-w64-ucrt-x86_64-cc-libs",
+        "mingw-w64-ucrt-x86_64-termcap"
+      ]
+    },
+    {
+      "name": "mingw-w64-ucrt-x86_64-libgcc",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-libgcc",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-libgcc-16.2.0-6-any.pkg.tar.zst",
+      "sha256": "80b2497f019977dd9528b1abc8621b1328a0115ab1f724047ccbb56bf323f11d",
+      "dependencies": [
+        "mingw-w64-ucrt-x86_64-libwinpthread"
+      ]
+    },
+    {
+      "name": "mingw-w64-ucrt-x86_64-libstdc++",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-libstdc++",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-libstdc%2B%2B-16.2.0-6-any.pkg.tar.zst",
+      "sha256": "33c5e58a85a538cf843a8672991cce591f0231d66da3b66a57629712d64be17f",
+      "dependencies": [
+        "mingw-w64-ucrt-x86_64-libgcc",
+        "mingw-w64-ucrt-x86_64-libwinpthread",
+        "mingw-w64-ucrt-x86_64-tzdata"
+      ]
+    },
+    {
+      "name": "mingw-w64-ucrt-x86_64-libquadmath",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-libquadmath",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-libquadmath-16.2.0-6-any.pkg.tar.zst",
+      "sha256": "7b553c0b6dd9cf2f676c0c6812aa359495940dbdd7347f47be1dbd75d29cd611",
+      "dependencies": [
+        "mingw-w64-ucrt-x86_64-libgcc"
+      ]
+    },
+    {
+      "name": "mingw-w64-ucrt-x86_64-libgomp",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-libgomp",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-libgomp-16.2.0-6-any.pkg.tar.zst",
+      "sha256": "809b95086d8d3ba145e041bb36d5756b4407d1d97c0524ef731d3b94548faa69",
+      "dependencies": [
+        "mingw-w64-ucrt-x86_64-libwinpthread"
+      ]
+    },
+    {
+      "name": "mingw-w64-ucrt-x86_64-termcap",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-termcap",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-termcap-1.3.1-8-any.pkg.tar.zst",
+      "sha256": "c7891143e252568d8d46df72b3aefea932f4166771e17f22317218d7dd2af23c",
+      "dependencies": []
+    },
+    {
+      "name": "mingw-w64-ucrt-x86_64-libwinpthread",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-libwinpthread",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-libwinpthread-14.0.0.r598.ge3d18511f-1-any.pkg.tar.zst",
+      "sha256": "c35d6be83d141c8cfbb61f1637dd4b53aac8f5562d766aa26d0741c40bad4e4d",
+      "dependencies": []
+    },
+    {
+      "name": "mingw-w64-ucrt-x86_64-tzdata",
+      "page": "https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-tzdata",
+      "url": "https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-tzdata-2026f-1-any.pkg.tar.zst",
+      "sha256": "dd8af2f770b3241d8c299343c12cd4d7e3b94c47195608158d28788a01575323",
+      "dependencies": []
+    }
+  ],
+  "runtime_note": "cc-libs/libgcc/libstdc++ provide the former gcc-libs runtime; unchanged official binaries, no simulator patches"
+}

@@ -1,0 +1,5531 @@
+{
+  "milestone": "Local pad mismatch diagnostics",
+  "archived_utc": "2026-11-11T14:14:28.500600+00:00",
+  "local_only": true,
+  "pushed": false,
+  "remote_ci_triggered": false,
+  "remote_main_commit": "c124aa982eb97f49a7f4be907554c94436ace2d2",
+  "results": {
+    "software_checks_passed": true,
+    "baseline_checks": {
+      "upstream_conversion_preserves_all_210_elements": true,
+      "all_14_simulations_completed": true,
+      "all_waveform_measurements_valid": true,
+      "input_slews_match_stimulus_convention": true,
+      "timestep_convergence": true,
+      "receiver_active_tables_identical_in_spice_build": true
+    },
+    "matrix_checks": {
+      "all_34_simulations_completed": true,
+      "all_waveforms_valid": true,
+      "byte_hash_receipts": true,
+      "source_defined_measurement_agreement": true,
+      "input_slews_match": true,
+      "all_17_halfstep_checks": true,
+      "anchors_match_source_tables": true,
+      "all_17_pairs_recorded": true
+    },
+    "transient_runs": 48,
+    "new_configurations": 17,
+    "pad_cells": 2,
+    "source": {
+      "commit": "2dbd03b0ebd549d319deb9a2ff5a2d8f02f783ac",
+      "dirty": true
+    },
+    "source_reports_sha256": {
+      "baseline": "93e2bf7c65511a2699d9dc468e5aab7055ff896192950e2f3cfe13f6eccf8eff",
+      "matrix": "20a9bfb69dcd7c88de8d97f9ae006f3c6cead7baedfc9a2ff0d915614e590912",
+      "prior": "178ba948e306ee4a7aecdfd4308a3e6a542c281b055faef3015b312ee226bf66"
+    },
+    "ngspice_version": "******\n** ngspice-42 : Circuit level simulation program\n** Compiled with Sparse Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2023, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Wed Jan 24 08:24:41 UTC 2024\n******\n",
+    "ngspice_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+    "source_files_sha256": {
+      "tools/validate_pad_diagnostics.py": "026cb2c12ed9ae8eb913e5ba43235a3231627a459c49aac90671bd2f35317fb1",
+      "tools/validate_pad_spice.py": "5c9c4a04d9a9a85dace1ea5752739f4ce37b99cc420b154258bfa10a2ff564b9",
+      "tools/validation/pad_diagnostics.py": "68db4aaa51284edf749ebe5a5915ab629abebe30c1ba80f3e00bcdae299ff8be",
+      "tools/validation/pad_spice.py": "cdad7194731d26f039be4e6ae5920723d9584d744a4a965114a6f93d3cf03b27",
+      "tools/validation/pad_sources.py": "8cc3b20fd01ca4356475343c524da6ca4257ba7299da91949b51b625bf1e2b0f",
+      "src/chiplet_floorplanning/liberty_checks.py": "107fa9fede7253bc310bab0a665a16a9821b1aa9a6c1a7554dc14290fd8f936c"
+    },
+    "source_lock_sha256": "7a690e1e6519ebab9c2dda678dd592752a60b988b8cb5010172f4a8ebdb55ba3",
+    "source_file_count": 837,
+    "post_run_locked_liberty_verification": {
+      "gf_bi_t_tt_3v3.lib": "08bfec98e95f3f25da65b510fecafb9eedfb531c8c5b3587421fbe64ac5b32f3",
+      "sky_io_tt_1v8_3v3.lib": "3a96e91dded692bc4af4ad1a4813361829e2812ebce17de253bf45502242d16f",
+      "gf_io_tt_3v3.lib": "7f1cc88c10f3db086edd088874747d9797256d8327a0452ce700eed417fcf484"
+    },
+    "anchor_sha256": "2594be5613079e2f8ef667d66bc535a8b41479e7b2e4118912bc3ef13ee64d2b",
+    "anchor_load_ownership": {
+      "sta_log_sha256": "e6d22bb54b1ee6446153af3743e2b466fd07d934917be330c3e5f1c30c1a65a5",
+      "pin_cap_pf": 4.095031261,
+      "wire_cap_pf": 1.035940051,
+      "total_cap_pf": 5.130970955,
+      "tx_inout_cap_pf": 2.977816105,
+      "scope": "STA RC network includes driver inout pin C; Ceff minus self C is the declared lumped test mapping, not a recovered physical characterization load"
+    },
+    "conventions": {
+      "gf180": {
+        "time_unit": "ns",
+        "capacitance_unit": "pF",
+        "slew_derate": 1.0,
+        "edges": {
+          "rise": {
+            "input_threshold_pct": 0.5,
+            "output_threshold_pct": 0.5,
+            "slew_lower_threshold_pct": 0.1,
+            "slew_upper_threshold_pct": 0.9
+          },
+          "fall": {
+            "input_threshold_pct": 0.5,
+            "output_threshold_pct": 0.5,
+            "slew_lower_threshold_pct": 0.1,
+            "slew_upper_threshold_pct": 0.9
+          }
+        }
+      },
+      "sky130": {
+        "time_unit": "ns",
+        "capacitance_unit": "pF",
+        "slew_derate": 1.0,
+        "edges": {
+          "rise": {
+            "input_threshold_pct": 0.5,
+            "output_threshold_pct": 0.5,
+            "slew_lower_threshold_pct": 0.2,
+            "slew_upper_threshold_pct": 0.8
+          },
+          "fall": {
+            "input_threshold_pct": 0.5,
+            "output_threshold_pct": 0.5,
+            "slew_lower_threshold_pct": 0.2,
+            "slew_upper_threshold_pct": 0.8
+          }
+        }
+      }
+    },
+    "self_caps_pf": {
+      "gf180": 2.977816,
+      "sky130": 0.0
+    },
+    "prior_build_comparisons": [
+      {
+        "name": "gf180_0_0.5_6.0_10.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 2.4868995751603507e-13,
+          "fall_delay_ns": 1.7053025658242404e-13,
+          "rise_slew_ns": 1.0125233984581428e-13,
+          "fall_slew_ns": 7.815970093361102e-14
+        }
+      },
+      {
+        "name": "gf180_25_0.5_6.0_10.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 2.540190280342358e-13,
+          "fall_delay_ns": 7.460698725481052e-13,
+          "rise_slew_ns": 7.460698725481052e-14,
+          "fall_slew_ns": 5.684341886080801e-13
+        }
+      },
+      {
+        "name": "gf180_50_0.5_6.0_10.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 2.007283228522283e-13,
+          "fall_delay_ns": 6.785683126508957e-12,
+          "rise_slew_ns": 3.3288927170360694e-12,
+          "fall_slew_ns": 8.034817255975213e-11
+        }
+      },
+      {
+        "name": "gf180_75_0.5_6.0_10.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 2.1316282072803006e-14,
+          "fall_delay_ns": 1.4921397450962104e-13,
+          "rise_slew_ns": 1.1901590823981678e-13,
+          "fall_slew_ns": 2.7711166694643907e-13
+        }
+      },
+      {
+        "name": "gf180_100_0.5_6.0_10.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 4.121147867408581e-13,
+          "fall_delay_ns": 1.4210854715202004e-14,
+          "rise_slew_ns": 8.526512829121202e-14,
+          "fall_slew_ns": 7.105427357601002e-14
+        }
+      },
+      {
+        "name": "gf180_125_0.5_6.0_10.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 1.7763568394002505e-13,
+          "fall_delay_ns": 1.0658141036401503e-13,
+          "rise_slew_ns": 3.019806626980426e-14,
+          "fall_slew_ns": 1.4210854715202004e-14
+        }
+      },
+      {
+        "name": "gf180_25_0.08_6.0_10.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 3.410605131648481e-13,
+          "fall_delay_ns": 2.1884716261411086e-12,
+          "rise_slew_ns": 7.105427357601002e-15,
+          "fall_slew_ns": 1.9454660105111543e-11
+        }
+      },
+      {
+        "name": "gf180_25_1.0_6.0_10.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 9.414691248821327e-14,
+          "fall_delay_ns": 2.3653967673453735e-11,
+          "rise_slew_ns": 1.0658141036401503e-14,
+          "fall_slew_ns": 1.7050183487299364e-10
+        }
+      },
+      {
+        "name": "gf180_25_0.5_12.0_10.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 2.398081733190338e-13,
+          "fall_delay_ns": 1.9184653865522705e-13,
+          "rise_slew_ns": 1.3322676295501878e-13,
+          "fall_slew_ns": 4.973799150320701e-14
+        }
+      },
+      {
+        "name": "gf180_25_0.5_2.0_10.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 3.5704772471945034e-13,
+          "fall_delay_ns": 2.1316282072803006e-14,
+          "rise_slew_ns": 5.684341886080802e-14,
+          "fall_slew_ns": 3.552713678800501e-14
+        }
+      },
+      {
+        "name": "gf180_25_0.5_6.0_5.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 1.0125233984581428e-13,
+          "fall_delay_ns": 1.4921397450962104e-13,
+          "rise_slew_ns": 2.6645352591003757e-14,
+          "fall_slew_ns": 1.4210854715202004e-14
+        }
+      },
+      {
+        "name": "gf180_125_0.5_6.0_5.0",
+        "side": "gf180",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 1.2079226507921703e-13,
+          "fall_delay_ns": 2.3447910280083306e-13,
+          "rise_slew_ns": 1.2434497875801753e-14,
+          "fall_slew_ns": 7.105427357601002e-14
+        }
+      },
+      {
+        "name": "sky130_25_1.0_0.022799_20.0",
+        "side": "sky130",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 0.0023954725731236692,
+          "fall_delay_ns": 4.8316398164161e-05,
+          "rise_slew_ns": 2.605663546262349e-06,
+          "fall_slew_ns": 1.5094222050038297e-07
+        }
+      },
+      {
+        "name": "sky130_25_1.0_0.022799_10.0",
+        "side": "sky130",
+        "absolute_changes_ns": {
+          "rise_delay_ns": 0.002376031092913067,
+          "fall_delay_ns": 1.4302532775900545e-05,
+          "rise_slew_ns": 2.8549821458057068e-06,
+          "fall_slew_ns": 1.122602597547484e-06
+        }
+      }
+    ],
+    "max_prior_build_change_ns": 0.0023954725731236692,
+    "max_prior_build_change_by_side_ns": {
+      "gf180": 1.7050183487299364e-10,
+      "sky130": 0.0023954725731236692
+    },
+    "max_halfstep_change_ns": 0.0001354002362212725,
+    "max_definition_measurement_difference_ns": 0.0,
+    "nominal": {
+      "primary_points": 17,
+      "primary_in_domain": 17,
+      "primary_agreement_passed": 0,
+      "gf_matrix_points": 12,
+      "alternate_in_domain": 6,
+      "alternate_agreement_passed": 0
+    },
+    "cases": [
+      {
+        "name": "gf_s0.08_c1",
+        "config": {
+          "case_id": "gf_s0.08_c1",
+          "side": "gf180",
+          "input_slew_ns": 0.08,
+          "external_load_pf": 1.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.2421419741313855,
+          "rise_slew_ns": 0.5036374650555864,
+          "rise_input_slew_ns": 0.08000000000000007,
+          "fall_delay_ns": 2.3573380482768727,
+          "fall_slew_ns": 0.47928653337922356,
+          "fall_input_slew_ns": 0.0799999999999983
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.08,
+              3.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.7571416666666666,
+              "fall_delay_ns": 2.9073226666666665,
+              "rise_slew_ns": 0.6295973333333333,
+              "fall_slew_ns": 0.5592725
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5149996925352811,
+                  "reference_ns": 2.7571416666666666,
+                  "candidate_ns": 2.2421419741313855,
+                  "limit_ns": 0.27571416666666665,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5499846183897938,
+                  "reference_ns": 2.9073226666666665,
+                  "candidate_ns": 2.3573380482768727,
+                  "limit_ns": 0.2907322666666667,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12595986827774697,
+                  "reference_ns": 0.6295973333333333,
+                  "candidate_ns": 0.5036374650555864,
+                  "limit_ns": 0.06295973333333334,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.0799859666207764,
+                  "reference_ns": 0.5592725,
+                  "candidate_ns": 0.47928653337922356,
+                  "limit_ns": 0.05592725,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.08,
+              1.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": false,
+            "metrics": null,
+            "status": "table_domain_rejected",
+            "agreement": null,
+            "output_slew_screen": null
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 9.216997431948926e-06,
+          "fall_delay_ns": 3.2007639276798727e-06,
+          "rise_slew_ns": 2.3558576231152983e-05,
+          "fall_slew_ns": 2.7167059577948294e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "a9102f455e39e985b2cba1420d7c2519ae12313efb15ce0735d71b4d4c80a52e",
+        "waveform_sha256": "ee44b3a67a91943d78804a4a0180a48cb6ae2054a09738a18d9e0a7760198231"
+      },
+      {
+        "name": "gf_s0.08_c2",
+        "config": {
+          "case_id": "gf_s0.08_c2",
+          "side": "gf180",
+          "input_slew_ns": 0.08,
+          "external_load_pf": 2.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.3021601045317333,
+          "rise_slew_ns": 0.5802846045126007,
+          "rise_input_slew_ns": 0.0799999999999983,
+          "fall_delay_ns": 2.4272609140502723,
+          "fall_slew_ns": 0.5517583949344882,
+          "fall_input_slew_ns": 0.0799999999999983
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.08,
+              4.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.813342333333333,
+              "fall_delay_ns": 2.966124333333333,
+              "rise_slew_ns": 0.7102836666666666,
+              "fall_slew_ns": 0.6251979999999999
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5111822288015997,
+                  "reference_ns": 2.813342333333333,
+                  "candidate_ns": 2.3021601045317333,
+                  "limit_ns": 0.2813342333333333,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5388634192830608,
+                  "reference_ns": 2.966124333333333,
+                  "candidate_ns": 2.4272609140502723,
+                  "limit_ns": 0.2966124333333333,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12999906215406598,
+                  "reference_ns": 0.7102836666666666,
+                  "candidate_ns": 0.5802846045126007,
+                  "limit_ns": 0.07102836666666666,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07343960506551173,
+                  "reference_ns": 0.6251979999999999,
+                  "candidate_ns": 0.5517583949344882,
+                  "limit_ns": 0.0625198,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.08,
+              2.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": false,
+            "metrics": null,
+            "status": "table_domain_rejected",
+            "agreement": null,
+            "output_slew_screen": null
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 1.0147716865915868e-05,
+          "fall_delay_ns": 8.057528489757715e-06,
+          "rise_slew_ns": 3.359862997598384e-05,
+          "fall_slew_ns": 2.524827310423916e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "64ae64517b85b056270c6313e22bda19ef9b61490d1c52ca6bff1e4242d2f2f8",
+        "waveform_sha256": "68cf74fcdddc2f9ae9a04ee88ededcce3a09028d4b373e3e865cc831bce4f025"
+      },
+      {
+        "name": "gf_s0.08_c3",
+        "config": {
+          "case_id": "gf_s0.08_c3",
+          "side": "gf180",
+          "input_slew_ns": 0.08,
+          "external_load_pf": 3.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.357543945022444,
+          "rise_slew_ns": 0.6614869976909858,
+          "rise_input_slew_ns": 0.08000000000000007,
+          "fall_delay_ns": 2.486601943543974,
+          "fall_slew_ns": 0.6180181446626207,
+          "fall_input_slew_ns": 0.0799999999999983
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.08,
+              5.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.8695429999999997,
+              "fall_delay_ns": 3.024926,
+              "rise_slew_ns": 0.79097,
+              "fall_slew_ns": 0.6911235
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5119990549775557,
+                  "reference_ns": 2.8695429999999997,
+                  "candidate_ns": 2.357543945022444,
+                  "limit_ns": 0.2869543,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5383240564560259,
+                  "reference_ns": 3.024926,
+                  "candidate_ns": 2.486601943543974,
+                  "limit_ns": 0.3024926,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.1294830023090141,
+                  "reference_ns": 0.79097,
+                  "candidate_ns": 0.6614869976909858,
+                  "limit_ns": 0.079097,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07310535533737927,
+                  "reference_ns": 0.6911235,
+                  "candidate_ns": 0.6180181446626207,
+                  "limit_ns": 0.06911235,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.08,
+              3.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.702187755589333,
+              "fall_delay_ns": 2.8498254561733334,
+              "rise_slew_ns": 0.5507009456186668,
+              "fall_slew_ns": 0.494809491292
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.3446438105668892,
+                  "reference_ns": 2.702187755589333,
+                  "candidate_ns": 2.357543945022444,
+                  "limit_ns": 0.2702187755589333,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.3632235126293595,
+                  "reference_ns": 2.8498254561733334,
+                  "candidate_ns": 2.486601943543974,
+                  "limit_ns": 0.2849825456173333,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.11078605207231906,
+                  "reference_ns": 0.5507009456186668,
+                  "candidate_ns": 0.6614869976909858,
+                  "limit_ns": 0.05507009456186668,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.1232086533706207,
+                  "reference_ns": 0.494809491292,
+                  "candidate_ns": 0.6180181446626207,
+                  "limit_ns": 0.04948094912920001,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 1.1814045960178987e-05,
+          "fall_delay_ns": 7.965885458816047e-06,
+          "rise_slew_ns": 2.0929855288898125e-05,
+          "fall_slew_ns": 2.037989378322891e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "4e6179b7753366e6b5dbd8cbdd6ca4bcf67a32739aee354fe34139809a144530",
+        "waveform_sha256": "90af58c0f3dfba276e944e529473595829dfc58e244c9329b971b701654e9cce"
+      },
+      {
+        "name": "gf_s0.08_c4",
+        "config": {
+          "case_id": "gf_s0.08_c4",
+          "side": "gf180",
+          "input_slew_ns": 0.08,
+          "external_load_pf": 4.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.4103087200072206,
+          "rise_slew_ns": 0.745912807354399,
+          "rise_input_slew_ns": 0.07999999999999474,
+          "fall_delay_ns": 2.539603491577111,
+          "fall_slew_ns": 0.680489688146551,
+          "fall_input_slew_ns": 0.0799999999999983
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.08,
+              6.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.9257436666666665,
+              "fall_delay_ns": 3.0837276666666664,
+              "rise_slew_ns": 0.8716563333333333,
+              "fall_slew_ns": 0.757049
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5154349466594459,
+                  "reference_ns": 2.9257436666666665,
+                  "candidate_ns": 2.4103087200072206,
+                  "limit_ns": 0.29257436666666664,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5441241750895554,
+                  "reference_ns": 3.0837276666666664,
+                  "candidate_ns": 2.539603491577111,
+                  "limit_ns": 0.3083727666666667,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12574352597893423,
+                  "reference_ns": 0.8716563333333333,
+                  "candidate_ns": 0.745912807354399,
+                  "limit_ns": 0.08716563333333333,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.076559311853449,
+                  "reference_ns": 0.757049,
+                  "candidate_ns": 0.680489688146551,
+                  "limit_ns": 0.0757049,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.08,
+              4.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.758388422256,
+              "fall_delay_ns": 2.90862712284,
+              "rise_slew_ns": 0.6313872789520001,
+              "fall_slew_ns": 0.560734991292
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.3480797022487794,
+                  "reference_ns": 2.758388422256,
+                  "candidate_ns": 2.4103087200072206,
+                  "limit_ns": 0.2758388422256,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.36902363126288895,
+                  "reference_ns": 2.90862712284,
+                  "candidate_ns": 2.539603491577111,
+                  "limit_ns": 0.290862712284,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.11452552840239894,
+                  "reference_ns": 0.6313872789520001,
+                  "candidate_ns": 0.745912807354399,
+                  "limit_ns": 0.06313872789520002,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.11975469685455098,
+                  "reference_ns": 0.560734991292,
+                  "candidate_ns": 0.680489688146551,
+                  "limit_ns": 0.056073499129200004,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 1.2170079529028044e-05,
+          "fall_delay_ns": 1.0626366581334423e-05,
+          "rise_slew_ns": 2.8262829447456284e-05,
+          "fall_slew_ns": 1.5156267089366793e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "d154a7091f32a3b7d13d3ed8a4c14a5766827202ee43e339d5756e0b978ea65a",
+        "waveform_sha256": "402141363db9b478024060c170edf780e4588a151f2036e9f36f2f204ebbab11"
+      },
+      {
+        "name": "gf_s0.18_c1",
+        "config": {
+          "case_id": "gf_s0.18_c1",
+          "side": "gf180",
+          "input_slew_ns": 0.18,
+          "external_load_pf": 1.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.2594027945490502,
+          "rise_slew_ns": 0.5036379736598953,
+          "rise_input_slew_ns": 0.1799999999999944,
+          "fall_delay_ns": 2.379708014538572,
+          "fall_slew_ns": 0.47928425963475974,
+          "fall_input_slew_ns": 0.18000000000000682
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.18,
+              3.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.775654325396825,
+              "fall_delay_ns": 2.9397313571428567,
+              "rise_slew_ns": 0.6293462222222221,
+              "fall_slew_ns": 0.5592492857142857
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5162515308477746,
+                  "reference_ns": 2.775654325396825,
+                  "candidate_ns": 2.2594027945490502,
+                  "limit_ns": 0.2775654325396825,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5600233426042847,
+                  "reference_ns": 2.9397313571428567,
+                  "candidate_ns": 2.379708014538572,
+                  "limit_ns": 0.2939731357142857,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12570824856232687,
+                  "reference_ns": 0.6293462222222221,
+                  "candidate_ns": 0.5036379736598953,
+                  "limit_ns": 0.06293462222222222,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07996502607952594,
+                  "reference_ns": 0.5592492857142857,
+                  "candidate_ns": 0.47928425963475974,
+                  "limit_ns": 0.05592492857142857,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.18,
+              1.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": false,
+            "metrics": null,
+            "status": "table_domain_rejected",
+            "agreement": null,
+            "output_slew_screen": null
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 1.8202147755275178e-05,
+          "fall_delay_ns": 7.092987232226733e-06,
+          "rise_slew_ns": 2.3570182925425343e-05,
+          "fall_slew_ns": 3.563108115400837e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "41fa9e4405b6398f79344acbe2ace959822bb686db46fd40a64e4893c004641f",
+        "waveform_sha256": "abf305ec3aabd9045ecf183ad2be84c14084938e7a19f119e41136714e5ca9ea"
+      },
+      {
+        "name": "gf_s0.18_c2",
+        "config": {
+          "case_id": "gf_s0.18_c2",
+          "side": "gf180",
+          "input_slew_ns": 0.18,
+          "external_load_pf": 2.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.3194208494752786,
+          "rise_slew_ns": 0.5802869266769513,
+          "rise_input_slew_ns": 0.1799999999999944,
+          "fall_delay_ns": 2.449630832214126,
+          "fall_slew_ns": 0.5517592795754069,
+          "fall_input_slew_ns": 0.1799999999999926
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.18,
+              4.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.8318721746031743,
+              "fall_delay_ns": 2.9985290952380947,
+              "rise_slew_ns": 0.7100519206349206,
+              "fall_slew_ns": 0.6251699047619048
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5124513251278957,
+                  "reference_ns": 2.8318721746031743,
+                  "candidate_ns": 2.3194208494752786,
+                  "limit_ns": 0.28318721746031744,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5488982630239687,
+                  "reference_ns": 2.9985290952380947,
+                  "candidate_ns": 2.449630832214126,
+                  "limit_ns": 0.2998529095238095,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12976499395796937,
+                  "reference_ns": 0.7100519206349206,
+                  "candidate_ns": 0.5802869266769513,
+                  "limit_ns": 0.07100519206349207,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07341062518649788,
+                  "reference_ns": 0.6251699047619048,
+                  "candidate_ns": 0.5517592795754069,
+                  "limit_ns": 0.06251699047619048,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.18,
+              2.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": false,
+            "metrics": null,
+            "status": "table_domain_rejected",
+            "agreement": null,
+            "output_slew_screen": null
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 1.921181871367139e-05,
+          "fall_delay_ns": 1.044380051951066e-05,
+          "rise_slew_ns": 3.0341194111827008e-05,
+          "fall_slew_ns": 2.599164209726723e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "c1cefbf9b1c07ed706b22264fa2c64709ff1b9616471ffc7d1c8e6fbc267cb87",
+        "waveform_sha256": "bbce47665c1dc0e8c841301780ff318cc4f50a3ef5a8365bb7e90ec94565ee15"
+      },
+      {
+        "name": "gf_s0.18_c3",
+        "config": {
+          "case_id": "gf_s0.18_c3",
+          "side": "gf180",
+          "input_slew_ns": 0.18,
+          "external_load_pf": 3.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.3748045627854566,
+          "rise_slew_ns": 0.6614874123151537,
+          "rise_input_slew_ns": 0.1799999999999944,
+          "fall_delay_ns": 2.508972721669444,
+          "fall_slew_ns": 0.6180173415624921,
+          "fall_input_slew_ns": 0.1799999999999926
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.18,
+              5.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.8880900238095237,
+              "fall_delay_ns": 3.0573268333333328,
+              "rise_slew_ns": 0.790757619047619,
+              "fall_slew_ns": 0.6910905238095237
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5132854610240671,
+                  "reference_ns": 2.8880900238095237,
+                  "candidate_ns": 2.3748045627854566,
+                  "limit_ns": 0.28880900238095236,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5483541116638886,
+                  "reference_ns": 3.0573268333333328,
+                  "candidate_ns": 2.508972721669444,
+                  "limit_ns": 0.3057326833333333,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12927020673246525,
+                  "reference_ns": 0.790757619047619,
+                  "candidate_ns": 0.6614874123151537,
+                  "limit_ns": 0.0790757619047619,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07307318224703163,
+                  "reference_ns": 0.6910905238095237,
+                  "candidate_ns": 0.6180173415624921,
+                  "limit_ns": 0.06910905238095237,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.18,
+              3.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.7206836129572696,
+              "fall_delay_ns": 2.8822379880695235,
+              "rise_slew_ns": 0.5504308990231113,
+              "fall_slew_ns": 0.494791049679619
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.345879050171813,
+                  "reference_ns": 2.7206836129572696,
+                  "candidate_ns": 2.3748045627854566,
+                  "limit_ns": 0.272068361295727,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.3732652664000793,
+                  "reference_ns": 2.8822379880695235,
+                  "candidate_ns": 2.508972721669444,
+                  "limit_ns": 0.28822379880695237,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.11105651329204247,
+                  "reference_ns": 0.5504308990231113,
+                  "candidate_ns": 0.6614874123151537,
+                  "limit_ns": 0.05504308990231113,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.1232262918828731,
+                  "reference_ns": 0.494791049679619,
+                  "candidate_ns": 0.6180173415624921,
+                  "limit_ns": 0.0494791049679619,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 2.0534912209768663e-05,
+          "fall_delay_ns": 6.771546644301907e-06,
+          "rise_slew_ns": 2.123055991987144e-05,
+          "fall_slew_ns": 2.1500916183470054e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "1b063fc21e07f66125437b6dc0e71546d9c2bd5ce2a648a50e313f6acdd14115",
+        "waveform_sha256": "c357a877cfdfee54a8f1f7dba5609b5dd1013a0a189fdca3cde83f745577a2ea"
+      },
+      {
+        "name": "gf_s0.18_c4",
+        "config": {
+          "case_id": "gf_s0.18_c4",
+          "side": "gf180",
+          "input_slew_ns": 0.18,
+          "external_load_pf": 4.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.427569371751499,
+          "rise_slew_ns": 0.7459114092565038,
+          "rise_input_slew_ns": 0.1799999999999944,
+          "fall_delay_ns": 2.5619735138030464,
+          "fall_slew_ns": 0.6804866545582229,
+          "fall_input_slew_ns": 0.1799999999999926
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.18,
+              6.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.944307873015873,
+              "fall_delay_ns": 3.1161245714285712,
+              "rise_slew_ns": 0.8714633174603175,
+              "fall_slew_ns": 0.7570111428571428
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5167385012643742,
+                  "reference_ns": 2.944307873015873,
+                  "candidate_ns": 2.427569371751499,
+                  "limit_ns": 0.29443078730158734,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5541510576255249,
+                  "reference_ns": 3.1161245714285712,
+                  "candidate_ns": 2.5619735138030464,
+                  "limit_ns": 0.3116124571428571,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12555190820381368,
+                  "reference_ns": 0.8714633174603175,
+                  "candidate_ns": 0.7459114092565038,
+                  "limit_ns": 0.08714633174603176,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07652448829891989,
+                  "reference_ns": 0.7570111428571428,
+                  "candidate_ns": 0.6804866545582229,
+                  "limit_ns": 0.07570111428571429,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.18,
+              4.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.776901462163619,
+              "fall_delay_ns": 2.941035726164762,
+              "rise_slew_ns": 0.6311365974358095,
+              "fall_slew_ns": 0.5607116687272382
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.34933209041212,
+                  "reference_ns": 2.776901462163619,
+                  "candidate_ns": 2.427569371751499,
+                  "limit_ns": 0.2776901462163619,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.37906221236171556,
+                  "reference_ns": 2.941035726164762,
+                  "candidate_ns": 2.5619735138030464,
+                  "limit_ns": 0.2941035726164762,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.11477481182069427,
+                  "reference_ns": 0.6311365974358095,
+                  "candidate_ns": 0.7459114092565038,
+                  "limit_ns": 0.06311365974358095,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.11977498583098467,
+                  "reference_ns": 0.5607116687272382,
+                  "candidate_ns": 0.6804866545582229,
+                  "limit_ns": 0.05607116687272382,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 2.0542792267264076e-05,
+          "fall_delay_ns": 8.706755615150996e-06,
+          "rise_slew_ns": 2.4573044287379275e-05,
+          "fall_slew_ns": 1.3168069791902326e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "18e67fe883a1a31f47cb9205ccf7d985611b7844d9ceb8446218ca82d6478df0",
+        "waveform_sha256": "ff0126aaacaf9b0c01601232a582076e86b2371958ce769015966671e1c73c46"
+      },
+      {
+        "name": "gf_s0.5_c1",
+        "config": {
+          "case_id": "gf_s0.5_c1",
+          "side": "gf180",
+          "input_slew_ns": 0.5,
+          "external_load_pf": 1.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.307540279069647,
+          "rise_slew_ns": 0.5036370709479812,
+          "rise_input_slew_ns": 0.4999999999999982,
+          "fall_delay_ns": 2.472296277552317,
+          "fall_slew_ns": 0.4792852286586893,
+          "fall_input_slew_ns": 0.5
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.5,
+              3.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.8348948333333333,
+              "fall_delay_ns": 3.0434391666666665,
+              "rise_slew_ns": 0.6285426666666667,
+              "fall_slew_ns": 0.559175
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5273545542636864,
+                  "reference_ns": 2.8348948333333333,
+                  "candidate_ns": 2.307540279069647,
+                  "limit_ns": 0.28348948333333335,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5711428891143493,
+                  "reference_ns": 3.0434391666666665,
+                  "candidate_ns": 2.472296277552317,
+                  "limit_ns": 0.30434391666666666,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12490559571868554,
+                  "reference_ns": 0.6285426666666667,
+                  "candidate_ns": 0.5036370709479812,
+                  "limit_ns": 0.06285426666666667,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.0798897713413107,
+                  "reference_ns": 0.559175,
+                  "candidate_ns": 0.4792852286586893,
+                  "limit_ns": 0.0559175,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.5,
+              1.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": false,
+            "metrics": null,
+            "status": "table_domain_rejected",
+            "agreement": null,
+            "output_slew_screen": null
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 2.13633009966685e-05,
+          "fall_delay_ns": 1.2760090989161199e-05,
+          "rise_slew_ns": 3.6228525706505366e-05,
+          "fall_slew_ns": 3.3423412538979846e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "c0954adaf4fada84f5132a19aaadf1a32f3939108d334ec658d5118e5ca3e28e",
+        "waveform_sha256": "ba6522e2a9b69a4a8217fd3f53f0468d8e2f7da4dc010bf14b89c4fc462b3da2"
+      },
+      {
+        "name": "gf_s0.5_c2",
+        "config": {
+          "case_id": "gf_s0.5_c2",
+          "side": "gf180",
+          "input_slew_ns": 0.5,
+          "external_load_pf": 2.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.36755877635869,
+          "rise_slew_ns": 0.5802865569959739,
+          "rise_input_slew_ns": 0.4999999999999982,
+          "fall_delay_ns": 2.542219085429096,
+          "fall_slew_ns": 0.5517591227435688,
+          "fall_input_slew_ns": 0.5
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.5,
+              4.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.8911676666666666,
+              "fall_delay_ns": 3.102224333333333,
+              "rise_slew_ns": 0.7093103333333333,
+              "fall_slew_ns": 0.62508
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5236088903079765,
+                  "reference_ns": 2.8911676666666666,
+                  "candidate_ns": 2.36755877635869,
+                  "limit_ns": 0.2891167666666667,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.560005247904237,
+                  "reference_ns": 3.102224333333333,
+                  "candidate_ns": 2.542219085429096,
+                  "limit_ns": 0.3102224333333333,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.1290237763373594,
+                  "reference_ns": 0.7093103333333333,
+                  "candidate_ns": 0.5802865569959739,
+                  "limit_ns": 0.07093103333333332,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07332087725643122,
+                  "reference_ns": 0.62508,
+                  "candidate_ns": 0.5517591227435688,
+                  "limit_ns": 0.062508,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.5,
+              2.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": false,
+            "metrics": null,
+            "status": "table_domain_rejected",
+            "agreement": null,
+            "output_slew_screen": null
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 2.397477289051153e-05,
+          "fall_delay_ns": 1.0789320185722318e-05,
+          "rise_slew_ns": 3.695934459813088e-05,
+          "fall_slew_ns": 5.809278761148562e-06
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "02b1283f537dffc0d985ce6a07914694b3aae1639ee15c4ec7faf6ce5d960f03",
+        "waveform_sha256": "31883f3e41c387c875a2ef3ab01fe7e69cbd7a9ce68c24f079da36fbc5d2e657"
+      },
+      {
+        "name": "gf_s0.5_c3",
+        "config": {
+          "case_id": "gf_s0.5_c3",
+          "side": "gf180",
+          "input_slew_ns": 0.5,
+          "external_load_pf": 3.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.4229428132324546,
+          "rise_slew_ns": 0.6614886751434046,
+          "rise_input_slew_ns": 0.4999999999999982,
+          "fall_delay_ns": 2.601560907368814,
+          "fall_slew_ns": 0.6180169999638778,
+          "fall_input_slew_ns": 0.5
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.5,
+              5.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.9474405,
+              "fall_delay_ns": 3.1610094999999996,
+              "rise_slew_ns": 0.7900779999999998,
+              "fall_slew_ns": 0.690985
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5244976867675453,
+                  "reference_ns": 2.9474405,
+                  "candidate_ns": 2.4229428132324546,
+                  "limit_ns": 0.29474405,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5594485926311856,
+                  "reference_ns": 3.1610094999999996,
+                  "candidate_ns": 2.601560907368814,
+                  "limit_ns": 0.31610095,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12858932485659524,
+                  "reference_ns": 0.7900779999999998,
+                  "candidate_ns": 0.6614886751434046,
+                  "limit_ns": 0.07900779999999999,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07296800003612214,
+                  "reference_ns": 0.690985,
+                  "candidate_ns": 0.6180169999638778,
+                  "limit_ns": 0.0690985,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.5,
+              3.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.779870356534667,
+              "fall_delay_ns": 2.9859580901373333,
+              "rise_slew_ns": 0.5495667499173333,
+              "fall_slew_ns": 0.49473203652
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.3569275433022123,
+                  "reference_ns": 2.779870356534667,
+                  "candidate_ns": 2.4229428132324546,
+                  "limit_ns": 0.2779870356534667,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.3843971827685193,
+                  "reference_ns": 2.9859580901373333,
+                  "candidate_ns": 2.601560907368814,
+                  "limit_ns": 0.29859580901373334,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.11192192522607125,
+                  "reference_ns": 0.5495667499173333,
+                  "candidate_ns": 0.6614886751434046,
+                  "limit_ns": 0.05495667499173334,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.12328496344387785,
+                  "reference_ns": 0.49473203652,
+                  "candidate_ns": 0.6180169999638778,
+                  "limit_ns": 0.049473203652,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 2.483142556997109e-05,
+          "fall_delay_ns": 1.2602138539818952e-05,
+          "rise_slew_ns": 1.7059586147283312e-05,
+          "fall_slew_ns": 1.2593105658709192e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "6026ac26cd7efcbf6e6a5a3964adb05812e89fc160fa30bed86543a9342fe6fe",
+        "waveform_sha256": "9b9f5bfbcddc6f396da2af92f28c35b1ff6a33242e8fff87493a65349359d151"
+      },
+      {
+        "name": "gf_s0.5_c4",
+        "config": {
+          "case_id": "gf_s0.5_c4",
+          "side": "gf180",
+          "input_slew_ns": 0.5,
+          "external_load_pf": 4.0,
+          "role": "matrix"
+        },
+        "measurements": {
+          "rise_delay_ns": 2.4757075563521997,
+          "rise_slew_ns": 0.7459133726115788,
+          "rise_input_slew_ns": 0.4999999999999982,
+          "fall_delay_ns": 2.654561775048421,
+          "fall_slew_ns": 0.6804860234178278,
+          "fall_input_slew_ns": 0.5
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.5,
+              6.977816
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 3.0037133333333332,
+              "fall_delay_ns": 3.2197946666666666,
+              "rise_slew_ns": 0.8708456666666666,
+              "fall_slew_ns": 0.75689
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5280057769811335,
+                  "reference_ns": 3.0037133333333332,
+                  "candidate_ns": 2.4757075563521997,
+                  "limit_ns": 0.3003713333333333,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5652328916182454,
+                  "reference_ns": 3.2197946666666666,
+                  "candidate_ns": 2.654561775048421,
+                  "limit_ns": 0.32197946666666666,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12493229405508788,
+                  "reference_ns": 0.8708456666666666,
+                  "candidate_ns": 0.7459133726115788,
+                  "limit_ns": 0.08708456666666667,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07640397658217213,
+                  "reference_ns": 0.75689,
+                  "candidate_ns": 0.6804860234178278,
+                  "limit_ns": 0.075689,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.5,
+              4.0
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.8361431898680003,
+              "fall_delay_ns": 3.044743256804,
+              "rise_slew_ns": 0.630334416584,
+              "fall_slew_ns": 0.56063703652
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.36043563351580055,
+                  "reference_ns": 2.8361431898680003,
+                  "candidate_ns": 2.4757075563521997,
+                  "limit_ns": 0.28361431898680006,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.39018148175557865,
+                  "reference_ns": 3.044743256804,
+                  "candidate_ns": 2.654561775048421,
+                  "limit_ns": 0.3044743256804,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.11557895602757873,
+                  "reference_ns": 0.630334416584,
+                  "candidate_ns": 0.7459133726115788,
+                  "limit_ns": 0.06303344165840001,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.11984898689782786,
+                  "reference_ns": 0.56063703652,
+                  "candidate_ns": 0.6804860234178278,
+                  "limit_ns": 0.056063703652,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 2.568078991771472e-05,
+          "fall_delay_ns": 1.6412280942290636e-05,
+          "rise_slew_ns": 1.4354611330702483e-05,
+          "fall_slew_ns": 1.809548879805334e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "47ddc1a25be821dd42b854941e57dd48d10237e213b5142f9d89b10f09fa7fcb",
+        "waveform_sha256": "12f58424cf13bd453e9d3fdb67172b438e3d7b614702972f28329bd14b36017c"
+      },
+      {
+        "name": "gf180_anchor_rise",
+        "config": {
+          "case_id": "gf180_anchor_rise",
+          "side": "gf180",
+          "input_slew_ns": 0.176932722,
+          "external_load_pf": 2.1247416590000006,
+          "role": "STA_anchor",
+          "selected_edge": "rise",
+          "anchor_record": {
+            "instance": "tx_data_pad",
+            "mode": "max",
+            "edge": "rise",
+            "condition": "!IE&OE&PDRV0&PDRV1&!SL",
+            "input_slew_ns": 0.176932722,
+            "effective_load_pf": 5.102557659,
+            "delay_ns": 2.838316441,
+            "table_output_slew_ns": 0.720126271,
+            "max_lookup_error_ns": 4.6546569043570685e-08,
+            "inside_source_table_domain": true,
+            "used_in_reported_path": false,
+            "bridge_paths": [
+              "setup_rise"
+            ]
+          }
+        },
+        "measurements": {
+          "rise_delay_ns": 2.325980422537663,
+          "rise_slew_ns": 0.590199810957257,
+          "rise_input_slew_ns": 0.17693272200000365,
+          "fall_delay_ns": 2.4567182076132497,
+          "fall_slew_ns": 0.5602919777158064,
+          "fall_input_slew_ns": 0.17693272199999655
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.176932722,
+              5.102557659
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.838316454890504,
+              "fall_delay_ns": 3.0048696935320813,
+              "rise_slew_ns": 0.7201263175465691,
+              "fall_slew_ns": 0.6333938325786393
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5123360323528412,
+                  "reference_ns": 2.838316454890504,
+                  "candidate_ns": 2.325980422537663,
+                  "limit_ns": 0.28383164548905043,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5481514859188317,
+                  "reference_ns": 3.0048696935320813,
+                  "candidate_ns": 2.4567182076132497,
+                  "limit_ns": 0.3004869693532082,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.12992650658931204,
+                  "reference_ns": 0.7201263175465691,
+                  "candidate_ns": 0.590199810957257,
+                  "limit_ns": 0.07201263175465691,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07310185486283294,
+                  "reference_ns": 0.6333938325786393,
+                  "candidate_ns": 0.5602919777158064,
+                  "limit_ns": 0.06333938325786394,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.176932722,
+              2.1247416590000006
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": false,
+            "metrics": null,
+            "status": "table_domain_rejected",
+            "agreement": null,
+            "output_slew_screen": null
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 1.9831994578112244e-05,
+          "fall_delay_ns": 7.012978748832666e-06,
+          "rise_slew_ns": 3.1549998480429053e-05,
+          "fall_slew_ns": 2.9605963597134632e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": 4.6546569043570685e-08,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "71900531bddef7cf8b6dea6ada229668c229333c500d3fc200dec955e01cc9bb",
+        "waveform_sha256": "d101a77ed29c6bc6fb14857a3c3f8f466ac46c2415f00991bf0b836239daea39"
+      },
+      {
+        "name": "gf180_anchor_fall",
+        "config": {
+          "case_id": "gf180_anchor_fall",
+          "side": "gf180",
+          "input_slew_ns": 0.130380049,
+          "external_load_pf": 2.1116505720000003,
+          "role": "STA_anchor",
+          "selected_edge": "fall",
+          "anchor_record": {
+            "instance": "tx_data_pad",
+            "mode": "max",
+            "edge": "fall",
+            "condition": "!IE&OE&PDRV0&PDRV1&!SL",
+            "input_slew_ns": 0.130380049,
+            "effective_load_pf": 5.089466572,
+            "delay_ns": 2.989014864,
+            "table_output_slew_ns": 0.63254416,
+            "max_lookup_error_ns": 3.083798494341039e-08,
+            "inside_source_table_domain": true,
+            "used_in_reported_path": true,
+            "propagated_output_slew_ns": 0.809138536,
+            "path_delay_error_ns": 0.0,
+            "bridge_paths": [
+              "setup_fall"
+            ]
+          }
+        },
+        "measurements": {
+          "rise_delay_ns": 2.3170495202505617,
+          "rise_slew_ns": 0.5891529212428814,
+          "rise_input_slew_ns": 0.13038004903999578,
+          "fall_delay_ns": 2.4447017094124277,
+          "fall_slew_ns": 0.559397910094475,
+          "fall_input_slew_ns": 0.13038004904000644
+        },
+        "comparisons": {
+          "external_plus_self": {
+            "mapping": "external_plus_self",
+            "query": [
+              0.130380049,
+              5.089466572
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 2.8289534795360214,
+              "fall_delay_ns": 2.9890148869965505,
+              "rise_slew_ns": 0.7191766774497845,
+              "fall_slew_ns": 0.632544190837985
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.5119039592854597,
+                  "reference_ns": 2.8289534795360214,
+                  "candidate_ns": 2.3170495202505617,
+                  "limit_ns": 0.28289534795360216,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.5443131775841228,
+                  "reference_ns": 2.9890148869965505,
+                  "candidate_ns": 2.4447017094124277,
+                  "limit_ns": 0.29890148869965505,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.1300237562069031,
+                  "reference_ns": 0.7191766774497845,
+                  "candidate_ns": 0.5891529212428814,
+                  "limit_ns": 0.07191766774497846,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.07314628074350993,
+                  "reference_ns": 0.632544190837985,
+                  "candidate_ns": 0.559397910094475,
+                  "limit_ns": 0.0632544190837985,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.0,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          },
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.130380049,
+              2.1116505720000003
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": false,
+                "bounds": [
+                  [
+                    0.08,
+                    1.0
+                  ],
+                  [
+                    2.977816,
+                    32.977816
+                  ]
+                ]
+              }
+            },
+            "in_domain": false,
+            "metrics": null,
+            "status": "table_domain_rejected",
+            "agreement": null,
+            "output_slew_screen": null
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 1.686136516809711e-05,
+          "fall_delay_ns": 3.281303790458878e-06,
+          "rise_slew_ns": 4.076797041996372e-05,
+          "fall_slew_ns": 2.8559986532172843e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": 3.083798494341039e-08,
+        "diagnostics": [
+          "Warning: IKK too small - model effect disabled!",
+          "Warning: IKK too small - model effect disabled!"
+        ],
+        "deck_sha256": "3c1ba40aafff66a0f3d2ba1f6253dc61f8aa20485806d374e0b37427f81c4464",
+        "waveform_sha256": "b16db8ebfc0957e1da8003952eb905225d0e6ff917014cb48fba9f56d252e40d"
+      },
+      {
+        "name": "sky130_anchor_rise",
+        "config": {
+          "case_id": "sky130_anchor_rise",
+          "side": "sky130",
+          "input_slew_ns": 0.630287647,
+          "external_load_pf": 0.014307999,
+          "role": "STA_anchor",
+          "selected_edge": "rise",
+          "anchor_record": {
+            "instance": "rx_data_pad",
+            "mode": "max",
+            "edge": "rise",
+            "condition": "!IB_MODE_SEL&!VTRIP_SEL",
+            "input_slew_ns": 0.630287647,
+            "effective_load_pf": 0.014307999,
+            "delay_ns": 1.304499984,
+            "table_output_slew_ns": 0.079004109,
+            "max_lookup_error_ns": 1.053832774378094e-07,
+            "inside_source_table_domain": true,
+            "used_in_reported_path": false,
+            "bridge_paths": [
+              "setup_rise"
+            ]
+          }
+        },
+        "measurements": {
+          "rise_delay_ns": 0.9537185841835143,
+          "rise_slew_ns": 0.025778872429080835,
+          "rise_input_slew_ns": 0.6302876470199976,
+          "fall_delay_ns": 1.0548521770758512,
+          "fall_slew_ns": 0.036361081899286773,
+          "fall_input_slew_ns": 0.6302876470199905
+        },
+        "comparisons": {
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.630287647,
+              0.014307999
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 1.3044998786167226,
+              "fall_delay_ns": 1.4880822963008133,
+              "rise_slew_ns": 0.0790041133712868,
+              "fall_slew_ns": 0.09232803829240702
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.35078129443320827,
+                  "reference_ns": 1.3044998786167226,
+                  "candidate_ns": 0.9537185841835143,
+                  "limit_ns": 0.13044998786167225,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.43323011922496213,
+                  "reference_ns": 1.4880822963008133,
+                  "candidate_ns": 1.0548521770758512,
+                  "limit_ns": 0.14880822963008133,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.05322524094220596,
+                  "reference_ns": 0.0790041133712868,
+                  "candidate_ns": 0.025778872429080835,
+                  "limit_ns": 0.02,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.05596695639312024,
+                  "reference_ns": 0.09232803829240702,
+                  "candidate_ns": 0.036361081899286773,
+                  "limit_ns": 0.02,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.506935,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 4.6402230619690954e-05,
+          "fall_delay_ns": 2.990991916362873e-05,
+          "rise_slew_ns": 3.943674458994906e-06,
+          "fall_slew_ns": 1.7918897093238684e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": 1.053832774378094e-07,
+        "diagnostics": [
+          "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "Warning: Model issue on line 153 :",
+          "unrecognized parameter (-tol_poly) - ignored",
+          "unrecognized parameter (/) - ignored",
+          "unrecognized parameter (-poly_dw) - ignored",
+          "unrecognized parameter (/) - ignored",
+          "Warning: Dynamic gmin stepping failed"
+        ],
+        "deck_sha256": "c3c86f2c9dd38dd2e0b8500f288e4ebb674ab7a7b0e23fd22201cc2e6c37a2fe",
+        "waveform_sha256": "6f02a903e4c7b572e995f24c70c1b00d9e0155310fd45e3508def187c4fe5b4c"
+      },
+      {
+        "name": "sky130_anchor_fall",
+        "config": {
+          "case_id": "sky130_anchor_fall",
+          "side": "sky130",
+          "input_slew_ns": 0.607017577,
+          "external_load_pf": 0.01297,
+          "role": "STA_anchor",
+          "selected_edge": "fall",
+          "anchor_record": {
+            "instance": "rx_data_pad",
+            "mode": "max",
+            "edge": "fall",
+            "condition": "!IB_MODE_SEL&!VTRIP_SEL",
+            "input_slew_ns": 0.607017577,
+            "effective_load_pf": 0.01297,
+            "delay_ns": 1.480165362,
+            "table_output_slew_ns": 0.091129728,
+            "max_lookup_error_ns": 6.035157062989072e-08,
+            "inside_source_table_domain": true,
+            "used_in_reported_path": true,
+            "propagated_output_slew_ns": 0.091129728,
+            "path_delay_error_ns": 0.0,
+            "bridge_paths": [
+              "setup_fall"
+            ]
+          }
+        },
+        "measurements": {
+          "rise_delay_ns": 0.9452746622229657,
+          "rise_slew_ns": 0.024631593783627892,
+          "rise_input_slew_ns": 0.6070175770200041,
+          "fall_delay_ns": 1.0451014680338844,
+          "fall_slew_ns": 0.0349521072250738,
+          "fall_input_slew_ns": 0.6070175770200024
+        },
+        "comparisons": {
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              0.607017577,
+              0.01297
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 1.2978011286860964,
+              "fall_delay_ns": 1.4801653016484293,
+              "rise_slew_ns": 0.07771121591160196,
+              "fall_slew_ns": 0.09112972857382466
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.3525264664631307,
+                  "reference_ns": 1.2978011286860964,
+                  "candidate_ns": 0.9452746622229657,
+                  "limit_ns": 0.12978011286860966,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.4350638336145449,
+                  "reference_ns": 1.4801653016484293,
+                  "candidate_ns": 1.0451014680338844,
+                  "limit_ns": 0.14801653016484292,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.05307962212797407,
+                  "reference_ns": 0.07771121591160196,
+                  "candidate_ns": 0.024631593783627892,
+                  "limit_ns": 0.02,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.05617762134875086,
+                  "reference_ns": 0.09112972857382466,
+                  "candidate_ns": 0.0349521072250738,
+                  "limit_ns": 0.02,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.506935,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 4.4487254847069835e-05,
+          "fall_delay_ns": 4.681441144782639e-05,
+          "rise_slew_ns": 2.670463583598348e-06,
+          "fall_slew_ns": 5.115173549086194e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": 6.035157062989072e-08,
+        "diagnostics": [
+          "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "Warning: Model issue on line 153 :",
+          "unrecognized parameter (-tol_poly) - ignored",
+          "unrecognized parameter (/) - ignored",
+          "unrecognized parameter (-poly_dw) - ignored",
+          "unrecognized parameter (/) - ignored",
+          "Warning: Dynamic gmin stepping failed"
+        ],
+        "deck_sha256": "d761e99116316c4e988cef7575ebd19275baf2218dfcbe42b94dac74e0ff5552",
+        "waveform_sha256": "aaf14563090d31e80bec3b3360c2db08a1c9187a78f160f49ddea835ca58b533"
+      },
+      {
+        "name": "sky_nominal",
+        "config": {
+          "case_id": "sky_nominal",
+          "side": "sky130",
+          "input_slew_ns": 1.0,
+          "external_load_pf": 0.022799,
+          "role": "prior_nominal"
+        },
+        "measurements": {
+          "rise_delay_ns": 1.0748641869201379,
+          "rise_slew_ns": 0.032944416922603637,
+          "rise_input_slew_ns": 1.0000000000200018,
+          "fall_delay_ns": 1.175131272565359,
+          "fall_slew_ns": 0.044744646594537585,
+          "fall_input_slew_ns": 1.0000000000200018
+        },
+        "comparisons": {
+          "external_only": {
+            "mapping": "external_only",
+            "query": [
+              1.0,
+              0.022799
+            ],
+            "domains": {
+              "rise_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              },
+              "fall_delay_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              },
+              "rise_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              },
+              "fall_slew_ns": {
+                "inside": true,
+                "bounds": [
+                  [
+                    0.01,
+                    1500.0
+                  ],
+                  [
+                    0.01,
+                    1.40443
+                  ]
+                ]
+              }
+            },
+            "in_domain": true,
+            "metrics": {
+              "rise_delay_ns": 1.400498911778846,
+              "fall_delay_ns": 1.6005333942307693,
+              "rise_slew_ns": 0.08720896370192308,
+              "fall_slew_ns": 0.09992142355769232
+            },
+            "status": "in_domain",
+            "agreement": {
+              "passed": false,
+              "metrics": {
+                "rise_delay_ns": {
+                  "error_ns": 0.32563472485870815,
+                  "reference_ns": 1.400498911778846,
+                  "candidate_ns": 1.0748641869201379,
+                  "limit_ns": 0.1400498911778846,
+                  "passed": false
+                },
+                "fall_delay_ns": {
+                  "error_ns": 0.42540212166541025,
+                  "reference_ns": 1.6005333942307693,
+                  "candidate_ns": 1.175131272565359,
+                  "limit_ns": 0.16005333942307695,
+                  "passed": false
+                },
+                "rise_slew_ns": {
+                  "error_ns": 0.05426454677931944,
+                  "reference_ns": 0.08720896370192308,
+                  "candidate_ns": 0.032944416922603637,
+                  "limit_ns": 0.02,
+                  "passed": false
+                },
+                "fall_slew_ns": {
+                  "error_ns": 0.05517677696315473,
+                  "reference_ns": 0.09992142355769232,
+                  "candidate_ns": 0.044744646594537585,
+                  "limit_ns": 0.02,
+                  "passed": false
+                }
+              }
+            },
+            "output_slew_screen": {
+              "limit_ns": 1.506935,
+              "measured_passed": true,
+              "liberty_passed": true,
+              "scope": "output slew only, not complete interface electrical qualification"
+            }
+          }
+        },
+        "step_changes_ns": {
+          "rise_delay_ns": 5.454990937714399e-05,
+          "fall_delay_ns": 3.097725510770033e-05,
+          "rise_slew_ns": 0.0001354002362212725,
+          "fall_slew_ns": 1.0111793145028969e-05
+        },
+        "convergence_passed": true,
+        "anchor_table_error_ns": null,
+        "diagnostics": [
+          "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "Warning: Model issue on line 153 :",
+          "unrecognized parameter (-tol_poly) - ignored",
+          "unrecognized parameter (/) - ignored",
+          "unrecognized parameter (-poly_dw) - ignored",
+          "unrecognized parameter (/) - ignored",
+          "Warning: Dynamic gmin stepping failed"
+        ],
+        "deck_sha256": "51f01ca653d5208b46ceb58410f7a83377141ba00e734dc0d4f1e44f71d3a5ed",
+        "waveform_sha256": "d56012922290cda4516c6754c74265adb97394975352e0346167675888b0d140"
+      }
+    ],
+    "finite_differences": [
+      {
+        "first": "gf_s0.08_c1",
+        "second": "gf_s0.08_c2",
+        "variable": "load",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.06001813040034776,
+                "liberty_delta_ns": 0.056200666666666343,
+                "residual_ns": 0.0038174637336814143,
+                "endpoint_step_change_sum_ns": 1.9364714297864793e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.06992286577339968,
+                "liberty_delta_ns": 0.05880166666666664,
+                "residual_ns": 0.011121199106733037,
+                "endpoint_step_change_sum_ns": 1.1258292417437588e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.07664713945701429,
+                "liberty_delta_ns": 0.0806863333333333,
+                "residual_ns": -0.004039193876319014,
+                "endpoint_step_change_sum_ns": 5.7157206207136824e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.07247186155526464,
+                "liberty_delta_ns": 0.06592549999999997,
+                "residual_ns": 0.006546361555264668,
+                "endpoint_step_change_sum_ns": 5.2415332682187454e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "table_domain_rejected",
+            "metrics": null
+          }
+        }
+      },
+      {
+        "first": "gf_s0.08_c2",
+        "second": "gf_s0.08_c3",
+        "variable": "load",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.05538384049071077,
+                "liberty_delta_ns": 0.05620066666666679,
+                "residual_ns": -0.0008168261759560203,
+                "endpoint_step_change_sum_ns": 2.1961762826094855e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.05934102949370157,
+                "liberty_delta_ns": 0.05880166666666664,
+                "residual_ns": 0.0005393628270349282,
+                "endpoint_step_change_sum_ns": 1.602341394857376e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.08120239317838518,
+                "liberty_delta_ns": 0.0806863333333333,
+                "residual_ns": 0.000516059845051875,
+                "endpoint_step_change_sum_ns": 5.4528485264881965e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.06625974972813253,
+                "liberty_delta_ns": 0.06592550000000008,
+                "residual_ns": 0.0003342497281324519,
+                "endpoint_step_change_sum_ns": 4.562816688746807e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "table_domain_rejected",
+            "metrics": null
+          }
+        }
+      },
+      {
+        "first": "gf_s0.08_c3",
+        "second": "gf_s0.08_c4",
+        "variable": "load",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.05276477498477661,
+                "liberty_delta_ns": 0.05620066666666679,
+                "residual_ns": -0.0034358916818901797,
+                "endpoint_step_change_sum_ns": 2.398412548920703e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.05300154803313717,
+                "liberty_delta_ns": 0.05880166666666664,
+                "residual_ns": -0.005800118633529472,
+                "endpoint_step_change_sum_ns": 1.859225204015047e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.08442580966341318,
+                "liberty_delta_ns": 0.0806863333333333,
+                "residual_ns": 0.0037394763300798717,
+                "endpoint_step_change_sum_ns": 4.919268473635441e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.06247154348393025,
+                "liberty_delta_ns": 0.06592549999999997,
+                "residual_ns": -0.0034539565160697228,
+                "endpoint_step_change_sum_ns": 3.55361608725957e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.05276477498477661,
+                "liberty_delta_ns": 0.05620066666666679,
+                "residual_ns": -0.0034358916818901797,
+                "endpoint_step_change_sum_ns": 2.398412548920703e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.05300154803313717,
+                "liberty_delta_ns": 0.05880166666666664,
+                "residual_ns": -0.005800118633529472,
+                "endpoint_step_change_sum_ns": 1.859225204015047e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.08442580966341318,
+                "liberty_delta_ns": 0.0806863333333333,
+                "residual_ns": 0.0037394763300798717,
+                "endpoint_step_change_sum_ns": 4.919268473635441e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.06247154348393025,
+                "liberty_delta_ns": 0.06592549999999997,
+                "residual_ns": -0.0034539565160697228,
+                "endpoint_step_change_sum_ns": 3.55361608725957e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          }
+        }
+      },
+      {
+        "first": "gf_s0.18_c1",
+        "second": "gf_s0.18_c2",
+        "variable": "load",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.06001805492622836,
+                "liberty_delta_ns": 0.056217849206349424,
+                "residual_ns": 0.003800205719878935,
+                "endpoint_step_change_sum_ns": 3.741396646894657e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.06992281767555397,
+                "liberty_delta_ns": 0.05879773809523803,
+                "residual_ns": 0.011125079580315944,
+                "endpoint_step_change_sum_ns": 1.7536787751737393e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.07664895301705599,
+                "liberty_delta_ns": 0.08070569841269848,
+                "residual_ns": -0.0040567453956424915,
+                "endpoint_step_change_sum_ns": 5.391137703725235e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.0724750199406472,
+                "liberty_delta_ns": 0.06592061904761914,
+                "residual_ns": 0.006554400893028056,
+                "endpoint_step_change_sum_ns": 6.16227232512756e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "table_domain_rejected",
+            "metrics": null
+          }
+        }
+      },
+      {
+        "first": "gf_s0.18_c2",
+        "second": "gf_s0.18_c3",
+        "variable": "load",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.055383713310177995,
+                "liberty_delta_ns": 0.056217849206349424,
+                "residual_ns": -0.0008341358961714285,
+                "endpoint_step_change_sum_ns": 3.9746730923440055e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.05934188945531815,
+                "liberty_delta_ns": 0.05879773809523803,
+                "residual_ns": 0.0005441513600801251,
+                "endpoint_step_change_sum_ns": 1.7215347163812567e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.08120048563820248,
+                "liberty_delta_ns": 0.08070569841269837,
+                "residual_ns": 0.0004947872255041119,
+                "endpoint_step_change_sum_ns": 5.157175403169845e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.06625806198708517,
+                "liberty_delta_ns": 0.06592061904761892,
+                "residual_ns": 0.00033744293946624815,
+                "endpoint_step_change_sum_ns": 4.7492558280737285e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "table_domain_rejected",
+            "metrics": null
+          }
+        }
+      },
+      {
+        "first": "gf_s0.18_c3",
+        "second": "gf_s0.18_c4",
+        "variable": "load",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.05276480896604241,
+                "liberty_delta_ns": 0.056217849206349424,
+                "residual_ns": -0.003453040240307015,
+                "endpoint_step_change_sum_ns": 4.107770447703274e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.053000792133602204,
+                "liberty_delta_ns": 0.05879773809523847,
+                "residual_ns": -0.005796945961636268,
+                "endpoint_step_change_sum_ns": 1.5478302259452903e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.08442399694135005,
+                "liberty_delta_ns": 0.08070569841269848,
+                "residual_ns": 0.0037182985286515757,
+                "endpoint_step_change_sum_ns": 4.5803604207250714e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.062469312995730775,
+                "liberty_delta_ns": 0.06592061904761903,
+                "residual_ns": -0.003451306051888259,
+                "endpoint_step_change_sum_ns": 3.466898597537238e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.05276480896604241,
+                "liberty_delta_ns": 0.056217849206349424,
+                "residual_ns": -0.003453040240307015,
+                "endpoint_step_change_sum_ns": 4.107770447703274e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.053000792133602204,
+                "liberty_delta_ns": 0.05879773809523847,
+                "residual_ns": -0.005796945961636268,
+                "endpoint_step_change_sum_ns": 1.5478302259452903e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.08442399694135005,
+                "liberty_delta_ns": 0.08070569841269826,
+                "residual_ns": 0.0037182985286517978,
+                "endpoint_step_change_sum_ns": 4.5803604207250714e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.062469312995730775,
+                "liberty_delta_ns": 0.0659206190476192,
+                "residual_ns": -0.0034513060518884253,
+                "endpoint_step_change_sum_ns": 3.466898597537238e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          }
+        }
+      },
+      {
+        "first": "gf_s0.5_c1",
+        "second": "gf_s0.5_c2",
+        "variable": "load",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.06001849728904318,
+                "liberty_delta_ns": 0.05627283333333333,
+                "residual_ns": 0.0037456639557098548,
+                "endpoint_step_change_sum_ns": 4.533807388718003e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.06992280787677885,
+                "liberty_delta_ns": 0.058785166666666555,
+                "residual_ns": 0.011137641210112292,
+                "endpoint_step_change_sum_ns": 2.3549411174883517e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.07664948604799271,
+                "liberty_delta_ns": 0.08076766666666657,
+                "residual_ns": -0.004118180618673861,
+                "endpoint_step_change_sum_ns": 7.318787030463625e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.07247389408487948,
+                "liberty_delta_ns": 0.06590499999999999,
+                "residual_ns": 0.006568894084879484,
+                "endpoint_step_change_sum_ns": 3.923269130012841e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "table_domain_rejected",
+            "metrics": null
+          }
+        }
+      },
+      {
+        "first": "gf_s0.5_c2",
+        "second": "gf_s0.5_c3",
+        "variable": "load",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.055384036873764586,
+                "liberty_delta_ns": 0.05627283333333333,
+                "residual_ns": -0.0008887964595687414,
+                "endpoint_step_change_sum_ns": 4.880619846048262e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.05934182193971793,
+                "liberty_delta_ns": 0.058785166666666555,
+                "residual_ns": 0.0005566552730513763,
+                "endpoint_step_change_sum_ns": 2.339145872554127e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.08120211814743072,
+                "liberty_delta_ns": 0.08076766666666657,
+                "residual_ns": 0.0004344514807641531,
+                "endpoint_step_change_sum_ns": 5.4018930745414195e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.06625787722030907,
+                "liberty_delta_ns": 0.06590499999999999,
+                "residual_ns": 0.000352877220309078,
+                "endpoint_step_change_sum_ns": 1.8402384419857754e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "table_domain_rejected",
+            "metrics": null
+          }
+        }
+      },
+      {
+        "first": "gf_s0.5_c3",
+        "second": "gf_s0.5_c4",
+        "variable": "load",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.052764743119745106,
+                "liberty_delta_ns": 0.05627283333333333,
+                "residual_ns": -0.003508090213588222,
+                "endpoint_step_change_sum_ns": 5.051221548768581e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.05300086767960721,
+                "liberty_delta_ns": 0.058785166666667,
+                "residual_ns": -0.005784298987059788,
+                "endpoint_step_change_sum_ns": 2.9014419482109588e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.08442469746817416,
+                "liberty_delta_ns": 0.0807676666666668,
+                "residual_ns": 0.003657030801507366,
+                "endpoint_step_change_sum_ns": 3.1414197477985795e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.06246902345395,
+                "liberty_delta_ns": 0.06590499999999999,
+                "residual_ns": -0.0034359765460499903,
+                "endpoint_step_change_sum_ns": 3.068859445676253e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.052764743119745106,
+                "liberty_delta_ns": 0.05627283333333333,
+                "residual_ns": -0.003508090213588222,
+                "endpoint_step_change_sum_ns": 5.051221548768581e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.05300086767960721,
+                "liberty_delta_ns": 0.058785166666666555,
+                "residual_ns": -0.005784298987059344,
+                "endpoint_step_change_sum_ns": 2.9014419482109588e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 0.08442469746817416,
+                "liberty_delta_ns": 0.08076766666666668,
+                "residual_ns": 0.003657030801507477,
+                "endpoint_step_change_sum_ns": 3.1414197477985795e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 0.06246902345395,
+                "liberty_delta_ns": 0.06590499999999999,
+                "residual_ns": -0.0034359765460499903,
+                "endpoint_step_change_sum_ns": 3.068859445676253e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          }
+        }
+      },
+      {
+        "first": "gf_s0.08_c1",
+        "second": "gf_s0.18_c1",
+        "variable": "input_slew",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.017260820417664746,
+                "liberty_delta_ns": 0.018512658730158282,
+                "residual_ns": -0.0012518383124935362,
+                "endpoint_step_change_sum_ns": 2.7419145187224103e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.022369966261699403,
+                "liberty_delta_ns": 0.032408690476190216,
+                "residual_ns": -0.010038724214490813,
+                "endpoint_step_change_sum_ns": 1.0293751159906606e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 5.086043088908809e-07,
+                "liberty_delta_ns": -0.0002511111111112019,
+                "residual_ns": 0.00025161971542009276,
+                "endpoint_step_change_sum_ns": 4.7128759156578326e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": -2.2737444638210036e-06,
+                "liberty_delta_ns": -2.3214285714279193e-05,
+                "residual_ns": 2.094054125045819e-05,
+                "endpoint_step_change_sum_ns": 6.279814073195666e-05,
+                "residual_exceeds_observed_step_changes": false
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "table_domain_rejected",
+            "metrics": null
+          }
+        }
+      },
+      {
+        "first": "gf_s0.18_c1",
+        "second": "gf_s0.5_c1",
+        "variable": "input_slew",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.04813748452059663,
+                "liberty_delta_ns": 0.05924050793650837,
+                "residual_ns": -0.01110302341591174,
+                "endpoint_step_change_sum_ns": 3.956544875194368e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.09258826301374512,
+                "liberty_delta_ns": 0.10370780952380976,
+                "residual_ns": -0.011119546510064637,
+                "endpoint_step_change_sum_ns": 1.9853078221387932e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": -9.027119141080675e-07,
+                "liberty_delta_ns": -0.0008035555555554463,
+                "residual_ns": 0.0008026528436413383,
+                "endpoint_step_change_sum_ns": 5.979870863193071e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 9.690239295423453e-07,
+                "liberty_delta_ns": -7.428571428569342e-05,
+                "residual_ns": 7.525473821523576e-05,
+                "endpoint_step_change_sum_ns": 6.905449369298822e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "table_domain_rejected",
+            "metrics": null
+          }
+        }
+      },
+      {
+        "first": "gf_s0.08_c2",
+        "second": "gf_s0.18_c2",
+        "variable": "input_slew",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.017260744943545347,
+                "liberty_delta_ns": 0.018529841269841363,
+                "residual_ns": -0.0012690963262960153,
+                "endpoint_step_change_sum_ns": 2.935953557958726e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.022369918163853697,
+                "liberty_delta_ns": 0.0324047619047616,
+                "residual_ns": -0.010034843740907906,
+                "endpoint_step_change_sum_ns": 1.8501329009268375e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 2.322164350587741e-06,
+                "liberty_delta_ns": -0.00023174603174602737,
+                "residual_ns": 0.0002340681960966151,
+                "endpoint_step_change_sum_ns": 6.393982408781085e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": 8.846409187412974e-07,
+                "liberty_delta_ns": -2.8095238095104946e-05,
+                "residual_ns": 2.8979879013846244e-05,
+                "endpoint_step_change_sum_ns": 5.123991520150639e-05,
+                "residual_exceeds_observed_step_changes": false
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "table_domain_rejected",
+            "metrics": null
+          }
+        }
+      },
+      {
+        "first": "gf_s0.18_c2",
+        "second": "gf_s0.5_c2",
+        "variable": "input_slew",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.04813792688341145,
+                "liberty_delta_ns": 0.05929549206349227,
+                "residual_ns": -0.01115756518008082,
+                "endpoint_step_change_sum_ns": 4.318659160418292e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.09258825321497,
+                "liberty_delta_ns": 0.10369523809523828,
+                "residual_ns": -0.011106984880268289,
+                "endpoint_step_change_sum_ns": 2.1233120705232977e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": -3.6968097738565575e-07,
+                "liberty_delta_ns": -0.0007415873015873542,
+                "residual_ns": 0.0007412176206099685,
+                "endpoint_step_change_sum_ns": 6.730053870995789e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": -1.5683183818282487e-07,
+                "liberty_delta_ns": -8.990476190484653e-05,
+                "residual_ns": 8.97479300666637e-05,
+                "endpoint_step_change_sum_ns": 3.180092085841579e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "table_domain_rejected",
+            "metrics": null
+          }
+        }
+      },
+      {
+        "first": "gf_s0.08_c3",
+        "second": "gf_s0.18_c3",
+        "variable": "input_slew",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.017260617763012576,
+                "liberty_delta_ns": 0.018547023809524,
+                "residual_ns": -0.0012864060465114235,
+                "endpoint_step_change_sum_ns": 3.234895816994765e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.02237077812547028,
+                "liberty_delta_ns": 0.03240083333333299,
+                "residual_ns": -0.01003005520786271,
+                "endpoint_step_change_sum_ns": 1.4737432103117953e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 4.146241678881779e-07,
+                "liberty_delta_ns": -0.00021238095238096388,
+                "residual_ns": 0.00021279557654885206,
+                "endpoint_step_change_sum_ns": 4.2160415208769564e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": -8.031001286212813e-07,
+                "liberty_delta_ns": -3.297619047626377e-05,
+                "residual_ns": 3.2173090347642486e-05,
+                "endpoint_step_change_sum_ns": 4.188080996669896e-05,
+                "residual_exceeds_observed_step_changes": false
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.017260617763012576,
+                "liberty_delta_ns": 0.018495857367936352,
+                "residual_ns": -0.0012352396049237768,
+                "endpoint_step_change_sum_ns": 3.234895816994765e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.02237077812547028,
+                "liberty_delta_ns": 0.03241253189619009,
+                "residual_ns": -0.010041753770719808,
+                "endpoint_step_change_sum_ns": 1.4737432103117953e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 4.146241678881779e-07,
+                "liberty_delta_ns": -0.0002700465955555176,
+                "residual_ns": 0.00027046121972340575,
+                "endpoint_step_change_sum_ns": 4.2160415208769564e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": -8.031001286212813e-07,
+                "liberty_delta_ns": -1.8441612381014938e-05,
+                "residual_ns": 1.7638512252393657e-05,
+                "endpoint_step_change_sum_ns": 4.188080996669896e-05,
+                "residual_exceeds_observed_step_changes": false
+              }
+            },
+            "physical_accuracy_qualified": false
+          }
+        }
+      },
+      {
+        "first": "gf_s0.18_c3",
+        "second": "gf_s0.5_c3",
+        "variable": "input_slew",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.04813825044699804,
+                "liberty_delta_ns": 0.059350476190476176,
+                "residual_ns": -0.011212225743478133,
+                "endpoint_step_change_sum_ns": 4.536633777973975e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.09258818569936977,
+                "liberty_delta_ns": 0.10368266666666681,
+                "residual_ns": -0.011094480967297038,
+                "endpoint_step_change_sum_ns": 1.937368518412086e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 1.2628282508586608e-06,
+                "liberty_delta_ns": -0.000679619047619151,
+                "residual_ns": 0.0006808818758700097,
+                "endpoint_step_change_sum_ns": 3.829014606715475e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": -3.4159861428406657e-07,
+                "liberty_delta_ns": -0.0001055238095237776,
+                "residual_ns": 0.00010518221090949353,
+                "endpoint_step_change_sum_ns": 3.4094021842179245e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.04813825044699804,
+                "liberty_delta_ns": 0.059186743577397394,
+                "residual_ns": -0.01104849313039935,
+                "endpoint_step_change_sum_ns": 4.536633777973975e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.09258818569936977,
+                "liberty_delta_ns": 0.1037201020678098,
+                "residual_ns": -0.01113191636844002,
+                "endpoint_step_change_sum_ns": 1.937368518412086e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 1.2628282508586608e-06,
+                "liberty_delta_ns": -0.0008641491057779227,
+                "residual_ns": 0.0008654119340287814,
+                "endpoint_step_change_sum_ns": 3.829014606715475e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": -3.4159861428406657e-07,
+                "liberty_delta_ns": -5.901315961903686e-05,
+                "residual_ns": 5.867156100475279e-05,
+                "endpoint_step_change_sum_ns": 3.4094021842179245e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          }
+        }
+      },
+      {
+        "first": "gf_s0.08_c4",
+        "second": "gf_s0.18_c4",
+        "variable": "input_slew",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.017260651744278377,
+                "liberty_delta_ns": 0.018564206349206636,
+                "residual_ns": -0.0013035546049282587,
+                "endpoint_step_change_sum_ns": 3.271287179629212e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.022370022225935315,
+                "liberty_delta_ns": 0.03239690476190482,
+                "residual_ns": -0.010026882535969506,
+                "endpoint_step_change_sum_ns": 1.933312219648542e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": -1.3980978952332634e-06,
+                "liberty_delta_ns": -0.00019301587301578937,
+                "residual_ns": 0.0001916177751205561,
+                "endpoint_step_change_sum_ns": 5.283587373483556e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": -3.0335883280940834e-06,
+                "liberty_delta_ns": -3.785714285720054e-05,
+                "residual_ns": 3.482355452910646e-05,
+                "endpoint_step_change_sum_ns": 2.832433688126912e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.017260651744278377,
+                "liberty_delta_ns": 0.01851303990761899,
+                "residual_ns": -0.001252388163340612,
+                "endpoint_step_change_sum_ns": 3.271287179629212e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.022370022225935315,
+                "liberty_delta_ns": 0.03240860332476192,
+                "residual_ns": -0.010038581098826604,
+                "endpoint_step_change_sum_ns": 1.933312219648542e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": -1.3980978952332634e-06,
+                "liberty_delta_ns": -0.0002506815161905651,
+                "residual_ns": 0.00024928341829533185,
+                "endpoint_step_change_sum_ns": 5.283587373483556e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": -3.0335883280940834e-06,
+                "liberty_delta_ns": -2.332256476178518e-05,
+                "residual_ns": 2.0288976433691097e-05,
+                "endpoint_step_change_sum_ns": 2.832433688126912e-05,
+                "residual_exceeds_observed_step_changes": false
+              }
+            },
+            "physical_accuracy_qualified": false
+          }
+        }
+      },
+      {
+        "first": "gf_s0.18_c4",
+        "second": "gf_s0.5_c4",
+        "variable": "input_slew",
+        "mappings": {
+          "external_plus_self": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.04813818460070074,
+                "liberty_delta_ns": 0.05940546031746008,
+                "residual_ns": -0.01126727571675934,
+                "endpoint_step_change_sum_ns": 4.6223582184978795e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.09258826124537478,
+                "liberty_delta_ns": 0.10367009523809534,
+                "residual_ns": -0.011081833992720558,
+                "endpoint_step_change_sum_ns": 2.5119036557441632e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 1.9633550749631468e-06,
+                "liberty_delta_ns": -0.0006176507936508369,
+                "residual_ns": 0.0006196141487258,
+                "endpoint_step_change_sum_ns": 3.892765561808176e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": -6.311403950576278e-07,
+                "liberty_delta_ns": -0.00012114285714281969,
+                "residual_ns": 0.00012051171674776207,
+                "endpoint_step_change_sum_ns": 3.1263558589955665e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          },
+          "external_only": {
+            "status": "diagnostic_only",
+            "metrics": {
+              "rise_delay_ns": {
+                "spice_delta_ns": 0.04813818460070074,
+                "liberty_delta_ns": 0.0592417277043813,
+                "residual_ns": -0.011103543103680558,
+                "endpoint_step_change_sum_ns": 4.6223582184978795e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_delay_ns": {
+                "spice_delta_ns": 0.09258826124537478,
+                "liberty_delta_ns": 0.10370753063923788,
+                "residual_ns": -0.011119269393863096,
+                "endpoint_step_change_sum_ns": 2.5119036557441632e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "rise_slew_ns": {
+                "spice_delta_ns": 1.9633550749631468e-06,
+                "liberty_delta_ns": -0.0008021808518094975,
+                "residual_ns": 0.0008041442068844606,
+                "endpoint_step_change_sum_ns": 3.892765561808176e-05,
+                "residual_exceeds_observed_step_changes": true
+              },
+              "fall_slew_ns": {
+                "spice_delta_ns": -6.311403950576278e-07,
+                "liberty_delta_ns": -7.463220723824548e-05,
+                "residual_ns": 7.400106684318786e-05,
+                "endpoint_step_change_sum_ns": 3.1263558589955665e-05,
+                "residual_exceeds_observed_step_changes": true
+              }
+            },
+            "physical_accuracy_qualified": false
+          }
+        }
+      }
+    ],
+    "delta_summary": {
+      "load": {
+        "rise_delay_ns": {
+          "max_abs_residual_ns": 0.0038174637336814143,
+          "max_endpoint_step_sum_ns": 5.051221548768581e-05,
+          "exceeding_observed_step_screen": 9,
+          "comparisons": 9
+        },
+        "fall_delay_ns": {
+          "max_abs_residual_ns": 0.011137641210112292,
+          "max_endpoint_step_sum_ns": 2.9014419482109588e-05,
+          "exceeding_observed_step_screen": 9,
+          "comparisons": 9
+        },
+        "rise_slew_ns": {
+          "max_abs_residual_ns": 0.004118180618673861,
+          "max_endpoint_step_sum_ns": 7.318787030463625e-05,
+          "exceeding_observed_step_screen": 9,
+          "comparisons": 9
+        },
+        "fall_slew_ns": {
+          "max_abs_residual_ns": 0.006568894084879484,
+          "max_endpoint_step_sum_ns": 6.16227232512756e-05,
+          "exceeding_observed_step_screen": 9,
+          "comparisons": 9
+        }
+      },
+      "input_slew": {
+        "rise_delay_ns": {
+          "max_abs_residual_ns": 0.01126727571675934,
+          "max_endpoint_step_sum_ns": 4.6223582184978795e-05,
+          "exceeding_observed_step_screen": 8,
+          "comparisons": 8
+        },
+        "fall_delay_ns": {
+          "max_abs_residual_ns": 0.011119546510064637,
+          "max_endpoint_step_sum_ns": 2.5119036557441632e-05,
+          "exceeding_observed_step_screen": 8,
+          "comparisons": 8
+        },
+        "rise_slew_ns": {
+          "max_abs_residual_ns": 0.0008026528436413383,
+          "max_endpoint_step_sum_ns": 6.730053870995789e-05,
+          "exceeding_observed_step_screen": 8,
+          "comparisons": 8
+        },
+        "fall_slew_ns": {
+          "max_abs_residual_ns": 0.00012051171674776207,
+          "max_endpoint_step_sum_ns": 6.905449369298822e-05,
+          "exceeding_observed_step_screen": 5,
+          "comparisons": 8
+        }
+      }
+    },
+    "structural_gates": {
+      "gf180": {
+        "visited_io_subcircuits": [
+          "gf180mcu_fd_io__bi_t"
+        ],
+        "empty_subcircuits": [],
+        "unresolved_subcircuits": [],
+        "declared_external_primitives": [
+          "cap_nmos_06v0",
+          "nfet_06v0",
+          "nfet_06v0_dss",
+          "pfet_06v0",
+          "pfet_06v0_dss",
+          "ppolyf_u"
+        ],
+        "structural_gate_passed": true,
+        "scope": "IO X-instance hierarchy only; primitive behavior and active model sections require simulator checks"
+      },
+      "sky130": {
+        "visited_io_subcircuits": [
+          "sky130_ef_io__gpiov2_pad",
+          "sky130_fd_io__amx_inv1",
+          "sky130_fd_io__com_cclat",
+          "sky130_fd_io__com_cclat_hvnand3",
+          "sky130_fd_io__com_cclat_hvnor3",
+          "sky130_fd_io__com_cclat_inv_in",
+          "sky130_fd_io__com_cclat_inv_out",
+          "sky130_fd_io__com_ctl_ls",
+          "sky130_fd_io__com_inv_x1_dnw",
+          "sky130_fd_io__com_nand2_dnw",
+          "sky130_fd_io__com_nor2_dnw",
+          "sky130_fd_io__com_pad",
+          "sky130_fd_io__com_pddrvr_unit_2_5",
+          "sky130_fd_io__com_pdpredrvr_pbias",
+          "sky130_fd_io__com_pdpredrvr_strong_slow",
+          "sky130_fd_io__com_pdpredrvr_weak",
+          "sky130_fd_io__com_pudrvr_strong_slow",
+          "sky130_fd_io__com_pudrvr_weak",
+          "sky130_fd_io__com_pupredrvr_nbias",
+          "sky130_fd_io__com_pupredrvr_strong_slow",
+          "sky130_fd_io__com_pupredrvr_weak",
+          "sky130_fd_io__com_res_strong_slow",
+          "sky130_fd_io__com_res_weak",
+          "sky130_fd_io__condiode",
+          "sky130_fd_io__gpio_dat_ls",
+          "sky130_fd_io__gpio_ovtv2_buf_localesd",
+          "sky130_fd_io__gpio_pddrvr_strong_slow",
+          "sky130_fd_io__gpio_pddrvr_weak",
+          "sky130_fd_io__gpio_pudrvr_strong",
+          "sky130_fd_io__gpio_pudrvr_unit_2_5",
+          "sky130_fd_io__gpiov2_amux",
+          "sky130_fd_io__gpiov2_amux_ctl_inv_1",
+          "sky130_fd_io__gpiov2_amux_ctl_logic",
+          "sky130_fd_io__gpiov2_amux_ctl_ls",
+          "sky130_fd_io__gpiov2_amux_ctl_lshv2hv",
+          "sky130_fd_io__gpiov2_amux_decoder",
+          "sky130_fd_io__gpiov2_amux_drvr",
+          "sky130_fd_io__gpiov2_amux_drvr_ls",
+          "sky130_fd_io__gpiov2_amux_drvr_lshv2hv",
+          "sky130_fd_io__gpiov2_amux_ls",
+          "sky130_fd_io__gpiov2_amux_ls_inv_x1",
+          "sky130_fd_io__gpiov2_amux_nand4",
+          "sky130_fd_io__gpiov2_amux_nand5",
+          "sky130_fd_io__gpiov2_amux_switch",
+          "sky130_fd_io__gpiov2_amx_inv4",
+          "sky130_fd_io__gpiov2_amx_pdcsd_inv",
+          "sky130_fd_io__gpiov2_amx_pucsd_inv",
+          "sky130_fd_io__gpiov2_ctl",
+          "sky130_fd_io__gpiov2_ctl_hld",
+          "sky130_fd_io__gpiov2_ctl_lsbank",
+          "sky130_fd_io__gpiov2_ibuf_se",
+          "sky130_fd_io__gpiov2_ictl_logic",
+          "sky130_fd_io__gpiov2_in_buf",
+          "sky130_fd_io__gpiov2_inbuf_lvinv_x1",
+          "sky130_fd_io__gpiov2_ipath",
+          "sky130_fd_io__gpiov2_ipath_hvls",
+          "sky130_fd_io__gpiov2_ipath_lvls",
+          "sky130_fd_io__gpiov2_obpredrvr",
+          "sky130_fd_io__gpiov2_octl",
+          "sky130_fd_io__gpiov2_octl_dat",
+          "sky130_fd_io__gpiov2_octl_mux",
+          "sky130_fd_io__gpiov2_odrvr",
+          "sky130_fd_io__gpiov2_odrvr_sub",
+          "sky130_fd_io__gpiov2_opath",
+          "sky130_fd_io__gpiov2_opath_datoe",
+          "sky130_fd_io__gpiov2_pddrvr_strong",
+          "sky130_fd_io__gpiov2_pdpredrvr_strong",
+          "sky130_fd_io__gpiov2_pdpredrvr_strong_nr2",
+          "sky130_fd_io__gpiov2_pdpredrvr_strong_nr3",
+          "sky130_fd_io__gpiov2_pupredrvr_strong",
+          "sky130_fd_io__gpiov2_pupredrvr_strong_nd2",
+          "sky130_fd_io__gpiov2_vcchib_in_buf",
+          "sky130_fd_io__hvsbt_inv_x1",
+          "sky130_fd_io__hvsbt_inv_x2",
+          "sky130_fd_io__hvsbt_inv_x4",
+          "sky130_fd_io__hvsbt_inv_x8",
+          "sky130_fd_io__hvsbt_nand2",
+          "sky130_fd_io__hvsbt_nor",
+          "sky130_fd_io__hvsbt_xor",
+          "sky130_fd_io__inv_1",
+          "sky130_fd_io__nand2_1",
+          "sky130_fd_io__nor2_1",
+          "sky130_fd_io__res250only_small",
+          "sky130_fd_io__res75only_small",
+          "sky130_fd_io__signal_5_sym_hv_local_5term",
+          "sky130_fd_io__tk_em1o",
+          "sky130_fd_io__tk_em1s",
+          "sky130_fd_io__tk_em2o",
+          "sky130_fd_io__tk_em2s",
+          "sky130_fd_io__tk_opti",
+          "sky130_fd_io__tk_optia",
+          "sky130_fd_io__tk_optib",
+          "sky130_fd_io__tk_opto",
+          "sky130_fd_io__tk_tie_r_out_esd",
+          "sky130_fd_io__top_gpiov2",
+          "sky130_fd_io__xor2_1"
+        ],
+        "empty_subcircuits": [
+          "sky130_fd_io__com_pad",
+          "sky130_fd_io__condiode"
+        ],
+        "unresolved_subcircuits": [],
+        "declared_external_primitives": [
+          "sky130_fd_pr__esd_nfet_g5v0d10v5",
+          "sky130_fd_pr__nfet_01v8",
+          "sky130_fd_pr__nfet_01v8_lvt",
+          "sky130_fd_pr__nfet_05v0_nvt",
+          "sky130_fd_pr__nfet_g5v0d10v5",
+          "sky130_fd_pr__pfet_01v8",
+          "sky130_fd_pr__pfet_01v8_hvt",
+          "sky130_fd_pr__pfet_g5v0d10v5"
+        ],
+        "structural_gate_passed": false,
+        "scope": "IO X-instance hierarchy only; primitive behavior and active model sections require simulator checks"
+      }
+    },
+    "prior_qualification_gates": {
+      "io_structure_has_no_empty_or_unresolved_subcircuits": false,
+      "simulator_has_no_model_or_convergence_diagnostics": false,
+      "nominal_liberty_agreement": false,
+      "gf180_temperature_holdout_interpolation": true,
+      "same_interface_hot_link_ready": false
+    },
+    "physical_model_qualified": false,
+    "hot_pad_timing_enabled": false,
+    "scope": "Finite differences are unfitted model diagnostics; timestep changes are empirical screens, not physical error bounds"
+  },
+  "additional_code_sha256": {
+    "tools/bootstrap_windows_ngspice.py": "aa6283d736b685338b2e8a9367ddf7f8b12c697deed7a6215a0f9ae8e3a9600a",
+    "tools/ngspice-windows.lock.json": "bd85f2930557ef1abf8416816e828d14df2da5743d5004055f327f3fbb9ed1df",
+    "tools/validate_ngspice_capability.py": "36e7dafca59eef134f2e4e3628767203b76f90c3aae1fc6011d27eea476ef1d4",
+    "tools/summarize_pad_diagnostics.py": "b2dcfd96b0201d2b9dda69f1945ce8bb1818720be8aa4cd1a97ad78e49721420",
+    "tests/pad_diagnostics_unittest.py": "83daa0b1ebaad4dfe8ff3d867926018e24ac15f1b6931e1644e27b3d66d722ba"
+  },
+  "tests": {
+    "passed": 90,
+    "failures": 0,
+    "log_sha256": "2a9406617817fde8ee4c20654c64e6a8235e9faa086ab6268c28e5a5eba97787"
+  },
+  "basic_cli": {
+    "schema_version": 1,
+    "case": "two_chiplets",
+    "scope": "fixed_layout_assumption_driven_reference",
+    "validation": {
+      "geometry": "passed",
+      "power_conservation": "passed",
+      "thermal_residual_and_energy_balance": "passed",
+      "thermal_external_validation": "not_run",
+      "cross_die_setup_hold": "not_run"
+    },
+    "power": {
+      "input_w": 3.0,
+      "mapped_w": 3.0,
+      "error_w": 0.0,
+      "blocks": [
+        {
+          "chiplet": "tx",
+          "block": "compute",
+          "input_w": 1.5,
+          "mapped_w": 1.5,
+          "provenance": "Synthetic fixed-workload assumption; not RTL or measured power.",
+          "package_rect_mm": {
+            "x": 1.0,
+            "y": 2.0,
+            "width": 2.0,
+            "height": 2.0
+          }
+        },
+        {
+          "chiplet": "tx",
+          "block": "io",
+          "input_w": 0.5,
+          "mapped_w": 0.5,
+          "provenance": "Synthetic total I/O block power; no separate link power is added.",
+          "package_rect_mm": {
+            "x": 3.0,
+            "y": 2.0,
+            "width": 1.0,
+            "height": 2.0
+          }
+        },
+        {
+          "chiplet": "rx",
+          "block": "logic",
+          "input_w": 0.7,
+          "mapped_w": 0.7,
+          "provenance": "Synthetic fixed-workload assumption; not RTL or measured power.",
+          "package_rect_mm": {
+            "x": 8.0,
+            "y": 2.0,
+            "width": 2.0,
+            "height": 2.0
+          }
+        },
+        {
+          "chiplet": "rx",
+          "block": "io",
+          "input_w": 0.3,
+          "mapped_w": 0.3,
+          "provenance": "Synthetic total I/O block power; no separate link power is added.",
+          "package_rect_mm": {
+            "x": 7.0,
+            "y": 2.0,
+            "width": 1.0,
+            "height": 2.0
+          }
+        }
+      ]
+    },
+    "thermal": {
+      "model": "uniform_slab_steady",
+      "calibration": "not_calibrated",
+      "provenance": "Synthetic effective slab and distributed cooling; no calibrated package stack.",
+      "peak_c": 34.1886068258067,
+      "minimum_c": 25.837840813477314,
+      "mean_c": 28.125000000000053,
+      "mesh": {
+        "mode": "uniform",
+        "requested_nx": 48,
+        "requested_ny": 32,
+        "nx": 48,
+        "ny": 32,
+        "x_edges_mm": [
+          0.0,
+          0.25,
+          0.5,
+          0.75,
+          1.0,
+          1.25,
+          1.5,
+          1.75,
+          2.0,
+          2.25,
+          2.5,
+          2.75,
+          3.0,
+          3.25,
+          3.5,
+          3.75,
+          4.0,
+          4.25,
+          4.5,
+          4.75,
+          5.0,
+          5.25,
+          5.5,
+          5.75,
+          6.0,
+          6.25,
+          6.5,
+          6.75,
+          7.0,
+          7.25,
+          7.5,
+          7.75,
+          8.0,
+          8.25,
+          8.5,
+          8.75,
+          9.0,
+          9.25,
+          9.5,
+          9.75,
+          10.0,
+          10.25,
+          10.5,
+          10.75,
+          11.0,
+          11.25,
+          11.5,
+          11.75,
+          12.0
+        ],
+        "y_edges_mm": [
+          0.0,
+          0.25,
+          0.5,
+          0.75,
+          1.0,
+          1.25,
+          1.5,
+          1.75,
+          2.0,
+          2.25,
+          2.5,
+          2.75,
+          3.0,
+          3.25,
+          3.5,
+          3.75,
+          4.0,
+          4.25,
+          4.5,
+          4.75,
+          5.0,
+          5.25,
+          5.5,
+          5.75,
+          6.0,
+          6.25,
+          6.5,
+          6.75,
+          7.0,
+          7.25,
+          7.5,
+          7.75,
+          8.0
+        ],
+        "geometry_snapped": false
+      },
+      "removed_heat_w": 3.00000000000005,
+      "energy_balance_error_w": 5.0182080713057076e-14,
+      "linear_residual_inf_w": 6.661338147750939e-16
+    },
+    "links": [
+      {
+        "id": "lane_data",
+        "kind": "data",
+        "source_mm": [
+          4.0,
+          2.6
+        ],
+        "target_mm": [
+          7.0,
+          2.6
+        ],
+        "manhattan_length_mm": 3.0,
+        "modeled_length_mm": 3.0,
+        "route_geometry": "manhattan_lower_bound",
+        "route_points_mm": null,
+        "assumed_r_ohm": 0.30000000000000004,
+        "assumed_c_pf": 0.6000000000000001,
+        "model": "manhattan_lower_bound",
+        "provenance": "Synthetic per-length coefficients; no routed or extracted package parasitics."
+      },
+      {
+        "id": "lane_clock",
+        "kind": "clock",
+        "source_mm": [
+          4.0,
+          3.4
+        ],
+        "target_mm": [
+          7.0,
+          3.4
+        ],
+        "manhattan_length_mm": 3.0,
+        "modeled_length_mm": 3.0,
+        "route_geometry": "manhattan_lower_bound",
+        "route_points_mm": null,
+        "assumed_r_ohm": 0.30000000000000004,
+        "assumed_c_pf": 0.6000000000000001,
+        "model": "manhattan_lower_bound",
+        "provenance": "Synthetic per-length coefficients; no routed or extracted package parasitics."
+      }
+    ],
+    "timing": {
+      "status": "not_run",
+      "setup_slack_ns": null,
+      "hold_slack_ns": null
+    },
+    "qualification": {
+      "physical_package_calibration": "not_completed_no_measurement_data",
+      "full_PVT_signoff": "not_completed",
+      "pad_PHY_qualification": "not_completed",
+      "temperature_interpolation_holdout": "not_completed",
+      "complete_package_signoff": false
+    },
+    "provenance": {
+      "input_snapshot_sha256": "df949e1d36dffbcdefbba89c40c5deb6ad839894a5a70ebe00dd80deb8e626ba",
+      "tool_version": "0.8.0",
+      "source": {
+        "commit": "2dbd03b0ebd549d319deb9a2ff5a2d8f02f783ac",
+        "dirty": true
+      },
+      "python": "3.12.16",
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "timestamp_utc": "2026-11-11T14:04:57.045328+00:00"
+    }
+  },
+  "synthetic_execution_controls": {
+    "records": [
+      {
+        "tool": "baseline",
+        "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+        "behavioral": false,
+        "multiplier": 1,
+        "returncode": 0,
+        "completed": true,
+        "deck_sha256": "de434b699d62865e91c0ba30a82564efe67075af4d42b11ed599ab43529021ef",
+        "log_sha256": "8e39cb41edc30de8f74fe61fa8c5fc453a9f4188ca12c2a0536a903aabb10654",
+        "diagnostics": []
+      },
+      {
+        "tool": "baseline",
+        "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+        "behavioral": false,
+        "multiplier": 4,
+        "returncode": 0,
+        "completed": true,
+        "deck_sha256": "74ec05ad946cabd7321ac023df7810afe2e2cfc10b458b4f8369bad1e0ab3437",
+        "log_sha256": "8e39cb41edc30de8f74fe61fa8c5fc453a9f4188ca12c2a0536a903aabb10654",
+        "diagnostics": []
+      },
+      {
+        "tool": "baseline",
+        "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+        "behavioral": true,
+        "multiplier": 1,
+        "returncode": 0,
+        "completed": true,
+        "deck_sha256": "0ec6d99487da1a87263a2cea10287d0123a6f654ba8f76482e4472043ca22d7e",
+        "log_sha256": "e6df5e50a46a2f747933921d5bcd0308c6e9c687aa46e6b5d8650e5b32a6a964",
+        "diagnostics": []
+      },
+      {
+        "tool": "baseline",
+        "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+        "behavioral": true,
+        "multiplier": 4,
+        "returncode": 0,
+        "completed": true,
+        "deck_sha256": "435b15a79b611bc9fc16993680342e1125559ce08305532086fdd3571d314996",
+        "log_sha256": "8ba4b6fb41fe4066fe192e782854cffa6257d701fb2a2815a7a00c3ddaa53795",
+        "diagnostics": []
+      },
+      {
+        "tool": "candidate",
+        "executable_sha256": "dc31be5d2f1095e4777b7ec6c462dfdc66737da9688ae211fe5020c80f5fcb67",
+        "behavioral": false,
+        "multiplier": 1,
+        "returncode": 0,
+        "completed": true,
+        "deck_sha256": "de434b699d62865e91c0ba30a82564efe67075af4d42b11ed599ab43529021ef",
+        "log_sha256": "cf2c2982e32f998868e867c9d0dd0283b2a7ca5afb0af48070d4990baf9b4888",
+        "diagnostics": []
+      },
+      {
+        "tool": "candidate",
+        "executable_sha256": "dc31be5d2f1095e4777b7ec6c462dfdc66737da9688ae211fe5020c80f5fcb67",
+        "behavioral": false,
+        "multiplier": 4,
+        "returncode": 0,
+        "completed": true,
+        "deck_sha256": "74ec05ad946cabd7321ac023df7810afe2e2cfc10b458b4f8369bad1e0ab3437",
+        "log_sha256": "cf2c2982e32f998868e867c9d0dd0283b2a7ca5afb0af48070d4990baf9b4888",
+        "diagnostics": []
+      },
+      {
+        "tool": "candidate",
+        "executable_sha256": "dc31be5d2f1095e4777b7ec6c462dfdc66737da9688ae211fe5020c80f5fcb67",
+        "behavioral": true,
+        "multiplier": 1,
+        "returncode": 1,
+        "completed": false,
+        "deck_sha256": "0ec6d99487da1a87263a2cea10287d0123a6f654ba8f76482e4472043ca22d7e",
+        "log_sha256": "3d4b9ded1674cf95313c02f7608a08fed6a535983f57b7a472527b2e4cb30d7c",
+        "diagnostics": [
+          "Error on line 6 or its substitute:",
+          "  unknown parameter (e9) ",
+          "Error: incomplete or empty netlist"
+        ]
+      },
+      {
+        "tool": "candidate",
+        "executable_sha256": "dc31be5d2f1095e4777b7ec6c462dfdc66737da9688ae211fe5020c80f5fcb67",
+        "behavioral": true,
+        "multiplier": 4,
+        "returncode": 1,
+        "completed": false,
+        "deck_sha256": "435b15a79b611bc9fc16993680342e1125559ce08305532086fdd3571d314996",
+        "log_sha256": "d263ac1fa66457fdd436b596b3895851f400cfaef5f4436217edd6970d3d87fe",
+        "diagnostics": [
+          "Error on line 6 or its substitute:",
+          "  unknown parameter (e9) ",
+          "Error: incomplete or empty netlist"
+        ]
+      }
+    ],
+    "scope": "Synthetic execution probe, not a pad waveform or physical-model validation"
+  },
+  "runtime_receipts": {
+    "42": {
+      "receipt_sha256": "6ed4185c59e550e47e0f458400b3f448b909d27466b87826c801accaf2d846e8",
+      "version": "******\n** ngspice-42 : Circuit level simulation program\n** Compiled with Sparse Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2023, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Wed Jan 24 08:24:41 UTC 2024\n******\n",
+      "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf"
+    },
+    "47": {
+      "receipt_sha256": "a1eda683d15f4bf6307d2c999255b0eaafba6c266076a1e87ff5447df40c5a4e",
+      "version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Mon Sep  7 15:42:04 UTC 2026\n******\n",
+      "executable_sha256": "dc31be5d2f1095e4777b7ec6c462dfdc66737da9688ae211fe5020c80f5fcb67"
+    }
+  },
+  "ngspice47_pad_trial": {
+    "report_sha256": "34c2e2ce430ade0d7362f92cf1d425e59424045894db5a47248031395a88adaa",
+    "attempted": 14,
+    "execution_failures": 12,
+    "excluded_from_nominal_model_mismatch": true
+  },
+  "source_docs": [
+    {
+      "path": "delay_output.rst",
+      "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_io/2aeec51ea2824b6cc0b396acfc39f4535f40b23a/docs/delay_output.rst",
+      "sha256": "890acf897be2b456b8e1b56c6443a5c0c4f4246480e7e6721060f71645ef2fa9"
+    },
+    {
+      "path": "specs/20_Output_Propagation_Delay.csv",
+      "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_io/2aeec51ea2824b6cc0b396acfc39f4535f40b23a/docs/specs/20_Output_Propagation_Delay.csv",
+      "sha256": "2c469b73332385a9c3b0716fe5738de5bb19ad636b175114b7dea4ad6c666d55"
+    },
+    {
+      "path": "specs/21_Characterization_Corners.csv",
+      "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_io/2aeec51ea2824b6cc0b396acfc39f4535f40b23a/docs/specs/21_Characterization_Corners.csv",
+      "sha256": "222ad1d558f09d7a443baffb9cf1260e5cdec98cee4e854563b8297f21e2fa53"
+    }
+  ],
+  "source_tree": {
+    "sha256": "75e04737eaea2ba5cfe95968e7b1e9abfe084fa41ab47b3c1f7b10a85e661471",
+    "entries": 536,
+    "truncated": false
+  },
+  "supervision": {
+    "skill": "codex-chatgpt-skill",
+    "conversation": "https://chatgpt.com/c/6af41d50-059c-83e8-92e6-eb975244c865",
+    "applied": [
+      "source threshold remeasurement",
+      "competing load mappings with no extrapolation",
+      "four actual STA operating-point anchors with explicit Ceff ownership",
+      "per-pair empirical step-change screens, no physical error bound",
+      "complete SKY fine-step runs before final report",
+      "separate GF and SKY cross-build changes"
+    ]
+  }
+}
