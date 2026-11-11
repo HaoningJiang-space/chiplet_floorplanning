@@ -1,0 +1,3671 @@
+{
+  "analyzed_base": "38db063",
+  "fetch_succeeded": true,
+  "source": {
+    "commit": "38db063d32260ac031dfdddbe83d0e7455c48ce9",
+    "dirty": true
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "unit_tests_passed": 80,
+  "code_sha256": {
+    "tools/validate_timing_oracle.py": "856d98eb77691e28c28ef09705bc9a76b0d5456bd221d6447e58c115fee1eac2",
+    "tools/validation/timing_oracle.py": "12ce346242aa7e27ceea8f1c5e293108a697927be9c8f665a6e02103ca9b07b1",
+    "tools/validation/timing_fixture.py": "d7df619fbc7be79ff4a87e02d8b19882448f4e7fbfea37ab104ad5a75a8b82d0",
+    "tools/validation/timing_report.py": "4dd559b367b9721b440b00949314e9e1520eb1e1cd9d4e8045225b6b3a23da4a",
+    "tools/bootstrap_validation.py": "990840b6a0f45cf9052b46fb7a9b8089f9fc7bb4d203e80d6b1212b25e121ae8",
+    "tests/timing_oracle_unittest.py": "ea4a2a40765047264a49a6cbf3848b6ca0fc0053ad17907142a245bf8c6721be"
+  },
+  "build": {
+    "upstream_commit": "02b129d48fbefb57d08f4bc412700ddfa24a159b",
+    "executable_sha256": "45680a57b1e215ddd3732e6f91a472efca20720c23d0f6a95bf6302610aa953a",
+    "patch_diff_sha256": "f06444d16dbbf9d54be6381b6daf521f723f8a8a9554edcd27d1dce6d7a3eb7b",
+    "patched_files": [
+      "CMakeLists.txt",
+      "tcl/Exception.i",
+      "tcl/Liberty.tcl",
+      "include/sta/Machine.hh"
+    ],
+    "windows_toolchain": true,
+    "toolchain_packages": [
+      {
+        "name": "_openmp_mutex",
+        "version": "4.5",
+        "build": "20_gnu",
+        "sha256": "8a1cee28bd0ee7451ada1cd50b64720e57e17ff994fc62dd8329bef570d382e4"
+      },
+      {
+        "name": "binutils_impl_win-64",
+        "version": "2.46.1",
+        "build": "default_ha84baeb_103",
+        "sha256": "4f165824588d2600d202efc14727a5360f75508134a58b12943104f4731c696f"
+      },
+      {
+        "name": "binutils_win-64",
+        "version": "2.46.1",
+        "build": "default_hd1c8def_103",
+        "sha256": "85a13f3a1d16b771cdf39715470789eb43981f2900ea5b4bbb0ef90b5301f2e3"
+      },
+      {
+        "name": "bzip2",
+        "version": "1.0.8",
+        "build": "h0ad9c76_10",
+        "sha256": "04767466ee9227c9c57ab2c6503e0149177d34111c7418d2f420297acb1eb229"
+      },
+      {
+        "name": "ca-certificates",
+        "version": "2026.10.23",
+        "build": "h4c7d964_0",
+        "sha256": "f1d280d2618de987204102090e83733089c092dc2dd45686fd3dcbe809034f6a"
+      },
+      {
+        "name": "cmake",
+        "version": "4.4.5",
+        "build": "hde52c71_0",
+        "sha256": "1923ff4a092dfdacdcffa1ecb61fcfddd97852a3b09f013027b65ae1fb901126"
+      },
+      {
+        "name": "gcc_impl_win-64",
+        "version": "16.2.0",
+        "build": "h94e87e1_7",
+        "sha256": "795d89968b7e67745360ff57ebc84dcae51dac2cbd4b4861be2523dbab97b71c"
+      },
+      {
+        "name": "gcc_win-64",
+        "version": "16.2.0",
+        "build": "h5d11a75_2",
+        "sha256": "11175ab515a5c7285d1cc91c48727dfb82785d7e8bcf8094b2600a0c415ecba8"
+      },
+      {
+        "name": "gendef",
+        "version": "v12.0.0.r1.ggdc42231f0",
+        "build": "he1bec0e_2",
+        "sha256": "ab5e10c99bff6ed9482c7293e2d8231d494756f81bebddfc42109c9d47c64385"
+      },
+      {
+        "name": "gxx_impl_win-64",
+        "version": "16.2.0",
+        "build": "hdbe55fc_7",
+        "sha256": "a9ee571df9ca3ec7ac8ec85916a12615e7c5ab0740d17f930abfb8730528935c"
+      },
+      {
+        "name": "gxx_win-64",
+        "version": "16.2.0",
+        "build": "hfe07ce1_2",
+        "sha256": "456b453fb0ece18c0ed3f8997f060a97562336091026b5e7d96097d3642ebdce"
+      },
+      {
+        "name": "icu",
+        "version": "79.1",
+        "build": "h5112557_0",
+        "sha256": "f5ffc5548ff51e7fb8949eca909b919ff465401f8d8a79f5fec1d11f9d27b832"
+      },
+      {
+        "name": "krb5",
+        "version": "1.22.2",
+        "build": "h719d79b_2",
+        "sha256": "63ff03324e903eb01a715ccf357df56d66224e61952fd6615d86490ebefb3285"
+      },
+      {
+        "name": "ld_impl_win-64",
+        "version": "2.46.1",
+        "build": "default_hfd38196_103",
+        "sha256": "4d84eaf3073ccc3935777e73d5508770c370d62279c1af261118cc91c5d55b73"
+      },
+      {
+        "name": "libcurl",
+        "version": "8.23.0",
+        "build": "hdb0ef4a_0",
+        "sha256": "d3088e1fd049fe0c1905ba6174e77279ddb4817739a204aaf4bd31d59d38ea6a"
+      },
+      {
+        "name": "libexpat",
+        "version": "2.9.0",
+        "build": "hac47afa_0",
+        "sha256": "d4a8e5aac8999a90cd71aa6f9f5c40d8594ed2b89cd7f898f997767ecc6cd52d"
+      },
+      {
+        "name": "libgcc",
+        "version": "16.2.0",
+        "build": "h110b43a_7",
+        "sha256": "59feb6d16cba13a70f22dae70a44670eb2cc45e652e9a34a014814c2ca871132"
+      },
+      {
+        "name": "libgcc-devel_win-64",
+        "version": "16.2.0",
+        "build": "h254a5e0_107",
+        "sha256": "ff9a753514d9632ce9ab55e6872c875d15fea24514b999c9078df0151d6a26db"
+      },
+      {
+        "name": "libgomp",
+        "version": "16.2.0",
+        "build": "h8ee18e1_7",
+        "sha256": "4b8a747f047d069ccd2a6cf2f4fdbc6b0c0e4dcd840998d1fe607b8c234e707b"
+      },
+      {
+        "name": "liblzma",
+        "version": "5.8.3",
+        "build": "hfd05255_1",
+        "sha256": "d36c4a1e1f80fd08e18a407e03622ff2f34dfdd022da6488ad19603dea19e6d5"
+      },
+      {
+        "name": "libpsl",
+        "version": "0.23.1",
+        "build": "h4dcadd6_2",
+        "sha256": "298fc481b7fb42aae5c4fec7a24074fe5784775afd02a9231ddd2e543a7d7510"
+      },
+      {
+        "name": "libssh2",
+        "version": "1.11.1",
+        "build": "h734d217_1",
+        "sha256": "1097b08429b4f53f5751a32c6d99a083d227ca7f7812c0b239eea124cec073a0"
+      },
+      {
+        "name": "libstdcxx",
+        "version": "16.2.0",
+        "build": "hae5796f_7",
+        "sha256": "5984f81dcb289446fb3cdb0117c0680bded57eaa98da193f705400ec94fc71ae"
+      },
+      {
+        "name": "libstdcxx-devel_win-64",
+        "version": "16.2.0",
+        "build": "h230208c_107",
+        "sha256": "1345b0c9187a7900370e2078b3568b6444d1c8de241f5d5a97e110fdc2a5f14a"
+      },
+      {
+        "name": "libuv",
+        "version": "1.52.1",
+        "build": "h6a83c73_1",
+        "sha256": "0d62467380061cd0fa4b27e579c805a95c7ef55a41ecb067de0c4d2d42490c66"
+      },
+      {
+        "name": "libwinpthread",
+        "version": "12.0.0.r688.g6b2176247.1",
+        "build": "h57928b3_0",
+        "sha256": "bab5558663cb0e964988b859abd69d0f2380b6ea9f140495ab543e51af13635d"
+      },
+      {
+        "name": "libzlib",
+        "version": "1.3.2",
+        "build": "hfd05255_3",
+        "sha256": "0629c2cc0404d3bb29d6baa7b4ba62da80797015e86de050db81ea5a07050527"
+      },
+      {
+        "name": "m2-conda-epoch",
+        "version": "20261029",
+        "build": "0_x86_64",
+        "sha256": "10e83837e3dd4b9da952d892b976a5dd8d67d97217942f441a43d053e815c1d7"
+      },
+      {
+        "name": "m2w64-sysroot_win-64",
+        "version": "12.0.0.r4.gg4f2fc60ca",
+        "build": "hd8ed1ab_10",
+        "sha256": "fb0ffe6b3c25189038c29abbd1fac2522d87fe2775a09e5f5088e5542dc3309b"
+      },
+      {
+        "name": "mingw-w64-ucrt-x86_64-crt-git",
+        "version": "12.0.0.r4.gg4f2fc60ca",
+        "build": "hd8ed1ab_10",
+        "sha256": "de3e42149b498c16bfb485b7729f4ca0fe392be576a2a10ff702d661799b1df3"
+      },
+      {
+        "name": "mingw-w64-ucrt-x86_64-headers-git",
+        "version": "12.0.0.r4.gg4f2fc60ca",
+        "build": "hd8ed1ab_10",
+        "sha256": "1add86481f35163215e7076e6f06f22aa9f1f9345a5fff5cb07bc846c13fbec7"
+      },
+      {
+        "name": "mingw-w64-ucrt-x86_64-windows-default-manifest",
+        "version": "6.4",
+        "build": "he206cdd_7",
+        "sha256": "5b0df4e0ba8487ffd59f60c34c5dbb9e001ecd2c5d2c66ba88eada40bfa3ecb8"
+      },
+      {
+        "name": "mingw-w64-ucrt-x86_64-winpthreads-git",
+        "version": "12.0.0.r4.gg4f2fc60ca",
+        "build": "hd8ed1ab_10",
+        "sha256": "828abb111286940473c4c665fc8ab300d28920f5af83b32295e8bf2256a8f342"
+      },
+      {
+        "name": "ninja",
+        "version": "1.13.2",
+        "build": "h477610d_1",
+        "sha256": "002bce37e87e39c6a1e5577b1018d294cd4517ba9c4be2ece92e5706acac41f5"
+      },
+      {
+        "name": "openssl",
+        "version": "3.6.5",
+        "build": "hf411b9b_0",
+        "sha256": "bc44625e0c6d83f3e02b5f6adc01e0e3ca7001d3d94e24959591a57f5a011b9a"
+      },
+      {
+        "name": "pcre2",
+        "version": "10.49",
+        "build": "h8466c1e_0",
+        "sha256": "78f6df5c499f668989dc8967c6ab24af3e2529d0bf53ce983c7a8d713c39239f"
+      },
+      {
+        "name": "swig",
+        "version": "4.5.1",
+        "build": "h962c958_2",
+        "sha256": "6d23963b9e39e0e9eca0fa3dd0fda622e6b208fcabc8d28dbe6cdfc693a476bc"
+      },
+      {
+        "name": "tk",
+        "version": "8.6.13",
+        "build": "h967ab96_4",
+        "sha256": "f19618a3a82cc483dacf1c70a30367ee7b0c7e71b90f1f80e14feff44fbd3688"
+      },
+      {
+        "name": "tzdata",
+        "version": "2026e",
+        "build": "h5d301ff_0",
+        "sha256": "2b7ca858879f183ce2dcc65b300f48a0133d5430550f35b23d80d405a0788dbf"
+      },
+      {
+        "name": "ucrt",
+        "version": "10.0.26100.0",
+        "build": "h57928b3_0",
+        "sha256": "3005729dce6f3d3f5ec91dfc49fc75a0095f9cd23bab49efb899657297ac91a5"
+      },
+      {
+        "name": "vc",
+        "version": "14.5",
+        "build": "hda273ae_43",
+        "sha256": "b021e65bf2240a3256639913aef12f14e63c396170a103285adecfbff9bb01ac"
+      },
+      {
+        "name": "vc14_runtime",
+        "version": "14.51.36247",
+        "build": "h072b54c_43",
+        "sha256": "02e21ff2ff06c7e45e10b72953cb2b1739e8dad7a4a8a49c814897cfabefaada"
+      },
+      {
+        "name": "vcomp14",
+        "version": "14.51.36247",
+        "build": "h1c3f1cb_43",
+        "sha256": "159fe1bb304d6a8e82a0e4b71762c05325cff3d472e4a1d49465c9def61a785e"
+      },
+      {
+        "name": "winflexbison",
+        "version": "2.5.25",
+        "build": "h7cafa3a_0",
+        "sha256": "eb9a7097dbea7bdf472a26c099e69c0b594e6cae09f8dea780e4b8e9f7212698"
+      },
+      {
+        "name": "zlib",
+        "version": "1.3.2",
+        "build": "hfd05255_3",
+        "sha256": "5a0b55df66ff07b4342e04967cef69f8bf348f6a0fb1cc1eca741c7b015dfe77"
+      },
+      {
+        "name": "zstd",
+        "version": "1.5.7",
+        "build": "h534d264_7",
+        "sha256": "ca7daae4f218a11fab82cc2857f0ea518ec3f46acec60490485347a4c22c6b3e"
+      }
+    ]
+  },
+  "thermal_e1": {
+    "software_checks_passed": true,
+    "checks": {
+      "nominal_reproduces_v05": true,
+      "all_power_only_networks_identical": true,
+      "pointwise_superposition": true,
+      "nominal_peak_mesh_convergence": true,
+      "all_boundary_profiles_peak_mesh_convergence": true,
+      "package_rotation_symmetry": true,
+      "residual_and_heat_balance": true
+    },
+    "independent_solves": 1056
+  },
+  "sta_goldens": [
+    {
+      "name": "sdf",
+      "passed": true,
+      "paths": 1,
+      "comparison": "exact printed report match"
+    },
+    {
+      "name": "liberty_min_max",
+      "passed": true,
+      "paths": 2,
+      "comparison": "exact printed report match"
+    },
+    {
+      "name": "spef",
+      "passed": true,
+      "paths": 1,
+      "comparison": "exact printed report match"
+    }
+  ],
+  "prototype": {
+    "software_checks_passed": true,
+    "checks": {
+      "nominal_50MHz_setup_hold": true,
+      "all_16_active_pad_queries_in_domain": true,
+      "eight_pad_arcs_in_expanded_paths_match": true,
+      "half_period_setup_hold_change": true,
+      "too_fast_negative_setup_preserved": true,
+      "length_0.01_mm": true,
+      "length_0.1_mm": true,
+      "length_1.0_mm": true,
+      "length_6.0_mm": true,
+      "length_12.0_mm": true,
+      "original_direction_rejected": true,
+      "underloaded_receiver_rejected": true,
+      "aligned_local_temperature_mesh_convergence": true,
+      "aligned_slack_mesh_convergence": true,
+      "moved_local_temperature_mesh_convergence": true,
+      "moved_slack_mesh_convergence": true
+    },
+    "nominal": {
+      "setup_slack_ns": 8.705309,
+      "hold_slack_ns": 11.00811,
+      "timing_constraints_met": true
+    }
+  },
+  "timing_oracle": {
+    "software_checks_passed": true,
+    "checks": {
+      "nominal": true,
+      "data_only": true,
+      "clock_only": true,
+      "common_delay": true,
+      "inverter_only": true,
+      "period_12": true,
+      "fall_at_6": true,
+      "setup_violation": true,
+      "hold_violation": true,
+      "early_late": true,
+      "reject_missing_invert": true,
+      "reject_missing_generated_clock": true,
+      "reject_ideal_capture": true,
+      "reject_wrong_ff_polarity": true,
+      "reject_swapped_clock_arcs": true,
+      "reject_wrong_endpoint": true,
+      "reject_missing_constraints": true,
+      "reject_swapped_min_max": true,
+      "setup_negative_slack_preserved": true,
+      "hold_negative_slack_preserved": true
+    },
+    "tolerance_ns": 1e-05,
+    "max_abs_error_ns": 2.000000000279556e-06,
+    "checked_numeric_fields": 560,
+    "cases": {
+      "nominal": {
+        "contract": {
+          "period_ns": 10.0,
+          "fall_ns": 4.0,
+          "cq_ns": [
+            0.7,
+            0.9
+          ],
+          "data_ns": [
+            1.3,
+            1.2
+          ],
+          "clock_ns": [
+            0.9,
+            1.1
+          ],
+          "inverter_ns": [
+            0.4,
+            0.8
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "early": null,
+        "input_sha256": {
+          "fixture.lib": "68000fe6c867e8c6a1b4eeb69032d67b53ee8b9b2ccdcf1f4e681ed2f7a834be",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "7f45fba5e55f958510111dd119fcfba2367285150a77262a2776b8cd19dd4ba9"
+        },
+        "max_abs_error_ns": 1.000000000139778e-06,
+        "expected": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": 3.3
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": 3.0500000000000003
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.35,
+            "slack_ns": 6.35
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.4,
+            "slack_ns": 6.5
+          }
+        },
+        "normalized_observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": 3.3
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": 3.05
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.35,
+            "slack_ns": 6.35
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0999999999999996,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.4,
+            "slack_ns": 6.5
+          }
+        },
+        "observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": 3.3,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.0,
+                "delay_ns": 1.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": 3.05,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_rise": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.65,
+            "slack_ns": 6.35,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.700001,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.0,
+                "delay_ns": 1.299999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_fall": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.6,
+            "slack_ns": 6.5,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.900001,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          }
+        }
+      },
+      "data_only": {
+        "contract": {
+          "period_ns": 10.0,
+          "fall_ns": 4.0,
+          "cq_ns": [
+            0.7,
+            0.9
+          ],
+          "data_ns": [
+            1.8,
+            1.7
+          ],
+          "clock_ns": [
+            0.9,
+            1.1
+          ],
+          "inverter_ns": [
+            0.4,
+            0.8
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "early": null,
+        "input_sha256": {
+          "fixture.lib": "97ac32143a1ceb935ff29b977c75167ccb1a160ce6146f1a6bab88687a996bf3",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "7f45fba5e55f958510111dd119fcfba2367285150a77262a2776b8cd19dd4ba9"
+        },
+        "max_abs_error_ns": 1.000000000139778e-06,
+        "expected": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.5,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": 2.8
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.6,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": 2.5500000000000003
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.5,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.35,
+            "slack_ns": 6.85
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.6,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.4,
+            "slack_ns": 7.0
+          }
+        },
+        "normalized_observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.5,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": 2.8
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.6,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": 2.55
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.5,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.35,
+            "slack_ns": 6.85
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.5999999999999996,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.4,
+            "slack_ns": 7.0
+          }
+        },
+        "observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.5,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": 2.8,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.5,
+                "delay_ns": 1.8,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.6,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": 2.55,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.6,
+                "delay_ns": 1.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.6,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_rise": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.5,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.65,
+            "slack_ns": 6.85,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.700001,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.5,
+                "delay_ns": 1.799999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_fall": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.6,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.6,
+            "slack_ns": 7.0,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.900001,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.6,
+                "delay_ns": 1.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.6,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          }
+        }
+      },
+      "clock_only": {
+        "contract": {
+          "period_ns": 10.0,
+          "fall_ns": 4.0,
+          "cq_ns": [
+            0.7,
+            0.9
+          ],
+          "data_ns": [
+            1.3,
+            1.2
+          ],
+          "clock_ns": [
+            1.4,
+            1.6
+          ],
+          "inverter_ns": [
+            0.4,
+            0.8
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "early": null,
+        "input_sha256": {
+          "fixture.lib": "628ba6e8fb8be95045a35f2fe36675f7d20be0b5b4db186abddafc26e12761c4",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "7f45fba5e55f958510111dd119fcfba2367285150a77262a2776b8cd19dd4ba9"
+        },
+        "max_abs_error_ns": 1.000000000139778e-06,
+        "expected": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.8,
+            "slack_ns": 3.8
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.65,
+            "slack_ns": 3.5500000000000003
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.85,
+            "slack_ns": 5.85
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.9,
+            "slack_ns": 6.0
+          }
+        },
+        "normalized_observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.8,
+            "slack_ns": 3.8
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.65,
+            "slack_ns": 3.55
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.8499999999999996,
+            "slack_ns": 5.85
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0999999999999996,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.9000000000000004,
+            "slack_ns": 6.0
+          }
+        },
+        "observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.8,
+            "slack_ns": 3.8,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.0,
+                "delay_ns": 1.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.6,
+                "delay_ns": 1.6,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.65,
+            "slack_ns": 3.55,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.6,
+                "delay_ns": 1.6,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_rise": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.0,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 6.15,
+            "slack_ns": 5.85,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.700001,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.0,
+                "delay_ns": 1.299999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.6,
+                "delay_ns": 1.6,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_fall": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.1,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 6.1,
+            "slack_ns": 6.0,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.900001,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.6,
+                "delay_ns": 1.6,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          }
+        }
+      },
+      "common_delay": {
+        "contract": {
+          "period_ns": 10.0,
+          "fall_ns": 4.0,
+          "cq_ns": [
+            0.7,
+            0.9
+          ],
+          "data_ns": [
+            1.8,
+            1.7
+          ],
+          "clock_ns": [
+            1.4,
+            1.6
+          ],
+          "inverter_ns": [
+            0.4,
+            0.8
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "early": null,
+        "input_sha256": {
+          "fixture.lib": "9dac85d341b3dc26f6d5932e21b98d806a0d14cbd28df9ca8a7f1238bfa88631",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "7f45fba5e55f958510111dd119fcfba2367285150a77262a2776b8cd19dd4ba9"
+        },
+        "max_abs_error_ns": 1.000000000139778e-06,
+        "expected": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.5,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.8,
+            "slack_ns": 3.3
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.6,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.65,
+            "slack_ns": 3.0500000000000003
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.5,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.85,
+            "slack_ns": 6.35
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.6,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.9,
+            "slack_ns": 6.5
+          }
+        },
+        "normalized_observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.5,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.8,
+            "slack_ns": 3.3
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.6,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.65,
+            "slack_ns": 3.05
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.5,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.8499999999999996,
+            "slack_ns": 6.35
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.5999999999999996,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.9000000000000004,
+            "slack_ns": 6.500001
+          }
+        },
+        "observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.5,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.8,
+            "slack_ns": 3.3,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.5,
+                "delay_ns": 1.8,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.6,
+                "delay_ns": 1.6,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.6,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.65,
+            "slack_ns": 3.05,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.6,
+                "delay_ns": 1.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.6,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.6,
+                "delay_ns": 1.6,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_rise": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.5,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 6.15,
+            "slack_ns": 6.35,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.700001,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.5,
+                "delay_ns": 1.799999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.6,
+                "delay_ns": 1.6,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_fall": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.6,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 6.1,
+            "slack_ns": 6.500001,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.900001,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.6,
+                "delay_ns": 1.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.6,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.6,
+                "delay_ns": 1.6,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          }
+        }
+      },
+      "inverter_only": {
+        "contract": {
+          "period_ns": 10.0,
+          "fall_ns": 4.0,
+          "cq_ns": [
+            0.7,
+            0.9
+          ],
+          "data_ns": [
+            1.3,
+            1.2
+          ],
+          "clock_ns": [
+            0.9,
+            1.1
+          ],
+          "inverter_ns": [
+            0.9,
+            1.3
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "early": null,
+        "input_sha256": {
+          "fixture.lib": "25691c9ed3075b7e3d60eacf502769feb02aef7a6f156218eb8886149467a604",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "7f45fba5e55f958510111dd119fcfba2367285150a77262a2776b8cd19dd4ba9"
+        },
+        "max_abs_error_ns": 1.000000000139778e-06,
+        "expected": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.8,
+            "slack_ns": 3.8
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.65,
+            "slack_ns": 3.5500000000000003
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.85,
+            "slack_ns": 5.85
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.9,
+            "slack_ns": 6.0
+          }
+        },
+        "normalized_observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.8,
+            "slack_ns": 3.8
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.65,
+            "slack_ns": 3.55
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.8499999999999996,
+            "slack_ns": 5.85
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0999999999999996,
+            "capture_arrival_ns": -4.0,
+            "required_ns": -3.9000000000000004,
+            "slack_ns": 6.0
+          }
+        },
+        "observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.8,
+            "slack_ns": 3.8,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.0,
+                "delay_ns": 1.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 5.65,
+            "slack_ns": 3.55,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_rise": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.0,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 6.15,
+            "slack_ns": 5.85,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.700001,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.0,
+                "delay_ns": 1.299999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_fall": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.1,
+            "capture_arrival_ns": 6.0,
+            "required_ns": 6.1,
+            "slack_ns": 6.0,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.900001,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          }
+        }
+      },
+      "period_12": {
+        "contract": {
+          "period_ns": 12.0,
+          "fall_ns": 4.0,
+          "cq_ns": [
+            0.7,
+            0.9
+          ],
+          "data_ns": [
+            1.3,
+            1.2
+          ],
+          "clock_ns": [
+            0.9,
+            1.1
+          ],
+          "inverter_ns": [
+            0.4,
+            0.8
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "early": null,
+        "input_sha256": {
+          "fixture.lib": "68000fe6c867e8c6a1b4eeb69032d67b53ee8b9b2ccdcf1f4e681ed2f7a834be",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "0403a458cc8b79327af1e3441b4e2485491b4e935ea1e93bd28fadf0f49ede16"
+        },
+        "max_abs_error_ns": 2.000000000279556e-06,
+        "expected": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": 3.3
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": 3.0500000000000003
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -8.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": -6.5,
+            "required_ns": -6.35,
+            "slack_ns": 8.35
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -8.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": -6.5,
+            "required_ns": -6.4,
+            "slack_ns": 8.5
+          }
+        },
+        "normalized_observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": 3.3
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": 3.05
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -8.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": -6.5,
+            "required_ns": -6.349999,
+            "slack_ns": 8.349998
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -8.0,
+            "data_arrival_ns": 2.0999990000000004,
+            "capture_arrival_ns": -6.5,
+            "required_ns": -6.399999,
+            "slack_ns": 8.499999
+          }
+        },
+        "observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": 3.3,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.0,
+                "delay_ns": 1.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": 3.05,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_rise": {
+            "launch_edge_ns": 12.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 14.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.650001,
+            "slack_ns": 8.349998,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 12.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 12.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 14.0,
+                "delay_ns": 1.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 14.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_fall": {
+            "launch_edge_ns": 12.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 14.099999,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.600001,
+            "slack_ns": 8.499999,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 12.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 12.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 14.099999,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 14.099999,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          }
+        }
+      },
+      "fall_at_6": {
+        "contract": {
+          "period_ns": 10.0,
+          "fall_ns": 6.0,
+          "cq_ns": [
+            0.7,
+            0.9
+          ],
+          "data_ns": [
+            1.3,
+            1.2
+          ],
+          "clock_ns": [
+            0.9,
+            1.1
+          ],
+          "inverter_ns": [
+            0.4,
+            0.8
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "early": null,
+        "input_sha256": {
+          "fixture.lib": "68000fe6c867e8c6a1b4eeb69032d67b53ee8b9b2ccdcf1f4e681ed2f7a834be",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "73165b79ebf95454368f0dfb6a076231f121d4b330e15608e930598529c35ccc"
+        },
+        "max_abs_error_ns": 1.000000000139778e-06,
+        "expected": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 7.5,
+            "required_ns": 7.3,
+            "slack_ns": 5.3
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 6.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 7.5,
+            "required_ns": 7.15,
+            "slack_ns": 5.050000000000001
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": -2.5,
+            "required_ns": -2.35,
+            "slack_ns": 4.35
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": -2.5,
+            "required_ns": -2.4,
+            "slack_ns": 4.5
+          }
+        },
+        "normalized_observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 7.5,
+            "required_ns": 7.3,
+            "slack_ns": 5.3
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 6.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 7.5,
+            "required_ns": 7.15,
+            "slack_ns": 5.05
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": -2.5,
+            "required_ns": -2.3499999999999996,
+            "slack_ns": 4.35
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -4.0,
+            "data_arrival_ns": 2.0999999999999996,
+            "capture_arrival_ns": -2.5,
+            "required_ns": -2.4000000000000004,
+            "slack_ns": 4.5
+          }
+        },
+        "observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 7.5,
+            "required_ns": 7.3,
+            "slack_ns": 5.3,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.0,
+                "delay_ns": 1.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 7.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 7.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 7.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 6.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 7.5,
+            "required_ns": 7.15,
+            "slack_ns": 5.05,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 7.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 7.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 7.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_rise": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 6.0,
+            "data_arrival_ns": 12.0,
+            "capture_arrival_ns": 7.5,
+            "required_ns": 7.65,
+            "slack_ns": 4.35,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.700001,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.0,
+                "delay_ns": 1.299999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 7.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 7.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 7.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_fall": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 6.0,
+            "data_arrival_ns": 12.1,
+            "capture_arrival_ns": 7.5,
+            "required_ns": 7.6,
+            "slack_ns": 4.5,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.900001,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 7.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 7.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 7.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          }
+        }
+      },
+      "setup_violation": {
+        "contract": {
+          "period_ns": 10.0,
+          "fall_ns": 4.0,
+          "cq_ns": [
+            0.7,
+            0.9
+          ],
+          "data_ns": [
+            5.3,
+            5.2
+          ],
+          "clock_ns": [
+            0.9,
+            1.1
+          ],
+          "inverter_ns": [
+            0.4,
+            0.8
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "early": null,
+        "input_sha256": {
+          "fixture.lib": "6065fd11ca561f6645b17c29a380d4910cc3a5a1dbf27cabade282ccc04cf6ca",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "7f45fba5e55f958510111dd119fcfba2367285150a77262a2776b8cd19dd4ba9"
+        },
+        "max_abs_error_ns": 9.999999992515995e-07,
+        "expected": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 6.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": -0.7000000000000002
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 6.1000000000000005,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": -0.9500000000000002
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 6.0,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.35,
+            "slack_ns": 10.35
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 6.1000000000000005,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.4,
+            "slack_ns": 10.5
+          }
+        },
+        "normalized_observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 6.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": -0.7
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 6.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": -0.95
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 6.0,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.35,
+            "slack_ns": 10.35
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 6.100000000000001,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.4,
+            "slack_ns": 10.499999
+          }
+        },
+        "observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 6.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.3,
+            "slack_ns": -0.7,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 6.0,
+                "delay_ns": 5.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 6.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 6.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.15,
+            "slack_ns": -0.95,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 6.1,
+                "delay_ns": 5.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 6.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_rise": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 16.0,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.65,
+            "slack_ns": 10.35,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.700001,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 16.0,
+                "delay_ns": 5.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 16.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_fall": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 16.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.6,
+            "slack_ns": 10.499999,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.900001,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 16.1,
+                "delay_ns": 5.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 16.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          }
+        }
+      },
+      "hold_violation": {
+        "contract": {
+          "period_ns": 10.0,
+          "fall_ns": 4.0,
+          "cq_ns": [
+            0.7,
+            0.9
+          ],
+          "data_ns": [
+            1.3,
+            1.2
+          ],
+          "clock_ns": [
+            7.9,
+            8.1
+          ],
+          "inverter_ns": [
+            0.4,
+            0.8
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "early": null,
+        "input_sha256": {
+          "fixture.lib": "e72259cea842f3e3cc501513305e75951ca25ad20ae6765510e303a9478a6ba4",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "7f45fba5e55f958510111dd119fcfba2367285150a77262a2776b8cd19dd4ba9"
+        },
+        "max_abs_error_ns": 1.0000000010279564e-06,
+        "expected": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 12.5,
+            "required_ns": 12.3,
+            "slack_ns": 10.3
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 12.5,
+            "required_ns": 12.15,
+            "slack_ns": 10.05
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 2.5,
+            "required_ns": 2.65,
+            "slack_ns": -0.6499999999999999
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 2.5,
+            "required_ns": 2.6,
+            "slack_ns": -0.5
+          }
+        },
+        "normalized_observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 12.5,
+            "required_ns": 12.299999,
+            "slack_ns": 10.299999
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 12.5,
+            "required_ns": 12.15,
+            "slack_ns": 10.049999
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 2.5,
+            "required_ns": 2.6499989999999993,
+            "slack_ns": -0.649999
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 2.0999999999999996,
+            "capture_arrival_ns": 2.5,
+            "required_ns": 2.5999990000000004,
+            "slack_ns": -0.499999
+          }
+        },
+        "observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 12.5,
+            "required_ns": 12.299999,
+            "slack_ns": 10.299999,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.0,
+                "delay_ns": 1.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 12.099999,
+                "delay_ns": 8.099999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 12.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 12.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 12.5,
+            "required_ns": 12.15,
+            "slack_ns": 10.049999,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 12.099999,
+                "delay_ns": 8.099999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 12.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 12.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_rise": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.0,
+            "capture_arrival_ns": 12.5,
+            "required_ns": 12.649999,
+            "slack_ns": -0.649999,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.700001,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.0,
+                "delay_ns": 1.299999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 12.099999,
+                "delay_ns": 8.099999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 12.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 12.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_fall": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 12.1,
+            "capture_arrival_ns": 12.5,
+            "required_ns": 12.599999,
+            "slack_ns": -0.499999,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.900001,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 12.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 12.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 12.099999,
+                "delay_ns": 8.099999,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 12.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 12.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          }
+        }
+      },
+      "early_late": {
+        "contract": {
+          "period_ns": 10.0,
+          "fall_ns": 4.0,
+          "cq_ns": [
+            0.7,
+            0.9
+          ],
+          "data_ns": [
+            1.3,
+            1.2
+          ],
+          "clock_ns": [
+            0.9,
+            1.1
+          ],
+          "inverter_ns": [
+            0.4,
+            0.8
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "early": {
+          "period_ns": 10.0,
+          "fall_ns": 4.0,
+          "cq_ns": [
+            0.3,
+            0.5
+          ],
+          "data_ns": [
+            0.8,
+            0.7
+          ],
+          "clock_ns": [
+            0.4,
+            0.6
+          ],
+          "inverter_ns": [
+            0.2,
+            0.5
+          ],
+          "setup_ns": [
+            0.2,
+            0.35
+          ],
+          "hold_ns": [
+            0.15,
+            0.1
+          ]
+        },
+        "input_sha256": {
+          "fixture.lib": "68000fe6c867e8c6a1b4eeb69032d67b53ee8b9b2ccdcf1f4e681ed2f7a834be",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "fb383cfd7314dcf05dd8569e0a81606e228bd37e0a18439019716d763c9f00c2",
+          "early.lib": "c147fa878ffe31291dcdde411d84b99739b7753418c909a74a67f8b2afd318ae"
+        },
+        "max_abs_error_ns": 1.0000000003618226e-06,
+        "expected": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 4.8,
+            "required_ns": 4.6,
+            "slack_ns": 2.5999999999999996
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 4.8,
+            "required_ns": 4.45,
+            "slack_ns": 2.35
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 1.1,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.35,
+            "slack_ns": 5.449999999999999
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 1.2,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.4,
+            "slack_ns": 5.6000000000000005
+          }
+        },
+        "normalized_observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 4.8,
+            "required_ns": 4.6,
+            "slack_ns": 2.6
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 4.8,
+            "required_ns": 4.45,
+            "slack_ns": 2.35
+          },
+          "hold_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 1.0999999999999996,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.35,
+            "slack_ns": 5.45
+          },
+          "hold_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": -6.0,
+            "data_arrival_ns": 1.2000010000000003,
+            "capture_arrival_ns": -4.5,
+            "required_ns": -4.4,
+            "slack_ns": 5.6
+          }
+        },
+        "observed": {
+          "setup_rise": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.0,
+            "capture_arrival_ns": 4.8,
+            "required_ns": 4.6,
+            "slack_ns": 2.6,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.7,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.0,
+                "delay_ns": 1.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 4.6,
+                "delay_ns": 0.6,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 4.8,
+                "delay_ns": 0.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 4.8,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "setup_fall": {
+            "launch_edge_ns": 0.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 2.1,
+            "capture_arrival_ns": 4.8,
+            "required_ns": 4.45,
+            "slack_ns": 2.35,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 0.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 0.9,
+                "delay_ns": 0.9,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 2.1,
+                "delay_ns": 1.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 2.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 4.6,
+                "delay_ns": 0.6,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 4.8,
+                "delay_ns": 0.2,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 4.8,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_rise": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 11.1,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.65,
+            "slack_ns": 5.45,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.3,
+                "delay_ns": 0.3,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 11.1,
+                "delay_ns": 0.8,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 11.1,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          },
+          "hold_fall": {
+            "launch_edge_ns": 10.0,
+            "capture_edge_ns": 4.0,
+            "data_arrival_ns": 11.200001,
+            "capture_arrival_ns": 5.5,
+            "required_ns": 5.6,
+            "slack_ns": 5.6,
+            "pins": {
+              "tx_reg/CK": {
+                "time_ns": 10.0,
+                "delay_ns": 0.0,
+                "slew_ns": 0.0,
+                "cap_pf": null
+              },
+              "tx_reg/Q": {
+                "time_ns": 10.5,
+                "delay_ns": 0.5,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "tx_data/Y": {
+                "time_ns": 11.200001,
+                "delay_ns": 0.7,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/D": {
+                "time_ns": 11.200001,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              },
+              "tx_clock/Y": {
+                "time_ns": 5.1,
+                "delay_ns": 1.1,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_clock/Y": {
+                "time_ns": 5.5,
+                "delay_ns": 0.4,
+                "slew_ns": 0.1,
+                "cap_pf": 0.01
+              },
+              "rx_reg/CK": {
+                "time_ns": 5.5,
+                "delay_ns": 0.0,
+                "slew_ns": 0.1,
+                "cap_pf": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "negative_controls": {
+      "missing_invert": {
+        "mutation": "missing_invert",
+        "input_sha256": {
+          "fixture.lib": "68000fe6c867e8c6a1b4eeb69032d67b53ee8b9b2ccdcf1f4e681ed2f7a834be",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "db0320ed4ac1cce515e9a0399e40567280585c733c06c2e2d54b5e97ca5a1bab"
+        },
+        "contract_accepted": false,
+        "rejection_reason": "analytic mismatch: {\"hold_fall.capture_arrival_ns\": 4.0, \"hold_fall.capture_edge_ns\": 4.0, \"hold_fall.data_arrival_ns\": 10.0, \"hold_fall.launch_edge_ns\": 10.0, \"hold_fall.required_ns\": 4.0, \"hold_fall.slack_ns\": 6.0, \"hold_rise.capture_arrival_ns\": 4.0, \"hold_rise.capture_edge_ns\": 4.0, \"hold_rise.data_arrival_ns\": 10.0, \"hold_rise.launch_edge_ns\": 10.0, \"hold_rise.required_ns\": 4.0, \"hold_rise.slack_ns\": 6.0, \"setup_fall.capture_arrival_ns\": 6.0, \"setup_fall.capture_edge_ns\": 6.0, \"setup_fall.required_ns\": 6.000000999999999, \"setup_fall.slack_ns\": 6.0, \"setup_rise.capture_arrival_ns\": 6.0, \"setup_rise.capture_edge_ns\": 6.0, \"setup_rise.required_ns\": 6.000000000000001, \"setup_rise.slack_ns\": 6.000001}",
+        "category": "path_semantics"
+      },
+      "missing_generated_clock": {
+        "mutation": "missing_generated_clock",
+        "input_sha256": {
+          "fixture.lib": "68000fe6c867e8c6a1b4eeb69032d67b53ee8b9b2ccdcf1f4e681ed2f7a834be",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "a80d95369f916be0aec61ed91a296908fc9b36772074cb075fc8a67af363bf14"
+        },
+        "contract_accepted": false,
+        "rejection_reason": "capture generated clock missing",
+        "category": "clock_structure"
+      },
+      "ideal_capture": {
+        "mutation": "ideal_capture",
+        "input_sha256": {
+          "fixture.lib": "68000fe6c867e8c6a1b4eeb69032d67b53ee8b9b2ccdcf1f4e681ed2f7a834be",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "186445fb9878d96f6f90ff44c31c3f5f310f329b9e3b07f4e915c9d6ce872f16"
+        },
+        "contract_accepted": false,
+        "rejection_reason": "setup_rise: wrong/missing transition at tx_clock/Y",
+        "category": "clock_structure"
+      },
+      "wrong_ff_polarity": {
+        "mutation": "wrong_ff_polarity",
+        "input_sha256": {
+          "fixture.lib": "3d4750f5718e3dfebf66c15effe964f0a08c96a5395084cb962c04a5a2f0b635",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "7f45fba5e55f958510111dd119fcfba2367285150a77262a2776b8cd19dd4ba9"
+        },
+        "contract_accepted": false,
+        "rejection_reason": "setup_rise: wrong endpoint, clock or FF polarity",
+        "category": "path_semantics"
+      },
+      "swapped_clock_arcs": {
+        "mutation": "swapped_clock_arcs",
+        "input_sha256": {
+          "fixture.lib": "ce90a6b146dc87c73f3e4996f131b7b28fc272d56519aeeee82206aa7066759c",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "7f45fba5e55f958510111dd119fcfba2367285150a77262a2776b8cd19dd4ba9"
+        },
+        "contract_accepted": false,
+        "rejection_reason": "analytic mismatch: {\"hold_fall.capture_arrival_ns\": 0.20000000000000018, \"hold_fall.required_ns\": 0.1999999999999993, \"hold_fall.slack_ns\": 0.20000000000000018, \"hold_fall.tx_clock/Y.delay_ns\": 0.20000000000000007, \"hold_rise.capture_arrival_ns\": 0.20000000000000018, \"hold_rise.required_ns\": 0.20000000000000018, \"hold_rise.slack_ns\": 0.20000000000000018, \"hold_rise.tx_clock/Y.delay_ns\": 0.20000000000000007, \"setup_fall.capture_arrival_ns\": 0.20000000000000018, \"setup_fall.required_ns\": 0.20000000000000018, \"setup_fall.slack_ns\": 0.20000000000000018, \"setup_fall.tx_clock/Y.delay_ns\": 0.20000000000000007, \"setup_rise.capture_arrival_ns\": 0.20000000000000018, \"setup_rise.required_ns\": 0.20000000000000018, \"setup_rise.slack_ns\": 0.19999999999999973, \"setup_rise.tx_clock/Y.delay_ns\": 0.20000000000000007}",
+        "category": "path_semantics"
+      },
+      "wrong_endpoint": {
+        "mutation": "wrong_endpoint",
+        "input_sha256": {
+          "fixture.lib": "68000fe6c867e8c6a1b4eeb69032d67b53ee8b9b2ccdcf1f4e681ed2f7a834be",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "01198053571c7821a03df2d291125f1841730ee07224d8d667787a6fcaf6ff76"
+        },
+        "contract_accepted": false,
+        "rejection_reason": "setup_rise: wrong endpoint, clock or FF polarity",
+        "category": "endpoint_coverage"
+      },
+      "missing_constraints": {
+        "mutation": "missing_constraints",
+        "input_sha256": {
+          "fixture.lib": "68000fe6c867e8c6a1b4eeb69032d67b53ee8b9b2ccdcf1f4e681ed2f7a834be",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "1ba046841df6dab3a453d46e59d17786c336a61611db08a1085dda1ae97c878f"
+        },
+        "contract_accepted": false,
+        "rejection_reason": "STA diagnostic or unconstrained endpoint",
+        "category": "io_constraint_coverage"
+      },
+      "swapped_min_max": {
+        "mutation": "swapped_min_max",
+        "input_sha256": {
+          "fixture.lib": "68000fe6c867e8c6a1b4eeb69032d67b53ee8b9b2ccdcf1f4e681ed2f7a834be",
+          "lane.v": "f2a2e685e1db15bfa6e2309e9e2ced1c5bac9dda11ef3f7b1f5f968cbd250129",
+          "run.tcl": "325b11f33dfc344ae2a9066557c743ec443dcc3d5afc247bb96bea9a2a61a28a",
+          "early.lib": "c147fa878ffe31291dcdde411d84b99739b7753418c909a74a67f8b2afd318ae"
+        },
+        "contract_accepted": false,
+        "rejection_reason": "analytic mismatch: {\"hold_fall.capture_arrival_ns\": 0.7000000000000002, \"hold_fall.data_arrival_ns\": 0.8999999999999997, \"hold_fall.required_ns\": 0.6999999999999993, \"hold_fall.rx_clock/Y.delay_ns\": 0.2, \"hold_fall.slack_ns\": 1.5999999999999996, \"hold_fall.tx_clock/Y.delay_ns\": 0.5000000000000001, \"hold_fall.tx_data/Y.delay_ns\": 0.5, \"hold_fall.tx_reg/Q.delay_ns\": 0.4, \"hold_rise.capture_arrival_ns\": 0.7000000000000002, \"hold_rise.data_arrival_ns\": 0.8999999999999999, \"hold_rise.required_ns\": 0.7000000000000002, \"hold_rise.rx_clock/Y.delay_ns\": 0.2, \"hold_rise.slack_ns\": 1.6000000000000005, \"hold_rise.tx_clock/Y.delay_ns\": 0.5000000000000001, \"hold_rise.tx_data/Y.delay_ns\": 0.49999899999999986, \"hold_rise.tx_reg/Q.delay_ns\": 0.39999999999999997, \"setup_fall.capture_arrival_ns\": 0.7000000000000002, \"setup_fall.data_arrival_ns\": 0.9000000000000001, \"setup_fall.required_ns\": 0.7000000000000002, \"setup_fall.rx_clock/Y.delay_ns\": 0.2, \"setup_fall.slack_ns\": 1.6000009999999998, \"setup_fall.tx_clock/Y.delay_ns\": 0.5000000000000001, \"setup_fall.tx_data/Y.delay_ns\": 0.5, \"setup_fall.tx_reg/Q.delay_ns\": 0.4, \"setup_rise.capture_arrival_ns\": 0.7000000000000002, \"setup_rise.data_arrival_ns\": 0.8999999999999999, \"setup_rise.required_ns\": 0.7000000000000002, \"setup_rise.rx_clock/Y.delay_ns\": 0.2, \"setup_rise.slack_ns\": 1.6000000000000005, \"setup_rise.tx_clock/Y.delay_ns\": 0.5000000000000001, \"setup_rise.tx_data/Y.delay_ns\": 0.5, \"setup_rise.tx_reg/Q.delay_ns\": 0.39999999999999997}",
+        "category": "path_semantics"
+      }
+    }
+  },
+  "physical_d2d_validation": false,
+  "thermal_physical_calibration": false,
+  "temperature_feedback_validation": false,
+  "ngspice_verilator_rerun_on_this_host": false,
+  "cross_platform_ci": "pending_at_receipt_creation; CI compares full paths to this frozen Windows receipt"
+}

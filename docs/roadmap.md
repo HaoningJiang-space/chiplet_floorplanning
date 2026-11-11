@@ -179,3 +179,17 @@ only provides a result for the enumerated set; it cannot prove that every legal
 route at a placement is infeasible. Retain v0.7's zero-penalty control. Even a
 positive constraint penalty would not establish superiority of joint search
 over sequential/alternating methods at equal budgets. E2/E3 and G4 remain open.
+
+## Local semantic-oracle milestone (2026-11-11)
+
+Native Windows now reproduces the upstream STA goldens, TT GPIO prototype and
+v0.8 E1. A separate synthetic event oracle checks all four rise/fall setup/hold
+paths, actual clock transitions, fixed event pairing, data/clock/common delay
+controls, explicit early/late corners and eight malformed-contract controls.
+See `timing-oracle-contract.md` and `windows-local.md`. No physical-calibration
+or optimizer gate is closed by this milestone.
+
+Next bridge the audited edge contract to the real-library interface field by
+field, retaining every electrical/table-domain gate. Admit a sourced resource
+case or clearly label a synthetic mechanism case, and set decision tolerances
+before testing whether routing can eliminate the thermal/timing conflict.
