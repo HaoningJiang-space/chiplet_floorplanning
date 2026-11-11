@@ -241,6 +241,292 @@
       "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_io/2aeec51ea2824b6cc0b396acfc39f4535f40b23a/cells/bi_t/gf180mcu_fd_io__bi_t__tt_025C_3v30.lib",
       "sha256": "08bfec98e95f3f25da65b510fecafb9eedfb531c8c5b3587421fbe64ac5b32f3",
       "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/mfit/example_1_uniform_nodes_homogeneous_chiplets/chiplet_geometry_4_chiplets_uniform_nodes.yml",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/example_1_uniform_nodes_homogeneous_chiplets/chiplet_geometry_4_chiplets_uniform_nodes.yml",
+      "sha256": "c960f0693ae28b0ad7ab92097da586f129029c069063a1965818684ea9c53533",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/mfit/example_1_uniform_nodes_homogeneous_chiplets/power_dist_config_homogeneous.yml",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/example_1_uniform_nodes_homogeneous_chiplets/power_dist_config_homogeneous.yml",
+      "sha256": "5e06e04b0b3346d7e8d58a7648c5f19bf84120b351f7ef8112091d7d6e154bcb",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/mfit/example_1_uniform_nodes_homogeneous_chiplets/power_seq_random_4.csv",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/example_1_uniform_nodes_homogeneous_chiplets/power_seq_random_4.csv",
+      "sha256": "d8939348c58dfcc9183e986a7fca302135e7e1a3b755153138a7c9751bbb3a84",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/mfit/example_2_non_uniform_nodes_homogeneous_chiplets/chiplet_geometry_4_chiplets_non_uniform.yml",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/example_2_non_uniform_nodes_homogeneous_chiplets/chiplet_geometry_4_chiplets_non_uniform.yml",
+      "sha256": "c72ea646dba061f07a80a35ee5b485da18063cc67e0874a824dcb709792f741a",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/mfit/example_2_non_uniform_nodes_homogeneous_chiplets/power_dist_config_tiles_tx_rx.yml",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/example_2_non_uniform_nodes_homogeneous_chiplets/power_dist_config_tiles_tx_rx.yml",
+      "sha256": "9bba69c25d2d10ea8625cdf351eaf788175b73a8ffdf44639a959084fd4d9b61",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/mfit/example_2_non_uniform_nodes_homogeneous_chiplets/power_seq_30s_tiles_tx_rs.csv",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/example_2_non_uniform_nodes_homogeneous_chiplets/power_seq_30s_tiles_tx_rs.csv",
+      "sha256": "40bd730266994681838d0e41af9b72e3601ae05b5a01feb04b426a2690a136da",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/mfit/example_3_heterogeneous_chiplets/chiplet_geometry_3_chiplets_uniform_nodes.yml",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/example_3_heterogeneous_chiplets/chiplet_geometry_3_chiplets_uniform_nodes.yml",
+      "sha256": "20993ec4d02c8d14fce643ce737ae2826e022c3f2ea0a01aca7e75f0a746c19b",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/mfit/example_3_heterogeneous_chiplets/power_dist_config_heterogeneous.yml",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/example_3_heterogeneous_chiplets/power_dist_config_heterogeneous.yml",
+      "sha256": "62bd475e78ce593eefd3d91141c698c03aa55ac8bae09581e24f8232e66f10f7",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/mfit/example_3_heterogeneous_chiplets/power_seq_random_3.csv",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/example_3_heterogeneous_chiplets/power_seq_random_3.csv",
+      "sha256": "2e0c0aa19d31cbfef2bfd7bee4882cf35570ceb11dd43c80ff40df57ddb7fd99",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/rapidchiplet/helpers.py",
+      "url": "https://raw.githubusercontent.com/spcl/rapidchiplet/17176f92c91eda629a25bc11bf7959d6b963a23b/helpers.py",
+      "sha256": "fd0332314566345c70efc62a50b3cfa90f4ab426148102c45ab77256e687f5bc",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/rapidchiplet/inputs/chiplets/chiplets_example_experiment.json",
+      "url": "https://raw.githubusercontent.com/spcl/rapidchiplet/17176f92c91eda629a25bc11bf7959d6b963a23b/inputs/chiplets/chiplets_example_experiment.json",
+      "sha256": "6e0b2307be7901be81856eefa2f1402796a3e72245d1d7d7a87c3b87b988447f",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/rapidchiplet/inputs/packagings/example_packaging.json",
+      "url": "https://raw.githubusercontent.com/spcl/rapidchiplet/17176f92c91eda629a25bc11bf7959d6b963a23b/inputs/packagings/example_packaging.json",
+      "sha256": "746d97ce040537b4ef7b4683d54946eec25305939e87716fb85d6aed8035cdce",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/rapidchiplet/inputs/placements/placement_example_experiment.json",
+      "url": "https://raw.githubusercontent.com/spcl/rapidchiplet/17176f92c91eda629a25bc11bf7959d6b963a23b/inputs/placements/placement_example_experiment.json",
+      "sha256": "3be25dcaef14de63b61ba6769779881c44490fbcc4ddf5393d7578848e524772",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/rapidchiplet/inputs/topologies/topology_example_experiment.json",
+      "url": "https://raw.githubusercontent.com/spcl/rapidchiplet/17176f92c91eda629a25bc11bf7959d6b963a23b/inputs/topologies/topology_example_experiment.json",
+      "sha256": "973ac2d1c85d7b80308ab54a50008fc4e89ecdf8fe9812ec9b84b63411dff94a",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/rapidchiplet/rapidchiplet.py",
+      "url": "https://raw.githubusercontent.com/spcl/rapidchiplet/17176f92c91eda629a25bc11bf7959d6b963a23b/rapidchiplet.py",
+      "sha256": "8d4e87aa6426b97ff60ab1c003fd82501b176645daf52d26acc9c56f1f8d1121",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/pulp/Bender.lock",
+      "url": "https://raw.githubusercontent.com/pulp-platform/serial_link/521908b92919ac143cbc489623d2300f17589c52/Bender.lock",
+      "sha256": "283ba3314a54ad6ae295c4cf5fea13c2d7df1baa58e48fb0b78d474fef2e0fca",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/pulp/Bender.yml",
+      "url": "https://raw.githubusercontent.com/pulp-platform/serial_link/521908b92919ac143cbc489623d2300f17589c52/Bender.yml",
+      "sha256": "575da5257db22610701392f564da501d4f1a4f0de419421f5acd32c0c10d8501",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/pulp/README.md",
+      "url": "https://raw.githubusercontent.com/pulp-platform/serial_link/521908b92919ac143cbc489623d2300f17589c52/README.md",
+      "sha256": "b829f4c07ab6b1bd84f3c1c8d32a8e82956c2ef86883c098443fbfa68db02035",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/pulp/src/slink_phys_layer.sv",
+      "url": "https://raw.githubusercontent.com/pulp-platform/serial_link/521908b92919ac143cbc489623d2300f17589c52/src/slink_phys_layer.sv",
+      "sha256": "da3b24dcfd8809d71bc2fa5ac7d070a95eca093e86ce2fa2ac784c53a13cfd89",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/common_cells/include/common_cells/assertions.svh",
+      "url": "https://raw.githubusercontent.com/pulp-platform/common_cells/63b7c50d43e462b59506f69d341ff1e40202866d/include/common_cells/assertions.svh",
+      "sha256": "e9606c554d2562f2d282455a676503dd14655da51774c7069ee59773061b4a31",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/common_cells/include/common_cells/registers.svh",
+      "url": "https://raw.githubusercontent.com/pulp-platform/common_cells/63b7c50d43e462b59506f69d341ff1e40202866d/include/common_cells/registers.svh",
+      "sha256": "cd2133df2638447e7d55e4b3b16e4e856cb21d53bea03b35985f31abfecaa868",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/common_cells/src/cc_binary_to_gray.sv",
+      "url": "https://raw.githubusercontent.com/pulp-platform/common_cells/63b7c50d43e462b59506f69d341ff1e40202866d/src/cc_binary_to_gray.sv",
+      "sha256": "1194d14306408bc594cafb3a0c2f5af557644465b661ce3b6738d9f35923d79c",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/common_cells/src/cc_cdc_fifo_gray.sv",
+      "url": "https://raw.githubusercontent.com/pulp-platform/common_cells/63b7c50d43e462b59506f69d341ff1e40202866d/src/cc_cdc_fifo_gray.sv",
+      "sha256": "d3957e376134fa3020f45edc9573fdae10f504167ebc7d6aadf71fbd7474680a",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/common_cells/src/cc_gray_to_binary.sv",
+      "url": "https://raw.githubusercontent.com/pulp-platform/common_cells/63b7c50d43e462b59506f69d341ff1e40202866d/src/cc_gray_to_binary.sv",
+      "sha256": "af6ea8c7bccc71783330e3f251f91bffb00ce8ec17e7546c9e7b5cbb7535674d",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/examples/example1_slow.lib",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/examples/example1_slow.lib",
+      "sha256": "899e4a91977dde6aaca8e99073ae7a02fa546510bb4a393e6bab4a8ee2f98b16",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/examples/example1_fast.lib",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/examples/example1_fast.lib",
+      "sha256": "7c08823aa809fb8c1d633b7f985c3f8a56c1f06e4d3a05b00c487e9e4b4805b7",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/examples/example1.v",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/examples/example1.v",
+      "sha256": "d2ae247ed121c7dfcff41e5f100cfd01fff4b9e3fdf7a95d54ea2f4c6d73acec",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/examples/example1.sdf",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/examples/example1.sdf",
+      "sha256": "cf4ee6eeacd64a35ddda34ba7784445b66538eac3b037b7b220f77339ce64b87",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/examples/example1.dspef",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/examples/example1.dspef",
+      "sha256": "ab75655df60f4bf747a2f97298e38e06d0c8a00adbae730f56c65c9495acbd1d",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/examples/example1.tcl",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/examples/example1.tcl",
+      "sha256": "b5ad56040786dcaeee324744bd8b2683d0766266197246a6a544900e88512b57",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/test/example1.ok",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/test/example1.ok",
+      "sha256": "5bc63edc99a564d73c2eaf6d24a900709d5ecb09395fabbc2c7e92bfdb3368a2",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/examples/example3.tcl",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/examples/example3.tcl",
+      "sha256": "5489c21b95f6d314170755375d17424323b784b7a3a0c9ef5c81f126bdd3bf43",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/test/example3.ok",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/test/example3.ok",
+      "sha256": "36399ccc35d1624f348b98817881daa59b8a4a3bfe04ee3a13cf0e21f519243c",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/examples/example4.tcl",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/examples/example4.tcl",
+      "sha256": "03a2124c0699342c82d553529dc3397a8a6c4c9b75f44995772794133828827f",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/test/example4.ok",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/test/example4.ok",
+      "sha256": "be7d625723d915574d31aa6df60974710342e318650bc61071fa117f19df36b9",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/pulp/LICENSE",
+      "url": "https://raw.githubusercontent.com/pulp-platform/serial_link/521908b92919ac143cbc489623d2300f17589c52/LICENSE",
+      "sha256": "8632e4ec6001a712686e34f7955879a65d249b43b95b253f29a348f32804487a",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/common_cells/src/cc_spill_register.sv",
+      "url": "https://raw.githubusercontent.com/pulp-platform/common_cells/63b7c50d43e462b59506f69d341ff1e40202866d/src/cc_spill_register.sv",
+      "sha256": "9fa980c80e230330d8ac7ef3af35bcec60014fd81a43f7adaf2ce3e6a4666094",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/common_cells/src/cc_spill_register_flushable.sv",
+      "url": "https://raw.githubusercontent.com/pulp-platform/common_cells/63b7c50d43e462b59506f69d341ff1e40202866d/src/cc_spill_register_flushable.sv",
+      "sha256": "734e199551750b46f0da373d6d8c70f13c84db24e8d61e06146717219e155f9b",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/common_cells/LICENSE",
+      "url": "https://raw.githubusercontent.com/pulp-platform/common_cells/63b7c50d43e462b59506f69d341ff1e40202866d/LICENSE",
+      "sha256": "6527a46225891b976fa94f634f6ee0cd22e1c7129d6f11c5c98c997627625fc7",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/tech_cells_generic/src/rtl/tc_sync.sv",
+      "url": "https://raw.githubusercontent.com/pulp-platform/tech_cells_generic/3a3de73632a06826b1bd9c65a0a2e92b32016845/src/rtl/tc_sync.sv",
+      "sha256": "4e5155a2a8b3794ce9a9dc8220669b4ac28fa9155f29e1eb9cb198bf1a6aa416",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/tech_cells_generic/src/rtl/tc_clk.sv",
+      "url": "https://raw.githubusercontent.com/pulp-platform/tech_cells_generic/3a3de73632a06826b1bd9c65a0a2e92b32016845/src/rtl/tc_clk.sv",
+      "sha256": "93e9747504fa1da6473560341febbfae6c5e917768633a84fc9ef12299293207",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/tech_cells_generic/LICENSE",
+      "url": "https://raw.githubusercontent.com/pulp-platform/tech_cells_generic/3a3de73632a06826b1bd9c65a0a2e92b32016845/LICENSE",
+      "sha256": "6527a46225891b976fa94f634f6ee0cd22e1c7129d6f11c5c98c997627625fc7",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/common_cells/include/common_cells/deprecated/registers.svh",
+      "url": "https://raw.githubusercontent.com/pulp-platform/common_cells/63b7c50d43e462b59506f69d341ff1e40202866d/include/common_cells/deprecated/registers.svh",
+      "sha256": "5b95018dd45ed472e78ea192039c332574bbc10cc53ccbb4221f14f77bb0c0d7",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/opensta/LICENSE",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/LICENSE",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "decompress_gzip": false
     }
-  ]
+  ],
+  "open_cases": {
+    "mfit": {
+      "repository": "AlishKanani/MFIT",
+      "commit": "4444336d95fe7e9a3bf440c96937831126c6a37f"
+    },
+    "rapidchiplet": {
+      "repository": "spcl/rapidchiplet",
+      "commit": "17176f92c91eda629a25bc11bf7959d6b963a23b"
+    },
+    "pulp": {
+      "repository": "pulp-platform/serial_link",
+      "commit": "521908b92919ac143cbc489623d2300f17589c52"
+    },
+    "common_cells": {
+      "repository": "pulp-platform/common_cells",
+      "commit": "63b7c50d43e462b59506f69d341ff1e40202866d"
+    },
+    "tech_cells_generic": {
+      "repository": "pulp-platform/tech_cells_generic",
+      "commit": "3a3de73632a06826b1bd9c65a0a2e92b32016845"
+    }
+  }
 }

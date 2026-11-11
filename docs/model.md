@@ -189,3 +189,55 @@ OpenSTA 2.2's capacitance report uses float arithmetic. Wire C readback permits
 four float32 relative epsilons of the reported total C to bound cancellation
 against much larger pin capacitance. Zero annotations and requested wire C
 below this reporting resolution are rejected. No electrical limits are relaxed.
+
+## v0.5 independent die boundaries and placement API
+
+The ownership of each material cell is retained in chiplet-only layers. Adjacent
+cells belonging to **different dies have no lateral edge by default**, including
+zero-gap contact. Shared `package` or `rectangle` layers conduct continuously.
+An absent sidewall model means adiabatic, not fused silicon and not an estimate
+of real underfill conductance.
+
+Optional layer fields:
+
+```json
+{
+  "id": "dies", "footprint": "chiplets", "thickness_mm": 0.1,
+  "conductivity_w_mk": 150,
+  "die_materials": {"rx": {"conductivity_xyz_w_mk": [120, 120, 100]}},
+  "sidewall_contacts": [{"dies": ["tx", "rx"], "resistance_m2k_w": 0.0001}]
+}
+```
+
+A contact requires geometrically touching edges with positive overlap; it cannot
+bridge a gap or corner. Unordered duplicate pairs are rejected. Both conductivity
+forms must be positive; xyz components always refer to **package axes**, not a
+rotated crystal tensor. For a face of area A normal to x,
+`G = A / (dx_i/(2*kx_i) + contact_R + dx_j/(2*kx_j))` (analogous in y).
+The explicit R=0 contact gives ideal intimate contact with the two material
+half-cell resistances. Per-die assignments apply only to chiplet footprints.
+Thickness remains common within each layer; vertical contact resistance is
+still a layer-wide scalar. This is not an arbitrary heterogeneous 3D stack.
+
+`footprint: "rectangle"` requires `rect_mm: {x,y,width,height}` within the package.
+Its boundaries enter the conformal mesh. This supports offset interposer/C4
+footprints; exposed surfaces remain insulated unless they are the declared
+outermost top/bottom convection surface. No automatic material fills a gap.
+
+```python
+from chiplet_floorplanning.model import load_case
+from chiplet_floorplanning.layout import place_design, evaluate_layout
+base = load_case("examples/low_speed_gpio.json")
+candidate = place_design(
+    base, {"tx": {"x": 1.5, "y": 3.0}, "rx": {"x": 7.0, "y": 2.0}},
+    corridors_y_mm={"lane_data": 1.5, "lane_clock": 4.5},
+    grid={"nx": 96, "ny": 64, "mode": "geometry_conformal"},
+)
+result = evaluate_layout(candidate)
+```
+
+The base design, power, material and electrical parameters are not mutated.
+Moved endpoints are transformed and both routes rebuilt before validation.
+A corridor is an ideal rectilinear connection, not a legal routed implementation;
+STA uses its total RC, not position-dependent wire temperature. Spatial pad
+characterization, channel extraction and physical uncertainty remain missing.

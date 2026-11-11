@@ -203,10 +203,16 @@ def parse_case(data):
         layers = sequence(thermal["layers"], "layers", nonempty=True)
         for layer in layers:
             fields(layer, ("id", "footprint", "thickness_mm"),
-                   ('conductivity_w_mk', 'conductivity_xyz_w_mk', 'contact_resistance_above_m2k_w'))
+                   ('conductivity_w_mk', 'conductivity_xyz_w_mk', 'contact_resistance_above_m2k_w',
+                    'rect_mm', 'die_materials', 'sidewall_contacts'))
             identifier(layer["id"])
-            if layer["footprint"] not in ("package", "chiplets"):
-                raise ModelError("layer footprint must be package or chiplets")
+            if layer["footprint"] not in ("package", "chiplets", "rectangle"):
+                raise ModelError("layer footprint must be package, chiplets or rectangle")
+            if layer['footprint'] == 'rectangle':
+                if 'rect_mm' not in layer or not package.contains(parse_rect(layer['rect_mm'])):
+                    raise ModelError('rectangle layer needs rect_mm inside package')
+            elif 'rect_mm' in layer:
+                raise ModelError('rect_mm requires rectangle footprint')
             number(layer['thickness_mm'], 'thickness_mm', positive=True)
             if ('conductivity_w_mk' in layer) == ('conductivity_xyz_w_mk' in layer):
                 raise ModelError('specify exactly one scalar or xyz conductivity')
@@ -219,6 +225,40 @@ def parse_case(data):
                 for value in components:
                     number(value, 'conductivity_xyz_w_mk', positive=True)
             number(layer.get('contact_resistance_above_m2k_w', 0), 'contact_resistance_above_m2k_w', minimum=0)
+            materials = layer.get('die_materials', {})
+            if not isinstance(materials, dict) or materials.keys()-{d.id for d in dies}:
+                raise ModelError('unknown die material assignment')
+            for material in materials.values():
+                fields(material, (), ('conductivity_w_mk', 'conductivity_xyz_w_mk'))
+                if len(material) != 1:
+                    raise ModelError('die material requires one scalar or xyz conductivity')
+                values = ([material['conductivity_w_mk']] if 'conductivity_w_mk' in material
+                          else sequence(material['conductivity_xyz_w_mk'], 'conductivity_xyz_w_mk'))
+                if 'conductivity_xyz_w_mk' in material and len(values) != 3:
+                    raise ModelError('die conductivity requires three package-axis components')
+                for value in values:
+                    number(value, 'die conductivity_w_mk', positive=True)
+            contacts = sequence(layer.get('sidewall_contacts', []), 'sidewall_contacts')
+            pairs = []
+            for contact in contacts:
+                fields(contact, ('dies', 'resistance_m2k_w'))
+                pair = [identifier(name) for name in sequence(contact['dies'], 'sidewall dies')]
+                if len(pair) != 2 or len(set(pair)) != 2 or set(pair)-{d.id for d in dies}:
+                    raise ModelError('sidewall contact requires two distinct known dies')
+                rects = [next(d.bounds for d in dies if d.id == name) for name in pair]
+                a, b = rects
+                vertical = (math.isclose(a.x+a.width, b.x, rel_tol=0, abs_tol=1e-12)
+                            or math.isclose(b.x+b.width, a.x, rel_tol=0, abs_tol=1e-12))
+                horizontal = (math.isclose(a.y+a.height, b.y, rel_tol=0, abs_tol=1e-12)
+                              or math.isclose(b.y+b.height, a.y, rel_tol=0, abs_tol=1e-12))
+                if not ((vertical and min(a.y+a.height, b.y+b.height) > max(a.y, b.y))
+                        or (horizontal and min(a.x+a.width, b.x+b.width) > max(a.x, b.x))):
+                    raise ModelError('sidewall contact cannot bridge a gap or a point contact')
+                number(contact['resistance_m2k_w'], 'sidewall resistance_m2k_w', minimum=0)
+                pairs.append(tuple(sorted(pair)))
+            unique(pairs, 'sidewall contacts')
+            if (materials or contacts) and layer['footprint'] != 'chiplets':
+                raise ModelError('die materials and sidewall contacts require chiplets footprint')
         if layers[-1].get('contact_resistance_above_m2k_w', 0) != 0:
             raise ModelError('contact resistance above final layer has no material interface')
         unique([layer["id"] for layer in layers], "layer IDs")
@@ -286,6 +326,8 @@ def parse_case(data):
     unique([link["id"] for link in links], "link IDs")
     mode = grid.get('mode', 'geometry_conformal' if thermal['model'] == 'layered_package_steady' else 'uniform')
     rectangles = [r for die in dies for r in [die.bounds]+[die.transform(b.rect) for b in die.blocks]]
+    rectangles += [parse_rect(layer['rect_mm']) for layer in thermal.get('layers', [])
+                   if layer['footprint'] == 'rectangle']
     try:
         mesh = make_mesh(package.width, package.height, grid['nx'], grid['ny'], mode, rectangles)
     except ValueError as error:

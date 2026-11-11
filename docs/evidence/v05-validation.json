@@ -1,0 +1,1317 @@
+{
+  "version": "0.5.0",
+  "generated_utc": "2026-11-11T09:22:50.796086+00:00",
+  "source_parent_commit": "2c1da4e87868493d4cfbfc42b11799d1f4e4c099",
+  "source_state": "local precommit validation; exact publish/CI commit is recorded by Git history",
+  "implementation_files_sha256": {
+    ".github/workflows/ci.yml": "9c745a4d7690ce883da05ef62dad69145dead14b6cbc6f361fc1d5a286696b2f",
+    "examples/lane_instances.json": "0847a4d838a5c7c68692159a8efcfd967c855a9fcb854b9160142df30758d67f",
+    "examples/layered_two_chiplets.json": "7852f42bdf12f1f8d57646c8b929a0777b3a811d6a059528fd17adc88977ecc4",
+    "examples/low_speed_gpio.json": "835e709360a1d99c26a166dcb1a26b3ee350ffff5983f95fdd5a5d6071f45055",
+    "examples/two_chiplets.json": "5b7169ce9cdff5c999c99086cc05fa92f5914e1c2746c35c790603d56f327fce",
+    "pyproject.toml": "ce8ae68ee52bdca5e357cfdb5ffb31d5adf0a2d1b800ee7768168036bba6a03f",
+    "src/chiplet_floorplanning/__init__.py": "1280bee91be97b05d4f60d599dff19fec273dbe6818940f4ff720b39a4fbce3d",
+    "src/chiplet_floorplanning/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/chiplet_floorplanning/characterization.py": "1c9b036f0a29c72ca37da7c1bf61b548d57592d262a1e04ece1e0e15d13cd88d",
+    "src/chiplet_floorplanning/cli.py": "df68d78a8b0eb4e097ceb7ab10bfaa413414e6b08e053d03e0abceb9460f6fec",
+    "src/chiplet_floorplanning/interconnect.py": "878aa81e6081c8c6ad3e56d4d3a592943ad795baec22b15526e5ee0eb6a274ad",
+    "src/chiplet_floorplanning/interfaces.py": "859b1f7da45a71f45ae37c62c15390454b6f2446cd4f24a37897fb5d3029ca5a",
+    "src/chiplet_floorplanning/layout.py": "f85cb67bf65afefae6a21c2e3e8c971ca6e6081399565fdd1fbc08559f533647",
+    "src/chiplet_floorplanning/liberty_checks.py": "d9065b2a101a586a3518d354af973a2a722df89bd21f83d9e65d6fb657be46d8",
+    "src/chiplet_floorplanning/mesh.py": "3463ad89569368f970f3cd48be180fc9cc8afbcdcf5ba95a4edcd196e66ab585",
+    "src/chiplet_floorplanning/model.py": "7faad9bd1f30a09324405b1bf7da00c212fb2c20354fa3a4afe7874b009b2002",
+    "src/chiplet_floorplanning/package.py": "5c0e4ff7b229c4a02cc0b19f509d27cd7a382c582a0fa612e6b33f1cd4601238",
+    "src/chiplet_floorplanning/power.py": "ddc487e0cb2a77a922461b4e1a1d5e166ce0f160d9f6e722d3e0caeafdd24439",
+    "src/chiplet_floorplanning/thermal.py": "f3acc5728546a6e603f037386d0a6554e5b7e2984bf146d6911fffc332a6b384",
+    "src/chiplet_floorplanning/timing.py": "96faf0b3ee55b12a20f0156a7a7c32b085a5c2c91af5ccc5f09dbe3b0d7076d5",
+    "tests/characterization_unittest.py": "aa321feb6d405b93798cb108544a422824cd157a5086a5738b38a4ba04d71c1e",
+    "tests/core_unittest.py": "65f77fb4ffa0d9e4c3aa6cf41f8feb76eb2945ab7b8b426434817acd6c147b34",
+    "tests/die_boundaries_unittest.py": "1fd2db6f9fdc6506f3132c545bd2f080e09e97a95f7a4aaa7479db57d982fb1f",
+    "tests/geometry_interface_unittest.py": "dc391c7a18f92f52e969dd822acc2a2aa5ea8a142f65ab9e4131fd545cb31f30",
+    "tests/layout_unittest.py": "931b095cb81b2661d39fcdf90c70c518a15471b739e5fcb3e5f5c5618fa25eb6",
+    "tests/package_unittest.py": "7ca6218bc95488f82d9da8b699042d04591fb263abecd8b5d5b1f45217c2bcdf",
+    "tests/rtl/slink_phy_tb.sv": "6715061fe9ee7f4085f19b8c90dcda17965f8b5412d8270255bdcf69b55ebe6c",
+    "tools/bootstrap_validation.py": "cf19ad8a90bb7c69ca147b4f48d821fc1590065544f5ce5772d9ed98c09478d3",
+    "tools/prepare_characterization.py": "d9ca48a9b1bd10199059a8abc71c51d6a38e17e2a28b95ea83bcee15490d302e",
+    "tools/sources.lock.json": "41fe8ca2b337283fb53f1ccc07c659aeb8bd1fc7c1c983d5b9c14f8f4e315ad4",
+    "tools/validate_characterization.py": "7850796dbd6c8d9a8ae85bbbc6281adada84a3e656317a2faf7db14445453bdf",
+    "tools/validate_electrical.py": "88ef1efdf2ea17ebeab267c267a6640ac3aece778d7c2043257cb0d94e89ca86",
+    "tools/validate_layout_ranking.py": "d67fa80b0ce1f106fd63c309ae5c212a47aceea7335383d13620f4c887623b0d",
+    "tools/validate_open_thermal.py": "765e1f49f5c30fccdec3f0b81a80dc41d111995b7c560fec9293a8258ac45079",
+    "tools/validate_package.py": "5fdfd9ab65d0e56318f57dd2e0c0da14e3ca0776534acf1c1864ca6bd390ed34",
+    "tools/validate_prototype.py": "9073221c845e6419d3af20da304c17bd3bbeb110fa4662f77a70ab09b407d756",
+    "tools/validate_pulp_phy.py": "c9038f9d8378eed4817c39cfb128e9d5827b8a0518feab815bac8823e9ca6718",
+    "tools/validate_sta_goldens.py": "52f72d318908b0fdd5e418705ed47253aeff0a3658ea67ae6ad63ff02a16c506",
+    "tools/validation/__init__.py": "e85128bf98df205a9bc6fcfc8373b62dbe33647b935955ccf20e1c7c0817d5bd",
+    "tools/validation/mfit.py": "7ef2c4084d347dd89bddff2087f85aa98d593f0bf5a6b50a4b9d6e24e6ac136f",
+    "tools/validation/open_inputs.py": "04485bfc7f4127ce8407aeb439bcba7d1fd782d67c5d3abfb0598764154d555b",
+    "tools/validation/sources.py": "a59e4ae38afa2b2df235b6afe5a81ce0bd5b79897987c5be607a450c7b6d7144"
+  },
+  "implementation_digest_sha256": "766f53ef9341b31d93a4fc96ff911927f0cfe44c7480bf767c4405e814892f46",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)"
+  },
+  "software_checks_passed": true,
+  "unit_tests": 47,
+  "original_cli_case": "two_chiplets: 3 W, peak 34.1886068258 C, timing not_run",
+  "regressions": {
+    "package": true,
+    "electrical_checks": 9,
+    "characterization_checks": 18,
+    "core_pvt_combinations": 25,
+    "prototype_checks": 16
+  },
+  "thermal_cases": [
+    {
+      "name": "example_1_uniform_nodes_homogeneous_chiplets",
+      "chiplets": 4,
+      "blocks": 4,
+      "total_power_w": 6.024,
+      "reference": "Unchanged MFIT network, matched uniform remesh; not original transient or native solver",
+      "reference_nodes": 1794,
+      "errors": {
+        "max_boundary_conductance_error_w_k": 2.7755575615628914e-16,
+        "max_temperature_error_k": 5.3717030823463574e-12,
+        "max_matrix_error_w_k": 3.3306690738754696e-16,
+        "max_power_error_w": 0.0
+      },
+      "original_nonuniform_mesh_reproduced": false,
+      "physical_calibration": false,
+      "passed": true,
+      "convergence": {
+        "final_peak_change_k": 0.026459441829004504,
+        "final_block_mean_change_k": 0.03154886591434547,
+        "converged": true,
+        "power_and_energy_passed": true,
+        "meshes": [
+          {
+            "requested_nx": 19,
+            "actual_nx": 19,
+            "actual_ny": 19,
+            "node_count": 1794,
+            "peak_c": 80.21831489056609,
+            "total_power_w": 6.024,
+            "power_mapping_error_w": 0.0,
+            "energy_balance_error_w": -9.023892744153272e-13
+          },
+          {
+            "requested_nx": 38,
+            "actual_nx": 38,
+            "actual_ny": 38,
+            "node_count": 7176,
+            "peak_c": 80.13281169162241,
+            "total_power_w": 6.024,
+            "power_mapping_error_w": 0.0,
+            "energy_balance_error_w": 2.3074875343809254e-12
+          },
+          {
+            "requested_nx": 76,
+            "actual_nx": 76,
+            "actual_ny": 76,
+            "node_count": 28704,
+            "peak_c": 80.1063522497934,
+            "total_power_w": 6.024,
+            "power_mapping_error_w": 0.0,
+            "energy_balance_error_w": 6.80788758700146e-12
+          }
+        ]
+      }
+    },
+    {
+      "name": "example_2_non_uniform_nodes_homogeneous_chiplets",
+      "chiplets": 4,
+      "blocks": 80,
+      "total_power_w": 9.897057001272646,
+      "reference": "Unchanged MFIT network, matched uniform remesh; not original transient or native solver",
+      "reference_nodes": 1794,
+      "errors": {
+        "max_boundary_conductance_error_w_k": 2.7755575615628914e-16,
+        "max_temperature_error_k": 8.967049325292464e-12,
+        "max_matrix_error_w_k": 3.3306690738754696e-16,
+        "max_power_error_w": 0.0
+      },
+      "original_nonuniform_mesh_reproduced": false,
+      "physical_calibration": false,
+      "passed": true,
+      "convergence": {
+        "final_peak_change_k": 0.03375722249485591,
+        "final_block_mean_change_k": 0.07915470577560768,
+        "converged": true,
+        "power_and_energy_passed": true,
+        "meshes": [
+          {
+            "requested_nx": 76,
+            "actual_nx": 80,
+            "actual_ny": 80,
+            "node_count": 32560,
+            "peak_c": 115.85132172931392,
+            "total_power_w": 9.897057001272648,
+            "power_mapping_error_w": 1.7763568394002505e-15,
+            "energy_balance_error_w": -1.2434497875801753e-14
+          },
+          {
+            "requested_nx": 114,
+            "actual_nx": 118,
+            "actual_ny": 118,
+            "node_count": 70296,
+            "peak_c": 115.85575635334084,
+            "total_power_w": 9.897057001272646,
+            "power_mapping_error_w": 0.0,
+            "energy_balance_error_w": -8.991918321044068e-12
+          },
+          {
+            "requested_nx": 152,
+            "actual_nx": 160,
+            "actual_ny": 160,
+            "node_count": 130240,
+            "peak_c": 115.82199913084598,
+            "total_power_w": 9.897057001272646,
+            "power_mapping_error_w": 0.0,
+            "energy_balance_error_w": -3.0743407819500135e-11
+          }
+        ],
+        "retained_uniform_failure": {
+          "final_peak_change_k": 0.055019103931300606,
+          "final_block_mean_change_k": 0.12714041792148123,
+          "converged": false,
+          "power_and_energy_passed": true
+        }
+      }
+    },
+    {
+      "name": "example_3_heterogeneous_chiplets",
+      "chiplets": 3,
+      "blocks": 3,
+      "total_power_w": 6.2878,
+      "reference": "Unchanged MFIT network, matched uniform remesh; not original transient or native solver",
+      "reference_nodes": 1821,
+      "errors": {
+        "max_boundary_conductance_error_w_k": 2.7755575615628914e-16,
+        "max_temperature_error_k": 5.201172825763933e-12,
+        "max_matrix_error_w_k": 3.3306690738754696e-16,
+        "max_power_error_w": 0.0
+      },
+      "original_nonuniform_mesh_reproduced": false,
+      "physical_calibration": false,
+      "passed": true,
+      "convergence": {
+        "final_peak_change_k": 0.02020306094037494,
+        "final_block_mean_change_k": 0.02847952796346931,
+        "converged": true,
+        "power_and_energy_passed": true,
+        "meshes": [
+          {
+            "requested_nx": 19,
+            "actual_nx": 19,
+            "actual_ny": 19,
+            "node_count": 1821,
+            "peak_c": 81.5479494121236,
+            "total_power_w": 6.2878,
+            "power_mapping_error_w": 0.0,
+            "energy_balance_error_w": -8.517631044924201e-13
+          },
+          {
+            "requested_nx": 38,
+            "actual_nx": 38,
+            "actual_ny": 38,
+            "node_count": 7284,
+            "peak_c": 81.49043883463897,
+            "total_power_w": 6.2878,
+            "power_mapping_error_w": 0.0,
+            "energy_balance_error_w": 2.531308496145357e-12
+          },
+          {
+            "requested_nx": 76,
+            "actual_nx": 76,
+            "actual_ny": 76,
+            "node_count": 29136,
+            "peak_c": 81.47023577369859,
+            "total_power_w": 6.287800000000001,
+            "power_mapping_error_w": 8.881784197001252e-16,
+            "energy_balance_error_w": 7.416289804496046e-12
+          }
+        ]
+      }
+    },
+    {
+      "name": "rapidchiplet_16_original",
+      "chiplets": 16,
+      "architectural_links": 32,
+      "max_upstream_length_error_mm": 0.0,
+      "timing": "not_evaluated_architectural_links_have_no_clock_constraints",
+      "thermal": "assumed_stack_numerical_check_no_external_thermal_truth",
+      "physical_calibration": false,
+      "passed": true,
+      "convergence": {
+        "final_peak_change_k": 0.0004528236962073606,
+        "final_block_mean_change_k": 0.0005827214449141138,
+        "converged": true,
+        "power_and_energy_passed": true,
+        "meshes": [
+          {
+            "requested_nx": 32,
+            "actual_nx": 35,
+            "actual_ny": 35,
+            "node_count": 5522,
+            "peak_c": 285.58406960402084,
+            "total_power_w": 328.0,
+            "power_mapping_error_w": 0.0,
+            "energy_balance_error_w": -4.229150363244116e-11
+          },
+          {
+            "requested_nx": 64,
+            "actual_nx": 67,
+            "actual_ny": 67,
+            "node_count": 21266,
+            "peak_c": 285.5867881615063,
+            "total_power_w": 328.0,
+            "power_mapping_error_w": 0.0,
+            "energy_balance_error_w": 4.064304448547773e-11
+          },
+          {
+            "requested_nx": 128,
+            "actual_nx": 131,
+            "actual_ny": 131,
+            "node_count": 83474,
+            "peak_c": 285.5872409852025,
+            "total_power_w": 328.0,
+            "power_mapping_error_w": 0.0,
+            "energy_balance_error_w": -1.3426415534922853e-10
+          }
+        ]
+      }
+    }
+  ],
+  "pulp_phy_cases": [
+    {
+      "name": "sdr_1",
+      "width_bits": 1,
+      "divider": 8,
+      "tx_clock_period_ns": 10,
+      "rx_clock_period_ns": 13,
+      "data_channel_delay_ns": 2,
+      "clock_channel_delay_ns": 2,
+      "negative_control": false,
+      "passed": true,
+      "simulator_returncode": 0,
+      "requested_words": 128,
+      "received_words": 128,
+      "expected_failure": null
+    },
+    {
+      "name": "sdr_8",
+      "width_bits": 8,
+      "divider": 12,
+      "tx_clock_period_ns": 10,
+      "rx_clock_period_ns": 13,
+      "data_channel_delay_ns": 2,
+      "clock_channel_delay_ns": 2,
+      "negative_control": false,
+      "passed": true,
+      "simulator_returncode": 0,
+      "requested_words": 128,
+      "received_words": 128,
+      "expected_failure": null
+    },
+    {
+      "name": "late_data",
+      "width_bits": 8,
+      "divider": 8,
+      "tx_clock_period_ns": 10,
+      "rx_clock_period_ns": 13,
+      "data_channel_delay_ns": 90,
+      "clock_channel_delay_ns": 2,
+      "negative_control": true,
+      "passed": true,
+      "simulator_returncode": -6,
+      "requested_words": 128,
+      "received_words": null,
+      "expected_failure": "DATA_MISMATCH"
+    }
+  ],
+  "sta_upstream_cases": [
+    {
+      "name": "sdf",
+      "passed": true,
+      "paths": 1,
+      "comparison": "exact printed report match"
+    },
+    {
+      "name": "liberty_min_max",
+      "passed": true,
+      "paths": 2,
+      "comparison": "exact printed report match"
+    },
+    {
+      "name": "spef",
+      "passed": true,
+      "paths": 1,
+      "comparison": "exact printed report match"
+    }
+  ],
+  "layout_ranking": {
+    "checks": {
+      "all_27_placements_geometry_legal": true,
+      "thermal_mesh_change_below_0_1k": true,
+      "energy_balance": true,
+      "independent_route_lengths": true,
+      "independent_skew_signs": true,
+      "common_route_setup_cancellation_at_printed_precision": true
+    },
+    "geometry_legal_count": 27,
+    "electrically_and_timing_accepted_count": 20,
+    "rejected_count": 7,
+    "candidates": [
+      {
+        "id": "layout_00",
+        "placement_mm": {
+          "tx": {
+            "x": 0.5,
+            "y": 1
+          },
+          "rx": {
+            "x": 6,
+            "y": 2
+          }
+        },
+        "peak_c": 61.95084503380841,
+        "mesh_peak_change_k": 0.012533373122302294,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.771576,
+        "hold_slack_ns": 10.94063,
+        "worst_slack_ns": 8.771576,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 3.7,
+          "clock": 5.7
+        }
+      },
+      {
+        "id": "layout_01",
+        "placement_mm": {
+          "tx": {
+            "x": 0.5,
+            "y": 2
+          },
+          "rx": {
+            "x": 6,
+            "y": 2
+          }
+        },
+        "peak_c": 61.2851755772006,
+        "mesh_peak_change_k": 0.0083225980969317,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705307,
+        "hold_slack_ns": 11.00465,
+        "worst_slack_ns": 8.705307,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 4.7,
+          "clock": 4.7
+        }
+      },
+      {
+        "id": "layout_02",
+        "placement_mm": {
+          "tx": {
+            "x": 0.5,
+            "y": 3
+          },
+          "rx": {
+            "x": 6,
+            "y": 2
+          }
+        },
+        "peak_c": 61.05910251433876,
+        "mesh_peak_change_k": 0.007800944800720799,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.639044,
+        "hold_slack_ns": 11.06921,
+        "worst_slack_ns": 8.639044,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 5.7,
+          "clock": 3.6999999999999997
+        }
+      },
+      {
+        "id": "layout_03",
+        "placement_mm": {
+          "tx": {
+            "x": 0.5,
+            "y": 1
+          },
+          "rx": {
+            "x": 7,
+            "y": 2
+          }
+        },
+        "peak_c": 61.77363667610555,
+        "mesh_peak_change_k": 0.012209741856914036,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits",
+        "route_lengths_mm": {
+          "data": 4.7,
+          "clock": 6.7
+        }
+      },
+      {
+        "id": "layout_04",
+        "placement_mm": {
+          "tx": {
+            "x": 0.5,
+            "y": 2
+          },
+          "rx": {
+            "x": 7,
+            "y": 2
+          }
+        },
+        "peak_c": 61.11003693660828,
+        "mesh_peak_change_k": 0.008275020416355972,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705311,
+        "hold_slack_ns": 11.00294,
+        "worst_slack_ns": 8.705311,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 5.7,
+          "clock": 5.7
+        }
+      },
+      {
+        "id": "layout_05",
+        "placement_mm": {
+          "tx": {
+            "x": 0.5,
+            "y": 3
+          },
+          "rx": {
+            "x": 7,
+            "y": 2
+          }
+        },
+        "peak_c": 60.891826072992735,
+        "mesh_peak_change_k": 0.007686525623178397,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits",
+        "route_lengths_mm": {
+          "data": 6.7,
+          "clock": 4.699999999999999
+        }
+      },
+      {
+        "id": "layout_06",
+        "placement_mm": {
+          "tx": {
+            "x": 0.5,
+            "y": 1
+          },
+          "rx": {
+            "x": 8,
+            "y": 2
+          }
+        },
+        "peak_c": 61.6599204765891,
+        "mesh_peak_change_k": 0.01203761641983192,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits",
+        "route_lengths_mm": {
+          "data": 5.7,
+          "clock": 7.7
+        }
+      },
+      {
+        "id": "layout_07",
+        "placement_mm": {
+          "tx": {
+            "x": 0.5,
+            "y": 2
+          },
+          "rx": {
+            "x": 8,
+            "y": 2
+          }
+        },
+        "peak_c": 60.99719018888398,
+        "mesh_peak_change_k": 0.00835592051453915,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits",
+        "route_lengths_mm": {
+          "data": 6.7,
+          "clock": 6.7
+        }
+      },
+      {
+        "id": "layout_08",
+        "placement_mm": {
+          "tx": {
+            "x": 0.5,
+            "y": 3
+          },
+          "rx": {
+            "x": 8,
+            "y": 2
+          }
+        },
+        "peak_c": 60.78380144474234,
+        "mesh_peak_change_k": 0.007731690989920992,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits",
+        "route_lengths_mm": {
+          "data": 7.7,
+          "clock": 5.699999999999999
+        }
+      },
+      {
+        "id": "layout_09",
+        "placement_mm": {
+          "tx": {
+            "x": 1.5,
+            "y": 1
+          },
+          "rx": {
+            "x": 6,
+            "y": 2
+          }
+        },
+        "peak_c": 61.11192730574847,
+        "mesh_peak_change_k": 0.008323264910139017,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.770755,
+        "hold_slack_ns": 10.94326,
+        "worst_slack_ns": 8.770755,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 2.7,
+          "clock": 4.7
+        }
+      },
+      {
+        "id": "layout_10",
+        "placement_mm": {
+          "tx": {
+            "x": 1.5,
+            "y": 2
+          },
+          "rx": {
+            "x": 6,
+            "y": 2
+          }
+        },
+        "peak_c": 60.57894172693998,
+        "mesh_peak_change_k": 0.00922446790789877,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705309,
+        "hold_slack_ns": 11.00689,
+        "worst_slack_ns": 8.705309,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 3.7,
+          "clock": 3.7
+        }
+      },
+      {
+        "id": "layout_11",
+        "placement_mm": {
+          "tx": {
+            "x": 1.5,
+            "y": 3
+          },
+          "rx": {
+            "x": 6,
+            "y": 2
+          }
+        },
+        "peak_c": 60.380763182195544,
+        "mesh_peak_change_k": 0.009743013260774092,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.639862,
+        "hold_slack_ns": 11.0701,
+        "worst_slack_ns": 8.639862,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 4.7,
+          "clock": 2.6999999999999997
+        }
+      },
+      {
+        "id": "layout_12",
+        "placement_mm": {
+          "tx": {
+            "x": 1.5,
+            "y": 1
+          },
+          "rx": {
+            "x": 7,
+            "y": 2
+          }
+        },
+        "peak_c": 60.924540541074464,
+        "mesh_peak_change_k": 0.007893265720319675,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.771576,
+        "hold_slack_ns": 10.94063,
+        "worst_slack_ns": 8.771576,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 3.7,
+          "clock": 5.7
+        }
+      },
+      {
+        "id": "layout_13",
+        "placement_mm": {
+          "tx": {
+            "x": 1.5,
+            "y": 2
+          },
+          "rx": {
+            "x": 7,
+            "y": 2
+          }
+        },
+        "peak_c": 60.3921748019656,
+        "mesh_peak_change_k": 0.008872993216918701,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705307,
+        "hold_slack_ns": 11.00465,
+        "worst_slack_ns": 8.705307,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 4.7,
+          "clock": 4.7
+        }
+      },
+      {
+        "id": "layout_14",
+        "placement_mm": {
+          "tx": {
+            "x": 1.5,
+            "y": 3
+          },
+          "rx": {
+            "x": 7,
+            "y": 2
+          }
+        },
+        "peak_c": 60.20424591651909,
+        "mesh_peak_change_k": 0.009049991954647396,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.639044,
+        "hold_slack_ns": 11.06921,
+        "worst_slack_ns": 8.639044,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 5.7,
+          "clock": 3.6999999999999997
+        }
+      },
+      {
+        "id": "layout_15",
+        "placement_mm": {
+          "tx": {
+            "x": 1.5,
+            "y": 1
+          },
+          "rx": {
+            "x": 8,
+            "y": 2
+          }
+        },
+        "peak_c": 60.80216610665136,
+        "mesh_peak_change_k": 0.007709926143391499,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits",
+        "route_lengths_mm": {
+          "data": 4.7,
+          "clock": 6.7
+        }
+      },
+      {
+        "id": "layout_16",
+        "placement_mm": {
+          "tx": {
+            "x": 1.5,
+            "y": 2
+          },
+          "rx": {
+            "x": 8,
+            "y": 2
+          }
+        },
+        "peak_c": 60.27043481604015,
+        "mesh_peak_change_k": 0.008768415287747189,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705311,
+        "hold_slack_ns": 11.00294,
+        "worst_slack_ns": 8.705311,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 5.7,
+          "clock": 5.7
+        }
+      },
+      {
+        "id": "layout_17",
+        "placement_mm": {
+          "tx": {
+            "x": 1.5,
+            "y": 3
+          },
+          "rx": {
+            "x": 8,
+            "y": 2
+          }
+        },
+        "peak_c": 60.088790266369614,
+        "mesh_peak_change_k": 0.008736531288455751,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits",
+        "route_lengths_mm": {
+          "data": 6.7,
+          "clock": 4.699999999999999
+        }
+      },
+      {
+        "id": "layout_18",
+        "placement_mm": {
+          "tx": {
+            "x": 2.5,
+            "y": 1
+          },
+          "rx": {
+            "x": 6,
+            "y": 2
+          }
+        },
+        "peak_c": 60.71993886948514,
+        "mesh_peak_change_k": 0.010721001262872676,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.769444,
+        "hold_slack_ns": 10.94644,
+        "worst_slack_ns": 8.769444,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 1.7000000000000002,
+          "clock": 3.7
+        }
+      },
+      {
+        "id": "layout_19",
+        "placement_mm": {
+          "tx": {
+            "x": 2.5,
+            "y": 2
+          },
+          "rx": {
+            "x": 6,
+            "y": 2
+          }
+        },
+        "peak_c": 60.25705356329737,
+        "mesh_peak_change_k": 0.01003190443816493,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705311,
+        "hold_slack_ns": 11.0087,
+        "worst_slack_ns": 8.705311,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 2.7,
+          "clock": 2.7
+        }
+      },
+      {
+        "id": "layout_20",
+        "placement_mm": {
+          "tx": {
+            "x": 2.5,
+            "y": 3
+          },
+          "rx": {
+            "x": 6,
+            "y": 2
+          }
+        },
+        "peak_c": 60.0644641452816,
+        "mesh_peak_change_k": 0.009775677339185052,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.641177,
+        "hold_slack_ns": 11.07102,
+        "worst_slack_ns": 8.641177,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 3.7,
+          "clock": 1.6999999999999997
+        }
+      },
+      {
+        "id": "layout_21",
+        "placement_mm": {
+          "tx": {
+            "x": 2.5,
+            "y": 1
+          },
+          "rx": {
+            "x": 7,
+            "y": 2
+          }
+        },
+        "peak_c": 60.51926715043225,
+        "mesh_peak_change_k": 0.009789365670130223,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.770755,
+        "hold_slack_ns": 10.94326,
+        "worst_slack_ns": 8.770755,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 2.7,
+          "clock": 4.7
+        }
+      },
+      {
+        "id": "layout_22",
+        "placement_mm": {
+          "tx": {
+            "x": 2.5,
+            "y": 2
+          },
+          "rx": {
+            "x": 7,
+            "y": 2
+          }
+        },
+        "peak_c": 60.05066692615328,
+        "mesh_peak_change_k": 0.009069696593726917,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705309,
+        "hold_slack_ns": 11.00689,
+        "worst_slack_ns": 8.705309,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 3.7,
+          "clock": 3.7
+        }
+      },
+      {
+        "id": "layout_23",
+        "placement_mm": {
+          "tx": {
+            "x": 2.5,
+            "y": 3
+          },
+          "rx": {
+            "x": 7,
+            "y": 2
+          }
+        },
+        "peak_c": 59.874022238249076,
+        "mesh_peak_change_k": 0.008455120254680537,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.639862,
+        "hold_slack_ns": 11.0701,
+        "worst_slack_ns": 8.639862,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 4.7,
+          "clock": 2.6999999999999997
+        }
+      },
+      {
+        "id": "layout_24",
+        "placement_mm": {
+          "tx": {
+            "x": 2.5,
+            "y": 1
+          },
+          "rx": {
+            "x": 8,
+            "y": 2
+          }
+        },
+        "peak_c": 60.386184249769734,
+        "mesh_peak_change_k": 0.00938840915014083,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.771576,
+        "hold_slack_ns": 10.94063,
+        "worst_slack_ns": 8.771576,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 3.7,
+          "clock": 5.7
+        }
+      },
+      {
+        "id": "layout_25",
+        "placement_mm": {
+          "tx": {
+            "x": 2.5,
+            "y": 2
+          },
+          "rx": {
+            "x": 8,
+            "y": 2
+          }
+        },
+        "peak_c": 59.91633495916874,
+        "mesh_peak_change_k": 0.00875488772802413,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705307,
+        "hold_slack_ns": 11.00465,
+        "worst_slack_ns": 8.705307,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 4.7,
+          "clock": 4.7
+        }
+      },
+      {
+        "id": "layout_26",
+        "placement_mm": {
+          "tx": {
+            "x": 2.5,
+            "y": 3
+          },
+          "rx": {
+            "x": 8,
+            "y": 2
+          }
+        },
+        "peak_c": 59.749036136439756,
+        "mesh_peak_change_k": 0.007888798245161865,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.639044,
+        "hold_slack_ns": 11.06921,
+        "worst_slack_ns": 8.639044,
+        "timing_constraints_met": true,
+        "route_lengths_mm": {
+          "data": 5.7,
+          "clock": 3.6999999999999997
+        }
+      }
+    ],
+    "rankings": [
+      {
+        "thermal_weight": 0,
+        "order": [
+          "layout_00",
+          "layout_12",
+          "layout_24",
+          "layout_09",
+          "layout_21",
+          "layout_18",
+          "layout_04",
+          "layout_16",
+          "layout_19",
+          "layout_10",
+          "layout_22",
+          "layout_01",
+          "layout_13",
+          "layout_25",
+          "layout_20",
+          "layout_11",
+          "layout_23",
+          "layout_02",
+          "layout_14",
+          "layout_26"
+        ],
+        "best_id": "layout_00",
+        "numerically_indistinguishable_from_best": [
+          "layout_00",
+          "layout_12",
+          "layout_24"
+        ]
+      },
+      {
+        "thermal_weight": 0.25,
+        "order": [
+          "layout_24",
+          "layout_21",
+          "layout_18",
+          "layout_12",
+          "layout_09",
+          "layout_25",
+          "layout_00",
+          "layout_22",
+          "layout_19",
+          "layout_16",
+          "layout_13",
+          "layout_10",
+          "layout_04",
+          "layout_01",
+          "layout_26",
+          "layout_23",
+          "layout_20",
+          "layout_14",
+          "layout_11",
+          "layout_02"
+        ],
+        "best_id": "layout_24",
+        "numerically_indistinguishable_from_best": [
+          "layout_24"
+        ]
+      },
+      {
+        "thermal_weight": 0.5,
+        "order": [
+          "layout_24",
+          "layout_21",
+          "layout_25",
+          "layout_22",
+          "layout_18",
+          "layout_19",
+          "layout_12",
+          "layout_16",
+          "layout_13",
+          "layout_26",
+          "layout_09",
+          "layout_23",
+          "layout_10",
+          "layout_20",
+          "layout_14",
+          "layout_11",
+          "layout_04",
+          "layout_01",
+          "layout_00",
+          "layout_02"
+        ],
+        "best_id": "layout_24",
+        "numerically_indistinguishable_from_best": [
+          "layout_24"
+        ]
+      },
+      {
+        "thermal_weight": 0.75,
+        "order": [
+          "layout_25",
+          "layout_26",
+          "layout_22",
+          "layout_23",
+          "layout_24",
+          "layout_19",
+          "layout_16",
+          "layout_20",
+          "layout_21",
+          "layout_13",
+          "layout_14",
+          "layout_18",
+          "layout_10",
+          "layout_11",
+          "layout_12",
+          "layout_09",
+          "layout_04",
+          "layout_02",
+          "layout_01",
+          "layout_00"
+        ],
+        "best_id": "layout_25",
+        "numerically_indistinguishable_from_best": [
+          "layout_25"
+        ]
+      },
+      {
+        "thermal_weight": 1,
+        "order": [
+          "layout_26",
+          "layout_23",
+          "layout_25",
+          "layout_22",
+          "layout_20",
+          "layout_14",
+          "layout_19",
+          "layout_16",
+          "layout_11",
+          "layout_24",
+          "layout_13",
+          "layout_21",
+          "layout_10",
+          "layout_18",
+          "layout_12",
+          "layout_02",
+          "layout_04",
+          "layout_09",
+          "layout_01",
+          "layout_00"
+        ],
+        "best_id": "layout_26",
+        "numerically_indistinguishable_from_best": [
+          "layout_26"
+        ]
+      }
+    ],
+    "final_mesh_order_reversals": [],
+    "numerically_resolved_conflicting_pair_count": 121,
+    "thermal_tied_pair_count": 6,
+    "timing_tied_pair_count": 15,
+    "sensitivity_sweeps": [
+      {
+        "id": "data_extra_0mm",
+        "changed": "data",
+        "extra_length_mm": 0.0,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705309,
+        "hold_slack_ns": 11.00811,
+        "worst_slack_ns": 8.705309,
+        "timing_constraints_met": true
+      },
+      {
+        "id": "data_extra_1mm",
+        "changed": "data",
+        "extra_length_mm": 1.0,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.673013,
+        "hold_slack_ns": 11.03871,
+        "worst_slack_ns": 8.673013,
+        "timing_constraints_met": true
+      },
+      {
+        "id": "data_extra_2mm",
+        "changed": "data",
+        "extra_length_mm": 2.0,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.639642,
+        "hold_slack_ns": 11.06979,
+        "worst_slack_ns": 8.639642,
+        "timing_constraints_met": true
+      },
+      {
+        "id": "data_extra_4mm",
+        "changed": "data",
+        "extra_length_mm": 4.0,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      },
+      {
+        "id": "data_extra_8mm",
+        "changed": "data",
+        "extra_length_mm": 8.0,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      },
+      {
+        "id": "data_extra_12mm",
+        "changed": "data",
+        "extra_length_mm": 12.0,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      },
+      {
+        "id": "clock_extra_0mm",
+        "changed": "clock",
+        "extra_length_mm": 0.0,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705309,
+        "hold_slack_ns": 11.00811,
+        "worst_slack_ns": 8.705309,
+        "timing_constraints_met": true
+      },
+      {
+        "id": "clock_extra_1mm",
+        "changed": "clock",
+        "extra_length_mm": 1.0,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.737604,
+        "hold_slack_ns": 10.97582,
+        "worst_slack_ns": 8.737604,
+        "timing_constraints_met": true
+      },
+      {
+        "id": "clock_extra_2mm",
+        "changed": "clock",
+        "extra_length_mm": 2.0,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.770976,
+        "hold_slack_ns": 10.94245,
+        "worst_slack_ns": 8.770976,
+        "timing_constraints_met": true
+      },
+      {
+        "id": "clock_extra_4mm",
+        "changed": "clock",
+        "extra_length_mm": 4.0,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      },
+      {
+        "id": "clock_extra_8mm",
+        "changed": "clock",
+        "extra_length_mm": 8.0,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      },
+      {
+        "id": "clock_extra_12mm",
+        "changed": "clock",
+        "extra_length_mm": 12.0,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      },
+      {
+        "id": "both_extra_0mm",
+        "changed": "both",
+        "extra_length_mm": 0.0,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705309,
+        "hold_slack_ns": 11.00811,
+        "worst_slack_ns": 8.705309,
+        "timing_constraints_met": true
+      },
+      {
+        "id": "both_extra_1mm",
+        "changed": "both",
+        "extra_length_mm": 1.0,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705309,
+        "hold_slack_ns": 11.00642,
+        "worst_slack_ns": 8.705309,
+        "timing_constraints_met": true
+      },
+      {
+        "id": "both_extra_2mm",
+        "changed": "both",
+        "extra_length_mm": 2.0,
+        "timing_status": "analyzed",
+        "setup_slack_ns": 8.705311,
+        "hold_slack_ns": 11.00412,
+        "worst_slack_ns": 8.705311,
+        "timing_constraints_met": true
+      },
+      {
+        "id": "both_extra_4mm",
+        "changed": "both",
+        "extra_length_mm": 4.0,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      },
+      {
+        "id": "both_extra_8mm",
+        "changed": "both",
+        "extra_length_mm": 8.0,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      },
+      {
+        "id": "both_extra_12mm",
+        "changed": "both",
+        "extra_length_mm": 12.0,
+        "timing_status": "electrically_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      }
+    ],
+    "physical_model_error": "unknown; final mesh differences are not physical error bounds",
+    "coupled_hot_pad_timing": false
+  },
+  "complete_package_signoff": false,
+  "physical_package_calibration": false,
+  "limitations": [
+    "common layer stack, no per-die thickness or per-die vertical interface resistance",
+    "XY convergence only; no z discretization or physical error bound",
+    "TT25 pad timing and FF core temperature interpolation remain separate designs",
+    "PULP SDR functional simulation is not mapped pad STA or full protocol/DDR verification",
+    "RapidChiplet thermal stack is assumed, not external thermal ground truth",
+    "no general multi-chiplet STA graph, automatic routing or optimizer"
+  ]
+}

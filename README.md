@@ -1,6 +1,6 @@
 # Chiplet Floorplanning
 
-面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.4.0**
+面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.5.0**
 支持分层热网络、MFIT 数值对照、几何 RC/SPEF、真实 SKY130/GF180 库时序、
 25 组核心单元 PVT 组合，以及逐实例局部温度到时序的实验性耦合。
 新增 **GF180 发送 → SKY130 接收**的真实 3.3 V GPIO 源同步原型，
@@ -9,7 +9,7 @@
 实物校准、全 PVT、pad/PHY 资格验证、温度插值的独立物理验证仍未完成。
 
 本项目遵循：**验证输入 → 验证评估器 → 验证布局差异 → 开始优化**。
-示例中的功耗、材料和 RC 参数全部是合成假设，不代表已测量或已校准的器件。
+内置两芯粒例子的功耗与封装几何为演示假设；开源案例保留其声明输入。公开来源与数值一致性均不代表实物校准。
 
 ## 快速开始
 
@@ -38,6 +38,9 @@ python -m unittest discover -s tests -p '*_unittest.py' -v
 
 ## 已经实现
 
+- 独立 die 侧壁默认隔热、显式成对接触热阻、逐 die 导热率和偏移矩形材料层。
+- 固定设计的位置 API、独立 data/clock 走线和 27 个候选布局排序实验。
+- MFIT 三个原始几何/功耗案例、RapidChiplet 16-die 几何、PULP SDR PHY 和 OpenSTA 上游报告回归。
 - 保持矩形芯粒坐标的贴合网格；非均匀有限体积、各向异性导热及显式界面热阻。
 - 芯粒内连续温度重建、局部温度与 slack 网格收敛；不跨空隙插值。
 - 可选显式直角折线，与旋转后端口核对；移动芯粒后拒绝过期走线端点。
@@ -122,7 +125,8 @@ chiplet-floorplanning evaluate examples/layered_two_chiplets.json \
 - [HISIM](https://github.com/mec-UMN/HISIM)：适用架构的分析式模型参考；尚未集成。
 - [MFIT](https://github.com/AlishKanani/MFIT)：分层热网络的外部组装参考。
 - [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA)：已接入真实库的核心单元链路时序。
-- [PULP serial_link](https://github.com/pulp-platform/serial_link)：后续源同步链路案例候选；尚未集成。
+- [PULP serial_link](https://github.com/pulp-platform/serial_link)：固定版本 SDR PHY 原始 RTL 的独立功能验证；尚未映射到 GPIO STA 案例。
+- [RapidChiplet](https://github.com/spcl/rapidchiplet)：原始 16-die 布局、功耗与 PHY 端点转换验证。
 
 本仓库没有复制上述项目源码或分发 PDK。后续接入时分别记录上游版本、许可证和模型来源。
 
@@ -153,3 +157,23 @@ python tools/validate_prototype.py --output results/prototype
 
 本案例尚未完成晶体管级 pad 波形、完整协议仿真或实测校准；也没有把常温 pad
 与局部温度核心模型拼接成已验证的热链路。见 [v0.4 验证记录](docs/validation-v04.md)。
+
+## 多开源案例与布局排序（v0.5）
+
+```bash
+python tools/bootstrap_validation.py --build-sta
+OPENBLAS_NUM_THREADS=1 python tools/validate_open_thermal.py --output results/open-thermal
+python tools/validate_sta_goldens.py --output results/sta-goldens
+# Requires Verilator 5.020 or compatible version, GNU make and a C++ compiler.
+python tools/validate_pulp_phy.py --verilator verilator --output results/pulp-phy
+OPENBLAS_NUM_THREADS=1 python tools/validate_layout_ranking.py --output results/ranking
+```
+
+首轮 27 个几何合法布局中，20 个通过 TT GPIO 电气/时序检查，7 个因电气超限被拒绝。
+热与常温时序目标确实出现数值可区分的排序冲突；部分 timing 最优布局相互并列。
+这尚未证明局部温度改变了真实 pad 链路的排序，因此仍不进入 SA 优化阶段。
+详见 [v0.5 实验、失败对照与复现](docs/validation-v05.md)。
+
+`layout.place_design()` 接受固定设计、位置与每条 link 的独立走线走廊，返回新 Case；
+`layout.evaluate_layout()` 可在内存中计算温度和互连，默认明确标注时序未评估。
+这不是自动布线器；走廊没有层分配、障碍避让、间距或串扰检查。

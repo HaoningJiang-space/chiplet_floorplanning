@@ -95,3 +95,19 @@ domains, actual receiver buffers and source-table domain checks are explicit.
 This advances G2 without completing its transistor-waveform/physical gate.
 The core-only local-temperature profile remains separate from this pad lane.
 See `validation-v04.md` for passing cases, failures and remaining evidence.
+
+## v0.5 update — open cases and ranking gate
+
+Independent-die sidewalls, per-die conductivity on a common stack, offset layer
+rectangles and parameterized placements are implemented. Three public MFIT
+physical-input cases pass matched-network and XY refinement gates; RapidChiplet
+provides a 16-die geometric conversion control. PULP's unchanged SDR PHY passes
+bounded transport cases and a late-data negative control. These checks have
+separate evidence scopes and do not establish physical signoff.
+
+The predeclared 27-candidate experiment yields 20 electrically legal TT lanes
+and 7 retained electrical failures. Independent data/clock detours reveal
+opposing setup/hold responses; common delay largely cancels in setup. Thermal
+and TT timing objective conflicts are numerically resolved, but temperature
+is not applied to these pads. G4 remains gated on consistent interface
+characterization and physical/model error, not merely a different score winner.

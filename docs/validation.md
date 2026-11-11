@@ -1,3 +1,6 @@
+Current multi-case evidence: [v0.5](validation-v05.md). Earlier records below
+are historical milestones and retain their original scope/limitations.
+
 # v0.1.0 validation receipt
 
 Local validation date: 2026-11-11 (UTC).
