@@ -70,7 +70,7 @@ operating area. Output minima/maxima are retained separately.
 - GF endpoint interpolation at 0/125 C, checked against held-out 25/50/75/100 C:
   largest error **6.026 ps**, maximum relative error **0.298%**; all pass
   `max(5 ps, 2%)`.
-- **55 unit tests**, the original two-chiplet CLI and **16 prior prototype
+- **56 unit tests**, the original two-chiplet CLI and **16 prior prototype
   software checks** pass. The TT lane still reports setup **8.705309 ns** and
   hold **11.008110 ns**; it has not consumed the experimental SPICE data.
 
@@ -148,3 +148,5 @@ python tools/validate_prototype.py --output results/prototype
 The new CI job checks execution, source audits and numerical consistency. Its
 successful exit does **not** mean `qualification_gates` passed. Those failures
 are retained in the uploaded JSON together with decks, logs and waveforms.
+The runner records the validation checkout's Git revision independently of an
+installed Python package; a test covers clean, dirty and absent checkouts.

@@ -1,6 +1,10 @@
 """Independent analytic waveforms and deliberately incomplete circuit inputs."""
 
 import unittest
+from pathlib import Path
+import shutil
+import subprocess
+import tempfile
 
 import numpy as np
 
@@ -12,9 +16,37 @@ from tools.validation.pad_spice import (
     measure_waveform,
     subcircuits,
 )
+from tools.validation.sources import git_revision
 
 
 class PadSpiceTests(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("git"), "requires Git")
+    def test_revision_uses_explicit_checkout_not_installed_package(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            self.assertEqual(git_revision(root), {"commit": None, "dirty": None})
+            subprocess.run(["git", "init", "-q", "-b", "main", str(root)], check=True)
+            subprocess.run(
+                [
+                    "git",
+                    "-c",
+                    "user.name=Fixture",
+                    "-c",
+                    "user.email=fixture@example.invalid",
+                    "commit",
+                    "--allow-empty",
+                    "-qm",
+                    "fixture",
+                ],
+                cwd=root,
+                check=True,
+            )
+            revision = git_revision(root)
+            self.assertEqual(len(revision["commit"]), 40)
+            self.assertFalse(revision["dirty"])
+            (root / "untracked.txt").write_text("dirty fixture")
+            self.assertEqual(git_revision(root), {**revision, "dirty": True})
+
     def waveform(self):
         t = np.linspace(0, 70, 7001)
         vin = np.interp(t, [0, 10, 11, 40, 41, 70], [0, 0, 3.3, 3.3, 0, 0])

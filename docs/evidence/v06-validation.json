@@ -38,7 +38,7 @@
       "max_step_ps": 10.0,
       "name": "gf180_0_0.5_6.0_10.0",
       "deck_sha256": "d2d12e94dec47faf8f311ae2372fd475106d378c6b6534e4413b76f6292f4d37",
-      "log_sha256": "a1bd57588e9c04d300cf7a5ad38bbfb1ae376760cfc9ae0c88074ac6d3b110e9",
+      "log_sha256": "7d6f283491e2ac1ebc08f5a5567225ff409fcdf2b6efde80fa9f0671a537adf4",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -73,7 +73,7 @@
       "max_step_ps": 10.0,
       "name": "gf180_25_0.5_6.0_10.0",
       "deck_sha256": "0fc599bc6670902e9d275b311e079242c484841a15190bcefc526cbde0e03453",
-      "log_sha256": "c8615898d1f19dcad92f9a7c6e259bb8a7b6b286b006970cfa4026d605fe98cf",
+      "log_sha256": "fdd6fee658ed97f597896c13c3acb58ce0a15f1ecace149aa59622ad514b8470",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -108,7 +108,7 @@
       "max_step_ps": 10.0,
       "name": "gf180_50_0.5_6.0_10.0",
       "deck_sha256": "812be7128aed1dc3586deaa6133ea14bbd03ddb8c17765844b78cf68092159c1",
-      "log_sha256": "b2f7a7050460f954c629103d7a971a7fa61d7c9cd4c5565c732a6541eea9eb16",
+      "log_sha256": "e1a149521cc9896afb8fb69fe18daec55393c4618814a6c4d505fa7e74be5cda",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -143,7 +143,7 @@
       "max_step_ps": 10.0,
       "name": "gf180_75_0.5_6.0_10.0",
       "deck_sha256": "664d73c8df9bb303069eb07344ac10ff4942aa6a88e2b4f51d70e67ac6013ad1",
-      "log_sha256": "b17d9dca6fe84e51f4ef5d4c11abbe2de3d08eaaec8eb069c114bf0e988a0a2b",
+      "log_sha256": "14a722de1d2e7390bb326d7cfcfa6cbf21d0dd84e40c8c929c95d29a9dfcbc81",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -178,7 +178,7 @@
       "max_step_ps": 10.0,
       "name": "gf180_100_0.5_6.0_10.0",
       "deck_sha256": "b44dcabfe2b3be77fa19fb66132ae60c854dc81978dffce2f290e00f8671b97d",
-      "log_sha256": "7d1245882f97099f4b20763d8f23c23a5541909589e53cdfd1390ce7c55d2ddb",
+      "log_sha256": "9a62973031a39ed9b80afcf7eea24dbbe11866d02ffbfcbb087451fe209384fe",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -213,7 +213,7 @@
       "max_step_ps": 10.0,
       "name": "gf180_125_0.5_6.0_10.0",
       "deck_sha256": "0c99454fde14d4604c6c30e9b9113eb59bc03eeca567ecdd0b111f490ba7cc76",
-      "log_sha256": "9f2670bcc38023b1b6de8681236ccf4b7f574f78fa30607bb3b44a38acd8c510",
+      "log_sha256": "7738e473e0c5bb1eb1ed9c73a72cb53b21c375d36b552bafa7d825ebcce17a14",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -248,7 +248,7 @@
       "max_step_ps": 10.0,
       "name": "gf180_25_0.08_6.0_10.0",
       "deck_sha256": "f4acebca0639f515cfb08b9db4ad3838e89ccc0238ed6c49abdeafbbe4e27ab5",
-      "log_sha256": "d90297688ac8fbf3a3b8e7887d3d9008ade5b08de13132362697351a86689f17",
+      "log_sha256": "dc61131211a87104cc075b11da58100011d708c4a43072626c5d6ea4ce64e721",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -283,7 +283,7 @@
       "max_step_ps": 10.0,
       "name": "gf180_25_1.0_6.0_10.0",
       "deck_sha256": "511f30da41e8fe1e41210edaa933bffb5050d868b41c0c3816b6eb7c687d2d8d",
-      "log_sha256": "4f218b50fe49ede5724bc45306cba34a93c2b85c8ccbd15c314dd420f86c3314",
+      "log_sha256": "9079a3db5a5d2fae717c3c00b7d2431ba033d65851a7de18937c1f21077fecbd",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -318,7 +318,7 @@
       "max_step_ps": 10.0,
       "name": "gf180_25_0.5_12.0_10.0",
       "deck_sha256": "c0b9f08ebc0bd53e1b3a2aa777db52f1d861bb05bd130cc03c276d9156cf34dd",
-      "log_sha256": "ba85e03cd215cb9d3423c365e38272a1ff0ea76c604d471a7981569d53511e75",
+      "log_sha256": "2f0b9eb345b08fa7c8f4084926a8574785d469c6bb618cab0c48bdf629303771",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -353,7 +353,7 @@
       "max_step_ps": 10.0,
       "name": "gf180_25_0.5_2.0_10.0",
       "deck_sha256": "df3bd505712d62a84761da0f281a41767099c5e9f3ea82f57894289b155965bc",
-      "log_sha256": "bc42f2aacb963c2bc0f423bf48b540c521ef2257cbbb2ebda6bbb251f499606f",
+      "log_sha256": "4ae65f4e19276e1f2d5078de21784d51384991280ac8fd45955cbef95939e1d9",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -388,7 +388,7 @@
       "max_step_ps": 5.0,
       "name": "gf180_25_0.5_6.0_5.0",
       "deck_sha256": "6ecc7de9fa7599ad06c6617cf1407e091c45672ac88c65ceb9ad8685198095c6",
-      "log_sha256": "9bf8ba4150135f09008457e80a6649f218b754202d5b81d9ccd945abf3945b07",
+      "log_sha256": "6889334ee683cf8957fbd6d515d1230ef750795c73530f16b70aef5be57aeb82",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -423,7 +423,7 @@
       "max_step_ps": 5.0,
       "name": "gf180_125_0.5_6.0_5.0",
       "deck_sha256": "d9a527372de468805f9508fdad1d34ed2419decb61606fb77e1dcd627186bfb2",
-      "log_sha256": "4aaad9a6fd8f026eb00b42b14d7123f1160751717b33291001a311ee987d2fdb",
+      "log_sha256": "af78a7bcc3e8a4e282e7bfcc1d7202d8f460f1c0501fb4c602a537161ea4f94a",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: IKK too small - model effect disabled!",
@@ -458,7 +458,7 @@
       "max_step_ps": 20.0,
       "name": "sky130_25_1.0_0.022799_20.0",
       "deck_sha256": "8c4841965ae052995603930a083d7ae2715a527043d7990abc7e69b43db37a50",
-      "log_sha256": "22366e62dcdd657a48aafefb6724e3540bf1e0e1070a096debebf5a78a36aae5",
+      "log_sha256": "9e7fbfc454f26e473a2d5a5034da7f1355708744759c2c2be5d89eb073a8fe5a",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
@@ -500,7 +500,7 @@
       "max_step_ps": 10.0,
       "name": "sky130_25_1.0_0.022799_10.0",
       "deck_sha256": "bacc648964bb04df07a0c59862cf89b4b14072e01545e00de21e862e30d0e829",
-      "log_sha256": "3540ec26b09303d158360a0bb2946c60cd883d3e2aaf0e9420ed94fd5053f4c4",
+      "log_sha256": "b401ab518baef312f8f973a439ae2db60b48f8b5aa308c130f117f4fd29a31f2",
       "simulator_returncode": 0,
       "diagnostics": [
         "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
@@ -1025,13 +1025,14 @@
     "fall_transition": true
   },
   "source": {
-    "commit": "731c03653b2efc1f3799e537c0b75232b2d66982",
+    "commit": "7732e9722829adfe0d0b0d048b34ee0deb85f78a",
     "dirty": true
   },
   "source_code_sha256": {
-    "tools/validate_pad_spice.py": "6580f0b39952538dc0c448c724f53e367fe2b2bb0222b82350aa09cd951b4423",
+    "tools/validate_pad_spice.py": "d6f0655f1f30500997cfde5d057f10f4b904eb799b2746fa4d3b73ce03ac7229",
     "tools/validation/pad_sources.py": "29683ef639714a09b0d0d516a4d0dd0cc2fd26e597dab748d2164388b16aa126",
     "tools/validation/pad_spice.py": "40c6a3499bbc75490a1972cede4740d2f75de7fae06c5c182d2f51428d4e0393",
+    "tools/validation/sources.py": "9ad1958dfb82aedbd4b65cc5764f177530ec789c60e41a28edc1564d94e27400",
     "src/chiplet_floorplanning/interfaces.py": "859b1f7da45a71f45ae37c62c15390454b6f2446cd4f24a37897fb5d3029ca5a",
     "src/chiplet_floorplanning/liberty_checks.py": "d9065b2a101a586a3518d354af973a2a722df89bd21f83d9e65d6fb657be46d8"
   },
@@ -1054,7 +1055,7 @@
   "complete_package_signoff": false,
   "source_lock_sha256": "9c4e82a9ca1026fd5601b488760b0409c62bdbe477a97b2563bf79af48b6bdf6",
   "verified_source_file_count": 837,
-  "raw_report_sha256": "0ce5aec8404c469c0b04dd6d6a50d8c5e06e75183b02dbca9775f4b2f8eb992f",
+  "raw_report_sha256": "78b6eb0a447bbbfe58edf1532cb3349a6995f92edddf67534c903011afd6ad23",
   "models": {
     "gf180": {
       "pins": [
@@ -1248,9 +1249,9 @@
     }
   },
   "regression": {
-    "unit_tests": 55,
+    "unit_tests": 56,
     "unit_tests_passed": true,
-    "unit_log_sha256": "a6ec4ecee31c184190eb24040bffccb4d93f7366d7075ef4f8fdd0303d4ce24b",
+    "unit_log_sha256": "c2e4d9af289a2cec41dc16bb196a3e4e6d1b5be14e2dcda694f843c28f3ab3ba",
     "prototype_software_checks_passed": true,
     "prototype_check_count": 16,
     "prototype_nominal": {
@@ -1259,7 +1260,7 @@
       "timing_constraints_met": true
     },
     "prototype_report_sha256": "164973bbd345bd4f8d7662735008ccc6d0b7963be72d1e64cbe02b84663dccb5",
-    "original_cli_report_sha256": "294700ef805f2c540c3ab7461f2e9a7c696cc36047f844def6ea6fe6026b061e",
+    "original_cli_report_sha256": "11e969269dee99d5f12f686664812029f4c557f6c26d54d23df13db8d8c9753f",
     "original_cli_report": {
       "schema_version": 1,
       "case": "two_chiplets",
@@ -1493,13 +1494,13 @@
         "input_snapshot_sha256": "df949e1d36dffbcdefbba89c40c5deb6ad839894a5a70ebe00dd80deb8e626ba",
         "tool_version": "0.6.0",
         "source": {
-          "commit": "731c03653b2efc1f3799e537c0b75232b2d66982",
+          "commit": "7732e9722829adfe0d0b0d048b34ee0deb85f78a",
           "dirty": true
         },
         "python": "3.12.3",
         "numpy": "2.5.4",
         "scipy": "1.18.1",
-        "timestamp_utc": "2026-11-11T10:48:39.745473+00:00"
+        "timestamp_utc": "2026-11-11T10:56:50.233729+00:00"
       }
     }
   }

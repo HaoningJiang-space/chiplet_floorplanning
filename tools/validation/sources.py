@@ -3,8 +3,23 @@
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 
 LOCK = Path(__file__).resolve().parents[1] / "sources.lock.json"
+
+
+def git_revision(root):
+    """Use the validation checkout, even when the production package is installed."""
+    root = Path(root).resolve()
+    if not (root / ".git").exists():
+        return {"commit": None, "dirty": None}
+    commit = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=root, text=True
+    ).strip()
+    status = subprocess.check_output(
+        ["git", "status", "--porcelain"], cwd=root, text=True
+    )
+    return {"commit": commit, "dirty": bool(status)}
 
 
 def verify(root, prefix):

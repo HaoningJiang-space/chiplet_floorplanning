@@ -10,7 +10,6 @@ import subprocess
 
 import numpy as np
 
-from chiplet_floorplanning.cli import source_revision
 from chiplet_floorplanning.liberty_checks import (
     active_arc,
     lookup,
@@ -28,7 +27,7 @@ from validation.pad_spice import (
     pin_connections,
     subcircuits,
 )
-from validation.sources import verify, write_json
+from validation.sources import git_revision, verify, write_json
 
 
 def definitions(root, pdk_root):
@@ -183,6 +182,7 @@ def main():
             "tools/validate_pad_spice.py",
             "tools/validation/pad_sources.py",
             "tools/validation/pad_spice.py",
+            "tools/validation/sources.py",
             "src/chiplet_floorplanning/interfaces.py",
             "src/chiplet_floorplanning/liberty_checks.py",
         )
@@ -389,7 +389,7 @@ def main():
         nominal_liberty_comparisons=comparisons,
         gf180_temperature_holdouts=holdouts,
         same_build_receiver_table_identity=table_identity,
-        source=source_revision(),
+        source=git_revision(repo),
         source_lock=sources,
         liberty_source_hashes={
             name: value
