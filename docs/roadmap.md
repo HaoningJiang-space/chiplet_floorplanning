@@ -152,3 +152,30 @@ results only for the identical placement, power, stack and mesh. Different
 placements still rebuild their matrices. Consider caching or a persistent STA
 engine only after profiling on the future admitted design; do not assume equal
 matrices or a transferable acceleration from this small case.
+
+## v0.8 update — thermal locality before optimization
+
+E1 now independently solves total/TX/RX heating while retaining all materials.
+All power-only changes preserve the matrix, sink and material-node identities.
+The 27 nominal layouts reproduce v0.5, and six boundary/TIM profiles pass the
+declared final XY mesh-change screen after refining the entire bottom-cooled
+profile. Rigid translation mainly changes the TX contribution at the total
+hotspot; RX's absolute contribution is still about 10 K. A conditional 20/26
+rank reversal under lower TIM conductivity demonstrates sensitivity to the
+assumed stack, not a universal optimal placement. See `validation-v08.md`.
+
+Keep the scope at timing-driven physical feasibility. E2 next requires a sourced
+pin/bump order, shared-clock timing group, finite signal-layer resources and
+keepouts. A cut-capacity upper bound below mandatory demand can certify
+infeasibility **only within that declared resource model**; sufficient capacity
+or failure of a routing heuristic cannot certify routability/infeasibility.
+Do not narrow a channel merely to create the desired effect. Existing two-wire
+geometry is not a general resource graph or a qualified multilane benchmark.
+
+E3 must use the same admitted interface, PDK, operating mode and sourced edge
+requirements. Compare the best temperature among geometry/electrical-legal
+placement–routing pairs with that among timing-feasible pairs. A finite search
+only provides a result for the enumerated set; it cannot prove that every legal
+route at a placement is infeasible. Retain v0.7's zero-penalty control. Even a
+positive constraint penalty would not establish superiority of joint search
+over sequential/alternating methods at equal budgets. E2/E3 and G4 remain open.

@@ -17,6 +17,22 @@ jobs:
       - run: python -m unittest discover -s tests -p '*_unittest.py' -v
       - run: chiplet-floorplanning evaluate examples/two_chiplets.json --output results/ci
       - run: chiplet-floorplanning evaluate examples/layered_two_chiplets.json --output results/ci-package
+  thermal-decomposition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install '.[validation]'
+      - run: OPENBLAS_NUM_THREADS=1 python tools/validate_thermal_decomposition.py --output results/thermal-decomposition
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: thermal-source-decomposition-not-physical-calibration
+          retention-days: 14
+          path: results/thermal-decomposition/
   integration:
     runs-on: ubuntu-latest
     timeout-minutes: 35

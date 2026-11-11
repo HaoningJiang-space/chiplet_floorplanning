@@ -529,6 +529,42 @@
       "url": "https://raw.githubusercontent.com/pulp-platform/cheshire-ihp130-o/560f00f1c14a7f2f22861df6bb4816eacf7f2e7e/target/ihp13/openroad/src/basilisk_postcts.sdc",
       "sha256": "79c168fbf3a7d82548ab0196961668d13ec9bf466c96085280ec58aeaf128179",
       "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/adk-reference/config/rule_params.json",
+      "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-ADK/093ae2e75fbc0b1eb3838a426cc1a59d37240aa0/config/rule_params.json",
+      "sha256": "cf95da5d52486e70b9cac2879a13122ec9c6e1040f59a905fa7240e3bab484ad",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/adk-reference/config/interconnect.json",
+      "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-ADK/093ae2e75fbc0b1eb3838a426cc1a59d37240aa0/config/interconnect.json",
+      "sha256": "e511095431c3e1d795f7fe93147938be4e1086a11fa187f272e8cd453845d2c8",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/adk-reference/pdk_adapters/interposer/intm4tm2.drc",
+      "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-ADK/093ae2e75fbc0b1eb3838a426cc1a59d37240aa0/pdk_adapters/interposer/intm4tm2.drc",
+      "sha256": "3247cc117d14dca048fff253c727c992c5824be74d889d26c5832e5be08f116d",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/adk-reference/pdk_adapters/interconnect/ihp_cupillar.drc",
+      "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-ADK/093ae2e75fbc0b1eb3838a426cc1a59d37240aa0/pdk_adapters/interconnect/ihp_cupillar.drc",
+      "sha256": "3ad8be2d220c9b4ebff6d242049861b5611e364259e5ee009e202b09fd7bc331",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/adk-reference/config/chiplet_pads.json",
+      "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-ADK/093ae2e75fbc0b1eb3838a426cc1a59d37240aa0/config/chiplet_pads.json",
+      "sha256": "1d1b598c202f4ff31329a3656ae11809479fc8492a3a5df08f51b1eb6987da93",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/adk-reference/pdk_adapters/README.md",
+      "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-ADK/093ae2e75fbc0b1eb3838a426cc1a59d37240aa0/pdk_adapters/README.md",
+      "sha256": "84f4ccda4dd1ea4268cce2ff7ca0ae978348c22b8ad79ba01b03987ca65a1be8",
+      "decompress_gzip": false
     }
   ],
   "open_cases": {
@@ -553,5 +589,6 @@
       "commit": "3a3de73632a06826b1bd9c65a0a2e92b32016845"
     }
   },
-  "basilisk_reference_commit": "560f00f1c14a7f2f22861df6bb4816eacf7f2e7e"
+  "basilisk_reference_commit": "560f00f1c14a7f2f22861df6bb4816eacf7f2e7e",
+  "adk_reference_commit": "093ae2e75fbc0b1eb3838a426cc1a59d37240aa0"
 }

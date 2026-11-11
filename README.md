@@ -1,6 +1,6 @@
 # Chiplet Floorplanning
 
-面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.7.0**
+面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.8.0**
 支持分层热网络、MFIT 数值对照、几何 RC/SPEF、真实 SKY130/GF180 库时序、
 25 组核心单元 PVT 组合，以及逐实例局部温度到时序的实验性耦合。
 新增 **GF180 发送 → SKY130 接收**的真实 3.3 V GPIO 源同步原型，
@@ -18,6 +18,13 @@ v0.7 固定同一组 27 个布局，对比经过单层几何检查的不同 data
 排序依赖构建）；最短合法连接下 setup 的全候选变化仅
 0.007 ps。所有可评估策略均选中 layout 26 作为时序可行的最低温候选，
 当前 50 MHz 假设下**尚未建立联合优化的必要性**。见 [v0.7 记录](docs/validation-v07.md)。
+
+v0.8 完成 E1 热源贡献分解：保持两颗 die 的材料结构，独立求解总功率、TX-only、
+RX-only。整体平移 00→24 降温 1.565 K，其中 TX 贡献减少 1.521 K；但 RX
+在热点处仍贡献约 10 K，不能说热耦合可忽略。六组散热/TIM 假设表明排序依赖
+边界与材料；低导热率 TIM 下 20/26 排序反转，20/23 尚未被网格变化筛选区分。
+这仍是线性模型内的数值证据，E2 真实布线资源与 E3 时序约束必要性尚未验证。
+见 [v0.8 结果、误差与复现](docs/validation-v08.md)。
 
 本项目遵循：**验证输入 → 验证评估器 → 验证布局差异 → 开始优化**。
 内置两芯粒例子的功耗与封装几何为演示假设；开源案例保留其声明输入。公开来源与数值一致性均不代表实物校准。
@@ -50,6 +57,7 @@ python -m unittest discover -s tests -p '*_unittest.py' -v
 ## 已经实现
 
 - 独立 die 侧壁默认隔热、显式成对接触热阻、逐 die 导热率和偏移矩形材料层。
+- 保留全部被动材料的逐 die 热源贡献、同一热点采样、全节点叠加和封装旋转对称检查。
 - 固定设计的位置 API、独立 data/clock 走线和 27 个候选布局排序实验。
 - 声明单层上的有限线宽、间距、显式障碍与交叉检查；双线顺序寻路及有限路由组合比较。
 - 约束优先的温度最优解、共同候选比较，以及网格、热矩阵、求解、SPEF、STA 分项计时。
@@ -72,7 +80,8 @@ python -m unittest discover -s tests -p '*_unittest.py' -v
 
 两芯粒示例总功率为 **3 W**，data/clock 的曼哈顿距离均为 **3 mm**。
 未给 `route_points_mm` 时距离是无障碍几何下界；给定折线时使用实际声明长度。
-没有自动布线、走线层、拥塞、弯折规则、bump 寄生或串扰模型。
+默认距离模型不验证路由；独立双线寻路器仅支持声明单层的有限几何规则，
+尚无多 lane 资源容量、跨层/via、bump escape、bump 寄生或串扰模型。
 I/O 块功耗由用户给定，当前不另加 link power，以避免重复计数。
 
 ## 模型和验证边界
@@ -209,3 +218,17 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
 热反馈时序及其成对差分仍为 `null`。单层几何通过不代表 bump escape、串扰、
 封装 DRC 或物理签核通过。详见 [预先声明的实验条件](docs/validation-plan-v07.md)
 和 [时序 benchmark 准入审查](docs/timing-benchmark-admission.md)。
+
+## 独立热源与边界敏感性（v0.8 / E1）
+
+```bash
+python -m pip install -e '.[validation]'
+OPENBLAS_NUM_THREADS=1 python tools/validate_thermal_decomposition.py \
+  --output results/thermal-decomposition
+```
+
+无需 PDK 或 STA。运行 27 个布局 × 6 组散热/TIM 假设、两档 XY 网格；仅底部散热
+对全部 27 个布局再加密一档。输出独立源温升场、完整报告、紧凑 `summary.json`
+和 PNG/SVG 图。温升逐点相加，环境温度只加一次；不同热源各自的峰值不能相加。
+`coldest_id` 是有限网格的原始最小值，同时输出网格变化筛选下未区分的候选。
+时序明确为 `not_evaluated`，封装实测校准和完整签核保持 `false`。
