@@ -1,0 +1,307 @@
+{
+  "version": 1,
+  "thermal_doi": "10.5281/zenodo.3345878",
+  "thermal_license": "CC-BY per source README",
+  "sky_commit": "1f7214f2f81a0629303947a07e1ec00a28ae8a33",
+  "sky_license": "Apache-2.0",
+  "files": [
+    {
+      "path": "sources/sky-raw/docs/sky130-testtile-proprietary/README.rst",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-sky130-raw-data/1f7214f2f81a0629303947a07e1ec00a28ae8a33/docs/sky130-testtile-proprietary/README.rst",
+      "sha256": "2da88a0559bf7b09c2d8600710711968e8b06d265859a131a633f397bfe05317",
+      "size_bytes": 2651
+    },
+    {
+      "path": "sources/sky-raw/README.rst",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-sky130-raw-data/1f7214f2f81a0629303947a07e1ec00a28ae8a33/README.rst",
+      "sha256": "e29c7fa8961b9638872ecb60be63bcb1c0ed4a23db44b025152eff83ec619efd",
+      "size_bytes": 3889
+    },
+    {
+      "path": "sources/sky-raw/sky130_fd_pr/cells/nfet_g5v0d10v5/sky130_fd_pr__nfet_g5v0d10v5_w7u_l0p5u_m1(8389_7_8_IDVD).mdm",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-sky130-raw-data/1f7214f2f81a0629303947a07e1ec00a28ae8a33/sky130_fd_pr/cells/nfet_g5v0d10v5/sky130_fd_pr__nfet_g5v0d10v5_w7u_l0p5u_m1%288389_7_8_IDVD%29.mdm",
+      "sha256": "501028aa5f26a8074e3fd6a5fa8dad90c7c187d776f36e678ab6127ae2643977",
+      "size_bytes": 82848
+    },
+    {
+      "path": "sources/sky-raw/sky130_fd_pr/cells/nfet_g5v0d10v5/sky130_fd_pr__nfet_g5v0d10v5_w7u_l0p5u_m1(8389_7_8_IDVG).mdm",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-sky130-raw-data/1f7214f2f81a0629303947a07e1ec00a28ae8a33/sky130_fd_pr/cells/nfet_g5v0d10v5/sky130_fd_pr__nfet_g5v0d10v5_w7u_l0p5u_m1%288389_7_8_IDVG%29.mdm",
+      "sha256": "28b88af610c23ba51a9b68ffb3e39deed7d3cab8ca07287aa50054f9dbf22dc9",
+      "size_bytes": 41664
+    },
+    {
+      "path": "sources/sky-raw/sky130_fd_pr/cells/pfet_g5v0d10v5/sky130_fd_pr__pfet_g5v0d10v5_w7u_l0p5u_m1(8395_8_7_IDVD).mdm",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-sky130-raw-data/1f7214f2f81a0629303947a07e1ec00a28ae8a33/sky130_fd_pr/cells/pfet_g5v0d10v5/sky130_fd_pr__pfet_g5v0d10v5_w7u_l0p5u_m1%288395_8_7_IDVD%29.mdm",
+      "sha256": "230e833d495e697525a037c15ff58e7163ab2226c8896cfa8ce5b7d7ce504f1a",
+      "size_bytes": 82848
+    },
+    {
+      "path": "sources/sky-raw/sky130_fd_pr/cells/pfet_g5v0d10v5/sky130_fd_pr__pfet_g5v0d10v5_w7u_l0p5u_m1(8395_8_7_IDVG).mdm",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-sky130-raw-data/1f7214f2f81a0629303947a07e1ec00a28ae8a33/sky130_fd_pr/cells/pfet_g5v0d10v5/sky130_fd_pr__pfet_g5v0d10v5_w7u_l0p5u_m1%288395_8_7_IDVG%29.mdm",
+      "sha256": "7838f1c6b4dbba6abd4f93cb69ab2821b86bd22285f1ec0e214c4c91ad5de4f9",
+      "size_bytes": 41664
+    },
+    {
+      "path": "sources/thermal-release.tar.gz",
+      "url": "https://zenodo.org/records/3345878/files/release.tar.gz?download=1",
+      "sha256": "3fc86c8d59a3b1cff1f45d1caa7eb21e56be39e22d75f24fb6ba2557b92111b0",
+      "size_bytes": 37381859
+    },
+    {
+      "path": "sources/thermal-paper.pdf",
+      "url": "https://re.public.polimi.it/retrieve/e0c31c0d-9a9a-4599-e053-1705fe0aef77/2019-SAMOS-ThermalTestChipSetup.pdf",
+      "sha256": "6092539ea8a2f9b760bd9a78655d3fb53e9f3950d65f722500f6e23a0daf215a",
+      "size_bytes": 4677182
+    },
+    {
+      "path": "thermal-original/release/chip/checkboard.csv",
+      "sha256": "e0463ab925fefc7bc177a430f984798cdd523eb85c83f7794ddf4481edd45bc6",
+      "size_bytes": 5158064
+    },
+    {
+      "path": "thermal-original/release/chip/four.csv",
+      "sha256": "a7f1ab385fa0364938dc568a077a8b9cf515fe658a061982cf1418aa9f3315c8",
+      "size_bytes": 5220973
+    },
+    {
+      "path": "thermal-original/release/chip/hotspot_1.csv",
+      "sha256": "9c7ad44fa2565f30841db91dc081f7184c60584833e20da48512e7c892bfb780",
+      "size_bytes": 5198108
+    },
+    {
+      "path": "thermal-original/release/chip/hotspot_2.csv",
+      "sha256": "67be0c5155e8f86e949449f062cedad83c7955d106ef44f9ff4580e562eacb52",
+      "size_bytes": 5176214
+    },
+    {
+      "path": "thermal-original/release/chip/hotspot_3.csv",
+      "sha256": "e73616615de09992ebf4e03086afb8a037e015397bbace8809e368e85384ea73",
+      "size_bytes": 5055130
+    },
+    {
+      "path": "thermal-original/release/chip/hotspot_4.csv",
+      "sha256": "a981e37188ddf689526b4d236a985edafaf29ac01b7b6c592f5372eba411474c",
+      "size_bytes": 5195406
+    },
+    {
+      "path": "thermal-original/release/chip/line_1.csv",
+      "sha256": "a4c959e203b97915d963eb3d4406b1487f3f9033615b937f809557ef9aea88da",
+      "size_bytes": 5165113
+    },
+    {
+      "path": "thermal-original/release/chip/line_2.csv",
+      "sha256": "83b87e711585e604072f1a79cd87a95de50fe388077381458e7dc2d0ce4e556d",
+      "size_bytes": 5245713
+    },
+    {
+      "path": "thermal-original/release/chip/nine.csv",
+      "sha256": "35baa67f2244c6c26948bd9674c1a61c667a92513579f69ab866f3621ceb042d",
+      "size_bytes": 5234024
+    },
+    {
+      "path": "thermal-original/release/chip/one.csv",
+      "sha256": "a7b743b6299cf6bcad263adb88faa1bba6edaa931f67dc82722e6e683993c13c",
+      "size_bytes": 5203484
+    },
+    {
+      "path": "thermal-original/release/chip/plot.sce",
+      "sha256": "cab5b54ba4c3c7a3ad4980111074604e64213931b8e95ab3fb888fae03d81290",
+      "size_bytes": 300
+    },
+    {
+      "path": "thermal-original/release/chip/plot_separate.sce",
+      "sha256": "bf2386a11b40e1a79a21b99b1a337846ee62168cfac37592ee391f49400d0428",
+      "size_bytes": 1250
+    },
+    {
+      "path": "thermal-original/release/chip/sixteen.csv",
+      "sha256": "455ab5d2954d940ce047deb4b62e0cf555dc1c976ad83388cb1f900e844635ec",
+      "size_bytes": 5147429
+    },
+    {
+      "path": "thermal-original/release/chip/tests.txt",
+      "sha256": "24b6464660995b22ab4bf96938f1625c819dd5a6829acbd8b521da1907842098",
+      "size_bytes": 416
+    },
+    {
+      "path": "thermal-original/release/chip/thickline_1.csv",
+      "sha256": "e5653509cede5e5837e184741ce1ec0899f2a454a600b4182e8be8b4ef2541c1",
+      "size_bytes": 5234590
+    },
+    {
+      "path": "thermal-original/release/chip/thickline_2.csv",
+      "sha256": "53b1dcdf9416f9bbfb56987b28ab4092a649c15d99894981394c34c3a0b4e21b",
+      "size_bytes": 5221244
+    },
+    {
+      "path": "thermal-original/release/experiments overview.txt",
+      "sha256": "373fae14d5373027f0d50f9a3bbe334e8d9a98b7565dc97298cbe4d9479d5532",
+      "size_bytes": 2221
+    },
+    {
+      "path": "thermal-original/release/heatsink/checkboard.csv",
+      "sha256": "ce26bae01d23361e30bced63374e484fc36e2a2094d7dff4f755c2b2258bf4e5",
+      "size_bytes": 8698857
+    },
+    {
+      "path": "thermal-original/release/heatsink/four.csv",
+      "sha256": "3c7d8e576e119ae09909d66878e79ea55d9c2c8366cf27ac8f2ab525521d359f",
+      "size_bytes": 7014450
+    },
+    {
+      "path": "thermal-original/release/heatsink/hotspot_1.csv",
+      "sha256": "172dbb10ecd70697e2aca095bf77c5dc9e3d0f66d4cc43ba1b9ac28032e1b2e1",
+      "size_bytes": 6947495
+    },
+    {
+      "path": "thermal-original/release/heatsink/hotspot_2.csv",
+      "sha256": "cd3b63f234a8da953c46cf02b14454b243f1b3c5e71dde5ffe7a300fbac32054",
+      "size_bytes": 9384540
+    },
+    {
+      "path": "thermal-original/release/heatsink/hotspot_3.csv",
+      "sha256": "66e2f17e7df96bb5785693c273eb97276dc2276c45c96f4048d1b08bc6dd7358",
+      "size_bytes": 8868922
+    },
+    {
+      "path": "thermal-original/release/heatsink/hotspot_4.csv",
+      "sha256": "ee96e4def0284e8d1dc16bdb0b66b3f7ea3c31c36ba415d8f315b01b4a49d808",
+      "size_bytes": 7792773
+    },
+    {
+      "path": "thermal-original/release/heatsink/line_1.csv",
+      "sha256": "94499653b22f0eb411e94ba1bcf9b9fe65aac2e2ba24d4547b36e765b0a99f0a",
+      "size_bytes": 7180646
+    },
+    {
+      "path": "thermal-original/release/heatsink/line_2.csv",
+      "sha256": "549e132c79752b97467e188d2ed24abf40402bbd5fadc098b9ff967edb32ec00",
+      "size_bytes": 8834873
+    },
+    {
+      "path": "thermal-original/release/heatsink/nine.csv",
+      "sha256": "159d61daff9dc05f0d9d2c1f55f4b096c87e2aeaaa639ef2e40806304e4b7814",
+      "size_bytes": 8570189
+    },
+    {
+      "path": "thermal-original/release/heatsink/one.csv",
+      "sha256": "8984cf5ffc1c24cc785b78a7fbf411cc6ceccaa381f01ef1bb2196533817f454",
+      "size_bytes": 10905578
+    },
+    {
+      "path": "thermal-original/release/heatsink/plot.sce",
+      "sha256": "94caea454227b5c5774c3aa84c83ddffd957c9662747e57b03b97039587e37fb",
+      "size_bytes": 298
+    },
+    {
+      "path": "thermal-original/release/heatsink/plot_separate.sce",
+      "sha256": "978f84bd6513edbc9bcc2b6ffb1d31f6207c133d466c568247db22dd1c6d6e7b",
+      "size_bytes": 1246
+    },
+    {
+      "path": "thermal-original/release/heatsink/sixteen.csv",
+      "sha256": "01da3862dbf1d12f6c28f773a07e6dea79fb43952e01aa74b9d29a93e6f8169d",
+      "size_bytes": 5698885
+    },
+    {
+      "path": "thermal-original/release/heatsink/tests.txt",
+      "sha256": "1dd690de850ec9032edc15ce2ba73866727b695e1267f54cf6efbcec6bb60688",
+      "size_bytes": 402
+    },
+    {
+      "path": "thermal-original/release/heatsink/thickline_1.csv",
+      "sha256": "f8aa2e53d81ce11887ae0a9375aecfb07ea43cfe09c61aa2d38dc92f9c6d9a6e",
+      "size_bytes": 6409172
+    },
+    {
+      "path": "thermal-original/release/heatsink/thickline_2.csv",
+      "sha256": "9b3693667bda71a3ed8ef46420da31f1f8c27d4632c8473eccab565b622c7fc7",
+      "size_bytes": 6063750
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/checkboard.csv",
+      "sha256": "49a1790c0d9da534c6630f5c3618de74314b227eb3423e6c84da65e7f2a487f4",
+      "size_bytes": 10315332
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/four.csv",
+      "sha256": "7789e13547f58510c9c05f21ee496f69c7ae13499b8f7bc62ea82c7f0cf9313e",
+      "size_bytes": 10335000
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/hotspot_1.csv",
+      "sha256": "c915ed0c5ca6cd69ea26bf96e7817887eb66bd199d5652d7c9948e695a685b2e",
+      "size_bytes": 10695677
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/hotspot_2.csv",
+      "sha256": "fcb52b5b3ed425ccc64615714316f10782124f764108d066c7a91887bb11af3a",
+      "size_bytes": 10387131
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/hotspot_3.csv",
+      "sha256": "016f91c76b2257f90ffab09ad80d04719c4aa9be48bae27f2ab5d1144f55e094",
+      "size_bytes": 10242495
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/hotspot_4.csv",
+      "sha256": "963214efd890685aed0d186ededc5a8eecafd0fdba7246b0c38dd6270a922f2b",
+      "size_bytes": 10366655
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/line_1.csv",
+      "sha256": "8651da90e6e5ee80233c8de80255d35f535eb4cf53f5b8bbde9f8888555ba278",
+      "size_bytes": 10269366
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/line_2.csv",
+      "sha256": "b5562536c778f694a88c304900c433a355f44bce4204c3f280b211609bdb06d5",
+      "size_bytes": 10268062
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/nine.csv",
+      "sha256": "031023ed0d8b0678b0aad10175fcf83631e80b8905bb206f3944fb99ce275671",
+      "size_bytes": 10362914
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/one.csv",
+      "sha256": "06fa5fede1ae4e4a3e7deb3874c1bf5a48208c8ee9e76db2d868f72010c0d7d3",
+      "size_bytes": 10229517
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/plot.sce",
+      "sha256": "94caea454227b5c5774c3aa84c83ddffd957c9662747e57b03b97039587e37fb",
+      "size_bytes": 298
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/plot_separate.sce",
+      "sha256": "72ab6eca9070e76d9db016c663df8473adb69c3b02706471a1bad8466390044d",
+      "size_bytes": 1288
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/sixteen.csv",
+      "sha256": "0dbaddc000b56c13d273b12e91fa4eb689940bd4708d06001e117274e208c138",
+      "size_bytes": 8677020
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/tests.txt",
+      "sha256": "d53a1ab44a616b57c33588659545a838b63606dd151ce405aebf7759086997e9",
+      "size_bytes": 415
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/thickline_1.csv",
+      "sha256": "a5f53f634375068fcfe8e280a95069e86ad826bf6d43757bdaa448165a87270e",
+      "size_bytes": 10335087
+    },
+    {
+      "path": "thermal-original/release/heatsink_with_fan/thickline_2.csv",
+      "sha256": "111c2a195973ac6649e55b19abf254a50b9c21a9ad826b0c5acce05b0352c378",
+      "size_bytes": 10328265
+    },
+    {
+      "path": "thermal-original/release/README.md",
+      "sha256": "07e91e28577cd702ca4a7acf62df0d990b3e942283156629c66d13c68db8b67a",
+      "size_bytes": 517
+    }
+  ]
+}
