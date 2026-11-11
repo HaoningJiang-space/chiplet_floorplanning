@@ -125,7 +125,8 @@
       "url": "https://github.com/The-OpenROAD-Project/OpenSTA.git",
       "tag": "v2.2.0",
       "commit": "02b129d48fbefb57d08f4bc412700ddfa24a159b",
-      "cmake_compatibility_patch": "find_package(SWIG REQUIRED 3.0) -> find_package(SWIG 3.0 REQUIRED)"
+      "cmake_compatibility_patch": "find_package(SWIG REQUIRED 3.0) -> find_package(SWIG 3.0 REQUIRED)",
+      "swig_compatibility_patch": "tcl/Exception.i: $function -> $action"
     },
     "mfit_commit": "4444336d95fe7e9a3bf440c96937831126c6a37f",
     "files": [
@@ -204,7 +205,7 @@
     "src/chiplet_floorplanning/timing.py": "6375edb6fd05e5c60ba428ddeee557417ff55f5453e0c30feb72185c372721a0"
   },
   "validation_script_hashes": {
-    "tools/bootstrap_validation.py": "33fb288493e380f4bf0545e801e2fb70b75ce7f6d23f15614f9ccf6bd7805452",
+    "tools/bootstrap_validation.py": "cf19ad8a90bb7c69ca147b4f48d821fc1590065544f5ce5772d9ed98c09478d3",
     "tools/validate_electrical.py": "88ef1efdf2ea17ebeab267c267a6640ac3aece778d7c2043257cb0d94e89ca86",
     "tools/validate_package.py": "cf6f8cd71dd4ffa5577272ea9f67ff6abe19d65891ebc279124a8200e359b6d8"
   }

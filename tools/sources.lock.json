@@ -3,7 +3,8 @@
     "url": "https://github.com/The-OpenROAD-Project/OpenSTA.git",
     "tag": "v2.2.0",
     "commit": "02b129d48fbefb57d08f4bc412700ddfa24a159b",
-    "cmake_compatibility_patch": "find_package(SWIG REQUIRED 3.0) -> find_package(SWIG 3.0 REQUIRED)"
+    "cmake_compatibility_patch": "find_package(SWIG REQUIRED 3.0) -> find_package(SWIG 3.0 REQUIRED)",
+    "swig_compatibility_patch": "tcl/Exception.i: $function -> $action"
   },
   "mfit_commit": "4444336d95fe7e9a3bf440c96937831126c6a37f",
   "files": [

@@ -16,9 +16,12 @@ case. This receipt is for numerical models and a real-library core-cell harness.
 | GF180 | `gf180mcu_fd_sc_mcu7t5v0__tt_025C_1v80.lib` |
 | ngspice | 42, Ubuntu `42+ds-3build1` |
 
-Exact downloaded file hashes are in `tools/sources.lock.json`. OpenSTA has one
-documented CMake compatibility edit: `find_package(SWIG REQUIRED 3.0)` becomes
-`find_package(SWIG 3.0 REQUIRED)`. Its timing implementation is unchanged.
+Exact downloaded file hashes are in `tools/sources.lock.json`. OpenSTA has two
+build compatibility edits: `find_package(SWIG REQUIRED 3.0)` becomes
+`find_package(SWIG 3.0 REQUIRED)`, and the deprecated SWIG exception placeholder
+`$function` becomes `$action`. The latter was identified by the first clean CI
+build with SWIG 4.4; the failed build is retained in Actions history. Timing
+algorithms and characterized cell tables are unchanged.
 Build prerequisites: C++ compiler, CMake, Tcl development headers, zlib,
 Flex, Bison and SWIG. OpenSTA's optional CUDD was available in the local build;
 the harness uses no conditional pad arcs. Binary hashes are retained per run.

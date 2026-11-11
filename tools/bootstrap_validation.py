@@ -46,15 +46,18 @@ def main():
         actual = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
         if actual != source["commit"]:
             raise ValueError("OpenSTA commit mismatch")
-        cmake = repo / "CMakeLists.txt"
-        original = subprocess.check_output(["git", "-C", str(repo), "show", "HEAD:CMakeLists.txt"], text=True)
-        patched = original.replace("find_package(SWIG REQUIRED 3.0)", "find_package(SWIG 3.0 REQUIRED)")
-        if cmake.read_text() not in (original, patched):
-            raise ValueError("OpenSTA CMakeLists has unrelated edits")
+        patches = {"CMakeLists.txt": ("find_package(SWIG REQUIRED 3.0)", "find_package(SWIG 3.0 REQUIRED)"),
+                   "tcl/Exception.i": ("$function", "$action")}
         changed = subprocess.check_output(["git", "-C", str(repo), "diff", "HEAD", "--name-only"], text=True).splitlines()
-        if set(changed) - {"CMakeLists.txt"}:
+        if set(changed) - patches.keys():
             raise ValueError("OpenSTA sources have unrelated edits")
-        cmake.write_text(patched)
+        for name, (before, after) in patches.items():
+            original = subprocess.check_output(["git", "-C", str(repo), "show", f"HEAD:{name}"], text=True)
+            patched = original.replace(before, after)
+            path = repo / name
+            if path.read_text() not in (original, patched):
+                raise ValueError(f"OpenSTA {name} has unrelated edits")
+            path.write_text(patched)
         build = args.root / "build/opensta"
         subprocess.run(["cmake", "-S", str(repo), "-B", str(build), "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"], check=True)
         subprocess.run(["cmake", "--build", str(build), "-j", str(args.jobs)], check=True)
