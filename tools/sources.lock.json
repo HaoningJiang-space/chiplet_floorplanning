@@ -1,0 +1,71 @@
+{
+  "opensta": {
+    "url": "https://github.com/The-OpenROAD-Project/OpenSTA.git",
+    "tag": "v2.2.0",
+    "commit": "02b129d48fbefb57d08f4bc412700ddfa24a159b",
+    "cmake_compatibility_patch": "find_package(SWIG REQUIRED 3.0) -> find_package(SWIG 3.0 REQUIRED)"
+  },
+  "mfit_commit": "4444336d95fe7e9a3bf440c96937831126c6a37f",
+  "files": [
+    {
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/cab543eb3508039715a90f402a517852218b5e8f/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib",
+      "sha256": "ec0e1067a35c8bf20b11e58d1e8ac53326067e4dac84a125cc1b917a3518d0d9",
+      "path": "pdk/sky130_tt_1v8.lib",
+      "decompress_gzip": false
+    },
+    {
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/cab543eb3508039715a90f402a517852218b5e8f/flow/platforms/gf180/lib/gf180mcu_fd_sc_mcu7t5v0__tt_025C_1v80.lib.gz",
+      "sha256": "5aaa722e7c0d2daf227f063f8d5e15c80a9e15fefed405341d0f424603921bf9",
+      "path": "pdk/gf180_tt_1v8.lib",
+      "decompress_gzip": true
+    },
+    {
+      "path": "upstream/mfit-source/common.py",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/common.py",
+      "sha256": "e5adf05e2d67dc960bd09d87bbca8c68b91d24678d80e945e10789f2f552f1d2",
+      "decompress_gzip": false
+    },
+    {
+      "path": "upstream/mfit-source/node_class.py",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/node_class.py",
+      "sha256": "1782e4a764ae59bf17d4fe7b242543d3cabe296b56be6c8c3a5dd32d5b9e9c91",
+      "decompress_gzip": false
+    },
+    {
+      "path": "upstream/mfit-source/layer_class.py",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/layer_class.py",
+      "sha256": "241773ffb3094db18020d8ba5a30244091573b37b574afc53751502cbad7e506",
+      "decompress_gzip": false
+    },
+    {
+      "path": "upstream/mfit-source/power_class.py",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/power_class.py",
+      "sha256": "7d1f480b0c1311063e0441f2c46a2c853e4b7e475e773147e00f0631843a2318",
+      "decompress_gzip": false
+    },
+    {
+      "path": "upstream/mfit-source/package_class.py",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/package_class.py",
+      "sha256": "2d2db0890c1c8662b0a20ee29ec77583302dde9ecf4c996cf755bbe099a3a2c9",
+      "decompress_gzip": false
+    },
+    {
+      "path": "upstream/mfit-source/material_prop.yml",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/material_prop.yml",
+      "sha256": "d9686b55bf37898b21878e1cc0aeadaa748744f72f8eed30d25a53ac37179e10",
+      "decompress_gzip": false
+    },
+    {
+      "path": "upstream/mfit-source/LICENSE",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/LICENSE",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "decompress_gzip": false
+    },
+    {
+      "path": "upstream/mfit-source/INPUT_FORMAT.md",
+      "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/INPUT_FORMAT.md",
+      "sha256": "f7c305cbfb780b0ab7047e1a1002d13ba72a2c6b72415e8cdcf5708174e17604",
+      "decompress_gzip": false
+    }
+  ]
+}

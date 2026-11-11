@@ -10,6 +10,9 @@ from scipy.sparse.linalg import spsolve
 
 
 def solve_steady(case, power):
+    if case.thermal["model"] == "layered_package_steady":
+        from .package import solve_package
+        return solve_package(case, power)
     power = np.asarray(power, dtype=float)
     if power.shape != (case.ny, case.nx) or not np.all(np.isfinite(power)) or np.any(power < 0):
         raise ValueError("power must be a finite, nonnegative ny by nx array in watts")

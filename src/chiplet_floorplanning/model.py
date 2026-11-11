@@ -189,19 +189,45 @@ def parse_case(data):
         dies.append(die)
     unique([d.id for d in dies], "chiplet IDs")
     thermal = dict(data["thermal"]) if isinstance(data["thermal"], dict) else data["thermal"]
-    fields(thermal, ("model", "conductivity_w_mk", "thickness_mm", "sink_h_w_m2k", "ambient_c", "provenance"))
-    if thermal["model"] != "uniform_slab_steady":
-        raise ModelError("only uniform_slab_steady is implemented")
-    for key in ("conductivity_w_mk", "thickness_mm", "sink_h_w_m2k"):
-        thermal[key] = number(thermal[key], key, positive=True)
+    if isinstance(thermal, dict) and thermal.get("model") == "layered_package_steady":
+        fields(thermal, ("model", "layers", "power_layer", "top_h_w_m2k", "bottom_h_w_m2k", "ambient_c", "provenance"))
+        layers = sequence(thermal["layers"], "layers", nonempty=True)
+        for layer in layers:
+            fields(layer, ("id", "footprint", "thickness_mm", "conductivity_w_mk"))
+            identifier(layer["id"])
+            if layer["footprint"] not in ("package", "chiplets"):
+                raise ModelError("layer footprint must be package or chiplets")
+            for key in ("thickness_mm", "conductivity_w_mk"):
+                number(layer[key], key, positive=True)
+        unique([layer["id"] for layer in layers], "layer IDs")
+        if thermal["power_layer"] not in [layer["id"] for layer in layers]:
+            raise ModelError("unknown power_layer")
+        for key in ("top_h_w_m2k", "bottom_h_w_m2k"):
+            number(thermal[key], key, minimum=0)
+        if thermal["top_h_w_m2k"] + thermal["bottom_h_w_m2k"] <= 0:
+            raise ModelError("package needs at least one positive convection boundary")
+        if len(layers) * grid["nx"] * grid["ny"] > 250_000:
+            raise ModelError("package exceeds 250000 potential nodes")
+    else:
+        fields(thermal, ("model", "conductivity_w_mk", "thickness_mm", "sink_h_w_m2k", "ambient_c", "provenance"))
+        if thermal["model"] != "uniform_slab_steady":
+            raise ModelError("unknown thermal model")
+        for key in ("conductivity_w_mk", "thickness_mm", "sink_h_w_m2k"):
+            thermal[key] = number(thermal[key], key, positive=True)
     thermal["ambient_c"] = number(thermal["ambient_c"], "ambient_c", minimum=-273.15)
     text(thermal["provenance"], "thermal provenance")
     interconnect = data["interconnect"]
-    fields(interconnect, ("model", "r_ohm_per_mm", "c_pf_per_mm", "provenance"))
-    if interconnect["model"] != "manhattan_lower_bound":
-        raise ModelError("only manhattan_lower_bound is implemented")
-    for key in ("r_ohm_per_mm", "c_pf_per_mm"):
-        number(interconnect[key], key, minimum=0)
+    if isinstance(interconnect, dict) and interconnect.get("model") == "rectangular_wire_parallel_plate":
+        parameters = ("resistivity_ohm_m", "width_um", "thickness_um", "dielectric_height_um", "relative_permittivity")
+        fields(interconnect, ("model", "provenance", *parameters))
+        for key in parameters:
+            number(interconnect[key], key, positive=True)
+    else:
+        fields(interconnect, ("model", "r_ohm_per_mm", "c_pf_per_mm", "provenance"))
+        if interconnect["model"] != "manhattan_lower_bound":
+            raise ModelError("unknown interconnect model")
+        for key in ("r_ohm_per_mm", "c_pf_per_mm"):
+            number(interconnect[key], key, minimum=0)
     text(interconnect["provenance"], "interconnect provenance")
     links = sequence(data["links"], "links")
     by_id = {d.id: d for d in dies}

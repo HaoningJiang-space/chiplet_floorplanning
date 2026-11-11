@@ -65,7 +65,8 @@ Links connect named ports on different chiplets. Data and clock are explicit
 independent entries. Their length is `abs(dx) + abs(dy)`. The reported R and C
 are length multiplied by explicit input coefficients in ohm/mm and pF/mm.
 They omit all pad, bump, receiver, coupling, inductance and routing effects.
-No RC delay, SPEF, setup, hold, WNS or TNS is produced.
+The original `manhattan_lower_bound` mode alone produces no delay or slack.
+The optional lane harness described below adds SPEF and real STA.
 
 ## Evidence
 
@@ -76,3 +77,49 @@ when available, runtime versions and UTC evaluation time. Git dirty state is
 recorded; it does not capture a full patch, so use a clean committed checkout
 for reproducible comparisons. A separate runtime directory is required for
 each evaluation. Repository-relative example files contain synthetic data only.
+
+## v0.2 layered package
+
+`layered_package_steady` replaces the slab parameters with ordered bottom-to-top
+`layers` (id, footprint, thickness_mm, conductivity_w_mk), `power_layer`,
+`top_h_w_m2k`, `bottom_h_w_m2k`, ambient and provenance. A layer footprint is
+either the entire package or the union of chiplet rectangles. Die edges must
+align to the uniform thermal grid; unsupported partial material cells fail.
+Gaps in chiplet-only layers are void, with no artificial material or heat source.
+All lateral/exposed internal surfaces are adiabatic. Radiation, underfill,
+contact resistance and anisotropy are not represented in this version.
+
+Neighbour conductance within a layer is `k t A_edge / distance`; across adjacent
+layers it is `A / (t1/(2*k1) + t2/(2*k2))`. Surface convection uses
+`A / (t/(2*k) + 1/h)`; h=0 means insulated. The report contains all solid-node
+temperatures and `(layer,y,x)` indices. The main grid temperature is the source
+layer temperature; CSV temperature is blank where that layer is void, never
+an invented ambient-temperature material node. Summary means cover active
+source-layer cells only.
+
+## v0.2 electrical model
+
+`rectangular_wire_parallel_plate` accepts `resistivity_ohm_m`, `width_um`,
+`thickness_um`, `dielectric_height_um`, and `relative_permittivity`. With the
+Manhattan length L, it evaluates `R=rho*L/(w*t)` and `C=epsilon0*epsilon_r*w*L/h`.
+This ideal grounded parallel-plate approximation omits fringing, coupling,
+frequency dependence, inductance, bumps and real routing obstacles. It is a
+specified model to validate, not an extraction from a foundry package kit.
+
+The optional fixed lane requires `tx` and `rx` chiplets and ports `data` and
+`clock`. SKY130 HD launches through a characterized buf_8; GF180 MCU7T5V0
+receives through a DFF and an inverter on the forwarded clock. A generated
+inverted capture clock provides the opposite-edge sample. Timing is explicitly
+TT, 25 C, 1.8 V; min/hold uses the same TT library, not a certified fast corner.
+Both package nets receive an eight-segment RC network. SPEF contains wire
+capacitance only; Liberty supplies input pin capacitance exactly once.
+Internal wires use a generated zero wire-load model; no automatic library
+wire-load estimate is silently applied. Data and clock wire capacitance are
+read back from OpenSTA and checked against the generated networks.
+
+SKY130 uses 20–80% slew thresholds; the selected GF180 **core** library uses
+30–70% with `slew_derate_from_library=0.5`. This differs from the I/O-library
+thresholds discussed in initial planning. OpenSTA's pinned
+`LumpedCapDelayCalc::thresholdAdjust` applies the cross-library convention
+conversion. Raw library slew numbers are not treated as the same measured
+transition interval. Metadata and original library hashes are retained.

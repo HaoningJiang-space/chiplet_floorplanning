@@ -188,7 +188,7 @@ class ArtifactTests(unittest.TestCase):
             report = evaluate(load_case(EXAMPLE), output)
             self.assertEqual(report["provenance"]["input_snapshot_sha256"],
                              hashlib.sha256((output / "input.json").read_bytes()).hexdigest())
-            self.assertEqual(report["timing"]["status"], "not_implemented")
+            self.assertEqual(report["timing"]["status"], "not_run")
             self.assertIsNone(report["timing"]["setup_slack_ns"])
             self.assertEqual(report["thermal"]["calibration"], "not_calibrated")
             self.assertEqual(len((output / "grid.csv").read_text().splitlines()), 1537)

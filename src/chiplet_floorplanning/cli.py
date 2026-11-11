@@ -32,13 +32,17 @@ def source_revision():
         return {"commit": None, "dirty": None}
 
 
-def evaluate(case, output):
+def evaluate(case, output, timing_options=None):
     output = Path(output)
     if output.exists():
         raise ValueError(f"output already exists; choose a new directory: {output}")
     power, blocks = rasterize(case)
     temperature, thermal = solve_steady(case, power)
     links = estimate_links(case)
+    timing = {"status": "not_run", "setup_slack_ns": None, "hold_slack_ns": None}
+    if timing_options:
+        from .timing import run_timing
+        timing = run_timing(case, output / "timing", **timing_options)
     input_w = sum(block["input_w"] for block in blocks)
     canonical = json.dumps(case.input_data, indent=2, sort_keys=True, allow_nan=False) + "\n"
     report = {
@@ -48,19 +52,20 @@ def evaluate(case, output):
         "validation": {"geometry": "passed", "power_conservation": "passed",
                        "thermal_residual_and_energy_balance": "passed",
                        "thermal_external_validation": "not_run",
-                       "cross_die_setup_hold": "not_implemented"},
+                       "cross_die_setup_hold": timing["status"]},
         "power": {"input_w": input_w, "mapped_w": float(power.sum()),
                   "error_w": float(power.sum()) - input_w, "blocks": blocks},
         "thermal": thermal,
         "links": links,
-        "timing": {"status": "not_implemented", "setup_slack_ns": None, "hold_slack_ns": None},
+        "timing": timing,
         "provenance": {"input_snapshot_sha256": hashlib.sha256(canonical.encode()).hexdigest(),
                        "tool_version": __version__, "source": source_revision(),
                        "python": platform.python_version(), "numpy": np.__version__,
                        "scipy": scipy.__version__, "timestamp_utc": datetime.now(timezone.utc).isoformat()},
     }
     encoded = json.dumps(report, indent=2, allow_nan=False) + "\n"
-    output.mkdir(parents=True, exist_ok=False)
+    if not timing_options:
+        output.mkdir(parents=True, exist_ok=False)
     (output / "input.json").write_text(canonical, encoding="utf-8")
     dx, dy = case.package.width / case.nx, case.package.height / case.ny
     with (output / "grid.csv").open("w", newline="", encoding="utf-8") as stream:
@@ -69,7 +74,7 @@ def evaluate(case, output):
         for y in range(case.ny):
             for x in range(case.nx):
                 writer.writerow([x, y, (x + 0.5) * dx, (y + 0.5) * dy, power[y, x],
-                                 power[y, x] / (dx * dy), temperature[y, x]])
+                                 power[y, x] / (dx * dy), temperature[y, x] if np.isfinite(temperature[y, x]) else ""])
     # Written last: its presence indicates completion of the other artifacts.
     (output / "report.json").write_text(encoded, encoding="utf-8")
     return report
@@ -81,20 +86,27 @@ def main(argv=None):
     subparsers = parser.add_subparsers(dest="command", required=True)
     validate = subparsers.add_parser("validate", help="validate geometry, units, sources, and connectivity")
     validate.add_argument("case", type=Path)
-    run = subparsers.add_parser("evaluate", help="map power and solve the uniform-slab reference")
+    run = subparsers.add_parser("evaluate", help="evaluate power/thermal and optionally real-library lane timing")
     run.add_argument("case", type=Path)
     run.add_argument("--output", type=Path, required=True)
+    run.add_argument("--sta", type=Path, help="enable the SKY130 to GF180 core-cell timing harness")
+    run.add_argument("--sky-lib", type=Path)
+    run.add_argument("--gf-lib", type=Path)
+    run.add_argument("--period-ns", type=float, default=20.0)
     args = parser.parse_args(argv)
     try:
         case = load_case(args.case)
         if args.command == "validate":
             print(f"VALID {case.name}: {len(case.dies)} chiplets, {len(case.links)} links")
         else:
-            report = evaluate(case, args.output)
+            if any((args.sta, args.sky_lib, args.gf_lib)) and not all((args.sta, args.sky_lib, args.gf_lib)):
+                raise ValueError("--sta, --sky-lib and --gf-lib must be supplied together")
+            timing_options = dict(sta=args.sta, sky_lib=args.sky_lib, gf_lib=args.gf_lib, period_ns=args.period_ns) if args.sta else None
+            report = evaluate(case, args.output, timing_options)
             print(f"{case.name}: power={report['power']['mapped_w']:.6g} W; "
                   f"reference peak={report['thermal']['peak_c']:.6g} C")
-            print(f"Uncalibrated thermal model; timing not implemented. Report: {args.output / 'report.json'}")
+            print(f"Uncalibrated thermal model; timing={report['timing']['status']}. Report: {args.output / 'report.json'}")
         return 0
-    except (ValueError, OSError) as error:
+    except (ValueError, OSError, subprocess.SubprocessError) as error:
         print(f"error: {error}", file=sys.stderr)
         return 2

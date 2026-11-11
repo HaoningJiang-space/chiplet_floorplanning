@@ -1,0 +1,211 @@
+{
+  "thermal": {
+    "passed": true,
+    "scope": "matched_equations_not_hardware_calibration",
+    "reference": "MFIT Python network assembly; NumPy steady solve; no native transient binary",
+    "mfit_commit": "4444336d95fe7e9a3bf440c96937831126c6a37f",
+    "reference_source_hashes": {
+      "node_class.py": "1782e4a764ae59bf17d4fe7b242543d3cabe296b56be6c8c3a5dd32d5b9e9c91",
+      "layer_class.py": "241773ffb3094db18020d8ba5a30244091573b37b574afc53751502cbad7e506",
+      "power_class.py": "7d1f480b0c1311063e0441f2c46a2c853e4b7e475e773147e00f0631843a2318",
+      "package_class.py": "2d2db0890c1c8662b0a20ee29ec77583302dde9ecf4c996cf755bbe099a3a2c9",
+      "common.py": "e5adf05e2d67dc960bd09d87bbca8c68b91d24678d80e945e10789f2f552f1d2"
+    },
+    "node_count": 228,
+    "max_temperature_error_k": 1.4139800441625994e-12,
+    "max_matrix_error_w_k": 4.440892098500626e-16,
+    "max_power_error_w": 0.0,
+    "reference_heat_balance_error_w": 1.9406698470447736e-13,
+    "mesh_results": [
+      {
+        "nx": 24,
+        "ny": 16,
+        "peak_c": 60.74730285302958,
+        "energy_balance_error_w": 3.326228181776969e-13
+      },
+      {
+        "nx": 48,
+        "ny": 32,
+        "peak_c": 60.69891582238968,
+        "energy_balance_error_w": -7.824851877558103e-13
+      },
+      {
+        "nx": 96,
+        "ny": 64,
+        "peak_c": 60.69073457329538,
+        "energy_balance_error_w": 3.637090628672013e-12
+      }
+    ],
+    "last_mesh_peak_change_k": 0.008181249094299403
+  },
+  "electrical": {
+    "passed": true,
+    "scope": "real_Liberty_core_cell_timing_and_passive_RC_not_pad_or_PHY_signoff",
+    "checks": {
+      "data_R_reduces_setup": true,
+      "data_R_improves_hold": true,
+      "clock_R_improves_setup": true,
+      "clock_R_reduces_hold": true,
+      "half_period_setup_shift": true,
+      "short_period_violation_retained": true,
+      "missing_spef_rejected": true,
+      "unannotated_rejected": true,
+      "unknown_cell_rejected": true
+    },
+    "timing": {
+      "base": {
+        "setup_slack_ns": 8.323373,
+        "hold_slack_ns": 9.680498,
+        "period_ns": 20.0
+      },
+      "data_resistance": {
+        "setup_slack_ns": 8.189611,
+        "hold_slack_ns": 9.895976,
+        "period_ns": 20.0
+      },
+      "clock_resistance": {
+        "setup_slack_ns": 8.556118,
+        "hold_slack_ns": 9.450858,
+        "period_ns": 20.0
+      },
+      "longer_period": {
+        "setup_slack_ns": 10.32337,
+        "hold_slack_ns": 11.6805,
+        "period_ns": 24
+      },
+      "short_period": {
+        "setup_slack_ns": -0.6766284,
+        "hold_slack_ns": 0.6804982,
+        "period_ns": 2
+      }
+    },
+    "passive_channel": [
+      {
+        "r_ohm": 5.040000000000001,
+        "c_pf": 1.0359399740976003,
+        "ngspice_crossings_s": {
+          "t20": 2.22611e-10,
+          "t50": 2.52611e-10,
+          "t80": 2.82611e-10
+        },
+        "state_space_crossings_s": {
+          "t20": 2.22610504927678e-10,
+          "t50": 2.526105687346793e-10,
+          "t80": 2.8261056873472574e-10
+        },
+        "crossing_error_ps": 0.00043126532065978796,
+        "ngspice_slew_20_80_ps": 59.99999999999997,
+        "state_space_slew_20_80_ps": 60.00006380704775,
+        "passed": true
+      },
+      {
+        "r_ohm": 120,
+        "c_pf": 0.8,
+        "ngspice_crossings_s": {
+          "t20": 2.56287e-10,
+          "t50": 2.93484e-10,
+          "t80": 3.32266e-10
+        },
+        "state_space_crossings_s": {
+          "t20": 2.562871249163434e-10,
+          "t50": 2.9348352779089735e-10,
+          "t80": 3.3226645757693004e-10
+        },
+        "crossing_error_ps": 0.000472209102639131,
+        "ngspice_slew_20_80_ps": 75.97900000000003,
+        "state_space_slew_20_80_ps": 75.97933266058662,
+        "passed": true
+      }
+    ],
+    "ngspice_sha256": "820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45",
+    "input_sha256": "7852f42bdf12f1f8d57646c8b929a0777b3a811d6a059528fd17adc88977ecc4"
+  },
+  "library_lock": {
+    "opensta": {
+      "url": "https://github.com/The-OpenROAD-Project/OpenSTA.git",
+      "tag": "v2.2.0",
+      "commit": "02b129d48fbefb57d08f4bc412700ddfa24a159b",
+      "cmake_compatibility_patch": "find_package(SWIG REQUIRED 3.0) -> find_package(SWIG 3.0 REQUIRED)"
+    },
+    "mfit_commit": "4444336d95fe7e9a3bf440c96937831126c6a37f",
+    "files": [
+      {
+        "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/cab543eb3508039715a90f402a517852218b5e8f/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib",
+        "sha256": "ec0e1067a35c8bf20b11e58d1e8ac53326067e4dac84a125cc1b917a3518d0d9",
+        "path": "pdk/sky130_tt_1v8.lib",
+        "decompress_gzip": false
+      },
+      {
+        "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/cab543eb3508039715a90f402a517852218b5e8f/flow/platforms/gf180/lib/gf180mcu_fd_sc_mcu7t5v0__tt_025C_1v80.lib.gz",
+        "sha256": "5aaa722e7c0d2daf227f063f8d5e15c80a9e15fefed405341d0f424603921bf9",
+        "path": "pdk/gf180_tt_1v8.lib",
+        "decompress_gzip": true
+      },
+      {
+        "path": "upstream/mfit-source/common.py",
+        "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/common.py",
+        "sha256": "e5adf05e2d67dc960bd09d87bbca8c68b91d24678d80e945e10789f2f552f1d2",
+        "decompress_gzip": false
+      },
+      {
+        "path": "upstream/mfit-source/node_class.py",
+        "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/node_class.py",
+        "sha256": "1782e4a764ae59bf17d4fe7b242543d3cabe296b56be6c8c3a5dd32d5b9e9c91",
+        "decompress_gzip": false
+      },
+      {
+        "path": "upstream/mfit-source/layer_class.py",
+        "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/layer_class.py",
+        "sha256": "241773ffb3094db18020d8ba5a30244091573b37b574afc53751502cbad7e506",
+        "decompress_gzip": false
+      },
+      {
+        "path": "upstream/mfit-source/power_class.py",
+        "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/power_class.py",
+        "sha256": "7d1f480b0c1311063e0441f2c46a2c853e4b7e475e773147e00f0631843a2318",
+        "decompress_gzip": false
+      },
+      {
+        "path": "upstream/mfit-source/package_class.py",
+        "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/package_class.py",
+        "sha256": "2d2db0890c1c8662b0a20ee29ec77583302dde9ecf4c996cf755bbe099a3a2c9",
+        "decompress_gzip": false
+      },
+      {
+        "path": "upstream/mfit-source/material_prop.yml",
+        "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/material_prop.yml",
+        "sha256": "d9686b55bf37898b21878e1cc0aeadaa748744f72f8eed30d25a53ac37179e10",
+        "decompress_gzip": false
+      },
+      {
+        "path": "upstream/mfit-source/LICENSE",
+        "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/LICENSE",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "decompress_gzip": false
+      },
+      {
+        "path": "upstream/mfit-source/INPUT_FORMAT.md",
+        "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/INPUT_FORMAT.md",
+        "sha256": "f7c305cbfb780b0ab7047e1a1002d13ba72a2c6b72415e8cdcf5708174e17604",
+        "decompress_gzip": false
+      }
+    ]
+  },
+  "test_count": 22,
+  "implementation_hashes": {
+    "src/chiplet_floorplanning/__init__.py": "a42bd4b8fe2195b204ef6128072bd96b11745b45fb298eda47072763dd11ac20",
+    "src/chiplet_floorplanning/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/chiplet_floorplanning/cli.py": "e234d244056bc9e2a7ae0f0c47009c7ea93fd3a13b8bfa411011145b94b478a0",
+    "src/chiplet_floorplanning/interconnect.py": "fbed1d78027fcc29e0fb9f12f2e9063ccad001a0f536a48b40998556183e5a61",
+    "src/chiplet_floorplanning/model.py": "698dcff084a540c2f872dae22a4fb2e6aa776b82d0be8d2650e37c568d9b869c",
+    "src/chiplet_floorplanning/package.py": "eddc6676136da16c8a1e9348a12d9254693a267423452ab622f7269cc3e98d98",
+    "src/chiplet_floorplanning/power.py": "c3720f52eb60e384c327bd5a8ab86e5e9c2774faef3c85dfd70bbfd45f714f03",
+    "src/chiplet_floorplanning/thermal.py": "78424e8b33e73f2804fd42b2e6ec33480bcacb78167fc4a801998d538a56b216",
+    "src/chiplet_floorplanning/timing.py": "6375edb6fd05e5c60ba428ddeee557417ff55f5453e0c30feb72185c372721a0"
+  },
+  "validation_script_hashes": {
+    "tools/bootstrap_validation.py": "33fb288493e380f4bf0545e801e2fb70b75ce7f6d23f15614f9ccf6bd7805452",
+    "tools/validate_electrical.py": "88ef1efdf2ea17ebeab267c267a6640ac3aece778d7c2043257cb0d94e89ca86",
+    "tools/validate_package.py": "cf6f8cd71dd4ffa5577272ea9f67ff6abe19d65891ebc279124a8200e359b6d8"
+  }
+}
