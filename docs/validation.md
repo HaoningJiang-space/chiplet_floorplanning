@@ -1,4 +1,5 @@
-Current multi-case evidence: [v0.5](validation-v05.md). Earlier records below
+Current routing counterfactual: [v0.7](validation-v07.md); pad-model failures:
+[v0.6](validation-v06.md); open-case checks: [v0.5](validation-v05.md). Earlier records below
 are historical milestones and retain their original scope/limitations.
 
 # v0.1.0 validation receipt

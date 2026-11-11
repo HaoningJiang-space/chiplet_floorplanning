@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+from time import perf_counter
 
 from .interconnect import estimate_links
 from .interfaces import CORE_NETLIST, forward_pad_netlist, reverse_pad_netlist, reverse_contract
@@ -63,7 +64,7 @@ def spef_network(name, source, target, resistance_ohm, capacitance_pf, segments=
 
 def run_timing(case, output, sta, sky_lib, gf_lib, period_ns=20.0, data_r_scale=1.0, clock_r_scale=1.0,
                sky_pad_lib=None, gf_pad_lib=None, characterized_corners=False, instance_models=None,
-               pad_direction='sky130_to_gf180'):
+               pad_direction='sky130_to_gf180', timings_s=None):
     import math
     if any(not math.isfinite(v) or v <= 0 for v in (period_ns, data_r_scale, clock_r_scale)):
         raise ValueError("period and R scales must be positive finite values")
@@ -150,6 +151,7 @@ slew_upper_threshold_pct_rise : 80; slew_upper_threshold_pct_fall : 80;
 wire_load(Zero) { resistance : 0; capacitance : 0; slope : 0; fanout_length(1,0); }
 }''')
     spef = '*SPEF "IEEE 1481-1998"\n*DESIGN "lane"\n*DATE "pinned-generated"\n*VENDOR "chiplet_floorplanning"\n*PROGRAM "lane"\n*VERSION "1"\n*DESIGN_FLOW "NAME_SCOPE LOCAL"\n*DIVIDER /\n*DELIMITER :\n*BUS_DELIMITER [ ]\n*T_UNIT 1 NS\n*C_UNIT 1 PF\n*R_UNIT 1 OHM\n*L_UNIT 1 HENRY\n'
+    spef_started = perf_counter()
     for link in links:
         if link["kind"] == "data":
             name, source, target, scale = "data", "tx_data:X", "rx_reg:D", data_r_scale
@@ -159,6 +161,8 @@ wire_load(Zero) { resistance : 0; capacitance : 0; slope : 0; fanout_length(1,0)
             source, target = f'tx_{link["kind"]}_pad:PAD', f'rx_{link["kind"]}_pad:PAD'
         spef += spef_network(name, source, target, link["assumed_r_ohm"] * scale, link["assumed_c_pf"])
     (output / "package.spef").write_text(spef)
+    if timings_s is not None:
+        timings_s['spef_generation_s'] = perf_counter() - spef_started
     script = ''.join(f'read_liberty {{{path}}}\n' for path in dict.fromkeys(paths)) + f'''read_liberty wire_models.lib
 set link_make_black_boxes 0
 read_verilog lane.v
@@ -220,7 +224,10 @@ exit
                                 f'puts "PAD_ARC_END {instance} {mode}"\n')
         script = script.replace('exit\n', diagnostics+'exit\n')
     (output / "run.tcl").write_text(script)
+    sta_started = perf_counter()
     run = subprocess.run([str(sta), "-exit", "run.tcl"], cwd=output, capture_output=True, text=True, timeout=120)
+    if timings_s is not None:
+        timings_s['sta_execution_s'] = perf_counter() - sta_started
     log = run.stdout + run.stderr
     (output / "sta.log").write_text(log)
     if run.returncode:

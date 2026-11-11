@@ -505,6 +505,30 @@
       "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/02b129d48fbefb57d08f4bc412700ddfa24a159b/LICENSE",
       "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
       "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/basilisk-reference/README.md",
+      "url": "https://raw.githubusercontent.com/pulp-platform/cheshire-ihp130-o/560f00f1c14a7f2f22861df6bb4816eacf7f2e7e/README.md",
+      "sha256": "e16150adf71d8eaa6d0827818e41259c2c1fcc0fa758e7743f0eb60f62cea1e3",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/basilisk-reference/target/ihp13/openroad/src/basilisk.sdc",
+      "url": "https://raw.githubusercontent.com/pulp-platform/cheshire-ihp130-o/560f00f1c14a7f2f22861df6bb4816eacf7f2e7e/target/ihp13/openroad/src/basilisk.sdc",
+      "sha256": "f589a4c9b07a2de5468f4a8eee03872d560041fed802665ae0650ece65dfcf1b",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/basilisk-reference/target/ihp13/openroad/src/basilisk_instances.sdc",
+      "url": "https://raw.githubusercontent.com/pulp-platform/cheshire-ihp130-o/560f00f1c14a7f2f22861df6bb4816eacf7f2e7e/target/ihp13/openroad/src/basilisk_instances.sdc",
+      "sha256": "3139b8c4fc11a2ffd19939485068e60e797ab1d38577b550c899ce95a073fcda",
+      "decompress_gzip": false
+    },
+    {
+      "path": "open-cases/basilisk-reference/target/ihp13/openroad/src/basilisk_postcts.sdc",
+      "url": "https://raw.githubusercontent.com/pulp-platform/cheshire-ihp130-o/560f00f1c14a7f2f22861df6bb4816eacf7f2e7e/target/ihp13/openroad/src/basilisk_postcts.sdc",
+      "sha256": "79c168fbf3a7d82548ab0196961668d13ec9bf466c96085280ec58aeaf128179",
+      "decompress_gzip": false
     }
   ],
   "open_cases": {
@@ -528,5 +552,6 @@
       "repository": "pulp-platform/tech_cells_generic",
       "commit": "3a3de73632a06826b1bd9c65a0a2e92b32016845"
     }
-  }
+  },
+  "basilisk_reference_commit": "560f00f1c14a7f2f22861df6bb4816eacf7f2e7e"
 }

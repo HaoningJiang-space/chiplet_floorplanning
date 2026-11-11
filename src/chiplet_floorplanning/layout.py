@@ -1,6 +1,7 @@
 """Fixed-design placement and explicit corridor routing; no routing legality claim."""
 
 import copy
+from time import perf_counter
 
 from .model import ModelError, parse_case, number
 from .power import rasterize
@@ -8,19 +9,12 @@ from .thermal import solve_steady
 from .interconnect import estimate_links
 
 
-def place_design(design, placements_mm, *, corridors_y_mm, grid=None):
-    """Return a newly validated case without modifying design, power or models.
-
-    Placements map die ID to x/y and optional rotation_deg. Every link needs an
-    independent package-coordinate horizontal corridor. Reroute after moving.
-    Corridors describe ideal conductors, without obstacles, crossings or DRC.
-    """
+def relocate_design(design, placements_mm, *, grid=None, timings_s=None):
+    """Move a fixed design and invalidate every prior explicit route."""
     raw = copy.deepcopy(design.input_data)
     die_ids = {d.id for d in design.dies}
     if set(placements_mm) - die_ids:
         raise ModelError("unknown placement die")
-    if set(corridors_y_mm) != {link["id"] for link in design.links}:
-        raise ModelError("every link requires an explicit corridor")
     for die in raw["chiplets"]:
         if die["id"] in placements_mm:
             placement = placements_mm[die["id"]]
@@ -36,9 +30,16 @@ def place_design(design, placements_mm, *, corridors_y_mm, grid=None):
         raw["grid"] = copy.deepcopy(grid)
     for link in raw["links"]:
         link.pop("route_points_mm", None)
-    placed = parse_case(raw)
+    return parse_case(raw, timings_s=timings_s)
+
+
+def corridor_routes(placed, corridors_y_mm):
+    """Construct ideal corridor polylines; geometric legality is a separate gate."""
+    if set(corridors_y_mm) != {link["id"] for link in placed.links}:
+        raise ModelError("every link requires an explicit corridor")
     dies = {d.id: d for d in placed.dies}
-    for link in raw["links"]:
+    routes = {}
+    for link in placed.links:
         y = number(corridors_y_mm[link["id"]], "corridor_y_mm", minimum=0)
         endpoints = [
             dies[e["chiplet"]].point(*dies[e["chiplet"]].ports[e["port"]])
@@ -51,14 +52,25 @@ def place_design(design, placements_mm, *, corridors_y_mm, grid=None):
         for point in (a, (a[0], y), (b[0], y), b):
             if not route or point != tuple(route[-1]):
                 route.append(list(point))
-        link["route_points_mm"] = route
-    return parse_case(raw)
+        routes[link["id"]] = route
+    return routes
 
 
-def evaluate_layout(case):
+def place_design(design, placements_mm, *, corridors_y_mm, grid=None):
+    """Compatibility corridor API; ideal paths carry no routing-legality claim."""
+    from .routing import with_routes
+
+    placed = relocate_design(design, placements_mm, grid=grid)
+    return with_routes(placed, corridor_routes(placed, corridors_y_mm))
+
+
+def evaluate_layout(case, *, timings_s=None):
     """In-memory thermal and route evaluation, with explicit missing timing."""
+    started = perf_counter()
     power, blocks = rasterize(case)
-    temperature, thermal = solve_steady(case, power)
+    if timings_s is not None:
+        timings_s["power_mapping_s"] = perf_counter() - started
+    temperature, thermal = solve_steady(case, power, timings_s=timings_s)
     return dict(
         temperature_c=temperature,
         thermal=thermal,

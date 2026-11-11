@@ -5,6 +5,7 @@ import math
 from pathlib import Path
 import json
 import re
+from time import perf_counter
 
 from .mesh import ThermalMesh, make_mesh
 
@@ -142,7 +143,8 @@ class Case:
         return self.mesh.ny
 
 
-def parse_case(data):
+def parse_case(data, *, timings_s=None):
+    started = perf_counter()
     fields(data, ("schema_version", "name", "package_mm", "grid", "chiplets", "thermal", "interconnect", "links"))
     if type(data["schema_version"]) is not int or data["schema_version"] != 1:
         raise ModelError("schema_version must be integer 1")
@@ -328,12 +330,16 @@ def parse_case(data):
     rectangles = [r for die in dies for r in [die.bounds]+[die.transform(b.rect) for b in die.blocks]]
     rectangles += [parse_rect(layer['rect_mm']) for layer in thermal.get('layers', [])
                    if layer['footprint'] == 'rectangle']
+    mesh_started = perf_counter()
     try:
         mesh = make_mesh(package.width, package.height, grid['nx'], grid['ny'], mode, rectangles)
     except ValueError as error:
         raise ModelError(str(error)) from error
     if mesh.nx*mesh.ny*len(thermal.get('layers', [None])) > 250_000:
         raise ModelError('geometry-conforming mesh exceeds 250000 potential nodes')
+    if timings_s is not None:
+        timings_s['mesh_generation_s'] = perf_counter() - mesh_started
+        timings_s['input_validation_s'] = mesh_started - started
     return Case(name, package, mesh, tuple(dies), thermal, interconnect, tuple(links), data)
 
 

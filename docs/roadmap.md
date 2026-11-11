@@ -123,3 +123,31 @@ The next dependency is a complete, traceable pad netlist/model/characterization
 setup that reconciles nominal delay and slew, including its load convention.
 Temperature holdout consistency alone does not resolve that missing baseline.
 See `validation-v06.md`. G3's full-interface gate and G4 remain open work.
+
+## v0.7 update — route policy and constraint necessity
+
+The fixed 27 placements now have a declared single-layer finite-width geometry
+gate, an obstacle-aware paired-path heuristic and a finite joint route portfolio.
+R2 reproduces the prior 121 conflicts. R1/R4 preserve timing feasibility for all
+27 and reduce the full setup spread to 0.007 ps under the same fixed TT model.
+R3's exchanged corridors short on this layer and are rejected before STA.
+All populated policies select layout 26 for minimum temperature subject to
+timing; the timing constraint thermal penalty is zero. These are conditional
+model results, not physical-error-qualified predictions.
+
+The next question is when a justified requirement makes the thermal optimum
+infeasible, not how to reward extra positive slack. A pinned Basilisk SDC audit
+provides an admission reference, but no real timing-critical benchmark has yet
+been implemented. Keep G4 pending and do not add SA on the strength of weighted
+scores. See `timing-benchmark-admission.md` and `validation-v07.md`.
+
+P1 remains: measure legal-range SPICE/Liberty differential sensitivity without
+offset fitting, and reconcile the same-interface nominal model before enabling
+hot-pad timing. Only then measure S_T(X)-S_0(X) and the pair interaction
+[S_T(B)-S_T(A)]-[S_0(B)-S_0(A)]. The fields are currently null.
+
+Per-evaluation timing is now recorded. A route comparison may reuse thermal
+results only for the identical placement, power, stack and mesh. Different
+placements still rebuild their matrices. Consider caching or a persistent STA
+engine only after profiling on the future admitted design; do not assume equal
+matrices or a transferable acceleration from this small case.

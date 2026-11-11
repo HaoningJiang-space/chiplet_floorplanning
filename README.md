@@ -1,6 +1,6 @@
 # Chiplet Floorplanning
 
-面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.6.0**
+面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.7.0**
 支持分层热网络、MFIT 数值对照、几何 RC/SPEF、真实 SKY130/GF180 库时序、
 25 组核心单元 PVT 组合，以及逐实例局部温度到时序的实验性耦合。
 新增 **GF180 发送 → SKY130 接收**的真实 3.3 V GPIO 源同步原型，
@@ -12,6 +12,11 @@ v0.6 新增同一 GPIO 模式的晶体管波形诊断与 GF180 温度扫描。
 步长收敛通过，但两端常温波形均未通过原 Liberty 一致性门槛；
 SKY130 源网表还存在可达空子电路。因此 **pad 温度模型尚未接入正式 STA**。
 详细数据与阻断原因见 [v0.6 验证记录](docs/validation-v06.md)。
+
+v0.7 固定同一组 27 个布局，对比经过单层几何检查的不同 data/clock 路由。
+原 corridor 的 121 个指标冲突对被复现；最短合法连接下 setup 的全候选变化仅
+0.007 ps。所有可评估策略均选中 layout 26 作为时序可行的最低温候选，
+当前 50 MHz 假设下**尚未建立联合优化的必要性**。见 [v0.7 记录](docs/validation-v07.md)。
 
 本项目遵循：**验证输入 → 验证评估器 → 验证布局差异 → 开始优化**。
 内置两芯粒例子的功耗与封装几何为演示假设；开源案例保留其声明输入。公开来源与数值一致性均不代表实物校准。
@@ -45,6 +50,8 @@ python -m unittest discover -s tests -p '*_unittest.py' -v
 
 - 独立 die 侧壁默认隔热、显式成对接触热阻、逐 die 导热率和偏移矩形材料层。
 - 固定设计的位置 API、独立 data/clock 走线和 27 个候选布局排序实验。
+- 声明单层上的有限线宽、间距、显式障碍与交叉检查；双线顺序寻路及有限路由组合比较。
+- 约束优先的温度最优解、共同候选比较，以及网格、热矩阵、求解、SPEF、STA 分项计时。
 - MFIT 三个原始几何/功耗案例、RapidChiplet 16-die 几何、PULP SDR PHY 和 OpenSTA 上游报告回归。
 - 保持矩形芯粒坐标的贴合网格；非均匀有限体积、各向异性导热及显式界面热阻。
 - 芯粒内连续温度重建、局部温度与 slack 网格收敛；不跨空隙插值。
@@ -181,4 +188,21 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_layout_ranking.py --output results/
 
 `layout.place_design()` 接受固定设计、位置与每条 link 的独立走线走廊，返回新 Case；
 `layout.evaluate_layout()` 可在内存中计算温度和互连，默认明确标注时序未评估。
-这不是自动布线器；走廊没有层分配、障碍避让、间距或串扰检查。
+此兼容接口本身不检查布线合法性；v0.7 的 `routing.audit_routes()` 单独执行几何检查。
+
+## 布线反事实与约束必要性（v0.7）
+
+```bash
+OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py --output results/routing-policies
+```
+
+`layout.relocate_design()` 移动芯粒并使旧路由失效；`routing.shortest_route_pairs()`
+尝试两种布线顺序，`routing.with_routes()` 保留原输入并生成新的 Case。
+`examples/planar_routing_contract.json` 声明 10 μm 线宽、10 μm 间距与边界净空，
+允许 interposer 层在 die 下方走线；这些是实验假设，不是 PDK 布线规则。
+交换 corridor 产生的同层短接在 STA 前被拒绝，没有默认添加跨线桥或第二信号层。
+
+固定 TT25 GPIO 模型只提供几何时序对照。真实时序压力 benchmark 尚未获准，
+热反馈时序及其成对差分仍为 `null`。单层几何通过不代表 bump escape、串扰、
+封装 DRC 或物理签核通过。详见 [预先声明的实验条件](docs/validation-plan-v07.md)
+和 [时序 benchmark 准入审查](docs/timing-benchmark-admission.md)。

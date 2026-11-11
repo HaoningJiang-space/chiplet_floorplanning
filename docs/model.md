@@ -241,3 +241,49 @@ Moved endpoints are transformed and both routes rebuilt before validation.
 A corridor is an ideal rectilinear connection, not a legal routed implementation;
 STA uses its total RC, not position-dependent wire temperature. Spatial pad
 characterization, channel extraction and physical uncertainty remain missing.
+
+## v0.7 declared planar routing domain
+
+`PlanarRules` keeps geometry rules separate from the thermal/electrical input.
+Rules contain positive `trace_width_um`, `spacing_um`, `edge_clearance_um`,
+explicit rectangular `keepouts_mm` and provenance. The width must agree with
+the case's electrical width when that field is present. The reference uses
+10 um for each rule as an assumption, not an imported foundry rule deck.
+
+Traces occupy a single interposer signal layer below the dies. No die footprint
+becomes a keepout implicitly. The trace is a union of axis-aligned rectangular
+segment envelopes, each expanded by half the width, including square endcaps.
+For the reference planar checker:
+
+- centerlines stay at least half-width plus edge clearance inside the package;
+- explicit keepouts expand by half-width plus spacing;
+- different traces require at least width plus spacing between centerlines;
+- repeated vertices, backtracking and nonadjacent self-clearance violations fail.
+
+Distances use the L-infinity metric, a conservative square clearance near
+corners. Endpoints are validated against the rotated die ports by `parse_case`.
+The model does not describe bump landing shapes, escape routing, metal density,
+vias, crossovers or coupling. Passing this contract is not physical package DRC.
+
+`shortest_route_pairs` supports exactly two nets, tries both routing orders and
+chooses the shortest legal pair it finds. Each net uses a rectilinear visibility
+grid of package bounds, expanded obstacle bounds and terminal coordinates;
+Dijkstra minimizes length, breaking ties by bends. Other-net terminals and
+already placed conductors are obstacles. This heuristic may miss a feasible
+joint route and does not certify globally optimal routing. For the 27 reference
+placements only, the returned legal pair reaches the sum of independently
+computed Manhattan lower bounds, which does certify its length for that case.
+
+Thermal reuse is valid only across routes of the same placement/power/stack/mesh
+in this model, which omits wire heat and metal-pattern conductivity. A change of
+placement rebuilds the conformal mesh and thermal matrix. Optional `timings_s`
+dictionaries record construction, assembly and solve wall times without changing
+the equations. STA still launches an external process for every unique route.
+
+The v0.7 evaluator minimizes temperature **subject to** nonnegative setup/hold
+and geometry/electrical legality. It first identifies the thermal optimum before
+filtering timing; filtering first would hide a timing-infeasible thermal optimum.
+Pareto sets and opposing score rankings are reported separately from necessity.
+The current same-interface temperature-dependent result S_T and pair interaction
+are missing, never zero-filled. All pad results remain fixed TT25 with the v0.6
+nominal-model discrepancy unresolved.

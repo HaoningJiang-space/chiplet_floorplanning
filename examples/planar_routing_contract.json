@@ -1,0 +1,7 @@
+{
+  "trace_width_um": 10.0,
+  "spacing_um": 10.0,
+  "edge_clearance_um": 10.0,
+  "keepouts_mm": [],
+  "provenance": "Single interposer signal layer using the existing assumed 10 um wire. Spacing and edge clearance are synthetic geometric rules, not foundry-qualified. Under-die routing is allowed; no vias, bumps, pad-escape geometry, crosstalk or PDK DRC."
+}

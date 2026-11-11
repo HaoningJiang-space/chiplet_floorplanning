@@ -7,12 +7,14 @@ Side boundaries are adiabatic; each cell exchanges heat with one fixed ambient.
 import numpy as np
 from scipy.sparse import coo_matrix
 from scipy.sparse.linalg import spsolve
+from time import perf_counter
 
 
-def solve_steady(case, power):
+def solve_steady(case, power, *, timings_s=None):
+    started = perf_counter()
     if case.thermal["model"] == "layered_package_steady":
         from .package import solve_package
-        return solve_package(case, power)
+        return solve_package(case, power, timings_s=timings_s)
     power = np.asarray(power, dtype=float)
     if power.shape != (case.ny, case.nx) or not np.all(np.isfinite(power)) or np.any(power < 0):
         raise ValueError("power must be a finite, nonnegative ny by nx array in watts")
@@ -48,7 +50,11 @@ def solve_steady(case, power):
     values.extend(diagonal)
     matrix = coo_matrix((values, (rows, cols)), shape=(size, size)).tocsr()
     rhs = power.ravel()
+    assembled = perf_counter()
     rise = spsolve(matrix, rhs)
+    if timings_s is not None:
+        timings_s['matrix_assembly_s'] = assembled - started
+        timings_s['thermal_linear_solve_s'] = perf_counter() - assembled
     residual = float(np.max(np.abs(matrix @ rise - rhs)))
     removed = float(sink @ rise)
     total = float(rhs.sum())

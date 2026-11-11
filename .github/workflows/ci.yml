@@ -36,6 +36,7 @@ jobs:
       - run: python tools/validate_sta_goldens.py --output results/sta-goldens
       - run: python tools/validate_pulp_phy.py --output results/pulp-phy
       - run: OPENBLAS_NUM_THREADS=1 python tools/validate_layout_ranking.py --output results/ranking
+      - run: OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py --output results/routing-policies
       - uses: actions/upload-artifact@v4
         if: always()
         with:
