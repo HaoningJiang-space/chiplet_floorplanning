@@ -234,6 +234,10 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
 实际 STA 工作点与 17 对差分检查。已检查的测量定义与负载映射未消除不一致，
 没有据此释放温度 pad 模型；原始波形、工具失败和模型失败分别保留。
 
+最新一轮见 [表征来源、上游修正与物理必要条件](docs/pad-provenance-results.md)。
+研究遵循 [物理准入契约](docs/physical-admission-contract.md)：区分守恒/被动性、
+数值求解与真实系统校准。原始表征、PEX 和通道近似的适用性仍是未关闭的依赖。
+
 ```bash
 python -m pip install -e '.[validation]'
 OPENBLAS_NUM_THREADS=1 python tools/validate_thermal_decomposition.py \

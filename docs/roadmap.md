@@ -197,3 +197,23 @@ independent physical propagation oracle. Next diagnose the pad-model mismatch,
 retaining every electrical/table-domain gate. Admit a sourced resource
 case or clearly label a synthetic mechanism case, and set decision tolerances
 before testing whether routing can eliminate the thermal/timing conflict.
+
+## Source provenance and physical invariants (2026-11-11)
+
+The next local milestone traces the pad netlist/Liberty lineage and tests
+source-supported SKY IO corrections in isolated copies. It also checks necessary
+conservation/passivity/entropy properties of four declared thermal cases and
+exposes the electromagnetic scale omitted by the current RC channel. See
+`pad-provenance-results.md` and `physical-admission-contract.md`.
+
+Recovering file lineage is not recovering the original characterization/PEX
+contract. Keep the nominal mismatch, empty primitive definitions, model warnings
+and uncalibrated stack explicit. Neither table agreement nor the thermal network's
+structural entropy property is independent hardware validation.
+
+Before further optimization, compare a declared same-geometry RC/RLC mechanism
+case with fixed return path, waveform, driver, receiver and reference planes.
+Use charge/energy ledgers and compare both setup and hold at prespecified
+decision tolerances. Do not infer RC failure from a single frequency or add an
+ideal flight-time constant to STA. A sourced hardware case still requires
+independent material/channel/interface evidence.

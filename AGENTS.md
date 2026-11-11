@@ -26,3 +26,7 @@ here; do not place these changes in adjacent placement repositories.
   temporary code; preserve necessary baselines, negative controls and evidence.
 - State physical assumptions and supported domains explicitly. Numerical checks
   alone must never be presented as physical calibration or complete signoff.
+- Prioritize the user's physical-law requirement: check conservation, units,
+  passivity/causality and boundary/reference-plane definitions before interpreting
+  fitted agreement or optimization. Follow `docs/physical-admission-contract.md`;
+  necessary invariants do not certify real materials, compact models or channels.

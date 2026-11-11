@@ -77,7 +77,8 @@ def definitions(root, pdk_root):
     return result
 
 
-def simulate(config, models, root, ngspice, output, init):
+def simulate(config, models, root, ngspice, output, init, *, content=None):
+    """Execute and archive a deck; explicit diagnostic overrides retain byte hashes."""
     side = config["side"]
     name = "_".join(
         str(config[k])
@@ -92,13 +93,14 @@ def simulate(config, models, root, ngspice, output, init):
     folder = output / name
     folder.mkdir()
     info = models[side]
-    content = deck(
-        root,
-        side,
-        info["mapping"],
-        info["pins"],
-        **{k: v for k, v in config.items() if k != "side"},
-    )
+    if content is None:
+        content = deck(
+            root,
+            side,
+            info["mapping"],
+            info["pins"],
+            **{k: v for k, v in config.items() if k != "side"},
+        )
     (folder / "deck.sp").write_bytes(content.encode("utf-8"))
     command = [str(ngspice), "-n"]
     if side == "sky130":

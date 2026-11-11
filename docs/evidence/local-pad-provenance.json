@@ -1,0 +1,1113 @@
+{
+  "source": {
+    "commit": "50046cbaa976d494b728cb54746f208669f56945",
+    "dirty": true
+  },
+  "analyzed_remote_commit": "c124aa982eb97f49a7f4be907554c94436ace2d2",
+  "fetch_succeeded": true,
+  "local_only": true,
+  "source_reports": {
+    "provenance": {
+      "path": "results\\characterization-provenance\\provenance.json",
+      "sha256": "628874bfa64e5c33181b02f39493ff646380527f9b9f16a5472de175a5dd1b3c"
+    },
+    "revision": {
+      "path": "results\\characterization-provenance\\revision-controls-v2\\report.json",
+      "sha256": "14dd3e57a167f2b9aa15cdf1c301f572d1ce9c6e300bd89e5b7b760ef4c888d4"
+    },
+    "devices": {
+      "path": "results\\characterization-provenance\\device-semantics\\report.json",
+      "sha256": "3669badb2846eceb6c91dfa577005ccc2cc2da59e7818f2465ffaa05385be5e6"
+    },
+    "physics": {
+      "path": "results\\characterization-provenance\\physical-invariants.json",
+      "sha256": "cb0e251e2af244ece23d9894ac0defd6d0b6e550b454478776caa1ee67bd5fa6"
+    }
+  },
+  "unit_tests": {
+    "passed": 97,
+    "log_sha256": "c45694d6d088835f481eacd2fcf46e848d0d8b75d72db3fc0c3d199fa248e3dd"
+  },
+  "source_checks": {
+    "installed_io_equals_pinned_custom": true,
+    "pr5_and_active_lib_equal_except_declared_name": true,
+    "exactly_three_changed_reachable_definitions": true,
+    "all_95_corrected_reachable_definitions_equal_pr5": true
+  },
+  "provenance_sources": {
+    "gf-io-tree.json": {
+      "path": "gf-io-tree.json",
+      "url": "https://api.github.com/repos/google/globalfoundries-pdk-libs-gf180mcu_fd_io/git/trees/2aeec51ea2824b6cc0b396acfc39f4535f40b23a?recursive=1",
+      "sha256": "75e04737eaea2ba5cfe95968e7b1e9abfe084fa41ab47b3c1f7b10a85e661471",
+      "retrieved_utc": "2026-11-11T14:28:33.416462+00:00"
+    },
+    "open-pdks-tree.json": {
+      "path": "open-pdks-tree.json",
+      "url": "https://api.github.com/repos/RTimothyEdwards/open_pdks/git/trees/fa87f8f4bbcc7255b6f0c0fb506960f531ae2392?recursive=1",
+      "sha256": "65be01d3be4782830d50877490c526f70e3d77956bf007f0175052b95ea30e10",
+      "retrieved_utc": "2026-11-11T14:20:05.613692+00:00"
+    },
+    "skywater-tree.json": {
+      "path": "skywater-tree.json",
+      "url": "https://api.github.com/repos/google/skywater-pdk/git/trees/f70d8ca46961ff92719d8870a18a076370b85f6c?recursive=1",
+      "sha256": "1b467c43e3ff267908e761b19354b7bb7fb02c9a25b1f9ddda79711ae147e01a",
+      "retrieved_utc": "2026-11-11T14:20:04.746400+00:00"
+    },
+    "sky-io-tree.json": {
+      "path": "sky-io-tree.json",
+      "url": "https://api.github.com/repos/google/skywater-pdk-libs-sky130_fd_io/git/trees/01b18699b4102d8e54ad1406b3991ecb652e5aee?recursive=1",
+      "sha256": "eaea7abf12d308a93b8d69706f1c22955e8e19ed5e4d90396e160340ae6e558d",
+      "retrieved_utc": "2026-11-11T14:20:35.315575+00:00"
+    },
+    "sky-io-proposed-tree.json": {
+      "path": "sky-io-proposed-tree.json",
+      "url": "https://api.github.com/repos/RTimothyEdwards/skywater-pdk-libs-sky130_fd_io/git/trees/e2a521d46e688d7c8ee9ee88fa4dc5b333d42003?recursive=1",
+      "sha256": "8281ceb199ca94f121c696ba61bb2bcf759bb5b236e5c2559ad9a2253131b5b0",
+      "retrieved_utc": "2026-11-11T14:21:05.726585+00:00"
+    },
+    "sky-custom-io-spice.txt": {
+      "path": "sky-custom-io-spice.txt",
+      "url": "https://raw.githubusercontent.com/RTimothyEdwards/open_pdks/fa87f8f4bbcc7255b6f0c0fb506960f531ae2392/sky130/custom/sky130_fd_io/spice/sky130_fd_io.spice",
+      "sha256": "6fd1e95560acf5f9c43ae26b1bf1e05d9bc9a71415a06da526e0d92b72e7fe83",
+      "retrieved_utc": "2026-11-11T14:21:04.759654+00:00"
+    },
+    "sky-io-corrected-spice.txt": {
+      "path": "sky-io-corrected-spice.txt",
+      "url": "https://raw.githubusercontent.com/RTimothyEdwards/open_pdks/2d93509249763cb83dae021fd0dbf3c79e262f47/sky130/custom/sky130_fd_io/spice/sky130_fd_io.spice",
+      "sha256": "9c2ea150ae8f4b387e336fd07765ef48ac958044a9cee81fac521508113f6a4e",
+      "retrieved_utc": "2026-11-11T14:23:40.138539+00:00"
+    },
+    "sky-pr5-spice.txt": {
+      "path": "sky-pr5-spice.txt",
+      "url": "https://raw.githubusercontent.com/RTimothyEdwards/skywater-pdk-libs-sky130_fd_io/e2a521d46e688d7c8ee9ee88fa4dc5b333d42003/netlist/sky130_fd_io.spice",
+      "sha256": "8c6c6dedf6dc45f54d7c220b4655688ede675fa28a06ef29ed81f84544c7e94b",
+      "retrieved_utc": "2026-11-11T14:21:56.010342+00:00"
+    },
+    "sky-pr5-tt-lib.txt": {
+      "path": "sky-pr5-tt-lib.txt",
+      "url": "https://raw.githubusercontent.com/RTimothyEdwards/skywater-pdk-libs-sky130_fd_io/e2a521d46e688d7c8ee9ee88fa4dc5b333d42003/timing/sky130_fd_io__top_gpiov2_tt_tt_025C_1v80_3v30.lib",
+      "sha256": "1e08ef30d2b94db7648fe33c4c2cfa65a151307a01a3d1dcfd61a0021b452694",
+      "retrieved_utc": "2026-11-11T14:21:55.706149+00:00"
+    },
+    "sky-build.txt": {
+      "path": "sky-build.txt",
+      "url": "https://raw.githubusercontent.com/RTimothyEdwards/open_pdks/fa87f8f4bbcc7255b6f0c0fb506960f531ae2392/sky130/Makefile.in",
+      "sha256": "4cbc4b535e2f7012d413be2e33ac63d40863a81a2e4c7159059c5c868606f1f1",
+      "retrieved_utc": "2026-11-11T14:20:06.146722+00:00"
+    },
+    "sky-nor-correction.json": {
+      "path": "sky-nor-correction.json",
+      "url": "https://api.github.com/repos/RTimothyEdwards/open_pdks/commits/11af1927d0866ecd23e7cd611c51aa8fc31e780d",
+      "sha256": "a58cb48e1eb4c4c12c3c23dab3b6d79dd88a38fb4d44d0e91bc8beae9771fae7",
+      "retrieved_utc": "2026-11-11T14:23:40.634715+00:00"
+    },
+    "sky-condiode-addition.json": {
+      "path": "sky-condiode-addition.json",
+      "url": "https://api.github.com/repos/RTimothyEdwards/open_pdks/commits/60211a2e4829d3e50f391d91a1b67572f051ff59",
+      "sha256": "fa4b16d88f84a0d03e6b8edd5d440807b1718913f36fc33ff1a29bc800bddaa4",
+      "retrieved_utc": "2026-11-11T14:22:05.861251+00:00"
+    },
+    "generic-characterization-help.txt": {
+      "path": "generic-characterization-help.txt",
+      "url": "https://raw.githubusercontent.com/RTimothyEdwards/open_pdks/fa87f8f4bbcc7255b6f0c0fb506960f531ae2392/runtime/characterize_help.txt",
+      "sha256": "b863ca107babb4d9be15cf09f807fbdeab5a9e1eddd934b64a5a9ee22d1eaea6",
+      "retrieved_utc": "2026-11-11T14:31:15.081803+00:00"
+    },
+    "sky-doc-pex.txt": {
+      "path": "sky-doc-pex.txt",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk/f70d8ca46961ff92719d8870a18a076370b85f6c/docs/verification/pex.rst",
+      "sha256": "83030967db14e8e17b38ddb5a2f58180ea4454cea5c2bb599d21f3487b46bf01",
+      "retrieved_utc": "2026-11-11T14:31:14.877119+00:00"
+    },
+    "sky-doc-pex-magic.txt": {
+      "path": "sky-doc-pex-magic.txt",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk/f70d8ca46961ff92719d8870a18a076370b85f6c/docs/verification/pex/magic.rst",
+      "sha256": "330702121d9160c8097e6a0856cf049a4fd7aa699246633c2ac967547a0fe34e",
+      "retrieved_utc": "2026-11-11T14:31:14.886334+00:00"
+    },
+    "sky-doc-pex-calibre.txt": {
+      "path": "sky-doc-pex-calibre.txt",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk/f70d8ca46961ff92719d8870a18a076370b85f6c/docs/verification/pex/calibre.rst",
+      "sha256": "ff40cbd2e81992dd974669fea5e0420f6a85d304756a7651db108d896c6a5cbd",
+      "retrieved_utc": "2026-11-11T14:31:14.876539+00:00"
+    },
+    "sky-doc-pex-klayout.txt": {
+      "path": "sky-doc-pex-klayout.txt",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk/f70d8ca46961ff92719d8870a18a076370b85f6c/docs/verification/pex/klayout.rst",
+      "sha256": "5cb63a239286611ac8bb7759f7872d369d6de8699fb5e5a1b55868be29e294b1",
+      "retrieved_utc": "2026-11-11T14:31:15.691512+00:00"
+    }
+  },
+  "library_headers": {
+    "gf180": {
+      "date": "31_Jul_2014",
+      "revision": "1.1",
+      "driver_model": null,
+      "simulator": null,
+      "def_sim_opt": null
+    },
+    "sky130": {
+      "date": "localtime",
+      "revision": "1.0",
+      "driver_model": "snps_predriver",
+      "simulator": "HSPICE -- H-2013.03 64-BIT (Feb 27 2013)",
+      "def_sim_opt": "POST=1 PROBE POST_VERSION=2001 STATFL=1 BRIEF=1 LISLVL=1 INGOLD=2 NOMOD NOPAGE NUMDGT=10 MEASDGT=10 AUTOSTOP SYMB=1 ALTCC=1 RUNLVL=5 ACCURATE=1 "
+    }
+  },
+  "tree_inventories": {
+    "gf-io-tree": {
+      "tree_entries": 536,
+      "file_count": 517,
+      "truncated": false,
+      "keyword_candidates": [
+        "docs/specs/18_Electrical_Characteristics.csv",
+        "docs/specs/21_Characterization_Corners.csv"
+      ],
+      "scope": "full path inventory; keywords are discovery aids, not evidence that unnamed content is absent"
+    },
+    "sky-io-tree": {
+      "tree_entries": 295,
+      "file_count": 264,
+      "truncated": false,
+      "keyword_candidates": [],
+      "scope": "full path inventory; keywords are discovery aids, not evidence that unnamed content is absent"
+    },
+    "sky-io-proposed-tree": {
+      "tree_entries": 746,
+      "file_count": 704,
+      "truncated": false,
+      "keyword_candidates": [],
+      "scope": "full path inventory; keywords are discovery aids, not evidence that unnamed content is absent"
+    },
+    "open-pdks-tree": {
+      "tree_entries": 931,
+      "file_count": 871,
+      "truncated": false,
+      "keyword_candidates": [
+        "runtime/characterize_help.txt",
+        "sky130/openlane/rules.openrcx.sky130A.max.spef_extractor",
+        "sky130/openlane/rules.openrcx.sky130A.min.spef_extractor",
+        "sky130/openlane/rules.openrcx.sky130A.nom.spef_extractor",
+        "sky130/openlane/rules.openrcx.sky130B.max.spef_extractor",
+        "sky130/openlane/rules.openrcx.sky130B.min.spef_extractor",
+        "sky130/openlane/rules.openrcx.sky130B.nom.spef_extractor"
+      ],
+      "scope": "full path inventory; keywords are discovery aids, not evidence that unnamed content is absent"
+    },
+    "skywater-tree": {
+      "tree_entries": 556,
+      "file_count": 437,
+      "truncated": false,
+      "keyword_candidates": [
+        "docs/verification/pex.rst",
+        "docs/verification/pex/calibre.rst",
+        "docs/verification/pex/klayout.rst",
+        "docs/verification/pex/magic.rst"
+      ],
+      "scope": "full path inventory; keywords are discovery aids, not evidence that unnamed content is absent"
+    }
+  },
+  "archive_inventories": {
+    "common.tar.zst": {
+      "sha256": "c7c155596a1fd1fcf6d5414dfcffcbbcf4e35b2b33160af97f4340e763c97406",
+      "regular_files": 3521,
+      "suffix_counts": {
+        "": 28,
+        ".awk": 26,
+        ".cdl": 876,
+        ".cells": 20,
+        ".csv": 72,
+        ".drc": 6,
+        ".gds": 8,
+        ".info": 14,
+        ".json": 2,
+        ".lef": 4,
+        ".lps": 6,
+        ".lvs": 2,
+        ".lydrc": 2,
+        ".lylvs": 2,
+        ".lym": 2,
+        ".lyp": 2,
+        ".lyt": 2,
+        ".mag": 52,
+        ".magic": 6,
+        ".magicrc": 2,
+        ".md": 20,
+        ".out": 2,
+        ".par": 32,
+        ".patch": 2,
+        ".png": 164,
+        ".prm": 22,
+        ".py": 82,
+        ".sch": 147,
+        ".sh": 36,
+        ".spef_extractor": 6,
+        ".spice": 310,
+        ".svg": 110,
+        ".sym": 1318,
+        ".tcl": 30,
+        ".tech": 8,
+        ".test_comparator": 2,
+        ".v": 94,
+        ".xcircuitrc": 2
+      },
+      "keyword_candidates": [
+        "sky130A/libs.tech/openlane/rules.openrcx.sky130A.max.spef_extractor",
+        "sky130A/libs.tech/openlane/rules.openrcx.sky130A.nom.spef_extractor",
+        "sky130A/libs.tech/openlane/rules.openrcx.sky130A.min.spef_extractor",
+        "sky130B/libs.tech/openlane/rules.openrcx.sky130B.min.spef_extractor",
+        "sky130B/libs.tech/openlane/rules.openrcx.sky130B.max.spef_extractor",
+        "sky130B/libs.tech/openlane/rules.openrcx.sky130B.nom.spef_extractor"
+      ]
+    },
+    "sky130_fd_io.tar.zst": {
+      "sha256": "feaa2d40837ff272e6f3b9512b11b8c61c4356ccb939e2fd75443a50af66cb47",
+      "regular_files": 3082,
+      "suffix_counts": {
+        ".cdl": 2,
+        ".gds": 16,
+        ".lef": 4,
+        ".lib": 778,
+        ".mag": 2272,
+        ".spice": 6,
+        ".v": 4
+      },
+      "keyword_candidates": []
+    },
+    "sky130_fd_pr.tar.zst": {
+      "sha256": "41dc9098541ed3329eba4ec7f5dfd1422eb09e94b623ea1f6dc3895f9ccebf63",
+      "regular_files": 2444,
+      "suffix_counts": {
+        ".gds": 2,
+        ".lef": 2,
+        ".mag": 1162,
+        ".spice": 1278
+      },
+      "keyword_candidates": []
+    }
+  },
+  "original_characterization_contract": {
+    "original_characterization_deck": null,
+    "original_input_waveform": null,
+    "original_load_reference_plane": null,
+    "original_extracted_netlist_and_pex_recipe": null,
+    "device_model_revision_used_for_liberty": null,
+    "original_hspice_reproduction": null
+  },
+  "empty_reachable_io_definitions": [
+    "sky130_fd_io__com_pad",
+    "sky130_fd_io__condiode"
+  ],
+  "changed_definitions": [
+    "sky130_fd_io__gpiov2_ctl_hld",
+    "sky130_fd_io__hvsbt_nor",
+    "sky130_fd_io__top_gpiov2"
+  ],
+  "new_pad_transients": 12,
+  "reused_baseline_transients": 6,
+  "new_configuration_count": 6,
+  "revision_software_checks": {
+    "all_12_completed": true,
+    "all_waveforms_valid": true,
+    "all_activity_saved": true,
+    "all_6_halfstep_checks": true,
+    "fixed_input_slews": true,
+    "original_models_unchanged": true
+  },
+  "artifact_hashes_rechecked": true,
+  "pad_cases": [
+    {
+      "case_id": "sky_nominal",
+      "config": {
+        "case_id": "sky_nominal",
+        "side": "sky130",
+        "input_slew_ns": 1.0,
+        "external_load_pf": 0.022799,
+        "role": "prior_nominal"
+      },
+      "baseline_metrics_ns": {
+        "rise_delay_ns": 1.0748641869201379,
+        "fall_delay_ns": 1.175131272565359,
+        "rise_slew_ns": 0.032944416922603637,
+        "fall_slew_ns": 0.044744646594537585
+      },
+      "liberty_metrics_ns": {
+        "rise_delay_ns": 1.400498911778846,
+        "fall_delay_ns": 1.6005333942307693,
+        "rise_slew_ns": 0.08720896370192308,
+        "fall_slew_ns": 0.09992142355769232
+      },
+      "variants": {
+        "nor_only": {
+          "metrics_ns": {
+            "rise_delay_ns": 1.0725009867810176,
+            "fall_delay_ns": 1.1750978128956362,
+            "rise_slew_ns": 0.032953180174960295,
+            "fall_slew_ns": 0.04474501891587579
+          },
+          "signed_change_ns": {
+            "rise_delay_ns": -0.0023632001391202806,
+            "fall_delay_ns": -3.345966972290171e-05,
+            "rise_slew_ns": 8.763252356658313e-06,
+            "fall_slew_ns": 3.7232133820452873e-07
+          },
+          "step_changes_ns": {
+            "rise_delay_ns": 5.843086865198188e-05,
+            "fall_delay_ns": 3.2874231365553896e-05,
+            "rise_slew_ns": 3.2268134519952696e-05,
+            "fall_slew_ns": 1.3819726206065752e-05
+          },
+          "empirical_delta_screen_ns": {
+            "rise_delay_ns": 0.00011298077802912587,
+            "fall_delay_ns": 6.385148647325423e-05,
+            "rise_slew_ns": 0.0001676683707412252,
+            "fall_slew_ns": 2.393151935109472e-05
+          },
+          "nominal_agreement": false,
+          "nominal_errors_ns": {
+            "rise_delay_ns": 0.3279979249978284,
+            "fall_delay_ns": 0.42543558133513315,
+            "rise_slew_ns": 0.05425578352696278,
+            "fall_slew_ns": 0.05517640464181653
+          },
+          "diagnostics": [
+            "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+            "Warning: Model issue on line 153 :",
+            "unrecognized parameter (-tol_poly) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "unrecognized parameter (-poly_dw) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "Warning: Dynamic gmin stepping failed",
+            "Warning: True gmin stepping failed",
+            "Warning: source stepping failed"
+          ],
+          "internal_node_activity_v": {
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi106": {
+              "rise_window_peak_to_peak": 0.009928498156162924,
+              "fall_window_peak_to_peak": 0.00943390338500083
+            },
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi102": {
+              "rise_window_peak_to_peak": 0.009929025133168068,
+              "fall_window_peak_to_peak": 0.009434186564854175
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi211": {
+              "rise_window_peak_to_peak": 6.509632110773822e-05,
+              "fall_window_peak_to_peak": 6.50974270479665e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi201": {
+              "rise_window_peak_to_peak": 6.50730145932421e-05,
+              "fall_window_peak_to_peak": 6.507543788014658e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi381": {
+              "rise_window_peak_to_peak": 1.9043623891157324e-06,
+              "fall_window_peak_to_peak": 1.571147446810528e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xi75": {
+              "rise_window_peak_to_peak": 6.38289421317495e-12,
+              "fall_window_peak_to_peak": 4.11137790479188e-12
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi30": {
+              "rise_window_peak_to_peak": 1.4437541100420503e-06,
+              "fall_window_peak_to_peak": 1.9707187699502526e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi26": {
+              "rise_window_peak_to_peak": 2.738287144143925e-05,
+              "fall_window_peak_to_peak": 2.5659489153784243e-05
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi106.xbuf_q0.xi488": {
+              "rise_window_peak_to_peak": 0.010238927165016065,
+              "fall_window_peak_to_peak": 0.010670244193479839
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi107.xi71": {
+              "rise_window_peak_to_peak": 0.030783576926664002,
+              "fall_window_peak_to_peak": 0.0432700335723607
+            }
+          }
+        },
+        "reachable_updates": {
+          "metrics_ns": {
+            "rise_delay_ns": 1.072500986781007,
+            "fall_delay_ns": 1.175097812895629,
+            "rise_slew_ns": 0.032953180174960295,
+            "fall_slew_ns": 0.044745018915868684
+          },
+          "signed_change_ns": {
+            "rise_delay_ns": -0.0023632001391309387,
+            "fall_delay_ns": -3.3459669730007136e-05,
+            "rise_slew_ns": 8.763252356658313e-06,
+            "fall_slew_ns": 3.7232133109910137e-07
+          },
+          "step_changes_ns": {
+            "rise_delay_ns": 5.8430868660863666e-05,
+            "fall_delay_ns": 3.2874231372659324e-05,
+            "rise_slew_ns": 3.226813451284727e-05,
+            "fall_slew_ns": 1.3819726206065752e-05
+          },
+          "empirical_delta_screen_ns": {
+            "rise_delay_ns": 0.00011298077803800766,
+            "fall_delay_ns": 6.385148648035965e-05,
+            "rise_slew_ns": 0.00016766837073411978,
+            "fall_slew_ns": 2.393151935109472e-05
+          },
+          "nominal_agreement": false,
+          "nominal_errors_ns": {
+            "rise_delay_ns": 0.3279979249978391,
+            "fall_delay_ns": 0.42543558133514026,
+            "rise_slew_ns": 0.05425578352696278,
+            "fall_slew_ns": 0.055176404641823634
+          },
+          "diagnostics": [
+            "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+            "Warning: Model issue on line 153 :",
+            "unrecognized parameter (-tol_poly) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "unrecognized parameter (-poly_dw) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "Warning: Dynamic gmin stepping failed",
+            "Warning: True gmin stepping failed",
+            "Warning: source stepping failed"
+          ],
+          "internal_node_activity_v": {
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi106": {
+              "rise_window_peak_to_peak": 0.009928498156315912,
+              "fall_window_peak_to_peak": 0.009433903384430842
+            },
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi102": {
+              "rise_window_peak_to_peak": 0.00992902513330396,
+              "fall_window_peak_to_peak": 0.009434186564294844
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi211": {
+              "rise_window_peak_to_peak": 6.509632098294915e-05,
+              "fall_window_peak_to_peak": 6.509742717408784e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi201": {
+              "rise_window_peak_to_peak": 6.507301435210167e-05,
+              "fall_window_peak_to_peak": 6.507543856493214e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi381": {
+              "rise_window_peak_to_peak": 1.9043604337909414e-06,
+              "fall_window_peak_to_peak": 1.5711454399713887e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xi75": {
+              "rise_window_peak_to_peak": 6.388223283693151e-12,
+              "fall_window_peak_to_peak": 4.11093381558203e-12
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi30": {
+              "rise_window_peak_to_peak": 1.4437542059653197e-06,
+              "fall_window_peak_to_peak": 1.9707189768958244e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi26": {
+              "rise_window_peak_to_peak": 2.7382868854841647e-05,
+              "fall_window_peak_to_peak": 2.565948780397509e-05
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi106.xbuf_q0.xi488": {
+              "rise_window_peak_to_peak": 0.010238927165012068,
+              "fall_window_peak_to_peak": 0.010670244193162315
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi107.xi71": {
+              "rise_window_peak_to_peak": 0.030783576926824985,
+              "fall_window_peak_to_peak": 0.04327003357278281
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sky130_anchor_rise",
+      "config": {
+        "case_id": "sky130_anchor_rise",
+        "side": "sky130",
+        "input_slew_ns": 0.630287647,
+        "external_load_pf": 0.014307999,
+        "role": "STA_anchor",
+        "selected_edge": "rise",
+        "anchor_record": {
+          "instance": "rx_data_pad",
+          "mode": "max",
+          "edge": "rise",
+          "condition": "!IB_MODE_SEL&!VTRIP_SEL",
+          "input_slew_ns": 0.630287647,
+          "effective_load_pf": 0.014307999,
+          "delay_ns": 1.304499984,
+          "table_output_slew_ns": 0.079004109,
+          "max_lookup_error_ns": 1.053832774378094e-07,
+          "inside_source_table_domain": true,
+          "used_in_reported_path": false,
+          "bridge_paths": [
+            "setup_rise"
+          ]
+        }
+      },
+      "baseline_metrics_ns": {
+        "rise_delay_ns": 0.9537185841835143,
+        "fall_delay_ns": 1.0548521770758512,
+        "rise_slew_ns": 0.025778872429080835,
+        "fall_slew_ns": 0.036361081899286773
+      },
+      "liberty_metrics_ns": {
+        "rise_delay_ns": 1.3044998786167226,
+        "fall_delay_ns": 1.4880822963008133,
+        "rise_slew_ns": 0.0790041133712868,
+        "fall_slew_ns": 0.09232803829240702
+      },
+      "variants": {
+        "nor_only": {
+          "metrics_ns": {
+            "rise_delay_ns": 0.9526799251650306,
+            "fall_delay_ns": 1.0548089849259128,
+            "rise_slew_ns": 0.025738920716117164,
+            "fall_slew_ns": 0.03636220614534125
+          },
+          "signed_change_ns": {
+            "rise_delay_ns": -0.0010386590184836564,
+            "fall_delay_ns": -4.3192149938420243e-05,
+            "rise_slew_ns": -3.9951712963670616e-05,
+            "fall_slew_ns": 1.1242460544735877e-06
+          },
+          "step_changes_ns": {
+            "rise_delay_ns": 4.690427075004777e-05,
+            "fall_delay_ns": 4.644101719009086e-05,
+            "rise_slew_ns": 3.781522133294857e-05,
+            "fall_slew_ns": 1.9705314706186527e-05
+          },
+          "empirical_delta_screen_ns": {
+            "rise_delay_ns": 9.330650136973873e-05,
+            "fall_delay_ns": 7.635093635371959e-05,
+            "rise_slew_ns": 4.175889579194347e-05,
+            "fall_slew_ns": 3.762421179942521e-05
+          },
+          "nominal_agreement": false,
+          "nominal_errors_ns": {
+            "rise_delay_ns": 0.3518199534516919,
+            "fall_delay_ns": 0.43327331137490055,
+            "rise_slew_ns": 0.05326519265516963,
+            "fall_slew_ns": 0.05596583214706577
+          },
+          "diagnostics": [
+            "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+            "Warning: Model issue on line 153 :",
+            "unrecognized parameter (-tol_poly) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "unrecognized parameter (-poly_dw) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "Warning: Dynamic gmin stepping failed",
+            "Warning: True gmin stepping failed",
+            "Warning: source stepping failed"
+          ],
+          "internal_node_activity_v": {
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi106": {
+              "rise_window_peak_to_peak": 0.015819801093485797,
+              "fall_window_peak_to_peak": 0.014740110416380903
+            },
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi102": {
+              "rise_window_peak_to_peak": 0.01582126869433198,
+              "fall_window_peak_to_peak": 0.014740226188955985
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi211": {
+              "rise_window_peak_to_peak": 6.509894482409351e-05,
+              "fall_window_peak_to_peak": 6.509458022607717e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi201": {
+              "rise_window_peak_to_peak": 6.507560222601683e-05,
+              "fall_window_peak_to_peak": 6.507266310018522e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi381": {
+              "rise_window_peak_to_peak": 2.989445271772695e-06,
+              "fall_window_peak_to_peak": 2.575145277017299e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xi75": {
+              "rise_window_peak_to_peak": 9.677147971842714e-12,
+              "fall_window_peak_to_peak": 8.256950678742214e-12
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi30": {
+              "rise_window_peak_to_peak": 2.3370257919985704e-06,
+              "fall_window_peak_to_peak": 2.285145127789434e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi26": {
+              "rise_window_peak_to_peak": 2.932448561820955e-05,
+              "fall_window_peak_to_peak": 2.8066055545838964e-05
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi106.xbuf_q0.xi488": {
+              "rise_window_peak_to_peak": 0.011905003700368066,
+              "fall_window_peak_to_peak": 0.010219936343573988
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi107.xi71": {
+              "rise_window_peak_to_peak": 0.030268629579015216,
+              "fall_window_peak_to_peak": 0.04210353671637879
+            }
+          }
+        },
+        "reachable_updates": {
+          "metrics_ns": {
+            "rise_delay_ns": 0.9526799251650306,
+            "fall_delay_ns": 1.0548089849259128,
+            "rise_slew_ns": 0.025738920716122493,
+            "fall_slew_ns": 0.03636220614534125
+          },
+          "signed_change_ns": {
+            "rise_delay_ns": -0.0010386590184836564,
+            "fall_delay_ns": -4.3192149938420243e-05,
+            "rise_slew_ns": -3.9951712958341545e-05,
+            "fall_slew_ns": 1.1242460544735877e-06
+          },
+          "step_changes_ns": {
+            "rise_delay_ns": 4.690427074649506e-05,
+            "fall_delay_ns": 4.644101706219317e-05,
+            "rise_slew_ns": 3.781522132406678e-05,
+            "fall_slew_ns": 1.9705314677764818e-05
+          },
+          "empirical_delta_screen_ns": {
+            "rise_delay_ns": 9.330650136618601e-05,
+            "fall_delay_ns": 7.63509362258219e-05,
+            "rise_slew_ns": 4.175889578306169e-05,
+            "fall_slew_ns": 3.76242117710035e-05
+          },
+          "nominal_agreement": false,
+          "nominal_errors_ns": {
+            "rise_delay_ns": 0.3518199534516919,
+            "fall_delay_ns": 0.43327331137490055,
+            "rise_slew_ns": 0.0532651926551643,
+            "fall_slew_ns": 0.05596583214706577
+          },
+          "diagnostics": [
+            "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+            "Warning: Model issue on line 153 :",
+            "unrecognized parameter (-tol_poly) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "unrecognized parameter (-poly_dw) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "Warning: Dynamic gmin stepping failed",
+            "Warning: True gmin stepping failed",
+            "Warning: source stepping failed"
+          ],
+          "internal_node_activity_v": {
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi106": {
+              "rise_window_peak_to_peak": 0.015819801089577146,
+              "fall_window_peak_to_peak": 0.014740110414892982
+            },
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi102": {
+              "rise_window_peak_to_peak": 0.015821268690423995,
+              "fall_window_peak_to_peak": 0.014740226187470062
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi211": {
+              "rise_window_peak_to_peak": 6.509894475081879e-05,
+              "fall_window_peak_to_peak": 6.509458079984043e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi201": {
+              "rise_window_peak_to_peak": 6.507560220780917e-05,
+              "fall_window_peak_to_peak": 6.507266335908923e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi381": {
+              "rise_window_peak_to_peak": 2.9894424669052455e-06,
+              "fall_window_peak_to_peak": 2.575142384664275e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xi75": {
+              "rise_window_peak_to_peak": 9.661160760288112e-12,
+              "fall_window_peak_to_peak": 8.256950678742214e-12
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi30": {
+              "rise_window_peak_to_peak": 2.337026077103843e-06,
+              "fall_window_peak_to_peak": 2.2851447520899626e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi26": {
+              "rise_window_peak_to_peak": 2.932448349701744e-05,
+              "fall_window_peak_to_peak": 2.8066051471320463e-05
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi106.xbuf_q0.xi488": {
+              "rise_window_peak_to_peak": 0.011905003700375172,
+              "fall_window_peak_to_peak": 0.010219936343550007
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi107.xi71": {
+              "rise_window_peak_to_peak": 0.03026862958083021,
+              "fall_window_peak_to_peak": 0.042103536711162404
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sky130_anchor_fall",
+      "config": {
+        "case_id": "sky130_anchor_fall",
+        "side": "sky130",
+        "input_slew_ns": 0.607017577,
+        "external_load_pf": 0.01297,
+        "role": "STA_anchor",
+        "selected_edge": "fall",
+        "anchor_record": {
+          "instance": "rx_data_pad",
+          "mode": "max",
+          "edge": "fall",
+          "condition": "!IB_MODE_SEL&!VTRIP_SEL",
+          "input_slew_ns": 0.607017577,
+          "effective_load_pf": 0.01297,
+          "delay_ns": 1.480165362,
+          "table_output_slew_ns": 0.091129728,
+          "max_lookup_error_ns": 6.035157062989072e-08,
+          "inside_source_table_domain": true,
+          "used_in_reported_path": true,
+          "propagated_output_slew_ns": 0.091129728,
+          "path_delay_error_ns": 0.0,
+          "bridge_paths": [
+            "setup_fall"
+          ]
+        }
+      },
+      "baseline_metrics_ns": {
+        "rise_delay_ns": 0.9452746622229657,
+        "fall_delay_ns": 1.0451014680338844,
+        "rise_slew_ns": 0.024631593783627892,
+        "fall_slew_ns": 0.0349521072250738
+      },
+      "liberty_metrics_ns": {
+        "rise_delay_ns": 1.2978011286860964,
+        "fall_delay_ns": 1.4801653016484293,
+        "rise_slew_ns": 0.07771121591160196,
+        "fall_slew_ns": 0.09112972857382466
+      },
+      "variants": {
+        "nor_only": {
+          "metrics_ns": {
+            "rise_delay_ns": 0.944376916376001,
+            "fall_delay_ns": 1.0450560213281364,
+            "rise_slew_ns": 0.02462752687082137,
+            "fall_slew_ns": 0.03495338473281606
+          },
+          "signed_change_ns": {
+            "rise_delay_ns": -0.0008977458469647814,
+            "fall_delay_ns": -4.544670574802012e-05,
+            "rise_slew_ns": -4.066912806521827e-06,
+            "fall_slew_ns": 1.2775077422588765e-06
+          },
+          "step_changes_ns": {
+            "rise_delay_ns": 4.3589765152063364e-05,
+            "fall_delay_ns": 2.4999113321655386e-05,
+            "rise_slew_ns": 1.3041747239483925e-05,
+            "fall_slew_ns": 2.9781354342617306e-06
+          },
+          "empirical_delta_screen_ns": {
+            "rise_delay_ns": 8.80770199991332e-05,
+            "fall_delay_ns": 7.181352476948177e-05,
+            "rise_slew_ns": 1.5712210823082273e-05,
+            "fall_slew_ns": 5.412987092512367e-05
+          },
+          "nominal_agreement": false,
+          "nominal_errors_ns": {
+            "rise_delay_ns": 0.35342421231009546,
+            "fall_delay_ns": 0.43510928032029295,
+            "rise_slew_ns": 0.05308368904078059,
+            "fall_slew_ns": 0.0561763438410086
+          },
+          "diagnostics": [
+            "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+            "Warning: Model issue on line 153 :",
+            "unrecognized parameter (-tol_poly) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "unrecognized parameter (-poly_dw) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "Warning: Dynamic gmin stepping failed",
+            "Warning: True gmin stepping failed",
+            "Warning: source stepping failed"
+          ],
+          "internal_node_activity_v": {
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi106": {
+              "rise_window_peak_to_peak": 0.016425674055351003,
+              "fall_window_peak_to_peak": 0.01527579045025318
+            },
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi102": {
+              "rise_window_peak_to_peak": 0.01642718614661387,
+              "fall_window_peak_to_peak": 0.01527581695529201
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi211": {
+              "rise_window_peak_to_peak": 6.509541207133651e-05,
+              "fall_window_peak_to_peak": 6.510025928330165e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi201": {
+              "rise_window_peak_to_peak": 6.507210957229503e-05,
+              "fall_window_peak_to_peak": 6.508033791829959e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi381": {
+              "rise_window_peak_to_peak": 3.1052704780876184e-06,
+              "fall_window_peak_to_peak": 2.6647666482304544e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xi75": {
+              "rise_window_peak_to_peak": 1.0114131754335176e-11,
+              "fall_window_peak_to_peak": 8.668177287063372e-12
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi30": {
+              "rise_window_peak_to_peak": 2.4567837937361503e-06,
+              "fall_window_peak_to_peak": 2.361462071220899e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi26": {
+              "rise_window_peak_to_peak": 2.952160806024562e-05,
+              "fall_window_peak_to_peak": 2.82992383375813e-05
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi106.xbuf_q0.xi488": {
+              "rise_window_peak_to_peak": 0.012023562300000012,
+              "fall_window_peak_to_peak": 0.01013233822911408
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi107.xi71": {
+              "rise_window_peak_to_peak": 0.03024794093123062,
+              "fall_window_peak_to_peak": 0.04208757088709236
+            }
+          }
+        },
+        "reachable_updates": {
+          "metrics_ns": {
+            "rise_delay_ns": 0.9443769163759992,
+            "fall_delay_ns": 1.0450560213281506,
+            "rise_slew_ns": 0.02462752687082137,
+            "fall_slew_ns": 0.03495338473281606
+          },
+          "signed_change_ns": {
+            "rise_delay_ns": -0.0008977458469665578,
+            "fall_delay_ns": -4.544670573380927e-05,
+            "rise_slew_ns": -4.066912806521827e-06,
+            "fall_slew_ns": 1.2775077422588765e-06
+          },
+          "step_changes_ns": {
+            "rise_delay_ns": 4.3589765157392435e-05,
+            "fall_delay_ns": 2.4999113136914275e-05,
+            "rise_slew_ns": 1.3041747228825784e-05,
+            "fall_slew_ns": 2.9781355479485683e-06
+          },
+          "empirical_delta_screen_ns": {
+            "rise_delay_ns": 8.807702000446227e-05,
+            "fall_delay_ns": 7.181352458474066e-05,
+            "rise_slew_ns": 1.5712210812424132e-05,
+            "fall_slew_ns": 5.4129871038810506e-05
+          },
+          "nominal_agreement": false,
+          "nominal_errors_ns": {
+            "rise_delay_ns": 0.35342421231009724,
+            "fall_delay_ns": 0.43510928032027874,
+            "rise_slew_ns": 0.05308368904078059,
+            "fall_slew_ns": 0.0561763438410086
+          },
+          "diagnostics": [
+            "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+            "Warning: Model issue on line 153 :",
+            "unrecognized parameter (-tol_poly) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "unrecognized parameter (-poly_dw) - ignored",
+            "unrecognized parameter (/) - ignored",
+            "Warning: Dynamic gmin stepping failed",
+            "Warning: True gmin stepping failed",
+            "Warning: source stepping failed"
+          ],
+          "internal_node_activity_v": {
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi106": {
+              "rise_window_peak_to_peak": 0.01642567405139106,
+              "fall_window_peak_to_peak": 0.01527579044875993
+            },
+            "xpad.xgpiov2_base_q0.xamux_q0.xbbm_logic.xamux_lv_decoder_q0.xi102": {
+              "rise_window_peak_to_peak": 0.01642718614267591,
+              "fall_window_peak_to_peak": 0.015275816953808974
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi211": {
+              "rise_window_peak_to_peak": 6.509541196830781e-05,
+              "fall_window_peak_to_peak": 6.510026450801121e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi201": {
+              "rise_window_peak_to_peak": 6.507210953987652e-05,
+              "fall_window_peak_to_peak": 6.508034562990872e-05
+            },
+            "xpad.xgpiov2_base_q0.xopath_q0.xopath_q0.xctl_q0.xi381": {
+              "rise_window_peak_to_peak": 3.105267543990209e-06,
+              "fall_window_peak_to_peak": 2.6647633890597433e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xi75": {
+              "rise_window_peak_to_peak": 1.0111911308285926e-11,
+              "fall_window_peak_to_peak": 8.673062268371723e-12
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi30": {
+              "rise_window_peak_to_peak": 2.4567840539724273e-06,
+              "fall_window_peak_to_peak": 2.361462371869294e-06
+            },
+            "xpad.xgpiov2_base_q0.xctrl_q0.xhld_dis_blk_q0.xi26": {
+              "rise_window_peak_to_peak": 2.9521603746252012e-05,
+              "fall_window_peak_to_peak": 2.829921919944578e-05
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi106.xbuf_q0.xi488": {
+              "rise_window_peak_to_peak": 0.012023562300017332,
+              "fall_window_peak_to_peak": 0.010132338229249083
+            },
+            "xpad.xgpiov2_base_q0.xipath_q0.xi107.xi71": {
+              "rise_window_peak_to_peak": 0.030247940929223893,
+              "fall_window_peak_to_peak": 0.042087570881736536
+            }
+          }
+        }
+      }
+    }
+  ],
+  "maximum_revision_step_change_ps": 0.058430868660863666,
+  "maximum_absolute_delay_change_ps": 2.3632001391309387,
+  "maximum_nor_vs_all_metric_difference_ns": 1.4210854715202004e-14,
+  "nominal_agreement_passed": 0,
+  "device_semantics": {
+    "software_checks_passed": true,
+    "pfet_current_ratios": {
+      "m1_mult2": 1.0,
+      "m2_mult1": 1.9999999999999993,
+      "m2_mult2": 1.9999999999999993
+    },
+    "resistor_ohms": {
+      "m1_unspecified": 0.12349572520329284,
+      "m1_unit": 0.12800633909989592,
+      "m3_unit": 0.04737892376153847,
+      "m3_narrow": 0.001547182558241627,
+      "m3_wide": 0.00013096847090826247,
+      "m4_unit": 0.04737892376153847,
+      "m4_wide": 0.00013118099581034486
+    },
+    "diagnostics": [
+      "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+    ]
+  },
+  "thermal_invariants": [
+    {
+      "name": "nominal",
+      "node_count": 912,
+      "peak_c": 60.74730285302888,
+      "ledger": {
+        "component_count": 1,
+        "every_component_has_sink": true,
+        "symmetry_error_w_per_k": 0.0,
+        "row_sum_minus_sink_inf_w_per_k": 1.1102230246251565e-16,
+        "positive_definiteness_basis": "nonnegative edges and sinks, with a positive sink in each connected component",
+        "input_power_w": 3.0,
+        "removed_heat_w": 3.0000000000002554,
+        "energy_balance_error_w": 2.55351295663786e-13,
+        "local_balance_inf_w": 4.529709940470639e-14,
+        "minimum_rise_k": 29.564683928231716,
+        "internal_entropy_production_w_per_k": 8.270777503427361e-05,
+        "boundary_entropy_production_w_per_k": 0.0009560054124533647,
+        "scope": "steady discrete conduction/contact/convection to one reservoir; no entropy model for the heat-generating electronics"
+      },
+      "necessary_invariants_passed": true
+    },
+    {
+      "name": "bottom_cooled",
+      "node_count": 912,
+      "peak_c": 64.69990119352343,
+      "ledger": {
+        "component_count": 1,
+        "every_component_has_sink": true,
+        "symmetry_error_w_per_k": 0.0,
+        "row_sum_minus_sink_inf_w_per_k": 1.1102230246251565e-16,
+        "positive_definiteness_basis": "nonnegative edges and sinks, with a positive sink in each connected component",
+        "input_power_w": 3.0,
+        "removed_heat_w": 3.0000000000001608,
+        "energy_balance_error_w": 1.6076029396572267e-13,
+        "local_balance_inf_w": 4.796163466380676e-14,
+        "minimum_rise_k": 24.78275372360912,
+        "internal_entropy_production_w_per_k": 0.00016967867398982812,
+        "boundary_entropy_production_w_per_k": 0.0009663071934345692,
+        "scope": "steady discrete conduction/contact/convection to one reservoir; no entropy model for the heat-generating electronics"
+      },
+      "necessary_invariants_passed": true
+    },
+    {
+      "name": "two_sided",
+      "node_count": 912,
+      "peak_c": 44.85384122728951,
+      "ledger": {
+        "component_count": 1,
+        "every_component_has_sink": true,
+        "symmetry_error_w_per_k": 0.0,
+        "row_sum_minus_sink_inf_w_per_k": 1.1102230246251565e-16,
+        "positive_definiteness_basis": "nonnegative edges and sinks, with a positive sink in each connected component",
+        "input_power_w": 3.0,
+        "removed_heat_w": 3.0000000000001834,
+        "energy_balance_error_w": 1.8340884366807586e-13,
+        "local_balance_inf_w": 3.5083047578154947e-14,
+        "minimum_rise_k": 11.404133762866707,
+        "internal_entropy_production_w_per_k": 7.582475391789816e-05,
+        "boundary_entropy_production_w_per_k": 0.0005069610356238341,
+        "scope": "steady discrete conduction/contact/convection to one reservoir; no entropy model for the heat-generating electronics"
+      },
+      "necessary_invariants_passed": true
+    },
+    {
+      "name": "anisotropic",
+      "node_count": 912,
+      "peak_c": 60.812179444895115,
+      "ledger": {
+        "component_count": 1,
+        "every_component_has_sink": true,
+        "symmetry_error_w_per_k": 0.0,
+        "row_sum_minus_sink_inf_w_per_k": 8.852510738344144e-17,
+        "positive_definiteness_basis": "nonnegative edges and sinks, with a positive sink in each connected component",
+        "input_power_w": 3.0,
+        "removed_heat_w": 3.0000000000000977,
+        "energy_balance_error_w": 9.769962616701378e-14,
+        "local_balance_inf_w": 3.907985046680551e-14,
+        "minimum_rise_k": 29.54910401259093,
+        "internal_entropy_production_w_per_k": 8.315606269104229e-05,
+        "boundary_entropy_production_w_per_k": 0.0009560303616837924,
+        "scope": "steady discrete conduction/contact/convection to one reservoir; no entropy model for the heat-generating electronics"
+      },
+      "necessary_invariants_passed": true
+    }
+  ],
+  "channel_scale_checks": [
+    {
+      "link_id": "lane_data",
+      "length_mm": 3.0,
+      "resistance_ohm": 5.040000000000001,
+      "capacitance_pf": 1.0359399740976003,
+      "ideal_external_inductance_nh": 0.3769911184307752,
+      "ideal_tem_flight_ps": 19.7620891978101,
+      "inductive_to_resistive_impedance_ratio": [
+        {
+          "frequency_ghz": 0.1,
+          "ratio": 0.046998116195663596
+        },
+        {
+          "frequency_ghz": 1.0,
+          "ratio": 0.46998116195663603
+        },
+        {
+          "frequency_ghz": 10.0,
+          "ratio": 4.69981161956636
+        }
+      ],
+      "rc_approximation_qualified": false,
+      "scope": "ideal-geometry scale estimate; omits return-path details, fringing, bumps, internal inductance, skin/proximity effects and dielectric loss"
+    },
+    {
+      "link_id": "lane_clock",
+      "length_mm": 3.0,
+      "resistance_ohm": 5.040000000000001,
+      "capacitance_pf": 1.0359399740976003,
+      "ideal_external_inductance_nh": 0.3769911184307752,
+      "ideal_tem_flight_ps": 19.7620891978101,
+      "inductive_to_resistive_impedance_ratio": [
+        {
+          "frequency_ghz": 0.1,
+          "ratio": 0.046998116195663596
+        },
+        {
+          "frequency_ghz": 1.0,
+          "ratio": 0.46998116195663603
+        },
+        {
+          "frequency_ghz": 10.0,
+          "ratio": 4.69981161956636
+        }
+      ],
+      "rc_approximation_qualified": false,
+      "scope": "ideal-geometry scale estimate; omits return-path details, fringing, bumps, internal inductance, skin/proximity effects and dielectric loss"
+    }
+  ],
+  "original_characterization_recovered": false,
+  "physical_model_qualified": false,
+  "hot_pad_timing_enabled": false,
+  "supervision": {
+    "skill": "codex-chatgpt-skill",
+    "conversation_url": "https://chatgpt.com/c/6af41d50-059c-83e8-92e6-eb975244c865",
+    "scope": "plan and interpretation review; reviewer did not independently reproduce local experiments"
+  },
+  "scope": "source-supported counterfactuals and necessary invariants; no full PDK upgrade, physical calibration or lane error bound"
+}
