@@ -16,19 +16,19 @@ def solve_steady(case, power):
     power = np.asarray(power, dtype=float)
     if power.shape != (case.ny, case.nx) or not np.all(np.isfinite(power)) or np.any(power < 0):
         raise ValueError("power must be a finite, nonnegative ny by nx array in watts")
-    dx = case.package.width * 1e-3 / case.nx
-    dy = case.package.height * 1e-3 / case.ny
+    dx = case.mesh.widths_mm * 1e-3
+    dy = case.mesh.heights_mm * 1e-3
     config = case.thermal
     kt = config["conductivity_w_mk"] * config["thickness_mm"] * 1e-3
-    gx, gy = kt * dy / dx, kt * dx / dy
-    sink = config["sink_h_w_m2k"] * dx * dy
+    sink = config["sink_h_w_m2k"] * np.outer(dy, dx).ravel()
     size = case.nx * case.ny
-    diagonal = np.full(size, sink)
+    diagonal = sink.copy()
     rows, cols, values = [], [], []
     for y in range(case.ny):
         for x in range(case.nx):
             a = y * case.nx + x
             if x + 1 < case.nx:
+                gx = kt * dy[y] / ((dx[x] + dx[x+1])/2)
                 b = a + 1
                 rows.extend((a, b))
                 cols.extend((b, a))
@@ -36,6 +36,7 @@ def solve_steady(case, power):
                 diagonal[a] += gx
                 diagonal[b] += gx
             if y + 1 < case.ny:
+                gy = kt * dx[x] / ((dy[y] + dy[y+1])/2)
                 b = a + case.nx
                 rows.extend((a, b))
                 cols.extend((b, a))
@@ -49,7 +50,7 @@ def solve_steady(case, power):
     rhs = power.ravel()
     rise = spsolve(matrix, rhs)
     residual = float(np.max(np.abs(matrix @ rise - rhs)))
-    removed = float(sink * rise.sum())
+    removed = float(sink @ rise)
     total = float(rhs.sum())
     if not np.all(np.isfinite(rise)) or residual > 1e-8 * max(1, total):
         raise ValueError("thermal linear solve failed residual check")
@@ -58,6 +59,8 @@ def solve_steady(case, power):
     temperature = rise.reshape(power.shape) + config["ambient_c"]
     return temperature, {"model": config["model"], "calibration": "not_calibrated",
                          "provenance": config["provenance"], "peak_c": float(temperature.max()),
-                         "minimum_c": float(temperature.min()), "mean_c": float(temperature.mean()),
+                         "minimum_c": float(temperature.min()),
+                         "mean_c": float(np.average(temperature, weights=case.mesh.areas_mm2)),
+                         "mesh": case.mesh.record(),
                          "removed_heat_w": removed, "energy_balance_error_w": removed - total,
                          "linear_residual_inf_w": residual}

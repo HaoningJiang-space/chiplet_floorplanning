@@ -80,3 +80,18 @@ each validated milestone. Exclude raw experiment outputs, environments,
 credentials, private host configuration and restricted third-party models.
 Public visibility is intentional; it does not itself select a software license.
 A redistribution license for original project code is not yet selected.
+
+## v0.4 update — geometry and low-speed interface
+
+Conformal nonuniform XY geometry, explicit contact resistance/anisotropy,
+die-restricted continuous temperature sampling and declared rectilinear route
+lengths are implemented. Moving a die preserves its coordinates and invalidates
+stale explicit routes. Instance-temperature and slack refinement checks now
+complement peak-temperature checks.
+
+The GF180 TX -> SKY130 RX TT GPIO prototype passes the declared software gates;
+the original opposite direction is a retained slew failure. Pad modes, voltage
+domains, actual receiver buffers and source-table domain checks are explicit.
+This advances G2 without completing its transistor-waveform/physical gate.
+The core-only local-temperature profile remains separate from this pad lane.
+See `validation-v04.md` for passing cases, failures and remaining evidence.

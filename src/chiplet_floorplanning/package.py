@@ -5,18 +5,25 @@ from scipy.sparse import coo_matrix
 from scipy.sparse.linalg import spsolve
 
 
+def conductivity_xyz(layer):
+    return layer.get('conductivity_xyz_w_mk', [layer.get('conductivity_w_mk')]*3)
+
+
 def assemble_package(case, power):
     cfg = case.thermal
     layers = cfg["layers"]
-    dx_mm, dy_mm = case.package.width / case.nx, case.package.height / case.ny
-    dx, dy = dx_mm * 1e-3, dy_mm * 1e-3
+    dx, dy = case.mesh.widths_mm*1e-3, case.mesh.heights_mm*1e-3
+    xe, ye = np.asarray(case.mesh.x_edges_mm), np.asarray(case.mesh.y_edges_mm)
     die_mask = np.zeros((case.ny, case.nx), dtype=bool)
     for die in case.dies:
         r = die.bounds
-        edges = [r.x / dx_mm, (r.x + r.width) / dx_mm, r.y / dy_mm, (r.y + r.height) / dy_mm]
-        if not np.allclose(edges, np.round(edges), rtol=0, atol=1e-8):
-            raise ValueError("layered package requires chiplet boundaries aligned to thermal grid")
-        x0, x1, y0, y1 = map(lambda x: int(round(x)), edges)
+        indices = []
+        for axis, value in ((xe, r.x), (xe, r.x+r.width), (ye, r.y), (ye, r.y+r.height)):
+            index = int(np.argmin(abs(axis-value)))
+            if not np.isclose(axis[index], value, rtol=0, atol=1e-10):
+                raise ValueError('uniform layered grid is not boundary aligned; use geometry_conformal mode')
+            indices.append(index)
+        x0, x1, y0, y1 = indices
         die_mask[y0:y1, x0:x1] = True
     ids = np.full((len(layers), case.ny, case.nx), -1, dtype=int)
     nodes = []
@@ -36,26 +43,29 @@ def assemble_package(case, power):
     if np.any(power[ids[power_z] < 0] != 0):
         raise ValueError("heat source outside active package material")
     for a, (z, y, x) in enumerate(nodes):
-        k = layers[z]["conductivity_w_mk"]
+        kx, ky, kz = conductivity_xyz(layers[z])
         t = layers[z]["thickness_mm"] * 1e-3
         if z == power_z:
             rhs[a] = power[y, x]
-        for zz, yy, xx, g in ((z, y, x + 1, k * t * dy / dx), (z, y + 1, x, k * t * dx / dy)):
+        for zz, yy, xx, axis in ((z, y, x + 1, 'x'), (z, y + 1, x, 'y')):
             if yy < case.ny and xx < case.nx and ids[zz, yy, xx] >= 0:
+                g = (kx*t*dy[y]/((dx[x]+dx[xx])/2) if axis == 'x'
+                     else ky*t*dx[x]/((dy[y]+dy[yy])/2))
                 b = ids[zz, yy, xx]
                 rows.extend((a, b)); cols.extend((b, a)); values.extend((-g, -g))
                 diagonal[a] += g
                 diagonal[b] += g
         if z + 1 < len(layers) and ids[z + 1, y, x] >= 0:
             other = layers[z + 1]
-            g = dx * dy / (t / (2 * k) + other["thickness_mm"] * 1e-3 / (2 * other["conductivity_w_mk"]))
+            g = dx[x]*dy[y] / (t/(2*kz) + layers[z].get('contact_resistance_above_m2k_w', 0)
+                              + other['thickness_mm']*1e-3/(2*conductivity_xyz(other)[2]))
             b = ids[z + 1, y, x]
             rows.extend((a, b)); cols.extend((b, a)); values.extend((-g, -g))
             diagonal[a] += g
             diagonal[b] += g
         for boundary, h in ((0, cfg["bottom_h_w_m2k"]), (len(layers) - 1, cfg["top_h_w_m2k"])):
             if z == boundary and h > 0:
-                sink[a] += dx * dy / (t / (2 * k) + 1 / h)
+                sink[a] += dx[x]*dy[y] / (t/(2*kz) + 1/h)
     rows.extend(range(len(nodes))); cols.extend(range(len(nodes))); values.extend(diagonal + sink)
     matrix = coo_matrix((values, (rows, cols)), shape=(len(nodes), len(nodes))).tocsr()
     return matrix, rhs, sink, nodes, ids, power_z
@@ -74,8 +84,10 @@ def solve_package(case, power):
     summary = {"model": case.thermal["model"], "calibration": "not_calibrated",
                "provenance": case.thermal["provenance"], "reported_layer": case.thermal["power_layer"],
                "peak_c": float(np.nanmax(temperature)), "minimum_c": float(np.nanmin(temperature)),
-               "mean_c": float(np.nanmean(temperature)), "removed_heat_w": removed,
+               "mean_c": float(np.average(temperature[source], weights=case.mesh.areas_mm2[source])), "removed_heat_w": removed,
                "energy_balance_error_w": float(removed - rhs.sum()), "linear_residual_inf_w": residual,
                "node_count": len(nodes), "all_node_temperature_c": (rise + case.thermal["ambient_c"]).tolist(),
-               "node_indices_layer_y_x": nodes}
+               "node_indices_layer_y_x": nodes, 'mesh': case.mesh.record(),
+               'temperature_location': 'power_layer_cell_centres_not_measured_junction',
+               'interface_model': 'half_cell_series_resistance_plus_explicit_contact_resistance'}
     return temperature, summary

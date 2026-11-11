@@ -60,6 +60,12 @@ class PackageTests(unittest.TestCase):
             solve_package(case, p)
         raw = copy.deepcopy(case.input_data)
         raw["chiplets"][0]["placement_mm"]["x"] += 0.1
+        moved = parse_case(raw)
+        p, _ = rasterize(moved)
+        _, summary = solve_package(moved, p)
+        self.assertLess(abs(summary['energy_balance_error_w']), 1e-8)
+        self.assertEqual(moved.dies[0].x, 1.1)
+        raw['grid']['mode'] = 'uniform'
         bad = parse_case(raw)
         p, _ = rasterize(bad)
         with self.assertRaisesRegex(ValueError, "aligned"):

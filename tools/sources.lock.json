@@ -235,6 +235,12 @@
       "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_sc_mcu7t5v0/43beb45e4d323a76239de436db2df6732e9a689b/cells/dffq/gf180mcu_fd_sc_mcu7t5v0__dffq_1__ff_125C_1v98.lib.json",
       "sha256": "b72f6dea0fb36b37dedda0f7e73f24a12a800324fb7552294ff126eb5865eb64",
       "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/gf_bi_t_tt_3v3.lib",
+      "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_io/2aeec51ea2824b6cc0b396acfc39f4535f40b23a/cells/bi_t/gf180mcu_fd_io__bi_t__tt_025C_3v30.lib",
+      "sha256": "08bfec98e95f3f25da65b510fecafb9eedfb531c8c5b3587421fbe64ac5b32f3",
+      "decompress_gzip": false
     }
   ]
 }

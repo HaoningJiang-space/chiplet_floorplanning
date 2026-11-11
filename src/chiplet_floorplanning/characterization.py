@@ -165,7 +165,11 @@ def write_sky_library(root, corner, output):
 
 
 def sample_instance_temperature(case, grid_c, die_id, point_mm):
-    """Use the containing thermal cell centre value; no smoothing over voids."""
+    """Bilinear reconstruction from centres within this die, clamped at edges.
+
+    Never mix temperatures from another die or extrapolate beyond the local
+    centre range. Boundary clamping is explicit and must be mesh-converged.
+    """
     die = next((die for die in case.dies if die.id == die_id), None)
     if die is None or not isinstance(point_mm, list) or len(point_mm) != 2:
         raise ValueError('unknown die or invalid local point')
@@ -176,16 +180,35 @@ def sample_instance_temperature(case, grid_c, die_id, point_mm):
     # A rotated local origin may lie on the high edge. Probe an infinitesimal
     # distance toward the die centre to choose the die-side cell at boundaries.
     cx, cy = die.point(die.width/2, die.height/2)
-    gx, gy = np.nextafter(gx, cx), np.nextafter(gy, cy)
-    ix, iy = math.floor(gx/case.package.width*case.nx), math.floor(gy/case.package.height*case.ny)
+    probe_x, probe_y = np.nextafter(gx, cx), np.nextafter(gy, cy)
+    ix = int(np.searchsorted(case.mesh.x_edges_mm, probe_x, side='right')-1)
+    iy = int(np.searchsorted(case.mesh.y_edges_mm, probe_y, side='right')-1)
     grid_c = np.asarray(grid_c)
     if grid_c.shape != (case.ny, case.nx):
         raise ValueError('temperature grid shape mismatch')
-    value = float(grid_c[iy, ix])
-    if not math.isfinite(value):
+    def weights(centres, low, high, point):
+        indices = np.flatnonzero((centres > low) & (centres < high))
+        if not len(indices):
+            raise ValueError('no thermal cell centre inside die; refine grid')
+        values = centres[indices]
+        bounded = float(np.clip(point, values[0], values[-1]))
+        right = int(np.searchsorted(values, bounded))
+        if right == 0:
+            return [(int(indices[0]), 1.0)], bounded != point
+        left = right-1
+        fraction = (bounded-values[left])/(values[right]-values[left])
+        return [(int(indices[left]), 1-fraction), (int(indices[right]), fraction)], bounded != point
+    rect = die.bounds
+    wx, clamp_x = weights(case.mesh.x_centers_mm, rect.x, rect.x+rect.width, gx)
+    wy, clamp_y = weights(case.mesh.y_centers_mm, rect.y, rect.y+rect.height, gy)
+    samples = [{'ix': x, 'iy': y, 'weight': float(a*b)} for x, a in wx for y, b in wy if a*b > 0]
+    if any(not math.isfinite(float(grid_c[s['iy'], s['ix']])) for s in samples):
         raise ValueError('instance temperature maps to a thermal void')
+    value = float(sum(s['weight']*grid_c[s['iy'], s['ix']] for s in samples))
     return value, {'chiplet': die_id, 'local_point_mm': point_mm,
-                   'package_point_mm': [float(gx), float(gy)], 'grid_index_xy': [ix, iy]}
+                   'package_point_mm': [float(gx), float(gy)], 'grid_index_xy': [ix, iy],
+                   'method': 'die_restricted_bilinear_clamped', 'clamped_xy': [clamp_x, clamp_y],
+                   'samples': samples}
 
 
 def sky_instance_model(root, cell, instance, temperature_c, output, corners=('tt_025C_1v80', 'tt_100C_1v80')):

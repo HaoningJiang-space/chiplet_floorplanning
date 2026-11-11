@@ -7,39 +7,7 @@ import re
 import subprocess
 
 from .interconnect import estimate_links
-
-
-NETLIST = '''module lane(input clk, input din, output dout);
-wire tx_q, data, fwd, capture_clk;
-sky130_fd_sc_hd__dfxtp_1 tx_reg (.CLK(clk), .D(din), .Q(tx_q));
-sky130_fd_sc_hd__buf_8 tx_data (.A(tx_q), .X(data));
-sky130_fd_sc_hd__buf_8 tx_clock (.A(clk), .X(fwd));
-gf180mcu_fd_sc_mcu7t5v0__inv_1 rx_clock (.I(fwd), .ZN(capture_clk));
-gf180mcu_fd_sc_mcu7t5v0__dffq_1 rx_reg (.CLK(capture_clk), .D(data), .Q(dout));
-endmodule
-'''
-
-
-def pad_netlist():
-    """Static digital push-pull GPIO mode, with input/pull/analog paths disabled."""
-    lines = ['module lane(input clk, input din, output dout);',
-             'wire tx_q, tx_d, tx_c, data, fwd, rx_d, rx_c, capture_clk;',
-             'sky130_fd_sc_hd__dfxtp_1 tx_reg (.CLK(clk), .D(din), .Q(tx_q));',
-             'sky130_fd_sc_hd__buf_8 tx_data (.A(tx_q), .X(tx_d));',
-             'sky130_fd_sc_hd__buf_8 tx_clock (.A(clk), .X(tx_c));']
-    controls = {'OE_N': 0, 'INP_DIS': 1, 'SLOW': 0, 'HLD_H_N': 1,
-                'HLD_OVR': 0, 'ENABLE_H': 1, 'ENABLE_VDDA_H': 0,
-                'ENABLE_INP_H': 0, 'ENABLE_VDDIO': 1, 'ENABLE_VSWITCH_H': 1,
-                'VTRIP_SEL': 0, 'IB_MODE_SEL': 0, 'ANALOG_EN': 0,
-                'ANALOG_SEL': 0, 'ANALOG_POL': 0}
-    pins = [f'.{pin}(1\'b{value})' for pin, value in controls.items()]
-    pins += [".DM(3'b110)"]
-    for name, source, net, target in [('data', 'tx_d', 'data', 'rx_d'), ('clock', 'tx_c', 'fwd', 'rx_c')]:
-        lines.append(f'sky130_ef_io__gpiov2_pad tx_{name}_pad (.OUT({source}), .PAD({net}), '+', '.join(pins)+');')
-        lines.append(f'gf180mcu_fd_io__in_c rx_{name}_pad (.PAD({net}), .Y({target}), .PU(1\'b0), .PD(1\'b0));')
-    lines += ['gf180mcu_fd_sc_mcu7t5v0__inv_1 rx_clock (.I(rx_c), .ZN(capture_clk));',
-              'gf180mcu_fd_sc_mcu7t5v0__dffq_1 rx_reg (.CLK(capture_clk), .D(rx_d), .Q(dout));', 'endmodule']
-    return '\n'.join(lines)+'\n'
+from .interfaces import CORE_NETLIST, forward_pad_netlist, reverse_pad_netlist, reverse_contract
 
 
 def parse_sta_log(log, links):
@@ -52,10 +20,27 @@ def parse_sta_log(log, links):
     matches = dict(re.findall(r"LANE_SLACK_(max|min)\s+([-+0-9.eE]+)", log))
     if matches.keys() != {"max", "min"} or not all(math.isfinite(float(v)) for v in matches.values()):
         raise ValueError("missing/invalid setup or hold timing result")
-    wire_caps = re.findall(r"Wire capacitance:\s+([0-9.eE+-]+)", log)
+    # OpenSTA prints scalar or rise/fall min:max capacitances depending on
+    # reduction/rounding. Check every reported value, not just the first token.
+    wire_caps, cap_variants = [], []
+    for row in re.findall(r'Wire capacitance:([^\n]+)', log):
+        values = re.findall(r'[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?', row)
+        if not values or any(not math.isfinite(float(v)) for v in values):
+            raise ValueError('invalid wire capacitance report')
+        cap_variants.append([float(v) for v in values])
+        wire_caps.append(values[0])
     expected_caps = [next(link["assumed_c_pf"] for link in links if link["kind"] == kind) for kind in ("data", "clock")]
-    if len(wire_caps) != 2 or any(not math.isclose(float(a), b, rel_tol=1e-5, abs_tol=1e-8) for a, b in zip(wire_caps, expected_caps)):
+    if len(wire_caps) != 2:
         raise ValueError("data/clock parasitic capacitance annotation mismatch")
+    totals = re.findall(r'Total capacitance:([^\n]+)', log)
+    for i, (values, expected) in enumerate(zip(cap_variants, expected_caps)):
+        # OpenSTA 2.2 stores float capacitances and derives wire C from large
+        # total/pin terms. Bound cancellation by four float32 relative epsilons
+        # of total C. Do not silently accept wires below this resolution.
+        total = max(map(float, re.findall(r'[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?', totals[i]))) if len(totals) == 2 else expected
+        tolerance = max(1e-8, 4*2**-23*abs(total))
+        if expected <= tolerance or any(v <= 0 or not math.isclose(v, expected, rel_tol=1e-5, abs_tol=tolerance) for v in values):
+            raise ValueError('data/clock parasitic capacitance annotation mismatch or below report precision')
     return matches, wire_caps
 
 
@@ -77,7 +62,8 @@ def spef_network(name, source, target, resistance_ohm, capacitance_pf, segments=
 
 
 def run_timing(case, output, sta, sky_lib, gf_lib, period_ns=20.0, data_r_scale=1.0, clock_r_scale=1.0,
-               sky_pad_lib=None, gf_pad_lib=None, characterized_corners=False, instance_models=None):
+               sky_pad_lib=None, gf_pad_lib=None, characterized_corners=False, instance_models=None,
+               pad_direction='sky130_to_gf180'):
     import math
     if any(not math.isfinite(v) or v <= 0 for v in (period_ns, data_r_scale, clock_r_scale)):
         raise ValueError("period and R scales must be positive finite values")
@@ -88,6 +74,11 @@ def run_timing(case, output, sta, sky_lib, gf_lib, period_ns=20.0, data_r_scale=
     if bool(sky_pad_lib) != bool(gf_pad_lib):
         raise ValueError('both pad libraries are required')
     pads = bool(sky_pad_lib)
+    if pad_direction not in ('sky130_to_gf180', 'gf180_to_sky130'):
+        raise ValueError('unsupported pad direction')
+    reverse = pad_direction == 'gf180_to_sky130'
+    if reverse and not pads:
+        raise ValueError('reverse direction requires both GPIO pad libraries')
     paths = [sky_lib, gf_lib]
     if pads:
         paths += [Path(p).resolve(strict=True) for p in (sky_pad_lib, gf_pad_lib)]
@@ -115,7 +106,7 @@ def run_timing(case, output, sta, sky_lib, gf_lib, period_ns=20.0, data_r_scale=
     libraries = []
     expected_cells = ['sky130_fd_sc_hd__dfxtp_1', 'gf180mcu_fd_sc_mcu7t5v0__dffq_1']
     if pads:
-        expected_cells += ['sky130_ef_io__gpiov2_pad', 'gf180mcu_fd_io__in_c']
+        expected_cells += ['sky130_ef_io__gpiov2_pad', 'gf180mcu_fd_io__bi_t' if reverse else 'gf180mcu_fd_io__in_c']
     expected_cells += [model['cell'] for model in instance_models.values()]
     for index, (path, cell) in enumerate(zip(paths, expected_cells)):
         content = path.read_text()
@@ -141,7 +132,9 @@ def run_timing(case, output, sta, sky_lib, gf_lib, period_ns=20.0, data_r_scale=
             metadata[key] = float(found[1]) if found else (1.0 if key == "slew_derate_from_library" else None)
         libraries.append({"file": path.name, "sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "metadata": metadata})
     output.mkdir(parents=True)
-    netlist = pad_netlist() if pads else NETLIST
+    netlist = forward_pad_netlist() if pads else CORE_NETLIST
+    if reverse:
+        netlist = reverse_pad_netlist()
     for instance, model in instance_models.items():
         netlist, count = re.subn(r'\b\w+\s+'+re.escape(instance)+r'\s+\(', model['cell']+' '+instance+' (', netlist)
         if count != 1:
@@ -196,13 +189,52 @@ foreach mode {{max min}} {{
 }}
 exit
 '''
+    if reverse:
+        script = script.replace('rx_clock/ZN', 'rx_clock/Y').replace('tx_data/A -to tx_data/X', 'tx_data/I -to tx_data/Z')
+        # report_dcalc visits both vertices of an inout pin. Only the load
+        # vertex is the receiving PAD input; its disabled driver vertex has
+        # zero slew and must not be mistaken for a propagated input waveform.
+        diagnostics = '''proc pad_input_dcalc {source target mode} {
+    set from_pin [lindex [get_pins $source] 0]
+    set to_pin [lindex [get_pins $target] 0]
+    array set keys {}
+    set corner [sta::parse_corner keys]
+    foreach vertex [$from_pin vertices] {
+        if {[$vertex is_bidirect_driver]} { continue }
+        set iter [$vertex out_edge_iterator]
+        while {[$iter has_next]} {
+            set edge [$iter next]
+            if {[$edge to_pin] == $to_pin} {
+                sta::report_edge_dcalc $edge $corner $mode 9
+            }
+        }
+        $iter finish
+    }
+}
+'''
+        for instance, source, target in [('tx_data_pad', 'A', 'PAD'), ('tx_clock_pad', 'A', 'PAD'),
+                                         ('rx_data_pad', 'PAD', 'IN'), ('rx_clock_pad', 'PAD', 'IN')]:
+            for mode in ('max', 'min'):
+                diagnostics += (f'puts "PAD_ARC_BEGIN {instance} {mode}"\n'
+                                f'pad_input_dcalc {instance}/{source} {instance}/{target} {mode}\n'
+                                f'puts "PAD_ARC_END {instance} {mode}"\n')
+        script = script.replace('exit\n', diagnostics+'exit\n')
     (output / "run.tcl").write_text(script)
     run = subprocess.run([str(sta), "-exit", "run.tcl"], cwd=output, capture_output=True, text=True, timeout=120)
     log = run.stdout + run.stderr
     (output / "sta.log").write_text(log)
     if run.returncode:
         raise ValueError(f"OpenSTA failed; inspect {output / 'sta.log'}")
-    matches, wire_caps = parse_sta_log(log, links)
+    try:
+        matches, wire_caps = parse_sta_log(log, links)
+        if reverse:
+            from .liberty_checks import check_pad_tables
+            table_checks = check_pad_tables(log, paths[2], paths[3])
+    except ValueError as error:
+        (output/'rejection.json').write_text(json.dumps({
+            'status': 'rejected', 'reason': str(error), 'pad_direction': pad_direction if pads else None,
+            'libraries': libraries, 'period_ns': period_ns, 'complete_package_signoff': False}, indent=2)+'\n')
+        raise
     report = {"status": "analyzed_core_cell_harness", "boundary": "no_pads_no_ESD_no_PHY_qualification",
               "operating_temperature_c": 25.0, "operating_voltage_v": 1.8,
               "thermal_timing_coupling": "not_implemented", "corner_coverage": "TT_only_not_signoff",
@@ -211,6 +243,7 @@ exit
               "libraries": libraries, "period_ns": period_ns,
               "annotated_wire_cap_pf": dict(zip(("data", "clock"), map(float, wire_caps))),
               "setup_slack_ns": float(matches["max"]), "hold_slack_ns": float(matches["min"]),
+              "timing_constraints_met": all(float(v) >= 0 for v in matches.values()),
               "package_r_scale": {"data": data_r_scale, "clock": clock_r_scale},
               "links": links, "tool_version": subprocess.check_output([str(sta), "-version"], text=True).strip(),
               "sta_sha256": hashlib.sha256(sta.read_bytes()).hexdigest(),
@@ -222,6 +255,10 @@ exit
     if pads:
         report.update(status='analyzed_GPIO_pad_harness', boundary='Liberty_pad_timing_not_SI_BER_or_PHY_qualification',
                       io_voltage_v=3.3, pad_mode='SKY130_DM110_fast_push_pull_GF180_pulls_disabled')
+    if reverse:
+        report.update(pad_mode='GF180_16mA_fast_SKY130_DM001_CMOS_input',
+                      interface=reverse_contract(), pad_table_checks=table_checks,
+                      table_domain_coverage='four_active_pad_arcs_rise_fall_min_max_not_all_core_constraints')
     if instance_models:
         report['thermal_timing_coupling'] = 'per_instance_Liberty_assignment_interpolation_accuracy_unvalidated'
         report['instance_models'] = {name: {k: v for k, v in model.items() if k != 'path'} for name, model in instance_models.items()}

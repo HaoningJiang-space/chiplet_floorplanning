@@ -28,9 +28,11 @@ def prepare(root):
     header = (models/'gf_io_tt_3v3.lib').read_text().rstrip()
     if not header.endswith('}'):
         raise ValueError('invalid GF180 library header')
-    target = models/'gf_io_tt_3v3_assembled.lib'
-    target.write_text(header[:-1]+'\n'+(models/'gf_in_c_tt_3v3.lib').read_text()+'\n}\n')
-    generated.append(target)
+    for cell, filename in (('in_c', 'gf_io_tt_3v3_assembled.lib'),
+                           ('bi_t', 'gf_bi_t_tt_3v3_assembled.lib')):
+        target = models/filename
+        target.write_text(header[:-1]+'\n'+(models/f'gf_{cell}_tt_3v3.lib').read_text()+'\n}\n')
+        generated.append(target)
     report = {'status': 'assembled_original_tables', 'inputs': records,
               'outputs': [{'file': p.name, 'sha256': digest(p)} for p in generated],
               'full_PVT': False, 'physical_calibration': 'not_available'}

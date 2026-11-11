@@ -1,7 +1,7 @@
 # Input and model contract (schema version 1)
 
 `examples/two_chiplets.json` is the complete executable input example. All fields
-are required; unknown fields are rejected. IDs match `[A-Za-z][A-Za-z0-9_]*`.
+are required unless explicitly documented as optional; unknown fields are rejected. IDs match `[A-Za-z][A-Za-z0-9_]*`.
 Numbers must be finite. Lengths in JSON are **mm**, power is **W**, temperatures
 are **degrees Celsius**, conductivity is **W/(m K)** and sink coefficient is
 **W/(m² K)**. Thermal equations convert mm to m explicitly.
@@ -56,8 +56,8 @@ These numerical checks do not demonstrate that the boundary conditions or
 material parameters represent a real package.
 
 The slab remains the same when a chiplet moves; only heat sources move. There
-is no die-specific thickness, underfill, interposer, heatsink stack, transient
-capacity, thermal feedback to power, or thermal timing in this version.
+is no die-specific thickness, underfill, interposer or heatsink stack in this
+slab model. Transient capacity and thermal feedback to power are not modeled.
 
 ## Interconnect and timing
 
@@ -123,3 +123,69 @@ thresholds discussed in initial planning. OpenSTA's pinned
 `LumpedCapDelayCalc::thresholdAdjust` applies the cross-library convention
 conversion. Raw library slew numbers are not treated as the same measured
 transition interval. Metadata and original library hashes are retained.
+
+## v0.4 geometry and thermal interfaces
+
+For a layered case, `grid.mode` defaults to `geometry_conformal`; the slab
+retains `uniform` by default. `nx,ny` specify the target maximum cell pitch,
+not a guaranteed final count in conformal mode. Package, die and power-block
+edges partition each axis; each interval is subdivided to that target pitch.
+The input geometry is preserved. Distinct edges below floating-point resolution
+are rejected. The output records requested/actual counts and exact mesh edges;
+CSV includes each cell's width and height. Explicit `uniform` mode still rejects
+nonaligned layered material boundaries, serving as a regression control.
+
+For neighbours with different widths, face conductance is
+`kx * thickness * face_height / ((width_i + width_j)/2)` (and analogously y).
+Each layer accepts exactly one of `conductivity_w_mk` or
+`conductivity_xyz_w_mk: [kx, ky, kz]`, with positive components. Optional
+`contact_resistance_above_m2k_w` is a nonnegative area-normalized contact
+resistance. Across layers, use
+`G = area / (t1/(2*kz1) + contact_R + t2/(2*kz2))`.
+A positive contact resistance above the final layer is rejected. Surface
+half-cell conduction and convection are in series. Heat removal and reported
+mean temperature use actual cell area, not equal weights on nonuniform cells.
+
+The material representation remains axis-aligned rectangular islands at quarter
+rotations, a common layer stack and one temperature node per physical layer in z.
+Different die thicknesses, polygons, tilted dies, resolved bump arrays and
+arbitrary 3D CAD are outside this representation. The source layer centre
+is an explicitly approximate temperature location, not a measured junction.
+
+Instance temperature is bilinearly reconstructed from cell centres **inside
+that instance's die only**, with clamping at its centre-range boundary.
+Weights, source indices, local/package coordinates and clamping flags are
+recorded. No interpolation crosses to another die or a void. Boundary clamping
+needs mesh convergence; no new physical temperature data are implied.
+
+## v0.4 explicit package routes and pad contract
+
+A link optionally supplies `route_points_mm: [[x0,y0], ..., [xn,yn]]` in package
+coordinates. Every segment must be nonzero and axis aligned; points must lie
+inside the package. First/last points must match transformed source/target
+ports. A die move invalidates a stale route and requires rerouting. RC uses
+the sum of segment lengths; `manhattan_length_mm` remains the geometric lower
+bound, while `modeled_length_mm` is the actual declared length. These are ideal
+constant-section conductors without bend discontinuities, routing DRC or
+coupling. The eight-section SPEF distributes the total RC over electrical length.
+
+`--pad-direction gf180_to_sky130` selects the fixed mode in `interfaces.py`:
+GF180 bi_t (OE=1, IE=0, PDRV1:0=11, SL=0, pulls off) to SKY gpiov2
+(DM=001, OE_N=1, INP_DIS=0, CMOS input), then real buf_16/inv_8 receiver cells.
+The [GF control table](https://gf180mcu-pdk.readthedocs.io/en/latest/IPs/IO/gf180mcu_fd_io/digital.html)
+and [SKY mode table](https://skywater-pdk.readthedocs.io/en/main/contents/libraries/sky130_fd_io/docs/user_guide.html)
+are the mode sources. Both I/O supply domains are 3.3 V; the SKY input's IN pin
+interfaces to its 1.8 V core. Physical supplies, power sequencing, pad ring,
+DC noise margin and ESD implementation are not validated by this logical netlist.
+
+Pad capacitances belong to Liberty. SPEF contains only the declared wire C;
+no extra pad capacitance is added. Actual GF timing-table load axes already
+include its pad self-capacitance and are used unchanged. Active pad timing
+checks independently interpolate original source tables at STA's input slew
+and Ceff for all four pads, rise/fall and min/max. Out-of-domain queries fail.
+The checker covers these pad tables, not all core setup/hold table domains.
+
+OpenSTA 2.2's capacitance report uses float arithmetic. Wire C readback permits
+four float32 relative epsilons of the reported total C to bound cancellation
+against much larger pin capacitance. Zero annotations and requested wire C
+below this reporting resolution are rejected. No electrical limits are relaxed.

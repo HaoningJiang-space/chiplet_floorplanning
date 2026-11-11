@@ -1,4 +1,7 @@
-"""Geometric lower bounds only: no routing, extraction, or timing analysis."""
+"""RC from explicit rectilinear routes or declared Manhattan lower bounds.
+
+No automatic router, design-rule checking, coupling or field extraction.
+"""
 
 
 def estimate_links(case):
@@ -15,10 +18,15 @@ def estimate_links(case):
         for endpoint in (link["source"], link["target"]):
             die = dies[endpoint["chiplet"]]
             points.append(die.point(*die.ports[endpoint["port"]]))
-        length = sum(abs(a - b) for a, b in zip(*points))
+        lower_bound = sum(abs(a - b) for a, b in zip(*points))
+        route = link.get('route_points_mm')
+        length = (sum(sum(abs(x-y) for x, y in zip(a, b)) for a, b in zip(route, route[1:]))
+                  if route else lower_bound)
         records.append({"id": link["id"], "kind": link["kind"],
                         "source_mm": points[0], "target_mm": points[1],
-                        "manhattan_length_mm": length,
+                        "manhattan_length_mm": lower_bound, 'modeled_length_mm': length,
+                        'route_geometry': 'explicit_rectilinear' if route else 'manhattan_lower_bound',
+                        'route_points_mm': route,
                         "assumed_r_ohm": length * r_per_mm,
                         "assumed_c_pf": length * c_per_mm,
                         "model": case.interconnect["model"],

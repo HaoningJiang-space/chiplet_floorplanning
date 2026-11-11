@@ -6,6 +6,8 @@ from pathlib import Path
 import json
 import re
 
+from .mesh import ThermalMesh, make_mesh
+
 
 class ModelError(ValueError):
     """Invalid or unsupported evaluation input."""
@@ -124,13 +126,20 @@ class Die:
 class Case:
     name: str
     package: Rect
-    nx: int
-    ny: int
+    mesh: ThermalMesh
     dies: tuple
     thermal: dict
     interconnect: dict
     links: tuple
     input_data: dict
+
+    @property
+    def nx(self):
+        return self.mesh.nx
+
+    @property
+    def ny(self):
+        return self.mesh.ny
 
 
 def parse_case(data):
@@ -142,7 +151,7 @@ def parse_case(data):
     fields(package, ("width", "height"))
     package = parse_rect(dict(package, x=0, y=0))
     grid = data["grid"]
-    fields(grid, ("nx", "ny"))
+    fields(grid, ("nx", "ny"), ('mode',))
     if any(type(grid[key]) is not int or grid[key] < 1 for key in ("nx", "ny")):
         raise ModelError("grid dimensions must be positive integers")
     if grid["nx"] * grid["ny"] > 250_000:
@@ -193,12 +202,25 @@ def parse_case(data):
         fields(thermal, ("model", "layers", "power_layer", "top_h_w_m2k", "bottom_h_w_m2k", "ambient_c", "provenance"))
         layers = sequence(thermal["layers"], "layers", nonempty=True)
         for layer in layers:
-            fields(layer, ("id", "footprint", "thickness_mm", "conductivity_w_mk"))
+            fields(layer, ("id", "footprint", "thickness_mm"),
+                   ('conductivity_w_mk', 'conductivity_xyz_w_mk', 'contact_resistance_above_m2k_w'))
             identifier(layer["id"])
             if layer["footprint"] not in ("package", "chiplets"):
                 raise ModelError("layer footprint must be package or chiplets")
-            for key in ("thickness_mm", "conductivity_w_mk"):
-                number(layer[key], key, positive=True)
+            number(layer['thickness_mm'], 'thickness_mm', positive=True)
+            if ('conductivity_w_mk' in layer) == ('conductivity_xyz_w_mk' in layer):
+                raise ModelError('specify exactly one scalar or xyz conductivity')
+            if 'conductivity_w_mk' in layer:
+                number(layer['conductivity_w_mk'], 'conductivity_w_mk', positive=True)
+            else:
+                components = sequence(layer['conductivity_xyz_w_mk'], 'conductivity_xyz_w_mk')
+                if len(components) != 3:
+                    raise ModelError('conductivity_xyz_w_mk requires x, y, z components')
+                for value in components:
+                    number(value, 'conductivity_xyz_w_mk', positive=True)
+            number(layer.get('contact_resistance_above_m2k_w', 0), 'contact_resistance_above_m2k_w', minimum=0)
+        if layers[-1].get('contact_resistance_above_m2k_w', 0) != 0:
+            raise ModelError('contact resistance above final layer has no material interface')
         unique([layer["id"] for layer in layers], "layer IDs")
         if thermal["power_layer"] not in [layer["id"] for layer in layers]:
             raise ModelError("unknown power_layer")
@@ -232,7 +254,7 @@ def parse_case(data):
     links = sequence(data["links"], "links")
     by_id = {d.id: d for d in dies}
     for link in links:
-        fields(link, ("id", "kind", "source", "target"))
+        fields(link, ("id", "kind", "source", "target"), ('route_points_mm',))
         identifier(link["id"])
         if link["kind"] not in ("data", "clock"):
             raise ModelError("link kind must be data or clock")
@@ -243,8 +265,34 @@ def parse_case(data):
                 raise ModelError(f"unknown endpoint {die_id}/{port}")
         if link["source"]["chiplet"] == link["target"]["chiplet"]:
             raise ModelError("links must cross chiplets")
+        if 'route_points_mm' in link:
+            route = sequence(link['route_points_mm'], 'route_points_mm', nonempty=True)
+            if not 2 <= len(route) <= 10000:
+                raise ModelError('route needs 2 to 10000 points')
+            for point in route:
+                if not isinstance(point, list) or len(point) != 2:
+                    raise ModelError('route points require package x,y in mm')
+                x, y = [number(v, 'route coordinate_mm', minimum=0) for v in point]
+                if x > package.width or y > package.height:
+                    raise ModelError('route outside package')
+            for a, b in zip(route, route[1:]):
+                if (a[0] == b[0]) == (a[1] == b[1]):
+                    raise ModelError('route segments must be nonzero and axis aligned')
+            for point, endpoint in zip((route[0], route[-1]), (link['source'], link['target'])):
+                die = by_id[endpoint['chiplet']]
+                expected = die.point(*die.ports[endpoint['port']])
+                if any(not math.isclose(a, b, rel_tol=0, abs_tol=1e-10) for a, b in zip(point, expected)):
+                    raise ModelError('route endpoint differs from transformed chiplet port; reroute after moving die')
     unique([link["id"] for link in links], "link IDs")
-    return Case(name, package, grid["nx"], grid["ny"], tuple(dies), thermal, interconnect, tuple(links), data)
+    mode = grid.get('mode', 'geometry_conformal' if thermal['model'] == 'layered_package_steady' else 'uniform')
+    rectangles = [r for die in dies for r in [die.bounds]+[die.transform(b.rect) for b in die.blocks]]
+    try:
+        mesh = make_mesh(package.width, package.height, grid['nx'], grid['ny'], mode, rectangles)
+    except ValueError as error:
+        raise ModelError(str(error)) from error
+    if mesh.nx*mesh.ny*len(thermal.get('layers', [None])) > 250_000:
+        raise ModelError('geometry-conforming mesh exceeds 250000 potential nodes')
+    return Case(name, package, mesh, tuple(dies), thermal, interconnect, tuple(links), data)
 
 
 def _object(pairs):

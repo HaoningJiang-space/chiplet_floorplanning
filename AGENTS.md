@@ -16,3 +16,7 @@ here; do not place these changes in adjacent placement repositories.
 - Keep credentials, SSH configuration, raw results, environments and restricted
   PDK assets out of the repository. Use `local/` and `results/` for local data.
 - Preserve user files and avoid changing global Git identity or authentication.
+- Keep production modules and reproducible validation separate. Remove superseded
+  temporary code; preserve necessary baselines, negative controls and evidence.
+- State physical assumptions and supported domains explicitly. Numerical checks
+  alone must never be presented as physical calibration or complete signoff.

@@ -77,14 +77,16 @@ def evaluate(case, output, timing_options=None, coupling_options=None):
     if not timing_options and not coupling_options:
         output.mkdir(parents=True, exist_ok=False)
     (output / "input.json").write_text(canonical, encoding="utf-8")
-    dx, dy = case.package.width / case.nx, case.package.height / case.ny
+    xs, ys = case.mesh.x_centers_mm, case.mesh.y_centers_mm
+    widths, heights, areas = case.mesh.widths_mm, case.mesh.heights_mm, case.mesh.areas_mm2
     with (output / "grid.csv").open("w", newline="", encoding="utf-8") as stream:
         writer = csv.writer(stream)
-        writer.writerow(["ix", "iy", "x_center_mm", "y_center_mm", "power_w", "power_density_w_mm2", "temperature_c"])
+        writer.writerow(["ix", "iy", "x_center_mm", "y_center_mm", "power_w", "power_density_w_mm2", "temperature_c", "width_mm", "height_mm"])
         for y in range(case.ny):
             for x in range(case.nx):
-                writer.writerow([x, y, (x + 0.5) * dx, (y + 0.5) * dy, power[y, x],
-                                 power[y, x] / (dx * dy), temperature[y, x] if np.isfinite(temperature[y, x]) else ""])
+                writer.writerow([x, y, xs[x], ys[y], power[y, x], power[y, x] / areas[y, x],
+                                 temperature[y, x] if np.isfinite(temperature[y, x]) else "",
+                                 widths[x], heights[y]])
     # Written last: its presence indicates completion of the other artifacts.
     (output / "report.json").write_text(encoded, encoding="utf-8")
     return report
@@ -105,6 +107,7 @@ def main(argv=None):
     run.add_argument("--period-ns", type=float, default=20.0)
     run.add_argument('--sky-pad-lib', type=Path)
     run.add_argument('--gf-pad-lib', type=Path)
+    run.add_argument('--pad-direction', choices=['sky130_to_gf180', 'gf180_to_sky130'], default='sky130_to_gf180')
     run.add_argument('--temperature-model-root', type=Path, help='enable per-instance SKY FF 1.65 V / GF FF 1.98 V core interpolation')
     run.add_argument('--instance-locations', type=Path, help='JSON with coordinate_unit=mm and die-local positions for all five instances')
     args = parser.parse_args(argv)
@@ -117,16 +120,17 @@ def main(argv=None):
             if args.temperature_model_root or args.instance_locations:
                 if not all((args.sta, args.temperature_model_root, args.instance_locations)):
                     raise ValueError('--sta, --temperature-model-root and --instance-locations are required together')
-                if any((args.sky_lib, args.gf_lib, args.sky_pad_lib, args.gf_pad_lib)):
+                if any((args.sky_lib, args.gf_lib, args.sky_pad_lib, args.gf_pad_lib)) or args.pad_direction != 'sky130_to_gf180':
                     raise ValueError('temperature profile uses its own core models; pad temperature libraries are unavailable')
                 coupling_options = dict(sta=args.sta, model_root=args.temperature_model_root,
                                         locations=json.loads(args.instance_locations.read_text()), period_ns=args.period_ns)
             else:
-                if any((args.sta, args.sky_lib, args.gf_lib, args.sky_pad_lib, args.gf_pad_lib)) and not all((args.sta, args.sky_lib, args.gf_lib)):
+                if (any((args.sta, args.sky_lib, args.gf_lib, args.sky_pad_lib, args.gf_pad_lib)) or args.pad_direction != 'sky130_to_gf180') and not all((args.sta, args.sky_lib, args.gf_lib)):
                     raise ValueError('--sta, --sky-lib and --gf-lib must be supplied together')
                 if args.sta:
                     timing_options = dict(sta=args.sta, sky_lib=args.sky_lib, gf_lib=args.gf_lib,
-                                          sky_pad_lib=args.sky_pad_lib, gf_pad_lib=args.gf_pad_lib, period_ns=args.period_ns)
+                                          sky_pad_lib=args.sky_pad_lib, gf_pad_lib=args.gf_pad_lib, period_ns=args.period_ns,
+                                          pad_direction=args.pad_direction)
             report = evaluate(case, args.output, timing_options, coupling_options)
             print(f"{case.name}: power={report['power']['mapped_w']:.6g} W; "
                   f"reference peak={report['thermal']['peak_c']:.6g} C")

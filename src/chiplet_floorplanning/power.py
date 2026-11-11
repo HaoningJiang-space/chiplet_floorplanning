@@ -4,15 +4,14 @@ import numpy as np
 
 
 def rasterize(case):
-    dx, dy = case.package.width / case.nx, case.package.height / case.ny
-    xs, ys = np.arange(case.nx) * dx, np.arange(case.ny) * dy
+    xs, ys = np.asarray(case.mesh.x_edges_mm), np.asarray(case.mesh.y_edges_mm)
     power = np.zeros((case.ny, case.nx))
     records = []
     for die in case.dies:
         for block in die.blocks:
             rect = die.transform(block.rect)
-            wx = np.maximum(0, np.minimum(xs + dx, rect.x + rect.width) - np.maximum(xs, rect.x))
-            wy = np.maximum(0, np.minimum(ys + dy, rect.y + rect.height) - np.maximum(ys, rect.y))
+            wx = np.maximum(0, np.minimum(xs[1:], rect.x + rect.width) - np.maximum(xs[:-1], rect.x))
+            wy = np.maximum(0, np.minimum(ys[1:], rect.y + rect.height) - np.maximum(ys[:-1], rect.y))
             deposited = block.power_w * np.outer(wy, wx) / rect.area
             mapped = float(deposited.sum())
             if not np.isclose(mapped, block.power_w, rtol=1e-10, atol=1e-12):

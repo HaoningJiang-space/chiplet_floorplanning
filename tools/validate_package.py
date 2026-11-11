@@ -21,6 +21,11 @@ from chiplet_floorplanning.package import assemble_package, solve_package
 
 
 def reference(case, upstream, output):
+    if (not np.allclose(case.mesh.widths_mm, case.package.width/case.nx, rtol=0, atol=1e-12)
+            or not np.allclose(case.mesh.heights_mm, case.package.height/case.ny, rtol=0, atol=1e-12)
+            or any('conductivity_xyz_w_mk' in layer or layer.get('contact_resistance_above_m2k_w', 0)
+                   for layer in case.thermal['layers'])):
+        raise ValueError('MFIT reference adapter requires uniform XY, isotropic layers and zero contact resistance')
     lock = json.loads(Path(__file__).with_name("sources.lock.json").read_text())
     for record in lock["files"]:
         if record["path"].startswith("upstream/mfit-source/"):

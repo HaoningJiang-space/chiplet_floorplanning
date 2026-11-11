@@ -1,9 +1,11 @@
 # Chiplet Floorplanning
 
-面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.3.0**
+面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.4.0**
 支持分层热网络、MFIT 数值对照、几何 RC/SPEF、真实 SKY130/GF180 库时序、
 25 组核心单元 PVT 组合，以及逐实例局部温度到时序的实验性耦合。
-真实 3.3 V GPIO pad 已接入；当前示例因接收端 slew 超限而被拒绝。
+新增 **GF180 发送 → SKY130 接收**的真实 3.3 V GPIO 源同步原型，
+50 MHz、假设 3 mm 封装线下通过声明的时序、电气和 pad 查表范围检查。
+原 SKY130→GF180 方向的 slew 超限仍作为失败对照保留。
 实物校准、全 PVT、pad/PHY 资格验证、温度插值的独立物理验证仍未完成。
 
 本项目遵循：**验证输入 → 验证评估器 → 验证布局差异 → 开始优化**。
@@ -36,6 +38,9 @@ python -m unittest discover -s tests -p '*_unittest.py' -v
 
 ## 已经实现
 
+- 保持矩形芯粒坐标的贴合网格；非均匀有限体积、各向异性导热及显式界面热阻。
+- 芯粒内连续温度重建、局部温度与 slack 网格收敛；不跨空隙插值。
+- 可选显式直角折线，与旋转后端口核对；移动芯粒后拒绝过期走线端点。
 - 严格 JSON 字段、有限数值、单位和来源文本检查；拒绝未知字段、重复键和无效端点。
 - chiplet 越界、重叠检查；局部块范围检查；0/90/180/270° 旋转及接口变换。
 - 将每个矩形块的均匀功率按面积交集分配到热网格；逐块检查功率守恒。
@@ -50,7 +55,8 @@ python -m unittest discover -s tests -p '*_unittest.py' -v
 - 解析解、独立两节点热网络、旋转、非网格对齐功耗、异常输入与 CLI 验证；GitHub Actions。
 
 两芯粒示例总功率为 **3 W**，data/clock 的曼哈顿距离均为 **3 mm**。
-距离是无障碍几何下界，没有走线层、拥塞、弯折规则、bump/pad 或串扰模型。
+未给 `route_points_mm` 时距离是无障碍几何下界；给定折线时使用实际声明长度。
+没有自动布线、走线层、拥塞、弯折规则、bump 寄生或串扰模型。
 I/O 块功耗由用户给定，当前不另加 link power，以避免重复计数。
 
 ## 模型和验证边界
@@ -119,3 +125,31 @@ chiplet-floorplanning evaluate examples/layered_two_chiplets.json \
 - [PULP serial_link](https://github.com/pulp-platform/serial_link)：后续源同步链路案例候选；尚未集成。
 
 本仓库没有复制上述项目源码或分发 PDK。后续接入时分别记录上游版本、许可证和模型来源。
+
+## 低速源同步 GPIO 原型（v0.4）
+
+```bash
+python tools/bootstrap_validation.py --build-sta
+python tools/prepare_characterization.py
+chiplet-floorplanning evaluate examples/low_speed_gpio.json \
+  --sta local/upstream/OpenSTA/app/sta \
+  --sky-lib local/pdk/sky130_tt_1v8.lib \
+  --gf-lib local/pdk-v03/gf_core_tt_3v3.lib \
+  --sky-pad-lib local/pdk-v03/sky_io_tt_1v8_3v3.lib \
+  --gf-pad-lib local/pdk-v03/gf_bi_t_tt_3v3_assembled.lib \
+  --pad-direction gf180_to_sky130 --period-ns 20 \
+  --output results/low-speed-gpio
+python tools/validate_prototype.py --output results/prototype
+```
+
+发送核心为 GF180、3.3 V；接收核心为 SKY130、1.8 V，双方 I/O 均为 3.3 V。
+数据在上升沿发出，随路时钟经接收反相器后在下降沿采样。固定模式见报告
+`timing.interface`；真实接收缓冲器让 pad 输出负载落在原库表征范围内。
+
+默认案例的 setup/hold 分别为 **8.705309 / 11.008110 ns**。这是 TT、25°C、
+理想时钟、假设封装线和零片内线寄生下的模型结果。`timing_constraints_met`
+与“分析成功”分别记录；2 ns 周期的负 setup 会正常报告失败。电气超限或 pad
+查表越界则生成 `rejection.json` 并终止评估，保留日志，不生成成功报告。
+
+本案例尚未完成晶体管级 pad 波形、完整协议仿真或实测校准；也没有把常温 pad
+与局部温度核心模型拼接成已验证的热链路。见 [v0.4 验证记录](docs/validation-v04.md)。
