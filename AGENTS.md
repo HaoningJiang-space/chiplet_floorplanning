@@ -13,8 +13,9 @@ here; do not place these changes in adjacent placement repositories.
   documented two-chiplet CLI case before publishing a milestone.
 - Keep numerical checks separate from physical model validation. Missing timing
   and external thermal validation must remain explicit in outputs.
-- Commit coherent validated changes and push promptly to the public
-  `HaoningJiang-space/chiplet_floorplanning` repository.
+- Commit coherent validated local milestones. The user's latest direction is
+  to run research experiments locally; do not push or trigger remote CI unless
+  the user subsequently requests publication. Continue fetching for freshness.
 - Maintain `main` as the only branch, locally and on `origin`. Commit validated
   changes directly on `main`; remove development branches after verifying they
   are fully merged.

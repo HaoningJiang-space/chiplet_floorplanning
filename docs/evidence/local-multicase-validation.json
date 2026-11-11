@@ -1,0 +1,1863 @@
+{
+  "milestone": "Real-Liberty Timing Contract Consistency",
+  "archived_utc": "2026-11-11T13:54:21.502729+00:00",
+  "execution": "local Windows only; no push or remote CI",
+  "source_note": "Runs used c124aa9 plus local changes. Hashes below identify the audited files archived after the final run.",
+  "remote_rechecked": true,
+  "remote_main_commit": "c124aa982eb97f49a7f4be907554c94436ace2d2",
+  "validation_files_sha256": {
+    "tools/validation/interface_bridge.py": "5328d0da75f0b5d6ec6e2a4ee3fbb5ded3f5e85bacd1e7edf93bc05f3fcf97a7",
+    "tools/validate_interface_bridge.py": "43f220b84bdf55123ff38b23efd2a27614a579066d4d310795c85964327ec7ef",
+    "tools/summarize_local_multicase.py": "f5cbe5a60b6e557881bd472dbedbb6a1a400eb3e4fffe4feac2accd989f88a78",
+    "tests/interface_bridge_unittest.py": "007a5bf87034ddfecf51b5892ef581fb4db6ac80cbafdb709ff8a1ffc23dc138",
+    "tools/validate_characterization.py": "0e51944cab1eb1275b718063e168427c1241bf10bd53520b8adf2c9553563f0b",
+    "tools/prepare_characterization.py": "a84d4e30f10c0b41da79740f7d917ec3a9978d5258af4de52e4db66978187242",
+    "tools/validate_open_thermal.py": "abf7c021c6b60a5cbb816a4e807b526f18a0de3d282672544a61e0075806838b",
+    "tools/validation/sources.py": "5574d12c08c0bd550c0ac57b0efe438faddaf9eaf5efca61379db0d1b21b28ad",
+    "src/chiplet_floorplanning/timing.py": "30cf5a58f4961ead67f4cc6e7bea469a43a297fe80b35b52e54779a7b151fc33",
+    "src/chiplet_floorplanning/liberty_checks.py": "107fa9fede7253bc310bab0a665a16a9821b1aa9a6c1a7554dc14290fd8f936c",
+    "src/chiplet_floorplanning/thermal.py": "54b457391d458c122deb3fdba84002a2b1b8180e5cf123b34cd7a6c95e90a5b5",
+    "src/chiplet_floorplanning/characterization.py": "0c5e8ce7d628dbaee8dbc8d1c75f2c239ac7fd3dfc57a55be4d7d4b8141e02bf"
+  },
+  "unit_tests": {
+    "passed": 85,
+    "failures": 0,
+    "log_sha256": "08bf134253aa655fc315fb7d8f1118c029b0fa48c85073378c64b723431a4cbb"
+  },
+  "basic_cli": {
+    "report_sha256": "176a21566c3bfc24a16d319deaae26c986e33101c4a608844c36282128ec3f47",
+    "report": {
+      "schema_version": 1,
+      "case": "two_chiplets",
+      "scope": "fixed_layout_assumption_driven_reference",
+      "validation": {
+        "geometry": "passed",
+        "power_conservation": "passed",
+        "thermal_residual_and_energy_balance": "passed",
+        "thermal_external_validation": "not_run",
+        "cross_die_setup_hold": "not_run"
+      },
+      "power": {
+        "input_w": 3.0,
+        "mapped_w": 3.0,
+        "error_w": 0.0,
+        "blocks": [
+          {
+            "chiplet": "tx",
+            "block": "compute",
+            "input_w": 1.5,
+            "mapped_w": 1.5,
+            "provenance": "Synthetic fixed-workload assumption; not RTL or measured power.",
+            "package_rect_mm": {
+              "x": 1.0,
+              "y": 2.0,
+              "width": 2.0,
+              "height": 2.0
+            }
+          },
+          {
+            "chiplet": "tx",
+            "block": "io",
+            "input_w": 0.5,
+            "mapped_w": 0.5,
+            "provenance": "Synthetic total I/O block power; no separate link power is added.",
+            "package_rect_mm": {
+              "x": 3.0,
+              "y": 2.0,
+              "width": 1.0,
+              "height": 2.0
+            }
+          },
+          {
+            "chiplet": "rx",
+            "block": "logic",
+            "input_w": 0.7,
+            "mapped_w": 0.7,
+            "provenance": "Synthetic fixed-workload assumption; not RTL or measured power.",
+            "package_rect_mm": {
+              "x": 8.0,
+              "y": 2.0,
+              "width": 2.0,
+              "height": 2.0
+            }
+          },
+          {
+            "chiplet": "rx",
+            "block": "io",
+            "input_w": 0.3,
+            "mapped_w": 0.3,
+            "provenance": "Synthetic total I/O block power; no separate link power is added.",
+            "package_rect_mm": {
+              "x": 7.0,
+              "y": 2.0,
+              "width": 1.0,
+              "height": 2.0
+            }
+          }
+        ]
+      },
+      "thermal": {
+        "model": "uniform_slab_steady",
+        "calibration": "not_calibrated",
+        "provenance": "Synthetic effective slab and distributed cooling; no calibrated package stack.",
+        "peak_c": 34.1886068258067,
+        "minimum_c": 25.837840813477314,
+        "mean_c": 28.125000000000053,
+        "mesh": {
+          "mode": "uniform",
+          "requested_nx": 48,
+          "requested_ny": 32,
+          "nx": 48,
+          "ny": 32,
+          "x_edges_mm": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0,
+            1.25,
+            1.5,
+            1.75,
+            2.0,
+            2.25,
+            2.5,
+            2.75,
+            3.0,
+            3.25,
+            3.5,
+            3.75,
+            4.0,
+            4.25,
+            4.5,
+            4.75,
+            5.0,
+            5.25,
+            5.5,
+            5.75,
+            6.0,
+            6.25,
+            6.5,
+            6.75,
+            7.0,
+            7.25,
+            7.5,
+            7.75,
+            8.0,
+            8.25,
+            8.5,
+            8.75,
+            9.0,
+            9.25,
+            9.5,
+            9.75,
+            10.0,
+            10.25,
+            10.5,
+            10.75,
+            11.0,
+            11.25,
+            11.5,
+            11.75,
+            12.0
+          ],
+          "y_edges_mm": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0,
+            1.25,
+            1.5,
+            1.75,
+            2.0,
+            2.25,
+            2.5,
+            2.75,
+            3.0,
+            3.25,
+            3.5,
+            3.75,
+            4.0,
+            4.25,
+            4.5,
+            4.75,
+            5.0,
+            5.25,
+            5.5,
+            5.75,
+            6.0,
+            6.25,
+            6.5,
+            6.75,
+            7.0,
+            7.25,
+            7.5,
+            7.75,
+            8.0
+          ],
+          "geometry_snapped": false
+        },
+        "removed_heat_w": 3.00000000000005,
+        "energy_balance_error_w": 5.0182080713057076e-14,
+        "linear_residual_inf_w": 6.661338147750939e-16
+      },
+      "links": [
+        {
+          "id": "lane_data",
+          "kind": "data",
+          "source_mm": [
+            4.0,
+            2.6
+          ],
+          "target_mm": [
+            7.0,
+            2.6
+          ],
+          "manhattan_length_mm": 3.0,
+          "modeled_length_mm": 3.0,
+          "route_geometry": "manhattan_lower_bound",
+          "route_points_mm": null,
+          "assumed_r_ohm": 0.30000000000000004,
+          "assumed_c_pf": 0.6000000000000001,
+          "model": "manhattan_lower_bound",
+          "provenance": "Synthetic per-length coefficients; no routed or extracted package parasitics."
+        },
+        {
+          "id": "lane_clock",
+          "kind": "clock",
+          "source_mm": [
+            4.0,
+            3.4
+          ],
+          "target_mm": [
+            7.0,
+            3.4
+          ],
+          "manhattan_length_mm": 3.0,
+          "modeled_length_mm": 3.0,
+          "route_geometry": "manhattan_lower_bound",
+          "route_points_mm": null,
+          "assumed_r_ohm": 0.30000000000000004,
+          "assumed_c_pf": 0.6000000000000001,
+          "model": "manhattan_lower_bound",
+          "provenance": "Synthetic per-length coefficients; no routed or extracted package parasitics."
+        }
+      ],
+      "timing": {
+        "status": "not_run",
+        "setup_slack_ns": null,
+        "hold_slack_ns": null
+      },
+      "qualification": {
+        "physical_package_calibration": "not_completed_no_measurement_data",
+        "full_PVT_signoff": "not_completed",
+        "pad_PHY_qualification": "not_completed",
+        "temperature_interpolation_holdout": "not_completed",
+        "complete_package_signoff": false
+      },
+      "provenance": {
+        "input_snapshot_sha256": "df949e1d36dffbcdefbba89c40c5deb6ad839894a5a70ebe00dd80deb8e626ba",
+        "tool_version": "0.8.0",
+        "source": {
+          "commit": "c124aa982eb97f49a7f4be907554c94436ace2d2",
+          "dirty": true
+        },
+        "python": "3.12.16",
+        "numpy": "2.5.4",
+        "scipy": "1.18.1",
+        "timestamp_utc": "2026-11-11T13:48:27.281504+00:00"
+      }
+    }
+  },
+  "summary_sha256": "ea093f919b38ce54815ac956e1811a66640dec8757f6ba77515c679ab8313939",
+  "chatgpt_supervision": {
+    "skill": "codex-chatgpt-skill",
+    "conversation": "https://chatgpt.com/c/6af41d50-059c-83e8-92e6-eb975244c865",
+    "applied": [
+      "distinguish event oracle, path accounting, and conditional source-table checks",
+      "bind actual arc identities, edge, mode and domains to four used paths",
+      "quantitative duty, period and uncertainty controls with propagation comparison",
+      "separate timing violations, electrical/domain rejection and execution failure"
+    ]
+  },
+  "results": {
+    "software_checks_passed": true,
+    "checks": {
+      "characterization": true,
+      "interface_bridge": true,
+      "thermal": true,
+      "quantitative_clock_controls": true,
+      "electrical_negative_evidence": true
+    },
+    "source": {
+      "commit": "c124aa982eb97f49a7f4be907554c94436ace2d2",
+      "dirty": true
+    },
+    "source_reports_sha256": {
+      "bridge": "885c5df622b65ee52e03e3fe6acc81168620feddb49c908c84ca617c6d0ef2eb",
+      "characterization": "aa050b6d0020b029efce7ee2e7227645183a114c7924ea0ffcc06d6b8d5a4794",
+      "thermal": "2c522ddec5fdf7e90dcef600a7ff06c078966cab23ff3c85437245f9e6620c82"
+    },
+    "sta_sha256": "45680a57b1e215ddd3732e6f91a472efca20720c23d0f6a95bf6302610aa953a",
+    "circuit_families": 2,
+    "timing_parameter_cases": 42,
+    "checked_timing_paths": 168,
+    "core_nldm_queries": 708,
+    "pad_nldm_queries": 144,
+    "receiver_constraint_queries": 168,
+    "cases": [
+      {
+        "name": "core_coupled_timing",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.969588242151,
+        "hold_slack_ns": 9.952721372159296,
+        "max_path_error_ns": 1.4050000025633835e-06,
+        "max_core_lookup_error_ns": 2.4778759977195364e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_endpoint_cold",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.80679533052185,
+        "hold_slack_ns": 9.964578054823868,
+        "max_path_error_ns": 1.5271761331092648e-06,
+        "max_core_lookup_error_ns": 2.8192425460815684e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_endpoint_hot",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 9.016549437029829,
+        "hold_slack_ns": 9.946454343575438,
+        "max_path_error_ns": 1.3119999984212427e-06,
+        "max_core_lookup_error_ns": 1.7596100909678114e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ff_100C_1v65__ff_125C_1v98",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 9.016549437029829,
+        "hold_slack_ns": 9.946454343575438,
+        "max_path_error_ns": 1.3119999984212427e-06,
+        "max_core_lookup_error_ns": 1.7596100909678114e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ff_100C_1v65__ff_n40C_1v98",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 9.130080886782189,
+        "hold_slack_ns": 9.969420738602766,
+        "max_path_error_ns": 1.1919999991505392e-06,
+        "max_core_lookup_error_ns": 2.0032676850689768e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ff_100C_1v65__ss_125C_1v62",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 7.297952143547282,
+        "hold_slack_ns": 8.969814609755456,
+        "max_path_error_ns": 1.2627554557553822e-06,
+        "max_core_lookup_error_ns": 2.1040197006882977e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ff_100C_1v65__ss_n40C_1v62",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 7.497650107404442,
+        "hold_slack_ns": 8.728909415129474,
+        "max_path_error_ns": 1.1919999991505392e-06,
+        "max_core_lookup_error_ns": 1.4813879434250055e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ff_100C_1v65__tt_025C_1v80",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.579941306281578,
+        "hold_slack_ns": 9.63506129264336,
+        "max_path_error_ns": 1.878356640006018e-06,
+        "max_core_lookup_error_ns": 2.2369252805631845e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ff_n40C_1v65__ff_125C_1v98",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.702055989255372,
+        "hold_slack_ns": 9.932716685351618,
+        "max_path_error_ns": 1.1319999977388306e-06,
+        "max_core_lookup_error_ns": 2.661316753638232e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ff_n40C_1v65__ff_n40C_1v98",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.80679533052185,
+        "hold_slack_ns": 9.964578054823868,
+        "max_path_error_ns": 1.5271761331092648e-06,
+        "max_core_lookup_error_ns": 2.8192425460815684e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ff_n40C_1v65__ss_125C_1v62",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 6.830680812479726,
+        "hold_slack_ns": 8.986120373352287,
+        "max_path_error_ns": 9.063962327360287e-07,
+        "max_core_lookup_error_ns": 1.5965028521414126e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ff_n40C_1v65__ss_n40C_1v62",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 6.9882443524619315,
+        "hold_slack_ns": 8.746575979272984,
+        "max_path_error_ns": 1.377777197220098e-06,
+        "max_core_lookup_error_ns": 3.018185346093105e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ff_n40C_1v65__tt_025C_1v80",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.188285885735734,
+        "hold_slack_ns": 9.64503982196324,
+        "max_path_error_ns": 1.3699999996674705e-06,
+        "max_core_lookup_error_ns": 3.110764683622591e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_only_rx_reg_100C",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.931948061530447,
+        "hold_slack_ns": 9.955244501314736,
+        "max_path_error_ns": 1.2379999994038826e-06,
+        "max_core_lookup_error_ns": 2.0472593198483935e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_only_tx_clock_100C",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.992468777948774,
+        "hold_slack_ns": 9.92881640304548,
+        "max_path_error_ns": 1.4009999986797084e-06,
+        "max_core_lookup_error_ns": 8.980765242583288e-08,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_only_tx_data_100C",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 9.031548341647454,
+        "hold_slack_ns": 9.97851586365879,
+        "max_path_error_ns": 1.2819999994917453e-06,
+        "max_core_lookup_error_ns": 1.4239504464441666e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_original_tt",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.323371964544561,
+        "hold_slack_ns": 9.680497961348735,
+        "max_path_error_ns": 1.3410000008207135e-06,
+        "max_core_lookup_error_ns": 2.0350844009975333e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ss_100C_1v60__ff_125C_1v98",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.399743022616077,
+        "hold_slack_ns": 10.341063213690264,
+        "max_path_error_ns": 1.2393097357232818e-06,
+        "max_core_lookup_error_ns": 4.893271636774443e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ss_100C_1v60__ff_n40C_1v98",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.483656569350519,
+        "hold_slack_ns": 10.343660263461876,
+        "max_path_error_ns": 1.1789999980749144e-06,
+        "max_core_lookup_error_ns": 4.2151522672284614e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ss_100C_1v60__ss_125C_1v62",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 6.4010456028231735,
+        "hold_slack_ns": 9.204265405237555,
+        "max_path_error_ns": 1.0372375545131263e-06,
+        "max_core_lookup_error_ns": 3.1238983932979636e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ss_100C_1v60__ss_n40C_1v62",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 6.569280173847609,
+        "hold_slack_ns": 8.955553374242246,
+        "max_path_error_ns": 1.5832923203618066e-06,
+        "max_core_lookup_error_ns": 4.791719301344699e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_ss_100C_1v60__tt_025C_1v80",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 7.878416637962244,
+        "hold_slack_ns": 9.943815778466803,
+        "max_path_error_ns": 1.3605331972144086e-06,
+        "max_core_lookup_error_ns": 4.1577246046031746e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_tt_025C_1v80__ff_125C_1v98",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.800711211935841,
+        "hold_slack_ns": 9.994370889182054,
+        "max_path_error_ns": 1.3410000008207135e-06,
+        "max_core_lookup_error_ns": 2.869827924190105e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_tt_025C_1v80__ff_n40C_1v98",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.911219756098204,
+        "hold_slack_ns": 10.01574562845865,
+        "max_path_error_ns": 1.3410000008207135e-06,
+        "max_core_lookup_error_ns": 1.854818407753811e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_tt_025C_1v80__ss_125C_1v62",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 6.989896517735349,
+        "hold_slack_ns": 9.013138735889173,
+        "max_path_error_ns": 1.3813968386955366e-06,
+        "max_core_lookup_error_ns": 1.7994349410521693e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_tt_025C_1v80__ss_n40C_1v62",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 7.163119998524262,
+        "hold_slack_ns": 8.7722536309305,
+        "max_path_error_ns": 1.3410000008207135e-06,
+        "max_core_lookup_error_ns": 2.280853781400083e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_tt_025C_1v80__tt_025C_1v80",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.323371964544561,
+        "hold_slack_ns": 9.680497961348735,
+        "max_path_error_ns": 1.3410000008207135e-06,
+        "max_core_lookup_error_ns": 2.0350844009975333e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_tt_100C_1v80__ff_125C_1v98",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.941794818347644,
+        "hold_slack_ns": 10.009948401836338,
+        "max_path_error_ns": 1.357999998674586e-06,
+        "max_core_lookup_error_ns": 1.1250683007446582e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_tt_100C_1v80__ff_n40C_1v98",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 9.05331188023958,
+        "hold_slack_ns": 10.028679246914962,
+        "max_path_error_ns": 1.5540850384354599e-06,
+        "max_core_lookup_error_ns": 1.1729231164103737e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_tt_100C_1v80__ss_125C_1v62",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 7.199896874022141,
+        "hold_slack_ns": 9.007141131898225,
+        "max_path_error_ns": 1.2819999994917453e-06,
+        "max_core_lookup_error_ns": 1.4763561440034323e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_tt_100C_1v80__ss_n40C_1v62",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 7.392086784515769,
+        "hold_slack_ns": 8.76531604879278,
+        "max_path_error_ns": 1.2819999994917453e-06,
+        "max_core_lookup_error_ns": 2.9218464292490864e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_tt_100C_1v80__tt_025C_1v80",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.497936732431054,
+        "hold_slack_ns": 9.684733721378587,
+        "max_path_error_ns": 1.5766214129797618e-06,
+        "max_core_lookup_error_ns": 1.5821529575354987e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "core_uniform_60C",
+        "family": "core",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.968843435693985,
+        "hold_slack_ns": 9.952335802055764,
+        "max_path_error_ns": 1.4009999986797084e-06,
+        "max_core_lookup_error_ns": 1.4239504464441666e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 16,
+        "pad_query_count": 0,
+        "timing_met": true
+      },
+      {
+        "name": "gpio_length_0.1mm",
+        "family": "gpio",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.705312861892926,
+        "hold_slack_ns": 11.013597969939012,
+        "max_path_error_ns": 1.3950000052886935e-06,
+        "max_core_lookup_error_ns": 1.2693294038079728e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 20,
+        "pad_query_count": 16,
+        "timing_met": true
+      },
+      {
+        "name": "gpio_length_1mm",
+        "family": "gpio",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.705313259649278,
+        "hold_slack_ns": 11.011644904002248,
+        "max_path_error_ns": 1.309999998255762e-06,
+        "max_core_lookup_error_ns": 1.2693294038079728e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 20,
+        "pad_query_count": 16,
+        "timing_met": true
+      },
+      {
+        "name": "gpio_length_3mm",
+        "family": "gpio",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.705308615528471,
+        "hold_slack_ns": 11.008112577782631,
+        "max_path_error_ns": 1.3100000053611893e-06,
+        "max_core_lookup_error_ns": 1.2693294038079728e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 20,
+        "pad_query_count": 16,
+        "timing_met": true
+      },
+      {
+        "name": "gpio_length_6mm",
+        "family": "gpio",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.705306533203014,
+        "hold_slack_ns": 11.002449263729003,
+        "max_path_error_ns": 1.3240000029668408e-06,
+        "max_core_lookup_error_ns": 1.2693294038079728e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 20,
+        "pad_query_count": 16,
+        "timing_met": true
+      },
+      {
+        "name": "gpio_duty_40",
+        "family": "gpio",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 6.705308615528471,
+        "hold_slack_ns": 13.008112577782631,
+        "max_path_error_ns": 1.3100000053611893e-06,
+        "max_core_lookup_error_ns": 1.2693294038079728e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 20,
+        "pad_query_count": 16,
+        "timing_met": true
+      },
+      {
+        "name": "gpio_duty_60",
+        "family": "gpio",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 10.705309330528468,
+        "hold_slack_ns": 9.008111571782631,
+        "max_path_error_ns": 1.4169999964508406e-06,
+        "max_core_lookup_error_ns": 1.2693294038079728e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 20,
+        "pad_query_count": 16,
+        "timing_met": true
+      },
+      {
+        "name": "gpio_period_40ns",
+        "family": "gpio",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 18.70530939052847,
+        "hold_slack_ns": 21.008113409782634,
+        "max_path_error_ns": 2.3990000030948977e-06,
+        "max_core_lookup_error_ns": 1.2693294038079728e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 20,
+        "pad_query_count": 16,
+        "timing_met": true
+      },
+      {
+        "name": "gpio_uncertainty",
+        "family": "gpio",
+        "status": "valid_timing_pass",
+        "setup_slack_ns": 8.605308615528472,
+        "hold_slack_ns": 10.958112577782632,
+        "max_path_error_ns": 1.3100000053611893e-06,
+        "max_core_lookup_error_ns": 1.2693294038079728e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 20,
+        "pad_query_count": 16,
+        "timing_met": true
+      },
+      {
+        "name": "gpio_setup_failure_2ns",
+        "family": "gpio",
+        "status": "valid_timing_violation",
+        "setup_slack_ns": -0.2946913514715295,
+        "hold_slack_ns": 2.0081118737826316,
+        "max_path_error_ns": 3.7100000049861137e-07,
+        "max_core_lookup_error_ns": 1.2693294038079728e-07,
+        "receiver_queries_in_domain": true,
+        "used_core_queries_in_domain": true,
+        "core_query_count": 20,
+        "pad_query_count": 16,
+        "timing_met": false
+      }
+    ],
+    "quantitative_controls": {
+      "gpio_duty_40": {
+        "paths": {
+          "setup_rise": {
+            "expected_delta_ns": -2,
+            "observed_delta_ns": -1.9999999999999991,
+            "absolute_error_ns": 8.881784197001252e-16
+          },
+          "setup_fall": {
+            "expected_delta_ns": -2,
+            "observed_delta_ns": -2.0,
+            "absolute_error_ns": 0.0
+          },
+          "hold_rise": {
+            "expected_delta_ns": 2,
+            "observed_delta_ns": 2.0,
+            "absolute_error_ns": 0.0
+          },
+          "hold_fall": {
+            "expected_delta_ns": 2,
+            "observed_delta_ns": 2.0,
+            "absolute_error_ns": 0.0
+          }
+        },
+        "same_pin_arc_identities": true,
+        "max_propagation_change_ns": 0.0,
+        "passed": true
+      },
+      "gpio_duty_60": {
+        "paths": {
+          "setup_rise": {
+            "expected_delta_ns": 2,
+            "observed_delta_ns": 2.0000007149999988,
+            "absolute_error_ns": 7.149999987632327e-07
+          },
+          "setup_fall": {
+            "expected_delta_ns": 2,
+            "observed_delta_ns": 2.000000714999997,
+            "absolute_error_ns": 7.149999969868759e-07
+          },
+          "hold_rise": {
+            "expected_delta_ns": -2,
+            "observed_delta_ns": -2.0000010059999997,
+            "absolute_error_ns": 1.0059999997480418e-06
+          },
+          "hold_fall": {
+            "expected_delta_ns": -2,
+            "observed_delta_ns": -2.0000010060000033,
+            "absolute_error_ns": 1.0060000033007555e-06
+          }
+        },
+        "same_pin_arc_identities": true,
+        "max_propagation_change_ns": 1.7760000000019427e-06,
+        "passed": true
+      },
+      "gpio_period_40ns": {
+        "paths": {
+          "setup_rise": {
+            "expected_delta_ns": 10,
+            "observed_delta_ns": 10.000000775,
+            "absolute_error_ns": 7.750000001749413e-07
+          },
+          "setup_fall": {
+            "expected_delta_ns": 10,
+            "observed_delta_ns": 10.000000774999998,
+            "absolute_error_ns": 7.749999983985845e-07
+          },
+          "hold_rise": {
+            "expected_delta_ns": 10,
+            "observed_delta_ns": 10.000000832000003,
+            "absolute_error_ns": 8.320000031147856e-07
+          },
+          "hold_fall": {
+            "expected_delta_ns": 10,
+            "observed_delta_ns": 9.999999228999995,
+            "absolute_error_ns": 7.710000051730503e-07
+          }
+        },
+        "same_pin_arc_identities": true,
+        "max_propagation_change_ns": 3.5760000000051306e-06,
+        "passed": true
+      },
+      "gpio_uncertainty": {
+        "paths": {
+          "setup_rise": {
+            "expected_delta_ns": -0.1,
+            "observed_delta_ns": -0.09999999999999787,
+            "absolute_error_ns": 2.1371793224034263e-15
+          },
+          "setup_fall": {
+            "expected_delta_ns": -0.1,
+            "observed_delta_ns": -0.09999999999999964,
+            "absolute_error_ns": 3.608224830031759e-16
+          },
+          "hold_rise": {
+            "expected_delta_ns": -0.05,
+            "observed_delta_ns": -0.049999999999998934,
+            "absolute_error_ns": 1.0685896612017132e-15
+          },
+          "hold_fall": {
+            "expected_delta_ns": -0.05,
+            "observed_delta_ns": -0.05000000000000071,
+            "absolute_error_ns": 7.077671781985373e-16
+          }
+        },
+        "same_pin_arc_identities": true,
+        "max_propagation_change_ns": 0.0,
+        "passed": true
+      },
+      "gpio_setup_failure_2ns": {
+        "paths": {
+          "setup_rise": {
+            "expected_delta_ns": -9,
+            "observed_delta_ns": -8.999999966999999,
+            "absolute_error_ns": 3.3000000954075404e-08
+          },
+          "setup_fall": {
+            "expected_delta_ns": -9,
+            "observed_delta_ns": -8.999999967,
+            "absolute_error_ns": 3.2999999177718564e-08
+          },
+          "hold_rise": {
+            "expected_delta_ns": -9,
+            "observed_delta_ns": -9.000000704,
+            "absolute_error_ns": 7.039999996294455e-07
+          },
+          "hold_fall": {
+            "expected_delta_ns": -9,
+            "observed_delta_ns": -9.000000551,
+            "absolute_error_ns": 5.509999994046666e-07
+          }
+        },
+        "same_pin_arc_identities": true,
+        "max_propagation_change_ns": 1.7880000000580765e-06,
+        "passed": true
+      }
+    },
+    "negative_controls": {
+      "gpio_length_12mm": {
+        "expected_rejection": true,
+        "outcome": "electrical_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      },
+      "original_direction": {
+        "expected_rejection": true,
+        "outcome": "electrical_rejected",
+        "reason": "electrical design-rule violation; lane result is outside declared limits"
+      },
+      "wrong_inversion": {
+        "expected_rejection": true,
+        "reason": "setup_rise: capture_edge_ns mismatch 20.0 versus 10.0",
+        "category": "structural_or_constraint_negative"
+      },
+      "missing_generated_clock": {
+        "expected_rejection": true,
+        "reason": "OpenSTA reported errors or warnings",
+        "category": "structural_or_constraint_negative"
+      },
+      "wrong_endpoint": {
+        "expected_rejection": true,
+        "reason": "setup_rise: wrong endpoint, polarity or clock",
+        "category": "structural_or_constraint_negative"
+      },
+      "missing_output_constraint": {
+        "expected_rejection": true,
+        "reason": "OpenSTA reported errors or warnings",
+        "category": "structural_or_constraint_negative"
+      },
+      "wrong_uncertainty": {
+        "expected_rejection": true,
+        "reason": "setup_rise: uncertainty_ns mismatch -0.099999994 versus -0.0",
+        "category": "structural_or_constraint_negative"
+      }
+    },
+    "electrical_negative_evidence": {
+      "gpio_length_12mm": {
+        "outcome": "electrical_rejected",
+        "violations": [
+          "tx_data_pad/PAD                         1.00    1.28   -0.28 (VIOLATED)",
+          "tx_clock_pad/PAD                        1.00    1.28   -0.28 (VIOLATED)"
+        ],
+        "log_sha256": "0e8ad7a7ad319bb20f7a5639428498014bd89f3a2340c3e6b95ed464b07f5fff",
+        "passed": true,
+        "execution_evidence": "run_timing checks returncode before creating electrical rejection.json"
+      },
+      "original_direction": {
+        "outcome": "electrical_rejected",
+        "violations": [
+          "rx_clock_pad/PAD                        1.00    1.84   -0.84 (VIOLATED)",
+          "rx_data_pad/PAD                         1.00    1.84   -0.84 (VIOLATED)"
+        ],
+        "log_sha256": "6bcf2a9a2337829759929d59a4c7cc7f7d9d41223120255c7014aca27adabac8",
+        "passed": true,
+        "execution_evidence": "run_timing checks returncode before creating electrical rejection.json"
+      }
+    },
+    "thermal_cases": [
+      {
+        "name": "example_1_uniform_nodes_homogeneous_chiplets",
+        "chiplets": 4,
+        "total_power_w": 6.024,
+        "peak_c": 80.1063522497934,
+        "final_peak_grid_change_k": 0.026459441829004504,
+        "energy_balance_error_w": 6.80788758700146e-12,
+        "reference_temperature_error_k": 1.1056044968427159e-11,
+        "numerical_checks_passed": true,
+        "physical_calibration": false
+      },
+      {
+        "name": "example_2_non_uniform_nodes_homogeneous_chiplets",
+        "chiplets": 4,
+        "total_power_w": 9.897057001272646,
+        "peak_c": 115.82199913084598,
+        "final_peak_grid_change_k": 0.03375722249485591,
+        "energy_balance_error_w": -3.0743407819500135e-11,
+        "reference_temperature_error_k": 1.823252659960417e-11,
+        "numerical_checks_passed": true,
+        "physical_calibration": false
+      },
+      {
+        "name": "example_3_heterogeneous_chiplets",
+        "chiplets": 3,
+        "total_power_w": 6.287800000000001,
+        "peak_c": 81.47023577369859,
+        "final_peak_grid_change_k": 0.02020306094037494,
+        "energy_balance_error_w": 7.416289804496046e-12,
+        "reference_temperature_error_k": 1.0089706847793423e-11,
+        "numerical_checks_passed": true,
+        "physical_calibration": false
+      },
+      {
+        "name": "rapidchiplet_16_original",
+        "chiplets": 16,
+        "total_power_w": 328.0,
+        "peak_c": 285.5872409852025,
+        "final_peak_grid_change_k": 0.0004528236962073606,
+        "energy_balance_error_w": -1.3426415534922853e-10,
+        "reference_temperature_error_k": null,
+        "numerical_checks_passed": true,
+        "physical_calibration": false
+      }
+    ],
+    "gpio_thermal": {
+      "gpio_length_0.1mm": {
+        "peak_c": 61.47690296660391,
+        "energy_balance_error_w": 1.176836406102666e-13
+      },
+      "gpio_length_1mm": {
+        "peak_c": 61.18058718126194,
+        "energy_balance_error_w": 1.7674750552032492e-13
+      },
+      "gpio_length_3mm": {
+        "peak_c": 60.74730285302888,
+        "energy_balance_error_w": 2.5490720645393594e-13
+      },
+      "gpio_length_6mm": {
+        "peak_c": 56.57004018826767,
+        "energy_balance_error_w": 4.0589753780295723e-13
+      },
+      "gpio_length_12mm": {
+        "peak_c": 49.83734746628458,
+        "energy_balance_error_w": 2.8554936193359026e-13
+      }
+    },
+    "temperature_experiments": {
+      "cold": {
+        "status": "analyzed_core_cell_harness",
+        "setup_slack_ns": 8.806795,
+        "hold_slack_ns": 9.96458,
+        "libraries": [
+          {
+            "file": "sky_ff_n40C_1v65.lib",
+            "sha256": "c4298ea847f16b090fb39d5370a7056ae1473b31d22ffddb9a650dfc368e18c9",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "gf_core_ff_n40C_1v98.lib",
+            "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "tx_reg.lib",
+            "sha256": "3ab497e70df9e4d71288f0def595be17d2ca5e793548ecb927eb76396a6458e8",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_data.lib",
+            "sha256": "25c4e0ae2a14c5f572684af018862e8f96c75d620f9bcb2140e8477f278438ef",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_clock.lib",
+            "sha256": "e9f5c29d3e35bccf1111b0136cc8f25dae657b88933c41b288fb9997972f0944",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "rx_clock.lib",
+            "sha256": "58ee3557eb9cb301aca83df1ed05ff0820cfb7e0efe29cd9e8a0c8db7c53a09a",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "rx_reg.lib",
+            "sha256": "63f3628d5a54a0db163d0f72406fa5191a5ccd19834597dd6d65cea904b143b7",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          }
+        ]
+      },
+      "hot": {
+        "status": "analyzed_core_cell_harness",
+        "setup_slack_ns": 9.016549,
+        "hold_slack_ns": 9.946455,
+        "libraries": [
+          {
+            "file": "sky_ff_n40C_1v65.lib",
+            "sha256": "c4298ea847f16b090fb39d5370a7056ae1473b31d22ffddb9a650dfc368e18c9",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "gf_core_ff_n40C_1v98.lib",
+            "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "tx_reg.lib",
+            "sha256": "85ffa8cec1535ee0bd0a75c35ba2746c9e3e4ce2267ea16ebb3a56dab38eb796",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 100.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_data.lib",
+            "sha256": "f552e8c8edd346f9a170f3c4b02eee8ba3654acf34a5eda2250f1714ea55b0e5",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 100.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_clock.lib",
+            "sha256": "ca6cb6ee1de73ae0fb556ee57b44fafe3968023a136b59c77db1947115286777",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 100.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "rx_clock.lib",
+            "sha256": "fe0df7f54974b4023cc3e3e3f89d81bcd4afd3a2beefff2e5690fcb495290ab1",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 125.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "rx_reg.lib",
+            "sha256": "79edd8038ef600ec4b4a00d21b779a43d1a63199f76ddbab66028a7e5e376cb8",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 125.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          }
+        ]
+      },
+      "uniform_60C": {
+        "status": "analyzed_core_cell_harness",
+        "setup_slack_ns": 8.968843,
+        "hold_slack_ns": 9.952336,
+        "libraries": [
+          {
+            "file": "sky_ff_n40C_1v65.lib",
+            "sha256": "c4298ea847f16b090fb39d5370a7056ae1473b31d22ffddb9a650dfc368e18c9",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "gf_core_ff_n40C_1v98.lib",
+            "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "tx_reg.lib",
+            "sha256": "db422b24f2a63cf2dbf0b93e5ee295332a91558ea0e781cc318e71c7db7eb817",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_data.lib",
+            "sha256": "8a7fb5abc81bc2ed550e6f45fb89cf6f77bd9da71c2ceee43c04b53563cc026b",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_clock.lib",
+            "sha256": "3766ccb3a02e0316b23ca7749e7072d1ba075e57804a34d0ea2dd2ca71b2ac36",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "rx_clock.lib",
+            "sha256": "98af5b13cfc5d5d09e9d88560408bdb3fa884525eb826ec106cec8110b0c8995",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "rx_reg.lib",
+            "sha256": "fde6401041f5b9a66bc54cd9611f221210058d00d868d45cbee84a76e69f47fe",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          }
+        ]
+      },
+      "only_tx_data_100C": {
+        "status": "analyzed_core_cell_harness",
+        "setup_slack_ns": 9.031549,
+        "hold_slack_ns": 9.978516,
+        "libraries": [
+          {
+            "file": "sky_ff_n40C_1v65.lib",
+            "sha256": "c4298ea847f16b090fb39d5370a7056ae1473b31d22ffddb9a650dfc368e18c9",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "gf_core_ff_n40C_1v98.lib",
+            "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "tx_reg.lib",
+            "sha256": "db422b24f2a63cf2dbf0b93e5ee295332a91558ea0e781cc318e71c7db7eb817",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_data.lib",
+            "sha256": "f552e8c8edd346f9a170f3c4b02eee8ba3654acf34a5eda2250f1714ea55b0e5",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 100.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_clock.lib",
+            "sha256": "3766ccb3a02e0316b23ca7749e7072d1ba075e57804a34d0ea2dd2ca71b2ac36",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "rx_clock.lib",
+            "sha256": "98af5b13cfc5d5d09e9d88560408bdb3fa884525eb826ec106cec8110b0c8995",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "rx_reg.lib",
+            "sha256": "fde6401041f5b9a66bc54cd9611f221210058d00d868d45cbee84a76e69f47fe",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          }
+        ]
+      },
+      "only_tx_clock_100C": {
+        "status": "analyzed_core_cell_harness",
+        "setup_slack_ns": 8.992469,
+        "hold_slack_ns": 9.928816,
+        "libraries": [
+          {
+            "file": "sky_ff_n40C_1v65.lib",
+            "sha256": "c4298ea847f16b090fb39d5370a7056ae1473b31d22ffddb9a650dfc368e18c9",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "gf_core_ff_n40C_1v98.lib",
+            "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "tx_reg.lib",
+            "sha256": "db422b24f2a63cf2dbf0b93e5ee295332a91558ea0e781cc318e71c7db7eb817",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_data.lib",
+            "sha256": "8a7fb5abc81bc2ed550e6f45fb89cf6f77bd9da71c2ceee43c04b53563cc026b",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_clock.lib",
+            "sha256": "ca6cb6ee1de73ae0fb556ee57b44fafe3968023a136b59c77db1947115286777",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 100.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "rx_clock.lib",
+            "sha256": "98af5b13cfc5d5d09e9d88560408bdb3fa884525eb826ec106cec8110b0c8995",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "rx_reg.lib",
+            "sha256": "fde6401041f5b9a66bc54cd9611f221210058d00d868d45cbee84a76e69f47fe",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          }
+        ]
+      },
+      "only_rx_reg_100C": {
+        "status": "analyzed_core_cell_harness",
+        "setup_slack_ns": 8.931949,
+        "hold_slack_ns": 9.955244,
+        "libraries": [
+          {
+            "file": "sky_ff_n40C_1v65.lib",
+            "sha256": "c4298ea847f16b090fb39d5370a7056ae1473b31d22ffddb9a650dfc368e18c9",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "gf_core_ff_n40C_1v98.lib",
+            "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "tx_reg.lib",
+            "sha256": "db422b24f2a63cf2dbf0b93e5ee295332a91558ea0e781cc318e71c7db7eb817",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_data.lib",
+            "sha256": "8a7fb5abc81bc2ed550e6f45fb89cf6f77bd9da71c2ceee43c04b53563cc026b",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_clock.lib",
+            "sha256": "3766ccb3a02e0316b23ca7749e7072d1ba075e57804a34d0ea2dd2ca71b2ac36",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "rx_clock.lib",
+            "sha256": "98af5b13cfc5d5d09e9d88560408bdb3fa884525eb826ec106cec8110b0c8995",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 60.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "rx_reg.lib",
+            "sha256": "c5158f5034865d8a5e1721c17f7464fa0f23fbd47c2125345e86597e85081586",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 100.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          }
+        ]
+      },
+      "coupled": {
+        "status": "analyzed_core_cell_harness",
+        "setup_slack_ns": 8.969588,
+        "hold_slack_ns": 9.952722,
+        "libraries": [
+          {
+            "file": "sky_ff_n40C_1v65.lib",
+            "sha256": "c4298ea847f16b090fb39d5370a7056ae1473b31d22ffddb9a650dfc368e18c9",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "gf_core_ff_n40C_1v98.lib",
+            "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": -40.0,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "tx_reg.lib",
+            "sha256": "e38e8b399b01df7424205f4885043997a932b86c7ac174037845249dc51e3ac3",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 60.4149961279,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_data.lib",
+            "sha256": "8a7486b495775641036360078b47ce87b2974a633b0d04651d5328ff461c2a9d",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 59.5132735007,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "tx_clock.lib",
+            "sha256": "7f5cff8e6cd29459e3df0f61faaecc592cb74a898513e32559faf85578623cf7",
+            "metadata": {
+              "nom_voltage": 1.65,
+              "nom_temperature": 59.4594653272,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 20.0,
+              "slew_upper_threshold_pct_rise": 80.0,
+              "slew_derate_from_library": 1.0
+            }
+          },
+          {
+            "file": "rx_clock.lib",
+            "sha256": "4d44545cd49b17e9740081b93749676e00e1703be4320101ea5e199f6c9b660a",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 57.4972258773,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          },
+          {
+            "file": "rx_reg.lib",
+            "sha256": "4ee543555fc0e718fe00a8c71ded3d5b48f4e1e121fa1e35a8fde9433033c24b",
+            "metadata": {
+              "nom_voltage": 1.98,
+              "nom_temperature": 57.4606486261,
+              "input_threshold_pct_rise": 50.0,
+              "output_threshold_pct_rise": 50.0,
+              "slew_lower_threshold_pct_rise": 30.0,
+              "slew_upper_threshold_pct_rise": 70.0,
+              "slew_derate_from_library": 0.5
+            }
+          }
+        ]
+      },
+      "local_temperature_c": {
+        "tx_reg": 60.414996127933584,
+        "tx_data": 59.513273500717474,
+        "tx_clock": 59.45946532721709,
+        "rx_clock": 57.49722587734566,
+        "rx_reg": 57.4606486260572
+      }
+    },
+    "all_used_queries_in_domain": true,
+    "physical_d2d_validation": false,
+    "thermal_physical_calibration": false,
+    "propagation_validation": "conditional NLDM checks at STA slew/Ceff; path accounting reuses STA increments",
+    "scope": "local parameter experiments on two timing circuits; four thermal input cases; no joint-optimization necessity claim"
+  }
+}
