@@ -67,3 +67,19 @@ The current 20 ns assumption is a control, not proof of real timing pressure.
 Keep source and meaningful failure tests separate from raw reports/PDKs. Run
 the full unit suite, original two-chiplet CLI, new routing experiment and
 affected old prototype/ranking regressions before committing/pushing main.
+
+## Amendment after the first CI run
+
+Run `43015732814` at `89f27c8` failed the historical R2 comparison while every
+R2 value exactly matched the old ranking runner on the **same CI build**.
+The two OpenSTA executable hashes differ; compared with the historical local
+receipt, CI differs by at most 4e-6 ns setup / 1e-5 ns hold. Its old and new
+R2 runners both count 115 pairs, versus the local 121. The 104 pairs above 1 ps
+are unchanged. These observations invalidate a cross-build femtosecond equality
+assumption; they do not qualify a physical uncertainty bound.
+
+Require `--reference-ranking` from the old runner on the same build. Check all
+case input hashes, executable/library identity, period/interface identity,
+statuses and **exact reported slack equality**, with no enlarged tolerance.
+Keep historical local differences as diagnostics. Retain the failed CI run and
+its compact diagnostic receipt; do not relabel its failed gate as a pass.

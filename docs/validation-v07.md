@@ -34,7 +34,9 @@ the constructed legal pair attains the sum of independent Manhattan lower
 bounds; Manhattan distance alone was never accepted as a legal route.
 
 R2 reproduces the prior 20 analyzed and 7 electrically rejected candidates and
-all reported setup/hold values within the prior 2e-6 ns reporting tolerance.
+exactly matches the old ranking runner's reported setup/hold on the same build.
+Local values in the tables match the historical receipt; cross-build differences
+are discussed below and are not screened with a physical-error tolerance.
 R3's exchanged routes intersect on the declared layer. They are rejected before
 SPEF/STA; this does not establish impossibility with a different metal stack and
 properly modeled vias. R4 selects R1 for every placement in its finite portfolio,
@@ -50,7 +52,7 @@ margin ranges remain available in the receipt.
 | R4, all 27 accepted | 73 | 0 |
 | R1/R4, same 20 accepted by R2 | 28 each | 0 each |
 
-R2 reproduces the review's split: 99 pairs have different TX y coordinates and
+Locally R2 reproduces the review's split: 99 pairs have different TX y coordinates and
 22 have the same TX y. Counts share one design/model and are not independent
 replicates. R3 has no accepted cohort: its conflict count is **null**, not zero.
 The common cohort includes R1/R2/R4 only and explicitly records this exclusion.
@@ -68,6 +70,27 @@ pair is asserted physically resolvable. The full physical error is unbounded.
 At raw reported precision R2 has six Pareto points; treating slack differences
 within 2e-6 ns as tied leaves layouts 23/24/25/26. This precision dependence is
 reported, not evidence of a necessary design tradeoff.
+
+## First CI failure and build-dependent tiny rankings
+
+The [first CI run](https://github.com/HaoningJiang-space/chiplet_floorplanning/actions/runs/43015732814)
+at `89f27c8` failed the comparison against historical local R2 slack. Its new R2
+and old ranking runner nevertheless agree **exactly for every reported slack**,
+with identical case input hashes, libraries and STA executable. Relative to the
+local build, its largest R2 difference is 0.004 ps setup / 0.01 ps hold.
+See [retained diagnostic](evidence/v07-ci-diagnostic.json).
+
+The CI build counts 68 raw R1/R4 pairs and 115 raw R2 pairs (99 different TX y,
+16 same TX y), while the local counts are 73 and 121. The common 20-candidate
+R1/R4 count remains 28. All three policies' counts above 1 ps, feasible sets and
+constrained thermal optima agree. Thus even printed-precision pair counts and
+Pareto sets are not portable physical findings.
+
+The corrected regression requires a fresh `--reference-ranking` report and
+verifies input/build/library/clock/interface identity before demanding **exact
+reported equality**. It does not raise a tolerance to pass. Historical local
+differences remain separate diagnostics, and the original CI failure is retained.
+No electrical, setup/hold, mesh or hot-pad qualification gate is relaxed.
 
 ## Hard constraints change the interpretation
 
@@ -108,17 +131,17 @@ Peak-temperature refinement change is at most 0.012534 K, below the predeclared
 0.1 K gate; absolute heat-balance error is at most 8.85e-13 W. This is XY
 refinement and conservation evidence, not vertical-mesh or material calibration.
 
-One local run took 99.91 s; these are diagnostic wall times, not a speedup claim:
+One local run took 99.71 s; these are diagnostic wall times, not a speedup claim:
 
 | Phase | Samples | Total time (s) | Median per sample (s) |
 | --- | ---: | ---: | ---: |
-| Mesh generation, including route input reconstruction | 351 | 0.0591 | 0.000143 |
-| Thermal matrix assembly | 54 | 4.3505 | 0.091708 |
-| Thermal linear solve | 54 | 2.5229 | 0.043759 |
-| Route generation | 27 | 0.1077 | 0.004413 |
+| Mesh generation, including route input reconstruction | 351 | 0.0586 | 0.000145 |
+| Thermal matrix assembly | 54 | 4.2784 | 0.078595 |
+| Thermal linear solve | 54 | 2.5320 | 0.043999 |
+| Route generation | 27 | 0.1119 | 0.004494 |
 | SPEF generation | 99 | 0.0152 | 0.000150 |
-| STA subprocess | 99 | 73.4626 | 0.736531 |
-| Entire STA wrapper, including subprocess | 99 | 92.2441 | 0.932314 |
+| STA subprocess | 99 | 73.2306 | 0.736565 |
+| Entire STA wrapper, including subprocess | 99 | 92.0717 | 0.933563 |
 
 Wrapper and subprocess times overlap and must not be added. Remaining time
 includes input checks, power mapping, qualification, file I/O and reporting.
@@ -128,7 +151,7 @@ claim for a general chiplet timing graph.
 
 ## Regression and reproduction
 
-65 unit tests passed, including 9 new routing/constraint tests. Existing
+67 unit tests passed, including 11 new routing/constraint/reference-identity tests. Existing
 16-check GPIO prototype and 6-check layout-ranking regressions passed. Both
 documented two-chiplet CLI cases passed; their timing remains explicitly
 `not_run` without STA inputs. The new experiment passed 9 software checks.
@@ -142,7 +165,8 @@ chiplet-floorplanning evaluate examples/two_chiplets.json --output results/two-c
 chiplet-floorplanning evaluate examples/layered_two_chiplets.json --output results/layered
 python tools/validate_prototype.py --output results/prototype
 OPENBLAS_NUM_THREADS=1 python tools/validate_layout_ranking.py --output results/ranking
-OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py --output results/routing
+OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
+  --reference-ranking results/ranking/report.json --output results/routing
 ```
 
 Use fresh output directories. CI executes the new experiment alongside the

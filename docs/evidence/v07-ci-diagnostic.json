@@ -1,0 +1,204 @@
+{
+  "run_url": "https://github.com/HaoningJiang-space/chiplet_floorplanning/actions/runs/43015732814",
+  "source": {
+    "commit": "89f27c8cf78f1e7140b9fbbfb0cd0b8c29eca8bc",
+    "dirty": false
+  },
+  "original_ci_checks": {
+    "reference_policy_coverage": true,
+    "r1_attains_independent_manhattan_lower_bound": true,
+    "thermal_refinement": true,
+    "thermal_energy_balance": true,
+    "r2_reproduces_prior_status_and_slack": false,
+    "thermal_reproduces_prior_candidates": true,
+    "no_geometrically_rejected_route_sent_to_sta": true,
+    "all_analyzed_routes_geometrically_valid": true,
+    "profiling_finite_nonnegative": true
+  },
+  "local_sta_sha256": "5383becbef409495acd78fe962c27262468635af69ef09e1ed4ed7a5a26454ff",
+  "ci_sta_sha256": "7d306cdaafeda756ff2808d1b428641ae834f38e97c6ec74cb97e849a5fb1c0f",
+  "identical_library_hashes": true,
+  "differences": [
+    {
+      "id": "layout_00",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": -2.000000000279556e-06,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_01",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_02",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_04",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": -4.000000000559112e-06,
+      "ci_minus_local_hold_ns": 9.999999999621423e-06
+    },
+    {
+      "id": "layout_09",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_10",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 2.000000000279556e-06,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_11",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_12",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": -2.000000000279556e-06,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_13",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_14",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_16",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": -4.000000000559112e-06,
+      "ci_minus_local_hold_ns": 9.999999999621423e-06
+    },
+    {
+      "id": "layout_18",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 9.999999992515995e-07,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_19",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_20",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_21",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_22",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 2.000000000279556e-06,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_23",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_24",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": -2.000000000279556e-06,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_25",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    },
+    {
+      "id": "layout_26",
+      "same_build_setup_delta_ns": 0.0,
+      "same_build_hold_delta_ns": 0.0,
+      "ci_minus_local_setup_ns": 0.0,
+      "ci_minus_local_hold_ns": 0.0
+    }
+  ],
+  "ci_conflicts": {
+    "R1": {
+      "conflict_count": 68,
+      "conflict_count_above_1ps": 0,
+      "constrained_thermal_optimum": "layout_26",
+      "timing_feasible_count": 27
+    },
+    "R2": {
+      "conflict_count": 115,
+      "conflict_count_above_1ps": 104,
+      "constrained_thermal_optimum": "layout_26",
+      "timing_feasible_count": 20
+    },
+    "R3": {
+      "conflict_count": null,
+      "conflict_count_above_1ps": null,
+      "constrained_thermal_optimum": null,
+      "timing_feasible_count": 0
+    },
+    "R4": {
+      "conflict_count": 68,
+      "conflict_count_above_1ps": 0,
+      "constrained_thermal_optimum": "layout_26",
+      "timing_feasible_count": 27
+    }
+  },
+  "scope": "Failed historical cross-build equality gate retained. Same-build runner outputs identical. No physical error bound inferred.",
+  "same_build_reference_recheck": {
+    "passed": true,
+    "checks": {
+      "reference_checks_passed": true,
+      "identical_candidate_ids": true,
+      "identical_inputs": true,
+      "identical_sta_and_library_identity": true,
+      "identical_status_and_reported_slack": true
+    },
+    "report_sha256": "37de047cb9ec2e88d9bdc5bea946f474646f34748cb8163cd90e515eaff8894e",
+    "maximum_reported_slack_difference_ns": 0.0,
+    "scope": "same executable, libraries, interface, period and case input; exact printed values"
+  },
+  "recheck_helper_sha256": "0116951b72d5e6fa8d7d1e9b66f4e3ca663a9099387c0172897065c722419b9e"
+}

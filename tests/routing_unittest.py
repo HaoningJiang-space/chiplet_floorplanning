@@ -1,6 +1,9 @@
 import copy
 import itertools
 import json
+import hashlib
+from pathlib import Path
+import tempfile
 import unittest
 
 import numpy as np
@@ -19,7 +22,7 @@ from chiplet_floorplanning.routing import (
     shortest_route_pairs,
     with_routes,
 )
-from tools.validation.ranking import common_cohort, summarize
+from tools.validation.ranking import common_cohort, compare_reference, summarize
 
 
 class RoutingTests(unittest.TestCase):
@@ -166,6 +169,75 @@ class NecessityTests(unittest.TestCase):
         self.assertEqual(result["excluded_empty_policies"], ["R3"])
         self.assertIsNone(summarize([])["conflict_count"])
         self.assertIsNone(summarize([])["thermal_optimum_is_timing_feasible"])
+
+
+class ReferenceIdentityTests(unittest.TestCase):
+    def setUp(self):
+        self.folder = tempfile.TemporaryDirectory()
+        self.addCleanup(self.folder.cleanup)
+        root = Path(self.folder.name)
+        raw = {"input": "fixed"}
+        digest = hashlib.sha256(json.dumps(raw, sort_keys=True).encode()).hexdigest()
+        self.row = dict(
+            id="a",
+            timing_status="analyzed",
+            setup_slack_ns=8.0,
+            hold_slack_ns=11.0,
+            case_input_sha256=digest,
+        )
+        self.identity = dict(
+            sta_sha256="build-a",
+            libraries=["same-library"],
+            period_ns=20,
+            interface="same-interface",
+        )
+        (root / "a/sta").mkdir(parents=True)
+        (root / "a/case.json").write_text(json.dumps(raw))
+        self.timing = root / "a/sta/timing.json"
+        self.timing.write_text(
+            json.dumps(
+                dict(
+                    self.identity,
+                    input_sha256=digest,
+                    setup_slack_ns=8.0,
+                    hold_slack_ns=11.0,
+                )
+            )
+        )
+        self.path = root / "report.json"
+        self.path.write_text(json.dumps(dict(passed=True, candidates=[self.row])))
+
+    def test_exact_reference_accepts_and_real_slack_change_fails(self):
+        self.assertTrue(
+            compare_reference([self.row], self.path, self.identity)["passed"]
+        )
+        changed = dict(self.row, setup_slack_ns=8.000001)
+        self.assertFalse(
+            compare_reference([changed], self.path, self.identity)["passed"]
+        )
+
+    def test_same_slack_does_not_hide_changed_inputs_build_or_clock_contract(self):
+        for key, value in (
+            ("sta_sha256", "other-build"),
+            ("libraries", ["other-lib"]),
+            ("period_ns", 10),
+            ("interface", "other-interface"),
+        ):
+            with self.subTest(key=key):
+                changed = {**self.identity, key: value}
+                self.assertFalse(
+                    compare_reference([self.row], self.path, changed)["passed"]
+                )
+        changed = dict(self.row, case_input_sha256="changed-input")
+        self.assertFalse(
+            compare_reference([changed], self.path, self.identity)["passed"]
+        )
+        inconsistent = json.loads(self.timing.read_text())
+        inconsistent["hold_slack_ns"] = 11.000001
+        self.timing.write_text(json.dumps(inconsistent))
+        self.assertFalse(
+            compare_reference([self.row], self.path, self.identity)["passed"]
+        )
 
 
 if __name__ == "__main__":

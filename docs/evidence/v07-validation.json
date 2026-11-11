@@ -5,14 +5,14 @@
     "r1_attains_independent_manhattan_lower_bound": true,
     "thermal_refinement": true,
     "thermal_energy_balance": true,
-    "r2_reproduces_prior_status_and_slack": true,
+    "r2_reproduces_same_build_reference": true,
     "thermal_reproduces_prior_candidates": true,
     "no_geometrically_rejected_route_sent_to_sta": true,
     "all_analyzed_routes_geometrically_valid": true,
     "profiling_finite_nonnegative": true
   },
   "source": {
-    "commit": "9664f8e8a5b405b9f14db57e8ad3ae725b3b737c",
+    "commit": "89f27c8cf78f1e7140b9fbbfb0cd0b8c29eca8bc",
     "dirty": true
   },
   "source_code_sha256": {
@@ -31,9 +31,9 @@
     "src/chiplet_floorplanning/liberty_checks.py": "d9065b2a101a586a3518d354af973a2a722df89bd21f83d9e65d6fb657be46d8",
     "src/chiplet_floorplanning/layout.py": "70fa3bdd49a2d2497a9782108211970352b4584be5bdcf45b30e5a852894d0c7",
     "src/chiplet_floorplanning/routing.py": "85e21464432164e6a1bec4b92fa2bd399568de2ae5c33294122178cc07c824db",
-    "tools/validate_routing_policies.py": "cf42ab938ed2881d391c1d2429180bb2c5c303ade92ec1d5b17f69b844cced31",
+    "tools/validate_routing_policies.py": "cc2a217d0281da03d49c5b2b11e65214da18b6e6eeb81fb429ab1f58d9f093d9",
     "tools/prepare_characterization.py": "d9ca48a9b1bd10199059a8abc71c51d6a38e17e2a28b95ea83bcee15490d302e",
-    "tools/validation/ranking.py": "2a4b0efabf28541264c3df614a13b84e857a6150796185e8aa3f0c2ac2a2de42",
+    "tools/validation/ranking.py": "0116951b72d5e6fa8d7d1e9b66f4e3ca663a9099387c0172897065c722419b9e",
     "tools/validation/sources.py": "9ad1958dfb82aedbd4b65cc5764f177530ec789c60e41a28edc1564d94e27400"
   },
   "input_files_sha256": {
@@ -98,8 +98,179 @@
           "slew_derate_from_library": 1.0
         }
       }
-    ]
+    ],
+    "period_ns": 20,
+    "pad_mode": "GF180_16mA_fast_SKY130_DM001_CMOS_input",
+    "interface": {
+      "direction": "gf180_to_sky130",
+      "protocol": "single_data_lane_source_synchronous_SDR",
+      "launch_edge": "rising",
+      "capture_edge": "forwarded_falling_via_receiver_inverter",
+      "clock_duty_cycle": 0.5,
+      "tx_core_voltage_v": 3.3,
+      "rx_core_voltage_v": 1.8,
+      "tx_io_voltage_v": 3.3,
+      "rx_io_voltage_v": 3.3,
+      "temperature_c": 25.0,
+      "tx_cell": "gf180mcu_fd_io__bi_t",
+      "rx_cell": "sky130_ef_io__gpiov2_pad",
+      "tx_controls": {
+        "OE": 1,
+        "IE": 0,
+        "PDRV0": 1,
+        "PDRV1": 1,
+        "CS": 0,
+        "SL": 0,
+        "PU": 0,
+        "PD": 0
+      },
+      "rx_controls": {
+        "OE_N": 1,
+        "INP_DIS": 0,
+        "SLOW": 0,
+        "HLD_H_N": 1,
+        "HLD_OVR": 0,
+        "ENABLE_H": 1,
+        "ENABLE_VDDA_H": 0,
+        "ENABLE_INP_H": 0,
+        "ENABLE_VDDIO": 1,
+        "ENABLE_VSWITCH_H": 1,
+        "VTRIP_SEL": 0,
+        "IB_MODE_SEL": 0,
+        "ANALOG_EN": 0,
+        "ANALOG_SEL": 0,
+        "ANALOG_POL": 0,
+        "OUT": 0,
+        "DM": "001"
+      },
+      "pad_capacitance_owner": "Liberty_only_not_duplicated_in_package_SPEF",
+      "bump_parasitics": "not_included",
+      "internal_wire_parasitics": "zero_assumption",
+      "clock_uncertainty_ns": 0.0,
+      "clock_uncertainty_status": "ideal_clock_assumption_not_measured_jitter",
+      "sources": [
+        "https://gf180mcu-pdk.readthedocs.io/en/latest/IPs/IO/gf180mcu_fd_io/digital.html",
+        "https://skywater-pdk.readthedocs.io/en/main/contents/libraries/sky130_fd_io/docs/user_guide.html"
+      ],
+      "qualification": "library_timing_prototype_not_physical_link_validation"
+    }
   },
+  "same_build_reference": {
+    "passed": true,
+    "checks": {
+      "reference_checks_passed": true,
+      "identical_candidate_ids": true,
+      "identical_inputs": true,
+      "identical_sta_and_library_identity": true,
+      "identical_status_and_reported_slack": true
+    },
+    "report_sha256": "0a82df97237e41343aec007fe772055b7b87cd368378c83a1f4060425ce28872",
+    "maximum_reported_slack_difference_ns": 0.0,
+    "scope": "same executable, libraries, interface, period and case input; exact printed values"
+  },
+  "historical_r2_slack_differences_ns": [
+    {
+      "id": "layout_00",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_01",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_02",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_04",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_09",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_10",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_11",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_12",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_13",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_14",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_16",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_18",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_19",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_20",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_21",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_22",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_23",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_24",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_25",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    },
+    {
+      "id": "layout_26",
+      "setup_slack_ns": 0.0,
+      "hold_slack_ns": 0.0
+    }
+  ],
+  "historical_comparison_scope": "diagnostic across builds; no physical-error tolerance inferred",
   "assembly": {
     "status": "assembled_original_tables",
     "inputs": [
@@ -331,7 +502,7 @@
   "joint_optimization_necessity_established": false,
   "physical_model_error": "unbounded; geometry and numerical convergence are not physical validation",
   "complete_package_signoff": false,
-  "receipt_scope": "Compact projection of local run; raw decks/logs/timing reports remain under ignored results/. Dirty source is identified by exact code/input hashes; CI runs the committed checkout.",
+  "receipt_scope": "Compact projection of corrected local run. Raw reports stay under ignored results/. Dirty source identified by exact hashes. First failed CI retained separately.",
   "placements": [
     {
       "id": "layout_00",
@@ -839,6 +1010,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "0cb9577da86440a8b07b9a1fd5118915d30c58d0415a44908039ac25da78c396",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -913,6 +1085,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "5176eb3e271cac88c55320a5a476e58a5b03924d5f3c2a47bb8f24fe00a0b939",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -979,6 +1152,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "e327d909b611c9bc94ec1084e16691623dde049bc117fd4c258571cc13eb52ad",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1053,6 +1227,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "c8ed1b9149d3957ffa9bb9bdce637ce2e2b2ac05a8ca6bf1e057408027a65c16",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1127,6 +1302,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "e5b31a8d506c5b9b5319c5e877ba468fd6fec0c579de9ecb7b8bd721e0931b10",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1193,6 +1369,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "014427aa43cb346747e817c2250e8e5eb01a680196fb6dd9e567ab974b6a6dea",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1267,6 +1444,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "feb2f3fc15f7ec49f49d4dddfb73a68c8d99c347ef705ec361a878c226ebfefc",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1341,6 +1519,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "be7d617e977666dca29042028f514e18ecb40c61d7c5bcceda95537b503dc2bc",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1407,6 +1586,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "3c4c6e261916075b82daa9b3f1fd0baa659a01c7b9e2a08d7df83a1ad27187a2",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1481,6 +1661,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "88c158103b92f351a86e5d1abf277ea40dfb8932b4e45f3904a0fcafe813fe07",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1555,6 +1736,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "267b4d787f9b6696c9e192f561d7fca52708e7a8eea695a199998a21cba2696e",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1621,6 +1803,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "41022325b460a5e2ad96a540afe61471ebb218ad3758c1e51e38cb7c940e07c2",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1695,6 +1878,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "e9bd2c48b96b5de3e5b8412d58aa55a030ede9b24b97fb4490d1ce1f0f8283e4",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1769,6 +1953,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "bbaeb249fb231535abbd13b8cff0152861176cb8f62d295edd884e57e9621345",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1835,6 +2020,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "356ff9f39124d14c5fdd7948cb1c41af8a875cf37c9a73bfa980bfc19fc2a95d",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1909,6 +2095,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "39b401035bd0efcbf01135d514ce4cd3ca838357d20f919c3379a3ab845feaaf",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -1983,6 +2170,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "19992fc73e402be82dce22cd9824d763f21a1c84d0c82ff144b65d13346268b1",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2049,6 +2237,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "403a25a9abd73b9c7bb2b1d35ffab49c7ade8e15fae0131a6092df0511a225e6",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2123,6 +2312,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "3c508d899305d5b5403ad76dad2c125506b6cc6d6c113d46aceeaa476e274f20",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2197,6 +2387,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "b798b8497f8aa09ace332e2a9f79ddeac17d73db8e611175d5bad8dd423051c4",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2263,6 +2454,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "afa7518ab1ce2635f5492de16a3bb747d66822eed70bcaa55a6fd85ba3faba60",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2337,6 +2529,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "3d8c2143317d3bd0d94e831dead3fca4c2f7bf36072e3977091d4380a7aba7d8",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2411,6 +2604,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "74f021cf8e3635e2d4bee9e57eaecf1b73f09a65fd83d3ebc10871ccce08df68",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2477,6 +2671,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "9d6b87d92b45326630c0fee6f8974c15657daa2cac2490fa8d870b55606310bc",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2551,6 +2746,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "afd547153b59fec25fd51b20014456525afdec137372058b5bd0d7fcb04f27cb",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2625,6 +2821,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "9e3df0031d34c082006d54f731226ca56b9ff42cdc4780b60067623ffb8bf542",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2691,6 +2888,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "0cbb74d830d28dc4fb4998254cb5121094dc31ca44560ebc77a6e4c5c243ceda",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -2767,6 +2965,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "0a0a461b45e7aa8d4e27f9ddf208c59e76b3abf0dc3195ce6a771a7a0ad111a8",
         "route_points_mm": {
           "lane_data": [
             [
@@ -2849,6 +3048,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "7d145811c18a0bcdb16f99931580bb0c9b412df7ebbbfe02e51631380129ce74",
         "route_points_mm": {
           "lane_data": [
             [
@@ -2931,6 +3131,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "5fcbbe665908bb519b7033edce5d5d14e0494a209766e1c956d41391777fc6a5",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3013,6 +3214,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "fabd2e330c0caa1be73029e2694dcebc2a99696ccc4196a622874b8843dca61c",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3091,6 +3293,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "46749bee14206c8a2d71f3428f4ac25a258ebec3d702398c89026a0b685830e6",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3173,6 +3376,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "b2fa4bd70360d88b2d7cc37ae3395ce2d5ac535fd4829223bb5d80259a00ecc7",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3251,6 +3455,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "ce7f20d2a9bff0416205987f7b645376faffd6b5edbb5122611b288be6b8c402",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3329,6 +3534,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "1e50cc6f561db57663f8f17ce54a0c0269df8b7e4497cdc66ff831a45154d4c2",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3407,6 +3613,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "83d3427d77e03a84defa457cdf05b233951ebc81a4069357ae4ea0f0bd554d62",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3485,6 +3692,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "7fbcf725ba3b91220b984c2e0c8f8459de5c784260e4cad5b692d906ab8abb05",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3567,6 +3775,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "29ba5d1ec97740b779ab446d66540a9c67135fd9bcc9f57eee357be8c761696d",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3649,6 +3858,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "d4cff6fbb73ff5e4f9ee3e3ab664e06dcb248dae87d2f0c65d068488d614d0aa",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3731,6 +3941,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "447793025c74633a63cfc4faa502e7ad9343121e273735c43f076a2dabe9aab4",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3813,6 +4024,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "75b6fcf70b7e830a95f8573ed6278b3b8694b53cae6871736f52d85c6e8ed94a",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3895,6 +4107,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "c76a3cefe45c24e5028298e40c1bdf63e22c5c4fa1e771e8834b97193d999156",
         "route_points_mm": {
           "lane_data": [
             [
@@ -3977,6 +4190,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "5550c3f857b57300b44dcabfb1d898e848567f8237187d76cb9f5b1649b5881d",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4055,6 +4269,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "45fd12adddc382b0dade1708fafcb309e64dae3e9a62ac7cdc5634686328ce05",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4137,6 +4352,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "11e40efb6ab6652836879de42f74121b29b5a2a904fda6262130da447642a0ed",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4215,6 +4431,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "b738b2512b7ea89bf066cd4e421ec21af001a136e8bfd2c97cd3e07ecdf2f01a",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4297,6 +4514,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "e3eb24c30cf4c5180fb3097e91fd5a3fdd5b61ef4250b11bdd0731515ffbe8e5",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4379,6 +4597,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "810c7e19a16b472f313548f8743bace9a9639f51ea33de23fe3b4e3ea7cabeaa",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4461,6 +4680,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "560427885f283b9b2b97683562b2fdb240304630e4823cca49d9b3f6ac049403",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4543,6 +4763,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "ae33d8ae0753027c5f0521d1b72720e4febc88d81b3a36a6f02f2d1deed949c2",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4625,6 +4846,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "d3d757f81f9f27b91f3be4b99c0e7c8a8f02ddc2cffe6964a738b0ac749328d7",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4707,6 +4929,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "88cc001ac5126c8085e26394858a52ed785869ae17d7deb7beddd4db2b9fb1ce",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4789,6 +5012,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "f609dd9b4d79b28e2e64627a4a5f3d7b5470acd047c57fde29e79e1431481b31",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4871,6 +5095,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R2",
+        "case_input_sha256": "529f8b1031bc89df8009069c457b17ddfed94a134a34c8441635281afceab5fc",
         "route_points_mm": {
           "lane_data": [
             [
@@ -4955,6 +5180,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "88fe17067e9bde5ecafb93dda09dc6c42766cd35b73f48ca74378e6b3e7d2c91",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5034,6 +5260,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "cca4572d16162e6558068a532ec4fdc120eaa864e1e9ae30abf4adf98981de47",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5113,6 +5340,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "c3e1fed9703db1fadba2d71b75734a0190b4c9cac71cb55dd099d1c78c676835",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5192,6 +5420,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "56e743b31b0da5b5184c0d13a2bf35544ec2abf070c998a778506ce9f7e7a92a",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5271,6 +5500,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "e28fd89c481f9c8a4a2c4ab49c511da1122a0191295fbc9071a7b5083ec44d8a",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5350,6 +5580,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "0d0f0229ef6b590ca1a8798b2247d42e12ccd50ef4f3c132abf807db453c5fcf",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5429,6 +5660,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "6bd1804fabd340aa964fc8bf308aec8673b040eeac4db223d64d7d79e4569489",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5508,6 +5740,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "11d9c320d70749412c1f9a448bbbf54edab051905346ec716e587c29d0d5d93a",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5587,6 +5820,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "d55c06aae5ff53b10713c8aebed2f1f9c88b11bf255ad466b057587548710b07",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5666,6 +5900,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "d0a25ad59c0803dc7482efab64aff8fc1a12de634709f8410495add84ae9f692",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5745,6 +5980,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "9e1a31e21b554f203a1cab3069a1d04dbc88148fe9f0ddd218667217262e2ade",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5824,6 +6060,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "84b26710137c63506a1a8aa9d61d008bfb8c519feefc0008c170c81c445e2a13",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5903,6 +6140,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "6bdd22299d56ba44b4077066ef2aed21c1b74310b1fe47945eb674c57fe6679a",
         "route_points_mm": {
           "lane_data": [
             [
@@ -5982,6 +6220,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "b82359b9294cc57667fad0314664213db0e6ead9e8defd475bf631e51d1241de",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6061,6 +6300,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "9ae0135b8f8bd26b5888a8fdd3146a7ef2df72feb3819e81f8bd75e31ae83ed4",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6140,6 +6380,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "41f65f660b44678a8b321ed06ef9123d49d70dd413bd908cd4948ea09488c8eb",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6219,6 +6460,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "cb075cb2d741cdf9e919ce8b480453d93d5cfc2666fb9feab16114375f62d853",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6298,6 +6540,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "c2883990fb519dbb7b4b9dac3ff8dc376d5516bbb01e67df48ea6e162d40ab02",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6377,6 +6620,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "389137efdffffd98823c2cce3a813512aa243a4f060600db635eaa801f48b9bc",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6456,6 +6700,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "9a744d780af2f4d83cfb8245535c0491e053d5b3230206dba45190793c8202f6",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6535,6 +6780,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "6868918d088a0edff9d15ffe6174f4152fe021214cf0999b74355807dde22f50",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6614,6 +6860,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "039a281a91d11b17f73de6144097ae90943cc606aa98352fd82a0192a63ad2dc",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6693,6 +6940,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "69fccb1e426d5015e6c1452577b1f8a4c178b43bdadb38efde0e7d0875214089",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6772,6 +7020,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "83a5c0dc2ccf136ca42d1c7d53c47b201d0f5876a76c42caca66f971ccad6dd4",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6851,6 +7100,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "8a78400027ca3bfe58759c518275f28c8b102e85df0ec2dc00e0a927d5b6e5ac",
         "route_points_mm": {
           "lane_data": [
             [
@@ -6930,6 +7180,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "cd5f911ec82519fa7ce0d32499d67bf06569a4e71c9d71a1571a6ad0c84d8256",
         "route_points_mm": {
           "lane_data": [
             [
@@ -7009,6 +7260,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R3",
+        "case_input_sha256": "b18eb74043e547c95766efe7cfeed058d862ec84d457a34f8957e8639bf6af1b",
         "route_points_mm": {
           "lane_data": [
             [
@@ -7090,6 +7342,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "0cb9577da86440a8b07b9a1fd5118915d30c58d0415a44908039ac25da78c396",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7172,6 +7425,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "5176eb3e271cac88c55320a5a476e58a5b03924d5f3c2a47bb8f24fe00a0b939",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7246,6 +7500,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "e327d909b611c9bc94ec1084e16691623dde049bc117fd4c258571cc13eb52ad",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7328,6 +7583,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "c8ed1b9149d3957ffa9bb9bdce637ce2e2b2ac05a8ca6bf1e057408027a65c16",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7410,6 +7666,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "e5b31a8d506c5b9b5319c5e877ba468fd6fec0c579de9ecb7b8bd721e0931b10",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7484,6 +7741,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "014427aa43cb346747e817c2250e8e5eb01a680196fb6dd9e567ab974b6a6dea",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7566,6 +7824,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "feb2f3fc15f7ec49f49d4dddfb73a68c8d99c347ef705ec361a878c226ebfefc",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7648,6 +7907,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "be7d617e977666dca29042028f514e18ecb40c61d7c5bcceda95537b503dc2bc",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7722,6 +7982,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "3c4c6e261916075b82daa9b3f1fd0baa659a01c7b9e2a08d7df83a1ad27187a2",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7804,6 +8065,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "88c158103b92f351a86e5d1abf277ea40dfb8932b4e45f3904a0fcafe813fe07",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7886,6 +8148,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "267b4d787f9b6696c9e192f561d7fca52708e7a8eea695a199998a21cba2696e",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -7960,6 +8223,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "41022325b460a5e2ad96a540afe61471ebb218ad3758c1e51e38cb7c940e07c2",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8042,6 +8306,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "e9bd2c48b96b5de3e5b8412d58aa55a030ede9b24b97fb4490d1ce1f0f8283e4",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8124,6 +8389,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "bbaeb249fb231535abbd13b8cff0152861176cb8f62d295edd884e57e9621345",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8198,6 +8464,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "356ff9f39124d14c5fdd7948cb1c41af8a875cf37c9a73bfa980bfc19fc2a95d",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8280,6 +8547,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "39b401035bd0efcbf01135d514ce4cd3ca838357d20f919c3379a3ab845feaaf",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8362,6 +8630,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "19992fc73e402be82dce22cd9824d763f21a1c84d0c82ff144b65d13346268b1",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8436,6 +8705,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "403a25a9abd73b9c7bb2b1d35ffab49c7ade8e15fae0131a6092df0511a225e6",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8518,6 +8788,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "3c508d899305d5b5403ad76dad2c125506b6cc6d6c113d46aceeaa476e274f20",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8600,6 +8871,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "b798b8497f8aa09ace332e2a9f79ddeac17d73db8e611175d5bad8dd423051c4",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8674,6 +8946,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "afa7518ab1ce2635f5492de16a3bb747d66822eed70bcaa55a6fd85ba3faba60",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8756,6 +9029,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "3d8c2143317d3bd0d94e831dead3fca4c2f7bf36072e3977091d4380a7aba7d8",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8838,6 +9112,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "74f021cf8e3635e2d4bee9e57eaecf1b73f09a65fd83d3ebc10871ccce08df68",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8912,6 +9187,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "9d6b87d92b45326630c0fee6f8974c15657daa2cac2490fa8d870b55606310bc",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -8994,6 +9270,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "afd547153b59fec25fd51b20014456525afdec137372058b5bd0d7fcb04f27cb",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -9076,6 +9353,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "9e3df0031d34c082006d54f731226ca56b9ff42cdc4780b60067623ffb8bf542",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -9150,6 +9428,7 @@
         "S_T_ns": null,
         "thermal_pair_interaction_ns": null,
         "route_id": "R1",
+        "case_input_sha256": "0cbb74d830d28dc4fb4998254cb5121094dc31ca44560ebc77a6e4c5c243ceda",
         "route_points_mm": {
           "lane_clock": [
             [
@@ -9481,70 +9760,70 @@
     "phase_statistics": {
       "input_validation_s": {
         "count": 351,
-        "total_s": 0.09288926608860493,
-        "median_s": 0.00024616532027721405,
-        "maximum_s": 0.0009309537708759308
+        "total_s": 0.09283602796494961,
+        "median_s": 0.0002492796629667282,
+        "maximum_s": 0.0007284432649612427
       },
       "matrix_assembly_s": {
         "count": 54,
-        "total_s": 4.35049850307405,
-        "median_s": 0.09170799143612385,
-        "maximum_s": 0.14668784476816654
+        "total_s": 4.278376625850797,
+        "median_s": 0.0785954212769866,
+        "maximum_s": 0.14066550694406033
       },
       "mesh_generation_s": {
         "count": 351,
-        "total_s": 0.05913691781461239,
-        "median_s": 0.00014329887926578522,
-        "maximum_s": 0.00041282735764980316
+        "total_s": 0.05857291258871555,
+        "median_s": 0.00014521367847919464,
+        "maximum_s": 0.00032213516533374786
       },
       "power_mapping_s": {
         "count": 54,
-        "total_s": 0.016795065253973007,
-        "median_s": 0.0003010677173733711,
-        "maximum_s": 0.0005237758159637451
+        "total_s": 0.015914469957351685,
+        "median_s": 0.0002881428226828575,
+        "maximum_s": 0.00040050409734249115
       },
       "route_evaluation_total_s": {
         "count": 297,
-        "total_s": 92.56477991305292,
-        "median_s": 0.001147570088505745,
-        "maximum_s": 1.113949030637741
+        "total_s": 92.41571463271976,
+        "median_s": 0.0012277308851480484,
+        "maximum_s": 0.9971886780112982
       },
       "routing_generation_s": {
         "count": 27,
-        "total_s": 0.10765458829700947,
-        "median_s": 0.0044127292931079865,
-        "maximum_s": 0.005627015605568886
+        "total_s": 0.11186523549258709,
+        "median_s": 0.004494283348321915,
+        "maximum_s": 0.0060476381331682205
       },
       "spef_generation_s": {
         "count": 99,
-        "total_s": 0.015239739790558815,
-        "median_s": 0.00014991313219070435,
-        "maximum_s": 0.00020817294716835022
+        "total_s": 0.015249496325850487,
+        "median_s": 0.00014994293451309204,
+        "maximum_s": 0.0002176482230424881
       },
       "sta_execution_s": {
         "count": 99,
-        "total_s": 73.46261708438396,
-        "median_s": 0.7365308627486229,
-        "maximum_s": 0.8246595542877913
+        "total_s": 73.23058472573757,
+        "median_s": 0.7365646455436945,
+        "maximum_s": 0.7934557478874922
       },
       "sta_wrapper_total_s": {
         "count": 99,
-        "total_s": 92.24413249455392,
-        "median_s": 0.9323138203471899,
-        "maximum_s": 1.112861704081297
+        "total_s": 92.07171150110662,
+        "median_s": 0.9335627127438784,
+        "maximum_s": 0.9960154891014099
       },
       "thermal_linear_solve_s": {
         "count": 54,
-        "total_s": 2.522908329963684,
-        "median_s": 0.04375889617949724,
-        "maximum_s": 0.0910558644682169
+        "total_s": 2.5320357866585255,
+        "median_s": 0.04399921838194132,
+        "maximum_s": 0.09010357968509197
       }
     },
-    "total_wall_s": 99.91348600946367,
+    "total_wall_s": 99.71087314002216,
     "scope": "single-run wall times; no cross-placement thermal-matrix cache and no STA-result cache"
   },
   "regressions": {
-    "unit_test_count": 65,
+    "unit_test_count": 67,
     "units_passed": true,
     "prototype_checks": {
       "nominal_50MHz_setup_hold": true,

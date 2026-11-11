@@ -14,7 +14,8 @@ SKY130 源网表还存在可达空子电路。因此 **pad 温度模型尚未接
 详细数据与阻断原因见 [v0.6 验证记录](docs/validation-v06.md)。
 
 v0.7 固定同一组 27 个布局，对比经过单层几何检查的不同 data/clock 路由。
-原 corridor 的 121 个指标冲突对被复现；最短合法连接下 setup 的全候选变化仅
+原 corridor 的本地 121 个指标冲突对被复现（CI 构建为 115 对，说明极小差异的
+排序依赖构建）；最短合法连接下 setup 的全候选变化仅
 0.007 ps。所有可评估策略均选中 layout 26 作为时序可行的最低温候选，
 当前 50 MHz 假设下**尚未建立联合优化的必要性**。见 [v0.7 记录](docs/validation-v07.md)。
 
@@ -193,7 +194,9 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_layout_ranking.py --output results/
 ## 布线反事实与约束必要性（v0.7）
 
 ```bash
-OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py --output results/routing-policies
+# Reuse a fresh ranking report generated with the same STA executable/libraries.
+OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
+  --reference-ranking results/ranking/report.json --output results/routing-policies
 ```
 
 `layout.relocate_design()` 移动芯粒并使旧路由失效；`routing.shortest_route_pairs()`

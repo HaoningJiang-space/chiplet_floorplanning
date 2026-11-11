@@ -1,8 +1,57 @@
 """Constraint-first summaries; a score tradeoff does not establish necessity."""
 
 import itertools
+import hashlib
+import json
+from pathlib import Path
 
 PRINTED_SLACK_TOLERANCE_NS = 2e-6
+
+
+def compare_reference(rows, path, sta_identity):
+    """Require the same inputs/build before comparing routing implementations."""
+    path = Path(path)
+    reference = json.loads(path.read_text())
+    old = reference["candidates"]
+    same_ids = [r["id"] for r in rows] == [r["id"] for r in old]
+    checks = dict(
+        reference_checks_passed=reference["passed"] is True,
+        identical_candidate_ids=same_ids,
+        identical_inputs=True,
+        identical_sta_and_library_identity=True,
+        identical_status_and_reported_slack=True,
+    )
+    differences = []
+    for row, baseline in zip(rows, old):
+        folder = path.parent / baseline["id"]
+        raw = json.loads((folder / "case.json").read_text())
+        input_hash = hashlib.sha256(
+            json.dumps(raw, sort_keys=True).encode()
+        ).hexdigest()
+        checks["identical_inputs"] &= row["case_input_sha256"] == input_hash
+        same_status = row["timing_status"] == baseline["timing_status"]
+        checks["identical_status_and_reported_slack"] &= same_status
+        if baseline["timing_status"] == "analyzed":
+            timing = json.loads((folder / "sta/timing.json").read_text())
+            checks["identical_sta_and_library_identity"] &= {
+                k: timing[k] for k in sta_identity
+            } == sta_identity
+            checks["identical_inputs"] &= timing["input_sha256"] == input_hash
+            if same_status:
+                for key in ("setup_slack_ns", "hold_slack_ns"):
+                    # Require exact same-build reported values; do not enlarge a
+                    # historical cross-platform tolerance to make this pass.
+                    checks["identical_status_and_reported_slack"] &= (
+                        row[key] == baseline[key] == timing[key]
+                    )
+                    differences.append(abs(row[key] - baseline[key]))
+    return dict(
+        passed=all(checks.values()),
+        checks=checks,
+        report_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+        maximum_reported_slack_difference_ns=max(differences, default=None),
+        scope="same executable, libraries, interface, period and case input; exact printed values",
+    )
 
 
 def admissible(rows):

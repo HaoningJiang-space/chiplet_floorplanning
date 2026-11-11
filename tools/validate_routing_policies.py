@@ -25,7 +25,7 @@ from chiplet_floorplanning.routing import (
 )
 from chiplet_floorplanning.timing import run_timing
 from prepare_characterization import prepare
-from validation.ranking import common_cohort, summarize
+from validation.ranking import common_cohort, compare_reference, summarize
 from validation.sources import git_revision, verify, write_json
 
 
@@ -36,6 +36,12 @@ def main():
         "--sta", type=Path, default=Path("local/upstream/OpenSTA/app/sta")
     )
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--reference-ranking",
+        type=Path,
+        required=True,
+        help="report.json from validate_layout_ranking.py using this STA build and libraries",
+    )
     args = parser.parse_args()
     started = perf_counter()
     args.output.mkdir(parents=True, exist_ok=False)
@@ -68,6 +74,9 @@ def main():
         links = estimate_links(routed)
         record = dict(
             route_id=route_id,
+            case_input_sha256=hashlib.sha256(
+                json.dumps(routed.input_data, sort_keys=True).encode()
+            ).hexdigest(),
             route_points_mm=routes,
             routing=audit,
             route_lengths_mm={l["kind"]: l["modeled_length_mm"] for l in links},
@@ -89,7 +98,14 @@ def main():
                 )
                 identity = {
                     key: result[key]
-                    for key in ("tool_version", "sta_sha256", "libraries")
+                    for key in (
+                        "tool_version",
+                        "sta_sha256",
+                        "libraries",
+                        "period_ns",
+                        "pad_mode",
+                        "interface",
+                    )
                 }
                 if sta_identity is not None and sta_identity != identity:
                     raise RuntimeError("STA executable or libraries changed during run")
@@ -235,6 +251,17 @@ def main():
     legacy = json.loads((repo / "docs/evidence/v05-validation.json").read_text())[
         "layout_ranking"
     ]["candidates"]
+    same_build_reference = compare_reference(
+        policies["R2"], args.reference_ranking, sta_identity
+    )
+    historical_differences = [
+        dict(
+            id=a["id"],
+            **{key: a[key] - b[key] for key in ("setup_slack_ns", "hold_slack_ns")},
+        )
+        for a, b in zip(policies["R2"], legacy)
+        if a["timing_status"] == b["timing_status"] == "analyzed"
+    ]
     checks = dict(
         reference_policy_coverage=all(
             len(policies[p]) == 27
@@ -253,18 +280,7 @@ def main():
             for r in placements
             for m in r["thermal_meshes"]
         ),
-        r2_reproduces_prior_status_and_slack=all(
-            a["id"] == b["id"]
-            and a["timing_status"] == b["timing_status"]
-            and (
-                a["timing_status"] != "analyzed"
-                or all(
-                    abs(a[k] - b[k]) <= 2e-6
-                    for k in ("setup_slack_ns", "hold_slack_ns")
-                )
-            )
-            for a, b in zip(policies["R2"], legacy)
-        ),
+        r2_reproduces_same_build_reference=same_build_reference["passed"],
         thermal_reproduces_prior_candidates=all(
             abs(a["peak_c"] - b["peak_c"]) < 1e-6 for a, b in zip(placements, legacy)
         ),
@@ -319,6 +335,9 @@ def main():
             )
         },
         sta_identity=sta_identity,
+        same_build_reference=same_build_reference,
+        historical_r2_slack_differences_ns=historical_differences,
+        historical_comparison_scope="diagnostic across builds; no physical-error tolerance inferred",
         assembly=assembly,
         routing_contract=contract,
         placements=placements,

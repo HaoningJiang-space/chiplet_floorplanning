@@ -128,7 +128,8 @@ See `validation-v06.md`. G3's full-interface gate and G4 remain open work.
 
 The fixed 27 placements now have a declared single-layer finite-width geometry
 gate, an obstacle-aware paired-path heuristic and a finite joint route portfolio.
-R2 reproduces the prior 121 conflicts. R1/R4 preserve timing feasibility for all
+R2 reproduces the prior 121 conflicts locally (115 on the CI build, with exact
+agreement between old/new runners there). R1/R4 preserve timing feasibility for all
 27 and reduce the full setup spread to 0.007 ps under the same fixed TT model.
 R3's exchanged corridors short on this layer and are rejected before STA.
 All populated policies select layout 26 for minimum temperature subject to
