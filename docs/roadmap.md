@@ -48,7 +48,14 @@ no unexplained black boxes or unconstrained endpoints, and representative
 waveform/circuit-simulation agreement. No replacement of setup/hold with a
 distance-based score is permitted. Freeze the base design before length sweeps.
 
-## G3 — Local temperature to timing (pending)
+## G3 — Local temperature to timing (software integration, physical validation pending)
+
+v0.3 adds a pinned FF core-cell profile, rotation-aware instance temperatures,
+table interpolation, per-instance libraries and setup/hold recomputation.
+Cold/hot endpoint equivalence and independent original-table queries pass.
+Intermediate-temperature accuracy still needs independent characterization;
+the real TT GPIO lane is rejected for receive-pad slew exceeding its limit.
+See `validation-v03.md` for the exact PVT matrix and retained negative results.
 
 Characterize or obtain temperature models at fixed process and voltage. Validate
 instance-to-temperature mapping, library linking, data/clock paths and receiver

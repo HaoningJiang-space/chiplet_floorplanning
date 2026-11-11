@@ -30,6 +30,7 @@ jobs:
       - run: python tools/bootstrap_validation.py --build-sta --jobs 2
       - run: python tools/validate_package.py --output results/package
       - run: python tools/validate_electrical.py --ngspice /usr/bin/ngspice --output results/electrical
+      - run: python tools/validate_characterization.py --output results/characterization
       - uses: actions/upload-artifact@v4
         if: always()
         with:

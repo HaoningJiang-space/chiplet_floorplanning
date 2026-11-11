@@ -1,0 +1,797 @@
+{
+  "software_checks_passed": true,
+  "checks": {
+    "all_25_requested_core_corner_pairs_analyzed": true,
+    "SKY_JSON_TT_matches_original_Liberty": true,
+    "per_instance_cold_endpoint_equivalence": true,
+    "per_instance_hot_endpoint_equivalence": true,
+    "data_temperature_changes_slack": true,
+    "clock_temperature_changes_slack": true,
+    "receiver_temperature_changes_slack": true,
+    "uniform_60C_original_table_lookup_matches": true,
+    "uniform_60C_setup_arithmetic_matches": true,
+    "only_tx_data_100C_original_table_lookup_matches": true,
+    "only_tx_data_100C_setup_arithmetic_matches": true,
+    "only_tx_clock_100C_original_table_lookup_matches": true,
+    "only_tx_clock_100C_setup_arithmetic_matches": true,
+    "distinct_local_temperatures": true,
+    "physical_signoff_not_claimed": true,
+    "out_of_range_rejected": true,
+    "mixed_process_voltage_rejected": true,
+    "pad_slew_violation_detected": true
+  },
+  "physical_package_calibration": "not_completed_no_measurements",
+  "full_PVT_signoff": false,
+  "high_speed_PHY_qualification": false,
+  "temperature_interpolation_holdout_validated": false,
+  "source": {
+    "commit": "66e1ff5bad243230e7a52bbbe30547feafa6204b",
+    "dirty": true
+  },
+  "pvt": {
+    "tt_025C_1v80__tt_025C_1v80": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.323373,
+      "hold_slack_ns": 9.680498,
+      "libraries": [
+        {
+          "file": "sky_tt_025C_1v80.lib",
+          "sha256": "6ded47a28fcd0d62df6bffd277632dc6a8f68aee0f8fa17034db3e4d8fd934e3"
+        },
+        {
+          "file": "gf180_tt_1v8.lib",
+          "sha256": "5aaa722e7c0d2daf227f063f8d5e15c80a9e15fefed405341d0f424603921bf9"
+        }
+      ]
+    },
+    "tt_025C_1v80__ff_n40C_1v98": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.911221,
+      "hold_slack_ns": 10.01575,
+      "libraries": [
+        {
+          "file": "sky_tt_025C_1v80.lib",
+          "sha256": "6ded47a28fcd0d62df6bffd277632dc6a8f68aee0f8fa17034db3e4d8fd934e3"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        }
+      ]
+    },
+    "tt_025C_1v80__ff_125C_1v98": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.800712,
+      "hold_slack_ns": 9.994371,
+      "libraries": [
+        {
+          "file": "sky_tt_025C_1v80.lib",
+          "sha256": "6ded47a28fcd0d62df6bffd277632dc6a8f68aee0f8fa17034db3e4d8fd934e3"
+        },
+        {
+          "file": "gf_core_ff_125C_1v98.lib",
+          "sha256": "2dd3fb62a6102d0215742385582872e7d1b3a16099f5d330264dd3ca94aee2ed"
+        }
+      ]
+    },
+    "tt_025C_1v80__ss_n40C_1v62": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 7.16312,
+      "hold_slack_ns": 8.772253,
+      "libraries": [
+        {
+          "file": "sky_tt_025C_1v80.lib",
+          "sha256": "6ded47a28fcd0d62df6bffd277632dc6a8f68aee0f8fa17034db3e4d8fd934e3"
+        },
+        {
+          "file": "gf_core_ss_n40C_1v62.lib",
+          "sha256": "f946dfadbcc82e837581a701bf0136ddecfb76c577212ef93c686330c638e115"
+        }
+      ]
+    },
+    "tt_025C_1v80__ss_125C_1v62": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 6.989896,
+      "hold_slack_ns": 9.013139,
+      "libraries": [
+        {
+          "file": "sky_tt_025C_1v80.lib",
+          "sha256": "6ded47a28fcd0d62df6bffd277632dc6a8f68aee0f8fa17034db3e4d8fd934e3"
+        },
+        {
+          "file": "gf_core_ss_125C_1v62.lib",
+          "sha256": "1e613f41b81960349b613df7bd707aa471ae596a6cc210e26a1512d155c7549d"
+        }
+      ]
+    },
+    "tt_100C_1v80__tt_025C_1v80": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.497937,
+      "hold_slack_ns": 9.684735,
+      "libraries": [
+        {
+          "file": "sky_tt_100C_1v80.lib",
+          "sha256": "a5e11ece43a80b38c745df87f8f9e7c08b7d1860c5ea7242bdbcd6d145cce216"
+        },
+        {
+          "file": "gf180_tt_1v8.lib",
+          "sha256": "5aaa722e7c0d2daf227f063f8d5e15c80a9e15fefed405341d0f424603921bf9"
+        }
+      ]
+    },
+    "tt_100C_1v80__ff_n40C_1v98": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 9.053312,
+      "hold_slack_ns": 10.02868,
+      "libraries": [
+        {
+          "file": "sky_tt_100C_1v80.lib",
+          "sha256": "a5e11ece43a80b38c745df87f8f9e7c08b7d1860c5ea7242bdbcd6d145cce216"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        }
+      ]
+    },
+    "tt_100C_1v80__ff_125C_1v98": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.941795,
+      "hold_slack_ns": 10.00995,
+      "libraries": [
+        {
+          "file": "sky_tt_100C_1v80.lib",
+          "sha256": "a5e11ece43a80b38c745df87f8f9e7c08b7d1860c5ea7242bdbcd6d145cce216"
+        },
+        {
+          "file": "gf_core_ff_125C_1v98.lib",
+          "sha256": "2dd3fb62a6102d0215742385582872e7d1b3a16099f5d330264dd3ca94aee2ed"
+        }
+      ]
+    },
+    "tt_100C_1v80__ss_n40C_1v62": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 7.392087,
+      "hold_slack_ns": 8.765316,
+      "libraries": [
+        {
+          "file": "sky_tt_100C_1v80.lib",
+          "sha256": "a5e11ece43a80b38c745df87f8f9e7c08b7d1860c5ea7242bdbcd6d145cce216"
+        },
+        {
+          "file": "gf_core_ss_n40C_1v62.lib",
+          "sha256": "f946dfadbcc82e837581a701bf0136ddecfb76c577212ef93c686330c638e115"
+        }
+      ]
+    },
+    "tt_100C_1v80__ss_125C_1v62": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 7.199897,
+      "hold_slack_ns": 9.007141,
+      "libraries": [
+        {
+          "file": "sky_tt_100C_1v80.lib",
+          "sha256": "a5e11ece43a80b38c745df87f8f9e7c08b7d1860c5ea7242bdbcd6d145cce216"
+        },
+        {
+          "file": "gf_core_ss_125C_1v62.lib",
+          "sha256": "1e613f41b81960349b613df7bd707aa471ae596a6cc210e26a1512d155c7549d"
+        }
+      ]
+    },
+    "ff_n40C_1v65__tt_025C_1v80": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.188286,
+      "hold_slack_ns": 9.64504,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf180_tt_1v8.lib",
+          "sha256": "5aaa722e7c0d2daf227f063f8d5e15c80a9e15fefed405341d0f424603921bf9"
+        }
+      ]
+    },
+    "ff_n40C_1v65__ff_n40C_1v98": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.806795,
+      "hold_slack_ns": 9.96458,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        }
+      ]
+    },
+    "ff_n40C_1v65__ff_125C_1v98": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.702056,
+      "hold_slack_ns": 9.932717,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ff_125C_1v98.lib",
+          "sha256": "2dd3fb62a6102d0215742385582872e7d1b3a16099f5d330264dd3ca94aee2ed"
+        }
+      ]
+    },
+    "ff_n40C_1v65__ss_n40C_1v62": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 6.988245,
+      "hold_slack_ns": 8.746576,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ss_n40C_1v62.lib",
+          "sha256": "f946dfadbcc82e837581a701bf0136ddecfb76c577212ef93c686330c638e115"
+        }
+      ]
+    },
+    "ff_n40C_1v65__ss_125C_1v62": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 6.830681,
+      "hold_slack_ns": 8.98612,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ss_125C_1v62.lib",
+          "sha256": "1e613f41b81960349b613df7bd707aa471ae596a6cc210e26a1512d155c7549d"
+        }
+      ]
+    },
+    "ff_100C_1v65__tt_025C_1v80": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.579942,
+      "hold_slack_ns": 9.635063,
+      "libraries": [
+        {
+          "file": "sky_ff_100C_1v65.lib",
+          "sha256": "6125f3ec8dd603681f323d1cc81a9565c7f39a3f7b4baa2b9f9fd2ac7e0b7100"
+        },
+        {
+          "file": "gf180_tt_1v8.lib",
+          "sha256": "5aaa722e7c0d2daf227f063f8d5e15c80a9e15fefed405341d0f424603921bf9"
+        }
+      ]
+    },
+    "ff_100C_1v65__ff_n40C_1v98": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 9.130081,
+      "hold_slack_ns": 9.969421,
+      "libraries": [
+        {
+          "file": "sky_ff_100C_1v65.lib",
+          "sha256": "6125f3ec8dd603681f323d1cc81a9565c7f39a3f7b4baa2b9f9fd2ac7e0b7100"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        }
+      ]
+    },
+    "ff_100C_1v65__ff_125C_1v98": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 9.016549,
+      "hold_slack_ns": 9.946455,
+      "libraries": [
+        {
+          "file": "sky_ff_100C_1v65.lib",
+          "sha256": "6125f3ec8dd603681f323d1cc81a9565c7f39a3f7b4baa2b9f9fd2ac7e0b7100"
+        },
+        {
+          "file": "gf_core_ff_125C_1v98.lib",
+          "sha256": "2dd3fb62a6102d0215742385582872e7d1b3a16099f5d330264dd3ca94aee2ed"
+        }
+      ]
+    },
+    "ff_100C_1v65__ss_n40C_1v62": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 7.497651,
+      "hold_slack_ns": 8.728909,
+      "libraries": [
+        {
+          "file": "sky_ff_100C_1v65.lib",
+          "sha256": "6125f3ec8dd603681f323d1cc81a9565c7f39a3f7b4baa2b9f9fd2ac7e0b7100"
+        },
+        {
+          "file": "gf_core_ss_n40C_1v62.lib",
+          "sha256": "f946dfadbcc82e837581a701bf0136ddecfb76c577212ef93c686330c638e115"
+        }
+      ]
+    },
+    "ff_100C_1v65__ss_125C_1v62": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 7.297953,
+      "hold_slack_ns": 8.969813,
+      "libraries": [
+        {
+          "file": "sky_ff_100C_1v65.lib",
+          "sha256": "6125f3ec8dd603681f323d1cc81a9565c7f39a3f7b4baa2b9f9fd2ac7e0b7100"
+        },
+        {
+          "file": "gf_core_ss_125C_1v62.lib",
+          "sha256": "1e613f41b81960349b613df7bd707aa471ae596a6cc210e26a1512d155c7549d"
+        }
+      ]
+    },
+    "ss_100C_1v60__tt_025C_1v80": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 7.878417,
+      "hold_slack_ns": 9.943817,
+      "libraries": [
+        {
+          "file": "sky_ss_100C_1v60.lib",
+          "sha256": "bcdc4fe1d9fec42db69ccc85cca4f2b3a1ae24deb31e5f3fd78a5b3c9e28087e"
+        },
+        {
+          "file": "gf180_tt_1v8.lib",
+          "sha256": "5aaa722e7c0d2daf227f063f8d5e15c80a9e15fefed405341d0f424603921bf9"
+        }
+      ]
+    },
+    "ss_100C_1v60__ff_n40C_1v98": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.483657,
+      "hold_slack_ns": 10.34366,
+      "libraries": [
+        {
+          "file": "sky_ss_100C_1v60.lib",
+          "sha256": "bcdc4fe1d9fec42db69ccc85cca4f2b3a1ae24deb31e5f3fd78a5b3c9e28087e"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        }
+      ]
+    },
+    "ss_100C_1v60__ff_125C_1v98": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.399743,
+      "hold_slack_ns": 10.34106,
+      "libraries": [
+        {
+          "file": "sky_ss_100C_1v60.lib",
+          "sha256": "bcdc4fe1d9fec42db69ccc85cca4f2b3a1ae24deb31e5f3fd78a5b3c9e28087e"
+        },
+        {
+          "file": "gf_core_ff_125C_1v98.lib",
+          "sha256": "2dd3fb62a6102d0215742385582872e7d1b3a16099f5d330264dd3ca94aee2ed"
+        }
+      ]
+    },
+    "ss_100C_1v60__ss_n40C_1v62": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 6.569281,
+      "hold_slack_ns": 8.955554,
+      "libraries": [
+        {
+          "file": "sky_ss_100C_1v60.lib",
+          "sha256": "bcdc4fe1d9fec42db69ccc85cca4f2b3a1ae24deb31e5f3fd78a5b3c9e28087e"
+        },
+        {
+          "file": "gf_core_ss_n40C_1v62.lib",
+          "sha256": "f946dfadbcc82e837581a701bf0136ddecfb76c577212ef93c686330c638e115"
+        }
+      ]
+    },
+    "ss_100C_1v60__ss_125C_1v62": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 6.401045,
+      "hold_slack_ns": 9.204266,
+      "libraries": [
+        {
+          "file": "sky_ss_100C_1v60.lib",
+          "sha256": "bcdc4fe1d9fec42db69ccc85cca4f2b3a1ae24deb31e5f3fd78a5b3c9e28087e"
+        },
+        {
+          "file": "gf_core_ss_125C_1v62.lib",
+          "sha256": "1e613f41b81960349b613df7bd707aa471ae596a6cc210e26a1512d155c7549d"
+        }
+      ]
+    }
+  },
+  "temperature": {
+    "cold": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.806795,
+      "hold_slack_ns": 9.96458,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        },
+        {
+          "file": "tx_reg.lib",
+          "sha256": "ff6bb3500d6b818426258ebe902b9e52bf1e0e205275bd396704487f2734c554"
+        },
+        {
+          "file": "tx_data.lib",
+          "sha256": "9ed603019dce492abceb076eb24852d4271dabc3805d4053ed417160b6981293"
+        },
+        {
+          "file": "tx_clock.lib",
+          "sha256": "9936117bc5829786ff9ab0dab35ad42405e5edc3fc8792252229b35886596f27"
+        },
+        {
+          "file": "rx_clock.lib",
+          "sha256": "05d60a42d99b7c79969e3333786293ee84a9f6501f45621c5b8e45c2b46750a3"
+        },
+        {
+          "file": "rx_reg.lib",
+          "sha256": "51301dce7211d9d3fd6f7a1bb340f1352100a8d1305db75f0662a380f7cd7880"
+        }
+      ]
+    },
+    "hot": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 9.016549,
+      "hold_slack_ns": 9.946455,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        },
+        {
+          "file": "tx_reg.lib",
+          "sha256": "f45a03ca9e2fea36ee7838e088ff8de6cc3a62d2dc657a615af1d585b7fcbf69"
+        },
+        {
+          "file": "tx_data.lib",
+          "sha256": "3e7c0ec16d4a52d2131b2e78ecd8a3da2ab226072765bd213d46e810445579a7"
+        },
+        {
+          "file": "tx_clock.lib",
+          "sha256": "c95a106c06a744725d64af1860fda0e3dd009d144f98020920f3e23514e7afb3"
+        },
+        {
+          "file": "rx_clock.lib",
+          "sha256": "4eed48f28df669dafb84a8b92f9bfcb8a76075615d4eba465fc4b2e5320cf0d3"
+        },
+        {
+          "file": "rx_reg.lib",
+          "sha256": "808071df721d81a284579ea5d6cd1dfc6009170abe93f4f4c31da536d37a3c1f"
+        }
+      ]
+    },
+    "uniform_60C": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.968843,
+      "hold_slack_ns": 9.952336,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        },
+        {
+          "file": "tx_reg.lib",
+          "sha256": "795619352fb4f8c092f9231f0f24dabf4e775f5ea2e8a518b0647d28acab79e8"
+        },
+        {
+          "file": "tx_data.lib",
+          "sha256": "a3d530d81940df33de4347e33a35daa2693679df817e535392ca2fbda5cf08e4"
+        },
+        {
+          "file": "tx_clock.lib",
+          "sha256": "8fabe83c93e69c815f2d2d4e6ab0346992f7c8ce7bde68ce9460e62e164bcb93"
+        },
+        {
+          "file": "rx_clock.lib",
+          "sha256": "4e2da36208e8897a26294176fd77c3aa6943581f15469485d00ca9f187dc55d6"
+        },
+        {
+          "file": "rx_reg.lib",
+          "sha256": "fed96a354a5d015c7e979e9324390a4ffa04e6ee2948338b23846a55ff7fbcad"
+        }
+      ]
+    },
+    "only_tx_data_100C": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 9.031549,
+      "hold_slack_ns": 9.978516,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        },
+        {
+          "file": "tx_reg.lib",
+          "sha256": "795619352fb4f8c092f9231f0f24dabf4e775f5ea2e8a518b0647d28acab79e8"
+        },
+        {
+          "file": "tx_data.lib",
+          "sha256": "3e7c0ec16d4a52d2131b2e78ecd8a3da2ab226072765bd213d46e810445579a7"
+        },
+        {
+          "file": "tx_clock.lib",
+          "sha256": "8fabe83c93e69c815f2d2d4e6ab0346992f7c8ce7bde68ce9460e62e164bcb93"
+        },
+        {
+          "file": "rx_clock.lib",
+          "sha256": "4e2da36208e8897a26294176fd77c3aa6943581f15469485d00ca9f187dc55d6"
+        },
+        {
+          "file": "rx_reg.lib",
+          "sha256": "fed96a354a5d015c7e979e9324390a4ffa04e6ee2948338b23846a55ff7fbcad"
+        }
+      ]
+    },
+    "only_tx_clock_100C": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.992469,
+      "hold_slack_ns": 9.928816,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        },
+        {
+          "file": "tx_reg.lib",
+          "sha256": "795619352fb4f8c092f9231f0f24dabf4e775f5ea2e8a518b0647d28acab79e8"
+        },
+        {
+          "file": "tx_data.lib",
+          "sha256": "a3d530d81940df33de4347e33a35daa2693679df817e535392ca2fbda5cf08e4"
+        },
+        {
+          "file": "tx_clock.lib",
+          "sha256": "c95a106c06a744725d64af1860fda0e3dd009d144f98020920f3e23514e7afb3"
+        },
+        {
+          "file": "rx_clock.lib",
+          "sha256": "4e2da36208e8897a26294176fd77c3aa6943581f15469485d00ca9f187dc55d6"
+        },
+        {
+          "file": "rx_reg.lib",
+          "sha256": "fed96a354a5d015c7e979e9324390a4ffa04e6ee2948338b23846a55ff7fbcad"
+        }
+      ]
+    },
+    "only_rx_reg_100C": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.931949,
+      "hold_slack_ns": 9.955244,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        },
+        {
+          "file": "tx_reg.lib",
+          "sha256": "795619352fb4f8c092f9231f0f24dabf4e775f5ea2e8a518b0647d28acab79e8"
+        },
+        {
+          "file": "tx_data.lib",
+          "sha256": "a3d530d81940df33de4347e33a35daa2693679df817e535392ca2fbda5cf08e4"
+        },
+        {
+          "file": "tx_clock.lib",
+          "sha256": "8fabe83c93e69c815f2d2d4e6ab0346992f7c8ce7bde68ce9460e62e164bcb93"
+        },
+        {
+          "file": "rx_clock.lib",
+          "sha256": "4e2da36208e8897a26294176fd77c3aa6943581f15469485d00ca9f187dc55d6"
+        },
+        {
+          "file": "rx_reg.lib",
+          "sha256": "118e351cd1e398c61aa342271703f8847020154934950f895851131982491f21"
+        }
+      ]
+    },
+    "coupled": {
+      "status": "analyzed_core_cell_harness",
+      "setup_slack_ns": 8.969588,
+      "hold_slack_ns": 9.952722,
+      "libraries": [
+        {
+          "file": "sky_ff_n40C_1v65.lib",
+          "sha256": "87fdbe38cb5552c6e186410291bd90bbba4d7d921aea19a6f1ab4c3d56e12247"
+        },
+        {
+          "file": "gf_core_ff_n40C_1v98.lib",
+          "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d"
+        },
+        {
+          "file": "tx_reg.lib",
+          "sha256": "071884360e10c292258dbcd2ebd997c2ad09cf16c1f1816ac6cf0a154346b4c8"
+        },
+        {
+          "file": "tx_data.lib",
+          "sha256": "cea91f78319bb4ae08686a14ca15306cca6df1af19cebd4c4b817f3bc7410e1c"
+        },
+        {
+          "file": "tx_clock.lib",
+          "sha256": "383a23a5f70dad749c263802f14f036e6f314b9cd2697358feec7b54f42e1852"
+        },
+        {
+          "file": "rx_clock.lib",
+          "sha256": "330b632de5920126ba1f6f34c650d98b6d2f136a346c67890230e49a14625c29"
+        },
+        {
+          "file": "rx_reg.lib",
+          "sha256": "ce902f2ddb2245c50f011786a376499f54856723fc64bee6df8fa4099aa9cbeb"
+        }
+      ]
+    },
+    "local_temperature_c": {
+      "tx_reg": 60.414996127934295,
+      "tx_data": 59.51327350071819,
+      "tx_clock": 59.4594653272178,
+      "rx_clock": 57.49722587734638,
+      "rx_reg": 57.46064862605791
+    }
+  },
+  "pad": {
+    "status": "rejected",
+    "valid_slack_ns": null,
+    "reason": "electrical design-rule violation; lane result is outside declared limits",
+    "violations": [
+      "rx_clock_pad/PAD                        1.00    1.84   -0.84 (VIOLATED)",
+      "rx_data_pad/PAD                         1.00    1.84   -0.84 (VIOLATED)"
+    ]
+  },
+  "independent_delay_witnesses": {
+    "uniform_60C": {
+      "rise": {
+        "input_slew_ns": 0.072492406,
+        "effective_cap_pf": 1.036558032,
+        "original_endpoint_delays_ns": [
+          1.2151448857998635,
+          0.9973936536025706
+        ],
+        "independently_interpolated_delay_ns": 1.0596082913732257,
+        "opensta_delay_ns": 1.05960834,
+        "absolute_error_ns": 4.862677438488561e-08
+      },
+      "fall": {
+        "input_slew_ns": 0.04054885,
+        "effective_cap_pf": 1.034893155,
+        "original_endpoint_delays_ns": [
+          0.5152318634322137,
+          0.5621719878309882
+        ],
+        "independently_interpolated_delay_ns": 0.5487605237170526,
+        "opensta_delay_ns": 0.548760533,
+        "absolute_error_ns": 9.2829474107603e-09
+      },
+      "data_arrival_ns": 1.352391481,
+      "data_required_ns": 10.321234703,
+      "recomputed_setup_slack_ns": 8.968843222
+    },
+    "only_tx_data_100C": {
+      "rise": {
+        "input_slew_ns": 0.07327231,
+        "effective_cap_pf": 1.036483407,
+        "original_endpoint_delays_ns": [
+          1.215335159567652,
+          0.9976299249727887
+        ],
+        "independently_interpolated_delay_ns": 0.9976299249727887,
+        "opensta_delay_ns": 0.99763,
+        "absolute_error_ns": 7.502721133256784e-08
+      },
+      "fall": {
+        "input_slew_ns": 0.041057564,
+        "effective_cap_pf": 1.035044193,
+        "original_endpoint_delays_ns": [
+          0.51552528512787,
+          0.5624577101062468
+        ],
+        "independently_interpolated_delay_ns": 0.5624577101062468,
+        "opensta_delay_ns": 0.56245774,
+        "absolute_error_ns": 2.989375325057608e-08
+      },
+      "data_arrival_ns": 1.290985227,
+      "data_required_ns": 10.322534561,
+      "recomputed_setup_slack_ns": 9.031549334
+    },
+    "only_tx_clock_100C": {
+      "rise": {
+        "input_slew_ns": 0.072492406,
+        "effective_cap_pf": 1.036558032,
+        "original_endpoint_delays_ns": [
+          1.2151448857998635,
+          0.9973936536025706
+        ],
+        "independently_interpolated_delay_ns": 1.0596082913732257,
+        "opensta_delay_ns": 1.05960834,
+        "absolute_error_ns": 4.862677438488561e-08
+      },
+      "fall": {
+        "input_slew_ns": 0.04054885,
+        "effective_cap_pf": 1.034893155,
+        "original_endpoint_delays_ns": [
+          0.5152318634322137,
+          0.5621719878309882
+        ],
+        "independently_interpolated_delay_ns": 0.5487605237170526,
+        "opensta_delay_ns": 0.548760533,
+        "absolute_error_ns": 9.2829474107603e-09
+      },
+      "data_arrival_ns": 1.352391481,
+      "data_required_ns": 10.344860077,
+      "recomputed_setup_slack_ns": 8.992468596
+    }
+  },
+  "rejected_expectation": {
+    "data_and_clock_heating_always_have_opposite_setup_effect": false,
+    "reason": "At this FF operating point, rising data delay decreases with temperature while falling clock delay increases. Source table queries and expanded paths, not a monotonic-temperature assumption, determine slack.",
+    "initial_failed_run": "v03-validation-01"
+  },
+  "coverage_gaps": [
+    "pad PVT combinations are incomplete",
+    "no independent temperature holdout SPICE characterization",
+    "GF180 TT temperature pair unavailable",
+    "different core voltage domains require a qualified I/O interface",
+    "no channel extraction, inductance, crosstalk, jitter, eye or BER validation",
+    "package resistance remains at reference temperature",
+    "no measured package stack, material or thermal/link data"
+  ],
+  "source_lock_sha256": "71f91071d61194c41bd4aff4885f53795e7ff8bbe857082b709d65819781c007",
+  "unit_tests_passed": 29,
+  "package_regression_passed": true,
+  "electrical_regression_passed": true,
+  "published_input_format_smoke": "v03-publish-coupled",
+  "implementation_sha256": {
+    "src/chiplet_floorplanning/__init__.py": "b68de6331483a94fe99066f91924fec1acbb82bc00b2bc791061c0037253aa33",
+    "src/chiplet_floorplanning/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/chiplet_floorplanning/characterization.py": "5c0e9ccbd3992ff43293f14a21d8928f76f21c47bef27cc6944bc007463dbafa",
+    "src/chiplet_floorplanning/cli.py": "91b62e5108c3b203364a1fd8710fce1c054b099458699f56ed604589ed1e3b59",
+    "src/chiplet_floorplanning/interconnect.py": "fbed1d78027fcc29e0fb9f12f2e9063ccad001a0f536a48b40998556183e5a61",
+    "src/chiplet_floorplanning/model.py": "698dcff084a540c2f872dae22a4fb2e6aa776b82d0be8d2650e37c568d9b869c",
+    "src/chiplet_floorplanning/package.py": "eddc6676136da16c8a1e9348a12d9254693a267423452ab622f7269cc3e98d98",
+    "src/chiplet_floorplanning/power.py": "c3720f52eb60e384c327bd5a8ab86e5e9c2774faef3c85dfd70bbfd45f714f03",
+    "src/chiplet_floorplanning/thermal.py": "78424e8b33e73f2804fd42b2e6ec33480bcacb78167fc4a801998d538a56b216",
+    "src/chiplet_floorplanning/timing.py": "ef69903d9e7b8e8dbbbf0d67b8c0885b7a2ae32b4788fcb849e8a69b1396e213",
+    "tools/bootstrap_validation.py": "cf19ad8a90bb7c69ca147b4f48d821fc1590065544f5ce5772d9ed98c09478d3",
+    "tools/prepare_characterization.py": "962903ff2888601154d69e40836b1c78493bf0d329b0f0d1b611cd49e94e3583",
+    "tools/sources.lock.json": "71f91071d61194c41bd4aff4885f53795e7ff8bbe857082b709d65819781c007",
+    "tools/validate_characterization.py": "7850796dbd6c8d9a8ae85bbbc6281adada84a3e656317a2faf7db14445453bdf",
+    "tools/validate_electrical.py": "88ef1efdf2ea17ebeab267c267a6640ac3aece778d7c2043257cb0d94e89ca86",
+    "tools/validate_package.py": "cf6f8cd71dd4ffa5577272ea9f67ff6abe19d65891ebc279124a8200e359b6d8",
+    "tests/characterization_unittest.py": "aa321feb6d405b93798cb108544a422824cd157a5086a5738b38a4ba04d71c1e",
+    "tests/core_unittest.py": "65f77fb4ffa0d9e4c3aa6cf41f8feb76eb2945ab7b8b426434817acd6c147b34",
+    "tests/package_unittest.py": "83019ce3048d99051c462193398b5d75b97fdd13bb6ee2a112ceacff7be5e8fe",
+    "examples/lane_instances.json": "0847a4d838a5c7c68692159a8efcfd967c855a9fcb854b9160142df30758d67f",
+    "examples/layered_two_chiplets.json": "7852f42bdf12f1f8d57646c8b929a0777b3a811d6a059528fd17adc88977ecc4",
+    "examples/two_chiplets.json": "5b7169ce9cdff5c999c99086cc05fa92f5914e1c2746c35c790603d56f327fce"
+  }
+}

@@ -67,6 +67,174 @@
       "url": "https://raw.githubusercontent.com/AlishKanani/MFIT/4444336d95fe7e9a3bf440c96937831126c6a37f/INPUT_FORMAT.md",
       "sha256": "f7c305cbfb780b0ab7047e1a1002d13ba72a2c6b72415e8cdcf5708174e17604",
       "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/gf_io_tt_3v3.lib",
+      "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_io/2aeec51ea2824b6cc0b396acfc39f4535f40b23a/liberty/gf180mcu_fd_io__tt_025C_3v30.lib",
+      "sha256": "7f1cc88c10f3db086edd088874747d9797256d8327a0452ce700eed417fcf484",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/gf_core_tt_3v3.lib",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/cab543eb3508039715a90f402a517852218b5e8f/flow/platforms/gf180/lib/gf180mcu_fd_sc_mcu7t5v0__tt_025C_3v30.lib.gz",
+      "sha256": "6bbb58ef6a7747dfb6f9490e1260fb72df691c8bbd0850f0ce6239e462e9c853",
+      "decompress_gzip": true
+    },
+    {
+      "path": "pdk-v03/sky_io_tt_1v8_3v3.lib",
+      "url": "https://raw.githubusercontent.com/RTimothyEdwards/open_pdks/5740c4a81c42f9fe4af5ef2ee258a99151053d28/sky130/custom/sky130_fd_io/lib/sky130_ef_io__gpiov2_pad_tt_tt_025C_1v80_3v30.lib",
+      "sha256": "3a96e91dded692bc4af4ad1a4813361829e2812ebce17de253bf45502242d16f",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/gf_in_c_tt_3v3.lib",
+      "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_io/2aeec51ea2824b6cc0b396acfc39f4535f40b23a/cells/in_c/gf180mcu_fd_io__in_c__tt_025C_3v30.lib",
+      "sha256": "169a86b976778c9b440f121e2e6a6e1d9c95f1b52cb695b7254ec28e52c7b0bf",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_common.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/timing/sky130_fd_sc_hd__common.lib.json",
+      "sha256": "f2e44ee9535bca3badb2748c12f7bf90c0cd1a67d01e5ed7659e43d964a791de",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_tt_025C_1v80.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/timing/sky130_fd_sc_hd__tt_025C_1v80.lib.json",
+      "sha256": "2a662ba8d3324c982d9a0c4e90302728db9d5fed34ffda90c63400e1c08cbd7e",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_buf_8_tt_025C_1v80.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/buf/sky130_fd_sc_hd__buf_8__tt_025C_1v80.lib.json",
+      "sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_dfxtp_1_tt_025C_1v80.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/dfxtp/sky130_fd_sc_hd__dfxtp_1__tt_025C_1v80.lib.json",
+      "sha256": "6f7793786ce917e03b70c2420e6ca202f42a361f9d453739f71fba44832e1b7f",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_tt_100C_1v80.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/timing/sky130_fd_sc_hd__tt_100C_1v80.lib.json",
+      "sha256": "77a78776a4c2358cdd447f3aa62392357700e2f30eddac595ad66bcad501088d",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_buf_8_tt_100C_1v80.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/buf/sky130_fd_sc_hd__buf_8__tt_100C_1v80.lib.json",
+      "sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_dfxtp_1_tt_100C_1v80.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/dfxtp/sky130_fd_sc_hd__dfxtp_1__tt_100C_1v80.lib.json",
+      "sha256": "5c06af290abd24ed4cbabe3f5a4bdaafa5a19a37960697bdb8dbd915f0559db2",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_ff_n40C_1v65.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/timing/sky130_fd_sc_hd__ff_n40C_1v65.lib.json",
+      "sha256": "cbe3c6f5b39dd06fc0bb5851d13195366832dd23264aa70174bb262df756b3f9",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_buf_8_ff_n40C_1v65.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/buf/sky130_fd_sc_hd__buf_8__ff_n40C_1v65.lib.json",
+      "sha256": "cd1a31e6fec667ef6a7f831f6623997aed90b437528b7e86e4ccfccab1b0a89c",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_dfxtp_1_ff_n40C_1v65.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/dfxtp/sky130_fd_sc_hd__dfxtp_1__ff_n40C_1v65.lib.json",
+      "sha256": "093b877d16d604338c6dda993264f11cf0fc936a678eece9cf89b534c087ca0d",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_ff_100C_1v65.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/timing/sky130_fd_sc_hd__ff_100C_1v65.lib.json",
+      "sha256": "9ccf4f1246c2bd3a363d04d5d0cdba00e14b71ebc0cc3c8dc9d751af644ac5a0",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_buf_8_ff_100C_1v65.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/buf/sky130_fd_sc_hd__buf_8__ff_100C_1v65.lib.json",
+      "sha256": "b684900f616327ea9ec3572482fdc73727208eb76f32632d656a19da6b49a285",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_dfxtp_1_ff_100C_1v65.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/dfxtp/sky130_fd_sc_hd__dfxtp_1__ff_100C_1v65.lib.json",
+      "sha256": "fc0392112e7ae277b27ada7f3a4199fdc2d5769668a08482d25bebbf394dc026",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_ss_100C_1v60.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/timing/sky130_fd_sc_hd__ss_100C_1v60.lib.json",
+      "sha256": "4942b70d37d000c157cbad72e76013152dd023f07c7976c61269c99247bdd605",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_buf_8_ss_100C_1v60.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/buf/sky130_fd_sc_hd__buf_8__ss_100C_1v60.lib.json",
+      "sha256": "3a26759b36ee5d46eae244ca4265152608ac7e8ae3364dc007dd4c9f630f7c63",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_dfxtp_1_ss_100C_1v60.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/dfxtp/sky130_fd_sc_hd__dfxtp_1__ss_100C_1v60.lib.json",
+      "sha256": "338b62f7cc4667cf1a93502d693ee105e726be11e0e3d66a29dd73130c4a8276",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/gf_core_ff_n40C_1v98.lib",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/cab543eb3508039715a90f402a517852218b5e8f/flow/platforms/gf180/lib/gf180mcu_fd_sc_mcu7t5v0__ff_n40C_1v98.lib.gz",
+      "sha256": "ba7edd948147d93ef32a75e69a628220128497a55b06bca2954c6e11067d9f8d",
+      "decompress_gzip": true
+    },
+    {
+      "path": "pdk-v03/gf_core_ff_125C_1v98.lib",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/cab543eb3508039715a90f402a517852218b5e8f/flow/platforms/gf180/lib/gf180mcu_fd_sc_mcu7t5v0__ff_125C_1v98.lib.gz",
+      "sha256": "2dd3fb62a6102d0215742385582872e7d1b3a16099f5d330264dd3ca94aee2ed",
+      "decompress_gzip": true
+    },
+    {
+      "path": "pdk-v03/gf_core_ss_n40C_1v62.lib",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/cab543eb3508039715a90f402a517852218b5e8f/flow/platforms/gf180/lib/gf180mcu_fd_sc_mcu7t5v0__ss_n40C_1v62.lib.gz",
+      "sha256": "f946dfadbcc82e837581a701bf0136ddecfb76c577212ef93c686330c638e115",
+      "decompress_gzip": true
+    },
+    {
+      "path": "pdk-v03/gf_core_ss_125C_1v62.lib",
+      "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/cab543eb3508039715a90f402a517852218b5e8f/flow/platforms/gf180/lib/gf180mcu_fd_sc_mcu7t5v0__ss_125C_1v62.lib.gz",
+      "sha256": "1e613f41b81960349b613df7bd707aa471ae596a6cc210e26a1512d155c7549d",
+      "decompress_gzip": true
+    },
+    {
+      "path": "pdk-v03/gf_inv_1_ff_n40C_1v98.json",
+      "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_sc_mcu7t5v0/43beb45e4d323a76239de436db2df6732e9a689b/cells/inv/gf180mcu_fd_sc_mcu7t5v0__inv_1__ff_n40C_1v98.lib.json",
+      "sha256": "7c9e18b38bd92a1b724f7c1923de54b67ed41bce789c30a3a44321f84c1df722",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/gf_dffq_1_ff_n40C_1v98.json",
+      "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_sc_mcu7t5v0/43beb45e4d323a76239de436db2df6732e9a689b/cells/dffq/gf180mcu_fd_sc_mcu7t5v0__dffq_1__ff_n40C_1v98.lib.json",
+      "sha256": "e00e6ba410e41337329ba4bd8a6881d8c0533dbdb012437d7a2684cdfc695e1c",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/gf_inv_1_ff_125C_1v98.json",
+      "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_sc_mcu7t5v0/43beb45e4d323a76239de436db2df6732e9a689b/cells/inv/gf180mcu_fd_sc_mcu7t5v0__inv_1__ff_125C_1v98.lib.json",
+      "sha256": "a074b1a437b4ece6cdb52360733d8473d5b2413480fff5fbc3655bff9b94e267",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/gf_dffq_1_ff_125C_1v98.json",
+      "url": "https://raw.githubusercontent.com/google/globalfoundries-pdk-libs-gf180mcu_fd_sc_mcu7t5v0/43beb45e4d323a76239de436db2df6732e9a689b/cells/dffq/gf180mcu_fd_sc_mcu7t5v0__dffq_1__ff_125C_1v98.lib.json",
+      "sha256": "b72f6dea0fb36b37dedda0f7e73f24a12a800324fb7552294ff126eb5865eb64",
+      "decompress_gzip": false
     }
   ]
 }

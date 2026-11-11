@@ -1,9 +1,10 @@
 # Chiplet Floorplanning
 
-面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.2.0**
-支持分层封装热网络、与 MFIT 网络组装的数值对照、几何 RC/SPEF，及使用真实
-SKY130/GF180 标准单元 Liberty 的 OpenSTA setup/hold 分析。
-尚未完成实物封装校准、pad/ESD/PHY 资格验证、热时序耦合、RTL 功耗或布局搜索。
+面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.3.0**
+支持分层热网络、MFIT 数值对照、几何 RC/SPEF、真实 SKY130/GF180 库时序、
+25 组核心单元 PVT 组合，以及逐实例局部温度到时序的实验性耦合。
+真实 3.3 V GPIO pad 已接入；当前示例因接收端 slew 超限而被拒绝。
+实物校准、全 PVT、pad/PHY 资格验证、温度插值的独立物理验证仍未完成。
 
 本项目遵循：**验证输入 → 验证评估器 → 验证布局差异 → 开始优化**。
 示例中的功耗、材料和 RC 参数全部是合成假设，不代表已测量或已校准的器件。
@@ -42,6 +43,9 @@ python -m unittest discover -s tests -p '*_unittest.py' -v
 - interposer/bump/die/TIM/lid 分层导热、芯粒岛与空隙、半层热阻和顶/底对流边界。
 - 固定版本 MFIT 网络组装对照、三档网格收敛和独立 ngspice RC 波形对照。
 - 真实 SKY130→GF180 的 TT、25°C、1.8 V 核心单元链路，显式数据/时钟 SPEF 与反边沿采样。
+- 5 个 SKY130 库工况 × 5 个 GF180 库工况，独立 die 工况组合；这不是完整 PVT 签核。
+- 将热网格映射到 5 个实例，按固定工艺、电压的温度端点插值延迟、slew、setup/hold 表。
+- 实际 pad 负载、模式引脚、跨库 slew 定义和电气上限检查；拒绝有电气超限的时序结果。
 - 分别输出 data 和 forwarded-clock 端点间的曼哈顿距离及用户给定系数下的 R/C。
 - 解析解、独立两节点热网络、旋转、非网格对齐功耗、异常输入与 CLI 验证；GitHub Actions。
 
@@ -54,8 +58,10 @@ I/O 块功耗由用户给定，当前不另加 link power，以避免重复计�
 保留 v0.1 的均匀薄板作为回归对照；`layered_package_steady` 则显式表示多层材料与芯粒岛。
 MFIT 对照核验相同边界条件下的方程组装，未使用其 C 瞬态求解器，也不等价于实物温度验证。
 现阶段的时序使用真实标准单元库和假设封装几何，内部连线采用显式零线负载；
-没有 pad/ESD、真实提取寄生、全 PVT signoff、瞬态热或温度相关漏电。
-热结果与 25°C 时序结果独立输出，**没有将局部温度自动应用到 Liberty**。
+未提供真实提取寄生、全 PVT signoff、瞬态热或温度相关漏电反馈。
+默认分析仍将热结果与常温时序独立输出；显式开启温度模式后，才将局部温度
+用于逐实例核心单元库。该模式固定为 SKY130 FF/1.65 V 与 GF180 FF/1.98 V，
+没有合格的跨电压 pad 接口，不能代表已验证的物理 D2D 链路。
 
 详见 [输入格式与物理假设](docs/model.md)、[分阶段路线](docs/roadmap.md)
 和 [验证记录](docs/validation.md)。公开仓库仅包含源代码、合成输入和文档；
@@ -78,6 +84,32 @@ chiplet-floorplanning evaluate examples/layered_two_chiplets.json \
 OpenSTA 构建需要 C++ 编译器、CMake、Tcl 开发包、Flex、Bison、SWIG 和 zlib 开发包。
 下载文件的版本与 SHA-256 固定在 `tools/sources.lock.json`；PDK 文件存于忽略的 `local/`。
 详见 [v0.2 验收与边界](docs/validation-v02.md) 和[运行前验收计划](docs/validation-plan-v02.md)。
+
+## PVT、pad 和局部温度复现
+
+```bash
+python tools/bootstrap_validation.py --build-sta
+python tools/prepare_characterization.py
+python tools/validate_characterization.py --output results/characterization
+chiplet-floorplanning evaluate examples/layered_two_chiplets.json \
+  --sta local/upstream/OpenSTA/app/sta \
+  --temperature-model-root local/pdk-v03 \
+  --instance-locations examples/lane_instances.json \
+  --output results/local-temperature
+```
+
+实例位置是用于测试的 die 局部坐标（mm），并非真实布局提取结果。温度模式
+保留芯粒旋转、原始库来源哈希、每个实例的温度/插值区间和独立数据/时钟路径。
+不同温度表先在共同有效坐标范围重采样，再插值；禁止温度外推。
+温度升高不必然增加每条弧的延迟，具体变化须由源库和实际路径解释。
+
+验证脚本成功表示软件检查通过，**包含正确拒绝不合格 pad case**。
+该 case 的 GF180 PAD slew 约 1.84 ns，超过库规定的 1.00 ns。
+不能用正的 setup/hold 裕量宣称它可用。报告的 `qualification` 字段始终列明
+未完成的物理校准、PVT、PHY 和温度插值验证；不会输出完整封装签核通过。
+
+见 [v0.3 结果与负例](docs/validation-v03.md)、[验证计划与修订](docs/validation-plan-v03.md)
+和[实物校准所需证据](docs/physical-calibration.md)。
 
 ## 参考工具
 
