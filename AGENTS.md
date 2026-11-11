@@ -10,6 +10,9 @@ here; do not place these changes in adjacent placement repositories.
   and external thermal validation must remain explicit in outputs.
 - Commit coherent validated changes and push promptly to the public
   `HaoningJiang-space/chiplet_floorplanning` repository.
+- Maintain `main` as the only branch, locally and on `origin`. Commit validated
+  changes directly on `main`; remove development branches after verifying they
+  are fully merged.
 - Keep credentials, SSH configuration, raw results, environments and restricted
   PDK assets out of the repository. Use `local/` and `results/` for local data.
 - Preserve user files and avoid changing global Git identity or authentication.

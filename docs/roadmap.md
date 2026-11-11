@@ -73,7 +73,8 @@ the decision. Do not attribute an improvement to coupling without this control.
 
 ## Git workflow
 
-Use `main` for tested milestones; develop larger changes on topic branches.
+Maintain only `main`, both locally and on `origin`. Commit validated changes
+directly on `main`; remove development branches once fully merged.
 Commit source, tests, synthetic examples and compact validation receipts. Push
 each validated milestone. Exclude raw experiment outputs, environments,
 credentials, private host configuration and restricted third-party models.
