@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chiplet-floorplanning"
+version = "0.1.0"
+description = "Evidence-aware fixed-layout chiplet power and thermal evaluation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26,<3", "scipy>=1.11,<2"]
+
+[project.scripts]
+chiplet-floorplanning = "chiplet_floorplanning.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
