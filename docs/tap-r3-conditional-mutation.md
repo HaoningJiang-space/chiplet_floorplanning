@@ -30,7 +30,9 @@ full geometry checks on a legal fixture, preserve input placements, and execute
 16 initial layouts. These are algorithm tests, not new thermal experiments.
 
 The completed v4 pilot and its manifest remain historical frozen artifacts.
-The current policy source has now changed; new R3 runs need a new source-bound
-manifest/runner. Do not pass the old v4 manifest to a new run or rewrite its
-hashes. The TAP-derived full policy and concrete cooling schedule remain to be
-implemented before the comparative R3 batch is frozen and started.
+The current policy source has changed; new R3 runs use the new source-bound
+[R3 manifest/runner](tap-r3-protocol.md). Do not pass the old v4 manifest to a
+new run or rewrite its hashes. The TAP-derived full policy and concrete cooling
+schedule are implemented. Compare this ablation primarily through attained
+temperature at common interconnect budgets, and reverse constrained distance;
+HV and legality are auxiliary diagnostics, not the physical benefit.

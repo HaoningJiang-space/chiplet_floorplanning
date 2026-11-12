@@ -1,4 +1,4 @@
-"""Paired descriptive analysis and scientific figures for a COMPLETE pilot only."""
+"""Historical v4 HV analysis; current primary reporting is report_tap_physical.py."""
 import argparse
 import hashlib
 import json

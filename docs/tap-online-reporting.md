@@ -1,5 +1,9 @@
 # Descriptive reporting for the fixed online pilot
 
+Historical v4 reporting contract. For current physical-budget comparisons use
+[R3 metrics](tap-r3-metrics.md) and `report_tap_physical.py`. Keep this old report
+and its evidence intact; its HV summaries are now auxiliary interpretation.
+
 This postprocessor adds no search or thermal changes to the running experiment.
 It requires the complete 45-run verified evidence with successful policy replay;
 partial evidence cannot produce comparative figures or summary statistics.

@@ -47,6 +47,14 @@ here; do not place these changes in adjacent placement repositories.
 
 ## Research pace and proportional validation (user direction, 2026-11-12)
 
+- Lead algorithm comparisons with physical layout quality: peak temperature at
+  the same interconnect budget, plus interconnect cost at the same temperature
+  ceiling. Freeze common thresholds before new runs; preserve selected joint
+  points and attainment status. HV, legal rate and runtime are auxiliary.
+  Never combine temperature and distance minima from different layouts or call
+  centre-span proxies routed wirelength/timing. Pair by case/seed before taking
+  medians. Follow docs/tap-r3-metrics.md for the current exact metric contract.
+
 - Use fewer random seeds. Default to one seed for development/smoke experiments
   and up to three paired seeds for a main algorithm comparison. Do not default
   to five or more. Add seeds only when observed variability or a specific research

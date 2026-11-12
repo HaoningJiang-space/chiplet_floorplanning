@@ -9,10 +9,10 @@ from build_tap_ihp_endpoints import source_bytes
 
 
 def trial_order(plan):
-    methods = ('random', 'sa', 'nsga2')
+    methods = tuple(plan.get('methods_to_run', ('random', 'sa', 'nsga2')))
     runs = []
     for index, seed in enumerate(plan['seeds']):
-        order = methods[index % 3:] + methods[:index % 3]
+        order = methods[index % len(methods):] + methods[:index % len(methods)]
         for case in plan['cases']:
             for method in order:
                 runs.append(dict(case=case['domain']['name'], method=method, seed=seed))
@@ -28,8 +28,8 @@ def main():
     raw = source_bytes(args.plan)
     plan = json.loads(raw)
     runs = trial_order(plan)
-    if len(runs) != 45 or plan['budget'] != 64:
-        raise ValueError('Expected the frozen 45-run/64-query pilot')
+    if plan['protocol'] != 'tap-online-r3-physical-v1' or len(runs) != 18 or plan['budget'] != 64:
+        raise ValueError('Expected the frozen R3 18-new-run/64-query comparison')
     args.output.mkdir(parents=True, exist_ok=False)
     batch = dict(status='running', plan_sha256=hashlib.sha256(raw).hexdigest(),
                  commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
@@ -54,7 +54,7 @@ def main():
                                         queries=result.get('queries'), reason=result.get('reason')))
         if status == 'complete_query_budget' and child.returncode == 0:
             pass
-        elif status == 'stopped_at_limit' and result.get('reason') == 'proposal_cap':
+        elif status == 'stopped_at_limit':
             pass  # Preserve capped runs and continue the predeclared experiment.
         else:
             batch['status'] = 'failed_unknown'

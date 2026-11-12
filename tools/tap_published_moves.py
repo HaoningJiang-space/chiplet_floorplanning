@@ -77,7 +77,7 @@ def acceptance(old, new, observed, temperature):
     return 1. if delta <= 0 else math.exp(-delta/temperature)
 
 
-def run_tap_policy(domain, initial, scale, seed, solve, budget=64, proposal_cap=10000):
+def run_tap_policy(domain, initial, scale, seed, solve, budget=64, proposal_cap=10000, comparison=None):
     """Single-chain source-derived TAP policy with a query-budget schedule."""
     from tap_online import Evaluator, LimitReached, metrics
     from diagnose_tap_sensitivity import thermal_key
@@ -127,5 +127,5 @@ def run_tap_policy(domain, initial, scale, seed, solve, budget=64, proposal_cap=
     if ev.rows:
         result['final_metrics'] = metrics(ev.rows, scale)
     from tap_r3_metrics import summarize
-    result['research_metrics'] = summarize(result, scale)
+    result['research_metrics'] = summarize(result, scale, comparison)
     return result

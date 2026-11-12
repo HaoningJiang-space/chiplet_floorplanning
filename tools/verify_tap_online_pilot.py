@@ -71,7 +71,9 @@ def validate_run(result, entry, plan, replay=False):
         if len(rows) != plan['budget']:
             raise ValueError('False completion')
     elif result['status'] == 'stopped_at_limit':
-        if result['reason'] != 'proposal_cap' or result['proposals'] != plan['proposal_cap'] or len(rows) >= plan['budget']:
+        capped = result['reason'] == 'proposal_cap' and result['proposals'] == plan['proposal_cap']
+        exhausted = result['method'] == 'tap_sa' and result['reason'] == 'all one-grid-step moves rejected; global feasibility unknown'
+        if not (capped or exhausted) or len(rows) >= plan['budget']:
             raise ValueError('Invalid cap status')
     else:
         raise ValueError('Failed/unknown run must be reported separately, not compared')
@@ -154,14 +156,27 @@ def validate_run(result, entry, plan, replay=False):
     if times != sorted(times) or any(not math.isfinite(t) or not 0 <= t <= result['elapsed_seconds'] for t in times):
         raise ValueError('Invalid checkpoint timing')
     check_metrics(result['final_metrics'], independent_metrics(rows, entry['scale']))
+    if 'comparison' in entry:
+        from tap_r3_metrics import summarize
+        if result['research_metrics'] != summarize(result, entry['scale'], entry['comparison']):
+            raise ValueError('Physical comparison or effort metrics mismatch')
     if replay:
         def lookup(placement):
             # Reject any unseen state instead of allowing uncharged oracle access.
             return rows[seen[key(placement)]]['thermal']
-        replayed = run_policy(domain, initial, entry['scale'], result['method'], seed, lookup,
-                              budget=plan['budget'], proposal_cap=plan['proposal_cap'])
-        for field in ('status', 'reason', 'queries', 'solve_attempts', 'proposals', 'illegal_proposals',
-                      'cache_hits', 'generations', 'events', 'construction_candidate_checks'):
+        kwargs = dict(budget=plan['budget'], proposal_cap=plan['proposal_cap'], comparison=entry.get('comparison'))
+        if result['method'] == 'tap_sa':
+            from tap_published_moves import run_tap_policy
+            replayed = run_tap_policy(domain, initial, entry['scale'], seed, lookup, **kwargs)
+        else:
+            replayed = run_policy(domain, initial, entry['scale'], result['method'], seed, lookup, **kwargs)
+        fields = ['status', 'reason', 'queries', 'solve_attempts', 'proposals', 'illegal_proposals',
+                  'cache_hits', 'generations', 'events', 'construction_candidate_checks']
+        if result['method'] == 'tap_sa':
+            fields.append('decisions')
+        if result['method'] == 'nsga2_legal':
+            fields += ['mutation_candidate_checks', 'empty_mutation_sets']
+        for field in fields:
             if replayed[field] != result[field]:
                 raise ValueError('Policy replay mismatch: '+field)
     return True

@@ -203,7 +203,7 @@ class Evaluator:
         return row
 
 
-def run_policy(domain, initial, scale, method, seed, solve, budget=64, proposal_cap=10000):
+def run_policy(domain, initial, scale, method, seed, solve, budget=64, proposal_cap=10000, comparison=None):
     if method not in ('random', 'sa', 'nsga2', 'nsga2_legal') or budget < 16 or len(initial) != 16:
         raise ValueError('Invalid online protocol')
     if len({thermal_key(p) for p in initial}) != 16:
@@ -286,5 +286,5 @@ def run_policy(domain, initial, scale, method, seed, solve, budget=64, proposal_
     if ev.rows:
         result['final_metrics'] = metrics(ev.rows, scale)
     from tap_r3_metrics import summarize
-    result['research_metrics'] = summarize(result, scale)
+    result['research_metrics'] = summarize(result, scale, comparison)
     return result
