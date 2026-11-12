@@ -2,7 +2,9 @@
 
 The external read-only GitHub review identified observation-column identity,
 structured execution failures and warning inventory as concrete validation
-gaps. These are fixed without changing the physical circuit or production STA.
+gaps. The first two are fixed; warning classification is an initial partial
+fix, as confirmed by the follow-up review below. The physical circuit and
+production STA are unchanged.
 
 - Xyce waveform readers now require the complete CSV header to match TIME and
   the expected voltage/current names in exact order. Same-shaped reordered or
@@ -35,3 +37,21 @@ do not resolve that general distinction. Likewise, whole-fabric uniform hot
 controls, multiple-layout thermal interaction and receiver setup/hold
 characterization remain outstanding; single-cell temperature equivalence is
 not a substitute for those acceptance items.
+
+## Follow-up Chat verdict on b5ac635
+
+The existing Chat review session confirmed reading commit
+`b5ac635f42f92416cc19019021dd2f7c30b57958` and its seven-file patch via GitHub.
+It accepted the header and timeout/nonzero-exit fixes, but marked warning
+classification only partially closed. Specific remaining items are:
+
+- Scan all diagnostic prefixes and use complete normalized-message matching;
+  the current Netlist-warning prefix and keyword-substring rules are too narrow.
+- Persist `invalid_observation` when execution succeeds but header or waveform
+  validation fails. Other Xyce entry points also need consistent failure records.
+- Keep the electrical-versus-incremental-timing cost baseline issue open.
+- Make new tests independently importable instead of depending on another
+  discovered test modifying `sys.path`.
+
+The review inspected GitHub code and compact evidence, not local waveforms or
+test execution. Its closure does not constitute independent physical replication.
