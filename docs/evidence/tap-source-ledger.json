@@ -1,0 +1,315 @@
+{
+  "upstream_commit": "3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb",
+  "imported_cases": [
+    {
+      "name": "ascend910",
+      "source_path": "configs/sys_ascend910.cfg",
+      "source_url": "https://github.com/bu-icsg/TAP-2.5D/blob/3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb/configs/sys_ascend910.cfg",
+      "source_bytes_sha256": "548562a5f49d502f4b9bd03d3a4acc4b42f225056e6d91556416079c291e06d4",
+      "classification": "published_case_study_input_not_independent_measurement",
+      "chiplet_count": 6,
+      "widths_mm": [
+        14.5,
+        10.5,
+        7.75,
+        7.75,
+        7.75,
+        7.75
+      ],
+      "heights_mm": [
+        31.4,
+        16.0,
+        11.87,
+        11.87,
+        11.87,
+        11.87
+      ],
+      "powers_w": [
+        256.0,
+        14.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "total_power_w": 350.0,
+      "interposer_side_mm": 50.0,
+      "upstream_placement_granularity_mm": 1.0,
+      "link_type": "nppl",
+      "connection_matrix_source_values": [
+        [
+          0.0,
+          200.0,
+          256.0,
+          256.0,
+          256.0,
+          256.0
+        ],
+        [
+          200.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          256.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          256.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          256.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          256.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "connection_units": "unresolved_bandwidth_to_wire_conversion",
+      "qualified_physical_benchmark": false
+    },
+    {
+      "name": "micro150",
+      "source_path": "configs/sys_micro150.cfg",
+      "source_url": "https://github.com/bu-icsg/TAP-2.5D/blob/3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb/configs/sys_micro150.cfg",
+      "source_bytes_sha256": "d58b832befcd21fc437b183ae464dbccea8389c1bc43031187fe2311faeb6312",
+      "classification": "published_case_study_input_not_independent_measurement",
+      "chiplet_count": 8,
+      "widths_mm": [
+        8.25,
+        8.25,
+        8.25,
+        8.25,
+        8.75,
+        8.75,
+        8.75,
+        8.75
+      ],
+      "heights_mm": [
+        9.0,
+        9.0,
+        9.0,
+        9.0,
+        8.75,
+        8.75,
+        8.75,
+        8.75
+      ],
+      "powers_w": [
+        150.0,
+        150.0,
+        150.0,
+        150.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "total_power_w": 680.0,
+      "interposer_side_mm": 50.0,
+      "upstream_placement_granularity_mm": 1.0,
+      "link_type": "nppl",
+      "connection_matrix_source_values": [
+        [
+          0.0,
+          256.0,
+          0.0,
+          256.0,
+          1024.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          256.0,
+          0.0,
+          256.0,
+          0.0,
+          0.0,
+          1024.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          256.0,
+          0.0,
+          256.0,
+          0.0,
+          0.0,
+          1024.0,
+          0.0
+        ],
+        [
+          256.0,
+          0.0,
+          256.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1024.0
+        ],
+        [
+          1024.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1024.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1024.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1024.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "connection_units": "unresolved_bandwidth_to_wire_conversion",
+      "qualified_physical_benchmark": false
+    },
+    {
+      "name": "multigpu",
+      "source_path": "configs/sys_multigpu.cfg",
+      "source_url": "https://github.com/bu-icsg/TAP-2.5D/blob/3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb/configs/sys_multigpu.cfg",
+      "source_bytes_sha256": "6585bf9588d96b7e03277a17d8865dc2f105005356a77b333f5485c9b30865a3",
+      "classification": "published_case_study_input_not_independent_measurement",
+      "chiplet_count": 6,
+      "widths_mm": [
+        12.0,
+        18.2,
+        18.2,
+        7.75,
+        7.75,
+        7.75
+      ],
+      "heights_mm": [
+        12.0,
+        18.2,
+        18.2,
+        11.87,
+        11.87,
+        11.87
+      ],
+      "powers_w": [
+        105.0,
+        295.0,
+        295.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "total_power_w": 755.0,
+      "interposer_side_mm": 50.0,
+      "upstream_placement_granularity_mm": 1.0,
+      "link_type": "nppl",
+      "connection_matrix_source_values": [
+        [
+          0.0,
+          128.0,
+          128.0,
+          1024.0,
+          0.0,
+          0.0
+        ],
+        [
+          128.0,
+          0.0,
+          128.0,
+          0.0,
+          1024.0,
+          0.0
+        ],
+        [
+          128.0,
+          128.0,
+          0.0,
+          0.0,
+          0.0,
+          1024.0
+        ],
+        [
+          1024.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1024.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1024.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "connection_units": "unresolved_bandwidth_to_wire_conversion",
+      "qualified_physical_benchmark": false
+    }
+  ],
+  "status": "source_ledger_only_not_an_executable_floorplanning_benchmark",
+  "missing": [
+    "explicit PHY/bump map",
+    "bandwidth-to-wire convention",
+    "track-layer capacity rules",
+    "frozen independent placement domain",
+    "package boundary transfer validation"
+  ]
+}
