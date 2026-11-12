@@ -4,6 +4,7 @@ from pathlib import Path
 import random
 import sys
 import unittest
+from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from tap_online import Evaluator, LimitReached, Space, metrics, ranks_and_crowding, run_policy, select_population
 from diagnose_tap_sensitivity import thermal_key
@@ -61,7 +62,11 @@ class OnlineTest(unittest.TestCase):
         first = ev.evaluate(initial[0], 'initial')
         turned = copy.deepcopy(initial[0])
         turned[0]['rotation_deg'] = (turned[0]['rotation_deg']+180) % 360
-        self.assertIs(ev.evaluate(turned, 'rotate'), first)
+        cached = ev.evaluate(turned, 'rotate')
+        self.assertEqual(cached['query_index'], first['query_index'])
+        self.assertEqual(cached['placement'], turned)
+        self.assertEqual(first['placement'], initial[0])
+        self.assertIs(ev.rows[0], first)
         invalid = copy.deepcopy(initial[0])
         invalid[0]['centre_x_um'] = -10000
         self.assertIsNone(ev.evaluate(invalid, 'move'))
@@ -78,16 +83,16 @@ class OnlineTest(unittest.TestCase):
                 calls.append(thermal_key(p))
                 return dict(peak_power_layer_c=70+sum(x['centre_x_um'] for x in p)/10000,
                             numerical_admission_passed=True)
-            result = run_policy(self.domain(), initial, SCALE, method, 23, solve, budget=32)
+            result = run_policy(self.domain(), initial, SCALE, method, 23, solve, budget=64)
             self.assertEqual(result['status'], 'complete_query_budget', result['reason'])
             self.assertEqual(result['search_seed'], 1000023)
-            self.assertEqual(len(calls), 32)
-            self.assertEqual(len(set(calls)), 32)
+            self.assertEqual(len(calls), 64)
+            self.assertEqual(len(set(calls)), 64)
             self.assertEqual(calls[:16], [thermal_key(p) for p in initial])
             self.assertEqual(result['queries']+result['cache_hits']+result['illegal_proposals'], result['proposals'])
-            self.assertEqual([c['queries'] for c in result['checkpoints']], [16, 32])
+            self.assertEqual([c['queries'] for c in result['checkpoints']], [16, 32, 64])
             if method == 'nsga2':
-                self.assertEqual(result['generations'], 1)
+                self.assertEqual(result['generations'], 3)
         self.assertEqual(initial, original)
 
     def test_proposal_cap_and_solver_failure_are_not_penalties(self):
@@ -106,3 +111,26 @@ class OnlineTest(unittest.TestCase):
         initial[-1] = initial[0]
         with self.assertRaises(ValueError):
             run_policy(self.domain(), initial, SCALE, 'random', 2, lambda _: None)
+
+    def test_sa_accepts_cached_half_turn_without_restoring_old_genotype(self):
+        observed, expected = [], {}
+        def rotate(space, placement, rng, operator=None):
+            index = len(observed)
+            chain = index % 4
+            if 4 <= index < 8:
+                self.assertEqual(placement, expected[chain])
+            observed.append(copy.deepcopy(placement))
+            candidate = copy.deepcopy(placement)
+            candidate[0]['rotation_deg'] = (candidate[0]['rotation_deg']+180) % 360
+            if index < 4:
+                expected[chain] = copy.deepcopy(candidate)
+            return candidate, 'forced_half_turn'
+        def solve(p):
+            return dict(peak_power_layer_c=70., numerical_admission_passed=True)
+        with patch.object(Space, 'mutate', new=rotate):
+            result = run_policy(self.domain(), self.initial(), SCALE, 'sa', 3,
+                                solve, budget=17, proposal_cap=24)
+        self.assertGreaterEqual(len(observed), 8)
+        self.assertEqual(result['queries'], 16)
+        self.assertEqual(result['cache_hits'], 8)
+        self.assertEqual(result['status'], 'stopped_at_limit')

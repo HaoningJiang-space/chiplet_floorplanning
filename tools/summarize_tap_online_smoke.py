@@ -14,6 +14,7 @@ def main():
     parser.add_argument('--plan', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--rng-regression', action='store_true', help='Verify only the v2 Ascend Random regression')
+    parser.add_argument('--state-regression', action='store_true', help='Verify only the v3 Ascend SA regression')
     args = parser.parse_args()
     raw_plan = source_bytes(args.plan)
     plan = json.loads(raw_plan)
@@ -21,6 +22,8 @@ def main():
     expected += [('micro150', 'nsga2'), ('multigpu', 'nsga2')]
     if args.rng_regression:
         expected = [('ascend910', 'random')]
+    if args.state_regression:
+        expected = [('ascend910', 'sa')]
     records = []
     for name, method in expected:
         raw = source_bytes(args.root/f'{name}-{method}'/'result.json')
@@ -29,7 +32,7 @@ def main():
             raise ValueError('Incomplete or non-smoke trial')
         if r['plan_sha256'] != hashlib.sha256(raw_plan).hexdigest():
             raise ValueError('Wrong plan')
-        if args.rng_regression and r.get('search_seed') != r['seed']+1000000:
+        if (args.rng_regression or args.state_regression) and r.get('search_seed') != r['seed']+1000000:
             raise ValueError('Search stream was not separated')
         entry = next(c for c in plan['cases'] if c['domain']['name'] == name)
         initial = next(i for i in entry['initializations'] if i['seed'] == r['seed'])
@@ -53,7 +56,8 @@ def main():
                 'elapsed_seconds', 'checkpoints', 'final_metrics', 'timing_scope')
         records.append(dict(raw_result_sha256=hashlib.sha256(raw).hexdigest(),
                             search_seed=r.get('search_seed', r['seed']), **{k: r[k] for k in keep}))
-    result = dict(status='rng_regression_verified' if args.rng_regression else 'five_real_smoke_trials_verified',
+    result = dict(status='state_regression_verified' if args.state_regression else
+                  'rng_regression_verified' if args.rng_regression else 'five_real_smoke_trials_verified',
                   plan_sha256=hashlib.sha256(raw_plan).hexdigest(),
                   total_hits_queries=32*len(expected), records=records,
                   scope='execution and accounting smoke only; no method-performance conclusion')

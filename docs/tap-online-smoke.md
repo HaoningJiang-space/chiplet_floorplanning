@@ -50,4 +50,6 @@ initialization replay. See [v2 regression evidence](evidence/tap-online-smoke-v2
 All policies passed controlled accounting/selection tests with the new stream;
 the complete 291-test suite and basic CLI passed again. V1 smoke remains an
 execution check of the unchanged operators, not comparative v2 trial data.
-The five-seed full pilot must use `tap-online-plan-v2.json`.
+V2 remains historical; the final five-seed pilot uses `tap-online-plan-v4.json`.
+The [completed R1 review and disposition](tap-online-r1-review.md) describe
+the subsequent SA state fix, its regression and the added mesh fingerprint.

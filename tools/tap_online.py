@@ -150,7 +150,8 @@ class Evaluator:
         if key in self.cache:
             self.cache_hits += 1
             event.update(status='cache_hit', query_index=self.cache[key]['query_index'])
-            return self.cache[key]
+            # Reuse physics, not the first representative's search genotype.
+            return dict(self.cache[key], placement=copy.deepcopy(placement))
         if self.solve_attempts >= self.budget:
             event['status'] = 'query_budget_exhausted'
             raise LimitReached('query_budget')

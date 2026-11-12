@@ -1,0 +1,94 @@
+{
+  "status": "state_regression_verified",
+  "plan_sha256": "50e9a16f47400f42bc10e9ac6fb257258aa0760f914fd8d9efc623ad1b176184",
+  "total_hits_queries": 32,
+  "records": [
+    {
+      "raw_result_sha256": "f7bd4458c3e5a991ec2d3c22d9b06439762b7ba25d35e2c5c7f97cca36bcfffe",
+      "search_seed": 2027111200,
+      "case": "ascend910",
+      "method": "sa",
+      "seed": 2026111200,
+      "status": "complete_query_budget",
+      "budget": 32,
+      "queries": 32,
+      "solve_attempts": 32,
+      "proposals": 83,
+      "illegal_proposals": 47,
+      "cache_hits": 4,
+      "generations": 0,
+      "construction_candidate_checks": 0,
+      "geometry_seconds": 0.003852500580251217,
+      "solve_seconds": 72.94242869981099,
+      "elapsed_seconds": 73.08118540002033,
+      "checkpoints": [
+        {
+          "queries": 16,
+          "proposals": 16,
+          "elapsed_seconds": 37.15320200007409,
+          "archive_query_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            10,
+            11,
+            15
+          ],
+          "hypervolume": 0.8987971082789193,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 76.6740467139879,
+          "best_centre_span_mm": 26.26143790849673
+        },
+        {
+          "queries": 32,
+          "proposals": 83,
+          "elapsed_seconds": 73.08048500004224,
+          "archive_query_indices": [
+            0,
+            3,
+            4,
+            5,
+            7,
+            10,
+            11,
+            15,
+            17,
+            24,
+            29,
+            30
+          ],
+          "hypervolume": 0.9053204843951502,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 76.64289495116131,
+          "best_centre_span_mm": 26.26143790849673
+        }
+      ],
+      "final_metrics": {
+        "archive_query_indices": [
+          0,
+          3,
+          4,
+          5,
+          7,
+          10,
+          11,
+          15,
+          17,
+          24,
+          29,
+          30
+        ],
+        "hypervolume": 0.9053204843951502,
+        "archive_points_outside_reference": 0,
+        "best_peak_c": 76.64289495116131,
+        "best_centre_span_mm": 26.26143790849673
+      },
+      "timing_scope": "online elapsed includes per-run domain setup and all evaluation/reference checks; offline manifest construction separately counted"
+    }
+  ],
+  "scope": "execution and accounting smoke only; no method-performance conclusion"
+}

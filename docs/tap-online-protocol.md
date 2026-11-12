@@ -1,4 +1,4 @@
-# Online baseline protocol v2
+# Online baseline protocol v4
 
 This is a mechanism comparison, not a new optimizer or SOTA result. Use the
 three original TAP domains, uniform source powers and frozen FV/HiTS contract.
@@ -20,6 +20,12 @@ Initialization uses the listed seed; online policy proposals use seed + 1000000
 for every method. This avoids replaying the initialization construction stream.
 V1 smoke evidence remains historical; v2 changes only this RNG separation and
 extends source fingerprints to the imported key/span/hash helper scripts.
+V3 additionally preserves the proposed full four-direction genotype on a cache
+hit. Cached objectives come from the first thermal representative, but accepted
+SA state must retain the candidate's actual orientation. Saved query rows remain
+unchanged. This fixes the state-substitution issue identified by Chat review.
+V4 adds the geometry-conformal mesh implementation to source fingerprints;
+its search behavior and all initializations/scales are unchanged from v3.
 
 The offline manifest records construction attempts and candidate checks; these
 are common setup, excluded from per-run wall time and never claimed as speedup.
