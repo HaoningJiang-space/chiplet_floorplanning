@@ -1,7 +1,8 @@
 # Frozen three-layout comparison protocol
 
-The three cold/hot jobs are still running. This protocol is specified before
-their paired hot results are available; it is not a result or pass claim.
+This protocol was specified before the three paired hot results were available.
+The frozen runs are now complete; see [the finite exit report](xyce-three-layout-results.md).
+The protocol itself is not a physical pass claim.
 
 `tools/compare_xyce_hot_layouts.py` consumes the exact three-layout manifest in
 `docs/evidence/xyce-three-layout-manifest.json`. It independently replays raw

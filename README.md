@@ -1,5 +1,12 @@
 # Chiplet Floorplanning
 
+当前异温 Fabric 验证已按有限范围结束：三个固定布局与路由的 96 项逐路径
+比较及 6 项最差窗口比较均未发生冷热排序反转，其中 85 项逐路径比较可分辨
+非零温度交互。这是被测模型内的条件性结果，不是真实封装签核或联合优化优势。
+见 [三布局结果与不确定性](docs/xyce-three-layout-results.md)。后续转向
+[独立位置与旋转的 TAP 几何域](docs/tap-geometry-domains.md)及有限封装资源问题；
+完整物理基准和新算法必要性仍未建立。
+
 当前主线是 [Goal 01：统一电热布局决策](docs/goal01-integrated-decision.md)。
 新的 `evaluate(layout, configuration)` 已接通 3 芯粒、8 Lane、显式 Pin 旋转、
 有限共享布线、分层热场、唯一导体 SPEF 和同工艺 SKY130 核心单元全路径 STA。
