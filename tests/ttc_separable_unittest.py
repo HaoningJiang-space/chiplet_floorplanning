@@ -12,8 +12,8 @@ from validation.ttc_spectral import impedance
 
 
 def fixture():
-    material = {'SILICON': {'conductivity_w_per_m_k': 70.},
-                'SILICONE': {'conductivity_w_per_m_k': 5.}}
+    material = {'SILICON': {'conductivity_w_per_m_k': 70., 'volumetric_capacity_j_per_m3_k': 1.6e6},
+                'SILICONE': {'conductivity_w_per_m_k': 5., 'volumetric_capacity_j_per_m3_k': 2e6}}
     heaters, sensors = [], []
     for channel in range(16):
         x, y = (channel % 4)*1000, (channel//4)*1000

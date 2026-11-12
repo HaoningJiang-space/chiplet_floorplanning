@@ -134,11 +134,16 @@ def planar_mappings(geometry, x, y):
     return b, h
 
 
-def transfer(geometry, group, ga, pitch_um=500., active_cells=1, bulk_cells=2, pad_cells=2):
+def transfer(geometry, group, ga, pitch_um=500., active_cells=1, bulk_cells=2, pad_cells=2, xy_edges=None):
     """Return 16x16 steady K/W transfer and numerical diagnostics."""
     if not np.isfinite(ga) or ga <= 0:
         raise ValueError('positive finite sink conductance required')
     x, y, dz, k, source = configuration(geometry, group, pitch_um, active_cells, bulk_cells, pad_cells)
+    if xy_edges is not None:
+        x, y = [np.asarray(v, dtype=float) for v in xy_edges]
+        if any(v.ndim != 1 or len(v) < 2 or abs(v[0]) > 1e-12 or
+               abs(v[-1]-geometry['die_side_um']*1e-6) > 1e-12 for v in (x, y)):
+            raise ValueError('custom lateral axes must span the same die footprint')
     lx, vx, ex = lateral(x)
     ly, vy, ey = lateral(y)
     lambdas = (ly[:, None] + lx[None, :]).ravel()

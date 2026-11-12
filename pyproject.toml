@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 dependencies = ["numpy>=1.26,<3", "scipy>=1.11,<2"]
 
 [project.optional-dependencies]
-validation = ["PyYAML>=6,<7", "matplotlib>=3.9,<4", "zstandard>=0.23,<1"]
+validation = ["PyYAML>=6,<7", "matplotlib>=3.9,<4", "zstandard>=0.23,<1", "pyamg>=5.4,<6"]
 
 [project.scripts]
 chiplet-floorplanning = "chiplet_floorplanning.cli:main"
