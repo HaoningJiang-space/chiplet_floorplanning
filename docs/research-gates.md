@@ -9,7 +9,7 @@ milestones; preserve coherent tested commits on main without pushing.
 |---|---|---|
 | 1 | Geometry legality | Rectangle/rotation/overlap checks exist. Additional bump escape and realistic package design-rule domains must accompany new interfaces. Legality is always relative to declared rules. |
 | 2 | Power conservation | Area mapping and reciprocal thermal network audits exist; new TTC geometry preserves each input across two heaters. Add link/PHY power with explicit ownership before claiming whole-system power. |
-| 3 | Thermal accuracy | Independent numerical comparisons and 26 public TTC transients exist. Observation convention is source-traced; logger timing and full spatial prediction remain unresolved. Numerical agreement does not qualify package materials. |
+| 3 | Thermal accuracy | Independent numerical comparisons and 26 public TTC transients exist. The source-geometry FV experiment fails improvement and mesh gates. An independent layered-continuum series and spatial-DC contrast expose remaining numerical/boundary assumptions; see `ttc-spatial-results.md`. Logger timing and full spatial boundary prediction remain unresolved. |
 | 4 | Routing feasibility | Two-line resource/obstacle prototype. Failure of a greedy search is not proof of infeasibility. Need explicit bump escape, layers, capacities, return paths and small-case exhaustive or certificate-backed controls. |
 | 5 | Electrical accuracy | Real-library Pad provenance, primitive measured IV and ideal passive channel controls. Full extracted Pad, stimulus/reference planes and measured package-channel calibration remain open. IV agreement is not waveform validation. |
 | 6 | Timing correctness | Single-lane source-synchronous semantics and independent edge checks. Need complete coverage of intended data/clock paths, min/max, operating modes, slew/cap and stated PVT domain. Negative-slack cases test correct rejection; they are not failures of the analyzer. |
@@ -51,11 +51,18 @@ cannot be converted into invented probabilistic confidence intervals.
    active/bulk silicon, contact pad and explicit sink boundary. Establish power
    mapping, local storage/conduction and mesh/time convergence before fitting.
    Source-fitted material properties stay labeled fitted, not independent truth.
+   This fixture now exists. Its frozen 3,361-node grid fails refinement and
+   differs from the independent continuum by about 1.7 K on nominal controls.
+   Close this numerical gap before promoting transient spatial predictions.
 3. Use fixed total power with distinct spatial excitations to test whether the
    geometry model predicts sensor differences better. Compare old and spatial
    models on identical cases, observation operator and fitting freedom. Hold
    logger phase/averaging unknowns explicit. The present holdouts are reused,
    so a later independent dataset or fixture is needed for blind generalization.
+   The first 26-run spatial experiment failed; a converged steady continuum also
+   failed to improve the secondary sensor-difference contrast. Compare uniform
+   versus explicit copper base/fin boundaries next, keeping source parameters
+   and diagnostic windows fixed and avoiding a unique causal claim.
 4. Develop multi-lane routing/timing bookkeeping in parallel only as a declared
    engineering model; do not promote it to physically qualified optimization
    until electrical and thermal domains close. Preserve routing failures.

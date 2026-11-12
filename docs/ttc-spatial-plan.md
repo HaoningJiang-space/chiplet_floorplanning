@@ -85,3 +85,33 @@ errors are reported even if they worsen. Event peaks cannot be discarded.
 ChatGPT design review requested identical initialization, explicit dynamic bath,
 layer heat accounting and a prespecified spatial improvement test; these are
 included. Its review is advisory. Physical qualification stays false throughout.
+
+## Additional diagnostic after the frozen FV result (not a new primary test)
+
+The primary grid failed refinement (about 0.5 K). Preserve its predictions and
+failure; do not replace the frozen grid. An independently derived steady cosine
+series now tests the *same* laterally insulated, layered continuum. Analytic
+through-depth impedance is checked by a separate boundary-value ODE solver.
+Series 16/32/64/128/256 initially failed a 0.01 K change screen; extend to
+512/1024 terms per axis for numerical convergence, retaining both results.
+No material, boundary parameter or measured-data fit changes.
+
+Before the following new calculation: evaluate a secondary quasi-steady spatial
+diagnostic on all 26 records. Use a 9 s window ending 1 s before the main power
+interval ends. Compare mean measured sensor differences with source-continuum
+differences under mean measured power, plus the frozen 17-node static response.
+Report every run, mark approximate-DC screening separately: <=2% channel-vector
+power drift between window halves and <=0.1 K spatial-temperature drift. Retain
+both failures and original run labels. These windows and thresholds are newly
+declared after the prior transient results; they are not blind validation.
+
+For this spatially homogeneous lateral geometry and a spatially uniform bath,
+the common sensor component removes the uniform bath rise exactly. The steady
+sensor-difference transfer is independent of G_a and C_b; verify this numerically.
+This permits a cleaner test of geometry/material/interface assumptions without
+fitting ambient or sink dynamics. It does **not** test spatial nonuniformity of
+the actual copper sink. The conservative Dirichlet-top/Neumann-bottom relaxation
+bound 4H² Cv_max/(pi² k_min) is about 0.36 s (natural), with H=1.125 mm.
+It bounds zero-bath internal relaxation under the declared homogeneous stack,
+not the complete measured fixture. Verify elapsed time since activation and
+record the approximate-DC screens rather than presuming every power is constant.

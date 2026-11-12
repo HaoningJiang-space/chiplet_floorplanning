@@ -1,0 +1,51 @@
+{
+  "local_only": true,
+  "physical_model_qualified": false,
+  "production_modules_changed": false,
+  "fetch_succeeded": true,
+  "remote_checked_commit": "c124aa982eb97f49a7f4be907554c94436ace2d2",
+  "checked_utc": "2026-11-12T01:47:02.892911+00:00",
+  "implementation_commit": "988f9a84661b1b6b89efb07d7272bd48065798b0",
+  "tests_passed": 135,
+  "python": "3.12.16",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "reports": {
+    "ttc-spatial-v1": {
+      "path": "results/physical-calibration/ttc-spatial-v1/report.json",
+      "sha256": "0c77f81ed4bea076b0509413ed547355151b0d67320b97d68ee793ced32ec30a"
+    },
+    "ttc-spectral-v1": {
+      "path": "results/physical-calibration/ttc-spectral-v1/report.json",
+      "sha256": "3db2841199ac516dbcf8a6c8f058660346893bc4b71f948506d440ab81872ba4"
+    },
+    "ttc-spectral-v2": {
+      "path": "results/physical-calibration/ttc-spectral-v2/report.json",
+      "sha256": "2c8b1b3ed7a983582d795d2d5c2a81b7742e9cf439516d905c4a7738f051e3f4"
+    },
+    "ttc-spatial-dc-v1": {
+      "path": "results/physical-calibration/ttc-spatial-dc-v1/report.json",
+      "sha256": "1e659081a6ead6a4244f484c71e3f05f0a9487729501bd8eca1f94a412319ea1"
+    }
+  },
+  "checks": {
+    "results\\physical-calibration\\ttc-spatial-tests-final.log": "1567475fd7ff6737be26c8e43b010e1cef113434df12563c85942faa4cb3cd97",
+    "results\\physical-calibration\\ttc-spatial-cli-final\\report.json": "d6a1cb0ab7abfa068baf6610583963a3b6bc549421157739fdbe1badbc9285d4"
+  },
+  "source_locks": {
+    "tools\\ttc-upstream.lock.json": "c3fa3d7278e9f7b6f79b21989f7b533048cbdd24974db776ebddd2a6d1bfe7ef",
+    "tools\\ttc-layer-order.lock.json": "c299d13d5fc3b272251732261f77ef46fc9831917fbfa9922a38ff951c2d8e0e",
+    "tools\\measured-sources.lock.json": "f1dcfded41ea345fa8b0dbbd702dd11b10e65faf1092e222c80527a547ee2b95"
+  },
+  "review": {
+    "url": "https://chatgpt.com/c/6af41d50-059c-83e8-92e6-eb975244c865",
+    "completed_rounds": 3,
+    "scope": "advisory design/gate/result review; no independent numerical execution"
+  },
+  "outcome": {
+    "primary_spatial_improvement_passed": false,
+    "primary_mesh_screen_passed": false,
+    "steady_series_screen_passed": true,
+    "independent_physical_validation": false
+  }
+}
