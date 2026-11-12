@@ -95,8 +95,15 @@ has actually connected its GitHub plugin and verified access to remote
 the comparison returned 404, and its execution environment did not mount the
 Windows repository. The 22 local commits are therefore outside its observed
 access. The user chose GitHub-only review without additional Chrome permission.
-The first remote review is complete; a commit-by-commit coverage receipt has
-been requested before accepting its claim of complete remote-history coverage.
+The remote review and its commit-by-commit coverage receipt are complete. It
+enumerated the 14 commits from `5f82272` through `c124aa9`, matching the locally
+fetched Git history and all 13 parent links. The reviewer reports reading each
+commit's changed-file list/patch and inspecting the key final thermal, routing,
+Pad and timing-oracle sources/evidence. This is review coverage, not formal
+verification or independent rerunning of the experiments. It found no confirmed
+new code bug, preserved the distinction between software success and failed
+physical qualification, and identified retained historical build/regression
+failures rather than interpreting later successful runs as their erasure.
 The review confirms the remote implementation's restricted timing/routing domain
 and distinguishes numerical invariants from physical evidence. Its actionable
 priorities are consistent Pad netlist/Liberty/stimulus/reference planes, spatial

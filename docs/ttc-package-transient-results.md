@@ -80,6 +80,42 @@ grid dependence, not a physical error bound. In the checkboard window, predicted
 storage remains 17.0849 W and dynamic-minus-static spatial contrast is 0.001947 K.
 The storage observation persists, while spatial numerical accuracy remains open.
 
+A retrospective localization now compares all 13 natural-C records on identical
+power and observation arrays, after verifying both meshes' saved waveform hashes.
+The largest conditional-gradient change is `hotspot_2`, sensor index 0, native
+sample index 600 (raw index 18106): 0.983833 K = 0.037831 K common + 0.946002 K
+spatial. The model interval ends at 60.1 s since initialization; this is the
+declared 0.1 s integration convention, not verified logger hardware phase.
+The simultaneous input is 11.3961 W, within the declared source power domain.
+The uniform initial-state variant peaks at the same sample and sensor, 0.994057 K;
+its spatial component is 0.946001 K. Initial-state choice has not removed this
+observed local grid dependence.
+
+Across the nine existing eligible held-out records, duration-weighted two-grid
+RMSE is 0.087145 K: common 0.025375 K and spatial 0.083369 K. Their squared values
+add, with maximum per-record identity residual 3.5e-18 K^2. Spatial changes account
+for 91.52% of the mesh-change MSE (89.78% with uniform initialization). This is
+**grid-change decomposition**, not measured-residual attribution or a probability
+distribution. Across all 13 records the corresponding fraction is 90.31%.
+
+In the fixed `hotspot_2` diagnostic window, the maximum dynamic spatial grid
+change is 0.771294 K, versus 0.771277 K for the static solution. The difference
+between these two grid-change vectors is at most 1.94e-5 K. For `checkboard`, the
+corresponding values are 0.205781/0.205850 K and 7.09e-5 K. Within this model and
+these windows, transient copper storage does not remove the local spatial
+discretization sensitivity. This does not isolate which geometric layer or
+observation operator causes it, nor justify tuning contact/convection parameters.
+
+Reproduce the localization without another full-network solve:
+
+```
+python tools/audit_ttc_mesh_change.py --input results/physical-calibration/ttc-package-transient-v2 --output PATH_TO_OUTPUTS
+```
+
+The report preserves both initial states, all cases, peak coordinates and source
+hashes. Tracked evidence: `evidence/local-ttc-mesh-heatsink-C.json`. It does not
+provide a two-grid error bound or establish spatial convergence.
+
 Complete level-1 full-network controls and native simulations; compare identical
 power/observation arrays across grids, and preserve any failures. Two grids do
 not establish an error bound. Continue the independent level-3 steady package
