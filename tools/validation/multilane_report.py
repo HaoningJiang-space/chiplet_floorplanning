@@ -4,7 +4,7 @@ import re
 from .timing_report import NUMBER
 
 
-def extract(log, receivers, lanes):
+def extract(log, receivers, lanes, include_channel_pins=False):
     if re.search(r'(?mi)^(?:Error|Warning):|invalid command name', log):
         raise ValueError('STA diagnostic or unconstrained path')
     guards = re.findall(r'NETWORK_CHECKS_BEGIN\n(.*?)NETWORK_CHECKS_END', log, re.S)
@@ -61,6 +61,8 @@ def extract(log, receivers, lanes):
             'branch':('branch_'+receiver+'_cell/Y', 'v'), 'inverter':('inv_'+receiver+'/Y', '^'),
             'capture_ck':('rx_'+suffix+'/CK', '^')}
         pins = {k:pin(*v) for k,v in names.items()}
+        if include_channel_pins:
+            pins['branch_input']=pin('branch_'+receiver+'_cell/A','v')
         correction = re.findall(rf'(?m)^\s*({NUMBER})\s+{NUMBER}\s+clock reconvergence pessimism$', block)
         if len(correction) > 1:
             raise ValueError(key+': repeated common-path correction')

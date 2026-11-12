@@ -10,6 +10,8 @@ def enumerate_assignments(fabric,nets,max_nodes=16,max_paths=10000,max_states=20
     # Build adjacency independently, not through the production router's graph.
     adjacency={n:[q for q in nodes if sum(abs(a-b) for a,b in zip(n,q))==1 and tuple(sorted((n,q))) not in fabric.blocked_edges] for n in nodes}
     all_terminals={p:net.name for net in nets for p in net.terminals}
+    if not nets or len({n.name for n in nets})!=len(nets) or len(all_terminals)!=sum(len(n.terminals) for n in nets) or any(p not in adjacency for p in all_terminals):
+        raise ValueError('exhaustive reference requires distinct legal physical terminals and nets')
     candidates={};path_counts={};states=0
     for net in nets:
         terminal_paths=[]
