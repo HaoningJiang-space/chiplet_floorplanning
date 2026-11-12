@@ -9,8 +9,12 @@ here; do not place these changes in adjacent placement repositories.
   analyzed commit and whether the fetch succeeded. If offline, label freshness
   unverified. Recheck the remote before publishing; never force-push over new work.
 - Use Python 3.10+, four spaces, and explicit units in data fields.
-- Run `python -m unittest discover -s tests -p '*_unittest.py' -v` and the
-  documented two-chiplet CLI case before publishing a milestone.
+- Match verification to the change. Run focused checks during implementation;
+  run `python -m unittest discover -s tests -p '*_unittest.py' -v` and the
+  documented two-chiplet CLI before publishing a substantive code/experiment
+  milestone. Documentation-only or instruction-only changes need a diff review,
+  not another full suite or CLI run. Reuse passing evidence when executable code,
+  inputs and relevant assumptions have not changed.
 - Keep numerical checks separate from physical model validation. Missing timing
   and external thermal validation must remain explicit in outputs.
 - Commit and promptly push coherent validated milestones to origin/main; the
@@ -40,3 +44,27 @@ here; do not place these changes in adjacent placement repositories.
   passivity/causality and boundary/reference-plane definitions before interpreting
   fitted agreement or optimization. Follow `docs/physical-admission-contract.md`;
   necessary invariants do not certify real materials, compact models or channels.
+
+## Research pace and proportional validation (user direction, 2026-11-12)
+
+- Use fewer random seeds. Default to one seed for development/smoke experiments
+  and up to three paired seeds for a main algorithm comparison. Do not default
+  to five or more. Add seeds only when observed variability or a specific research
+  question warrants them, with a short explanation of the expected benefit.
+  Keep shared initializations and comparable budgets across methods. This rule
+  applies to future experiments; do not silently truncate an already frozen run.
+- Prioritize algorithm implementation, meaningful comparisons and larger cases.
+  The physical model needs to capture the relevant phenomena and obey basic
+  physical laws; manufacturing signoff, exhaustive calibration or unnecessarily
+  tight numerical precision must not gate ordinary algorithm progress.
+- Avoid excessive defensive work: do not add speculative validation layers,
+  repeated audits, redundant tests or new approval steps without a concrete issue
+  that could affect correctness or the research conclusion. Fix actual failures
+  and keep essential unit, conservation, geometry and fair-comparison checks.
+- State material assumptions and limitations clearly in the experiment record;
+  do not repeat the same caveats in every progress update. Report meaningful
+  results, decisions and actionable failures instead of narrating every poll.
+  Check completed-run evidence at useful milestones, not after each extra run.
+- Use Chat to guide major research decisions and review completed stages with
+  the latest pushed code/history. Do not make each small reversible step wait
+  for a review or expand the review into another physics-calibration campaign.
