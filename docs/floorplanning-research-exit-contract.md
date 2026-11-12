@@ -125,3 +125,14 @@ three admission states, explicit comparison verdicts and a frozen benchmark
 scope, and corrected the cut-condition wording. These requested changes are
 being implemented locally; the review did not rerun local tests or simulations.
 Conversation: https://chatgpt.com/c/6af41d50-059c-83e8-92e6-eb975244c865
+
+On 2026-11-12 the recovered Chat review explicitly covered the two commits
+after ea6e9308 through `ba4fbebec05745374b20ec0b126f18fcfc9dc1c0`.
+It accepted the independent execution/numerical/physical states, uniform-control
+evidence, strict cold/hot diagnostic admission and pinned source-ledger boundary.
+It independently read the upstream GitHub configurations, but did not execute
+local tests or raw simulations and did not inspect the DATE paper PDF. It kept
+physical benchmark construction and solver-status separation as open gates.
+Later ordering/structure commits are not covered by that review. The three-layout
+report will receive a separate review after publication; it remains pending here.
+Recovered conversation: https://chatgpt.com/c/6af55ac1-8880-83e8-adbc-f1650608f447

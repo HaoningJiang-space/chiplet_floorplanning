@@ -20,11 +20,18 @@ and a CPLEX-based routing optimization baseline.
 
 The dimensions, powers and connection matrices are present in each configuration.
 Treat them as published case-study inputs, not verified product specifications
-or measured workload traces. The README calls the matrix bandwidth but does not
-give a unit there. `compute_ubump_overhead` sums incident demands and divides
+or measured workload traces. The README calls the matrix bandwidth without a
+unit. The paper's Table I, checked subsequently, defines R_ij and the flow
+variables as wire counts in its routing abstraction. `compute_ubump_overhead`
+sums incident demands and divides
 ring area by a 0.045 mm pitch squared, with a factor of two for pipelined links.
-This implies a conversion assumption that must be checked against the paper
-before interpreting matrix entries as physical wires or bandwidth.
+This is consistent with aggregate wire-count demand. It does not specify
+per-wire data rate, protocol overhead or a complete signal/clock/return bump map.
+The Table I correction was made after a successful fetch with local/remote
+`main=f718f77d5370fa95ab69b1b4181caf4818cd5558`. Reimporting all three cases
+preserved their numeric inputs and direct-flow witnesses; only provenance and
+the bound ledger hash changed. All 244 local tests and the documented 3 W
+two-chiplet CLI passed (34.1886 C, uncalibrated, timing not run).
 
 `passive_interposer.py` also contains package layer thicknesses, effective
 material assumptions and heat-sink area scaling. Its comment explicitly leaves

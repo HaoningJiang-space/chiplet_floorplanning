@@ -86,7 +86,8 @@
           0.0
         ]
       ],
-      "connection_units": "unresolved_bandwidth_to_wire_conversion",
+      "connection_units": "wire_count_in_paper_routing_abstraction",
+      "connection_units_source": "DATE 2021 Table I: R_ij input wire count; f flow wire count",
       "qualified_physical_benchmark": false
     },
     {
@@ -212,7 +213,8 @@
           0.0
         ]
       ],
-      "connection_units": "unresolved_bandwidth_to_wire_conversion",
+      "connection_units": "wire_count_in_paper_routing_abstraction",
+      "connection_units_source": "DATE 2021 Table I: R_ij input wire count; f flow wire count",
       "qualified_physical_benchmark": false
     },
     {
@@ -300,14 +302,17 @@
           0.0
         ]
       ],
-      "connection_units": "unresolved_bandwidth_to_wire_conversion",
+      "connection_units": "wire_count_in_paper_routing_abstraction",
+      "connection_units_source": "DATE 2021 Table I: R_ij input wire count; f flow wire count",
       "qualified_physical_benchmark": false
     }
   ],
+  "paper_url": "https://people.bu.edu/joshi/files/Ma_TAP-2.5D-DATE2021.pdf",
+  "wire_semantics": "Source wire demands, not verified physical signal maps or a specified per-wire data rate",
   "status": "source_ledger_only_not_an_executable_floorplanning_benchmark",
   "missing": [
-    "explicit PHY/bump map",
-    "bandwidth-to-wire convention",
+    "explicit PHY/bump map and control/clock/return allocation",
+    "per-wire rate and protocol overhead",
     "track-layer capacity rules",
     "frozen independent placement domain",
     "package boundary transfer validation"

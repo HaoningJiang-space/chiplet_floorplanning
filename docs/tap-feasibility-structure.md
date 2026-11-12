@@ -44,8 +44,10 @@ floor-rounded four-port capacities without executing upstream code. All three
 cases admit a constructed integer witness. The saved witness is independently
 summed to verify exact demand delivery and shared port usage:
 [tap-direct-capacity-audit.json](evidence/tap-direct-capacity-audit.json).
-The original bandwidth-to-wire physical interpretation remains unresolved; this
-check works in the source formulation's integer demand units.
+The paper's Table I identifies these integer demands as wire counts in its
+routing abstraction (see the updated source ledger). The data rate and complete
+physical signal/clock/return allocation remain unresolved; this check does not
+prove a bandwidth requirement or detailed routing feasibility.
 
 This explains why merely enlarging these placement domains cannot create
 placement-dependent routing infeasibility under the same model. A new benchmark

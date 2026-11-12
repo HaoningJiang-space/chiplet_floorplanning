@@ -41,11 +41,14 @@ def main():
             upstream_placement_granularity_mm=config['general'].getfloat('placer_granularity'),
             link_type=config['interposer']['link_type'],
             connection_matrix_source_values=matrix,
-            connection_units='unresolved_bandwidth_to_wire_conversion',
+            connection_units='wire_count_in_paper_routing_abstraction',
+            connection_units_source='DATE 2021 Table I: R_ij input wire count; f flow wire count',
             qualified_physical_benchmark=False))
     result = dict(upstream_commit=COMMIT, imported_cases=cases,
+        paper_url='https://people.bu.edu/joshi/files/Ma_TAP-2.5D-DATE2021.pdf',
+        wire_semantics='Source wire demands, not verified physical signal maps or a specified per-wire data rate',
         status='source_ledger_only_not_an_executable_floorplanning_benchmark',
-        missing=['explicit PHY/bump map', 'bandwidth-to-wire convention',
+        missing=['explicit PHY/bump map and control/clock/return allocation', 'per-wire rate and protocol overhead',
                  'track-layer capacity rules', 'frozen independent placement domain',
                  'package boundary transfer validation'])
     args.output.write_text(json.dumps(result, indent=2)+'\n')
