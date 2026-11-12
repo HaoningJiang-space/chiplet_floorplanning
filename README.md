@@ -234,6 +234,10 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
 
 ## 独立热源与边界敏感性（v0.8 / E1）
 
+进行中的下一阶段：[接触垫、铜底座和鳍片边界对照](docs/ttc-package-boundary-results.md)。
+完整对齐三维热网络已建立，146 项测试通过；前两级边界效应仍未收敛，更细网格在本机计算。
+实测自然冷却均温仍明显上升，空间差温稳定不能替代铜储热和完整瞬态验证。
+
 最新数值进展：[TTC 稳态数值一致性](docs/ttc-numerical-closure-results.md)。
 不修改材料或边界，联合加密横向与厚度网格，使 13 种功率图样、两组材料下
 与独立连续体参考的最大差异从约 1.7 K 降至 0.020 K；140 项测试通过。

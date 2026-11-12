@@ -65,6 +65,11 @@ cannot be converted into invented probabilistic confidence intervals.
    failed to improve the secondary sensor-difference contrast. Compare uniform
    versus explicit copper base/fin boundaries next, keeping source parameters
    and diagnostic windows fixed and avoiding a unique causal claim.
+   The full conforming package network now exists; its first two completed
+   refinement levels have not passed boundary-effect convergence. New measured
+   common-temperature slopes and a slow-mode lower bound expose the need for
+   copper storage/fin heat-loss transient checks before physical attribution;
+   see `ttc-package-boundary-results.md`. Finer local grids are still running.
 4. Develop multi-lane routing/timing bookkeeping in parallel only as a declared
    engineering model; do not promote it to physically qualified optimization
    until electrical and thermal domains close. Preserve routing failures.

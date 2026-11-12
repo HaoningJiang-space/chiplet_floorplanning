@@ -1,0 +1,53 @@
+{
+  "local_only": true,
+  "status": "refinement_in_progress",
+  "complete": false,
+  "physical_model_qualified": false,
+  "implementation_commit": "506f31485f190b4a6f91008d268fdf5ab68eb0c7",
+  "remote_checked_commit": "c124aa982eb97f49a7f4be907554c94436ace2d2",
+  "tests_passed": 146,
+  "pyamg": "5.4.1",
+  "checked_utc": "2026-11-12T02:18:00.598248+00:00",
+  "immutable_checkpoint": {
+    "path": "results/physical-calibration/ttc-package-boundary-v1/checkpoint-level1.json",
+    "sha256": "b23996ae8d7c2a727bd9a28a1d8c55723c3bb54d15a077ed0c0652ec15f26e48"
+  },
+  "completed_models": 12,
+  "completed_unit_source_solves": 192,
+  "completed_levels": [
+    0,
+    1
+  ],
+  "remaining_levels": [
+    2,
+    3
+  ],
+  "receipts": {
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink/level-0/C/receipt.json": "3aa8dc6794977f337040a6da712a6c77e9c3056131918fba68a11145d58a4be4",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink/level-0/P/receipt.json": "4ca40fb2c62002a48223cf4fe2ebc2210adbe7859b2220d3e4a9df3aeebec58a",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink/level-0/U/receipt.json": "099a830d797eb8b64db735a5833f12d18a883c4161bc411e9eaa650ceb08837b",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink/level-1/C/receipt.json": "7eceea04c209e231083a53945860325559aab006c196de00eaff00cb172ffaf2",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink/level-1/P/receipt.json": "1dd6d99e84d37c222bda90b04f7f73b50f8fb7b540087ca5134bdc6b3db8e827",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink/level-1/U/receipt.json": "b54fa97d766c0c30b8cac416d5bad3007ed39e60e917bd927664545b591c5e22",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink_with_fan/level-0/C/receipt.json": "182bc0b9167dbadb091a19971c212c1a49c4dfecd073bc051d83f2a2eb15581a",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink_with_fan/level-0/P/receipt.json": "dfd2ed02427642e0e43ad805a4eb1fb06ddbac6871c205c61c97d7411d88e23e",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink_with_fan/level-0/U/receipt.json": "7439a77c484ff50ceb7e39ac5c46bbfae1adffdb10ab1d74c521c15cecac1bd5",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink_with_fan/level-1/C/receipt.json": "47e233dcf89b3e2ead44966d647290c0625c4240e9ff6e988b9d5b9b4ac1af57",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink_with_fan/level-1/P/receipt.json": "f4c0be4d18857097a4a1bb51ed77977e836808c0362675ddea7b43cd241a61df",
+    "results/physical-calibration/ttc-package-boundary-v1/heatsink_with_fan/level-1/U/receipt.json": "5bd9921a0234ff7248b78d9d1a4da98474505ac6d95fb07560063c50ad07a005"
+  },
+  "checks": {
+    "results/physical-calibration/ttc-package-tests-implementation.log": "ec36ec9c2f0be070fec6bc5bb7cc8eff2204044193132de2efce2009120adf97",
+    "results/physical-calibration/ttc-package-cli-implementation/report.json": "70427416b893d5c97bbb4ded93fadddac7e54d94a3bd2022f4daf2c5e8b2d54c"
+  },
+  "review": {
+    "url": "https://chatgpt.com/c/6af41d50-059c-83e8-92e6-eb975244c865",
+    "completed_rounds": 3,
+    "independent_execution": false
+  },
+  "notes": [
+    "Initial 8 eligible held-out count was incorrect; actual code retains 9 because sixteen belongs to calibration.",
+    "Boundary-effect convergence failed at the first refinement; no physical ranking is qualified.",
+    "Measured common temperature continues changing; stable spatial contrast is not full-system equilibrium."
+  ]
+}
