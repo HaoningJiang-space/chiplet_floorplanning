@@ -1,0 +1,500 @@
+{
+  "status": "bounded_fv_numerical_admission_passed_not_measured_calibration",
+  "hits_revision": "be59924de3f0c1a3d6d134aea411d1264cfa64c6",
+  "source_sha256": {
+    "src/chiplet_floorplanning/package.py": "bd43c485902a82c0e1ea03db61958969b019bd8cae46d1c52f62b47621b2af4a",
+    "src/chiplet_floorplanning/model.py": "df0753c293da58849950211dd4f97d5ba9366cedcdf709ee3e2c7318c25afb2a",
+    "src/chiplet_floorplanning/mesh.py": "863f2431bad7f667094ad875ad1b75ca5b81ad52f74af02c5f7ae201f010b9b9",
+    "tools/prepare_tap_fv.py": "cb35b290bf878cd0f4a7ab4169bd598d30fa30d2a1c4bd4c360502c1d1a2c5cb",
+    "tools/solve_tap_fv_hits.py": "c2081238c8bf62aa9d1584fe3e12c1231c967fea9330bf3c5cd7d0a3af8cc17d",
+    "docs/tap-fv-contract.md": "15b5213a35f5963485b22dc4fcc823145ac28b8e9179c4ddf095862328a579a4"
+  },
+  "analytic": {
+    "case": "two_solid_column",
+    "nodes": 2,
+    "mesh": [
+      1,
+      1
+    ],
+    "assembly_seconds": 0.0004825000651180744,
+    "source_power_w": 2.0,
+    "mapped_power_w": 2.0,
+    "heat_removed_w": 1.9999999999999987,
+    "energy_balance_error_w": -1.3322676295501878e-15,
+    "original_relative_residual": 2.5121479338940403e-15,
+    "max_reference_difference_k": 1.1368683772161603e-13,
+    "min_rise_k": 524.9999999999997,
+    "peak_power_layer_c": 599.9999999999998,
+    "max_internal_coefficient_change_w_k": 0,
+    "max_asymmetry_w_k": 0,
+    "max_offdiagonal_w_k": -0.039999999999999994,
+    "hits_receipt": {
+      "accepted": true,
+      "info": 0,
+      "absolute_residual": 1.5583418786108402e-13,
+      "relative_residual": 3.11668375722168e-15,
+      "acceptance_rtol": 1e-10,
+      "acceptance_atol": 1e-12,
+      "assembly_identity": "two_solid_column",
+      "backend": "generic-gmres",
+      "qualification": {
+        "solid_spd": "UNKNOWN",
+        "regular_gmg": "UNKNOWN",
+        "fluid_2rm": "UNKNOWN",
+        "coupled_multilevel": "UNKNOWN",
+        "preconditioner_admissibility": "UNKNOWN",
+        "reason": "No specialized execution requested or qualified"
+      },
+      "solve_seconds": 0.00029900006484240294,
+      "validation_seconds": 1.6499892808496952e-05,
+      "shift_seconds": 0.0
+    },
+    "power_mapping": [
+      {
+        "chiplet": "source",
+        "block": "heat",
+        "input_w": 2.0,
+        "mapped_w": 2.0,
+        "provenance": "analytic control, not hardware",
+        "package_rect_mm": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 2.0,
+          "height": 2.0
+        }
+      }
+    ],
+    "physical_calibrated": false,
+    "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+    "numerical_admission_passed": true,
+    "analytic_rise_k": [
+      575,
+      525
+    ],
+    "max_analytic_error_k": 3.410605131648481e-13
+  },
+  "cases": [
+    {
+      "case": "tap_fv_ascend910",
+      "nodes": 13600,
+      "mesh": [
+        78,
+        78
+      ],
+      "assembly_seconds": 0.0903975999681279,
+      "source_power_w": 349.99999999999994,
+      "mapped_power_w": 350.0,
+      "heat_removed_w": 349.9999996317348,
+      "energy_balance_error_w": -3.6826514815402334e-07,
+      "original_relative_residual": 3.155747174700894e-10,
+      "max_reference_difference_k": 1.4205603804384737e-08,
+      "min_rise_k": 0.39038720808605515,
+      "peak_power_layer_c": 77.17357274131757,
+      "max_internal_coefficient_change_w_k": 0,
+      "max_asymmetry_w_k": 0,
+      "max_offdiagonal_w_k": -1.1034482758618502e-07,
+      "hits_receipt": {
+        "accepted": true,
+        "info": 0,
+        "absolute_residual": 3.34205067809673e-10,
+        "relative_residual": 9.876944792009026e-11,
+        "acceptance_rtol": 1e-10,
+        "acceptance_atol": 1e-12,
+        "assembly_identity": "tap_fv_ascend910",
+        "backend": "generic-gmres",
+        "qualification": {
+          "solid_spd": "UNKNOWN",
+          "regular_gmg": "UNKNOWN",
+          "fluid_2rm": "UNKNOWN",
+          "coupled_multilevel": "UNKNOWN",
+          "preconditioner_admissibility": "UNKNOWN",
+          "reason": "No specialized execution requested or qualified"
+        },
+        "solve_seconds": 0.40887920011300594,
+        "validation_seconds": 0.00011300004553049803,
+        "shift_seconds": 0.0
+      },
+      "power_mapping": [
+        {
+          "chiplet": "chip0",
+          "block": "core",
+          "input_w": 256.0,
+          "mapped_w": 255.99999999999997,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 75.75,
+            "y": 75.3,
+            "width": 14.5,
+            "height": 31.39999999999999
+          }
+        },
+        {
+          "chiplet": "chip1",
+          "block": "core",
+          "input_w": 14.0,
+          "mapped_w": 14.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 90.75,
+            "y": 76.0,
+            "width": 10.5,
+            "height": 16.0
+          }
+        },
+        {
+          "chiplet": "chip2",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 102.125,
+            "y": 75.065,
+            "width": 7.75,
+            "height": 11.870000000000005
+          }
+        },
+        {
+          "chiplet": "chip3",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 110.125,
+            "y": 75.065,
+            "width": 7.75,
+            "height": 11.870000000000005
+          }
+        },
+        {
+          "chiplet": "chip4",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 102.125,
+            "y": 88.065,
+            "width": 7.75,
+            "height": 11.870000000000005
+          }
+        },
+        {
+          "chiplet": "chip5",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 110.125,
+            "y": 88.065,
+            "width": 7.75,
+            "height": 11.870000000000005
+          }
+        }
+      ],
+      "physical_calibrated": false,
+      "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+      "numerical_admission_passed": true,
+      "input_sha256": "cf8b9bbd38739162998127e856022409f6af28476e65c0963711e1a47c3c9538",
+      "artifact_sha256": {
+        "A.npz": "689195268e571bb86d66de7ae5a7a5c58a6aae14aa677b05801f2883b797f489",
+        "power.npy": "f9263c218f3408834af8a924e1e4930540411a7f5c6984b48d158bd1b50025ec",
+        "temperature-rise.npy": "f1660d4e571348a7aa24d8fac44b2c89db878d4e9dd0a1dfbc8121e341af4f72"
+      }
+    },
+    {
+      "case": "tap_fv_micro150",
+      "nodes": 15920,
+      "mesh": [
+        91,
+        74
+      ],
+      "assembly_seconds": 0.11371669999789447,
+      "source_power_w": 680.0,
+      "mapped_power_w": 680.0,
+      "heat_removed_w": 679.9999993569147,
+      "energy_balance_error_w": -6.430852863559267e-07,
+      "original_relative_residual": 1.5215723946053623e-10,
+      "max_reference_difference_k": 2.6063943892040697e-08,
+      "min_rise_k": 0.7928899268372704,
+      "peak_power_layer_c": 122.50235424317874,
+      "max_internal_coefficient_change_w_k": 0,
+      "max_asymmetry_w_k": 0,
+      "max_offdiagonal_w_k": -1.885333893909006e-07,
+      "hits_receipt": {
+        "accepted": true,
+        "info": 0,
+        "absolute_residual": 9.136347305888238e-10,
+        "relative_residual": 9.954347596567261e-11,
+        "acceptance_rtol": 1e-10,
+        "acceptance_atol": 1e-12,
+        "assembly_identity": "tap_fv_micro150",
+        "backend": "generic-gmres",
+        "qualification": {
+          "solid_spd": "UNKNOWN",
+          "regular_gmg": "UNKNOWN",
+          "fluid_2rm": "UNKNOWN",
+          "coupled_multilevel": "UNKNOWN",
+          "preconditioner_admissibility": "UNKNOWN",
+          "reason": "No specialized execution requested or qualified"
+        },
+        "solve_seconds": 0.507422500057146,
+        "validation_seconds": 0.00010879989713430405,
+        "shift_seconds": 0.0
+      },
+      "power_mapping": [
+        {
+          "chiplet": "chip0",
+          "block": "core",
+          "input_w": 150.0,
+          "mapped_w": 150.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 114.875,
+            "y": 75.5,
+            "width": 8.25,
+            "height": 9.0
+          }
+        },
+        {
+          "chiplet": "chip1",
+          "block": "core",
+          "input_w": 150.0,
+          "mapped_w": 150.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 75.875,
+            "y": 85.5,
+            "width": 8.25,
+            "height": 9.0
+          }
+        },
+        {
+          "chiplet": "chip2",
+          "block": "core",
+          "input_w": 150.0,
+          "mapped_w": 150.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 84.875,
+            "y": 85.5,
+            "width": 8.25,
+            "height": 9.0
+          }
+        },
+        {
+          "chiplet": "chip3",
+          "block": "core",
+          "input_w": 150.0,
+          "mapped_w": 150.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 93.875,
+            "y": 85.5,
+            "width": 8.25,
+            "height": 9.0
+          }
+        },
+        {
+          "chiplet": "chip4",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 75.625,
+            "y": 75.625,
+            "width": 8.75,
+            "height": 8.75
+          }
+        },
+        {
+          "chiplet": "chip5",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 85.625,
+            "y": 75.625,
+            "width": 8.75,
+            "height": 8.75
+          }
+        },
+        {
+          "chiplet": "chip6",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 95.625,
+            "y": 75.625,
+            "width": 8.75,
+            "height": 8.75
+          }
+        },
+        {
+          "chiplet": "chip7",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 105.625,
+            "y": 75.625,
+            "width": 8.75,
+            "height": 8.75
+          }
+        }
+      ],
+      "physical_calibrated": false,
+      "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+      "numerical_admission_passed": true,
+      "input_sha256": "2f7f8063d0a602417a67d6aa6cc8dd86325f67b08f39c63b419e7bcf99cd2af4",
+      "artifact_sha256": {
+        "A.npz": "d2e7b86f239859494e26678ce3f961c8a1d4f5d21d5669e5dfc372b6ece8707c",
+        "power.npy": "50ee20b6026918dadc2ecfd7d67d3172e4c0b9507497e586e9f17ded211af582",
+        "temperature-rise.npy": "a531e9c448390acd3f3403bd73e7fc66b54c2917387d26c482056830ce4e6039"
+      }
+    },
+    {
+      "case": "tap_fv_multigpu",
+      "nodes": 14848,
+      "mesh": [
+        80,
+        80
+      ],
+      "assembly_seconds": 0.10049520002212375,
+      "source_power_w": 754.9999999999998,
+      "mapped_power_w": 755.0,
+      "heat_removed_w": 754.9999988924174,
+      "energy_balance_error_w": -1.1075824204453966e-06,
+      "original_relative_residual": 3.9456384572298294e-10,
+      "max_reference_difference_k": 3.854181329643325e-08,
+      "min_rise_k": 0.8759828981688217,
+      "peak_power_layer_c": 107.35660868125748,
+      "max_internal_coefficient_change_w_k": 0,
+      "max_asymmetry_w_k": 0,
+      "max_offdiagonal_w_k": -1.8580645161291014e-07,
+      "hits_receipt": {
+        "accepted": true,
+        "info": 0,
+        "absolute_residual": 7.021242985664445e-10,
+        "relative_residual": 9.939195712712186e-11,
+        "acceptance_rtol": 1e-10,
+        "acceptance_atol": 1e-12,
+        "assembly_identity": "tap_fv_multigpu",
+        "backend": "generic-gmres",
+        "qualification": {
+          "solid_spd": "UNKNOWN",
+          "regular_gmg": "UNKNOWN",
+          "fluid_2rm": "UNKNOWN",
+          "coupled_multilevel": "UNKNOWN",
+          "preconditioner_admissibility": "UNKNOWN",
+          "reason": "No specialized execution requested or qualified"
+        },
+        "solve_seconds": 0.4511030000867322,
+        "validation_seconds": 0.00010039994958788157,
+        "shift_seconds": 0.0
+      },
+      "power_mapping": [
+        {
+          "chiplet": "chip0",
+          "block": "core",
+          "input_w": 105.0,
+          "mapped_w": 105.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 76.0,
+            "y": 95.0,
+            "width": 12.0,
+            "height": 12.0
+          }
+        },
+        {
+          "chiplet": "chip1",
+          "block": "core",
+          "input_w": 295.0,
+          "mapped_w": 295.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 75.9,
+            "y": 75.9,
+            "width": 18.19999999999999,
+            "height": 18.19999999999999
+          }
+        },
+        {
+          "chiplet": "chip2",
+          "block": "core",
+          "input_w": 295.0,
+          "mapped_w": 295.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 94.9,
+            "y": 75.9,
+            "width": 18.19999999999999,
+            "height": 18.19999999999999
+          }
+        },
+        {
+          "chiplet": "chip3",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 114.12500000000001,
+            "y": 76.06500000000001,
+            "width": 7.75,
+            "height": 11.86999999999999
+          }
+        },
+        {
+          "chiplet": "chip4",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.000000000000004,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 114.12500000000001,
+            "y": 89.06500000000001,
+            "width": 7.75,
+            "height": 11.86999999999999
+          }
+        },
+        {
+          "chiplet": "chip5",
+          "block": "core",
+          "input_w": 20.0,
+          "mapped_w": 20.0,
+          "provenance": "TAP 3a3f4e5 passive_interposer.py; explicit FV research model, not HotSpot reproduction or measured calibration",
+          "package_rect_mm": {
+            "x": 89.125,
+            "y": 95.06500000000001,
+            "width": 7.75,
+            "height": 11.86999999999999
+          }
+        }
+      ],
+      "physical_calibrated": false,
+      "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+      "numerical_admission_passed": true,
+      "input_sha256": "dea5e96b415ad392ab742eea039f55fe970d774a1be88085b7f1902ecf4ca07f",
+      "artifact_sha256": {
+        "A.npz": "5f5cc1048fa21739881917135cf697b517990289e743c8ccd8da6215c001567a",
+        "power.npy": "7eb265b6e8920969b69479bca2ce469083a59b679e2a14cf3262a52e717dd351",
+        "temperature-rise.npy": "8926b747f5dcfc99927bb0ba58dada3a88b0ae68abc64fc253d9d1acd7359502"
+      }
+    }
+  ],
+  "limits": [
+    "no continuum error bound",
+    "not HotSpot reproduction",
+    "no physical routing model admitted",
+    "no layout optimization or optimum claim"
+  ]
+}

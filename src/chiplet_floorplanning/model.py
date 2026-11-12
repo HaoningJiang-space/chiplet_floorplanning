@@ -259,8 +259,8 @@ def parse_case(data, *, timings_s=None):
                 number(contact['resistance_m2k_w'], 'sidewall resistance_m2k_w', minimum=0)
                 pairs.append(tuple(sorted(pair)))
             unique(pairs, 'sidewall contacts')
-            if (materials or contacts) and layer['footprint'] != 'chiplets':
-                raise ModelError('die materials and sidewall contacts require chiplets footprint')
+            if contacts and layer['footprint'] != 'chiplets':
+                raise ModelError('sidewall contacts require chiplets footprint')
         if layers[-1].get('contact_resistance_above_m2k_w', 0) != 0:
             raise ModelError('contact resistance above final layer has no material interface')
         unique([layer["id"] for layer in layers], "layer IDs")
