@@ -66,3 +66,7 @@ Next extend the same comparison to the buffer and flip-flop, then the exact
 wrappers with identical-temperature and mixed-temperature controls before
 interpreting nonuniform-temperature timing. Receiver constraint characterization
 and real Pad/package qualification remain open; Goal 01 is not complete.
+
+Follow-up: the [complete 32-cell fabric comparison](xyce-fabric-comparison.md)
+has now completed both time steps and all lane/edge capture checks. Its larger
+cross-simulator discrepancy supersedes any inference from the inverter alone.
