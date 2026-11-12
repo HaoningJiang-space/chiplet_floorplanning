@@ -86,3 +86,6 @@ python tools/probe_xyce_temperature.py --bsim-version 4.5 --separate-models --ou
 The existing full suite and documented two-chiplet CLI were rerun for this
 milestone. These checks protect the existing evaluator; they do not validate
 the physical fidelity of the new simulator.
+
+Follow-up: the [actual inverter comparison](xyce-core-comparison.md) now
+replays twelve fixed-stimulus cases without modifying the pinned PDK sources.
