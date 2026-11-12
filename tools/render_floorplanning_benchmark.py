@@ -183,7 +183,7 @@ def main():
 <div class="card"><img src="data:image/png;base64,{image}" alt="实际引脚、共享路由和布局时序对照"></div>
 <div class="card"><table><thead><tr><th>声明条件</th><th>粗网格最低峰温 °C</th><th>反馈 setup ns</th><th>反馈 hold ns</th><th>ΔT K</th></tr></thead><tbody>{table}</tbody></table><small>h 的单位为 W/(m²·K)。每项均用同一配置比较热最优和时序可行最优；额外负载不改变固定功率热模型。</small></div>
 <div class="card"><b>为什么可以证明这里的 0？</b><p>先枚举全部 12 个布局的温度，得到热下界；再找到位于下界的合法布线并检查全部 Lane。可行解上界与热下界相等，因而在该离散布局域、声明布线资源和数值模型内达到最优。无需把其他路由搜索失败当作不可行。</p><p>最初两种布线顺序漏掉了热最优布局。额外搜索第 2 次尝试找到合法线路，消除了基准条件下约 0.087 K 的搜索缺口。固定预算三种遍历基线结果相同；新增见证不计入它们的公平对比，也没有算法提速或联合优化优势的主张。</p></div>
-<div class="card"><b>数值可靠性与下一道物理门槛</b><p>对三个不同热问题的全部布局进行了 2×、4× 平面网格加密，最优布局均保持不变。基准条件下最优与次优温差从约 0.087 K 到 0.091 K；这支持所测试网格上的排序稳定性，尚未覆盖厚度离散、材料、热边界与电气模型误差。</p><p>时序核对包含局部温度、rise/fall 负载、唯一导体 RC、完整公共时钟路径和全部 setup/hold。接下来应收紧匹配参考面的 SPICE／STA 差分误差，并接入经过表征的 Pad／通道；当前证据不支持宣称联合算法必要。</p></div>
+<div class="card"><b>数值可靠性与下一道物理门槛</b><p>对三个不同热问题的全部布局进行了 2×、4× 平面网格加密，最优布局均保持不变。基准条件下最优与次优温差从约 0.087 K 到 0.091 K；这支持所测试网格上的排序稳定性，尚未覆盖厚度离散、材料、热边界与电气模型误差。</p><p>时序核对包含局部温度、rise/fall 负载、唯一导体 RC、完整公共时钟路径和全部 setup/hold。后续优先判断模型差异是否改变布局可行性与排序，不要求跨模型误差归零。当前没有覆盖完整路径与物理输入的误差界，决策不确定性标为 uncertainty_unquantified；这既不是零误差，也不表示候选布局已经证明等价。结构化结果列出每个候选的 setup／hold 最小裕量及距零边界的距离，作为敏感性指标，不能当作实际误差估计。</p></div>
 <p><a href="chiplet-integrated-decision.json">完整结构化证据</a> · <a href="https://github.com/HaoningJiang-space/chiplet_floorplanning">GitHub 仓库</a></p></html>'''
     (args.output/'chiplet-integrated-decision.html').write_text(text, encoding='utf-8')
     print('Saved', args.output/'chiplet-integrated-decision.html')

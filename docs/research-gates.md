@@ -1,3 +1,5 @@
+> Current acceptance is revised by [decision uncertainty](decision-uncertainty.md): prioritize decision-relevant differences; do not require cross-model discrepancies to vanish. Historical screens below retain their original scope and thresholds.
+
 # Research evidence gates
 
 The active goal is now [Goal 01: the integrated decision system](goal01-integrated-decision.md).

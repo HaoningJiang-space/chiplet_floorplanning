@@ -2,6 +2,8 @@
 
 import math
 
+from .uncertainty import assess_timing_margin
+
 
 def summarize_decisions(rows, *, expected_layout_ids=None, expected_profile=None):
     """Explicit expected layout IDs and a single profile gate complete-domain proofs.
@@ -98,4 +100,9 @@ def summarize_decisions(rows, *, expected_layout_ids=None, expected_profile=None
                 feedback_feasible_ids=[r['id'] for r in stages['timing_feedback']],
                 proof_scope=('finite_frozen_placement_domain_all_declared_fabric_routes_fixed_power_numerical_model'
                              if domain_verified else 'evaluated_subset_only_no_certificate'),
-                model_uncertainty_bound_available=False)
+                model_uncertainty_bound_available=False,
+                timing_margin_diagnostics={mode: {
+                    r['id']: assess_timing_margin(r['timing'][mode]['worst_setup_ns'],
+                                                 r['timing'][mode]['worst_hold_ns'])
+                    for r in stages['electrical_'+mode]}
+                    for mode in ('reference', 'feedback')})

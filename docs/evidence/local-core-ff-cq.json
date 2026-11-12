@@ -1,0 +1,962 @@
+{
+  "scope": "Diagnostic only; no setup/hold or physical qualification",
+  "physical_qualified": false,
+  "raw_report_sha256": "65b5b8387e7603d488ff2117cea44abbb359f9ad26c71a4784ceb9487fcb5f87",
+  "raw_directory": "results\\physical-calibration\\core-ff-cq-v1",
+  "replayed_waveforms": 24,
+  "max_step_change_ps": 0.024645586545801734,
+  "max_data_advance_change_ps": 0.014521407473822023,
+  "temperature_comparisons": [
+    {
+      "external_load_pf": 0.00900162,
+      "metric": "rise_delay",
+      "spice_delta_ps": -5.146298346945244,
+      "liberty_delta_ps": -2.3580906750382824,
+      "delta_difference_ps": -2.7882076719069615,
+      "midpoint_curvature_ps": -0.25696721936885325
+    },
+    {
+      "external_load_pf": 0.00900162,
+      "metric": "fall_delay",
+      "spice_delta_ps": 4.5348435798526765,
+      "liberty_delta_ps": 5.985549193999629,
+      "delta_difference_ps": -1.450705614146952,
+      "midpoint_curvature_ps": 0.00804224290273936
+    },
+    {
+      "external_load_pf": 0.00900162,
+      "metric": "rise_slew",
+      "spice_delta_ps": -5.7287878059657515,
+      "liberty_delta_ps": -3.6529034384481935,
+      "delta_difference_ps": -2.075884367517558,
+      "midpoint_curvature_ps": -0.2762825159390303
+    },
+    {
+      "external_load_pf": 0.00900162,
+      "metric": "fall_slew",
+      "spice_delta_ps": 4.434479145274395,
+      "liberty_delta_ps": 5.679694893072018,
+      "delta_difference_ps": -1.2452157477976233,
+      "midpoint_curvature_ps": -0.055762189230534887
+    },
+    {
+      "external_load_pf": 0.0235923,
+      "metric": "rise_delay",
+      "spice_delta_ps": -13.547148425899103,
+      "liberty_delta_ps": -8.480173120455458,
+      "delta_difference_ps": -5.066975305443644,
+      "midpoint_curvature_ps": -0.5378075743869282
+    },
+    {
+      "external_load_pf": 0.0235923,
+      "metric": "fall_delay",
+      "spice_delta_ps": 9.4247930730198,
+      "liberty_delta_ps": 11.443124981554309,
+      "delta_difference_ps": -2.0183319085345097,
+      "midpoint_curvature_ps": -0.017181732252069537
+    },
+    {
+      "external_load_pf": 0.0235923,
+      "metric": "rise_slew",
+      "spice_delta_ps": -15.436212938360505,
+      "liberty_delta_ps": -10.503012582003922,
+      "delta_difference_ps": -4.933200356356582,
+      "midpoint_curvature_ps": -0.661444995784688
+    },
+    {
+      "external_load_pf": 0.0235923,
+      "metric": "fall_slew",
+      "spice_delta_ps": 11.602313615405535,
+      "liberty_delta_ps": 13.993670972076156,
+      "delta_difference_ps": -2.3913573566706203,
+      "midpoint_curvature_ps": -0.10240916583370563
+    }
+  ],
+  "absolute_difference_range_ps": [
+    -143.88542042863918,
+    -4.15318653433644
+  ],
+  "experiment": {
+    "complete": true,
+    "physical_qualified": false,
+    "cell": "dfxtp_1",
+    "scope": "clock-to-Q only; primitive/PEX characterization identity unresolved",
+    "source_sha256": "86ea6b60b19e08326549ebfaccd0a5e4e6cd87934f9fd5ea684c39018b61538e",
+    "netlist_url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/dfxtp/sky130_fd_sc_hd__dfxtp_1.spice",
+    "netlist_sha256": "39049c3c6a74ac24fdc0d93528dd5b0e15f7ef51729008913bdeeee0d8ead2df",
+    "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+    "library_source_sha256": {
+      "local\\pdk-v03\\sky_dfxtp_1_tt_025C_1v80.json": "6f7793786ce917e03b70c2420e6ca202f42a361f9d453739f71fba44832e1b7f",
+      "local\\pdk-v03\\sky_dfxtp_1_tt_100C_1v80.json": "5c06af290abd24ed4cbabe3f5a4bdaafa5a19a37960697bdb8dbd915f0559db2"
+    },
+    "declared_stimulus": {
+      "supply_v": 1.8,
+      "clock_and_data_slew_ns": 0.122474,
+      "external_loads_pf": [
+        0.00900162,
+        0.0235923
+      ],
+      "steps_ps": [
+        2.0,
+        1.0
+      ],
+      "data_advance_ns": [
+        2.0,
+        3.0
+      ],
+      "temperatures_c": [
+        25.0,
+        62.5,
+        100.0
+      ],
+      "thresholds_pct": [
+        20,
+        50,
+        80
+      ]
+    },
+    "cases": [
+      {
+        "name": "t25.0_c0.00900162_advance2.0_dt2.0",
+        "temp_c": 25.0,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 2.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.25491725020246925,
+            "liberty_ns": 0.3697138,
+            "difference_ps": -114.79654979753073
+          },
+          "rise_slew": {
+            "spice_ns": 0.08940322789676713,
+            "liberty_ns": 0.0964358,
+            "difference_ps": -7.032572103232868
+          },
+          "fall_delay": {
+            "spice_ns": 0.21189971340425018,
+            "liberty_ns": 0.3455267,
+            "difference_ps": -133.62698659574986
+          },
+          "fall_slew": {
+            "spice_ns": 0.03962856273779636,
+            "liberty_ns": 0.0532922,
+            "difference_ps": -13.66363726220364
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "e067e1dd0419491e139fc5bed9878fa2d95bc64c7848b70ab292929095a6bdd5",
+          "wave.txt": "b10f8d333db40ac2f789f936d0b17bfdc3316bf0a29c5eccf99d19341d38c38b",
+          "ngspice.log": "1dcb3d6179cc43372cbd53a8e069d277972c8b1c63398f9b470b121149debb38"
+        }
+      },
+      {
+        "name": "t25.0_c0.00900162_advance2.0_dt1.0",
+        "temp_c": 25.0,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 2.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.25490364775867747,
+            "liberty_ns": 0.3697138,
+            "difference_ps": -114.81015224132251
+          },
+          "rise_slew": {
+            "spice_ns": 0.08939740096334337,
+            "liberty_ns": 0.0964358,
+            "difference_ps": -7.038399036656637
+          },
+          "fall_delay": {
+            "spice_ns": 0.21188077079320067,
+            "liberty_ns": 0.3455267,
+            "difference_ps": -133.64592920679937
+          },
+          "fall_slew": {
+            "spice_ns": 0.03960811123326202,
+            "liberty_ns": 0.0532922,
+            "difference_ps": -13.684088766737975
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "0b1c17ac3680dd01f0d01dbfe295e1387b2fa3a6ed1f4bbb1e40e62c8f255ac6",
+          "wave.txt": "33a1161c0b83e0ed91256d38df3eedf59323fca5a8975af0dc70fdc357b4625f",
+          "ngspice.log": "7abe210718444614f0bd48dfd47527d938a12f420cee4b324774154bec5ca018"
+        }
+      },
+      {
+        "name": "t25.0_c0.00900162_advance3.0_dt2.0",
+        "temp_c": 25.0,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 3.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.2549027287949954,
+            "liberty_ns": 0.3697138,
+            "difference_ps": -114.81107120500455
+          },
+          "rise_slew": {
+            "spice_ns": 0.08940306803978082,
+            "liberty_ns": 0.0964358,
+            "difference_ps": -7.0327319602191825
+          },
+          "fall_delay": {
+            "spice_ns": 0.21190413675357966,
+            "liberty_ns": 0.3455267,
+            "difference_ps": -133.62256324642036
+          },
+          "fall_slew": {
+            "spice_ns": 0.039627463929917894,
+            "liberty_ns": 0.0532922,
+            "difference_ps": -13.664736070082103
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "94d43fffe95e95a7b4c2da9e3af9f60ac07494dee056080d59cab5e314aa969f",
+          "wave.txt": "792a51ce2ba523d64c6d34660cc36970d0843a54236faa758008697cc8f2c49d",
+          "ngspice.log": "923ba4af1b83852cbc9ac80e1831892d565420751ad7d0df495d5cc788bc43f1"
+        }
+      },
+      {
+        "name": "t25.0_c0.00900162_advance3.0_dt1.0",
+        "temp_c": 25.0,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 3.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.2548891603906265,
+            "liberty_ns": 0.3697138,
+            "difference_ps": -114.8246396093735
+          },
+          "rise_slew": {
+            "spice_ns": 0.08939737089755351,
+            "liberty_ns": 0.0964358,
+            "difference_ps": -7.038429102446495
+          },
+          "fall_delay": {
+            "spice_ns": 0.2118852223671155,
+            "liberty_ns": 0.3455267,
+            "difference_ps": -133.64147763288454
+          },
+          "fall_slew": {
+            "spice_ns": 0.03960805356937769,
+            "liberty_ns": 0.0532922,
+            "difference_ps": -13.68414643062231
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "c517cfa0d39b9639ef91987441dabfa8512ab41801a096c5b341bda2b71a8d9c",
+          "wave.txt": "16fb334a1a188d77c78bc727f98c2d157b1d6e29eb13108e68ef34244cdd71ab",
+          "ngspice.log": "6be9cb10f0f22f9244a60a2b1225093894fc41ecba2bcb51d13dd1e39f0fb487"
+        }
+      },
+      {
+        "name": "t25.0_c0.0235923_advance2.0_dt2.0",
+        "temp_c": 25.0,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 2.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.3520880014305092,
+            "liberty_ns": 0.4634656,
+            "difference_ps": -111.37759856949076
+          },
+          "rise_slew": {
+            "spice_ns": 0.22423981346566357,
+            "liberty_ns": 0.228393,
+            "difference_ps": -4.15318653433644
+          },
+          "fall_delay": {
+            "spice_ns": 0.2544437298765736,
+            "liberty_ns": 0.3962939,
+            "difference_ps": -141.85017012342638
+          },
+          "fall_slew": {
+            "spice_ns": 0.09113160864142777,
+            "liberty_ns": 0.1142203,
+            "difference_ps": -23.088691358572223
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "f8bd81d94c68f522ecec3261f141fb0229813b57c44770131f42a56ea345248a",
+          "wave.txt": "02ed63d3ee8302855da8c2e89e3bf12f17f3cb003e9945be7435ef68232d8c7d",
+          "ngspice.log": "911388f18e5a714edd6519b4d291be3ef3c1d7da67fde80330bcc145c132773d"
+        }
+      },
+      {
+        "name": "t25.0_c0.0235923_advance2.0_dt1.0",
+        "temp_c": 25.0,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 2.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.3520762295232913,
+            "liberty_ns": 0.4634656,
+            "difference_ps": -111.38937047670866
+          },
+          "rise_slew": {
+            "spice_ns": 0.22423638131080992,
+            "liberty_ns": 0.228393,
+            "difference_ps": -4.156618689190095
+          },
+          "fall_delay": {
+            "spice_ns": 0.2544268114798953,
+            "liberty_ns": 0.3962939,
+            "difference_ps": -141.86708852010466
+          },
+          "fall_slew": {
+            "spice_ns": 0.09112791324207592,
+            "liberty_ns": 0.1142203,
+            "difference_ps": -23.09238675792408
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "f10f6e904faf6b41df0e4fa472df999fecce50450758498be7aa929c0bab943a",
+          "wave.txt": "ff51239fdf3375bfdf6dc01deb9dd3ac3319200e3a33784de77756af2be1a1cb",
+          "ngspice.log": "8628c85b056d3aa53dc70b39d5caa22204a005e0b0a7f0f0c3834987546e2d2e"
+        }
+      },
+      {
+        "name": "t25.0_c0.0235923_advance3.0_dt2.0",
+        "temp_c": 25.0,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 3.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.35207353356765303,
+            "liberty_ns": 0.4634656,
+            "difference_ps": -111.39206643234695
+          },
+          "rise_slew": {
+            "spice_ns": 0.22423981331347598,
+            "liberty_ns": 0.228393,
+            "difference_ps": -4.153186686524036
+          },
+          "fall_delay": {
+            "spice_ns": 0.25444817923051133,
+            "liberty_ns": 0.3962939,
+            "difference_ps": -141.84572076948865
+          },
+          "fall_slew": {
+            "spice_ns": 0.09113136743359362,
+            "liberty_ns": 0.1142203,
+            "difference_ps": -23.088932566406374
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "1fb640c8965e1e47d2c1aed21d4b2a5a12eac2f6d95c002aacdc334c20e62b4c",
+          "wave.txt": "096a77bc3190decc42362bdf3bc6d0bc09ebe58ee33afdc72b6048de09afb7e0",
+          "ngspice.log": "9203ea335900825ce4c9b8c9a905846fcca4af7a9474615d7ba5364a25c61db5"
+        }
+      },
+      {
+        "name": "t25.0_c0.0235923_advance3.0_dt1.0",
+        "temp_c": 25.0,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 3.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.3520617454911852,
+            "liberty_ns": 0.4634656,
+            "difference_ps": -111.40385450881479
+          },
+          "rise_slew": {
+            "spice_ns": 0.22423641032731467,
+            "liberty_ns": 0.228393,
+            "difference_ps": -4.156589672685341
+          },
+          "fall_delay": {
+            "spice_ns": 0.25443122656756323,
+            "liberty_ns": 0.3962939,
+            "difference_ps": -141.86267343243674
+          },
+          "fall_slew": {
+            "spice_ns": 0.09112787165030767,
+            "liberty_ns": 0.1142203,
+            "difference_ps": -23.09242834969233
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "e001259b10ffc8871ec5681ebd438b6b66dfa4d925340ffcf887ed70c28fa24d",
+          "wave.txt": "e3ef3c66df5093016c1e2c85d16a3bc027047f02d9f89041bb4340eb6e2161d8",
+          "ngspice.log": "fa5ab947ba26df0d6ff59ac405ddb8416f96a6e598c70ee900b7d73da7cc9ca0"
+        }
+      },
+      {
+        "name": "t62.5_c0.00900162_advance2.0_dt2.0",
+        "temp_c": 62.5,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 2.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.25208787955043643,
+            "liberty_ns": 0.36853475466248087,
+            "difference_ps": -116.44687511204444
+          },
+          "rise_slew": {
+            "spice_ns": 0.08625957081149593,
+            "liberty_ns": 0.09460934828077591,
+            "difference_ps": -8.349777469279978
+          },
+          "fall_delay": {
+            "spice_ns": 0.2141758065356285,
+            "liberty_ns": 0.34851947459699983,
+            "difference_ps": -134.34366806137132
+          },
+          "fall_slew": {
+            "spice_ns": 0.041777482398089205,
+            "liberty_ns": 0.05613204744653601,
+            "difference_ps": -14.354565048446801
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "6346c96050b1873b9990ef04a0607a2e0c8ce4c3161d0de46f7e5f5a01d3622d",
+          "wave.txt": "56f8d7f628f45c401dd016ef1079cc20c91b1dcbbb3e52b1d9fa0b38f01e7fd7",
+          "ngspice.log": "9f44dd6ebaeb0871424b02b79e1f19f9f4f06bbe4fadc3b2897f38d306a469c8"
+        }
+      },
+      {
+        "name": "t62.5_c0.00900162_advance2.0_dt1.0",
+        "temp_c": 62.5,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 2.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.252073531365836,
+            "liberty_ns": 0.36853475466248087,
+            "difference_ps": -116.46122329664487
+          },
+          "rise_slew": {
+            "spice_ns": 0.08625672454442146,
+            "liberty_ns": 0.09460934828077591,
+            "difference_ps": -8.352623736354452
+          },
+          "fall_delay": {
+            "spice_ns": 0.21415623482602975,
+            "liberty_ns": 0.34851947459699983,
+            "difference_ps": -134.3632397709701
+          },
+          "fall_slew": {
+            "spice_ns": 0.041769588616668685,
+            "liberty_ns": 0.05613204744653601,
+            "difference_ps": -14.362458829867322
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "d0125f5fd33067fa46c846f568f05f985e61e3dfbffee1725548ecb006039c28",
+          "wave.txt": "416c0cddd6ee67a9eaf261d08265c8f0b1fb5dfbd58f1a952e44bf69c4f9c12d",
+          "ngspice.log": "21ec429f0e576cd37ab6630ecac56044bac469462d4410fd90177da87c955ded"
+        }
+      },
+      {
+        "name": "t62.5_c0.00900162_advance3.0_dt2.0",
+        "temp_c": 62.5,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 3.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.2520735029398544,
+            "liberty_ns": 0.36853475466248087,
+            "difference_ps": -116.46125172262644
+          },
+          "rise_slew": {
+            "spice_ns": 0.08626122083836574,
+            "liberty_ns": 0.09460934828077591,
+            "difference_ps": -8.348127442410174
+          },
+          "fall_delay": {
+            "spice_ns": 0.214180238231382,
+            "liberty_ns": 0.34851947459699983,
+            "difference_ps": -134.33923636561784
+          },
+          "fall_slew": {
+            "spice_ns": 0.04177775916721416,
+            "liberty_ns": 0.05613204744653601,
+            "difference_ps": -14.35428827932185
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "14216cc86d2faabae1bc4bea7ce1f951678f58fd5968769c70f3af29a21938ff",
+          "wave.txt": "7e9e5dbf904fa6e8f1fd8c6896fb4689c3f0a784cae1eaa0c4a8b0b56ee063d4",
+          "ngspice.log": "73af94fa481a5778ee171242d8c717776418874807266509efc8dd12f90e7227"
+        }
+      },
+      {
+        "name": "t62.5_c0.00900162_advance3.0_dt1.0",
+        "temp_c": 62.5,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 3.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.2520591890166246,
+            "liberty_ns": 0.36853475466248087,
+            "difference_ps": -116.47556564585626
+          },
+          "rise_slew": {
+            "spice_ns": 0.0862566033124228,
+            "liberty_ns": 0.09460934828077591,
+            "difference_ps": -8.352744968353115
+          },
+          "fall_delay": {
+            "spice_ns": 0.21416065475730228,
+            "liberty_ns": 0.34851947459699983,
+            "difference_ps": -134.35881983969756
+          },
+          "fall_slew": {
+            "spice_ns": 0.04176943796358756,
+            "liberty_ns": 0.05613204744653601,
+            "difference_ps": -14.362609482948443
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "9b1687ee22bd3c5061dbdc6dff1fd310dda228fa7784cf9069bb584bda4165a0",
+          "wave.txt": "664e211f6aefe75a883c04c1d6f86d8f3011b90dce60124a958b74350c4db265",
+          "ngspice.log": "5090acf89327cc569e79f252a5e84eb48af18ffc95c8df10c49d950a359acfa4"
+        }
+      },
+      {
+        "name": "t62.5_c0.0235923_advance2.0_dt2.0",
+        "temp_c": 62.5,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 2.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.34477654129542223,
+            "liberty_ns": 0.45922551343977225,
+            "difference_ps": -114.44897214435001
+          },
+          "rise_slew": {
+            "spice_ns": 0.21585960841947216,
+            "liberty_ns": 0.22314149370899805,
+            "difference_ps": -7.281885289525891
+          },
+          "fall_delay": {
+            "spice_ns": 0.2591394861583822,
+            "liberty_ns": 0.40201546249077713,
+            "difference_ps": -142.8759763323949
+          },
+          "fall_slew": {
+            "spice_ns": 0.09683332685647272,
+            "liberty_ns": 0.12121713548603807,
+            "difference_ps": -24.38380862956535
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "f06885c48cb1986bbc03de69c345b89b14987f2cac9c8a7573b76148657825e5",
+          "wave.txt": "59cbf9c45373e0ff608bb8c7019af5277d8982d264914551f8d249600fc86293",
+          "ngspice.log": "722d85ddc9794a2b5cc13ec075502e5599ef3de4512412a0ee00191a92e8137f"
+        }
+      },
+      {
+        "name": "t62.5_c0.0235923_advance2.0_dt1.0",
+        "temp_c": 62.5,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 2.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.34476484773595484,
+            "liberty_ns": 0.45922551343977225,
+            "difference_ps": -114.46066570381741
+          },
+          "rise_slew": {
+            "spice_ns": 0.21585682984584498,
+            "liberty_ns": 0.22314149370899805,
+            "difference_ps": -7.284663863153074
+          },
+          "fall_delay": {
+            "spice_ns": 0.25912202628415315,
+            "liberty_ns": 0.40201546249077713,
+            "difference_ps": -142.893436206624
+          },
+          "fall_slew": {
+            "spice_ns": 0.09682666088394498,
+            "liberty_ns": 0.12121713548603807,
+            "difference_ps": -24.390474602093093
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "849260409acfec3d9fc1b91c229c6db9c0a2fd191da3f31728f0fd5e0787e8c3",
+          "wave.txt": "dcc5f8ba6a4e1bc569560300c91c79d502eef96a61590f61c335310b929d3a33",
+          "ngspice.log": "bcb8a6a6be569ddcdd6c63f44a205c51145c3e91589a1a233529b4d6b69462ed"
+        }
+      },
+      {
+        "name": "t62.5_c0.0235923_advance3.0_dt2.0",
+        "temp_c": 62.5,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 3.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.34476217517221297,
+            "liberty_ns": 0.45922551343977225,
+            "difference_ps": -114.46333826755928
+          },
+          "rise_slew": {
+            "spice_ns": 0.2158596255524312,
+            "liberty_ns": 0.22314149370899805,
+            "difference_ps": -7.28186815656684
+          },
+          "fall_delay": {
+            "spice_ns": 0.25914387446776743,
+            "liberty_ns": 0.40201546249077713,
+            "difference_ps": -142.8715880230097
+          },
+          "fall_slew": {
+            "spice_ns": 0.09683327282794352,
+            "liberty_ns": 0.12121713548603807,
+            "difference_ps": -24.383862658094557
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "1fe56e88539d14dbc45b4bef481a99a1af33912e86e12974026815a29756cd2e",
+          "wave.txt": "63ea669f47cfa27f0f9afef3836ba2bb81302d239bd0ca3e8457554a20e65d14",
+          "ngspice.log": "25bb85552ac7fdf25b14511cadeaf36c2966ca7d692b89acec6ce4c1cc43ecfc"
+        }
+      },
+      {
+        "name": "t62.5_c0.0235923_advance3.0_dt1.0",
+        "temp_c": 62.5,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 3.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.3447504809743931,
+            "liberty_ns": 0.45922551343977225,
+            "difference_ps": -114.47503246537916
+          },
+          "rise_slew": {
+            "spice_ns": 0.21585683799347422,
+            "liberty_ns": 0.22314149370899805,
+            "difference_ps": -7.284655715523836
+          },
+          "fall_delay": {
+            "spice_ns": 0.2591263989111461,
+            "liberty_ns": 0.40201546249077713,
+            "difference_ps": -142.88906357963106
+          },
+          "fall_slew": {
+            "spice_ns": 0.09682660007459631,
+            "liberty_ns": 0.12121713548603807,
+            "difference_ps": -24.39053541144176
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "e203d7aaa79e93bcf5a0a15a4e86900c3999e81f2564d96da3c4694e2cc7b887",
+          "wave.txt": "1218652ed0f7d5dceee411c878acaa031eb16e57c38668e0855f32a679f40913",
+          "ngspice.log": "017cb07364e7c47d3e4181a71b2f4cec2d655a6eeb7979af892cc4c5917ebb12"
+        }
+      },
+      {
+        "name": "t100.0_c0.00900162_advance2.0_dt2.0",
+        "temp_c": 100.0,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 2.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.24977030172626336,
+            "liberty_ns": 0.3673557093249617,
+            "difference_ps": -117.58540759869834
+          },
+          "rise_slew": {
+            "spice_ns": 0.0836726723715584,
+            "liberty_ns": 0.09278289656155181,
+            "difference_ps": -9.11022418999341
+          },
+          "fall_delay": {
+            "spice_ns": 0.2164352085571455,
+            "liberty_ns": 0.35151224919399965,
+            "difference_ps": -135.07704063685415
+          },
+          "fall_slew": {
+            "spice_ns": 0.04406723596508222,
+            "liberty_ns": 0.058971894893072016,
+            "difference_ps": -14.904658927989797
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "885a8f3482dcbf1470943d01cfdd59b72b3d33ed76339528c510b0683be55834",
+          "wave.txt": "dbfb4016a5db3c81fc6d0557a34ba52e88ab30164b0a1603203a32fe2d28e7d3",
+          "ngspice.log": "e03f91f34f6cb375b79b784ba31098a6f11e9fe8a8453e5164239bafdeef1bd9"
+        }
+      },
+      {
+        "name": "t100.0_c0.00900162_advance2.0_dt1.0",
+        "temp_c": 100.0,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 2.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.24975734941173222,
+            "liberty_ns": 0.3673557093249617,
+            "difference_ps": -117.59835991322947
+          },
+          "rise_slew": {
+            "spice_ns": 0.08366861315737761,
+            "liberty_ns": 0.09278289656155181,
+            "difference_ps": -9.114283404174195
+          },
+          "fall_delay": {
+            "spice_ns": 0.21641561437305334,
+            "liberty_ns": 0.35151224919399965,
+            "difference_ps": -135.0966348209463
+          },
+          "fall_slew": {
+            "spice_ns": 0.04404259037853642,
+            "liberty_ns": 0.058971894893072016,
+            "difference_ps": -14.929304514535598
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "6716f0db6d457afee477063eae21efd6765ebb36fee6ff68d7f6df5153f45f12",
+          "wave.txt": "b8d3a79ec8446bcd9133fc969d523263062ef2c881871be5d55c0d51200b099d",
+          "ngspice.log": "5e5e67ff46d5915a15f560627f8681c288e9b723cfd552e51fd7b37dbf6c5aee"
+        }
+      },
+      {
+        "name": "t100.0_c0.00900162_advance3.0_dt2.0",
+        "temp_c": 100.0,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 3.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.24975649026571833,
+            "liberty_ns": 0.3673557093249617,
+            "difference_ps": -117.59921905924337
+          },
+          "rise_slew": {
+            "spice_ns": 0.08367274417669712,
+            "liberty_ns": 0.09278289656155181,
+            "difference_ps": -9.110152384854686
+          },
+          "fall_delay": {
+            "spice_ns": 0.21643906375097188,
+            "liberty_ns": 0.35151224919399965,
+            "difference_ps": -135.07318544302777
+          },
+          "fall_slew": {
+            "spice_ns": 0.04406708085783251,
+            "liberty_ns": 0.058971894893072016,
+            "difference_ps": -14.904814035239507
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "e97b525e1a66708b79a46036e908c126a8cce266c629674e6aa12a57b89bde4a",
+          "wave.txt": "c4397963b5e8d6fd245801ff9954dedc8ea94bbaaee8d1cb8a4517d1ae4fbc0f",
+          "ngspice.log": "3086c15817a630ab50a362e23cd28a71195bf7a25ced7c42bef67eb444a3ea3a"
+        }
+      },
+      {
+        "name": "t100.0_c0.00900162_advance3.0_dt1.0",
+        "temp_c": 100.0,
+        "external_load_pf": 0.00900162,
+        "data_advance_ns": 3.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.24974359534222756,
+            "liberty_ns": 0.3673557093249617,
+            "difference_ps": -117.61211398273413
+          },
+          "rise_slew": {
+            "spice_ns": 0.08366860333639714,
+            "liberty_ns": 0.09278289656155181,
+            "difference_ps": -9.114293225154668
+          },
+          "fall_delay": {
+            "spice_ns": 0.21641947076560264,
+            "liberty_ns": 0.35151224919399965,
+            "difference_ps": -135.092778428397
+          },
+          "fall_slew": {
+            "spice_ns": 0.044042438213317325,
+            "liberty_ns": 0.058971894893072016,
+            "difference_ps": -14.92945667975469
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "49466fcf1ffbdfcda63cae99100434a566637b3d79ab8f97726f46bdf5c9bdd0",
+          "wave.txt": "3e685e7a4be789c71dc1f762dc089669c2702c1518705132820cccc588bba3dd",
+          "ngspice.log": "322f9885b1c6ede19b5fe7c6dac77f2171a278f1b303579af1f7ceb2691d2d90"
+        }
+      },
+      {
+        "name": "t100.0_c0.0235923_advance2.0_dt2.0",
+        "temp_c": 100.0,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 2.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.3385410385739789,
+            "liberty_ns": 0.4549854268795445,
+            "difference_ps": -116.44438830556564
+          },
+          "rise_slew": {
+            "spice_ns": 0.20880348056707287,
+            "liberty_ns": 0.2178899874179961,
+            "difference_ps": -9.086506850923215
+          },
+          "fall_delay": {
+            "spice_ns": 0.2638699148096322,
+            "liberty_ns": 0.4077370249815543,
+            "difference_ps": -143.86711017192212
+          },
+          "fall_slew": {
+            "spice_ns": 0.1027378498568261,
+            "liberty_ns": 0.12821397097207615,
+            "difference_ps": -25.47612111525005
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "ec8a8130bc9ba04b29d12d63e1da5896f4fea5a8a7ecafdf61dea03f2f099feb",
+          "wave.txt": "98319520bd2621af1006e6d64d1ad46a36f9f0ae6965c16a7fcef0479693281b",
+          "ngspice.log": "ee2767449b7e344648fea8ce8beb99b3a228cca357eb4d9d393614528c728e78"
+        }
+      },
+      {
+        "name": "t100.0_c0.0235923_advance2.0_dt1.0",
+        "temp_c": 100.0,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 2.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.3385290810973922,
+            "liberty_ns": 0.4549854268795445,
+            "difference_ps": -116.4563457821523
+          },
+          "rise_slew": {
+            "spice_ns": 0.2088001683724494,
+            "liberty_ns": 0.2178899874179961,
+            "difference_ps": -9.089819045546676
+          },
+          "fall_delay": {
+            "spice_ns": 0.2638516045529151,
+            "liberty_ns": 0.4077370249815543,
+            "difference_ps": -143.88542042863918
+          },
+          "fall_slew": {
+            "spice_ns": 0.10273022685748145,
+            "liberty_ns": 0.12821397097207615,
+            "difference_ps": -25.483744114594696
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "02d2c6863062979db62e58e75ff49b28fe2aa95e6a638d67f7b3a70bf593a891",
+          "wave.txt": "19529299b05d01657ec9ee52d2fe209c8b1a363fb52980062b3a6546b4a72b31",
+          "ngspice.log": "6bcca737b80f8b2ecd55d41a7967ae97582a6783c83f3b544f9c15bb78576048"
+        }
+      },
+      {
+        "name": "t100.0_c0.0235923_advance3.0_dt2.0",
+        "temp_c": 100.0,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 3.0,
+        "step_ps": 2.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.33852771144020544,
+            "liberty_ns": 0.4549854268795445,
+            "difference_ps": -116.45771543933908
+          },
+          "rise_slew": {
+            "spice_ns": 0.20880206292947,
+            "liberty_ns": 0.2178899874179961,
+            "difference_ps": -9.087924488526077
+          },
+          "fall_delay": {
+            "spice_ns": 0.26387370831273493,
+            "liberty_ns": 0.4077370249815543,
+            "difference_ps": -143.86331666881935
+          },
+          "fall_slew": {
+            "spice_ns": 0.10273778996948835,
+            "liberty_ns": 0.12821397097207615,
+            "difference_ps": -25.476181002587804
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "9b73c249b581ec961ac581a3008132a6544638d0eb6c22aea3c9cb0562a1240a",
+          "wave.txt": "6596e19bac91ac071c33be1b2c3d3b2adc6f3041406dd473a05667f376b9dda5",
+          "ngspice.log": "9c47bfcc981d9a07ad7285e072f551826d459c600db40e41c29d85498980d041"
+        }
+      },
+      {
+        "name": "t100.0_c0.0235923_advance3.0_dt1.0",
+        "temp_c": 100.0,
+        "external_load_pf": 0.0235923,
+        "data_advance_ns": 3.0,
+        "step_ps": 1.0,
+        "metrics": {
+          "rise_delay": {
+            "spice_ns": 0.3385153324664065,
+            "liberty_ns": 0.4549854268795445,
+            "difference_ps": -116.47009441313799
+          },
+          "rise_slew": {
+            "spice_ns": 0.20880014006537628,
+            "liberty_ns": 0.2178899874179961,
+            "difference_ps": -9.089847352619806
+          },
+          "fall_delay": {
+            "spice_ns": 0.2638553979674896,
+            "liberty_ns": 0.4077370249815543,
+            "difference_ps": -143.88162701406472
+          },
+          "fall_slew": {
+            "spice_ns": 0.10273014906237066,
+            "liberty_ns": 0.12821397097207615,
+            "difference_ps": -25.483821909705494
+          }
+        },
+        "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+        "artifacts_sha256": {
+          "deck.sp": "068c13c259f0e0ae5eafec1139c8284988ebd3407abcba98c482fd24e94ac08e",
+          "wave.txt": "ee082051779e2cb640a4f7e909a9b2614aadfe0f6eb084a24b9fa7e6ac698aa4",
+          "ngspice.log": "96cc7551cf27427c73eea923f62fe69fa97681b748ba36aeecedd54e3f4d105d"
+        }
+      }
+    ]
+  },
+  "primitive_manifest_sha256": "df377621d58f344cd083f299df2ec87ce52caf506264260f83ee857d62f3f008"
+}
