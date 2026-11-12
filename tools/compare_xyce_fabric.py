@@ -4,7 +4,6 @@ import json
 from pathlib import Path
 import re
 import shutil
-import subprocess
 
 import numpy as np
 
@@ -12,7 +11,7 @@ from audit_integrated_transistors import build_fabric
 from compare_transistor_layouts import validate_decks
 from summarize_integrated_transistors import summarize
 from chiplet_floorplanning.characterization import digest
-from validation.xyce_output import read_wave
+from validation.xyce_output import execute, record_observation
 from validation.pad_spice import crossing_ns
 
 
@@ -110,31 +109,20 @@ def main():
                 raise ValueError('reuse circuit or controls changed')
             for name in ('deck.cir.csv', 'xyce.log'):
                 shutil.copy2(saved/name, folder/name)
-            execution = subprocess.CompletedProcess([], 0)
+            execution = dict(status='completed', returncode=0)
         else:
-            with (folder/'xyce.log').open('w') as logfile:
-                try:
-                    execution = subprocess.run([str(exe), 'deck.cir'], cwd=folder,
-                        stdout=logfile, stderr=subprocess.STDOUT, text=True, timeout=args.timeout_s)
-                except subprocess.TimeoutExpired:
-                    report['cases'].append(dict(step_ps=step, execution_status='timeout', timeout_s=args.timeout_s,
-                        deck_sha256=digest(folder/'deck.cir'), log_sha256=digest(folder/'xyce.log')))
-                    (args.output/'report.json').write_text(json.dumps(report, indent=2)+'\n')
-                    raise
-        log = (folder/'xyce.log').read_text()
-        if execution.returncode:
-            raise ValueError('Xyce failed; raw evidence retained')
-        wave = read_wave(folder/'deck.cir.csv', [*[f'V({n})' for n in observed], 'I(VDD)', 'I(VCLK)'])
-        rows = measure(wave, observed, nodes, step)
+            execution = execute(exe, folder, timeout_s=args.timeout_s)
+        record = dict(step_ps=step, **execution,
+            reused_report_sha256=digest(args.reuse_run/'report.json') if reusable else None)
+        rows = record_observation(report, args.output/'report.json', folder, record,
+            [*[f'V({n})' for n in observed], 'I(VDD)', 'I(VCLK)'],
+            lambda wave: measure(wave, observed, nodes, step))
         for row in rows:
             ref = next(r for r in baseline['paths'] if all(r[k] == row[k] for k in ('step_ps', 'lane', 'edge')))
             row['xyce_minus_ngspice_ps'] = {k: (row[k]-ref[k])*1000 for k in
                 ('setup_window_ns', 'hold_window_ns', 'receiver_clock_to_q_ns')}
         report['paths'].extend(rows)
-        report['cases'].append(dict(step_ps=step, returncode=execution.returncode,
-            reused_report_sha256=digest(args.reuse_run/'report.json') if reusable else None,
-            warning_count=len(re.findall(r'(?i)netlist warning', log)),
-            artifacts_sha256={name: digest(folder/name) for name in ('deck.cir', 'deck.cir.csv', 'xyce.log')}))
+        record['warning_count'] = len(record['warnings']['messages'])
         (args.output/'report.json').write_text(json.dumps(report, indent=2)+'\n')
     coarse = {(r['lane'], r['edge']): r for r in report['paths'] if r['step_ps'] == 5}
     fine = [r for r in report['paths'] if r['step_ps'] == 2.5]

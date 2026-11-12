@@ -1,9 +1,40 @@
 """Admit Xyce observations by identity, not merely by column count."""
 import csv
+import json
 from pathlib import Path
 import re
 import subprocess
 import numpy as np
+from chiplet_floorplanning.characterization import digest
+
+
+def record_observation(report, report_path, folder, record, columns, observer):
+    """Persist execution/diagnostic/measurement admission, including failed cases."""
+    folder = Path(folder)
+    report['cases'].append(record)
+    record['artifacts_sha256'] = {name: digest(folder/name)
+        for name in ('deck.cir', 'xyce.log', 'deck.cir.csv') if (folder/name).exists()}
+    def save():
+        Path(report_path).write_text(json.dumps(report, indent=2)+'\n')
+    try:
+        record['warnings'] = warning_inventory((folder/'xyce.log').read_text())
+        if record['status'] != 'completed':
+            raise ValueError('Xyce execution did not complete')
+        if record['warnings']['unknown_messages']:
+            record['status'] = 'unknown_diagnostic'
+            raise ValueError('unknown or suppressed Xyce diagnostic')
+        rows = observer(read_wave(folder/'deck.cir.csv', columns))
+    except (ValueError, OSError, IndexError) as error:
+        if record['status'] == 'completed':
+            record['status'] = 'invalid_observation'
+        record.update(reason=str(error), error_type=type(error).__name__)
+        report['complete'] = False
+        report['failure_case'] = folder.name
+        save()
+        raise
+    record['observation_admitted'] = True
+    save()
+    return rows
 
 
 def read_wave(path, columns):

@@ -6,9 +6,24 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from audit_xyce_uniform import export_control
+from summarize_xyce_uniform import control_verdict
 
 
 class UniformFabricTest(unittest.TestCase):
+    def test_completed_failed_screen_remains_unresolved_and_not_physical(self):
+        verdict = control_verdict(True, 2)
+        self.assertTrue(verdict['execution_complete'])
+        self.assertFalse(verdict['numerical_control_passed'])
+        self.assertFalse(verdict['physical_qualified'])
+        self.assertEqual(verdict['interpretation_status'], 'unresolved')
+
+    def test_incomplete_control_cannot_pass(self):
+        self.assertFalse(control_verdict(False, 0)['numerical_control_passed'])
+        self.assertTrue(control_verdict(True, .5)['numerical_control_passed'])
+        self.assertFalse(control_verdict(True, .5)['physical_qualified'])
+        with self.assertRaises(ValueError):
+            control_verdict(True, float('nan'))
+
     def setUp(self):
         self.elements = [f'X_cell{i} a b vdd gnd inv' for i in range(32)] + [
             'R_wire a b 12.5', 'C_wire b 0 2e-15']

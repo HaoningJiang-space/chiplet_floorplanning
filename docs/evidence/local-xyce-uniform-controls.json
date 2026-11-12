@@ -1,0 +1,368 @@
+{
+  "source_sha256": "95d04a48702d0f8d15318a92d078e0e744304f787ac4fdde9405d277273c2080",
+  "execution_complete": true,
+  "numerical_control_passed": true,
+  "physical_qualified": false,
+  "controls": [
+    {
+      "execution_complete": true,
+      "numerical_control_passed": true,
+      "physical_qualified": false,
+      "interpretation_status": "numerical_control_passed",
+      "temperature_c": 25.0,
+      "source_receipt_sha256": "20f37cc5a92eaa2bea21231b3fda196d68e7d3ca0d3d3d50d6c5035c99f55dc3",
+      "step_ps": 2.5,
+      "declared_numerical_screen_ps": 0.5,
+      "max_abs_difference_ps": 0.010177594916171984,
+      "scope": "uniform propagation/export control at fixed RC; not a physical error bound",
+      "cases": [
+        {
+          "name": "global",
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "artifacts_sha256": {
+            "deck.cir": "791f44a7a3ea569ca28e27839a525246336b9c620b2195a2e492c85991f4b8bd",
+            "xyce.log": "06f7f5eaf815d6c9a77f0c51f25d7e821df8a0efc013992071ee383dc69a7bd3",
+            "deck.cir.csv": "2eb347ad8a228498a96c7b52f00e0a881e46ae2895f7010355a2932c16268db5"
+          }
+        },
+        {
+          "name": "local",
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "artifacts_sha256": {
+            "deck.cir": "30c63391a24d7b364e71a94666b5caa45569a880f91875bad2212f9545c739cf",
+            "xyce.log": "25325318bbf81ada807145ea5d7ceec22b1057f9da5e4575363a4b3313e38fd2",
+            "deck.cir.csv": "4a97cd4661ebf8c26cb1b9932332584b14ec0ae0baa99a11047bd470c14673ca"
+          }
+        }
+      ],
+      "differences": [
+        {
+          "lane": "0_0",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.008627976033181994,
+            "hold_window_ns": 5.353228971216595e-08,
+            "receiver_clock_to_q_ns": -0.003069196026217469
+          }
+        },
+        {
+          "lane": "0_0",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.00038028057502970114,
+            "hold_window_ns": 0.009008203107896406,
+            "receiver_clock_to_q_ns": -1.4073009424464544e-07
+          }
+        },
+        {
+          "lane": "0_1",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.008627931318727633,
+            "hold_window_ns": 8.817835350782843e-09,
+            "receiver_clock_to_q_ns": -0.003069218170281829
+          }
+        },
+        {
+          "lane": "0_1",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.0002181331950623644,
+            "hold_window_ns": 0.008409789337804341,
+            "receiver_clock_to_q_ns": -1.8128787360183196e-07
+          }
+        },
+        {
+          "lane": "0_2",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.008627906591840429,
+            "hold_window_ns": -1.5909051853668643e-08,
+            "receiver_clock_to_q_ns": -0.003083186790320269
+          }
+        },
+        {
+          "lane": "0_2",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.0002138554933139858,
+            "hold_window_ns": 0.00841406703955272,
+            "receiver_clock_to_q_ns": -1.8140866586691118e-07
+          }
+        },
+        {
+          "lane": "0_3",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.008627923737236642,
+            "hold_window_ns": 1.2363443602225743e-09,
+            "receiver_clock_to_q_ns": -0.003069148686307699
+          }
+        },
+        {
+          "lane": "0_3",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.0015496723833052783,
+            "hold_window_ns": 0.010177594916171984,
+            "receiver_clock_to_q_ns": -9.14752718017553e-08
+          }
+        },
+        {
+          "lane": "1_0",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.00839552813047817,
+            "hold_window_ns": 3.4939162674163526e-08,
+            "receiver_clock_to_q_ns": -0.0033463355499918634
+          }
+        },
+        {
+          "lane": "1_0",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.0004610609778410435,
+            "hold_window_ns": 0.008856554302383302,
+            "receiver_clock_to_q_ns": 4.704503453467623e-08
+          }
+        },
+        {
+          "lane": "1_1",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.008395514598191767,
+            "hold_window_ns": 2.140687627161242e-08,
+            "receiver_clock_to_q_ns": -0.0033618690302716914
+          }
+        },
+        {
+          "lane": "1_1",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.0012801335032008865,
+            "hold_window_ns": 0.009675626827743145,
+            "receiver_clock_to_q_ns": 1.8981438643095316e-07
+          }
+        },
+        {
+          "lane": "1_2",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.008395575434860802,
+            "hold_window_ns": 8.22435453073922e-08,
+            "receiver_clock_to_q_ns": -0.003361892904507613
+          }
+        },
+        {
+          "lane": "1_2",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.0007326786857220213,
+            "hold_window_ns": 0.00912817201026428,
+            "receiver_clock_to_q_ns": 1.794120407794253e-07
+          }
+        },
+        {
+          "lane": "1_3",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.00839549900533143,
+            "hold_window_ns": 5.81401593535702e-09,
+            "receiver_clock_to_q_ns": -0.0033463355286755814
+          }
+        },
+        {
+          "lane": "1_3",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": -0.0004610609778410435,
+            "hold_window_ns": 0.008856554302383302,
+            "receiver_clock_to_q_ns": 4.704503453467623e-08
+          }
+        }
+      ]
+    },
+    {
+      "execution_complete": true,
+      "numerical_control_passed": true,
+      "physical_qualified": false,
+      "interpretation_status": "numerical_control_passed",
+      "temperature_c": 65.0,
+      "source_receipt_sha256": "3ad18dd6ac3859aaad33e5024258683ca8d61317a73f92d450a5ea8ffb3ed2cf",
+      "step_ps": 2.5,
+      "declared_numerical_screen_ps": 0.5,
+      "max_abs_difference_ps": 0.017386052348911107,
+      "scope": "uniform propagation/export control at fixed RC; not a physical error bound",
+      "cases": [
+        {
+          "name": "global",
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "artifacts_sha256": {
+            "deck.cir": "d5acbef89a555f456f9a378c1ddbd4759770bb1b0f192eea926f0adacc058278",
+            "xyce.log": "ad7e619491d29696b8f4e460c7ee914a677ce30234794072033df61a4f989eb5",
+            "deck.cir.csv": "fa45d317e5c48353f8ad46bcf569655a27b90c70f5f53c3d057d66cd5743bd57"
+          }
+        },
+        {
+          "name": "local",
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "artifacts_sha256": {
+            "deck.cir": "397b13d55541741a623f2ac3b7811496be1aa59448c48adc256061ba14b2d2a0",
+            "xyce.log": "120f63666797c63bad936339893cbd381e74381834bdc4397ba8592f19d390f5",
+            "deck.cir.csv": "8369cad2a1512a422ce61bb7aa898e5d732aa256ea2519bb52784bb4ebfe27cb"
+          }
+        }
+      ],
+      "differences": [
+        {
+          "lane": "0_0",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.013805464426752678,
+            "hold_window_ns": -1.0658141036401503e-10,
+            "receiver_clock_to_q_ns": -0.009038733661981269
+          }
+        },
+        {
+          "lane": "0_0",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.0029323580932327786,
+            "hold_window_ns": -0.016825965694522438,
+            "receiver_clock_to_q_ns": 1.8648407262844557e-06
+          }
+        },
+        {
+          "lane": "0_1",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.01380546440898911,
+            "hold_window_ns": -8.881784197001252e-11,
+            "receiver_clock_to_q_ns": -0.009038720580889503
+          }
+        },
+        {
+          "lane": "0_1",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.0027933492816600847,
+            "hold_window_ns": -0.016686956882949744,
+            "receiver_clock_to_q_ns": 1.8651107325240446e-06
+          }
+        },
+        {
+          "lane": "0_2",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.013805464199379003,
+            "hold_window_ns": 1.2079226507921703e-10,
+            "receiver_clock_to_q_ns": -0.009038720545362366
+          }
+        },
+        {
+          "lane": "0_2",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.0027876800743342756,
+            "hold_window_ns": -0.016681287675623935,
+            "receiver_clock_to_q_ns": 1.865103627096687e-06
+          }
+        },
+        {
+          "lane": "0_3",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.013805464320171268,
+            "hold_window_ns": 0.0,
+            "receiver_clock_to_q_ns": -0.009038788945758824
+          }
+        },
+        {
+          "lane": "0_3",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.003492444747621448,
+            "hold_window_ns": -0.017386052348911107,
+            "receiver_clock_to_q_ns": 1.8592558603813814e-06
+          }
+        },
+        {
+          "lane": "1_0",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.010555552261592993,
+            "hold_window_ns": 0.0,
+            "receiver_clock_to_q_ns": -0.005577954897972859
+          }
+        },
+        {
+          "lane": "1_0",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.003116578461970221,
+            "hold_window_ns": -0.013760013896302326,
+            "receiver_clock_to_q_ns": 1.5971153288774076e-06
+          }
+        },
+        {
+          "lane": "1_1",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.010555551973823185,
+            "hold_window_ns": 2.877698079828406e-10,
+            "receiver_clock_to_q_ns": -0.005578064730116239
+          }
+        },
+        {
+          "lane": "1_1",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.0027781775102653228,
+            "hold_window_ns": -0.013421612944597427,
+            "receiver_clock_to_q_ns": 1.5935341934891767e-06
+          }
+        },
+        {
+          "lane": "1_2",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.010555552183433292,
+            "hold_window_ns": 7.815970093361102e-11,
+            "receiver_clock_to_q_ns": -0.005578014963703026
+          }
+        },
+        {
+          "lane": "1_2",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.0030605591945231936,
+            "hold_window_ns": -0.013703994628855298,
+            "receiver_clock_to_q_ns": 1.6085692777778604e-06
+          }
+        },
+        {
+          "lane": "1_3",
+          "edge": "rise",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.010555552261592993,
+            "hold_window_ns": 0.0,
+            "receiver_clock_to_q_ns": -0.005577954897972859
+          }
+        },
+        {
+          "lane": "1_3",
+          "edge": "fall",
+          "local_minus_global_ps": {
+            "setup_window_ns": 0.003116578461970221,
+            "hold_window_ns": -0.013760013896302326,
+            "receiver_clock_to_q_ns": 1.5971153288774076e-06
+          }
+        }
+      ]
+    }
+  ]
+}

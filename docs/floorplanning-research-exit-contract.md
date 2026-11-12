@@ -36,6 +36,15 @@ unresolved comparisons. Stop expanding isolated-cell validation. Reopen a model
 only for a demonstrated decision-relevant defect or a new benchmark requirement.
 This stage does not certify a real package.
 
+Exit is not admission. Keep `execution_complete`, `numerical_control_passed`
+and `physical_qualified` separate. A failed uniform screen makes the thermal
+interpretation unresolved; retain the measurements rather than tune the screen.
+For each comparison report ordering as `stable`, `changed`, or `unresolved`
+within the tested numerical/model variants. Separately report whether the
+interaction is resolved: a nonzero interaction need not reverse an ordering.
+These are layout-plus-routing comparisons, not isolated rotation effects.
+None of these labels establishes a physical error bound or physical signoff.
+
 The uniform-control runner is `tools/audit_xyce_uniform.py`. With the existing
 local artifact trees, run it once per temperature (25 or 65), using a fresh
 output directory:
@@ -68,13 +77,20 @@ distribution. Preserve common physical assumptions across methods. Deliver
 small exactly checkable domains and larger domains using the same rules.
 Feasible certificates must bind geometry, routing and evaluator inputs;
 search exhaustion or timeout alone is not an infeasibility certificate.
+Before launching benchmark experiments, freeze the initial small exact domain
+and larger case family, topology, independent position/rotation domains,
+resource rules, evaluator and deterministic generation recipe. Source collection
+does not itself count as a benchmark result, and must not become an unbounded
+replacement for the fabric validation phase.
 
 ## 3. Establish structure before proposing an optimizer
 
 Investigate two hypotheses, not yet established findings:
 
-1. Routing cut/escape capacity provides necessary infeasibility certificates
-   under a precisely defined routing graph and demand model. Count actual
+1. Routing cut/escape capacity provides necessary conditions for feasibility;
+   a violated capacity bound is a sufficient infeasibility certificate
+   under a precisely defined routing graph and demand model. An unviolated cut
+   is not a proof of feasibility. Count actual
    resource consumption; path-search failure is not a capacity proof.
 2. For a fixed linear thermal operator and boundary conditions, transfer
    responses can support reusable thermal evaluation or certified bounds.
@@ -99,3 +115,13 @@ Experiments remain local. Publish coherent validated milestones promptly on
 read that SHA and its Git history through the connected GitHub account. Record
 which findings were checked and which remain open. An earlier Chat review does
 not automatically approve subsequent commits or reproduce local experiments.
+
+## Chat review receipt
+
+Chat mode independently read `ea6e9308e61e1837c1d6bb136af93d018dedc6ed`
+and its parent through connected GitHub, confirming the one-commit, three-file
+change. Its completed review accepted this bounded direction, requested the
+three admission states, explicit comparison verdicts and a frozen benchmark
+scope, and corrected the cut-condition wording. These requested changes are
+being implemented locally; the review did not rerun local tests or simulations.
+Conversation: https://chatgpt.com/c/6af41d50-059c-83e8-92e6-eb975244c865

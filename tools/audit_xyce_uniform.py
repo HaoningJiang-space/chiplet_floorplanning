@@ -3,7 +3,7 @@ import argparse
 from collections import Counter
 import json
 from pathlib import Path
-import re
+import math
 
 from audit_integrated_transistors import build_fabric
 from compare_xyce_fabric import measure
@@ -11,6 +11,15 @@ from probe_core_local_temperature import prepare_models
 from chiplet_floorplanning.characterization import digest
 from validation.decision_evidence import verify_saved_sta_files
 from validation.xyce_output import execute, read_wave, warning_inventory
+
+
+def control_verdict(complete, maximum_ps, screen_ps=.5):
+    if not math.isfinite(maximum_ps) or maximum_ps < 0 or screen_ps != .5:
+        raise ValueError('invalid uniform-control screen inputs')
+    passed = bool(complete and maximum_ps <= screen_ps)
+    return dict(execution_complete=bool(complete), numerical_control_passed=passed,
+                physical_qualified=False,
+                interpretation_status='numerical_control_passed' if passed else 'unresolved')
 
 
 def export_control(lines, elements, temperature, local, models, output):
@@ -67,7 +76,8 @@ def main():
     root = args.output
     root.mkdir(exist_ok=False)
     models, transforms = prepare_models(root, args.transistor_source, raw)
-    report = dict(complete=False, physical_qualified=False,
+    report = dict(complete=False, execution_complete=False, numerical_control_passed=False,
+        interpretation_status='unresolved', physical_qualified=False,
         scope='uniform-temperature propagation and export-order control; fixed RC, not a thermal-layout prediction',
         temperature_c=args.temperature, step_ps=2.5, source_sha256=digest(__file__),
         executable_sha256=digest(exe), baseline_receipt_sha256=digest(args.cold_run/'report.json'),
@@ -108,6 +118,7 @@ def main():
     report.update(complete=True, differences=differences, max_abs_difference_ps=maximum,
         declared_numerical_screen_ps=.5, within_declared_screen=maximum <= .5,
         screen_scope='numerical equivalence diagnostic, not a physical error bound')
+    report.update(control_verdict(True, maximum))
     save()
     print(json.dumps({k: report[k] for k in ('complete', 'temperature_c', 'max_abs_difference_ps', 'within_declared_screen')}, indent=2))
 

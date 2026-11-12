@@ -4,13 +4,53 @@ import unittest
 from unittest.mock import patch
 import subprocess
 import sys
+import json
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 
-from validation.xyce_output import read_wave, execute, warning_inventory
+from validation.xyce_output import read_wave, execute, warning_inventory, record_observation
 
 
 class XyceOutputTest(unittest.TestCase):
+    def test_case_admission_retains_failure_and_artifact_identity(self):
+        for status, log, csv, expected in (
+            ('execution_timeout', 'partial', None, 'execution_timeout'),
+            ('execution_failed', 'failed', None, 'execution_failed'),
+            ('completed', 'Maximum warning count has been exceeded', None, 'unknown_diagnostic'),
+            ('completed', 'done', 'TIME,V(B)\n0,0\n1,1\n', 'invalid_observation'),
+            ('completed', 'done', 'TIME,V(A)\n0,0\n1,1\n', 'invalid_observation'),
+        ):
+            with self.subTest(expected=expected), TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                (root/'deck.cir').write_text('fixed circuit')
+                (root/'xyce.log').write_text(log)
+                if csv:
+                    (root/'deck.cir.csv').write_text(csv)
+                report = dict(complete=False, cases=[])
+                def bad_measure(wave):
+                    raise ValueError('receiver failed capture')
+                with self.assertRaises(ValueError):
+                    record_observation(report, root/'report.json', root,
+                        dict(status=status, returncode=0 if status == 'completed' else None),
+                        ['V(A)'], bad_measure)
+                saved = json.loads((root/'report.json').read_text())
+                self.assertFalse(saved['complete'])
+                self.assertEqual(saved['cases'][0]['status'], expected)
+                self.assertIn('deck.cir', saved['cases'][0]['artifacts_sha256'])
+                self.assertIn('reason', saved['cases'][0])
+
+    def test_admitted_observation_does_not_complete_whole_experiment(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root/'xyce.log').write_text('done')
+            (root/'deck.cir.csv').write_text('TIME,V(A)\n0,0\n1,1\n')
+            report = dict(complete=False, cases=[])
+            result = record_observation(report, root/'report.json', root,
+                dict(status='completed', returncode=0), ['V(A)'], lambda wave: len(wave))
+            self.assertEqual(result, 2)
+            self.assertTrue(report['cases'][0]['observation_admitted'])
+            self.assertFalse(report['complete'])
+
     def test_reordered_columns_rejected_even_with_same_shape(self):
         with TemporaryDirectory() as tmp:
             p = Path(tmp)/'wave.csv'

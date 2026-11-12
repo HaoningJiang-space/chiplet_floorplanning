@@ -3,7 +3,6 @@ import argparse
 from collections import Counter
 import json
 from pathlib import Path
-import subprocess
 
 import numpy as np
 
@@ -11,7 +10,7 @@ from audit_integrated_transistors import build_fabric
 from compare_xyce_fabric import measure
 from probe_core_local_temperature import prepare_models
 from chiplet_floorplanning.characterization import digest
-from validation.xyce_output import read_wave
+from validation.xyce_output import read_wave, execute, record_observation, warning_inventory
 from validation.decision_evidence import verify_saved_sta_files
 
 
@@ -63,6 +62,7 @@ def main():
         layout_receipt_sha256=digest(args.layout/'report.json'), cold_receipt_sha256=digest(args.cold_run/'report.json'),
         thermal_field_sha256=parent['temperature_sha256'], feedback_sta_sha256=digest(args.layout/'feedback/report.json'),
         local_temperature_c=temps, peak_temperature_c=parent['thermal']['peak_c'], cases=[], paths=[])
+    (args.output/'report.json').write_text(json.dumps(report, indent=2)+'\n')
     for step in (5., 2.5):
         folder = args.output/f'step_{step:g}ps'
         folder.mkdir()
@@ -76,6 +76,8 @@ def main():
         for name, sha in manifest.items():
             if digest(prior/name) != sha:
                 raise ValueError('modified cold artifact')
+        if warning_inventory((prior/'xyce.log').read_text())['unknown_messages']:
+            raise ValueError('cold diagnostic admission failed; regenerate cold baseline')
         lines = (prior/'deck.cir').read_text().splitlines()
         physical = [line for line in lines if line.startswith(('X_', 'C_', 'R_'))]
         if Counter(physical) != Counter(a):
@@ -97,18 +99,11 @@ def main():
                 replaced.extend(hot)
             replaced.append(line)
         (folder/'deck.cir').write_text('\n'.join(replaced)+'\n')
-        with (folder/'xyce.log').open('w') as logfile:
-            try:
-                execution = subprocess.run([str(exe), 'deck.cir'], cwd=folder,
-                    stdout=logfile, stderr=subprocess.STDOUT, timeout=900)
-            except subprocess.TimeoutExpired:
-                report['cases'].append(dict(step_ps=step, status='timeout', timeout_s=900, log_sha256=digest(folder/'xyce.log')))
-                (args.output/'report.json').write_text(json.dumps(report, indent=2)+'\n')
-                raise
-        if execution.returncode:
-            raise ValueError('Xyce failed; retained raw log')
-        wave = read_wave(folder/'deck.cir.csv', [*[f'V({n})' for n in cold['observed_nodes']], 'I(VDD)', 'I(VCLK)'])
-        rows = measure(wave, cold['observed_nodes'], nodes, step)
+        execution = execute(exe, folder, timeout_s=1800)
+        rows = record_observation(report, args.output/'report.json', folder,
+            dict(step_ps=step, **execution),
+            [*[f'V({n})' for n in cold['observed_nodes']], 'I(VDD)', 'I(VCLK)'],
+            lambda wave: measure(wave, cold['observed_nodes'], nodes, step))
         cold_rows = measure(read_wave(prior/'deck.cir.csv', [*[f'V({n})' for n in cold['observed_nodes']], 'I(VDD)', 'I(VCLK)']), cold['observed_nodes'], nodes, step)
         for row in rows:
             reference = next(r for r in cold_rows if r['lane'] == row['lane'] and r['edge'] == row['edge'])
@@ -120,8 +115,6 @@ def main():
                 window = lambda p: p['capture_arrival_ns']-p['data_arrival_ns'] if kind == 'setup' else p['data_arrival_ns']-p['capture_arrival_ns']
                 row['sta_feedback_change_ps'][kind+'_window_ns'] = (window(values[1])-window(values[0]))*1000
         report['paths'].extend(rows)
-        report['cases'].append(dict(step_ps=step, returncode=execution.returncode,
-            artifacts_sha256={n: digest(folder/n) for n in ('deck.cir', 'deck.cir.csv', 'xyce.log')}))
         (args.output/'report.json').write_text(json.dumps(report, indent=2)+'\n')
     report['complete'] = True
     (args.output/'report.json').write_text(json.dumps(report, indent=2)+'\n')
