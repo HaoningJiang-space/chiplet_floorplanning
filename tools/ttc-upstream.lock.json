@@ -1,0 +1,118 @@
+{
+  "repository": "https://github.com/esl-epfl/3d-ice",
+  "commit": "1ce8c0ad00b96acae52fc83508c61e3b4ad612df",
+  "license": "GPL-3.0-or-later; raw source stays outside Git",
+  "files": [
+    {
+      "path": "ice3/bin/3D-ICE-Emulator.c",
+      "url": "https://raw.githubusercontent.com/esl-epfl/3d-ice/1ce8c0ad00b96acae52fc83508c61e3b4ad612df/bin/3D-ICE-Emulator.c",
+      "sha256": "0737ed76be013ff3b203b248413823a4780190fc9ae186576d9db11c6a33ba33"
+    },
+    {
+      "path": "ice3/heatsink_plugin/heatsinks/HS483/example.flp",
+      "url": "https://raw.githubusercontent.com/esl-epfl/3d-ice/1ce8c0ad00b96acae52fc83508c61e3b4ad612df/heatsink_plugin/heatsinks/HS483/example.flp",
+      "sha256": "ae13b3b9d2bc6abdcd79693df532545ea4698c1789642a13dea1693a5920ed7c"
+    },
+    {
+      "path": "ice3/heatsink_plugin/heatsinks/HS483/example.stk",
+      "url": "https://raw.githubusercontent.com/esl-epfl/3d-ice/1ce8c0ad00b96acae52fc83508c61e3b4ad612df/heatsink_plugin/heatsinks/HS483/example.stk",
+      "sha256": "b0aad224ecdb21fa87a7e2492df8e1ee3cb28aec8515945c5c9bcafb5c1c3352"
+    },
+    {
+      "path": "ice3/heatsink_plugin/heatsinks/HS483/fan_speed.txt",
+      "url": "https://raw.githubusercontent.com/esl-epfl/3d-ice/1ce8c0ad00b96acae52fc83508c61e3b4ad612df/heatsink_plugin/heatsinks/HS483/fan_speed.txt",
+      "sha256": "e661759697a3e5ef8507246f32a4e3b8c32c60d0541f32a914c1b4cf5a043c75"
+    },
+    {
+      "path": "ice3/heatsink_plugin/heatsinks/HS483/HS483.mo",
+      "url": "https://raw.githubusercontent.com/esl-epfl/3d-ice/1ce8c0ad00b96acae52fc83508c61e3b4ad612df/heatsink_plugin/heatsinks/HS483/HS483.mo",
+      "sha256": "2fc44b323c6647e2667e55e5abd26f1b6d1f584bf0b8e48f92ce6f7be29e227e"
+    },
+    {
+      "path": "ice3/README",
+      "url": "https://raw.githubusercontent.com/esl-epfl/3d-ice/1ce8c0ad00b96acae52fc83508c61e3b4ad612df/README",
+      "sha256": "f74c657b7644c33244366976ac2d77717df007d81e390e83984c4d0cfe03b2a6"
+    },
+    {
+      "path": "ice3/sources/output.c",
+      "url": "https://raw.githubusercontent.com/esl-epfl/3d-ice/1ce8c0ad00b96acae52fc83508c61e3b4ad612df/sources/output.c",
+      "sha256": "6d993682f916671a5796ca10bd4fcc45623fd6c4fecc344d1a357e682a5941ba"
+    },
+    {
+      "path": "ice3/sources/thermal_data.c",
+      "url": "https://raw.githubusercontent.com/esl-epfl/3d-ice/1ce8c0ad00b96acae52fc83508c61e3b4ad612df/sources/thermal_data.c",
+      "sha256": "c692bc416e5e0a5212e2ed404016080389db1e930716df39d483f2f66e9020a3"
+    },
+    {
+      "path": "ice3/test/validation-scripts.tar.gz",
+      "url": "https://raw.githubusercontent.com/esl-epfl/3d-ice/1ce8c0ad00b96acae52fc83508c61e3b4ad612df/test/validation-scripts.tar.gz",
+      "sha256": "1be7dc2fa9f26e05c7771835521814becb3d1253d8293aa056ccb9c1250f088d"
+    },
+    {
+      "path": "ice3-validation/compare-batch.sce",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "compare-batch.sce",
+      "sha256": "6c5fbf7659a1e48704e3bd67cad09834dafeda018d7ddebab6dc718585904ae8"
+    },
+    {
+      "path": "ice3-validation/compare.sce",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "compare.sce",
+      "sha256": "5321c4a3f1f26bf4c2b476e80ceed210814027e04869caab4ae90b43de2465d3"
+    },
+    {
+      "path": "ice3-validation/download.sh",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "download.sh",
+      "sha256": "0bf108827f79fc0fc06c7f0f0de53c42e54fc14fb8f605fab72005bb561acca9"
+    },
+    {
+      "path": "ice3-validation/gencell.cpp",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "gencell.cpp",
+      "sha256": "96d51e694b962219ed59539cdc0722507948826c9a74d724a42fac96de08967c"
+    },
+    {
+      "path": "ice3-validation/genpower-batch.sce",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "genpower-batch.sce",
+      "sha256": "350a1cfb671065ae20fc949fafba4b8ef6c9cc55a6cf6db54b465003a5f18e6d"
+    },
+    {
+      "path": "ice3-validation/Readme.txt",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "Readme.txt",
+      "sha256": "76cbe60354d6502ac4ec8c97e2387bf6d4b7a90860e4bb6da70fe57c865cc380"
+    },
+    {
+      "path": "ice3-validation/reformat.sh",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "reformat.sh",
+      "sha256": "7017f85f9a0ecdae08d31e31a8c9ccd493c57cd02a782c5d8a514c55485d104a"
+    },
+    {
+      "path": "ice3-validation/toplevel-batch-fan.sh",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "toplevel-batch-fan.sh",
+      "sha256": "a33ceb5a4a39b7c02a6016ce125c79fdaa1f7893c609255cc82b704c35b391e5"
+    },
+    {
+      "path": "ice3-validation/toplevel-batch-nofan.sh",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "toplevel-batch-nofan.sh",
+      "sha256": "c2a6602c6281a169ae143a84cbcbeb6fa238cfa2e0bf591f3f52576601ddd522"
+    },
+    {
+      "path": "ice3-validation/TTC-fan-batch.stk",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "TTC-fan-batch.stk",
+      "sha256": "14ebc01546c548d4839945ba7828183b2fc0c9f399c83d8cea2b61a095881e24"
+    },
+    {
+      "path": "ice3-validation/TTC-nofan-batch.stk",
+      "archive": "ice3/test/validation-scripts.tar.gz",
+      "member": "TTC-nofan-batch.stk",
+      "sha256": "61fff9c52797fced631f2415087ca23900b0db3a25b79be414befd97807436bb"
+    }
+  ]
+}
