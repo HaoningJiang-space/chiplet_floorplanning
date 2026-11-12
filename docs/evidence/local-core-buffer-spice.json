@@ -1,0 +1,839 @@
+{
+  "physical_qualified": false,
+  "baseline_reproduction_metrics_identical": true,
+  "cases": {
+    "core-buf-probe-v2": {
+      "complete": true,
+      "source_sha256": "66afdba4d35e54a2815cf5c05f5754a8a36f334aa537edb11cbab1fb15ddfb6c",
+      "netlist_url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/buf/sky130_fd_sc_hd__buf_8.spice",
+      "netlist_sha256": "98bafb7bbd4aa107e9b0090ee241f30a6a84aa5b394bb8eaca5b189a207cd5c7",
+      "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+      "physical_qualified": false,
+      "cases": [
+        {
+          "name": "t25_c0.05_dt2",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "11358e06e49896126546dd970e7f4a37165117cb159bf511ed2c4ec93897439c",
+          "waveform_sha256": "5394621f8a5ea28c954661ef7f51a22ca434f6031cada158d53d52e112bff642",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.142173016379727,
+              "liberty_ns": 0.1824243,
+              "difference_ps": -40.251283620273
+            },
+            "rise_slew": {
+              "spice_ns": 0.06551358516624983,
+              "liberty_ns": 0.092221,
+              "difference_ps": -26.707414833750164
+            },
+            "fall_delay": {
+              "spice_ns": 0.1949869192515159,
+              "liberty_ns": 0.2274883,
+              "difference_ps": -32.5013807484841
+            },
+            "fall_slew": {
+              "spice_ns": 0.03642543210500815,
+              "liberty_ns": 0.0515301,
+              "difference_ps": -15.104667894991854
+            }
+          }
+        },
+        {
+          "name": "t25_c0.05_dt1",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "b1ffe9f68720997a8be8299fa37b52d9556d0c93fa562d8afee9b1a3a7ac26ed",
+          "waveform_sha256": "5f3c5d119b2d33c84f886b74baf64b2fa0cad10e2dc73b4c9c3a837e175c2933",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.14216913057888725,
+              "liberty_ns": 0.1824243,
+              "difference_ps": -40.25516942111276
+            },
+            "rise_slew": {
+              "spice_ns": 0.06550264333431377,
+              "liberty_ns": 0.092221,
+              "difference_ps": -26.718356665686226
+            },
+            "fall_delay": {
+              "spice_ns": 0.19498652307425868,
+              "liberty_ns": 0.2274883,
+              "difference_ps": -32.501776925741325
+            },
+            "fall_slew": {
+              "spice_ns": 0.03640369156847534,
+              "liberty_ns": 0.0515301,
+              "difference_ps": -15.126408431524665
+            }
+          }
+        },
+        {
+          "name": "t25_c0.232079_dt2",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "375872541f237b8d7c1f105db3b8153d96b8d1e6b30059395d9f2385415b1b81",
+          "waveform_sha256": "810c3db3d2f1c10fbbe4611d04ab496e570964872a2bbd6d409eb3a285801644",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.2936672452665383,
+              "liberty_ns": 0.3783367,
+              "difference_ps": -84.66945473346172
+            },
+            "rise_slew": {
+              "spice_ns": 0.2749992520873845,
+              "liberty_ns": 0.3689166,
+              "difference_ps": -93.91734791261547
+            },
+            "fall_delay": {
+              "spice_ns": 0.26448042512285586,
+              "liberty_ns": 0.3185937,
+              "difference_ps": -54.11327487714412
+            },
+            "fall_slew": {
+              "spice_ns": 0.11386679579791092,
+              "liberty_ns": 0.1601077,
+              "difference_ps": -46.24090420208907
+            }
+          }
+        },
+        {
+          "name": "t25_c0.232079_dt1",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "6cacb0f5686aab5274214f56bc3648a1bf8b26159d49a7ea6ad7e031c981a081",
+          "waveform_sha256": "cddc7b9725f8f389e6edde6025d25e29e0a67b0d57c2e77af7e383ca602a197d",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.29366516052423997,
+              "liberty_ns": 0.3783367,
+              "difference_ps": -84.67153947576006
+            },
+            "rise_slew": {
+              "spice_ns": 0.27499792625715225,
+              "liberty_ns": 0.3689166,
+              "difference_ps": -93.91867374284773
+            },
+            "fall_delay": {
+              "spice_ns": 0.2644788820003141,
+              "liberty_ns": 0.3185937,
+              "difference_ps": -54.11481799968587
+            },
+            "fall_slew": {
+              "spice_ns": 0.11385810465263724,
+              "liberty_ns": 0.1601077,
+              "difference_ps": -46.24959534736276
+            }
+          }
+        },
+        {
+          "name": "t100_c0.05_dt2",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "8b8585e08f75ae21015cc389194d8f4a1a1008c061067886d07d4895793b4e94",
+          "waveform_sha256": "0f2c520fd50877ee99c48c45eee313a397f407e3f980c07c0e5ae5963a53941b",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.13976445297919993,
+              "liberty_ns": 0.1786282,
+              "difference_ps": -38.86374702080006
+            },
+            "rise_slew": {
+              "spice_ns": 0.06256155288899068,
+              "liberty_ns": 0.0892855,
+              "difference_ps": -26.723947111009323
+            },
+            "fall_delay": {
+              "spice_ns": 0.18173192718513498,
+              "liberty_ns": 0.2148704,
+              "difference_ps": -33.13847281486501
+            },
+            "fall_slew": {
+              "spice_ns": 0.04080683951857722,
+              "liberty_ns": 0.0563659,
+              "difference_ps": -15.559060481422776
+            }
+          }
+        },
+        {
+          "name": "t100_c0.05_dt1",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "054a00e50a5f5c2377646eaf10fc1ec34a4ee07924f57dcd78aa547798bef90d",
+          "waveform_sha256": "df7b49f657fef56f660e55408b024fd607c5be23e33488c7954421e9e2bc6f85",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.13975729798415726,
+              "liberty_ns": 0.1786282,
+              "difference_ps": -38.87090201584273
+            },
+            "rise_slew": {
+              "spice_ns": 0.06255577552525349,
+              "liberty_ns": 0.0892855,
+              "difference_ps": -26.729724474746515
+            },
+            "fall_delay": {
+              "spice_ns": 0.1817310603673974,
+              "liberty_ns": 0.2148704,
+              "difference_ps": -33.1393396326026
+            },
+            "fall_slew": {
+              "spice_ns": 0.040798841992653934,
+              "liberty_ns": 0.0563659,
+              "difference_ps": -15.567058007346063
+            }
+          }
+        },
+        {
+          "name": "t100_c0.232079_dt2",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "3a336cec62d9b5043d0fccec8e867af4a01b41520bcc046731eed4b5b987d80d",
+          "waveform_sha256": "b74b6915f466a03c5cae93e05eaf22afbd8364763373350b582edcf51f8e3643",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.2781560213201084,
+              "liberty_ns": 0.3597324,
+              "difference_ps": -81.57637867989159
+            },
+            "rise_slew": {
+              "spice_ns": 0.25611233542056366,
+              "liberty_ns": 0.3499999,
+              "difference_ps": -93.88756457943632
+            },
+            "fall_delay": {
+              "spice_ns": 0.2590969415528033,
+              "liberty_ns": 0.3141241,
+              "difference_ps": -55.02715844719675
+            },
+            "fall_slew": {
+              "spice_ns": 0.1280999752210148,
+              "liberty_ns": 0.1767802,
+              "difference_ps": -48.680224778985206
+            }
+          }
+        },
+        {
+          "name": "t100_c0.232079_dt1",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "71de07d1e514fc50a4033b92689a08b367a2934ddbd6e17dad11df3a7229d899",
+          "waveform_sha256": "89cf7c9bdb1cab6f86b55a178aa6dc47359a8c62edf3e58ef89e2ea4a9bc5675",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.27815315502159565,
+              "liberty_ns": 0.3597324,
+              "difference_ps": -81.57924497840435
+            },
+            "rise_slew": {
+              "spice_ns": 0.256112177746036,
+              "liberty_ns": 0.3499999,
+              "difference_ps": -93.88772225396397
+            },
+            "fall_delay": {
+              "spice_ns": 0.25909504164460095,
+              "liberty_ns": 0.3141241,
+              "difference_ps": -55.029058355399066
+            },
+            "fall_slew": {
+              "spice_ns": 0.12809434958006083,
+              "liberty_ns": 0.1767802,
+              "difference_ps": -48.68585041993917
+            }
+          }
+        }
+      ],
+      "primitive_source_lock_sha256": "7a690e1e6519ebab9c2dda678dd592752a60b988b8cb5010172f4a8ebdb55ba3",
+      "full_local_report_sha256": "3a668f49ba88e526edac3b11c96c7e5dc94bd62f54817e3f0bf50fae7744ee8f"
+    },
+    "core-buf-stress-probe-v1": {
+      "complete": true,
+      "source_sha256": "72f291219dd0942ec6c100b65758a0df370308bde4eba7c214dc0982e1a2eeca",
+      "netlist_url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/buf/sky130_fd_sc_hd__buf_8.spice",
+      "netlist_sha256": "f490843621bcd7c41f79e4b9632e4742610a27f65634b28c04aab23c9a297b05",
+      "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+      "physical_qualified": false,
+      "variant": "restore only CDL sa/sb/sd on each expanded transistor; area/perim mapping unresolved; not original characterization",
+      "cases": [
+        {
+          "name": "t25_c0.05_dt2",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "a15136e24a295c84340fd76f6595c9af6b4fb968a2befab036d738030db53220",
+          "waveform_sha256": "e8480f98fd5c4a2016ccb8e6b0c9d81402d0ac20afef697e50000e44e006e797",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.1422116826503772,
+              "liberty_ns": 0.1824243,
+              "difference_ps": -40.21261734962281
+            },
+            "rise_slew": {
+              "spice_ns": 0.058216330326050336,
+              "liberty_ns": 0.092221,
+              "difference_ps": -34.004669673949664
+            },
+            "fall_delay": {
+              "spice_ns": 0.18209441616985345,
+              "liberty_ns": 0.2274883,
+              "difference_ps": -45.39388383014656
+            },
+            "fall_slew": {
+              "spice_ns": 0.03737258084213835,
+              "liberty_ns": 0.0515301,
+              "difference_ps": -14.157519157861655
+            }
+          }
+        },
+        {
+          "name": "t25_c0.05_dt1",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "18659a76c1b117c01d2342d326624e9855ae002232d756646b8ed7a4ec9cda9f",
+          "waveform_sha256": "ca211742ba821ab7698806df43eb59ddfc0bd8a8edcb961fdda69504f05860b1",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.14220678992769775,
+              "liberty_ns": 0.1824243,
+              "difference_ps": -40.21751007230226
+            },
+            "rise_slew": {
+              "spice_ns": 0.05820599866351195,
+              "liberty_ns": 0.092221,
+              "difference_ps": -34.01500133648805
+            },
+            "fall_delay": {
+              "spice_ns": 0.18209381584521012,
+              "liberty_ns": 0.2274883,
+              "difference_ps": -45.394484154789886
+            },
+            "fall_slew": {
+              "spice_ns": 0.03736397542847136,
+              "liberty_ns": 0.0515301,
+              "difference_ps": -14.16612457152864
+            }
+          }
+        },
+        {
+          "name": "t25_c0.232079_dt2",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "fb8d74e0b973fb81e83735739fef1ed6cfc3faa8b844a142aa60b8b696f7ea48",
+          "waveform_sha256": "0aed287dccea56ba78b04df7a181e0a29ea3f6bf621f9796e5f41832a528cdf1",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.2734285383567632,
+              "liberty_ns": 0.3783367,
+              "difference_ps": -104.90816164323685
+            },
+            "rise_slew": {
+              "spice_ns": 0.24106373567387296,
+              "liberty_ns": 0.3689166,
+              "difference_ps": -127.85286432612702
+            },
+            "fall_delay": {
+              "spice_ns": 0.2545903395356186,
+              "liberty_ns": 0.3185937,
+              "difference_ps": -64.00336046438137
+            },
+            "fall_slew": {
+              "spice_ns": 0.11915750328932084,
+              "liberty_ns": 0.1601077,
+              "difference_ps": -40.95019671067915
+            }
+          }
+        },
+        {
+          "name": "t25_c0.232079_dt1",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "bfc0294f94428d878f3847b172b301d8ab28ddb1703ef886c20185b95d4d768e",
+          "waveform_sha256": "535b888db3907166f43877300f4c32f414880b49f987ebb37e547b852c0a33dd",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.2734262862963135,
+              "liberty_ns": 0.3783367,
+              "difference_ps": -104.91041370368653
+            },
+            "rise_slew": {
+              "spice_ns": 0.2410630607932167,
+              "liberty_ns": 0.3689166,
+              "difference_ps": -127.85353920678327
+            },
+            "fall_delay": {
+              "spice_ns": 0.25458802972473116,
+              "liberty_ns": 0.3185937,
+              "difference_ps": -64.00567027526883
+            },
+            "fall_slew": {
+              "spice_ns": 0.11915153225041752,
+              "liberty_ns": 0.1601077,
+              "difference_ps": -40.95616774958247
+            }
+          }
+        },
+        {
+          "name": "t100_c0.05_dt2",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "87a6032751c109bafb8d416d468859e8d1b1e83b5d7fe01695eb2ff896c6245f",
+          "waveform_sha256": "3957bd40629b43c0ce23f887f8d77c872f18df28427466ecbd51aa125c5ac0cf",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.14149679800941906,
+              "liberty_ns": 0.1786282,
+              "difference_ps": -37.13140199058093
+            },
+            "rise_slew": {
+              "spice_ns": 0.05717409735164969,
+              "liberty_ns": 0.0892855,
+              "difference_ps": -32.111402648350314
+            },
+            "fall_delay": {
+              "spice_ns": 0.16987460688404976,
+              "liberty_ns": 0.2148704,
+              "difference_ps": -44.99579311595023
+            },
+            "fall_slew": {
+              "spice_ns": 0.04196314087395692,
+              "liberty_ns": 0.0563659,
+              "difference_ps": -14.40275912604308
+            }
+          }
+        },
+        {
+          "name": "t100_c0.05_dt1",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "b2a028dc7774b13ffad25adb87f792235dc779d3c0fd4c32d776edf31109cc2f",
+          "waveform_sha256": "3a981e34a53672e7f90e6ac64d7c05995376944c2ea980a9b893f38f25d50d13",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.14148866503650215,
+              "liberty_ns": 0.1786282,
+              "difference_ps": -37.13953496349784
+            },
+            "rise_slew": {
+              "spice_ns": 0.05715066437510119,
+              "liberty_ns": 0.0892855,
+              "difference_ps": -32.13483562489881
+            },
+            "fall_delay": {
+              "spice_ns": 0.16987247927696902,
+              "liberty_ns": 0.2148704,
+              "difference_ps": -44.997920723030965
+            },
+            "fall_slew": {
+              "spice_ns": 0.04194859038274412,
+              "liberty_ns": 0.0563659,
+              "difference_ps": -14.417309617255874
+            }
+          }
+        },
+        {
+          "name": "t100_c0.232079_dt2",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "7bc2cd0bb08256884309f7db353ffe62a0a3c71918c3eb29b6767d9ba8e90b7c",
+          "waveform_sha256": "1cc3bb028acb9505af6ab65a208e152ad1f8b8368c019b418cfea1fcbb0aa101",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.26373285205782127,
+              "liberty_ns": 0.3597324,
+              "difference_ps": -95.99954794217874
+            },
+            "rise_slew": {
+              "spice_ns": 0.22937948532098096,
+              "liberty_ns": 0.3499999,
+              "difference_ps": -120.62041467901902
+            },
+            "fall_delay": {
+              "spice_ns": 0.250805614349904,
+              "liberty_ns": 0.3141241,
+              "difference_ps": -63.318485650096015
+            },
+            "fall_slew": {
+              "spice_ns": 0.13422494852476952,
+              "liberty_ns": 0.1767802,
+              "difference_ps": -42.555251475230484
+            }
+          }
+        },
+        {
+          "name": "t100_c0.232079_dt1",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "71b07be6b90e8c69eeae9a0e00373e37e335f004af6ce9b60ade9a701ef34694",
+          "waveform_sha256": "220688700bd2e6a44e06f190fd18265f45ceef3bdc563da4e975adfb8f41f057",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.26372927803265567,
+              "liberty_ns": 0.3597324,
+              "difference_ps": -96.00312196734434
+            },
+            "rise_slew": {
+              "spice_ns": 0.22937691080798972,
+              "liberty_ns": 0.3499999,
+              "difference_ps": -120.62298919201025
+            },
+            "fall_delay": {
+              "spice_ns": 0.2508030827000365,
+              "liberty_ns": 0.3141241,
+              "difference_ps": -63.321017299963536
+            },
+            "fall_slew": {
+              "spice_ns": 0.1342223449184674,
+              "liberty_ns": 0.1767802,
+              "difference_ps": -42.557855081532594
+            }
+          }
+        }
+      ],
+      "primitive_source_lock_sha256": "7a690e1e6519ebab9c2dda678dd592752a60b988b8cb5010172f4a8ebdb55ba3",
+      "full_local_report_sha256": "e5c1fa70177974965eafcdc838dd04253072d65a87534ffbdf1e54fb7ddd91a0"
+    },
+    "core-buf-repro-v1": {
+      "complete": true,
+      "source_sha256": "d3a432e7cbe9a7651d6437b8984dd9b14bec35469a9c32d9d3cf020d13639202",
+      "netlist_url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/buf/sky130_fd_sc_hd__buf_8.spice",
+      "netlist_sha256": "98bafb7bbd4aa107e9b0090ee241f30a6a84aa5b394bb8eaca5b189a207cd5c7",
+      "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+      "physical_qualified": false,
+      "original_netlist_sha256": "98bafb7bbd4aa107e9b0090ee241f30a6a84aa5b394bb8eaca5b189a207cd5c7",
+      "cdl_sha256": "93dec256d47190dbf62c10f5d5de9009a69be560107ab161facb0195598ceb25",
+      "restore_stress_geometry": false,
+      "cases": [
+        {
+          "name": "t25_c0.05_dt2",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "738487438f3ffa326026fbb52d2a14b88b0804756c02ecfa39f80031f932a7f7",
+          "waveform_sha256": "5394621f8a5ea28c954661ef7f51a22ca434f6031cada158d53d52e112bff642",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.142173016379727,
+              "liberty_ns": 0.1824243,
+              "difference_ps": -40.251283620273
+            },
+            "rise_slew": {
+              "spice_ns": 0.06551358516624983,
+              "liberty_ns": 0.092221,
+              "difference_ps": -26.707414833750164
+            },
+            "fall_delay": {
+              "spice_ns": 0.1949869192515159,
+              "liberty_ns": 0.2274883,
+              "difference_ps": -32.5013807484841
+            },
+            "fall_slew": {
+              "spice_ns": 0.03642543210500815,
+              "liberty_ns": 0.0515301,
+              "difference_ps": -15.104667894991854
+            }
+          }
+        },
+        {
+          "name": "t25_c0.05_dt1",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "5c292e6b75eaa6f399890ac2bc8b41916947d3d2e72248d7f1edee7385f4eebc",
+          "waveform_sha256": "5f3c5d119b2d33c84f886b74baf64b2fa0cad10e2dc73b4c9c3a837e175c2933",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.14216913057888725,
+              "liberty_ns": 0.1824243,
+              "difference_ps": -40.25516942111276
+            },
+            "rise_slew": {
+              "spice_ns": 0.06550264333431377,
+              "liberty_ns": 0.092221,
+              "difference_ps": -26.718356665686226
+            },
+            "fall_delay": {
+              "spice_ns": 0.19498652307425868,
+              "liberty_ns": 0.2274883,
+              "difference_ps": -32.501776925741325
+            },
+            "fall_slew": {
+              "spice_ns": 0.03640369156847534,
+              "liberty_ns": 0.0515301,
+              "difference_ps": -15.126408431524665
+            }
+          }
+        },
+        {
+          "name": "t25_c0.232079_dt2",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "812e686541aeb65b1dca1aed703e96c93965cc9f106966bdb747f49378f0e849",
+          "waveform_sha256": "810c3db3d2f1c10fbbe4611d04ab496e570964872a2bbd6d409eb3a285801644",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.2936672452665383,
+              "liberty_ns": 0.3783367,
+              "difference_ps": -84.66945473346172
+            },
+            "rise_slew": {
+              "spice_ns": 0.2749992520873845,
+              "liberty_ns": 0.3689166,
+              "difference_ps": -93.91734791261547
+            },
+            "fall_delay": {
+              "spice_ns": 0.26448042512285586,
+              "liberty_ns": 0.3185937,
+              "difference_ps": -54.11327487714412
+            },
+            "fall_slew": {
+              "spice_ns": 0.11386679579791092,
+              "liberty_ns": 0.1601077,
+              "difference_ps": -46.24090420208907
+            }
+          }
+        },
+        {
+          "name": "t25_c0.232079_dt1",
+          "temp_c": 25,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf",
+          "deck_sha256": "8de6012e3ebc6be1f877ce160e993f40718ac9cc4386fdd5820d2601399f5196",
+          "waveform_sha256": "cddc7b9725f8f389e6edde6025d25e29e0a67b0d57c2e77af7e383ca602a197d",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.29366516052423997,
+              "liberty_ns": 0.3783367,
+              "difference_ps": -84.67153947576006
+            },
+            "rise_slew": {
+              "spice_ns": 0.27499792625715225,
+              "liberty_ns": 0.3689166,
+              "difference_ps": -93.91867374284773
+            },
+            "fall_delay": {
+              "spice_ns": 0.2644788820003141,
+              "liberty_ns": 0.3185937,
+              "difference_ps": -54.11481799968587
+            },
+            "fall_slew": {
+              "spice_ns": 0.11385810465263724,
+              "liberty_ns": 0.1601077,
+              "difference_ps": -46.24959534736276
+            }
+          }
+        },
+        {
+          "name": "t100_c0.05_dt2",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "7a20d415072dbc970fc5c8e7a5e22bef38682098462135923b049f9d418ed673",
+          "waveform_sha256": "0f2c520fd50877ee99c48c45eee313a397f407e3f980c07c0e5ae5963a53941b",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.13976445297919993,
+              "liberty_ns": 0.1786282,
+              "difference_ps": -38.86374702080006
+            },
+            "rise_slew": {
+              "spice_ns": 0.06256155288899068,
+              "liberty_ns": 0.0892855,
+              "difference_ps": -26.723947111009323
+            },
+            "fall_delay": {
+              "spice_ns": 0.18173192718513498,
+              "liberty_ns": 0.2148704,
+              "difference_ps": -33.13847281486501
+            },
+            "fall_slew": {
+              "spice_ns": 0.04080683951857722,
+              "liberty_ns": 0.0563659,
+              "difference_ps": -15.559060481422776
+            }
+          }
+        },
+        {
+          "name": "t100_c0.05_dt1",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.05,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "facc075a230bb90886934328e88529dd78d0927a47fefffdd5c2c5a46fcc6ecf",
+          "waveform_sha256": "df7b49f657fef56f660e55408b024fd607c5be23e33488c7954421e9e2bc6f85",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.13975729798415726,
+              "liberty_ns": 0.1786282,
+              "difference_ps": -38.87090201584273
+            },
+            "rise_slew": {
+              "spice_ns": 0.06255577552525349,
+              "liberty_ns": 0.0892855,
+              "difference_ps": -26.729724474746515
+            },
+            "fall_delay": {
+              "spice_ns": 0.1817310603673974,
+              "liberty_ns": 0.2148704,
+              "difference_ps": -33.1393396326026
+            },
+            "fall_slew": {
+              "spice_ns": 0.040798841992653934,
+              "liberty_ns": 0.0563659,
+              "difference_ps": -15.567058007346063
+            }
+          }
+        },
+        {
+          "name": "t100_c0.232079_dt2",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 2.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "243706046cf49f09dc6b8ccd7357934347130f4129400b4ae595064decc90e81",
+          "waveform_sha256": "b74b6915f466a03c5cae93e05eaf22afbd8364763373350b582edcf51f8e3643",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.2781560213201084,
+              "liberty_ns": 0.3597324,
+              "difference_ps": -81.57637867989159
+            },
+            "rise_slew": {
+              "spice_ns": 0.25611233542056366,
+              "liberty_ns": 0.3499999,
+              "difference_ps": -93.88756457943632
+            },
+            "fall_delay": {
+              "spice_ns": 0.2590969415528033,
+              "liberty_ns": 0.3141241,
+              "difference_ps": -55.02715844719675
+            },
+            "fall_slew": {
+              "spice_ns": 0.1280999752210148,
+              "liberty_ns": 0.1767802,
+              "difference_ps": -48.680224778985206
+            }
+          }
+        },
+        {
+          "name": "t100_c0.232079_dt1",
+          "temp_c": 100,
+          "input_slew_ns": 0.223607,
+          "external_load_pf": 0.232079,
+          "step_ps": 1.0,
+          "known_library_warning": "Warning: m=xx on .subckt line will override multiplier m hierarchy!",
+          "library_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6",
+          "deck_sha256": "11850eb5c1affe9fbb47aa53da9a9a4e0912938752dcd4505996536d44c8e75f",
+          "waveform_sha256": "89cf7c9bdb1cab6f86b55a178aa6dc47359a8c62edf3e58ef89e2ea4a9bc5675",
+          "metrics": {
+            "rise_delay": {
+              "spice_ns": 0.27815315502159565,
+              "liberty_ns": 0.3597324,
+              "difference_ps": -81.57924497840435
+            },
+            "rise_slew": {
+              "spice_ns": 0.256112177746036,
+              "liberty_ns": 0.3499999,
+              "difference_ps": -93.88772225396397
+            },
+            "fall_delay": {
+              "spice_ns": 0.25909504164460095,
+              "liberty_ns": 0.3141241,
+              "difference_ps": -55.029058355399066
+            },
+            "fall_slew": {
+              "spice_ns": 0.12809434958006083,
+              "liberty_ns": 0.1767802,
+              "difference_ps": -48.68585041993917
+            }
+          }
+        }
+      ],
+      "primitive_source_lock_sha256": "7a690e1e6519ebab9c2dda678dd592752a60b988b8cb5010172f4a8ebdb55ba3",
+      "full_local_report_sha256": "9086c47e6a8e993fa5ba1e9d651f29a1b063112d58e5a2698249cdc3d8bc4cc1"
+    }
+  },
+  "conclusion": "same-cell-revision schematic and Liberty mismatch persists; restoring documented stress geometry alone does not close it; no calibration or fitted correction"
+}

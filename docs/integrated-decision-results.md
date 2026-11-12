@@ -155,6 +155,51 @@ introduced to obtain a positive cost.
 
 ## Reproduction and evidence
 
+### Core-driver characterization remains unqualified
+
+The [core-buffer diagnostic](evidence/local-core-buffer-spice.json) compares
+SKY130 HD `buf_8` at TT/1.8 V, 25/100 C, two load knots and two time steps.
+The cell SPICE and Liberty come from the same pinned `ac7fb61` repository
+revision. The transistor primitives come from the separately locked open_pdks
+archive; identity with the original Liberty characterization models is unproven.
+All four delay/transition tables share the selected grid nodes, avoiding
+interpolation as a confounder. The original eight simulations and the published
+runner's eight repeats give identical measured metrics.
+
+SPICE delay is 32.502--84.672 ps shorter than Liberty, while halving the maximum
+time step from 2 ps to 1 ps changes any measured delay/slew by at most 0.021741 ps.
+This discrepancy is much larger than the preceding ideal-source RC diagnostic.
+No production timing table is changed or fitted to these observations.
+
+Source inspection found that the same-revision CDL/TSV preserves `sa=0.265`,
+`sb=0.265`, `sd=0.28`, `area=0.063` and `perim=1.14`, while the SPICE release
+expands the four transistor groups into 22 instances with only W/L parameters.
+The loaded primitive wrappers default the omitted stress and junction-geometry
+parameters to zero. This identifies missing information, not a proven cause of
+the entire timing mismatch. A separate eight-run counterfactual restores only
+the documented sa/sb/sd values on the expanded devices. Delay discrepancies
+increase to 37.140--104.910 ps; time-step changes stay below 0.023433 ps.
+Restoring those three parameters alone therefore does not close the mismatch.
+Mapping the generic area/perimeter fields to source/drain parameters or choosing
+PEX values without the original characterization convention would be speculative.
+
+The full primitive library emits the known warning `m=xx on .subckt line will
+override multiplier m hierarchy`; it is retained in every case. Only this exact
+warning is allowed by the diagnostic; other warnings/errors abort. The expanded
+cell instances use no m multiplier. Original PEX, stimulus/extraction convention,
+primitive revision matching and active-device charge/energy validation remain
+open. This is neither a qualified Pad model nor a physical error bound.
+
+```powershell
+python tools/audit_core_buffer_spice.py --output results/core-buffer-original
+python tools/audit_core_buffer_spice.py --restore-stress-geometry --output results/core-buffer-stress
+```
+
+Both commands verify the locked primitive archive and pinned cell netlist, and
+retain source/deck/waveform hashes locally. The evidence distinguishes the
+original exploratory source fingerprints from the reproduced runner. Validation
+after adding the runner: 190 unit checks and the documented basic CLI passed.
+
 The GitHub-only Chat review at `5e6ef7c` enumerated all 43 reachable commits,
 read the four changes since its prior review and the eight principal core
 modules/six experiment tools. It independently confirmed the finite-domain
