@@ -1,0 +1,560 @@
+{
+  "source_sha256": "b1361327c1bddca390466632949e27858c53c585eab476b58da22409be60399a",
+  "ledger_sha256": "120fe847442668dc68eb362e6540f9ebbcbeaca9a4844e226202ed7b1d29a970",
+  "upstream_commit": "3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb",
+  "physical_qualified": false,
+  "geometry_source": "DATE 2021 Table I and III-C: 1 mm centre grid, 0.1 mm gap; pinned system.py initial_placement: bump-expanded footprint",
+  "paper_url": "https://people.bu.edu/joshi/files/Ma_TAP-2.5D-DATE2021.pdf",
+  "domain_rule": "independent Cartesian product of each chiplet centre and four rotations, filtered by expanded-footprint boundaries and pair gaps; no shared translation or slot correlation",
+  "outstanding": [
+    "physical track/escape model",
+    "package thermal transfer",
+    "bandwidth and full PHY qualification",
+    "small exact search reference and scalable extension"
+  ],
+  "cases": [
+    {
+      "domain": {
+        "name": "ascend910",
+        "interposer_side_um": 50000,
+        "centre_grid_um": 1000,
+        "minimum_gap_um": 100,
+        "rotations_deg": [
+          0,
+          90,
+          180,
+          270
+        ],
+        "chiplets": [
+          {
+            "id": 0,
+            "core_width_um": 14500,
+            "core_height_um": 31400,
+            "bump_ring_um": 90,
+            "power_w": 256.0
+          },
+          {
+            "id": 1,
+            "core_width_um": 10500,
+            "core_height_um": 16000,
+            "bump_ring_um": 45,
+            "power_w": 14.0
+          },
+          {
+            "id": 2,
+            "core_width_um": 7750,
+            "core_height_um": 11870,
+            "bump_ring_um": 45,
+            "power_w": 20.0
+          },
+          {
+            "id": 3,
+            "core_width_um": 7750,
+            "core_height_um": 11870,
+            "bump_ring_um": 45,
+            "power_w": 20.0
+          },
+          {
+            "id": 4,
+            "core_width_um": 7750,
+            "core_height_um": 11870,
+            "bump_ring_um": 45,
+            "power_w": 20.0
+          },
+          {
+            "id": 5,
+            "core_width_um": 7750,
+            "core_height_um": 11870,
+            "bump_ring_um": 45,
+            "power_w": 20.0
+          }
+        ],
+        "connection_wire_demands": [
+          [
+            0.0,
+            200.0,
+            256.0,
+            256.0,
+            256.0,
+            256.0
+          ],
+          [
+            200.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            256.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            256.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            256.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            256.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "scope": "expanded chiplet footprints; geometry only, not detailed routing or thermal qualification"
+      },
+      "per_chiplet_candidate_counts": [
+        2660,
+        5148,
+        6708,
+        6708,
+        6708,
+        6708
+      ],
+      "witness": {
+        "status": "geometry_feasible",
+        "checked_chiplets": 6,
+        "checked_pairs": 15,
+        "exact_integer_geometry": true,
+        "placement": [
+          {
+            "id": 0,
+            "centre_x_um": 8000,
+            "centre_y_um": 16000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 1,
+            "centre_x_um": 21000,
+            "centre_y_um": 9000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 2,
+            "centre_x_um": 31000,
+            "centre_y_um": 6000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 3,
+            "centre_x_um": 39000,
+            "centre_y_um": 6000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 4,
+            "centre_x_um": 31000,
+            "centre_y_um": 19000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 5,
+            "centre_x_um": 39000,
+            "centre_y_um": 19000,
+            "rotation_deg": 0
+          }
+        ]
+      }
+    },
+    {
+      "domain": {
+        "name": "micro150",
+        "interposer_side_um": 50000,
+        "centre_grid_um": 1000,
+        "minimum_gap_um": 100,
+        "rotations_deg": [
+          0,
+          90,
+          180,
+          270
+        ],
+        "chiplets": [
+          {
+            "id": 0,
+            "core_width_um": 8250,
+            "core_height_um": 9000,
+            "bump_ring_um": 180,
+            "power_w": 150.0
+          },
+          {
+            "id": 1,
+            "core_width_um": 8250,
+            "core_height_um": 9000,
+            "bump_ring_um": 180,
+            "power_w": 150.0
+          },
+          {
+            "id": 2,
+            "core_width_um": 8250,
+            "core_height_um": 9000,
+            "bump_ring_um": 180,
+            "power_w": 150.0
+          },
+          {
+            "id": 3,
+            "core_width_um": 8250,
+            "core_height_um": 9000,
+            "bump_ring_um": 180,
+            "power_w": 150.0
+          },
+          {
+            "id": 4,
+            "core_width_um": 8750,
+            "core_height_um": 8750,
+            "bump_ring_um": 135,
+            "power_w": 20.0
+          },
+          {
+            "id": 5,
+            "core_width_um": 8750,
+            "core_height_um": 8750,
+            "bump_ring_um": 135,
+            "power_w": 20.0
+          },
+          {
+            "id": 6,
+            "core_width_um": 8750,
+            "core_height_um": 8750,
+            "bump_ring_um": 135,
+            "power_w": 20.0
+          },
+          {
+            "id": 7,
+            "core_width_um": 8750,
+            "core_height_um": 8750,
+            "bump_ring_um": 135,
+            "power_w": 20.0
+          }
+        ],
+        "connection_wire_demands": [
+          [
+            0.0,
+            256.0,
+            0.0,
+            256.0,
+            1024.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            256.0,
+            0.0,
+            256.0,
+            0.0,
+            0.0,
+            1024.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            256.0,
+            0.0,
+            256.0,
+            0.0,
+            0.0,
+            1024.0,
+            0.0
+          ],
+          [
+            256.0,
+            0.0,
+            256.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1024.0
+          ],
+          [
+            1024.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1024.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1024.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1024.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "scope": "expanded chiplet footprints; geometry only, not detailed routing or thermal qualification"
+      },
+      "per_chiplet_candidate_counts": [
+        6724,
+        6724,
+        6724,
+        6724,
+        6724,
+        6724,
+        6724,
+        6724
+      ],
+      "witness": {
+        "status": "geometry_feasible",
+        "checked_chiplets": 8,
+        "checked_pairs": 28,
+        "exact_integer_geometry": true,
+        "placement": [
+          {
+            "id": 0,
+            "centre_x_um": 44000,
+            "centre_y_um": 5000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 1,
+            "centre_x_um": 5000,
+            "centre_y_um": 15000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 2,
+            "centre_x_um": 14000,
+            "centre_y_um": 15000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 3,
+            "centre_x_um": 23000,
+            "centre_y_um": 15000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 4,
+            "centre_x_um": 5000,
+            "centre_y_um": 5000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 5,
+            "centre_x_um": 15000,
+            "centre_y_um": 5000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 6,
+            "centre_x_um": 25000,
+            "centre_y_um": 5000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 7,
+            "centre_x_um": 35000,
+            "centre_y_um": 5000,
+            "rotation_deg": 0
+          }
+        ]
+      }
+    },
+    {
+      "domain": {
+        "name": "multigpu",
+        "interposer_side_um": 50000,
+        "centre_grid_um": 1000,
+        "minimum_gap_um": 100,
+        "rotations_deg": [
+          0,
+          90,
+          180,
+          270
+        ],
+        "chiplets": [
+          {
+            "id": 0,
+            "core_width_um": 12000,
+            "core_height_um": 12000,
+            "bump_ring_um": 135,
+            "power_w": 105.0
+          },
+          {
+            "id": 1,
+            "core_width_um": 18200,
+            "core_height_um": 18200,
+            "bump_ring_um": 90,
+            "power_w": 295.0
+          },
+          {
+            "id": 2,
+            "core_width_um": 18200,
+            "core_height_um": 18200,
+            "bump_ring_um": 90,
+            "power_w": 295.0
+          },
+          {
+            "id": 3,
+            "core_width_um": 7750,
+            "core_height_um": 11870,
+            "bump_ring_um": 135,
+            "power_w": 20.0
+          },
+          {
+            "id": 4,
+            "core_width_um": 7750,
+            "core_height_um": 11870,
+            "bump_ring_um": 135,
+            "power_w": 20.0
+          },
+          {
+            "id": 5,
+            "core_width_um": 7750,
+            "core_height_um": 11870,
+            "bump_ring_um": 135,
+            "power_w": 20.0
+          }
+        ],
+        "connection_wire_demands": [
+          [
+            0.0,
+            128.0,
+            128.0,
+            1024.0,
+            0.0,
+            0.0
+          ],
+          [
+            128.0,
+            0.0,
+            128.0,
+            0.0,
+            1024.0,
+            0.0
+          ],
+          [
+            128.0,
+            128.0,
+            0.0,
+            0.0,
+            0.0,
+            1024.0
+          ],
+          [
+            1024.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1024.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1024.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "scope": "expanded chiplet footprints; geometry only, not detailed routing or thermal qualification"
+      },
+      "per_chiplet_candidate_counts": [
+        5476,
+        3844,
+        3844,
+        6068,
+        6068,
+        6068
+      ],
+      "witness": {
+        "status": "geometry_feasible",
+        "checked_chiplets": 6,
+        "checked_pairs": 15,
+        "exact_integer_geometry": true,
+        "placement": [
+          {
+            "id": 0,
+            "centre_x_um": 7000,
+            "centre_y_um": 26000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 1,
+            "centre_x_um": 10000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 2,
+            "centre_x_um": 29000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 3,
+            "centre_x_um": 43000,
+            "centre_y_um": 7000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 4,
+            "centre_x_um": 43000,
+            "centre_y_um": 20000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 5,
+            "centre_x_um": 18000,
+            "centre_y_um": 26000,
+            "rotation_deg": 0
+          }
+        ]
+      }
+    }
+  ]
+}
