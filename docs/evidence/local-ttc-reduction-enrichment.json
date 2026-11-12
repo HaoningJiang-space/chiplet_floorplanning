@@ -1,0 +1,1178 @@
+{
+  "experiment": "Preserved failed original package reduction",
+  "complete": false,
+  "report_sha256": "9532b535aa48b27558d4d0f0028ecace8d48d2e3c0208774463386d3f56a9cd6",
+  "termination": {
+    "terminated_utc": "2026-11-12T02:36:44.162510+00:00",
+    "reason": "All four level-0 models failed frozen numerical reduction screens. Stop before costly level-1 evaluation; preserve failure before numerical enrichment.",
+    "complete": false,
+    "completed_models": [
+      "heatsink_C_level0",
+      "heatsink_P_level0",
+      "heatsink_with_fan_C_level0",
+      "heatsink_with_fan_P_level0"
+    ],
+    "incomplete_model": "heatsink_C_level1",
+    "physical_model_qualified": false
+  },
+  "models": {
+    "heatsink_C_level0": {
+      "numerical_controls": {
+        "orders": {
+          "0": {
+            "audit": {
+              "full_nodes": 20328,
+              "reduced_order": 74,
+              "shifts_per_s": [
+                0.0,
+                1.0
+              ],
+              "orthogonality_error": 3.885780586188048e-15,
+              "projected_relative_asymmetry": 2.0632911554673862e-16,
+              "constant_field_error": 2.5357493882438575e-13,
+              "body_dynamic_identity_error": 3.7916336736998346e-11,
+              "body_input_identity_error": 1.3782530083386038e-13,
+              "dc_full_state_max_error_k_per_w": 1.756762291194036e-08,
+              "dc_capacity_norm_relative_error": 2.5895494474526864e-09,
+              "slowest_time_constant_s": 546.2865219204502,
+              "fastest_time_constant_s": 4.237524008030651e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              0.07022349733486669,
+              0.09486676211874351,
+              0.023609473860914772,
+              1.0186445617639353,
+              3.8322997130674628,
+              2.444453275116858
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 4.770561522855418e-13,
+            "minimum_step_temperature_k": -1.151169458792125,
+            "max_step_decrease_k": 0.06881236327330298,
+            "step_positivity_monotonicity_screen": false,
+            "sensors_max_error_to_be_extrapolate_k": 1.2711831741226192,
+            "body_means_max_error_to_be_extrapolate_k": 0.4983818424844948,
+            "fixed_mesh_numerical_screen": false
+          },
+          "1": {
+            "audit": {
+              "full_nodes": 20328,
+              "reduced_order": 106,
+              "shifts_per_s": [
+                0.0,
+                0.01,
+                1.0,
+                100.0
+              ],
+              "orthogonality_error": 3.375077994860476e-14,
+              "projected_relative_asymmetry": 1.7391074991559734e-16,
+              "constant_field_error": 2.2593038551121936e-13,
+              "body_dynamic_identity_error": 7.89611431795123e-11,
+              "body_input_identity_error": 1.6314044621097607e-13,
+              "dc_full_state_max_error_k_per_w": 2.481273941867812e-08,
+              "dc_capacity_norm_relative_error": 3.6560428649829253e-09,
+              "slowest_time_constant_s": 546.458763381709,
+              "fastest_time_constant_s": 4.189846907156196e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              0.000978545288872447,
+              0.003465015584027294,
+              0.028191347856899973,
+              0.38735254431830674,
+              0.6233960692451538,
+              0.42327479980639426
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 1.73749903353837e-12,
+            "minimum_step_temperature_k": -0.0018311250231110776,
+            "max_step_decrease_k": 0.004522977801844741,
+            "step_positivity_monotonicity_screen": false,
+            "sensors_max_error_to_be_extrapolate_k": 0.6245620745260538,
+            "body_means_max_error_to_be_extrapolate_k": 0.4342138601439842,
+            "fixed_mesh_numerical_screen": false
+          },
+          "2": {
+            "audit": {
+              "full_nodes": 20328,
+              "reduced_order": 161,
+              "shifts_per_s": [
+                0.0,
+                0.001,
+                0.01,
+                0.1,
+                1.0,
+                10.0,
+                100.0,
+                1000.0
+              ],
+              "orthogonality_error": 1.4210854715202004e-14,
+              "projected_relative_asymmetry": 1.662869616879273e-16,
+              "constant_field_error": 2.3991919562149633e-13,
+              "body_dynamic_identity_error": 1.8232739103229978e-11,
+              "body_input_identity_error": 9.842127113302013e-14,
+              "dc_full_state_max_error_k_per_w": 6.419131892698715e-09,
+              "dc_capacity_norm_relative_error": 9.140220388168163e-10,
+              "slowest_time_constant_s": 546.458850963229,
+              "fastest_time_constant_s": 4.152266257162959e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              1.1927723195208383e-07,
+              1.953510326958347e-06,
+              0.0004078371678742527,
+              0.019368135076549116,
+              0.08001859364530353,
+              0.2368723299672326
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 9.770656506091768e-13,
+            "minimum_step_temperature_k": -0.0005863239106955816,
+            "max_step_decrease_k": 6.003743851954097e-05,
+            "step_positivity_monotonicity_screen": false,
+            "sensors_max_error_to_be_extrapolate_k": 0.036387472188042835,
+            "body_means_max_error_to_be_extrapolate_k": 0.0071170691529580665,
+            "fixed_mesh_numerical_screen": false
+          }
+        },
+        "backward_euler": {
+          "0.005": {
+            "max_numerical_heat_balance_error_j": 3.08646441737892e-11
+          },
+          "0.0025": {
+            "max_numerical_heat_balance_error_j": 5.53219692278617e-11
+          },
+          "0.00125": {
+            "max_numerical_heat_balance_error_j": 9.193801275841906e-11
+          },
+          "sensors_extrapolation_change_k": 0.0008646705245141106,
+          "body_means_extrapolation_change_k": 0.0004829603012694861
+        }
+      },
+      "max_native_trace_order_change_k": 0.45678476371053733,
+      "fixed_mesh_reduction_screen": false
+    },
+    "heatsink_P_level0": {
+      "numerical_controls": {
+        "orders": {
+          "0": {
+            "audit": {
+              "full_nodes": 22600,
+              "reduced_order": 74,
+              "shifts_per_s": [
+                0.0,
+                1.0
+              ],
+              "orthogonality_error": 3.9968028886505635e-15,
+              "projected_relative_asymmetry": 1.0619170786461562e-16,
+              "constant_field_error": 1.3211653993039363e-13,
+              "body_dynamic_identity_error": 2.1653789872289053e-11,
+              "body_input_identity_error": 1.543489843008843e-13,
+              "dc_full_state_max_error_k_per_w": 1.2638690094490812e-09,
+              "dc_capacity_norm_relative_error": 1.801156708621432e-10,
+              "slowest_time_constant_s": 567.385461018376,
+              "fastest_time_constant_s": 4.238962512251222e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              0.06965284760743172,
+              0.0921910828126944,
+              0.02880420730047084,
+              0.9467851613555998,
+              3.9372692270858396,
+              2.7055016846744064
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 4.949102109033654e-13,
+            "minimum_step_temperature_k": -1.0572318079814762,
+            "max_step_decrease_k": 0.06377275927513792,
+            "step_positivity_monotonicity_screen": false,
+            "sensors_max_error_to_be_extrapolate_k": 1.1928956253916851,
+            "body_means_max_error_to_be_extrapolate_k": 0.37211963774632295,
+            "fixed_mesh_numerical_screen": false
+          },
+          "1": {
+            "audit": {
+              "full_nodes": 22600,
+              "reduced_order": 106,
+              "shifts_per_s": [
+                0.0,
+                0.01,
+                1.0,
+                100.0
+              ],
+              "orthogonality_error": 2.6201263381153694e-14,
+              "projected_relative_asymmetry": 8.776606303373437e-17,
+              "constant_field_error": 1.5054624213917123e-13,
+              "body_dynamic_identity_error": 2.2527606788921493e-11,
+              "body_input_identity_error": 8.979493318673657e-14,
+              "dc_full_state_max_error_k_per_w": 2.543703025992272e-09,
+              "dc_capacity_norm_relative_error": 3.250813773139811e-10,
+              "slowest_time_constant_s": 567.5601760692256,
+              "fastest_time_constant_s": 4.197362069537421e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              0.0008327363834532625,
+              0.0029243009339008376,
+              0.032711171724775605,
+              0.3719503781668405,
+              0.6550224187345414,
+              0.4638715122724117
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 1.159627949220976e-12,
+            "minimum_step_temperature_k": -0.0013063415660762568,
+            "max_step_decrease_k": 0.004330338068892853,
+            "step_positivity_monotonicity_screen": false,
+            "sensors_max_error_to_be_extrapolate_k": 0.6467292693013889,
+            "body_means_max_error_to_be_extrapolate_k": 0.4455431915466903,
+            "fixed_mesh_numerical_screen": false
+          },
+          "2": {
+            "audit": {
+              "full_nodes": 22600,
+              "reduced_order": 162,
+              "shifts_per_s": [
+                0.0,
+                0.001,
+                0.01,
+                0.1,
+                1.0,
+                10.0,
+                100.0,
+                1000.0
+              ],
+              "orthogonality_error": 2.6201263381153694e-14,
+              "projected_relative_asymmetry": 1.2332043759782533e-16,
+              "constant_field_error": 3.879119248040297e-13,
+              "body_dynamic_identity_error": 4.213152260201065e-11,
+              "body_input_identity_error": 1.613709166292665e-13,
+              "dc_full_state_max_error_k_per_w": 9.811816248372907e-09,
+              "dc_capacity_norm_relative_error": 1.4361080331933304e-09,
+              "slowest_time_constant_s": 567.5602785683458,
+              "fastest_time_constant_s": 4.153409763456743e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              1.6358609687559484e-07,
+              2.3062050623577147e-06,
+              0.00048456015394619193,
+              0.02852483613783045,
+              0.09614744707725782,
+              0.2683475079285154
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 1.3439041546270403e-12,
+            "minimum_step_temperature_k": 0.0,
+            "max_step_decrease_k": 0.0,
+            "step_positivity_monotonicity_screen": true,
+            "sensors_max_error_to_be_extrapolate_k": 0.05217702315960082,
+            "body_means_max_error_to_be_extrapolate_k": 0.009459905163296867,
+            "fixed_mesh_numerical_screen": false
+          }
+        },
+        "backward_euler": {
+          "0.005": {
+            "max_numerical_heat_balance_error_j": 4.2655656784518214e-11
+          },
+          "0.0025": {
+            "max_numerical_heat_balance_error_j": 7.302825011379355e-11
+          },
+          "0.00125": {
+            "max_numerical_heat_balance_error_j": 1.2708989416410077e-10
+          },
+          "sensors_extrapolation_change_k": 0.0008039063377545119,
+          "body_means_extrapolation_change_k": 0.00047107535929313826
+        }
+      },
+      "max_native_trace_order_change_k": 0.4718049679565226,
+      "fixed_mesh_reduction_screen": false
+    },
+    "heatsink_with_fan_C_level0": {
+      "numerical_controls": {
+        "orders": {
+          "0": {
+            "audit": {
+              "full_nodes": 20328,
+              "reduced_order": 74,
+              "shifts_per_s": [
+                0.0,
+                1.0
+              ],
+              "orthogonality_error": 4.773959005888173e-15,
+              "projected_relative_asymmetry": 1.4193800876617866e-16,
+              "constant_field_error": 2.4347190930029683e-13,
+              "body_dynamic_identity_error": 4.229061545402146e-11,
+              "body_input_identity_error": 9.74805720434979e-14,
+              "dc_full_state_max_error_k_per_w": 1.7496448734277692e-10,
+              "dc_capacity_norm_relative_error": 1.7686612803094407e-10,
+              "slowest_time_constant_s": 69.16889970419544,
+              "fastest_time_constant_s": 4.231833382491563e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              0.0040057146503953344,
+              0.07185352748636491,
+              0.029920196114226125,
+              0.9126179280962521,
+              3.6043420734141973,
+              2.599217161854126
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 4.630369031992723e-13,
+            "minimum_step_temperature_k": -1.1645503162391837,
+            "max_step_decrease_k": 0.06923506429478465,
+            "step_positivity_monotonicity_screen": false,
+            "sensors_max_error_to_be_extrapolate_k": 1.1666141566057817,
+            "body_means_max_error_to_be_extrapolate_k": 0.4701059522604929,
+            "fixed_mesh_numerical_screen": false
+          },
+          "1": {
+            "audit": {
+              "full_nodes": 20328,
+              "reduced_order": 106,
+              "shifts_per_s": [
+                0.0,
+                0.01,
+                1.0,
+                100.0
+              ],
+              "orthogonality_error": 4.3520742565306136e-14,
+              "projected_relative_asymmetry": 1.9040269376799787e-16,
+              "constant_field_error": 2.62456723021387e-13,
+              "body_dynamic_identity_error": 6.780418843234849e-11,
+              "body_input_identity_error": 2.146981277206074e-13,
+              "dc_full_state_max_error_k_per_w": 2.4480739657661843e-10,
+              "dc_capacity_norm_relative_error": 1.500579310085044e-10,
+              "slowest_time_constant_s": 69.33758083812181,
+              "fastest_time_constant_s": 4.186336713909729e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              0.00022454429655748655,
+              0.003138106972405996,
+              0.025507489695928063,
+              0.3370974146754035,
+              0.652015884937371,
+              0.4050926225748801
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 1.2036482921473635e-12,
+            "minimum_step_temperature_k": -0.0016966290100312914,
+            "max_step_decrease_k": 0.0006806461914560247,
+            "step_positivity_monotonicity_screen": false,
+            "sensors_max_error_to_be_extrapolate_k": 0.5807334603935068,
+            "body_means_max_error_to_be_extrapolate_k": 0.3845791567733894,
+            "fixed_mesh_numerical_screen": false
+          },
+          "2": {
+            "audit": {
+              "full_nodes": 20328,
+              "reduced_order": 161,
+              "shifts_per_s": [
+                0.0,
+                0.001,
+                0.01,
+                0.1,
+                1.0,
+                10.0,
+                100.0,
+                1000.0
+              ],
+              "orthogonality_error": 3.9745984281580604e-14,
+              "projected_relative_asymmetry": 2.0697024629462622e-16,
+              "constant_field_error": 2.815525590449397e-13,
+              "body_dynamic_identity_error": 2.2088325092595174e-11,
+              "body_input_identity_error": 1.0066947275788607e-13,
+              "dc_full_state_max_error_k_per_w": 8.278699947794621e-11,
+              "dc_capacity_norm_relative_error": 7.018638715376346e-11,
+              "slowest_time_constant_s": 69.33789325116798,
+              "fastest_time_constant_s": 4.152335305036633e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              1.1868196036683555e-08,
+              1.197669996721104e-06,
+              0.00028326314619422357,
+              0.014336037805670868,
+              0.06341594850316039,
+              0.2233759669615787
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 1.0729819810428864e-12,
+            "minimum_step_temperature_k": -1.1281948066681072e-05,
+            "max_step_decrease_k": 1.2827481424037873e-06,
+            "step_positivity_monotonicity_screen": false,
+            "sensors_max_error_to_be_extrapolate_k": 0.02797470393487167,
+            "body_means_max_error_to_be_extrapolate_k": 0.006315178964124257,
+            "fixed_mesh_numerical_screen": false
+          }
+        },
+        "backward_euler": {
+          "0.005": {
+            "max_numerical_heat_balance_error_j": 3.3351099659739702e-12
+          },
+          "0.0025": {
+            "max_numerical_heat_balance_error_j": 7.099210108663101e-12
+          },
+          "0.00125": {
+            "max_numerical_heat_balance_error_j": 1.2741807609017997e-11
+          },
+          "sensors_extrapolation_change_k": 0.0008542080373548089,
+          "body_means_extrapolation_change_k": 0.0004745354130442081
+        }
+      },
+      "max_native_trace_order_change_k": 0.4350657688477,
+      "fixed_mesh_reduction_screen": false
+    },
+    "heatsink_with_fan_P_level0": {
+      "numerical_controls": {
+        "orders": {
+          "0": {
+            "audit": {
+              "full_nodes": 22600,
+              "reduced_order": 74,
+              "shifts_per_s": [
+                0.0,
+                1.0
+              ],
+              "orthogonality_error": 4.440892098500626e-15,
+              "projected_relative_asymmetry": 1.2868870193958726e-16,
+              "constant_field_error": 2.594591208548991e-13,
+              "body_dynamic_identity_error": 8.276102025916998e-11,
+              "body_input_identity_error": 2.1430368185965638e-13,
+              "dc_full_state_max_error_k_per_w": 2.255147180107997e-10,
+              "dc_capacity_norm_relative_error": 2.386908684139183e-10,
+              "slowest_time_constant_s": 71.8912480817249,
+              "fastest_time_constant_s": 4.23318971567773e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              0.004109480235878266,
+              0.07119276628236548,
+              0.029946676627480132,
+              0.834507673153801,
+              3.611955027535771,
+              2.8390958200026755
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 4.192202140984591e-13,
+            "minimum_step_temperature_k": -1.0493274131351196,
+            "max_step_decrease_k": 0.06254174816330205,
+            "step_positivity_monotonicity_screen": false,
+            "sensors_max_error_to_be_extrapolate_k": 1.05558672364036,
+            "body_means_max_error_to_be_extrapolate_k": 0.3393837117323715,
+            "fixed_mesh_numerical_screen": false
+          },
+          "1": {
+            "audit": {
+              "full_nodes": 22600,
+              "reduced_order": 106,
+              "shifts_per_s": [
+                0.0,
+                0.01,
+                1.0,
+                100.0
+              ],
+              "orthogonality_error": 4.9960036108132044e-14,
+              "projected_relative_asymmetry": 7.425852829062363e-17,
+              "constant_field_error": 3.26183524634871e-13,
+              "body_dynamic_identity_error": 2.1967236237255146e-11,
+              "body_input_identity_error": 1.4591450437145696e-13,
+              "dc_full_state_max_error_k_per_w": 3.9440672949808686e-11,
+              "dc_capacity_norm_relative_error": 2.8393190788458157e-11,
+              "slowest_time_constant_s": 72.06106906357984,
+              "fastest_time_constant_s": 4.1924396653749614e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              0.00020256335156685165,
+              0.0027762719837817985,
+              0.02940167173703103,
+              0.321103937311116,
+              0.6681585943194296,
+              0.4401631635720191
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 3.987504770819328e-13,
+            "minimum_step_temperature_k": -0.0019904638458863675,
+            "max_step_decrease_k": 0.0003599148036529387,
+            "step_positivity_monotonicity_screen": false,
+            "sensors_max_error_to_be_extrapolate_k": 0.5877043693454116,
+            "body_means_max_error_to_be_extrapolate_k": 0.38533471804248265,
+            "fixed_mesh_numerical_screen": false
+          },
+          "2": {
+            "audit": {
+              "full_nodes": 22600,
+              "reduced_order": 162,
+              "shifts_per_s": [
+                0.0,
+                0.001,
+                0.01,
+                0.1,
+                1.0,
+                10.0,
+                100.0,
+                1000.0
+              ],
+              "orthogonality_error": 3.26405569239796e-14,
+              "projected_relative_asymmetry": 1.7710740892167145e-16,
+              "constant_field_error": 2.824407374646398e-13,
+              "body_dynamic_identity_error": 1.700885786382056e-11,
+              "body_input_identity_error": 9.799105971097788e-14,
+              "dc_full_state_max_error_k_per_w": 5.7051252611017844e-11,
+              "dc_capacity_norm_relative_error": 4.637560149039927e-11,
+              "slowest_time_constant_s": 72.06140696953025,
+              "fastest_time_constant_s": 4.153049758642402e-05,
+              "physical_model_qualified": false
+            },
+            "withheld_frequency_omega_per_s": [
+              0.003,
+              0.03,
+              0.3,
+              3.0,
+              30.0,
+              300.0
+            ],
+            "withheld_frequency_max_error_k": [
+              1.4139335843745397e-08,
+              1.5989145102813149e-06,
+              0.00037857873914392507,
+              0.023686410818724312,
+              0.08297985636686975,
+              0.25957208962885986
+            ],
+            "max_reconstructed_interface_flux_coefficient_error": 1.0127940153203951e-12,
+            "minimum_step_temperature_k": 0.0,
+            "max_step_decrease_k": 0.0,
+            "step_positivity_monotonicity_screen": true,
+            "sensors_max_error_to_be_extrapolate_k": 0.04375168703492527,
+            "body_means_max_error_to_be_extrapolate_k": 0.008746619554175439,
+            "fixed_mesh_numerical_screen": false
+          }
+        },
+        "backward_euler": {
+          "0.005": {
+            "max_numerical_heat_balance_error_j": 4.6984638402136625e-12
+          },
+          "0.0025": {
+            "max_numerical_heat_balance_error_j": 9.319212068703564e-12
+          },
+          "0.00125": {
+            "max_numerical_heat_balance_error_j": 1.8123280653981055e-11
+          },
+          "sensors_extrapolation_change_k": 0.0006951505573500327,
+          "body_means_extrapolation_change_k": 0.00046045327856525375
+        }
+      },
+      "max_native_trace_order_change_k": 0.4387507708734475,
+      "fixed_mesh_reduction_screen": false
+    }
+  },
+  "numerical_enrichment_pilot": {
+    "shifts_per_s": [
+      [
+        0.0,
+        0.001,
+        0.01,
+        0.1,
+        1.0,
+        10.0,
+        100.0,
+        1000.0
+      ],
+      [
+        0.0,
+        0.001,
+        0.0031622776601683794,
+        0.01,
+        0.03162277660168379,
+        0.1,
+        0.31622776601683794,
+        1.0,
+        3.1622776601683795,
+        10.0,
+        31.622776601683793,
+        100.0,
+        316.22776601683796,
+        1000.0,
+        3162.2776601683795,
+        10000.0,
+        31622.776601683792,
+        100000.0,
+        316227.7660168379,
+        1000000.0,
+        3162277.6601683795,
+        10000000.0
+      ],
+      [
+        0.0,
+        0.001,
+        0.0017782794100389228,
+        0.0031622776601683794,
+        0.005623413251903491,
+        0.01,
+        0.01778279410038923,
+        0.03162277660168379,
+        0.05623413251903491,
+        0.1,
+        0.1778279410038923,
+        0.31622776601683794,
+        0.5623413251903491,
+        1.0,
+        1.7782794100389228,
+        3.1622776601683795,
+        5.623413251903491,
+        10.0,
+        17.78279410038923,
+        31.622776601683793,
+        56.23413251903491,
+        100.0,
+        177.82794100389228,
+        316.22776601683796,
+        562.341325190349,
+        1000.0,
+        1778.2794100389228,
+        3162.2776601683795,
+        5623.413251903491,
+        10000.0,
+        17782.794100389227,
+        31622.776601683792,
+        56234.13251903491,
+        100000.0,
+        177827.94100389228,
+        316227.7660168379,
+        562341.3251903491,
+        1000000.0,
+        1778279.410038923,
+        3162277.6601683795,
+        5623413.251903491,
+        10000000.0
+      ]
+    ],
+    "group": "heatsink",
+    "model": "C",
+    "level": 0,
+    "source_frozen_sha256": "05db103fd0673e6fd88b7f4447fafd7d13e8fe0acb5cb6ce6a8c23d702456d6c",
+    "source_controls_sha256": "25b06c3ecec72628f0678e297989e652224195cd5b152717d9002174c8495acc",
+    "code_sha256": {
+      "C:\\Users\\hjiangbq\\Documents\\GitHub\\chiplet_floorplanning\\tools\\audit_ttc_reduction_enrichment.py": "0d8d17df72506827524475fb264d6e9d14284e45c5abd087f96b026f9a3e7434"
+    },
+    "measured_data_used_for_enrichment": false,
+    "physical_model_qualified": false,
+    "orders": [
+      {
+        "index": 0,
+        "audit": {
+          "full_nodes": 20328,
+          "reduced_order": 161,
+          "shifts_per_s": [
+            0.0,
+            0.001,
+            0.01,
+            0.1,
+            1.0,
+            10.0,
+            100.0,
+            1000.0
+          ],
+          "orthogonality_error": 1.4210854715202004e-14,
+          "projected_relative_asymmetry": 1.662869616879273e-16,
+          "constant_field_error": 2.3991919562149633e-13,
+          "body_dynamic_identity_error": 1.8232739103229978e-11,
+          "body_input_identity_error": 9.842127113302013e-14,
+          "dc_full_state_max_error_k_per_w": 6.419131892698715e-09,
+          "dc_capacity_norm_relative_error": 9.140220388168163e-10,
+          "slowest_time_constant_s": 546.458850963229,
+          "fastest_time_constant_s": 4.152266257162959e-05,
+          "physical_model_qualified": false
+        },
+        "max_interface_flux_coefficient_error": 9.770656506091768e-13,
+        "frequency_errors_k": [
+          1.1927723195208383e-07,
+          1.953510326958347e-06,
+          0.0004078371678742527,
+          0.019368135076549116,
+          0.08001859364530353,
+          0.2368723299672326
+        ],
+        "minimum_positive_step_k": -0.0005863239106955816,
+        "maximum_step_decrease_k": 6.003743851954097e-05,
+        "pulse_errors_k": {
+          "sensors": 0.036387472188042835,
+          "body_means": 0.0071170691529580665
+        },
+        "fixed_mesh_numerical_screen": false
+      },
+      {
+        "index": 1,
+        "audit": {
+          "full_nodes": 20328,
+          "reduced_order": 330,
+          "shifts_per_s": [
+            0.0,
+            0.001,
+            0.0031622776601683794,
+            0.01,
+            0.03162277660168379,
+            0.1,
+            0.31622776601683794,
+            1.0,
+            3.1622776601683795,
+            10.0,
+            31.622776601683793,
+            100.0,
+            316.22776601683796,
+            1000.0,
+            3162.2776601683795,
+            10000.0,
+            31622.776601683792,
+            100000.0,
+            316227.7660168379,
+            1000000.0,
+            3162277.6601683795,
+            10000000.0
+          ],
+          "orthogonality_error": 6.8833827526759706e-15,
+          "projected_relative_asymmetry": 3.4617740184624243e-16,
+          "constant_field_error": 7.928990797267943e-12,
+          "body_dynamic_identity_error": 1.2885955307332517e-10,
+          "body_input_identity_error": 9.1442180433568e-14,
+          "dc_full_state_max_error_k_per_w": 1.770626756325555e-08,
+          "dc_capacity_norm_relative_error": 2.260232228961056e-09,
+          "slowest_time_constant_s": 546.4588502593972,
+          "fastest_time_constant_s": 2.0742550330057752e-05,
+          "physical_model_qualified": false
+        },
+        "max_interface_flux_coefficient_error": 4.913847106990943e-13,
+        "frequency_errors_k": [
+          1.9860116735564112e-07,
+          3.1814940949207864e-09,
+          6.128271592708888e-07,
+          0.0002843758894122241,
+          0.0027247052029657774,
+          0.006275316283096363
+        ],
+        "minimum_positive_step_k": 0.0,
+        "maximum_step_decrease_k": 0.0,
+        "pulse_errors_k": {
+          "sensors": 0.0006827936426745396,
+          "body_means": 0.0001752460879345108
+        },
+        "fixed_mesh_numerical_screen": true
+      },
+      {
+        "index": 2,
+        "audit": {
+          "full_nodes": 20328,
+          "reduced_order": 474,
+          "shifts_per_s": [
+            0.0,
+            0.001,
+            0.0017782794100389228,
+            0.0031622776601683794,
+            0.005623413251903491,
+            0.01,
+            0.01778279410038923,
+            0.03162277660168379,
+            0.05623413251903491,
+            0.1,
+            0.1778279410038923,
+            0.31622776601683794,
+            0.5623413251903491,
+            1.0,
+            1.7782794100389228,
+            3.1622776601683795,
+            5.623413251903491,
+            10.0,
+            17.78279410038923,
+            31.622776601683793,
+            56.23413251903491,
+            100.0,
+            177.82794100389228,
+            316.22776601683796,
+            562.341325190349,
+            1000.0,
+            1778.2794100389228,
+            3162.2776601683795,
+            5623.413251903491,
+            10000.0,
+            17782.794100389227,
+            31622.776601683792,
+            56234.13251903491,
+            100000.0,
+            177827.94100389228,
+            316227.7660168379,
+            562341.3251903491,
+            1000000.0,
+            1778279.410038923,
+            3162277.6601683795,
+            5623413.251903491,
+            10000000.0
+          ],
+          "orthogonality_error": 5.329070518200751e-15,
+          "projected_relative_asymmetry": 4.732477828786256e-16,
+          "constant_field_error": 9.138023671084738e-12,
+          "body_dynamic_identity_error": 4.700297463648988e-11,
+          "body_input_identity_error": 9.429840856599444e-14,
+          "dc_full_state_max_error_k_per_w": 7.181629513297594e-09,
+          "dc_capacity_norm_relative_error": 9.056003517276417e-10,
+          "slowest_time_constant_s": 546.4588519380075,
+          "fastest_time_constant_s": 2.0296080899934596e-05,
+          "physical_model_qualified": false
+        },
+        "max_interface_flux_coefficient_error": 4.5189546549195825e-13,
+        "frequency_errors_k": [
+          7.946506359200564e-08,
+          1.2371248904634871e-09,
+          1.9418572277358723e-09,
+          1.9055873481744683e-06,
+          2.2339861312865134e-05,
+          2.8595791969187414e-05
+        ],
+        "minimum_positive_step_k": 0.0,
+        "maximum_step_decrease_k": 0.0,
+        "pulse_errors_k": {
+          "sensors": 0.00030167956850846167,
+          "body_means": 0.00016241536328109873
+        },
+        "fixed_mesh_numerical_screen": true
+      }
+    ],
+    "snapshots": [
+      {
+        "shift_per_s": 0.0,
+        "seconds": 0.19008390000090003,
+        "max_relative_residual": 3.624659671301286e-12,
+        "max_absolute_residual": 1.088573675644966e-13
+      },
+      {
+        "shift_per_s": 0.001,
+        "seconds": 0.1836329000070691,
+        "max_relative_residual": 2.4561811314818854e-12,
+        "max_absolute_residual": 7.974176874370187e-14
+      },
+      {
+        "shift_per_s": 0.0017782794100389228,
+        "seconds": 0.17754239996429533,
+        "max_relative_residual": 1.8354810048443085e-12,
+        "max_absolute_residual": 5.179190409876355e-14
+      },
+      {
+        "shift_per_s": 0.0031622776601683794,
+        "seconds": 0.18492210004478693,
+        "max_relative_residual": 1.4745934283487699e-12,
+        "max_absolute_residual": 4.08006961549745e-14
+      },
+      {
+        "shift_per_s": 0.005623413251903491,
+        "seconds": 0.20804759999737144,
+        "max_relative_residual": 9.036807494498339e-13,
+        "max_absolute_residual": 2.6700863742235015e-14
+      },
+      {
+        "shift_per_s": 0.01,
+        "seconds": 0.17947049997746944,
+        "max_relative_residual": 6.010515586278134e-13,
+        "max_absolute_residual": 2.009156729876338e-14
+      },
+      {
+        "shift_per_s": 0.01778279410038923,
+        "seconds": 0.1942577000008896,
+        "max_relative_residual": 3.801052671981392e-13,
+        "max_absolute_residual": 1.1312131786844759e-14
+      },
+      {
+        "shift_per_s": 0.03162277660168379,
+        "seconds": 0.19160320004448295,
+        "max_relative_residual": 2.2061003839227817e-13,
+        "max_absolute_residual": 7.056855100273651e-15
+      },
+      {
+        "shift_per_s": 0.05623413251903491,
+        "seconds": 0.18005780002567917,
+        "max_relative_residual": 1.3454994541706142e-13,
+        "max_absolute_residual": 4.470382397592232e-15
+      },
+      {
+        "shift_per_s": 0.1,
+        "seconds": 0.17317419999744743,
+        "max_relative_residual": 8.847085441353611e-14,
+        "max_absolute_residual": 4.746203430272544e-15
+      },
+      {
+        "shift_per_s": 0.1778279410038923,
+        "seconds": 0.18518230004701763,
+        "max_relative_residual": 5.900631833320775e-14,
+        "max_absolute_residual": 4.010680676458378e-15
+      },
+      {
+        "shift_per_s": 0.31622776601683794,
+        "seconds": 0.18535569997038692,
+        "max_relative_residual": 3.9722491528702265e-14,
+        "max_absolute_residual": 1.930530388327689e-15
+      },
+      {
+        "shift_per_s": 0.5623413251903491,
+        "seconds": 0.17917290003970265,
+        "max_relative_residual": 2.8917870901311617e-14,
+        "max_absolute_residual": 1.2125717097077882e-15
+      },
+      {
+        "shift_per_s": 1.0,
+        "seconds": 0.17678860004525632,
+        "max_relative_residual": 2.1476057519143925e-14,
+        "max_absolute_residual": 1.2073675392798577e-15
+      },
+      {
+        "shift_per_s": 1.7782794100389228,
+        "seconds": 0.17945809999946505,
+        "max_relative_residual": 1.5243941402912535e-14,
+        "max_absolute_residual": 8.275715182581855e-16
+      },
+      {
+        "shift_per_s": 3.1622776601683795,
+        "seconds": 0.1798940000589937,
+        "max_relative_residual": 1.2299289787274778e-14,
+        "max_absolute_residual": 1.3877787807814457e-15
+      },
+      {
+        "shift_per_s": 5.623413251903491,
+        "seconds": 0.19529760000295937,
+        "max_relative_residual": 9.049304248061277e-15,
+        "max_absolute_residual": 7.771561172376096e-16
+      },
+      {
+        "shift_per_s": 10.0,
+        "seconds": 0.18994700000621378,
+        "max_relative_residual": 7.762697088421721e-15,
+        "max_absolute_residual": 8.673617379884035e-16
+      },
+      {
+        "shift_per_s": 17.78279410038923,
+        "seconds": 0.18432150001171976,
+        "max_relative_residual": 5.8814743953159046e-15,
+        "max_absolute_residual": 6.106226635438361e-16
+      },
+      {
+        "shift_per_s": 31.622776601683793,
+        "seconds": 0.18856849998701364,
+        "max_relative_residual": 4.8002596110484834e-15,
+        "max_absolute_residual": 5.551115123125783e-16
+      },
+      {
+        "shift_per_s": 56.23413251903491,
+        "seconds": 0.18409120000433177,
+        "max_relative_residual": 4.283249439187346e-15,
+        "max_absolute_residual": 7.077671781985373e-16
+      },
+      {
+        "shift_per_s": 100.0,
+        "seconds": 0.1752800999674946,
+        "max_relative_residual": 3.560476419362506e-15,
+        "max_absolute_residual": 5.273559366969494e-16
+      },
+      {
+        "shift_per_s": 177.82794100389228,
+        "seconds": 0.19723599997814745,
+        "max_relative_residual": 2.946483853667846e-15,
+        "max_absolute_residual": 4.2327252813834093e-16
+      },
+      {
+        "shift_per_s": 316.22776601683796,
+        "seconds": 0.18795970000792295,
+        "max_relative_residual": 2.512938741854147e-15,
+        "max_absolute_residual": 3.469446951953614e-16
+      },
+      {
+        "shift_per_s": 562.341325190349,
+        "seconds": 0.17720079992432147,
+        "max_relative_residual": 1.8013011600965196e-15,
+        "max_absolute_residual": 2.2898349882893854e-16
+      },
+      {
+        "shift_per_s": 1000.0,
+        "seconds": 0.17767459992319345,
+        "max_relative_residual": 1.2220575795430044e-15,
+        "max_absolute_residual": 1.5352302762394743e-16
+      },
+      {
+        "shift_per_s": 1778.2794100389228,
+        "seconds": 0.1995325000025332,
+        "max_relative_residual": 1.1955192540411517e-15,
+        "max_absolute_residual": 1.8604909279851256e-16
+      },
+      {
+        "shift_per_s": 3162.2776601683795,
+        "seconds": 0.18141670001205057,
+        "max_relative_residual": 8.401056274244718e-16,
+        "max_absolute_residual": 1.194790794079026e-16
+      },
+      {
+        "shift_per_s": 5623.413251903491,
+        "seconds": 0.18642230005934834,
+        "max_relative_residual": 8.081769688048052e-16,
+        "max_absolute_residual": 9.020562075079397e-17
+      },
+      {
+        "shift_per_s": 10000.0,
+        "seconds": 0.18830149993300438,
+        "max_relative_residual": 7.537440338254727e-16,
+        "max_absolute_residual": 1.1102230246251565e-16
+      },
+      {
+        "shift_per_s": 17782.794100389227,
+        "seconds": 0.18940659996587783,
+        "max_relative_residual": 5.663686413495236e-16,
+        "max_absolute_residual": 9.020562075079397e-17
+      },
+      {
+        "shift_per_s": 31622.776601683792,
+        "seconds": 0.1760773001005873,
+        "max_relative_residual": 5.179866080705935e-16,
+        "max_absolute_residual": 8.326672684688674e-17
+      },
+      {
+        "shift_per_s": 56234.13251903491,
+        "seconds": 0.18958749994635582,
+        "max_relative_residual": 4.013430743178633e-16,
+        "max_absolute_residual": 5.551115123125783e-17
+      },
+      {
+        "shift_per_s": 100000.0,
+        "seconds": 0.18124079995322973,
+        "max_relative_residual": 3.863823060048523e-16,
+        "max_absolute_residual": 6.245004513516506e-17
+      },
+      {
+        "shift_per_s": 177827.94100389228,
+        "seconds": 0.18732789997011423,
+        "max_relative_residual": 4.53448040337852e-16,
+        "max_absolute_residual": 9.020562075079397e-17
+      },
+      {
+        "shift_per_s": 316227.7660168379,
+        "seconds": 0.19663549994584173,
+        "max_relative_residual": 3.776906304248376e-16,
+        "max_absolute_residual": 5.551115123125783e-17
+      },
+      {
+        "shift_per_s": 562341.3251903491,
+        "seconds": 0.21148370008450001,
+        "max_relative_residual": 4.596165022783861e-16,
+        "max_absolute_residual": 6.938893903907228e-17
+      },
+      {
+        "shift_per_s": 1000000.0,
+        "seconds": 0.23652029992081225,
+        "max_relative_residual": 3.388342796672097e-16,
+        "max_absolute_residual": 6.938893903907228e-17
+      },
+      {
+        "shift_per_s": 1778279.410038923,
+        "seconds": 0.2635243000695482,
+        "max_relative_residual": 3.1280746735025977e-16,
+        "max_absolute_residual": 4.163336342344337e-17
+      },
+      {
+        "shift_per_s": 3162277.6601683795,
+        "seconds": 0.3093600000720471,
+        "max_relative_residual": 3.0783171824085916e-16,
+        "max_absolute_residual": 4.163336342344337e-17
+      },
+      {
+        "shift_per_s": 5623413.251903491,
+        "seconds": 0.3676421999698505,
+        "max_relative_residual": 2.647753590909977e-16,
+        "max_absolute_residual": 4.163336342344337e-17
+      },
+      {
+        "shift_per_s": 10000000.0,
+        "seconds": 0.3836435000412166,
+        "max_relative_residual": 3.2957975872684296e-16,
+        "max_absolute_residual": 4.85722573273506e-17
+      }
+    ],
+    "complete": true
+  }
+}

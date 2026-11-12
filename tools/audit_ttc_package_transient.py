@@ -56,7 +56,7 @@ def physical_flux_check(reduced, assembly):
     return float(abs(flux-reduced.body_flow).max())
 
 
-def controls(g, c, b, h, loss, groups, assembly, reductions, folder):
+def controls(g, c, b, h, loss, groups, assembly, reductions, folder, prior_controls=None):
     power = np.array(list(patterns().values())).T
     result = dict(orders={}, backward_euler={})
     omega_values = [.003, .03, .3, 3., 30., 300.]
@@ -82,8 +82,14 @@ def controls(g, c, b, h, loss, groups, assembly, reductions, folder):
             saved['rom_'+str(i)+'_'+key] = value
     bes = []
     for dt in (.005, .0025, .00125):
-        print('full backward Euler reference', dt, flush=True)
-        be = backward_euler_pulse(g, c, b, h, power, dt, groups, loss)
+        if prior_controls is None:
+            print('full backward Euler reference', dt, flush=True)
+            be = backward_euler_pulse(g, c, b, h, power, dt, groups, loss)
+        else:
+            print('reuse verified full backward Euler reference', dt, flush=True)
+            reference, metadata = prior_controls
+            be = {k:reference['be_'+str(dt)+'_'+k] for k in ('sensors', 'body_means', 'cumulative_boundary_heat_j')}
+            be.update(metadata['backward_euler'][str(dt)])
         bes.append(be)
         result['backward_euler'][str(dt)] = dict(max_numerical_heat_balance_error_j=be['max_numerical_heat_balance_error_j'])
         for key in ('sensors', 'body_means', 'cumulative_boundary_heat_j'):
@@ -175,7 +181,14 @@ def main():
     ap.add_argument('--output', required=True, type=Path)
     ap.add_argument('--resume', action='store_true')
     ap.add_argument('--max-level', type=int, choices=(0, 1), default=1)
+    ap.add_argument('--shifts-file', type=Path, help='Frozen nested numerical enrichment JSON; defaults to original failed construction')
+    ap.add_argument('--prior-controls', type=Path, help='Reuse identical full-network BE controls after source and geometry verification')
     args = ap.parse_args()
+    shifts = json.loads(args.shifts_file.read_text())['shifts_per_s'] if args.shifts_file else SHIFTS
+    if len(shifts) != 3 or any(0. not in s or any(x < 0 for x in s) for s in shifts):
+        raise ValueError('three nonnegative shift sets including DC are required')
+    if any(not set(shifts[i]).issubset(shifts[i+1]) for i in range(2)):
+        raise ValueError('numerical shift sets must be nested')
     verify(args.root)
     geometry = extract(args.root/'ttc-origin')
     boundary = source_boundary(args.root/'ttc-origin')
@@ -187,6 +200,16 @@ def main():
              Path('tools/validation/ttc_geometry.py'), Path('tools/validation/measured_thermal.py'),
              Path('tools/calibrate_measured_transient.py'), Path('docs/ttc-package-transient-plan.md'),
              Path('tools/ttc-package-boundary.lock.json'), Path('tools/ttc-upstream.lock.json'), Path('tools/measured-sources.lock.json')]
+    if args.shifts_file:
+        paths.append(args.shifts_file)
+    prior = None
+    if args.prior_controls:
+        prior = json.loads((args.prior_controls/'frozen-inputs.json').read_text())
+        for path, expected in prior['code_sha256'].items():
+            if Path(path).name != Path(__file__).name and digest(Path(path)) != expected:
+                raise ValueError('cached reference source changed: '+path)
+        if prior['geometry'] != geometry or prior['boundary'] != boundary:
+            raise ValueError('cached reference physical inputs changed')
     hashes = {str(p):digest(p) for p in paths}
     dependencies = {str(p):digest(p) for p in (admission_path, dc_path)}
     if args.resume:
@@ -196,7 +219,7 @@ def main():
     else:
         args.output.mkdir(parents=True, exist_ok=False)
         frozen = dict(git=git_revision(Path('.')), code_sha256=hashes, dependency_sha256=dependencies,
-                      geometry=geometry, boundary=boundary, shifts_per_s=SHIFTS,
+                      geometry=geometry, boundary=boundary, shifts_per_s=shifts,
                       no_new_fit=True, physical_model_qualified=False, planned_levels=[0, 1])
         for p in paths:
             shutil.copyfile(p, args.output/p.name)
@@ -226,13 +249,26 @@ def main():
                 def progress(record):
                     write_json(folder/'snapshot-progress.json', record)
                     print('snapshot', record, flush=True)
-                bank, snapshot_audit = snapshot_bank(g, c, b, progress=progress)
-                reductions = [project(g, c, b, h, loss, groups, bank, shifts) for shifts in SHIFTS]
+                bank, snapshot_audit = snapshot_bank(g, c, b, shifts[-1], progress=progress)
+                reductions = [project(g, c, b, h, loss, groups, bank, selected) for selected in shifts]
                 for i, reduced in enumerate(reductions):
                     print('projection', i, reduced.audit, flush=True)
                 resistance = np.asarray(h @ bank[0.])
                 del bank
-                numerical = controls(g, c, b, h, loss, groups, assembly, reductions, folder)
+                cached = None
+                provenance = None
+                if args.prior_controls and (args.prior_controls/key/'numerical-controls.npz').exists():
+                    old = args.prior_controls/key
+                    if json.loads((old/'geometry.json').read_text()) != geometry_audit:
+                        raise ValueError('cached reference mesh changed')
+                    cached = (np.load(old/'numerical-controls.npz'), json.loads((old/'numerical-controls.json').read_text()))
+                    provenance = dict(source=str(old), frozen_inputs_sha256=digest(args.prior_controls/'frozen-inputs.json'),
+                                      controls_sha256=digest(old/'numerical-controls.npz'), metadata_sha256=digest(old/'numerical-controls.json'))
+                numerical = controls(g, c, b, h, loss, groups, assembly, reductions, folder, cached)
+                if cached is not None:
+                    cached[0].close()
+                numerical['cached_be_reference'] = provenance
+                write_json(folder/'numerical-controls.json', numerical)
                 results = evaluate_cases(reductions, cases[group], previous_dc['groups'][group], resistance, folder)
                 receipt = dict(group=group, model=model, level=level, geometry=geometry_audit,
                                snapshots=snapshot_audit, numerical_controls=numerical, cases=results,
