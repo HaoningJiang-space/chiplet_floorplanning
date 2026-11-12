@@ -71,6 +71,15 @@ No steady continuum correction is applied to any transient prediction.
 
 ## Remaining work and review cadence
 
+The first completed level-1 result (natural C) passes the same-grid reduction
+screen: maximum withheld-frequency error 0.0002772 K, full-BE pulse discrepancy
+0.0003151 K and middle-to-fine native-trace change 0.0011307 K. Nevertheless,
+changing from mesh level 0 to 1 changes conditional-gradient native temperatures
+by up to 0.98383 K, with demeaned spatial change up to 0.94600 K. This is observed
+grid dependence, not a physical error bound. In the checkboard window, predicted
+storage remains 17.0849 W and dynamic-minus-static spatial contrast is 0.001947 K.
+The storage observation persists, while spatial numerical accuracy remains open.
+
 Complete level-1 full-network controls and native simulations; compare identical
 power/observation arrays across grids, and preserve any failures. Two grids do
 not establish an error bound. Continue the independent level-3 steady package

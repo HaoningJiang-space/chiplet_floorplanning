@@ -1,0 +1,224 @@
+{
+  "checkpoint_sha256": "44214e0fdadd7a3a1d09853ad37a04304f8cae205d6175420ce70e7aa58f3b74",
+  "group": "heatsink",
+  "model": "C",
+  "level": 1,
+  "numerical_controls": {
+    "orders": {
+      "0": {
+        "audit": {
+          "full_nodes": 100366,
+          "reduced_order": 160,
+          "shifts_per_s": [
+            0.0,
+            0.001,
+            0.01,
+            0.1,
+            1.0,
+            10.0,
+            100.0,
+            1000.0
+          ],
+          "orthogonality_error": 1.887379141862766e-13,
+          "projected_relative_asymmetry": 7.009026032071753e-16,
+          "constant_field_error": 2.615685446016869e-13,
+          "body_dynamic_identity_error": 1.9842771870060005e-10,
+          "body_input_identity_error": 1.839361996047728e-13,
+          "dc_full_state_max_error_k_per_w": 4.528837749262493e-09,
+          "dc_capacity_norm_relative_error": 6.389360034604058e-10,
+          "slowest_time_constant_s": 546.4357596951219,
+          "fastest_time_constant_s": 1.9907733646779098e-05,
+          "physical_model_qualified": false
+        },
+        "withheld_frequency_omega_per_s": [
+          0.003,
+          0.03,
+          0.3,
+          3.0,
+          30.0,
+          300.0
+        ],
+        "withheld_frequency_max_error_k": [
+          8.49396463401528e-08,
+          1.301345987678192e-06,
+          0.0002766561247500345,
+          0.015340096040156357,
+          0.06381625926818496,
+          0.24872717218230242
+        ],
+        "max_reconstructed_interface_flux_coefficient_error": 2.5230928457631308e-12,
+        "minimum_step_temperature_k": 0.0,
+        "max_step_decrease_k": 0.0,
+        "step_positivity_monotonicity_screen": true,
+        "sensors_max_error_to_be_extrapolate_k": 0.02924265847224916,
+        "body_means_max_error_to_be_extrapolate_k": 0.008326339874287214,
+        "fixed_mesh_numerical_screen": false
+      },
+      "1": {
+        "audit": {
+          "full_nodes": 100366,
+          "reduced_order": 345,
+          "shifts_per_s": [
+            0.0,
+            0.001,
+            0.0031622776601683794,
+            0.01,
+            0.03162277660168379,
+            0.1,
+            0.31622776601683794,
+            1.0,
+            3.1622776601683795,
+            10.0,
+            31.622776601683793,
+            100.0,
+            316.22776601683796,
+            1000.0,
+            3162.2776601683795,
+            10000.0,
+            31622.776601683792,
+            100000.0,
+            316227.7660168379,
+            1000000.0,
+            3162277.6601683795,
+            10000000.0
+          ],
+          "orthogonality_error": 2.2315482794965646e-14,
+          "projected_relative_asymmetry": 1.0972218933800506e-15,
+          "constant_field_error": 1.9622081737225017e-12,
+          "body_dynamic_identity_error": 1.4264480801791986e-09,
+          "body_input_identity_error": 6.669610610327004e-14,
+          "dc_full_state_max_error_k_per_w": 3.363946765588821e-07,
+          "dc_capacity_norm_relative_error": 4.8458758098979274e-08,
+          "slowest_time_constant_s": 546.4357335559464,
+          "fastest_time_constant_s": 5.02159814244551e-07,
+          "physical_model_qualified": false
+        },
+        "withheld_frequency_omega_per_s": [
+          0.003,
+          0.03,
+          0.3,
+          3.0,
+          30.0,
+          300.0
+        ],
+        "withheld_frequency_max_error_k": [
+          4.2568414092710796e-06,
+          5.88900299720583e-08,
+          3.856665119170739e-07,
+          0.0002450963208875983,
+          0.0030380508889682996,
+          0.01077348075961208
+        ],
+        "max_reconstructed_interface_flux_coefficient_error": 6.825873503576996e-11,
+        "minimum_step_temperature_k": 0.0,
+        "max_step_decrease_k": 0.0,
+        "step_positivity_monotonicity_screen": true,
+        "sensors_max_error_to_be_extrapolate_k": 0.0006227859891367871,
+        "body_means_max_error_to_be_extrapolate_k": 0.00022965171245914462,
+        "fixed_mesh_numerical_screen": false
+      },
+      "2": {
+        "audit": {
+          "full_nodes": 100366,
+          "reduced_order": 532,
+          "shifts_per_s": [
+            0.0,
+            0.001,
+            0.0017782794100389228,
+            0.0031622776601683794,
+            0.005623413251903491,
+            0.01,
+            0.01778279410038923,
+            0.03162277660168379,
+            0.05623413251903491,
+            0.1,
+            0.1778279410038923,
+            0.31622776601683794,
+            0.5623413251903491,
+            1.0,
+            1.7782794100389228,
+            3.1622776601683795,
+            5.623413251903491,
+            10.0,
+            17.78279410038923,
+            31.622776601683793,
+            56.23413251903491,
+            100.0,
+            177.82794100389228,
+            316.22776601683796,
+            562.341325190349,
+            1000.0,
+            1778.2794100389228,
+            3162.2776601683795,
+            5623.413251903491,
+            10000.0,
+            17782.794100389227,
+            31622.776601683792,
+            56234.13251903491,
+            100000.0,
+            177827.94100389228,
+            316227.7660168379,
+            562341.3251903491,
+            1000000.0,
+            1778279.410038923,
+            3162277.6601683795,
+            5623413.251903491,
+            10000000.0
+          ],
+          "orthogonality_error": 2.2315482794965646e-14,
+          "projected_relative_asymmetry": 9.849242360655102e-16,
+          "constant_field_error": 4.937827924322846e-12,
+          "body_dynamic_identity_error": 2.6801801637429956e-09,
+          "body_input_identity_error": 7.765017054059124e-14,
+          "dc_full_state_max_error_k_per_w": 9.538776701845109e-08,
+          "dc_capacity_norm_relative_error": 1.010439223296276e-08,
+          "slowest_time_constant_s": 546.4357546055427,
+          "fastest_time_constant_s": 4.987148526369309e-07,
+          "physical_model_qualified": false
+        },
+        "withheld_frequency_omega_per_s": [
+          0.003,
+          0.03,
+          0.3,
+          3.0,
+          30.0,
+          300.0
+        ],
+        "withheld_frequency_max_error_k": [
+          8.792857612702755e-07,
+          1.514213048813164e-08,
+          9.196321011507437e-09,
+          4.366707781914164e-06,
+          8.96936536788035e-05,
+          0.0002771658160480194
+        ],
+        "max_reconstructed_interface_flux_coefficient_error": 1.2648191088232563e-10,
+        "minimum_step_temperature_k": 0.0,
+        "max_step_decrease_k": 0.0,
+        "step_positivity_monotonicity_screen": true,
+        "sensors_max_error_to_be_extrapolate_k": 0.00031511368011649665,
+        "body_means_max_error_to_be_extrapolate_k": 0.00017857513154950766,
+        "fixed_mesh_numerical_screen": true
+      }
+    },
+    "backward_euler": {
+      "0.005": {
+        "max_numerical_heat_balance_error_j": 1.2796164128303644e-10
+      },
+      "0.0025": {
+        "max_numerical_heat_balance_error_j": 1.949667094436336e-10
+      },
+      "0.00125": {
+        "max_numerical_heat_balance_error_j": 2.9958435732169164e-10
+      },
+      "sensors_extrapolation_change_k": 0.0009065162277224204,
+      "body_means_extrapolation_change_k": 0.0005097665980073884
+    },
+    "cached_be_reference": null
+  },
+  "max_native_trace_order_change_k": 0.0011306964722379576,
+  "fixed_mesh_reduction_screen": true,
+  "physical_model_qualified": false,
+  "conditional_gradient_native_mesh_change_k": 0.9838325551196192,
+  "conditional_gradient_native_spatial_mesh_change_k": 0.9460018385753166
+}

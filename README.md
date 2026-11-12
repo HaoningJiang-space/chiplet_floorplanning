@@ -234,6 +234,11 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
 
 ## 独立热源与边界敏感性（v0.8 / E1）
 
+完整数值集成：[共享时钟布线容量、唯一寄生与完整时序](docs/shared-routing-results.md)。
+120 条数据 Lane 加一棵时钟树已连接到有限轨道资源、可复核的容量不足证明和 SPEF；
+1,824 条带布线路径通过检查，169 项测试通过。真实封装规则、Pad/通道表征和热耦合
+仍开放；首组更细热网格仍有约 0.98 K 温度变化，尚不能宣布空间收敛或物理校准。
+
 多 Lane 基础能力：[共享时钟完整路径核对](docs/multilane-timing-results.md)。
 本地覆盖 2/4/8/16 个 chiplet、最多 120 条数据 Lane，1,668 个路径结果与独立
 边沿时间参考一致；错误接线、漏 Lane、时钟极性和负载控制均检出，157 项测试通过。

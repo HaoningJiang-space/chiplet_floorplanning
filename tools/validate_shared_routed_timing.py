@@ -73,6 +73,8 @@ def compare_channels(paths,c,records,correlated=False):
     # Algebraically remove the independently computed wire terms only to reuse
     # the fixed cell/clock audit. This is not a fitted correction to STA results.
     result['channel_checks']=wire_rows
+    result['comparison_coordinates']='paths.normalized_observed removes independently computed wire terms for the fixed-cell/clock audit; routed_observed retains raw reported path times'
+    result['routed_observed']={key:{name:value for name,value in row.items() if name!='pins'} for key,row in paths.items()}
     result['max_channel_delay_error_ns']=max(r['delay_error_ns'] for r in wire_rows)
     result['max_channel_slew_error_ns']=max(r['slew_error_ns'] for r in wire_rows)
     result['unresolved_channel_delay_observations']=sum(not r['delay_resolved'] for r in wire_rows)
