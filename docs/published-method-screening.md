@@ -129,3 +129,29 @@ offers a concrete scale-extension candidate without fabricating smaller routing
 capacity or tighter clock targets. Selection and any common-model adaptation
 must be declared before new comparative results, with the 6/8-chiplet pilot
 kept separate from this larger-domain study.
+
+### Strict input import completed
+
+`tools/import_atplace_cases.py` now reads the pinned Git objects and validates
+all ten cases: unique origin-based rectangular blocks, exact declared counts,
+complete unique power/name correspondence, finite nonnegative power, two-pin
+net records, known chiplet names, percentage-offset syntax and offsets inside
+the chiplet rectangle. Offsets are converted using each unrotated chiplet's own
+width/height with Decimal arithmetic. A quarter-turn helper rotates the offset
+about the chip centre; tests cover all three nonzero rotations and reject bad
+counts, unknown names, missing/duplicated/invalid power and malformed geometry.
+
+All ten cases passed. [Import receipt](evidence/atplace-import.json) binds raw
+source hashes, normalized importer hash and each generated full-input hash.
+The full parsed files remain in `results/physical-calibration/atplace-import-v1`.
+Reproduce in a new output directory with:
+
+```powershell
+python tools/import_atplace_cases.py --source local/upstream/ATPlace_pub --output results/physical-calibration/atplace-import-new
+```
+
+This importer intentionally leaves placement grid, gap, bump footprint,
+package model and timing constraints unset. These are not available from the
+three parsed file types and must come from a declared subsequent domain/model
+contract. Source parsing neither creates a feasible layout nor certifies routing,
+PHY capability or measured power. The ongoing pilot uses none of these new files.
