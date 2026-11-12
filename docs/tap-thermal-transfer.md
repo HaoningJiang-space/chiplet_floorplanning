@@ -66,6 +66,13 @@ transfer unestablished. It must not be used to assert TAP replication, physical
 thermal feasibility, or layout superiority. No new optimization or expansive
 accuracy campaign is justified by this diagnostic.
 
+## Follow-up boundary audit
+
+The [native boundary audit](tap-native-boundary-audit.md) now demonstrates
+an external convection term entering an internal material edge in the pinned
+HotSpot 7 detailed-3D assembler. Default layout admission is blocked; the
+explicit diagnostic flag below permits investigation only.
+
 ## Reproduce locally
 
 With the environment/binary described in `hits-local-integration.md`:
@@ -73,7 +80,7 @@ With the environment/binary described in `hits-local-integration.md`:
 ```powershell
 . ./tools/windows_env.ps1
 python tools/prepare_tap_thermal.py --tap local/upstream/TAP-2.5D --case ascend910 --output results/tap-fresh
-python tools/solve_tap_hits.py --hits ../HiTS --binary local/build/hits-hotspot-repro/hotspot.exe --input results/tap-fresh
+python tools/solve_tap_hits.py --hits ../HiTS --binary local/build/hits-hotspot-repro/hotspot.exe --input results/tap-fresh --allow-unqualified-native-diagnostic
 ```
 
 The solver refuses to overwrite an existing equation artifact. Change `--case`

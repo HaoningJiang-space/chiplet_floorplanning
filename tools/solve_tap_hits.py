@@ -4,6 +4,7 @@ parser = argparse.ArgumentParser(description='Solve a generated TAP case with th
 parser.add_argument('--hits', type=Path, required=True)
 parser.add_argument('--binary', type=Path, required=True)
 parser.add_argument('--input', type=Path, required=True)
+parser.add_argument('--allow-unqualified-native-diagnostic', action='store_true', help='Permit diagnostic solve despite unresolved native physical model; never layout admission')
 args = parser.parse_args()
 sys.path.insert(0, str(args.hits.resolve()))
 from tools.native_io import read_hotspot, CONVENTION
@@ -22,6 +23,9 @@ a, b, r, shape = read_hotspot(out / 'fields.bin')
 if shape != (64, 64, 8):
     raise ValueError('Expected sourced TAP 64 by 64 grid with six input and two package layers')
 print('start', shape, a.shape, a.nnz, flush=True)
+if not args.allow_unqualified_native_diagnostic:
+    (out/'admission.json').write_text(json.dumps(dict(accepted_for_layout=False, reason='Pinned HotSpot7 detailed3D internal package edge depends on external convection; see tap-native-boundary-audit.md'),indent=2)+'\n')
+    raise SystemExit('Native physical boundary admission failed; use the explicit diagnostic flag only for investigation')
 q = ThermalOperator(a, b, None, CONVENTION, 'native-layer-row-column-package', r, 'HotSpot', '7.0', 'tap-native-input', ('unknown', 'unknown', 'unknown'))
 t, receipt = HiTS().solve_steady(q)
 ref = np.fromfile(out / 'reference.bin', dtype=np.float64)

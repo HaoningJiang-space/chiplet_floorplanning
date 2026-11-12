@@ -1,0 +1,38 @@
+{
+  "status": "internal_edge_depends_on_external_convection",
+  "scope": "diagnostic only; no coefficient patch or candidate layout experiment",
+  "convection_k_w": [
+    0.008999999999999998,
+    0.017999999999999995
+  ],
+  "internal_edge_resistance_k_w": [
+    311.0911999999999,
+    606.0031999999999
+  ],
+  "material_half_cell_resistance_k_w": 16.179199999999994,
+  "predicted_spurious_increment_k_w": 294.9119999999999,
+  "observed_increment_k_w": 294.912,
+  "absolute_prediction_error_k_w": 5.684341886080802e-14,
+  "physical_invariance_passed": false,
+  "artifact_sha256": [
+    "85aac9dd6baacae1f5bc6eb80b254a0fc2b8cce0815cb66e6736d512e6d8bd9a",
+    "aaaf4db30d735c680d251521e0eda3cc62ed5a48e9e5733ce2b8059491c82bd1"
+  ],
+  "source_input_manifest_sha256": "c03f103fa28d2f788de735648b37d422faaea1aec0196c866b2844509d68dcc5",
+  "native7_iterative_comparison": {
+    "maximum_difference_from_native_direct_all_grid_k": 0.006451811468025426,
+    "maximum_difference_from_native6_substrate_k": 45.579999999999984,
+    "grid_nodes_compared": 32768,
+    "print_resolution_k": 0.01,
+    "grid_sha256": "e68570786734397256f5f5f18dea929ff189376446c1a0c34c5e541667ec8e54"
+  },
+  "revisions": {
+    "HotSpot7": "9f92256f7a45db6057c809e94fcd224ddad9157a",
+    "HiTS": "be59924de3f0c1a3d6d134aea411d1264cfa64c6",
+    "HotSpot6": "47b1e83c19f12e476a7b6b936cf0497aab26e174"
+  },
+  "default_admission": {
+    "accepted_for_layout": false,
+    "reason": "Pinned HotSpot7 detailed3D internal package edge depends on external convection; see tap-native-boundary-audit.md"
+  }
+}
