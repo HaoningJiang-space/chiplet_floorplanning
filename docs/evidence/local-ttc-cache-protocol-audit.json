@@ -1,0 +1,83 @@
+{
+  "scope": "Retrospective audit of already reused BE caches; not a future cache admission guard",
+  "old_driver_sha256": "99320c7576059ac88d7e6da90911e40856c48bfdda4ad1309d01ece23e0cb20e",
+  "new_driver_sha256": "4daafe9a8b7580a349f219166785030c818a16207a8da4748aca19b8f1a02141",
+  "normalized_control_protocol_sha256": "9268281a2b6bb30ba56422552d7053f28336e85cfb02c0f9fb55aebd599af142",
+  "protocol_identical_except_verified_cache_adapter": true,
+  "checked_cached_models": [
+    {
+      "model": "heatsink_C_level0",
+      "identical_arrays": [
+        "be_0.005_sensors",
+        "be_0.005_body_means",
+        "be_0.005_cumulative_boundary_heat_j",
+        "be_0.0025_sensors",
+        "be_0.0025_body_means",
+        "be_0.0025_cumulative_boundary_heat_j",
+        "be_0.00125_sensors",
+        "be_0.00125_body_means",
+        "be_0.00125_cumulative_boundary_heat_j",
+        "richardson_sensors",
+        "richardson_body_means"
+      ],
+      "source_controls_sha256": "25b06c3ecec72628f0678e297989e652224195cd5b152717d9002174c8495acc",
+      "used_controls_sha256": "a9d6e0fbacda0e5c250b2344f67b9f28c92afad3231d6c7f0a04916ce499719c"
+    },
+    {
+      "model": "heatsink_P_level0",
+      "identical_arrays": [
+        "be_0.005_sensors",
+        "be_0.005_body_means",
+        "be_0.005_cumulative_boundary_heat_j",
+        "be_0.0025_sensors",
+        "be_0.0025_body_means",
+        "be_0.0025_cumulative_boundary_heat_j",
+        "be_0.00125_sensors",
+        "be_0.00125_body_means",
+        "be_0.00125_cumulative_boundary_heat_j",
+        "richardson_sensors",
+        "richardson_body_means"
+      ],
+      "source_controls_sha256": "6627145d5ee01d9c6196da6691e7ef2564c01a9cfdeeba8d750d4580abbef106",
+      "used_controls_sha256": "d996b683379ce0970c183d7291e2b17744f8b95e9443bb840760cb9f236117ad"
+    },
+    {
+      "model": "heatsink_with_fan_C_level0",
+      "identical_arrays": [
+        "be_0.005_sensors",
+        "be_0.005_body_means",
+        "be_0.005_cumulative_boundary_heat_j",
+        "be_0.0025_sensors",
+        "be_0.0025_body_means",
+        "be_0.0025_cumulative_boundary_heat_j",
+        "be_0.00125_sensors",
+        "be_0.00125_body_means",
+        "be_0.00125_cumulative_boundary_heat_j",
+        "richardson_sensors",
+        "richardson_body_means"
+      ],
+      "source_controls_sha256": "3a4c7c4ff519061f4c3b4f03f540bf4fe9c97aa067ccdafbd960be9dba1365cd",
+      "used_controls_sha256": "132945980a8abb6297a5d854299298f80281ee4759f90ea0a84922f850b84c86"
+    },
+    {
+      "model": "heatsink_with_fan_P_level0",
+      "identical_arrays": [
+        "be_0.005_sensors",
+        "be_0.005_body_means",
+        "be_0.005_cumulative_boundary_heat_j",
+        "be_0.0025_sensors",
+        "be_0.0025_body_means",
+        "be_0.0025_cumulative_boundary_heat_j",
+        "be_0.00125_sensors",
+        "be_0.00125_body_means",
+        "be_0.00125_cumulative_boundary_heat_j",
+        "richardson_sensors",
+        "richardson_body_means"
+      ],
+      "source_controls_sha256": "920dc87cef2bd59bb0f61abdb92aec6c8b9884a07e7713f6f868d2ae54e60379",
+      "used_controls_sha256": "c5b1f2ab1bf2be067d233421854b8ca9a5aca209b6cb454d01a7752ec153ce9a"
+    }
+  ],
+  "future_runner_guard_integrated": false,
+  "physical_model_qualified": false
+}

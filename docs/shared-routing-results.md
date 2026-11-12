@@ -88,13 +88,13 @@ but native temperatures differ from level 0 by up to 0.98383 K (spatial componen
 0.94600 K). Storage-vs-spatial-contrast behavior persists in the checker window;
 see `ttc-package-transient-results.md`. Spatial convergence remains open.
 
-The user deferred file upload and then explicitly requested that ChatGPT use
+Before publication, the user deferred file upload and explicitly requested that ChatGPT use
 its own tools to read Git history. The existing high-thinking review conversation
 has actually connected its GitHub plugin and verified access to remote
 `c124aa9`. It attempted local `0193807`: GitHub returned 422 (no commit for SHA),
 the comparison returned 404, and its execution environment did not mount the
 Windows repository. The 22 local commits are therefore outside its observed
-access. The user chose GitHub-only review without additional Chrome permission.
+access at that time. The user chose GitHub-only review without additional Chrome permission.
 The remote review and its commit-by-commit coverage receipt are complete. It
 enumerated the 14 commits from `5f82272` through `c124aa9`, matching the locally
 fetched Git history and all 13 parent links. The reviewer reports reading each
@@ -110,9 +110,23 @@ priorities are consistent Pad netlist/Liberty/stimulus/reference planes, spatial
 and transient package convergence, real routing rules, then a timing-constrained
 temperature penalty exceeding supported model uncertainty. These are evidence
 gaps, not independently confirmed new bugs in the inaccessible local code.
-No completed full-local-history review is claimed. No push or remote experiment
-was requested or performed. The review is advisory and closes no physical gate.
+At that prepublication point, no completed full-local-history review was claimed
+and no push or remote experiment had been requested or performed. The review
+is advisory and closes no physical gate.
 Review conversation: https://chatgpt.com/c/6af41d50-059c-83e8-92e6-eb975244c865.
+
+Publication follow-up: the user subsequently required timely pushes. The 25
+commits through `92c2835` were pushed and independently located by ChatGPT via
+GitHub. The reviewer completed the newly accessible commit/source review,
+including the shared routing/RC/STA implementation, TTC and Pad diagnostics.
+It found one concrete future BE-cache protocol-checking gap, rather than an
+observed wrong cached value, and no confirmed new shared-clock ownership or
+energy-balance bug. Four large evidence files lacked historical patches; their
+HEAD contents were checked instead. No large local raw experiment was rerun by
+the reviewer. See `review-response-decisions.md` for the actual coverage,
+retrospective cache check and remaining engineering fix. The earlier access
+restriction is historical, not the present repository state. Pushes skip remote
+CI while research computation remains local.
 
 Reproduce with fresh local output folders:
 

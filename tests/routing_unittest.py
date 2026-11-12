@@ -158,6 +158,32 @@ class NecessityTests(unittest.TestCase):
         self.assertEqual(result["constrained_thermal_optimum"], "hot")
         self.assertEqual(result["timing_constraint_thermal_penalty_k"], 5)
 
+    def test_electrical_and_setup_hold_costs_have_distinct_baselines(self):
+        rejected = dict(self.row("electrical_fail", 35, 1), timing_status="electrically_rejected")
+        result = summarize([rejected, self.row("timing_fail", 40, -1), self.row("accepted", 45, 1)])
+        stages = result["constraint_stages"]
+        self.assertEqual(stages["electrical_admission_penalty_k"], 5)
+        self.assertEqual(stages["setup_hold_incremental_penalty_k"], 5)
+        self.assertEqual(stages["combined_admission_penalty_k"], 10)
+        self.assertEqual(result["timing_constraint_thermal_penalty_k"], 5)
+
+    def test_empty_or_unsearched_sets_are_not_zero_cost_or_global_proofs(self):
+        fails_hold = dict(self.row("fails_hold", 40, 1), hold_slack_ns=-1, worst_slack_ns=-1)
+        empty = summarize([fails_hold])["constraint_stages"]
+        self.assertIsNone(empty["setup_hold_incremental_penalty_k"])
+        self.assertEqual(empty["feasible_set_status"], "empty_evaluated_subset")
+        unknown = dict(self.row("unsearched", 30, 1), timing_status="routing_search_failed")
+        result = summarize([unknown])["constraint_stages"]
+        self.assertIsNone(result["combined_admission_penalty_k"])
+        self.assertEqual(result["feasible_set_status"], "unresolved_candidates_remain")
+        self.assertFalse(result["complete_design_space_infeasibility_proven"])
+
+    def test_invalid_status_or_nonfinite_candidate_cannot_hide_in_minimum(self):
+        for update in (dict(routing=dict(geometry_legal=False)), dict(peak_c=float("nan")),
+                       dict(hold_slack_ns=float("inf"))):
+            with self.subTest(update=update), self.assertRaises(ValueError):
+                summarize([{**self.row("invalid", 40, 1), **update}])
+
     def test_missing_routing_cohort_is_not_zero_conflict_evidence(self):
         policies = {
             "R1": [self.row("a", 40, 1), self.row("b", 45, 2)],

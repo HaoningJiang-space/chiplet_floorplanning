@@ -21,6 +21,9 @@ here; do not place these changes in adjacent placement repositories.
 - Before a major-stage ChatGPT review, finish local validation, commit, push and
   verify the remote SHA first. Give the reviewer that published SHA so it can
   autonomously inspect actual code/history through GitHub rather than summaries.
+- The frozen TTC v2 transient job may finish unchanged. Before any new use of
+  --prior-controls, integrate a mandatory control-protocol fingerprint check;
+  the retrospective cache audit does not yet enforce future cache admission.
 - During long research, commit independently validated local sub-milestones
   promptly. Keep unfinished experiments and failed controls explicitly labeled.
 - Maintain `main` as the only branch, locally and on `origin`. Commit validated

@@ -209,9 +209,9 @@ def main():
                 policy,
                 dict(
                     route_id=policy,
-                    timing_status="geometry_rejected",
+                    timing_status="routing_search_failed",
                     sta_invoked=False,
-                    routing=dict(geometry_legal=False, issues=["no route pair found"]),
+                    routing=dict(geometry_legal=None, issues=["no route pair found; infeasibility not proved"]),
                 ),
             )
             policies[policy].append({**fixed, **record})

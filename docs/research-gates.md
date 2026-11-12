@@ -25,13 +25,25 @@ Verify remote HEAD after each push. Earlier no-push records describe past policy
 For a fixed physical interface, package, workload and admissible routing resource
 set, when does timing exclude the thermally best placement by a resolvable margin?
 
-Let `F` be the geometrically/routing-legal placement set, and `F_timing` its subset
-passing complete timing and electrical requirements. For minimization of peak
-temperature, `DeltaT = min(F_timing) T - min(F) T >= 0`, provided both feasible
-sets are nonempty and the same thermal evaluator is used. An empty timing-feasible
-set is reported as infeasible, not as a finite temperature penalty. Search failure
-does not establish an empty feasible set. Approximate algorithms can violate this
+Let `G` contain geometrically/routing-legal placement-route pairs, `E` its subset
+passing electrical admission, and `F_timing` the subset of `E` passing complete
+setup/hold. Use the same thermal evaluator and fixed workload for every set.
+Report electrical admission cost `min(E) T - min(G) T` separately from the
+incremental timing cost `DeltaT = min(F_timing) T - min(E) T`. Their sum is the
+combined cost `min(F_timing) T - min(G) T`, and all are nonnegative when their
+sets are nonempty. The legacy `timing_constraint_thermal_penalty_k` already uses
+the electrical set as baseline; the earlier prose omitted that qualification.
+Empty required subsets yield null penalties with an explicit status. In a finite
+evaluated portfolio, emptiness only describes that portfolio, unless independent
+exhaustive coverage or a certificate establishes broader infeasibility. Search
+failure remains unknown. Approximate algorithms can violate the nonnegativity
 inequality numerically; small-case enumeration separates search error from physics.
+
+Temperature feedback is a different claim: with all other interface/process/
+voltage/routing/edge conditions fixed, compare paired changes
+`I_T(A,B) = [S_T(B)-S_T(A)] - [S_0(B)-S_0(A)]`. Neither a positive constraint
+temperature cost nor a slack/temperature rank tradeoff proves this interaction.
+Likewise neither proves a joint search algorithm beats equal-budget baselines.
 
 The decisive experiment changes one physical mechanism at a time: differential
 data/clock delay, shared-clock routing competition, localized Pad temperature,

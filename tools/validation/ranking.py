@@ -3,6 +3,7 @@
 import itertools
 import hashlib
 import json
+import math
 from pathlib import Path
 
 PRINTED_SLACK_TOLERANCE_NS = 2e-6
@@ -58,6 +59,66 @@ def admissible(rows):
     return [r for r in rows if r["timing_status"] == "analyzed"]
 
 
+def constraint_stages(rows):
+    """Separate electrical admission from setup/hold on evaluated route pairs.
+
+    Unsearched alternatives are outside this table. Empty observed subsets
+    never certify that the complete routing/design space is infeasible.
+    """
+    if len({r["id"] for r in rows}) != len(rows):
+        raise ValueError("candidate identities must be unique")
+    geometric, electrical, temporal, unknown_routing, unknown_electrical = [], [], [], [], []
+    for row in rows:
+        if not math.isfinite(row["peak_c"]):
+            raise ValueError("candidate temperature must be finite")
+        status = row["timing_status"]
+        implied = True if status in ("analyzed", "electrically_rejected") else (
+            False if status == "geometry_rejected" else None
+        )
+        legal = row.get("routing", {}).get("geometry_legal", implied)
+        if legal is not None and type(legal) is not bool:
+            raise ValueError("routing legality must be true, false or unknown")
+        if implied is not None and legal is not implied:
+            raise ValueError("routing audit contradicts timing status")
+        if legal is None:
+            unknown_routing.append(row["id"])
+        elif legal:
+            geometric.append(row)
+            if status not in ("analyzed", "electrically_rejected"):
+                unknown_electrical.append(row["id"])
+        if status == "analyzed":
+            if not all(math.isfinite(row[k]) for k in ("setup_slack_ns", "hold_slack_ns")):
+                raise ValueError("analyzed candidate needs finite setup and hold")
+            electrical.append(row)
+            if row["setup_slack_ns"] >= 0 and row["hold_slack_ns"] >= 0:
+                temporal.append(row)
+
+    def optimum(pool):
+        best = min(pool, key=lambda r: (r["peak_c"], r["id"])) if pool else None
+        return dict(candidate_count=len(pool), optimum_id=best["id"] if best else None,
+                    minimum_peak_c=best["peak_c"] if best else None)
+
+    stages = {k: optimum(v) for k, v in (("geometry_routing", geometric),
+                                        ("electrical", electrical), ("setup_hold", temporal))}
+
+    def penalty(after, before):
+        a, b = stages[after]["minimum_peak_c"], stages[before]["minimum_peak_c"]
+        return a - b if a is not None and b is not None else None
+
+    return dict(
+        scope="evaluated_candidate_route_pairs_only; no global feasibility or physical qualification claim",
+        stages=stages,
+        electrical_admission_penalty_k=penalty("electrical", "geometry_routing"),
+        setup_hold_incremental_penalty_k=penalty("setup_hold", "electrical"),
+        combined_admission_penalty_k=penalty("setup_hold", "geometry_routing"),
+        routing_unknown_ids=unknown_routing, electrical_unknown_ids=unknown_electrical,
+        feasible_set_status=("nonempty_evaluated_subset" if temporal else
+                             "unresolved_candidates_remain" if unknown_routing or unknown_electrical else
+                             "empty_evaluated_subset"),
+        complete_design_space_infeasibility_proven=False,
+    )
+
+
 def conflicts(rows, slack_tolerance_ns=PRINTED_SLACK_TOLERANCE_NS):
     pairs = []
     for a, b in itertools.combinations(admissible(rows), 2):
@@ -99,6 +160,7 @@ def pareto_ids(rows, slack_tolerance_ns=0):
 
 
 def summarize(rows):
+    stages = constraint_stages(rows)
     pool = admissible(rows)
     feasible = [r for r in pool if r["setup_slack_ns"] >= 0 and r["hold_slack_ns"] >= 0]
     thermal = min(pool, key=lambda r: (r["peak_c"], r["id"])) if pool else None
@@ -107,6 +169,7 @@ def summarize(rows):
     )
     pairs = conflicts(pool)
     return dict(
+        constraint_stages=stages,
         candidate_count=len(rows),
         geometrically_and_electrically_legal_count=len(pool),
         timing_feasible_count=len(feasible),
