@@ -50,6 +50,12 @@ layout routable, or give the absolute optimum temperature. It remains valid
 without evaluating the redundant thermal fields, under the frozen equivalence
 assumptions. For actual later evaluation use each class's canonical thermal
 representative rather than accumulating floating-coordinate differences.
+The thermal generator now enforces this by mapping rotations modulo 180 degrees
+for the declared centred uniform-core model only. All 462 individual chip
+half-turn checks over the 77 representatives produced exactly equal input
+dictionaries. Routing retains the original orientation and bump coordinates.
+The three previously admitted numerical case inputs remain exactly unchanged;
+see [canonical-input evidence](evidence/tap-thermal-canonical-inputs.json).
 
 This is a useful structural result and a negative algorithm-motivation result
 for the current abstraction. It does not support developing a new optimizer

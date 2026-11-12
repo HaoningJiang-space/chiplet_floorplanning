@@ -1,0 +1,12 @@
+{
+  "status": "exact_canonical_input_identity_verified",
+  "class_representatives": 77,
+  "individual_half_turn_checks": 462,
+  "previous_numerical_case_inputs_unchanged": [
+    "ascend910",
+    "micro150",
+    "multigpu"
+  ],
+  "scope": "thermal generator only; no routing orientation canonicalization",
+  "generator_sha256": "9f3c79af93e0860bb5494d52c0328e15f9708ccf6ee5b9b18f4786f156fc327d"
+}

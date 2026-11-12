@@ -28,6 +28,7 @@ class TapDecisionDomainTest(unittest.TestCase):
     def test_half_turn_reuse_covers_actual_power_and_material_fields(self):
         e=self.source();d=e['domain'];a=e['witness']['placement'];b=[dict(p,rotation_deg=(p['rotation_deg']+180)%360) for p in a]
         self.assertEqual(physical_geometry_key(d,a),physical_geometry_key(d,b))
+        self.assertEqual(make_case(d,a),make_case(d,b))
         ca,cb=(parse_case(make_case(d,p)) for p in (a,b))
         np.testing.assert_allclose(ca.mesh.x_edges_mm,cb.mesh.x_edges_mm,rtol=0,atol=1e-12)
         np.testing.assert_allclose(ca.mesh.y_edges_mm,cb.mesh.y_edges_mm,rtol=0,atol=1e-12)

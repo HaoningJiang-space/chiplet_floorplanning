@@ -17,8 +17,10 @@ def make_case(domain, placements, resolution=64):
         c=domain['chiplets'][p['id']];ring=c['bump_ring_um']/1000
         w,h=c['core_width_um']/1000,c['core_height_um']/1000
         bounds=box(domain,p)
+        # Canonicalize only the declared centred uniform-core thermal model.
+        # Routing keeps the original four-way orientation and actual bump map.
         chips.append(dict(id='chip'+str(p['id']),size_mm=dict(width=w+2*ring,height=h+2*ring),
-            placement_mm=dict(x=75+bounds[0]/2000,y=75+bounds[1]/2000),rotation_deg=p['rotation_deg'],
+            placement_mm=dict(x=75+bounds[0]/2000,y=75+bounds[1]/2000),rotation_deg=p['rotation_deg']%180,
             blocks=[dict(id='core',rect_mm=dict(x=ring,y=ring,width=w,height=h),power_w=c['power_w'],provenance=PROVENANCE)],ports_mm={}))
     def layer(name,t,k,side=50,materials=None):
         d=dict(id=name,thickness_mm=t,conductivity_w_mk=k,footprint='rectangle',rect_mm=dict(x=(200-side)/2,y=(200-side)/2,width=side,height=side))
