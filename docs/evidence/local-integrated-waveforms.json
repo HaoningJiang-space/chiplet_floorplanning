@@ -1,0 +1,1529 @@
+{
+  "complete": true,
+  "source_sha256": "31851f8fc47f89b0890680896ce48a2e9f2823e40167fc7292d0e495f3860faa",
+  "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+  "scope": "ideal prescribed linear driver waveform and constant Liberty pin C; no Pad or physical qualification",
+  "cases": [
+    {
+      "name": "reference_data_0_0_rise_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "5ab35dacd393df9bd135edc28254dbbc6902dfc3d84e2061ac5ea1cb9f0dfa40",
+      "waveform_sha256": "35c6c9ef8b953ebd26329fb44ad61787113527a60de29db029599c592ad5bcaa",
+      "source_slew_ps": 428.669006,
+      "sinks": [
+        {
+          "delay_ps": 0.5870430397401094,
+          "slew_20_80_ps": 428.6690059738729,
+          "simple_rc_delay_ps": 0.40690722757783593,
+          "difference_ps": 0.18013581216227345
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.894986249953573e-07,
+        "energy_normalized": 2.143548687729868e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 4.715756817315103e-16
+      }
+    },
+    {
+      "name": "reference_data_0_0_rise_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "af03f29714bdb4cb13dddaea432f73b26a0a7b294418d424c5bc1c90ccb5ad11",
+      "waveform_sha256": "7e0628be2792c8b4195e5090a03566351d043f8a369eab1f11c4d39932f2e4e9",
+      "source_slew_ps": 428.669006,
+      "sinks": [
+        {
+          "delay_ps": 0.5870430393788428,
+          "slew_20_80_ps": 428.6690060003061,
+          "simple_rc_delay_ps": 0.40690722757783593,
+          "difference_ps": 0.18013581180100688
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 8.404439876552115e-07,
+        "energy_normalized": 1.2905383225381512e-06,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 4.715757436773678e-16
+      }
+    },
+    {
+      "name": "reference_data_0_0_fall_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "fa3bd9e1de536fe9ac37e2cf8a7c3b89c6e5963910a39c8de505dbc5be09ce8f",
+      "waveform_sha256": "7b5d37ea13e1661655c4e1ba5697003f34b710523c417219018106abb7edbfbf",
+      "source_slew_ps": 184.253544,
+      "sinks": [
+        {
+          "delay_ps": 0.5870739471439124,
+          "slew_20_80_ps": 184.25354398818854,
+          "simple_rc_delay_ps": 0.40692865093829095,
+          "difference_ps": 0.18014529620562145
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.430552705999155e-07,
+        "energy_normalized": 6.973829667499708e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.0962715733344848e-15
+      }
+    },
+    {
+      "name": "reference_data_0_0_fall_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "f8b09444f1f576d3886dbf3240f6d36c1225e49394bf49f2a54affbdd546e37f",
+      "waveform_sha256": "c3b5f077fc42063849956b0888d61122035b66ad7f07653d166f493fd7907185",
+      "source_slew_ps": 184.253544,
+      "sinks": [
+        {
+          "delay_ps": 0.5870739466716235,
+          "slew_20_80_ps": 184.2535439981328,
+          "simple_rc_delay_ps": 0.40692865093829095,
+          "difference_ps": 0.18014529573333257
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.850365319899193e-07,
+        "energy_normalized": 7.342845449158186e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.0962715082277736e-15
+      }
+    },
+    {
+      "name": "reference_data_0_1_rise_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "b0f93b55d740647659ea561196acd79e8387d7e33df21d2a1bba944353d1ad3b",
+      "waveform_sha256": "2a99b5df248b0380f6265aa12f07f03abf0cbe5142e094cc05b6b9d15cf440e5",
+      "source_slew_ps": 441.856056,
+      "sinks": [
+        {
+          "delay_ps": 0.6302265443407506,
+          "slew_20_80_ps": 441.8560560097579,
+          "simple_rc_delay_ps": 0.4368397524115223,
+          "difference_ps": 0.19338679192922834
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.765226287652036e-07,
+        "energy_normalized": 1.1969901967477861e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 5.105847350482313e-16
+      }
+    },
+    {
+      "name": "reference_data_0_1_rise_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "9d8a8feeb9b2bbdc2a4e6a4dab4c6ad63d171c1180e785c8a11d43d39ca9c7fb",
+      "waveform_sha256": "64e44a873dc80582823a3f9996138cce96a5791062a1e5bf80f095746c263dfb",
+      "source_slew_ps": 441.856056,
+      "sinks": [
+        {
+          "delay_ps": 0.6302265445142785,
+          "slew_20_80_ps": 441.8560559999432,
+          "simple_rc_delay_ps": 0.4368397524115223,
+          "difference_ps": 0.1933867921027562
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 8.062383533059539e-07,
+        "energy_normalized": 9.853067242431566e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 5.105848508479077e-16
+      }
+    },
+    {
+      "name": "reference_data_0_1_fall_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "7555f851de2e5dcb0ecb7cc482a77728586b63d23b66a396c0a733707907fb5b",
+      "waveform_sha256": "49ff308d6bfee67c9c7adb5296a1112adb6d0e998ece347af8eeee7dd8691736",
+      "source_slew_ps": 189.704597,
+      "sinks": [
+        {
+          "delay_ps": 0.630258485770141,
+          "slew_20_80_ps": 189.7045970038721,
+          "simple_rc_delay_ps": 0.43686188658574404,
+          "difference_ps": 0.19339659918439694
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 5.069025460976313e-07,
+        "energy_normalized": 5.646912954856993e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.188263205929541e-15
+      }
+    },
+    {
+      "name": "reference_data_0_1_fall_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "1686db725ee6ad5d22d19830aa6a1c27511c76f0cdbcc2a619653b05da930a65",
+      "waveform_sha256": "511323f6f46764db7bf02afe7ba95f00bd9fd89764c931d8085c01959a3b4f1a",
+      "source_slew_ps": 189.704597,
+      "sinks": [
+        {
+          "delay_ps": 0.6302584773066333,
+          "slew_20_80_ps": 189.7045969984195,
+          "simple_rc_delay_ps": 0.43686188658574404,
+          "difference_ps": 0.19339659072088927
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.521946914234393e-07,
+        "energy_normalized": 7.049174442617603e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.1882628725278706e-15
+      }
+    },
+    {
+      "name": "reference_data_0_2_rise_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "72b9dc85fbf22c53f243530278839dad9469b5f6f6c331778959f0cb6fbbd12e",
+      "waveform_sha256": "d438f11d0c2a64bc35adf7aa2c7e62a781b4e5936a8e07e77844a149af4f76b2",
+      "source_slew_ps": 441.856086,
+      "sinks": [
+        {
+          "delay_ps": 0.6366712080967396,
+          "slew_20_80_ps": 441.856086012407,
+          "simple_rc_delay_ps": 0.44130685299481887,
+          "difference_ps": 0.19536435510192074
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.317576505189014e-07,
+        "energy_normalized": 1.334674941331752e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 5.230867211021395e-16
+      }
+    },
+    {
+      "name": "reference_data_0_2_rise_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "fdf875f78c8c808c963370db8e85222ac7b5623b4fedc4759a34471e6f9b8e55",
+      "waveform_sha256": "083c1bc6e0e0739ed0f8ca3c38535a20333b6eee62379917d1fde12eee16d17b",
+      "source_slew_ps": 441.856086,
+      "sinks": [
+        {
+          "delay_ps": 0.6366712083801795,
+          "slew_20_80_ps": 441.8560859999434,
+          "simple_rc_delay_ps": 0.44130685299481887,
+          "difference_ps": 0.19536435538536068
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.575524258567527e-07,
+        "energy_normalized": 9.496864944360131e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 5.230866901336674e-16
+      }
+    },
+    {
+      "name": "reference_data_0_2_fall_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "ad557d6dd7514ab626bdf9997e54e4be54952fbe91f14df0b9a1dba02e19283e",
+      "waveform_sha256": "64fa1244cd4f4a2f872bd3eb362672e654af9fab7c6319cc5c4c0012944521ee",
+      "source_slew_ps": 189.704597,
+      "sinks": [
+        {
+          "delay_ps": 0.6367031498261122,
+          "slew_20_80_ps": 189.70459700223964,
+          "simple_rc_delay_ps": 0.4413289871690405,
+          "difference_ps": 0.1953741626570717
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.814772059383042e-07,
+        "energy_normalized": 5.411497579099366e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.2173464380858055e-15
+      }
+    },
+    {
+      "name": "reference_data_0_2_fall_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "f2ce7b373a028c2c675add52fc6e09aa07a9f446a9a90503b30dddd6ae3d1933",
+      "waveform_sha256": "aab1e8f6f88cfefb72e529c2b91c646c6b423834c2edaa77b8cd0c39fd32f863",
+      "source_slew_ps": 189.704597,
+      "sinks": [
+        {
+          "delay_ps": 0.6367031411865787,
+          "slew_20_80_ps": 189.7045969991354,
+          "simple_rc_delay_ps": 0.4413289871690405,
+          "difference_ps": 0.19537415401753816
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.986244671285987e-07,
+        "energy_normalized": 5.528005846386714e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.217346402663441e-15
+      }
+    },
+    {
+      "name": "reference_data_0_3_rise_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "a9a306aff3702e09c42b4d4510fdba36d7ef5371e008adb4518c09fce4c9635a",
+      "waveform_sha256": "45517a3e352fff8af10fe6eace7c97cb1c58d65c23a65f4c1c0cac3ee191461d",
+      "source_slew_ps": 413.393497,
+      "sinks": [
+        {
+          "delay_ps": 0.5764697215759895,
+          "slew_20_80_ps": 413.3934970217833,
+          "simple_rc_delay_ps": 0.39957836413670145,
+          "difference_ps": 0.17689135743928805
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.579629435805369e-07,
+        "energy_normalized": 1.0118121425111486e-06,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 4.707540334653808e-16
+      }
+    },
+    {
+      "name": "reference_data_0_3_rise_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "8fba36378ed3bcd48813cf484efbe108ed5eede08e2bf29388a1d9ea91633227",
+      "waveform_sha256": "639f72c7fb8189ccb76c720ccad308ecd55dde036369f0ef2657a4d995627161",
+      "source_slew_ps": 413.393497,
+      "sinks": [
+        {
+          "delay_ps": 0.5764697244393657,
+          "slew_20_80_ps": 413.3934970002714,
+          "simple_rc_delay_ps": 0.39957836413670145,
+          "difference_ps": 0.17689136030266425
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.849034930517646e-07,
+        "energy_normalized": 1.984262387316936e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 4.707538967045844e-16
+      }
+    },
+    {
+      "name": "reference_data_0_3_fall_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "71fbd1c274c7ab5b1fdaf70ff824c7e14d1775496711c1e823d14ff564dc1113",
+      "waveform_sha256": "cd363ca72f4c71ce0445d11c0e22050abb065f0c19f41a4dee545324ea47f41f",
+      "source_slew_ps": 177.93920599999998,
+      "sinks": [
+        {
+          "delay_ps": 0.5765004875704083,
+          "slew_20_80_ps": 177.93920600304514,
+          "simple_rc_delay_ps": 0.3995996885497033,
+          "difference_ps": 0.176900799020705
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.995657905082458e-07,
+        "energy_normalized": 5.546098743102257e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.0927958183274953e-15
+      }
+    },
+    {
+      "name": "reference_data_0_3_fall_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "370fb1f954e654c9952450d9d53965538a03f5f9f013f12caca426669fa9a571",
+      "waveform_sha256": "556ab84b8cd11db99a644c73eed5c95a65b52f62b37dec7cf6b885e23a7492fe",
+      "source_slew_ps": 177.93920599999998,
+      "sinks": [
+        {
+          "delay_ps": 0.5765004889700109,
+          "slew_20_80_ps": 177.93920599895225,
+          "simple_rc_delay_ps": 0.3995996885497033,
+          "difference_ps": 0.17690080042030765
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 5.174907749520034e-07,
+        "energy_normalized": 5.681632019272622e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.0927955212148225e-15
+      }
+    },
+    {
+      "name": "reference_data_1_0_rise_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "ccdab214766d920d546c90ee7deb03e8da6622c4efa74aafa5c114bd7c818abb",
+      "waveform_sha256": "af003b7de12555e6dbe41b1c30f5d2cc7c33986956ba34c2c011dda83e39493d",
+      "source_slew_ps": 492.5161,
+      "sinks": [
+        {
+          "delay_ps": 0.8283506893771442,
+          "slew_20_80_ps": 492.5161000011866,
+          "simple_rc_delay_ps": 0.5741689449043242,
+          "difference_ps": 0.2541817444728199
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.898956893183398e-07,
+        "energy_normalized": 9.960356681970114e-08,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 6.805115704277359e-16
+      }
+    },
+    {
+      "name": "reference_data_1_0_rise_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "6051dba363cd8daac61c784447f78add89206eec965893d45c5029c28ad81640",
+      "waveform_sha256": "d5f890d973a3513142e263ea0103bc0b18924a89cb90d18df663725130df7109",
+      "source_slew_ps": 492.5161,
+      "sinks": [
+        {
+          "delay_ps": 0.8283506895425674,
+          "slew_20_80_ps": 492.5161000001059,
+          "simple_rc_delay_ps": 0.5741689449043242,
+          "difference_ps": 0.2541817446382431
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.143095290547016e-07,
+        "energy_normalized": 7.592828276849568e-08,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 6.805114829763974e-16
+      }
+    },
+    {
+      "name": "reference_data_1_0_fall_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "1d5c9dceb14b8ca6bd5c4eb113f3701b37132f6ef30eb229808cc616c55e3e0c",
+      "waveform_sha256": "c8754b8bb1a24bcbe98fa69fb2b6f3cea8240cd55976fd454243c76a293844c5",
+      "source_slew_ps": 210.64549699999998,
+      "sinks": [
+        {
+          "delay_ps": 0.8283876051007888,
+          "slew_20_80_ps": 210.64549699741846,
+          "simple_rc_delay_ps": 0.5741945341999265,
+          "difference_ps": 0.25419307090086235
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 3.165462932200436e-07,
+        "energy_normalized": 3.881581381948405e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.5895226618183924e-15
+      }
+    },
+    {
+      "name": "reference_data_1_0_fall_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "b9d7b78ad0d61cb3dcb529a5bc74570e36a20e0ee59b64fdd070021e239d1d75",
+      "waveform_sha256": "7382f21c3801f4fd208e3eae1680b5f20c0142c3ea8f81faf4ba70218bbc85ec",
+      "source_slew_ps": 210.64549699999998,
+      "sinks": [
+        {
+          "delay_ps": 0.8283876069375973,
+          "slew_20_80_ps": 210.6454970005293,
+          "simple_rc_delay_ps": 0.5741945341999265,
+          "difference_ps": 0.25419307273767083
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.6915061505479424e-07,
+        "energy_normalized": 5.34044518242981e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.5895227198365933e-15
+      }
+    },
+    {
+      "name": "reference_data_1_1_rise_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "2cebcf8d085607d624a785ff18fb4fba8430159fbca2bdb4023c1609afa1d49e",
+      "waveform_sha256": "b2263b28f0912c38585611f64d6ab3c66b2f2279d5ac117f29665583f78a5b56",
+      "source_slew_ps": 520.978749,
+      "sinks": [
+        {
+          "delay_ps": 0.8897852737665968,
+          "slew_20_80_ps": 520.9787489969561,
+          "simple_rc_delay_ps": 0.6167521539285884,
+          "difference_ps": 0.2730331198380083
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.675568642343913e-07,
+        "energy_normalized": 3.930795976627465e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 7.232057059702674e-16
+      }
+    },
+    {
+      "name": "reference_data_1_1_rise_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "d0b7447a882d830c963c74b4f03253006d31d136708db39ddec003955c621c5e",
+      "waveform_sha256": "6f607a0de8c205cb2fd20f1e921670c583505442184a9d4a03fceb9b39453c7a",
+      "source_slew_ps": 520.978749,
+      "sinks": [
+        {
+          "delay_ps": 0.8897852740261669,
+          "slew_20_80_ps": 520.9787490001173,
+          "simple_rc_delay_ps": 0.6167521539285884,
+          "difference_ps": 0.27303312009757846
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.934656388470167e-07,
+        "energy_normalized": 8.088579899102031e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 7.232057539580623e-16
+      }
+    },
+    {
+      "name": "reference_data_1_1_fall_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "26d58b0c1dbb1b89e87be70ddb9971a1c0b3b4bc76f5f4db7ace9de538f831a9",
+      "waveform_sha256": "dcf113da7d43a1d3213264dfcfd4c762f19f13de253f2d2a73bb35df41340ece",
+      "source_slew_ps": 222.410873,
+      "sinks": [
+        {
+          "delay_ps": 0.8898233610826756,
+          "slew_20_80_ps": 222.41087297490662,
+          "simple_rc_delay_ps": 0.6167785529854105,
+          "difference_ps": 0.27304480809726506
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.4855804916510176e-07,
+        "energy_normalized": 5.213623633806964e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.6923097662368192e-15
+      }
+    },
+    {
+      "name": "reference_data_1_1_fall_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "17ccfcabb665748d738ea6cec48e809ae75566e44ef67fe099584552a65cb65e",
+      "waveform_sha256": "eefafec09d95b031f10561c2e892c4a0a4ec5c7754d1460c6967bf0b6ad42e0f",
+      "source_slew_ps": 222.410873,
+      "sinks": [
+        {
+          "delay_ps": 0.8898233596578708,
+          "slew_20_80_ps": 222.41087300009227,
+          "simple_rc_delay_ps": 0.6167785529854105,
+          "difference_ps": 0.27304480667246034
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.662778670369644e-07,
+        "energy_normalized": 5.300211697280362e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.6923097641282473e-15
+      }
+    },
+    {
+      "name": "reference_data_1_2_rise_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "6f602921443a57ab10a7f74b9301285e6678cfb7f9c031742b65d91efb9c906e",
+      "waveform_sha256": "4f6cdce494b6b4e2c092e37cbc02a5b3c86aa5560cbf40984b19a4afd1972fe6",
+      "source_slew_ps": 507.79157900000007,
+      "sinks": [
+        {
+          "delay_ps": 0.8425581661947179,
+          "slew_20_80_ps": 507.7915790009053,
+          "simple_rc_delay_ps": 0.5840168173079179,
+          "difference_ps": 0.2585413488868
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.773587304213131e-07,
+        "energy_normalized": 5.261896311493906e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 6.837389922828701e-16
+      }
+    },
+    {
+      "name": "reference_data_1_2_rise_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "076616260122a96d2376993d4b61ccfe6573043ac01274de81a6495b389d08fd",
+      "waveform_sha256": "a50a33998ef95bfde7032bdbefa40ef1216714f358b0ff4425e1c27a11ef0d53",
+      "source_slew_ps": 507.79157900000007,
+      "sinks": [
+        {
+          "delay_ps": 0.8425581662203641,
+          "slew_20_80_ps": 507.7915790001133,
+          "simple_rc_delay_ps": 0.5840168173079179,
+          "difference_ps": 0.2585413489124462
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.03647601160383e-07,
+        "energy_normalized": 1.0638214405949228e-06,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 6.83738982048686e-16
+      }
+    },
+    {
+      "name": "reference_data_1_2_fall_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "1f88c4b1dbb49d9c8fe1bc27f1cd09580e83d8b5f6deffebc91920b6d75cb54a",
+      "waveform_sha256": "9b7b7eba8ad6aab8de07a2df6eb09eb10ce58da105319092ae23ef7fc897167b",
+      "source_slew_ps": 216.959819,
+      "sinks": [
+        {
+          "delay_ps": 0.8425952276479576,
+          "slew_20_80_ps": 216.9598189839142,
+          "simple_rc_delay_ps": 0.5840425055509733,
+          "difference_ps": 0.2585527220969843
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.552677481002815e-07,
+        "energy_normalized": 5.258705553201241e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.5986952867740823e-15
+      }
+    },
+    {
+      "name": "reference_data_1_2_fall_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "3bb146f3778175b22e8a93f39631e43a5a77c078fae9e35d829380a41a07deb5",
+      "waveform_sha256": "c65cdd2cdef89f987ef539313bc34faf5f3a69788d470a3449da2c7e8ea836dc",
+      "source_slew_ps": 216.959819,
+      "sinks": [
+        {
+          "delay_ps": 0.8425952263808045,
+          "slew_20_80_ps": 216.95981900073969,
+          "simple_rc_delay_ps": 0.5840425055509733,
+          "difference_ps": 0.2585527208298313
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.7323769368612873e-07,
+        "energy_normalized": 5.353346150703442e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.5986952600244077e-15
+      }
+    },
+    {
+      "name": "reference_data_1_3_rise_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "ccdab214766d920d546c90ee7deb03e8da6622c4efa74aafa5c114bd7c818abb",
+      "waveform_sha256": "af003b7de12555e6dbe41b1c30f5d2cc7c33986956ba34c2c011dda83e39493d",
+      "source_slew_ps": 492.5161,
+      "sinks": [
+        {
+          "delay_ps": 0.8283506893771442,
+          "slew_20_80_ps": 492.5161000011866,
+          "simple_rc_delay_ps": 0.5741689449043242,
+          "difference_ps": 0.2541817444728199
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.898956893183398e-07,
+        "energy_normalized": 9.960356681970114e-08,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 6.805115704277359e-16
+      }
+    },
+    {
+      "name": "reference_data_1_3_rise_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "6051dba363cd8daac61c784447f78add89206eec965893d45c5029c28ad81640",
+      "waveform_sha256": "d5f890d973a3513142e263ea0103bc0b18924a89cb90d18df663725130df7109",
+      "source_slew_ps": 492.5161,
+      "sinks": [
+        {
+          "delay_ps": 0.8283506895425674,
+          "slew_20_80_ps": 492.5161000001059,
+          "simple_rc_delay_ps": 0.5741689449043242,
+          "difference_ps": 0.2541817446382431
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.143095290547016e-07,
+        "energy_normalized": 7.592828276849568e-08,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 6.805114829763974e-16
+      }
+    },
+    {
+      "name": "reference_data_1_3_fall_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "1d5c9dceb14b8ca6bd5c4eb113f3701b37132f6ef30eb229808cc616c55e3e0c",
+      "waveform_sha256": "c8754b8bb1a24bcbe98fa69fb2b6f3cea8240cd55976fd454243c76a293844c5",
+      "source_slew_ps": 210.64549699999998,
+      "sinks": [
+        {
+          "delay_ps": 0.8283876051007888,
+          "slew_20_80_ps": 210.64549699741846,
+          "simple_rc_delay_ps": 0.5741945341999265,
+          "difference_ps": 0.25419307090086235
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 3.165462932200436e-07,
+        "energy_normalized": 3.881581381948405e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.5895226618183924e-15
+      }
+    },
+    {
+      "name": "reference_data_1_3_fall_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "b9d7b78ad0d61cb3dcb529a5bc74570e36a20e0ee59b64fdd070021e239d1d75",
+      "waveform_sha256": "7382f21c3801f4fd208e3eae1680b5f20c0142c3ea8f81faf4ba70218bbc85ec",
+      "source_slew_ps": 210.64549699999998,
+      "sinks": [
+        {
+          "delay_ps": 0.8283876069375973,
+          "slew_20_80_ps": 210.6454970005293,
+          "simple_rc_delay_ps": 0.5741945341999265,
+          "difference_ps": 0.25419307273767083
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.6915061505479424e-07,
+        "energy_normalized": 5.34044518242981e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.5895227198365933e-15
+      }
+    },
+    {
+      "name": "reference_forwarded_clock_fall_1ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "200849bdd8d3433e8420b513f3c0c324dd38f4e7e3ca431dd273164d61121a2c",
+      "waveform_sha256": "17c35767887b0c88573d2c3e0fd57961f4c9294af901ecc9186dcca4898f0366",
+      "source_slew_ps": 272.55848100000003,
+      "sinks": [
+        {
+          "delay_ps": 0.27249940004192563,
+          "slew_20_80_ps": 272.5584809621238,
+          "simple_rc_delay_ps": 0.188882168469303,
+          "difference_ps": 0.08361723157262262
+        },
+        {
+          "delay_ps": 0.4528953456841567,
+          "slew_20_80_ps": 272.5584810175319,
+          "simple_rc_delay_ps": 0.31392314141141797,
+          "difference_ps": 0.1389722042727387
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.200831046263775e-07,
+        "energy_normalized": 7.339488189861208e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 7.302386945829752e-16
+      }
+    },
+    {
+      "name": "reference_forwarded_clock_fall_0.5ps",
+      "input_receipt_sha256": "7afae6a5de9dd5a45852d7e7f5128a7d94b5567f40d6865c10139a09ae5ca78a",
+      "deck_sha256": "07fb750b2c2c1003e2144c37e6e0fe56c6bb7099de2924f9ebed479299c41046",
+      "waveform_sha256": "0f14490eb569b3082c5c4eb87b5eaf6370199cd860f2e6f23fe725872734939f",
+      "source_slew_ps": 272.55848100000003,
+      "sinks": [
+        {
+          "delay_ps": 0.27249936818007914,
+          "slew_20_80_ps": 272.5584810005286,
+          "simple_rc_delay_ps": 0.188882168469303,
+          "difference_ps": 0.08361719971077612
+        },
+        {
+          "delay_ps": 0.4528953592946583,
+          "slew_20_80_ps": 272.55848099917813,
+          "simple_rc_delay_ps": 0.31392314141141797,
+          "difference_ps": 0.13897221788324032
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 1.0720740919424017e-06,
+        "energy_normalized": 1.0846578832895965e-06,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 7.302386128115113e-16
+      }
+    },
+    {
+      "name": "feedback_data_0_0_rise_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "6b7e17f772444692e861af6a4015cd770931658e96975d16147dd28f272e5a4b",
+      "waveform_sha256": "e034d1c19f26f39c8e94d1fa7687f135dd73e5affecbe0a8b2af62ff6677367c",
+      "source_slew_ps": 416.853547,
+      "sinks": [
+        {
+          "delay_ps": 0.6767676684711343,
+          "slew_20_80_ps": 416.85354700332067,
+          "simple_rc_delay_ps": 0.4690996006186054,
+          "difference_ps": 0.20766806785252892
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.362208772711772e-07,
+        "energy_normalized": 6.929361917906247e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 5.590096431043762e-16
+      }
+    },
+    {
+      "name": "feedback_data_0_0_rise_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "7aac9e1645e0915b38d12ed33f08a31d6be4ce6b1fbb1c59d2695b0e60adcf4f",
+      "waveform_sha256": "a5212becda5bf2090172a4ac2d4ac7ed796aba712b2f868d70081f8403e7c2b7",
+      "source_slew_ps": 416.853547,
+      "sinks": [
+        {
+          "delay_ps": 0.6767676674774847,
+          "slew_20_80_ps": 416.85354700002773,
+          "simple_rc_delay_ps": 0.4690996006186054,
+          "difference_ps": 0.2076680668588793
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.807320687118182e-07,
+        "energy_normalized": 6.510107197854017e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 5.590095926828754e-16
+      }
+    },
+    {
+      "name": "feedback_data_0_0_fall_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "fc124719cb1ed594b35cecb75e47bfee2b06ee9af76560b734b30853864c0baa",
+      "waveform_sha256": "d2f461d216940110ac52838345deb30f8c939474cc77d394c5936a225d662e60",
+      "source_slew_ps": 194.335103,
+      "sinks": [
+        {
+          "delay_ps": 0.6768492304999318,
+          "slew_20_80_ps": 194.3351030448586,
+          "simple_rc_delay_ps": 0.46915613364822595,
+          "difference_ps": 0.20769309685170592
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.410212161496483e-07,
+        "energy_normalized": 5.016299959335804e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.1982492538984173e-15
+      }
+    },
+    {
+      "name": "feedback_data_0_0_fall_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "d7f7c39cd448841f55bdbb1af2a62755bc42587f5aa2e8b84aa2053510964a2b",
+      "waveform_sha256": "92d3ae4d809d46807ba566803d2fea52acd0668117639222b411e0656d2a8e57",
+      "source_slew_ps": 194.335103,
+      "sinks": [
+        {
+          "delay_ps": 0.6768492274004667,
+          "slew_20_80_ps": 194.3351030002402,
+          "simple_rc_delay_ps": 0.46915613364822595,
+          "difference_ps": 0.2076930937522408
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.616074968427316e-07,
+        "energy_normalized": 7.168331112928328e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.1982489703071738e-15
+      }
+    },
+    {
+      "name": "feedback_data_0_1_rise_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "90669811c6086fb4306aa1aa33c307a9510febd07e2fb2b4f778f9b3cd5dce1f",
+      "waveform_sha256": "ea10a3366a2d5c6d04da372d7fddf6edd9908124300cf134ecde0e0aed4623da",
+      "source_slew_ps": 429.678261,
+      "sinks": [
+        {
+          "delay_ps": 0.7265116977163144,
+          "slew_20_80_ps": 429.67826101407536,
+          "simple_rc_delay_ps": 0.5035795348726012,
+          "difference_ps": 0.22293216284371326
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.178921068736268e-07,
+        "energy_normalized": 1.0563275014421127e-06,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 6.052320555958431e-16
+      }
+    },
+    {
+      "name": "feedback_data_0_1_rise_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "d073b92a49b40d713f2d7429590ffcb5ac2775a48a60fc8bf32edb9caff527e2",
+      "waveform_sha256": "edef56fc691b69a3476265d5707cc82c72317b4c1f018c22083df98650b1c987",
+      "source_slew_ps": 429.678261,
+      "sinks": [
+        {
+          "delay_ps": 0.7265116976216124,
+          "slew_20_80_ps": 429.6782609999356,
+          "simple_rc_delay_ps": 0.5035795348726012,
+          "difference_ps": 0.22293216274901123
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.476431010644666e-07,
+        "energy_normalized": 2.1386718443514118e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 6.052318243174389e-16
+      }
+    },
+    {
+      "name": "feedback_data_0_1_fall_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "e9d6772d879274409be0b764861db76605d3134d6a93e2ef25415b2a630669cb",
+      "waveform_sha256": "d59925516dc0ec00341c25d5df0b5b95a4ef945f8971bf0640b281cc832ee98d",
+      "source_slew_ps": 200.12036,
+      "sinks": [
+        {
+          "delay_ps": 0.7265959699576108,
+          "slew_20_80_ps": 200.12036001750837,
+          "simple_rc_delay_ps": 0.5036379494026464,
+          "difference_ps": 0.22295802055496441
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.879650381807797e-07,
+        "energy_normalized": 5.521788065524217e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.2985208318478894e-15
+      }
+    },
+    {
+      "name": "feedback_data_0_1_fall_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "673ada67c4f4bfea8874fe68c773c722185fafaaf1948de226709be49f0581d4",
+      "waveform_sha256": "091dfab444bbdeb31cac3bbc351a3f4905e893c53414f988069b231c51565ceb",
+      "source_slew_ps": 200.12036,
+      "sinks": [
+        {
+          "delay_ps": 0.7265959720152981,
+          "slew_20_80_ps": 200.1203599996853,
+          "simple_rc_delay_ps": 0.5036379494026464,
+          "difference_ps": 0.22295802261265177
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.293351837314993e-07,
+        "energy_normalized": 6.87715184142902e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.2985206990401542e-15
+      }
+    },
+    {
+      "name": "feedback_data_0_2_rise_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "67092d52c70d14a74380decb9cdcc37fc42fd0e17aa6df56bc3b2bdae2cbdd9c",
+      "waveform_sha256": "d8ce5ef85f03f8eaffd872ac3997e223768cd72c6291ce646f8496dd9ac9677d",
+      "source_slew_ps": 429.67346299999997,
+      "sinks": [
+        {
+          "delay_ps": 0.7339010463884854,
+          "slew_20_80_ps": 429.673463010569,
+          "simple_rc_delay_ps": 0.5087014410745591,
+          "difference_ps": 0.2251996053139264
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.766187235151203e-07,
+        "energy_normalized": 8.864077818675653e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 6.200394064498003e-16
+      }
+    },
+    {
+      "name": "feedback_data_0_2_rise_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "bc77c8cfe9f1c16f7ab4fb77daad931b83ffa6b829aa47edfc07e126142037da",
+      "waveform_sha256": "2b111ccb77587750f2d5fe21d04d53ee5dbc92fe0095d7e790a9bb2edf00e45a",
+      "source_slew_ps": 429.67346299999997,
+      "sinks": [
+        {
+          "delay_ps": 0.7339010462662499,
+          "slew_20_80_ps": 429.6734629998963,
+          "simple_rc_delay_ps": 0.5087014410745591,
+          "difference_ps": 0.22519960519169085
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.023746315802678e-07,
+        "energy_normalized": 1.491757334254092e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 6.200390969954852e-16
+      }
+    },
+    {
+      "name": "feedback_data_0_2_fall_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "5140ea37a5338309eecb515e053064189a933c17e795a7d6e70824d69fb28b39",
+      "waveform_sha256": "47b3ac50fe21f1792440d2c4f74df3685742161eb5bab24549f37201a8447f84",
+      "source_slew_ps": 200.124457,
+      "sinks": [
+        {
+          "delay_ps": 0.7339853180378109,
+          "slew_20_80_ps": 200.12445701651248,
+          "simple_rc_delay_ps": 0.5087598553007685,
+          "difference_ps": 0.2252254627370424
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.6391449406588685e-07,
+        "energy_normalized": 5.299933312042588e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.330231531138189e-15
+      }
+    },
+    {
+      "name": "feedback_data_0_2_fall_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "c27fea34d3fa74e93ab01b1589b0fae9ba808b9f500207ce5c40b8b7dbf67c71",
+      "waveform_sha256": "f664d884aa052208a3549ad5a298cc47104817185a67a4e412c54f1444f1b95a",
+      "source_slew_ps": 200.124457,
+      "sinks": [
+        {
+          "delay_ps": 0.7339853202595337,
+          "slew_20_80_ps": 200.12445699974768,
+          "simple_rc_delay_ps": 0.5087598553007685,
+          "difference_ps": 0.2252254649587652
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 5.948461012067331e-07,
+        "energy_normalized": 6.547696616077317e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.3302314738234187e-15
+      }
+    },
+    {
+      "name": "feedback_data_0_3_rise_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "ab8139ed07bb51cdb3c7e4a5ba6d2fc29835dc6bc47db2242d4bb6e3ac6eb60b",
+      "waveform_sha256": "4ad6af4b7fe446ad77db900bd32979fa660ddbb64afd3573d626a6f87d3c28c4",
+      "source_slew_ps": 401.985347,
+      "sinks": [
+        {
+          "delay_ps": 0.6644743649776297,
+          "slew_20_80_ps": 401.9853469887931,
+          "simple_rc_delay_ps": 0.46057853233654367,
+          "difference_ps": 0.20389583264108602
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.009653328879524e-07,
+        "energy_normalized": 1.0082330166033221e-06,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 5.580122777323142e-16
+      }
+    },
+    {
+      "name": "feedback_data_0_3_rise_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "fbd62f01134bd14bc277ddb3ab2218ccb8f049eaba04c3545c08051194bc8917",
+      "waveform_sha256": "2095baa3f0b936bf11cb2f24ce2d51f05381e50120e4322fb5362198da06e706",
+      "source_slew_ps": 401.985347,
+      "sinks": [
+        {
+          "delay_ps": 0.6644743645354279,
+          "slew_20_80_ps": 401.9853469999965,
+          "simple_rc_delay_ps": 0.46057853233654367,
+          "difference_ps": 0.20389583219888419
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 7.277489518443664e-07,
+        "energy_normalized": 1.2605964217719842e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 5.580120009204156e-16
+      }
+    },
+    {
+      "name": "feedback_data_0_3_fall_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "457f0a774d99accc2c0af5e71c5e79a21d6598d93567dc22a2168542c8c34ad2",
+      "waveform_sha256": "3cd2aaa7c3c3bc69846f6b4994c230c2edae6c8654dac18e4384fe33bff2157e",
+      "source_slew_ps": 187.644333,
+      "sinks": [
+        {
+          "delay_ps": 0.6645555447415963,
+          "slew_20_80_ps": 187.6443330136412,
+          "simple_rc_delay_ps": 0.46063480355572944,
+          "difference_ps": 0.2039207411858668
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.812869994520262e-07,
+        "energy_normalized": 5.429249101612724e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.1945573877447483e-15
+      }
+    },
+    {
+      "name": "feedback_data_0_3_fall_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "4dfdd0d0c29d118c18a0d56f843f56217b21d5574f6462f8596570cfa6e9de69",
+      "waveform_sha256": "37bc00bbfa03bf9ffd5e541c379f0f1ae9b5a5bef9c008db2627c93b89d5ba1a",
+      "source_slew_ps": 187.644333,
+      "sinks": [
+        {
+          "delay_ps": 0.6645555467776898,
+          "slew_20_80_ps": 187.64433299995542,
+          "simple_rc_delay_ps": 0.46063480355572944,
+          "difference_ps": 0.20392074322196033
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.995463427209513e-07,
+        "energy_normalized": 5.561977161654668e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.1945570106529137e-15
+      }
+    },
+    {
+      "name": "feedback_data_1_0_rise_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "bf28eb0c41a718d45aff330d491040f9910edbb473b7476834285f7bd05cc08d",
+      "waveform_sha256": "c3d18b00e50719bae40fab664ef6f2dcb3c0a917a5866baf5ada6668596ecd59",
+      "source_slew_ps": 478.944272,
+      "sinks": [
+        {
+          "delay_ps": 0.9551391747744109,
+          "slew_20_80_ps": 478.94427199348223,
+          "simple_rc_delay_ps": 0.6620520259568496,
+          "difference_ps": 0.29308714881756126
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.379391504924385e-07,
+        "energy_normalized": 4.4901012239303275e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 8.068496001145774e-16
+      }
+    },
+    {
+      "name": "feedback_data_1_0_rise_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "324d38ced9210f3b4b2d8d9c033cdfe526bdfed1057e95478b33db4305a69b61",
+      "waveform_sha256": "1a70d048164b05c4eea41c6fbea4fd9e794f32ea0851a0c1fc6081d2da1e99e7",
+      "source_slew_ps": 478.944272,
+      "sinks": [
+        {
+          "delay_ps": 0.9551391745983295,
+          "slew_20_80_ps": 478.94427199992805,
+          "simple_rc_delay_ps": 0.6620520259568496,
+          "difference_ps": 0.2930871486414799
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.623194610461344e-07,
+        "energy_normalized": 7.31774078804751e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 8.068496114370042e-16
+      }
+    },
+    {
+      "name": "feedback_data_1_0_fall_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "6e241565d147d8b19524d3205a5631e35f942a23e5bfd5db6665e62dd28312ae",
+      "waveform_sha256": "f4ec90817da3d7051d91e2963a08df5d26c797951e9d64aea1a2f6589b1640fc",
+      "source_slew_ps": 222.346544,
+      "sinks": [
+        {
+          "delay_ps": 0.9552365373264871,
+          "slew_20_80_ps": 222.3465439802351,
+          "simple_rc_delay_ps": 0.662119511302013,
+          "difference_ps": 0.2931170260244741
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.3653492720393624e-07,
+        "energy_normalized": 5.177635744106747e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.7363472341567527e-15
+      }
+    },
+    {
+      "name": "feedback_data_1_0_fall_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "8cccb3183ac4dbac80f3ebcf6bb9b47d70b755ac94854df1777f1dbdf9c27e9b",
+      "waveform_sha256": "1b9593e629ddd08074cd131b89a01644fe7a3744fffb46cbe8eb4c7943807bb5",
+      "source_slew_ps": 222.346544,
+      "sinks": [
+        {
+          "delay_ps": 0.9552365354538739,
+          "slew_20_80_ps": 222.34654399976296,
+          "simple_rc_delay_ps": 0.662119511302013,
+          "difference_ps": 0.2931170241518609
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 5.59912216925699e-07,
+        "energy_normalized": 6.311781106049877e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.7363472037953337e-15
+      }
+    },
+    {
+      "name": "feedback_data_1_1_rise_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "e4be12256c0ae068eac32fd1699218afe0d1f1bf31c4aca22d796ad70c727874",
+      "waveform_sha256": "2c8e187b23d16390a36e194977dffdcefc7e6c5bd399911f2edd84e778063e2f",
+      "source_slew_ps": 506.630063,
+      "sinks": [
+        {
+          "delay_ps": 1.025997580362259,
+          "slew_20_80_ps": 506.63006300601967,
+          "simple_rc_delay_ps": 0.7111673300013102,
+          "difference_ps": 0.31483025036094875
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.207883007083427e-07,
+        "energy_normalized": 5.123327650688609e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 8.574528698283548e-16
+      }
+    },
+    {
+      "name": "feedback_data_1_1_rise_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "f46145c9061f394afb4878b28a0e7fbe59575679c2d65a51f9cc156c41f22973",
+      "waveform_sha256": "061622f5cd8836afdadb652313ec3d3ec05862f105f19e293b208f6f7c061dca",
+      "source_slew_ps": 506.630063,
+      "sinks": [
+        {
+          "delay_ps": 1.0259975801423238,
+          "slew_20_80_ps": 506.63006299989297,
+          "simple_rc_delay_ps": 0.7111673300013102,
+          "difference_ps": 0.31483025014101357
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.47031745043445e-07,
+        "energy_normalized": 9.897279149178812e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 8.574527759364504e-16
+      }
+    },
+    {
+      "name": "feedback_data_1_1_fall_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "266a74a0f89de38461fd48d18d0c2253aec352c96fa5a121bce748344c84854c",
+      "waveform_sha256": "d33d4f424ba8658ae2c0e0c8dfc4b5effe785f38094b7dfc19532d3c48808acc",
+      "source_slew_ps": 234.828666,
+      "sinks": [
+        {
+          "delay_ps": 1.026098054978608,
+          "slew_20_80_ps": 234.828665996216,
+          "simple_rc_delay_ps": 0.7112369738816394,
+          "difference_ps": 0.3148610810969686
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.1995410484758856e-07,
+        "energy_normalized": 5.008575090895845e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.848115392844527e-15
+      }
+    },
+    {
+      "name": "feedback_data_1_1_fall_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "6d9960e8b52e6cfd00ad94353888b3dda42743cd800147bebeed18e04dcd9921",
+      "waveform_sha256": "219e8e8a5f52b99324f1712ec445c06070163995adfe4e2b2951e1282bcf4efc",
+      "source_slew_ps": 234.828666,
+      "sinks": [
+        {
+          "delay_ps": 1.0260980551525245,
+          "slew_20_80_ps": 234.82866599984465,
+          "simple_rc_delay_ps": 0.7112369738816394,
+          "difference_ps": 0.314861081270885
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.517155892796982e-07,
+        "energy_normalized": 5.208704344333294e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.8481150809017913e-15
+      }
+    },
+    {
+      "name": "feedback_data_1_2_rise_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "3c052959a2666e811802bf93684a66b4257b5ce583b8e30961facf73a506af12",
+      "waveform_sha256": "6ef428fc70273869deb694659459ea8d205c7ec85f536b13ee0883742b869ced",
+      "source_slew_ps": 493.80701799999997,
+      "sinks": [
+        {
+          "delay_ps": 0.9715176609824683,
+          "slew_20_80_ps": 493.8070180073903,
+          "simple_rc_delay_ps": 0.6734047275325121,
+          "difference_ps": 0.2981129334499561
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.299167346206763e-07,
+        "energy_normalized": 2.726529757855689e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 8.106203431793294e-16
+      }
+    },
+    {
+      "name": "feedback_data_1_2_rise_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "7b92412e6b4ce29628ac4e3acb2e8c0fe67b6111a06603f1ab8eeaf4136c74c1",
+      "waveform_sha256": "f947f320a27a7382ae444740110cbb1bd3ceca15f55a5fef22e45dc51b18cea6",
+      "source_slew_ps": 493.80701799999997,
+      "sinks": [
+        {
+          "delay_ps": 0.9715176608930953,
+          "slew_20_80_ps": 493.8070179999673,
+          "simple_rc_delay_ps": 0.6734047275325121,
+          "difference_ps": 0.29811293336058314
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.565041253309878e-07,
+        "energy_normalized": 2.878295626928727e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 8.106201382516852e-16
+      }
+    },
+    {
+      "name": "feedback_data_1_2_fall_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "c649d00b6cd64449d574b75fadfcbf819e3823d6bcc47e77d2519ec9d926074f",
+      "waveform_sha256": "e8772b22b91466a82e2c2ab451b6fb8d85e06e036b5d59ea05664602e761722b",
+      "source_slew_ps": 229.04205299999998,
+      "sinks": [
+        {
+          "delay_ps": 0.971615443717766,
+          "slew_20_80_ps": 229.04205299208385,
+          "simple_rc_delay_ps": 0.6734725047416189,
+          "difference_ps": 0.2981429389761471
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.3994157007160016e-07,
+        "energy_normalized": 5.180694739479225e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.7460430866123e-15
+      }
+    },
+    {
+      "name": "feedback_data_1_2_fall_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "07a367ed7424a582785a979ba85ee18e195914d50e77117e8c85a53d94fb79ba",
+      "waveform_sha256": "5844ead3ca0f77b3883307dbe8f19731ca8c9a6f66ca73ab3883ce6032e713c7",
+      "source_slew_ps": 229.04205299999998,
+      "sinks": [
+        {
+          "delay_ps": 0.9716154427815149,
+          "slew_20_80_ps": 229.04205300000308,
+          "simple_rc_delay_ps": 0.6734725047416189,
+          "difference_ps": 0.298142938039896
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 5.647154365165869e-07,
+        "energy_normalized": 6.327430722335716e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.7460428332836753e-15
+      }
+    },
+    {
+      "name": "feedback_data_1_3_rise_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "1b234ee3ab21587ad47a69955412e45ebfdaf65709654d600d70039c590d46fb",
+      "waveform_sha256": "f11d538180b04cdbe401b530c769178faa2dc863ceb9ae7da565abef3fa9d8ad",
+      "source_slew_ps": 478.950441,
+      "sinks": [
+        {
+          "delay_ps": 0.9552300560824456,
+          "slew_20_80_ps": 478.9504409934212,
+          "simple_rc_delay_ps": 0.6621150200924166,
+          "difference_ps": 0.2931150359900289
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.379379212607775e-07,
+        "energy_normalized": 4.595364075686236e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 8.06873783043922e-16
+      }
+    },
+    {
+      "name": "feedback_data_1_3_rise_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "4dbaf0c8a524372d047ddfb70a3552867258d951c5c41ed75cd8a7dfa09ac060",
+      "waveform_sha256": "7791f4b0c3fa9a36645512d64b71e0698228ef50ffd671a33deaeb692ffc0fc7",
+      "source_slew_ps": 478.950441,
+      "sinks": [
+        {
+          "delay_ps": 0.9552300559543259,
+          "slew_20_80_ps": 478.9504409999614,
+          "simple_rc_delay_ps": 0.6621150200924166,
+          "difference_ps": 0.2931150358619092
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.623134218448752e-07,
+        "energy_normalized": 7.573662110647234e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 8.068737846395021e-16
+      }
+    },
+    {
+      "name": "feedback_data_1_3_fall_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "6f30c8fa57a95c3661db814d08f790a9778d077e715985b7ac031fb7be8b6a79",
+      "waveform_sha256": "6ae72b96426da995874f20910ce58eaf03b31a99e062b66eee4f334e8cd70244",
+      "source_slew_ps": 222.341225,
+      "sinks": [
+        {
+          "delay_ps": 0.955327466865441,
+          "slew_20_80_ps": 222.34122498693776,
+          "simple_rc_delay_ps": 0.6621825391954985,
+          "difference_ps": 0.29314492766994243
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 5.394556706294317e-07,
+        "energy_normalized": 6.211801172570008e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.7364631551438822e-15
+      }
+    },
+    {
+      "name": "feedback_data_1_3_fall_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "9d3a4df2fcb3dd41eddc6c17556f5f7a7b52aaea8ff9577e762a03be7628f941",
+      "waveform_sha256": "86e8a9a4b08c70261f6954fe020e5375dba6d3b6b3d99bf2784a9e6a5893d40a",
+      "source_slew_ps": 222.341225,
+      "sinks": [
+        {
+          "delay_ps": 0.9553274654647836,
+          "slew_20_80_ps": 222.34122499996133,
+          "simple_rc_delay_ps": 0.6621825391954985,
+          "difference_ps": 0.29314492626928507
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 4.5302835237626345e-07,
+        "energy_normalized": 5.239660827198349e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 1.736462792948985e-15
+      }
+    },
+    {
+      "name": "feedback_forwarded_clock_fall_1ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "b30527b4acda3b40bd41140a99952636b842eed80e75ea15d1b95448630a7c10",
+      "waveform_sha256": "875bd55008b8c04bead41b50c18263cd2454dec635ca6bd4b46c13fb56a7d7e6",
+      "source_slew_ps": 288.644493,
+      "sinks": [
+        {
+          "delay_ps": 0.31525140831867304,
+          "slew_20_80_ps": 288.6444930816894,
+          "simple_rc_delay_ps": 0.2185156323981101,
+          "difference_ps": 0.09673577592056297
+        },
+        {
+          "delay_ps": 0.5230246387612492,
+          "slew_20_80_ps": 288.64449296522133,
+          "simple_rc_delay_ps": 0.36253305222025023,
+          "difference_ps": 0.16049158654099896
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 8.520576954621752e-07,
+        "energy_normalized": 8.674537902517902e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 7.97479668857081e-16
+      }
+    },
+    {
+      "name": "feedback_forwarded_clock_fall_0.5ps",
+      "input_receipt_sha256": "750d5b5e2cd25075c95e70030a00292234ff5550af4932be4e5c8636ea49a3fe",
+      "deck_sha256": "aa842510ed7a8021c5af42f6bcb22d385f92f56373b9918bb64a8d7ec9f877e9",
+      "waveform_sha256": "f96ad2ddd31de73f3e62c6e96edf4f64513751cc9138705fa1be87b27d52d81c",
+      "source_slew_ps": 288.644493,
+      "sinks": [
+        {
+          "delay_ps": 0.3152514192074629,
+          "slew_20_80_ps": 288.64449299940225,
+          "simple_rc_delay_ps": 0.2185156323981101,
+          "difference_ps": 0.09673578680935284
+        },
+        {
+          "delay_ps": 0.5230246366067504,
+          "slew_20_80_ps": 288.64449300179643,
+          "simple_rc_delay_ps": 0.36253305222025023,
+          "difference_ps": 0.16049158438650016
+        }
+      ],
+      "conservation": {
+        "charge_normalized": 6.892404429380221e-07,
+        "energy_normalized": 7.032404688063873e-07,
+        "accepted": true,
+        "reversed_source_current_rejected": true,
+        "resistor_heat_j": 7.974796788196287e-16
+      }
+    }
+  ],
+  "conservation_passed": true
+}

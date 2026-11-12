@@ -92,6 +92,50 @@ on uncertain material/contact/convection parameters.
 
 ## Baselines and scientific interpretation
 
+### Independent finite-ramp RC diagnostic
+
+The nominal optimal witness now has an independent ngspice replay of all eight
+data lanes (rise/fall) and both sinks of the shared falling capture-clock tree,
+at reference and feedback temperatures. Two maximum transient steps, 1 ps and
+0.5 ps, give 68 simulations. The replay uses the saved unique conductor R/C and
+polarity-specific Liberty receiver capacitance, with prescribed linear source
+ramps matching the reported 20--80% output slew. It does not simulate transistor
+drivers, receiver nonlinear capacitance, package inductance or actual Pad cells.
+
+At every saved time, the global charge check compares `sum C*(V-V_initial)`
+with integrated source current. The energy check compares the change in
+`sum C*V^2/2` plus integrated `sum (Va-Vb)^2/R` with integrated source power.
+Falling edges retain initial stored energy. Normalized maximum charge/energy
+residuals are 1.073e-6 and 1.291e-6, below the predeclared 1e-4 numerical gate.
+All 68 reversed-source-current negative controls fail. These are global
+balances of the declared passive RC circuit, not full electronic energy closure
+or proof of per-node KCL accuracy from sampled waveforms.
+
+Finite-ramp 50% channel delays exceed the STA simple-RC values by
+0.0836--0.3149 ps. Halving the maximum step changes reported delays/slews by
+at most 8.23e-8 ps in this replay; this observation is not a rigorous error bound.
+The direction agrees with the slow-ramp limit: a single RC driven by a ramp of
+duration `Tr` has `vout/Vdd=(t-tau*(1-exp(-t/tau)))/Tr` during the ramp.
+For `Tr >> tau`, the threshold delay tends to `tau`, whereas the step-response
+50% delay is `ln(2)*tau`. The channel moment identity alone therefore cannot
+validate the finite-input waveform approximation. This diagnostic does not
+replace production STA or establish a slack correction/bound for real drivers.
+
+Reproduce locally with:
+
+```powershell
+python tools/audit_integrated_waveforms.py results/physical-calibration/integrated-witness-v1/nominal_slot1_rot180_witness --output results/integrated-waveforms
+```
+
+The [waveform evidence](evidence/local-integrated-waveforms.json) retains
+individual metrics and input/deck/waveform hashes. Raw node voltages, source
+currents and logs remain in `results/physical-calibration/integrated-waveforms-v1`.
+190 existing unit checks and the basic CLI passed after this diagnostic addition.
+An earlier exploratory run with startup-library errors remains separately
+preserved and was not admitted. Next admission requires matched transistor
+drivers and a physically justified channel/return path; the present result
+does not resolve the existing Pad/Liberty mismatch.
+
 Thermal-first, timing-first and sequential filtering use the same original
 24 evaluator calls per condition and find the same feasible minimum. These
 full-budget traversal controls establish no efficiency or optimizer advantage.
