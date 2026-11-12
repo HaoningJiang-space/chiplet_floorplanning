@@ -1,0 +1,487 @@
+{
+  "status": "case_source_and_declared_model_scope_checked_not_complete_physical_validation",
+  "analyzed_commit": "ec10483d9cbd40c5766157a448ea613226881e2a",
+  "fetch_succeeded": true,
+  "manifest_sha256": "02a2d53c8945def7e280c5f2f89aefc574ba2dc49141e80df54f2f76e46ce404",
+  "tap_source_commit": "3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb",
+  "atplace_source_commit": "fe3dbfdaf78dc0ddeac3a2cfc3a85ff0971f88df",
+  "cases": [
+    {
+      "case": "ascend910",
+      "chiplets": 6,
+      "source_config": "https://github.com/bu-icsg/TAP-2.5D/blob/3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb/configs/sys_ascend910.cfg",
+      "source_geometry_power_demands_preserved": true,
+      "interposer_side_mm": 50.0,
+      "total_power_w": 350.0,
+      "ambient_c": 45,
+      "top_area_m2": 0.04,
+      "top_h_w_m2k": 2777.777777777778,
+      "convection_surface_resistance_k_w": 0.009,
+      "steady_mean_top_surface_rise_k": 3.15,
+      "power_plane_midheight_mm": 0.465,
+      "electrical_links": 0,
+      "port_records": 0,
+      "frozen_package_layers": [
+        {
+          "id": "substrate",
+          "thickness_mm": 0.2,
+          "conductivity_w_mk": 0.3003003003003003,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "c4",
+          "thickness_mm": 0.07,
+          "conductivity_w_mk": 70.76666666666668,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "interposer",
+          "thickness_mm": 0.11,
+          "conductivity_w_mk": 112.0,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "microbumps",
+          "thickness_mm": 0.01,
+          "conductivity_w_mk": 1.6,
+          "chip_material_overrides": {
+            "chip0": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip1": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip2": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip3": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip4": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip5": {
+              "conductivity_w_mk": 124.56296296296298
+            }
+          },
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "dies",
+          "thickness_mm": 0.15,
+          "conductivity_w_mk": 1.6,
+          "chip_material_overrides": {
+            "chip0": {
+              "conductivity_w_mk": 100
+            },
+            "chip1": {
+              "conductivity_w_mk": 100
+            },
+            "chip2": {
+              "conductivity_w_mk": 100
+            },
+            "chip3": {
+              "conductivity_w_mk": 100
+            },
+            "chip4": {
+              "conductivity_w_mk": 100
+            },
+            "chip5": {
+              "conductivity_w_mk": 100
+            }
+          },
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "tim",
+          "thickness_mm": 0.02,
+          "conductivity_w_mk": 4,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "spreader",
+          "thickness_mm": 1,
+          "conductivity_w_mk": 400,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 50.0,
+            "y": 50.0,
+            "width": 100,
+            "height": 100
+          }
+        },
+        {
+          "id": "sink",
+          "thickness_mm": 6.9,
+          "conductivity_w_mk": 400,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 200,
+            "height": 200
+          }
+        }
+      ]
+    },
+    {
+      "case": "micro150",
+      "chiplets": 8,
+      "source_config": "https://github.com/bu-icsg/TAP-2.5D/blob/3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb/configs/sys_micro150.cfg",
+      "source_geometry_power_demands_preserved": true,
+      "interposer_side_mm": 50.0,
+      "total_power_w": 680.0,
+      "ambient_c": 45,
+      "top_area_m2": 0.04,
+      "top_h_w_m2k": 2777.777777777778,
+      "convection_surface_resistance_k_w": 0.009,
+      "steady_mean_top_surface_rise_k": 6.12,
+      "power_plane_midheight_mm": 0.465,
+      "electrical_links": 0,
+      "port_records": 0,
+      "frozen_package_layers": [
+        {
+          "id": "substrate",
+          "thickness_mm": 0.2,
+          "conductivity_w_mk": 0.3003003003003003,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "c4",
+          "thickness_mm": 0.07,
+          "conductivity_w_mk": 70.76666666666668,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "interposer",
+          "thickness_mm": 0.11,
+          "conductivity_w_mk": 112.0,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "microbumps",
+          "thickness_mm": 0.01,
+          "conductivity_w_mk": 1.6,
+          "chip_material_overrides": {
+            "chip0": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip1": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip2": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip3": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip4": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip5": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip6": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip7": {
+              "conductivity_w_mk": 124.56296296296298
+            }
+          },
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "dies",
+          "thickness_mm": 0.15,
+          "conductivity_w_mk": 1.6,
+          "chip_material_overrides": {
+            "chip0": {
+              "conductivity_w_mk": 100
+            },
+            "chip1": {
+              "conductivity_w_mk": 100
+            },
+            "chip2": {
+              "conductivity_w_mk": 100
+            },
+            "chip3": {
+              "conductivity_w_mk": 100
+            },
+            "chip4": {
+              "conductivity_w_mk": 100
+            },
+            "chip5": {
+              "conductivity_w_mk": 100
+            },
+            "chip6": {
+              "conductivity_w_mk": 100
+            },
+            "chip7": {
+              "conductivity_w_mk": 100
+            }
+          },
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "tim",
+          "thickness_mm": 0.02,
+          "conductivity_w_mk": 4,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "spreader",
+          "thickness_mm": 1,
+          "conductivity_w_mk": 400,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 50.0,
+            "y": 50.0,
+            "width": 100,
+            "height": 100
+          }
+        },
+        {
+          "id": "sink",
+          "thickness_mm": 6.9,
+          "conductivity_w_mk": 400,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 200,
+            "height": 200
+          }
+        }
+      ]
+    },
+    {
+      "case": "multigpu",
+      "chiplets": 6,
+      "source_config": "https://github.com/bu-icsg/TAP-2.5D/blob/3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb/configs/sys_multigpu.cfg",
+      "source_geometry_power_demands_preserved": true,
+      "interposer_side_mm": 50.0,
+      "total_power_w": 755.0,
+      "ambient_c": 45,
+      "top_area_m2": 0.04,
+      "top_h_w_m2k": 2777.777777777778,
+      "convection_surface_resistance_k_w": 0.009,
+      "steady_mean_top_surface_rise_k": 6.795,
+      "power_plane_midheight_mm": 0.465,
+      "electrical_links": 0,
+      "port_records": 0,
+      "frozen_package_layers": [
+        {
+          "id": "substrate",
+          "thickness_mm": 0.2,
+          "conductivity_w_mk": 0.3003003003003003,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "c4",
+          "thickness_mm": 0.07,
+          "conductivity_w_mk": 70.76666666666668,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "interposer",
+          "thickness_mm": 0.11,
+          "conductivity_w_mk": 112.0,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "microbumps",
+          "thickness_mm": 0.01,
+          "conductivity_w_mk": 1.6,
+          "chip_material_overrides": {
+            "chip0": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip1": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip2": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip3": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip4": {
+              "conductivity_w_mk": 124.56296296296298
+            },
+            "chip5": {
+              "conductivity_w_mk": 124.56296296296298
+            }
+          },
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "dies",
+          "thickness_mm": 0.15,
+          "conductivity_w_mk": 1.6,
+          "chip_material_overrides": {
+            "chip0": {
+              "conductivity_w_mk": 100
+            },
+            "chip1": {
+              "conductivity_w_mk": 100
+            },
+            "chip2": {
+              "conductivity_w_mk": 100
+            },
+            "chip3": {
+              "conductivity_w_mk": 100
+            },
+            "chip4": {
+              "conductivity_w_mk": 100
+            },
+            "chip5": {
+              "conductivity_w_mk": 100
+            }
+          },
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "tim",
+          "thickness_mm": 0.02,
+          "conductivity_w_mk": 4,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 75.0,
+            "y": 75.0,
+            "width": 50,
+            "height": 50
+          }
+        },
+        {
+          "id": "spreader",
+          "thickness_mm": 1,
+          "conductivity_w_mk": 400,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 50.0,
+            "y": 50.0,
+            "width": 100,
+            "height": 100
+          }
+        },
+        {
+          "id": "sink",
+          "thickness_mm": 6.9,
+          "conductivity_w_mk": 400,
+          "chip_material_overrides": {},
+          "footprint_mm": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 200,
+            "height": 200
+          }
+        }
+      ]
+    }
+  ],
+  "thermal_model": "closed steady linear conduction problem under explicit material/Robin assumptions",
+  "interconnect_model": "demand-weighted mean centre Manhattan distance; no route/pin/RC timing in this batch",
+  "supported_claim": "algorithm comparison in the frozen research model",
+  "unsupported_claims": [
+    "paper-identical experiment",
+    "measured commercial package calibration",
+    "thermal-timing co-optimization",
+    "large-case algorithm superiority"
+  ]
+}

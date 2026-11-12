@@ -1,0 +1,1164 @@
+{
+  "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
+  "parent_commit": "ec10483d9cbd40c5766157a448ea613226881e2a",
+  "record_count": 230,
+  "counts_by_kind": {
+    "md": 121,
+    "json": 97,
+    "pdf": 5,
+    "png": 6,
+    "svg": 1
+  },
+  "records": [
+    {
+      "path": "docs/benchmark-source-screening.md",
+      "git_blob_sha1": "8248b1db8365a0828db28b941331ecedd7604dd2",
+      "kind": "md"
+    },
+    {
+      "path": "docs/case-physical-acceptance.md",
+      "git_blob_sha1": "fe0d49c5b8ad42d8f8273e79e398e455974c0bd2",
+      "kind": "md"
+    },
+    {
+      "path": "docs/core-local-temperature.md",
+      "git_blob_sha1": "688fa3aba7c91669bc69f2d891c352339cf0af2c",
+      "kind": "md"
+    },
+    {
+      "path": "docs/core-sequential-diagnostic.md",
+      "git_blob_sha1": "ad3449ca5023995cf47184ba936dbee801c715ed",
+      "kind": "md"
+    },
+    {
+      "path": "docs/decision-cost-baselines.md",
+      "git_blob_sha1": "4e2f68cbf296561cd26e5c5c3a39a89865158230",
+      "kind": "md"
+    },
+    {
+      "path": "docs/decision-uncertainty.md",
+      "git_blob_sha1": "f697ec5f7edb5eb9923a10959495d0de01596dea",
+      "kind": "md"
+    },
+    {
+      "path": "docs/evidence/atplace-import.json",
+      "git_blob_sha1": "fbc9ffb567e1369617ec223d3cf2bf400ecdcc90",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-source-inventory.json",
+      "git_blob_sha1": "61a8a41fad5cb19d196fdc692ab4de6bf4505cb7",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/case-physical-acceptance.json",
+      "git_blob_sha1": "d218278cba2e2491c78eb48dc75d527a8caff88e",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/hits-native-windows-smoke.json",
+      "git_blob_sha1": "8bdabe9790f1b5400c1de574c42e55710c33cac7",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/ihp-tap-attachment-audit.json",
+      "git_blob_sha1": "9917fe5b8c7a537c666510ef232001a2f9e5ca91",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-bsim-temperature-probe.json",
+      "git_blob_sha1": "3d2939ad256a14155ef1ddbe25eceb791e749c52",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-core-buffer-spice.json",
+      "git_blob_sha1": "141dd44d4fad441a215f4a35d27d1694dd541c09",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-core-bundle-identity.json",
+      "git_blob_sha1": "55ad452f0b5ec4d5f9c7ab0bc4e4144be14f7d1b",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-core-ff-cq.json",
+      "git_blob_sha1": "37cd9573cf9945def2901baaadb3dc4318d9838c",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-core-inverter-spice.json",
+      "git_blob_sha1": "efe63078bd2239abee8c5bb7398526854c04a8db",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-core-inverter-temperature.json",
+      "git_blob_sha1": "66abf76b5cbca42c74e59bbfb5ecaea0efea58ad",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-core-temperature.json",
+      "git_blob_sha1": "b4a33595506d2bf97c92025f87b5cb3454912c60",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-hits-cpu-smoke.json",
+      "git_blob_sha1": "78dc45ed0839833571b921afc99aafef4b78237d",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-integrated-decision-cost-v2.json",
+      "git_blob_sha1": "1949028b9ca0796e7d600c4a0b57814967320ae7",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-integrated-decision.json",
+      "git_blob_sha1": "61d8b7da4001df431570326acbfc135b691a7aef",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-integrated-transistors-reviewed.json",
+      "git_blob_sha1": "0b43ddf972a48f1bc69d9db7093adebc28e9b656",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-integrated-transistors.json",
+      "git_blob_sha1": "b4e092e7e4fea0ef4f9ce7c52b5b946725855d26",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-integrated-waveforms.json",
+      "git_blob_sha1": "2c7f94acf70ae2bbc3b86e56239c628c80dc379d",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-measured-calibration.json",
+      "git_blob_sha1": "946ffc6d1fcd2b5d4abf0cd297ab23edccd25021",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-multicase-validation.json",
+      "git_blob_sha1": "8929da7257a40f929575989fccc651515d9f9389",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-multilane-timing.json",
+      "git_blob_sha1": "b8df1e61fbd16ef44c10befb0789d78724783665",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-pad-diagnostics.json",
+      "git_blob_sha1": "f068849107b4d80307d4a261b66b8227a2563842",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-pad-provenance.json",
+      "git_blob_sha1": "93fc0074d8955177c248cec9417c183d5c4a9fe7",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-paired-transistor-90-270.json",
+      "git_blob_sha1": "58562769b70c8d1715076edf2a6543266607b057",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-paired-transistor-layouts.json",
+      "git_blob_sha1": "6fa4f5b314bda1883374a81b6c990af174a78395",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-paired-transistor-rot270.json",
+      "git_blob_sha1": "5573c027572fafbe4ff77bc4a61bd61be760b77f",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-passive-channel.json",
+      "git_blob_sha1": "476ffe17297a39ab4370bbaac265f35b15e1b4de",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-research-decisions.json",
+      "git_blob_sha1": "018c77ebcdc5e5972ca289a8f1c340ad1617ea43",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-shared-routing.json",
+      "git_blob_sha1": "cbbc5def67eb7a177273315d23dead948195c91d",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-sta-execution.json",
+      "git_blob_sha1": "79ff3a52e5690e6006780b4f17b0c9ac8c9512d2",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-temperature-buffer.json",
+      "git_blob_sha1": "0040ec86b295d9e7a4d81b410a1d0132d53ece62",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-temperature-ff.json",
+      "git_blob_sha1": "2b8ac6642ffcfbeb6ce75eb1013928e487490c55",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-temperature-inverter.json",
+      "git_blob_sha1": "ef8700784b47703288213f771a31f9ceb38e9c7c",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-cache-protocol-audit.json",
+      "git_blob_sha1": "0100de3904ad08f750da99fa5ad42c30dc9a0576",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-mesh-heatsink-C.json",
+      "git_blob_sha1": "6516121953b73a9686af20746f758f54395a4f5e",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-mesh-heatsink-P.json",
+      "git_blob_sha1": "7901ca3f366aeb09bb7c2dd83d5b0730735e4db1",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-numerical-closure.json",
+      "git_blob_sha1": "ce895dfed283d47287aa31f813b4564e47608cd1",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-observation.json",
+      "git_blob_sha1": "ca31ac9d0dc4ed1c5bd5c931aae5b2c126d03c3f",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-package-boundary-level1.json",
+      "git_blob_sha1": "d93973715f2ce59a3dd577c8fb4f6c577ed74494",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-package-boundary-level2.json",
+      "git_blob_sha1": "1c97635ccdc321bca5b24b3d67b028b87d026f39",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-package-boundary-level3.json",
+      "git_blob_sha1": "738972f9500b837e9097f2c5121cbcabc1611908",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-package-transient-first-level1.json",
+      "git_blob_sha1": "ad69ac2e915fd89d86fd3be2ee59fbc3e7a8d9ff",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-package-transient-level0.json",
+      "git_blob_sha1": "0d34923911a1b26869226e12effa1807edecd884",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-reduction-enrichment.json",
+      "git_blob_sha1": "69b408c83e9bd2b064de914820630b0541f89ed6",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-ttc-spatial.json",
+      "git_blob_sha1": "73464df06c8c0b652bc13c4931603fef83247b1c",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-fabric-timeout.json",
+      "git_blob_sha1": "811e5e9952f04b9d1ea8b66bbe8cfb1b45f1ecb2",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-fabric.json",
+      "git_blob_sha1": "c9384f08c0303e63adeaaacd455a094235b17dab",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-hot-rot180.json",
+      "git_blob_sha1": "00b0ea43b2ca59bb2168777d1e36655c3c4af230",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-inverter.json",
+      "git_blob_sha1": "44505106fb2b2245ee281062dfb6b9ecfb3688a2",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-review-controls.json",
+      "git_blob_sha1": "6e11ab8b8bc16e48fca4554c448d2f9582d96a6d",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-strict-diagnostics.json",
+      "git_blob_sha1": "eae28238d38df122dfe3806589cd46f37344998c",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-temperature-bsim45.json",
+      "git_blob_sha1": "3c0257f6f5acad2a56ee8b99e791a5935c073b16",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-temperature-separated.json",
+      "git_blob_sha1": "47faa60d840b8c73557e1ea982b9004f71f6963c",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-temperature-shared.json",
+      "git_blob_sha1": "2d6b2d32cc315fd2c12d944a28d9fd25af485f37",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-three-layout-comparison.json",
+      "git_blob_sha1": "fe193483f7140d00fab1ed9ec2906ce91245c3cd",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/local-xyce-uniform-controls.json",
+      "git_blob_sha1": "8f708ac962f0fec45f69cc579fa91d218bd8c60c",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/research-audit-2026-11-11.json",
+      "git_blob_sha1": "e3b14d9313fe9c2f13153b8a2320a522ccd59caa",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-algorithm-oracle.json",
+      "git_blob_sha1": "5d250913a1ec4413c1fd29ed5b6f0986b08ae431",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-decision-domain.json",
+      "git_blob_sha1": "fbb9ef0624b85be2a691ffe05ddfd5ee0c58a86b",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-direct-capacity-audit.json",
+      "git_blob_sha1": "12d3f66895d3c645c3261aef1ae88ef3124d3dcf",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-fv-admission.json",
+      "git_blob_sha1": "735010a758c4233fcbbfdce58fafc36da3572809",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-geometry-domains.json",
+      "git_blob_sha1": "9780d78c761848084a067ef7dd254f20bd40ae93",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-global-routing-cover.json",
+      "git_blob_sha1": "7530a8c924add13b493bf991f05ad02b3df2d854",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-ihp-endpoints.json",
+      "git_blob_sha1": "3f677ea848604ba1677232769eb6863eae79567e",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-ihp-geometry.json",
+      "git_blob_sha1": "af152570342e82ebd640a0a7c915d21753834998",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-ihp-local-access.json",
+      "git_blob_sha1": "3c058af93b5718d0808b448c14f519e768b30383",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-native-boundary-audit.json",
+      "git_blob_sha1": "4bf28ea17c2ccb45759248a19f639b702d5a3b98",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-pilot-analysis-pareto.pdf",
+      "git_blob_sha1": "20594ec971fa47f4d1027d59949d1e9e7a8a9c6f",
+      "kind": "pdf"
+    },
+    {
+      "path": "docs/evidence/tap-online-pilot-analysis-pareto.png",
+      "git_blob_sha1": "a33479a46dfd59aa5a2e3000b87d31861ca9d2a8",
+      "kind": "png"
+    },
+    {
+      "path": "docs/evidence/tap-online-pilot-analysis-quality-cost.pdf",
+      "git_blob_sha1": "54de9c4e370b7f683074dadf332bf53ebf7deec7",
+      "kind": "pdf"
+    },
+    {
+      "path": "docs/evidence/tap-online-pilot-analysis-quality-cost.png",
+      "git_blob_sha1": "c790407bfb1e09dfd5901957a61b35d1c7f6d816",
+      "kind": "png"
+    },
+    {
+      "path": "docs/evidence/tap-online-pilot-analysis.json",
+      "git_blob_sha1": "fd929ae6c6e2eeeb20c81aef1a32a76d23a141e4",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-pilot-v4.json",
+      "git_blob_sha1": "39baf6d1b0b24521977b86044ad4679f8c22c00d",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-plan-r3-v2.json",
+      "git_blob_sha1": "867a133e6b97d6a8d9f9c6e739efd9a80ad98518",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-plan-r3.json",
+      "git_blob_sha1": "e72803e5458e8e36b6e20637be8e17fd2fe5a8ac",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-plan-v1.json",
+      "git_blob_sha1": "aa7635bb81b50c4fb62f3b347492ca1e7bfe6cd5",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-plan-v2.json",
+      "git_blob_sha1": "756d286016f1d9e50d15ab43138422e3f11a7589",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-plan-v3.json",
+      "git_blob_sha1": "e9bd216153dc0191d5f88be65dca3c72434d9696",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-plan-v4.json",
+      "git_blob_sha1": "385d00b75e30b31a3bdf002590c38b9d06c7409f",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-smoke-v1.json",
+      "git_blob_sha1": "c31ef6872046e11bb8eb655f259fcc75280c8b6c",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-smoke-v2.json",
+      "git_blob_sha1": "d0d91bb7efcd6e157bc2206a42be5f52d51902b0",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-smoke-v3.json",
+      "git_blob_sha1": "e900ebd375d3e1145b3851810c32244eac43f892",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-pilot-physical.json",
+      "git_blob_sha1": "35420191a0cb8cff2512de96a5449a32e7d21841",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-pilot-physical.md",
+      "git_blob_sha1": "c0c469d2d30913973428a5019b7e29ccccdbac58",
+      "kind": "md"
+    },
+    {
+      "path": "docs/evidence/tap-pilot-physical.pdf",
+      "git_blob_sha1": "10d2b1aaa7dce3cff2df2619351c2a85b0bc8e05",
+      "kind": "pdf"
+    },
+    {
+      "path": "docs/evidence/tap-pilot-physical.png",
+      "git_blob_sha1": "8cb1e8765e5e88d7d2a3dbc9a9d9ddd609416815",
+      "kind": "png"
+    },
+    {
+      "path": "docs/evidence/tap-r3-physical-smoke.json",
+      "git_blob_sha1": "0e4e8f8d47b0431989c3b1884fb3c8e766df4a26",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-search-comparison.json",
+      "git_blob_sha1": "df92b1e3a0a33e3557edf3c2210935474424ef42",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-search-reference.pdf",
+      "git_blob_sha1": "961ad8707e5bc1dcc741ef0ebb9724134abbee5c",
+      "kind": "pdf"
+    },
+    {
+      "path": "docs/evidence/tap-search-reference.png",
+      "git_blob_sha1": "eb43ba9fddf48cc7aa4087800cdfafe8a64ad9bd",
+      "kind": "png"
+    },
+    {
+      "path": "docs/evidence/tap-search-structure.json",
+      "git_blob_sha1": "7f69123959e31b6d41306dcde12cd0929b11329f",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-sensitivity-plan.json",
+      "git_blob_sha1": "7095b0f24deddac956a6dfa728de42735f14c667",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-sensitivity.json",
+      "git_blob_sha1": "a1ed6f660375b8ecb07055403f97f387b73869ac",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-sensitivity.pdf",
+      "git_blob_sha1": "aaa44ddbbe82f2ea9d65df33f2f4f0ad83c4a74e",
+      "kind": "pdf"
+    },
+    {
+      "path": "docs/evidence/tap-sensitivity.png",
+      "git_blob_sha1": "cd198b0b7c38da2ab9ddbe92d0e31887c51e4687",
+      "kind": "png"
+    },
+    {
+      "path": "docs/evidence/tap-source-ledger.json",
+      "git_blob_sha1": "56e1c3180902ba4cad54fe1d3bfac62c94772c4c",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-thermal-canonical-inputs.json",
+      "git_blob_sha1": "b5380ba04f13dbce5c7785438c2cf4a163e2b962",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-thermal-transfer.json",
+      "git_blob_sha1": "13ceed62cd2d4370ea8e8625c834359ca351265f",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/v02-validation.json",
+      "git_blob_sha1": "10bf58dae9437fb5aaa9c9c34a4a0f22a63d866c",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/v03-validation.json",
+      "git_blob_sha1": "e03464e417b5d99c84cd2fab3d6af2428b313297",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/v04-validation.json",
+      "git_blob_sha1": "99f8b03556f053f91e16d282ea876d1d6117312e",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/v05-validation.json",
+      "git_blob_sha1": "eff6fe4daa3bd4ca0cb532b8eefc2f7883bbc694",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/v06-validation.json",
+      "git_blob_sha1": "5b5a88d2df86749aa2ed13bfe060edeab93826c2",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/v07-ci-diagnostic.json",
+      "git_blob_sha1": "d1a4a0274e7c3e46b21b52b0bc33b629763eae89",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/v07-validation.json",
+      "git_blob_sha1": "7c5691c62a38002baa2b7218d7457db048dab5ff",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/v08-e1-validation.json",
+      "git_blob_sha1": "a2a18e0082a9f906a4a03b7c9e6784d55ef420d5",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/v08-local-timing-oracle.json",
+      "git_blob_sha1": "d4474278d451be2f9a5be65e4729169e64f76cd4",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/v08-source-contributions.png",
+      "git_blob_sha1": "4db8c4e248c021751f304dac3ac58cb156165e79",
+      "kind": "png"
+    },
+    {
+      "path": "docs/evidence/v08-source-contributions.svg",
+      "git_blob_sha1": "481e20ab40aefd28c7430017f69c673584fa87ca",
+      "kind": "svg"
+    },
+    {
+      "path": "docs/evidence/xyce-three-layout-manifest.json",
+      "git_blob_sha1": "2610f2692850adb66f413ae10ffee36f7de1f3bc",
+      "kind": "json"
+    },
+    {
+      "path": "docs/fabric-exit-chat-review.md",
+      "git_blob_sha1": "f822e73b06df6a3f3caa64f3955a85c7460dd060",
+      "kind": "md"
+    },
+    {
+      "path": "docs/floorplanning-research-exit-contract.md",
+      "git_blob_sha1": "d87a60f3687ce8c62c040afa43068fa47790a4bd",
+      "kind": "md"
+    },
+    {
+      "path": "docs/goal01-integrated-decision.md",
+      "git_blob_sha1": "2296e800748402447e2cfeb864874cd821891ec1",
+      "kind": "md"
+    },
+    {
+      "path": "docs/hits-backend-assessment.md",
+      "git_blob_sha1": "a84001f2308dc63f5469630229365f096764d29c",
+      "kind": "md"
+    },
+    {
+      "path": "docs/hits-local-integration.md",
+      "git_blob_sha1": "4935ca569c4415e713e0ae5a4e5fc9520675b613",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ihp-attachment-admission.md",
+      "git_blob_sha1": "5a3d4420951a9e3e2d4a2cf2100ff10fefda8825",
+      "kind": "md"
+    },
+    {
+      "path": "docs/integrated-decision-results.md",
+      "git_blob_sha1": "ad061e6979905cef9fd46a26c5d2be63a754584c",
+      "kind": "md"
+    },
+    {
+      "path": "docs/integrated-transistor-results.md",
+      "git_blob_sha1": "fbc511b29f50b463c3bebe09e080904aa9669e3e",
+      "kind": "md"
+    },
+    {
+      "path": "docs/local-multicase-plan.md",
+      "git_blob_sha1": "a5bebb55730afc18d43fee2f7fc7165fb1ecbe39",
+      "kind": "md"
+    },
+    {
+      "path": "docs/local-multicase-results.md",
+      "git_blob_sha1": "85ac0fe559dafa41712d40ae6c4d33b2b746632a",
+      "kind": "md"
+    },
+    {
+      "path": "docs/local-temperature-capability.md",
+      "git_blob_sha1": "2e2375fbbd65c24b201fa592cf7ff399264eb0fb",
+      "kind": "md"
+    },
+    {
+      "path": "docs/measured-admission-results.md",
+      "git_blob_sha1": "5540e9190d1e11cf34e94e391bce66b7446034d1",
+      "kind": "md"
+    },
+    {
+      "path": "docs/measured-calibration-plan.md",
+      "git_blob_sha1": "708d2e45cf3f346c40935896c30bd7d369adbc64",
+      "kind": "md"
+    },
+    {
+      "path": "docs/measured-calibration-results.md",
+      "git_blob_sha1": "b2b00ea1eb1bf896a0e5cd89ab1e33a763c226c3",
+      "kind": "md"
+    },
+    {
+      "path": "docs/measured-transient-plan.md",
+      "git_blob_sha1": "e34ac91357c675e8f9b3805268ea78051ab4dec7",
+      "kind": "md"
+    },
+    {
+      "path": "docs/model.md",
+      "git_blob_sha1": "a2698f3fe58e18d37bd836046c411b7dfb21f109",
+      "kind": "md"
+    },
+    {
+      "path": "docs/multilane-timing-results.md",
+      "git_blob_sha1": "681e6deb355c971ca0da2cdc0faf66820dcb630d",
+      "kind": "md"
+    },
+    {
+      "path": "docs/multilane-validation-plan.md",
+      "git_blob_sha1": "db8a5fb14d07901217aec356cb17c42502922465",
+      "kind": "md"
+    },
+    {
+      "path": "docs/overall-research-status.md",
+      "git_blob_sha1": "fea1ff65e22d3891f166522937be5ba1501bdfbd",
+      "kind": "md"
+    },
+    {
+      "path": "docs/pad-diagnostic-plan.md",
+      "git_blob_sha1": "37a4e485d1c4b0b547a780fb18dfdc1e0c79ef8f",
+      "kind": "md"
+    },
+    {
+      "path": "docs/pad-diagnostic-results.md",
+      "git_blob_sha1": "20ec5a699f9af92c9e8c1301ec69cdf8f4e75b98",
+      "kind": "md"
+    },
+    {
+      "path": "docs/pad-provenance-plan.md",
+      "git_blob_sha1": "5cd0a42e20c52778a475c4ca85228f3f91c1d6b0",
+      "kind": "md"
+    },
+    {
+      "path": "docs/pad-provenance-results.md",
+      "git_blob_sha1": "47a9a46d7a208b7b180b0f98ee005485c6b157e8",
+      "kind": "md"
+    },
+    {
+      "path": "docs/paired-transistor-layouts.md",
+      "git_blob_sha1": "886ab51fe43ff271d9603dbc4d7788a102494491",
+      "kind": "md"
+    },
+    {
+      "path": "docs/paper-experiment-comparison.md",
+      "git_blob_sha1": "8443aedda9415a5bec9f5d8846c60b67d98acd1c",
+      "kind": "md"
+    },
+    {
+      "path": "docs/passive-channel-plan.md",
+      "git_blob_sha1": "a16685da452a0d2937fa28241d3e212f3ac817fd",
+      "kind": "md"
+    },
+    {
+      "path": "docs/passive-channel-precision-plan.md",
+      "git_blob_sha1": "feb6a4b13880a7daa73ef22ef4564dd9699992d3",
+      "kind": "md"
+    },
+    {
+      "path": "docs/passive-channel-results.md",
+      "git_blob_sha1": "a4337d291002a46bf36b078fd08db15ddeff8f7e",
+      "kind": "md"
+    },
+    {
+      "path": "docs/physical-admission-contract.md",
+      "git_blob_sha1": "6b6fdb9de1489b5384a4aacc32142aab37e80e52",
+      "kind": "md"
+    },
+    {
+      "path": "docs/physical-calibration.md",
+      "git_blob_sha1": "24ef1e565efeb9666bcbeee23b0edfdb2740b32f",
+      "kind": "md"
+    },
+    {
+      "path": "docs/published-method-screening.md",
+      "git_blob_sha1": "9af57b37a4fd0b270625018c3fd0274692e106d0",
+      "kind": "md"
+    },
+    {
+      "path": "docs/research-audit-2026-11-11.md",
+      "git_blob_sha1": "df540b09d3e6ab36764457fb64a2763d76cc194b",
+      "kind": "md"
+    },
+    {
+      "path": "docs/research-gates.md",
+      "git_blob_sha1": "cea573c04b643ba143b697d87e4c94a8b111e952",
+      "kind": "md"
+    },
+    {
+      "path": "docs/review-response-decisions.md",
+      "git_blob_sha1": "5213d22d3ca518326ab706de33fc27088694a8f7",
+      "kind": "md"
+    },
+    {
+      "path": "docs/roadmap.md",
+      "git_blob_sha1": "072ced0ce1b98f0d7928e7398a1e6c724c35833e",
+      "kind": "md"
+    },
+    {
+      "path": "docs/routing-resource-admission.md",
+      "git_blob_sha1": "01a303027cbb6add3a2d03906afed8a02a15a365",
+      "kind": "md"
+    },
+    {
+      "path": "docs/shared-routing-plan.md",
+      "git_blob_sha1": "659eb3f180f25d3f45db3ef6160917fce9b68d72",
+      "kind": "md"
+    },
+    {
+      "path": "docs/shared-routing-results.md",
+      "git_blob_sha1": "2287b362ee5af4f67c36b1e8da2a1c3aa145ad49",
+      "kind": "md"
+    },
+    {
+      "path": "docs/sta-execution-status.md",
+      "git_blob_sha1": "de2dda0b15e84baab380426554fd0f431b27bff2",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-algorithm-chat-review.md",
+      "git_blob_sha1": "a21bdae2a46d1472c30a54a6489f7db79a9a0fe0",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-algorithm-reference-plan.md",
+      "git_blob_sha1": "8e6789658bdef754db10cfb3a54f7d178712395a",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-algorithm-reference-results.md",
+      "git_blob_sha1": "95a62974c387a95d252aefd43fcbc0669f12f9dd",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-boundary-chat-review.md",
+      "git_blob_sha1": "f36f1ab1e547675663c627b1207045bc0c38168d",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-decision-domain.md",
+      "git_blob_sha1": "279b8ded2ac7fb87b05788ba329890cd4bc5e325",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-feasibility-structure.md",
+      "git_blob_sha1": "3a79f01a139840c837589682c65848b989e4919c",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-fv-admission.md",
+      "git_blob_sha1": "cdc765cb37c9994545f8c2565ede0f854e8e18fd",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-fv-contract.md",
+      "git_blob_sha1": "4f161563136e062fa9ad5ada7d2005ad2b2a19d5",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-geometry-domains.md",
+      "git_blob_sha1": "d67651d40cfc38a2a214f13a0bf471690e140279",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-global-routing-contract.md",
+      "git_blob_sha1": "ae9e243e08a90ba8406b8b1a4ea8542a0f58c6ae",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-global-routing-results.md",
+      "git_blob_sha1": "7c0305663cddd510751b9612ad93e00a89fd6409",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-ihp-endpoint-contract.md",
+      "git_blob_sha1": "b02b76214b48917004ea28a0fa87bfd394c9d743",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-ihp-endpoint-results.md",
+      "git_blob_sha1": "e3dbcdd51c798fd8bebcc45e7a5d2b629ab17f2d",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-ihp-geometry-contract.md",
+      "git_blob_sha1": "a848820be22f2ab12093c780b460f3bf5eb445d7",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-ihp-local-access-contract.md",
+      "git_blob_sha1": "313d89032bfb73142290c594eee39cbcb1ce814c",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-ihp-local-access-results.md",
+      "git_blob_sha1": "51ccff7ff72dec53a230cd073c42d50098e06b55",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-native-boundary-audit.md",
+      "git_blob_sha1": "b9b8f84dc1f7255f8237bfd9dc40977e5fde03c1",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-online-evidence-checks.md",
+      "git_blob_sha1": "bc3c5cc59caf109c2cc3411400df5bb095b45c29",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-online-guidance.md",
+      "git_blob_sha1": "a38798cea08723826065a6612112f2fcb6749010",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-online-pilot-results.md",
+      "git_blob_sha1": "0608abc15c96a62b0e5c4f2f731772a2c97cae50",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-online-protocol.md",
+      "git_blob_sha1": "f025477d80cd4981b345f48a0a75c1c8ab4522c3",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-online-r1-review.md",
+      "git_blob_sha1": "0fe7e80c7a114562c1fda5a8e144ee3c156371f4",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-online-r2-review.md",
+      "git_blob_sha1": "010ad75a5aa8f050e6874f465021b8e502ad71b2",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-online-reporting.md",
+      "git_blob_sha1": "7150303ecd94c6b81ea88942a97f0329c1538261",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-online-smoke.md",
+      "git_blob_sha1": "af6eac6298d0b4516b46bc5830c2bac0f67cd12b",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-physical-metric-results.md",
+      "git_blob_sha1": "8dc431d671500c42cf58434b0ed2bfb03df6692a",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-physical-metric-review.md",
+      "git_blob_sha1": "d3a0e476eed29b9b93943604b92af7bdb7aa4b8c",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-published-baseline-audit.md",
+      "git_blob_sha1": "4d76c9942242941a944455eda941966a1b033627",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-r3-conditional-mutation.md",
+      "git_blob_sha1": "ada2eda5ded362f9140c8d3ea42e353364e7944b",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-r3-metrics.md",
+      "git_blob_sha1": "5ceebadf1386c834017e9786d173da9fbac0f295",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-r3-protocol.md",
+      "git_blob_sha1": "09aba6ec99458ed1b3cdf3a6e1029db4f6fd1942",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-routing-chat-review.md",
+      "git_blob_sha1": "c786cf61e4fc466ec6c0cce0d0a75f6af1f44200",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-search-structure-plan.md",
+      "git_blob_sha1": "5af9aeef17a1038f078523140501aec5c510a963",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-search-structure-results.md",
+      "git_blob_sha1": "12b3a64f399827b34e85e221d7de123da8464af8",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-sensitivity-plan.md",
+      "git_blob_sha1": "f653eab44b86b26e6f792fbab421f14dffe49920",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-sensitivity-results.md",
+      "git_blob_sha1": "079ba995ec87077c48108698fe40d1d69b4b6b6b",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-thermal-transfer.md",
+      "git_blob_sha1": "0f46af2749a44cc474d7e5a3fb36d1ca3fc27495",
+      "kind": "md"
+    },
+    {
+      "path": "docs/timing-benchmark-admission.md",
+      "git_blob_sha1": "1c4a43da558aa6302e2f0650ecd6c8116767e33f",
+      "kind": "md"
+    },
+    {
+      "path": "docs/timing-oracle-contract.md",
+      "git_blob_sha1": "e75fd822305aab499bf9243dc79039290acb3ed8",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-numerical-closure-plan.md",
+      "git_blob_sha1": "e3902147362dd2209f435b2fa91882e76c141ea9",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-numerical-closure-results.md",
+      "git_blob_sha1": "ed6dae108e4e734265073e1efef7fbabde0e5c04",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-observation-plan.md",
+      "git_blob_sha1": "4d65a9fc5c364b480c9b61229bd6363d7300f4f8",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-observation-results.md",
+      "git_blob_sha1": "f711ef578374328cab751c126c4c8d0e059e7927",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-package-boundary-plan.md",
+      "git_blob_sha1": "58a6189e09404ec896eef4d41f05b0ec3f6e29f8",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-package-boundary-results.md",
+      "git_blob_sha1": "459f8f90c01537032e961c6fe54a5cec8bbb5e80",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-package-transient-plan.md",
+      "git_blob_sha1": "13ea3970b55c3ba5c385a45d4afd3539be860910",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-package-transient-results.md",
+      "git_blob_sha1": "14231d0c6b32d2c87876ad1ca47f6fb7e476c679",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-reduction-enrichment.md",
+      "git_blob_sha1": "be23fcafa322cdfa774bb456c90fb5b9f734262b",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-spatial-plan.md",
+      "git_blob_sha1": "6f59b2278de969c8fca1da3f412e49ef98c9752f",
+      "kind": "md"
+    },
+    {
+      "path": "docs/ttc-spatial-results.md",
+      "git_blob_sha1": "0a6e808af1f7da6f58bcb0ee1659499d986bc433",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-plan-v02.md",
+      "git_blob_sha1": "25ce9a8405fc4625570b315484795e53c0bba55b",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-plan-v03.md",
+      "git_blob_sha1": "9847a60f3b36946d656018ab550b82cc39ddfb2e",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-plan-v04.md",
+      "git_blob_sha1": "a6a9305f136644848fd94df24132ff223c513fa2",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-plan-v05.md",
+      "git_blob_sha1": "ae9210d84e6244f5405a1abc4c0583234217ba06",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-plan-v06.md",
+      "git_blob_sha1": "eb0b83e93acd0b6ac0f6e51c7dd59e1c17a7acce",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-plan-v07.md",
+      "git_blob_sha1": "429780305bfda63b65b2b1b2a966f5f7172937b9",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-plan-v08.md",
+      "git_blob_sha1": "2219b775a769f8c37dc207e3fa4df5bd6ef1d5fd",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-v02.md",
+      "git_blob_sha1": "73ce1f12559334ad26aa1c6a269d6c8f28bffd80",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-v03.md",
+      "git_blob_sha1": "651ca0955c1139b56b19fc1ce749a68bd894a83a",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-v04.md",
+      "git_blob_sha1": "5c1f924718db45140f12360977790a09515db5cd",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-v05.md",
+      "git_blob_sha1": "92fec8842cd351a87aa649edc4b1fed331f4f0b3",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-v06.md",
+      "git_blob_sha1": "6e9d0efcbbed3133f8ace09958ace5342f1bfc66",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-v07.md",
+      "git_blob_sha1": "17564c18bdfefd527131727968324cdc0f0c1378",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation-v08.md",
+      "git_blob_sha1": "8495bdd42a70cdd99564b18106864f72404e1770",
+      "kind": "md"
+    },
+    {
+      "path": "docs/validation.md",
+      "git_blob_sha1": "df7790f50f7c4395ac6b5ef5555bf7a1ddacb93e",
+      "kind": "md"
+    },
+    {
+      "path": "docs/windows-local.md",
+      "git_blob_sha1": "ca121a69263900d8bbc056678984aeb45a7c3c0b",
+      "kind": "md"
+    },
+    {
+      "path": "docs/xyce-core-comparison.md",
+      "git_blob_sha1": "3a1096fab17f9494e88a9e44b2f3f6e8dc457488",
+      "kind": "md"
+    },
+    {
+      "path": "docs/xyce-fabric-comparison.md",
+      "git_blob_sha1": "07b5de2a4623ae858ee97070bdfd399eb2b08f1b",
+      "kind": "md"
+    },
+    {
+      "path": "docs/xyce-hot-fabric.md",
+      "git_blob_sha1": "05057a625836cbdf47d89bee2a64b54d1aeaf0b0",
+      "kind": "md"
+    },
+    {
+      "path": "docs/xyce-layout-ordering-protocol.md",
+      "git_blob_sha1": "cc5c11ef41cbd497dd6c2ff67837c55a82a26104",
+      "kind": "md"
+    },
+    {
+      "path": "docs/xyce-review-response.md",
+      "git_blob_sha1": "5d7e2712701f0a59e1ad7f130d0eeda1d10af541",
+      "kind": "md"
+    },
+    {
+      "path": "docs/xyce-strict-diagnostics.md",
+      "git_blob_sha1": "3d76b36f8b8939eb74f306eed4480e977359c568",
+      "kind": "md"
+    },
+    {
+      "path": "docs/xyce-temperature-admission.md",
+      "git_blob_sha1": "14a0d1a57c20ff5e6388cc886b33192f837369e0",
+      "kind": "md"
+    },
+    {
+      "path": "docs/xyce-three-layout-results.md",
+      "git_blob_sha1": "9fe8a9e3c5869844dbba03e6989b22c1e9c07f7e",
+      "kind": "md"
+    },
+    {
+      "path": "docs/xyce-uniform-controls.md",
+      "git_blob_sha1": "ce076711a3156ba96799502cf0836c905dfc675d",
+      "kind": "md"
+    }
+  ]
+}

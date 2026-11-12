@@ -47,6 +47,14 @@ here; do not place these changes in adjacent placement repositories.
 
 ## Research pace and proportional validation (user direction, 2026-11-12)
 
+- Maintain docs/overall-research-status.md as the cumulative research and
+  acceptance record. Review cases, physical model, metrics and algorithm
+  evidence one bounded item at a time. Record question, inputs/version,
+  evidence, accepted scope, gaps and next change. Read original papers' case
+  definitions and experimental protocols; distinguish source configuration,
+  paper reproduction and our adaptation. This workflow does not add a user
+  approval gate or justify repeating already-passing calibration campaigns.
+
 - Lead algorithm comparisons with physical layout quality: peak temperature at
   the same interconnect budget, plus interconnect cost at the same temperature
   ceiling. Freeze common thresholds before new runs; preserve selected joint
