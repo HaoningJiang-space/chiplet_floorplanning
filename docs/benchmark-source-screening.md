@@ -69,3 +69,19 @@ certified infeasibility, and must not treat that penalty as a feasible wirelengt
 This is directly relevant to fair baseline comparison. Adopting finite track
 resources would be a declared extension applied to every baseline, not a claim
 that the published aggregate-pin formulation already models those tracks.
+
+## Candidate interface reference: scope before numerical substitution
+
+The [UCIe Consortium Hot Chips 2023 electrical tutorial](https://www.hc2023.hotchips.org/assets/program/tutorials/ucie/Electrical%20Form%20Factor%20and%20Compliance.pdf)
+describes an advanced-package profile with 25–55 um bump pitch, up-to-2 mm
+channel reach and x64 module width (PDF pages 2–3). It separately specifies
+channel eye-mask and link timing ingredients (pages 10 and 13). Thus geometric
+reach alone is not channel or timing qualification. The tutorial also notes that
+reach can change with transmitter swing; 2 mm is a profile condition, not a
+universal physical impossibility threshold.
+
+This is a candidate specification reference, not permission to reinterpret TAP
+HBM links or RapidChiplet's synthetic PHY as UCIe-compliant. A benchmark adopting
+it must explicitly define compatible PHY modules, bump maps, channel geometry,
+power and timing assumptions. It cannot certify the existing 1.8 V SKY130
+core-boundary experiment or justify arbitrarily tightening its clock.
