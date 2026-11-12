@@ -1,0 +1,103 @@
+{
+  "complete": true,
+  "hits_revision": "be59924de3f0c1a3d6d134aea411d1264cfa64c6",
+  "cpu_only": true,
+  "source_sha256": "c1c3e060d465031bf84f30ad259ac7cac82ebfb2021b85919f6b57fce5005c36",
+  "physical_calibration": false,
+  "scope": "three single-run API smoke checks, not statistical performance evidence or GPU qualification",
+  "cases": [
+    {
+      "profile": "nominal",
+      "placed_sha256": "fa4cdbc0123d11b6cb764d58de446717d9653bc80b994b621ffbdc756ed18900",
+      "nodes": 784,
+      "direct_solve_seconds": 0.001675899955444038,
+      "hits_solve_api_seconds": 0.5256404000101611,
+      "receipt": {
+        "accepted": true,
+        "info": 0,
+        "absolute_residual": 5.335982671962397e-11,
+        "relative_residual": 9.962493685690011e-11,
+        "acceptance_rtol": 1e-10,
+        "acceptance_atol": 1e-12,
+        "assembly_identity": "nominal",
+        "backend": "generic-gmres",
+        "qualification": {
+          "solid_spd": "UNKNOWN",
+          "regular_gmg": "UNKNOWN",
+          "fluid_2rm": "UNKNOWN",
+          "coupled_multilevel": "UNKNOWN",
+          "preconditioner_admissibility": "UNKNOWN",
+          "reason": "No specialized execution requested or qualified"
+        },
+        "solve_seconds": 0.5255790000082925,
+        "validation_seconds": 3.1800009310245514e-05,
+        "shift_seconds": 0.0
+      },
+      "max_difference_k": 2.0096656783152866e-08,
+      "energy_error_w": -1.346089906206771e-09,
+      "max_residual_w": 3.9681591346152345e-12
+    },
+    {
+      "profile": "tx_power_125pct",
+      "placed_sha256": "4f82e43eb6e589c50941dd8bd91046e02c65540192a9c2b7f8789cbd50c54018",
+      "nodes": 784,
+      "direct_solve_seconds": 0.0014208999928086996,
+      "hits_solve_api_seconds": 0.5501164000015706,
+      "receipt": {
+        "accepted": true,
+        "info": 0,
+        "absolute_residual": 6.239615591135394e-11,
+        "relative_residual": 9.934822999811808e-11,
+        "acceptance_rtol": 1e-10,
+        "acceptance_atol": 1e-12,
+        "assembly_identity": "tx_power_125pct",
+        "backend": "generic-gmres",
+        "qualification": {
+          "solid_spd": "UNKNOWN",
+          "regular_gmg": "UNKNOWN",
+          "fluid_2rm": "UNKNOWN",
+          "coupled_multilevel": "UNKNOWN",
+          "preconditioner_admissibility": "UNKNOWN",
+          "reason": "No specialized execution requested or qualified"
+        },
+        "solve_seconds": 0.5500548999989405,
+        "validation_seconds": 3.279990050941706e-05,
+        "shift_seconds": 0.0
+      },
+      "max_difference_k": 2.283681510562019e-08,
+      "energy_error_w": -1.5287926480311853e-09,
+      "max_residual_w": 5.444311668156843e-12
+    },
+    {
+      "profile": "cooling_800",
+      "placed_sha256": "413efbb1fef83692ecc06a5da03a894ee72c8be1173973aebd577a6d6d7624a1",
+      "nodes": 784,
+      "direct_solve_seconds": 0.0013826999347656965,
+      "hits_solve_api_seconds": 0.6717467999551445,
+      "receipt": {
+        "accepted": true,
+        "info": 0,
+        "absolute_residual": 5.317660722931341e-11,
+        "relative_residual": 9.928285871918325e-11,
+        "acceptance_rtol": 1e-10,
+        "acceptance_atol": 1e-12,
+        "assembly_identity": "cooling_800",
+        "backend": "generic-gmres",
+        "qualification": {
+          "solid_spd": "UNKNOWN",
+          "regular_gmg": "UNKNOWN",
+          "fluid_2rm": "UNKNOWN",
+          "coupled_multilevel": "UNKNOWN",
+          "preconditioner_admissibility": "UNKNOWN",
+          "reason": "No specialized execution requested or qualified"
+        },
+        "solve_seconds": 0.671697499928996,
+        "validation_seconds": 2.8399983420968056e-05,
+        "shift_seconds": 0.0
+      },
+      "max_difference_k": 2.423880118840316e-08,
+      "energy_error_w": -1.3460712544599573e-09,
+      "max_residual_w": 4.397593400540245e-12
+    }
+  ]
+}
