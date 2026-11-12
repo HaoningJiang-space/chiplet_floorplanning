@@ -1,0 +1,369 @@
+{
+  "status": "input_admission_passed_native6_to_native7_model_equivalence_not_established",
+  "physical_qualified": false,
+  "cases": [
+    {
+      "case": "ascend910",
+      "upstream_commit": "3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb",
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 17000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 7000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 7000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 20000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 20000,
+          "rotation_deg": 0
+        }
+      ],
+      "original_witness_thermal_margin_violations": [
+        0,
+        2,
+        3
+      ],
+      "scope": "source thermal-input compatibility, not a physical keepout or routing feasibility certificate",
+      "total_power_w": 350.0,
+      "partitions": {
+        "caseL0_Substrate.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL1_C4Layer.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL2_Interposer.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL3_UbumpLayer.flp": {
+          "blocks": 48,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL4_ChipLayer.flp": {
+          "blocks": 48,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL5_TIM.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        }
+      },
+      "source_hashes": {
+        "passive_interposer.py": "dcbbaaa86a187bac3f1a1b12f49bd0dfc1c6cb3ed4e50ec51583f762adcf0a52",
+        "util/fill_space.py": "645c0c372509577a77476878ddfac236fd9a0d523133af40011c7bb84db96a82",
+        "util/hotspot.config": "1c92fb1c03d279a26ae0fd7a51ac4a9a0fef004223af0f5603c6619d75b949dc"
+      },
+      "generated_hashes": {
+        "case.ptrace": "bbce0cfb51ffa8014bf0b790ec22763391fd3fdeb793cc9d87e9c0c3e457bdd3",
+        "caseL0_Substrate.flp": "6db011804ed52fb034c7142c2ecc3c12bca375567c52c34105d017badfb49ffb",
+        "caseL1_C4Layer.flp": "c406339dd21ab78b620f014dfc205be15189d6dd421949073e335a7586240fd6",
+        "caseL2_Interposer.flp": "e05c5b086a6415f6de91fcf2298013a5fd9bb30d9956b0c31d5c1ce753d73cbb",
+        "caseL3.flp": "37eb154a933ddac8e1a2415b4b2e8f25251f70687cf0153cab7f7e5e4daa27f9",
+        "caseL3_UbumpLayer.flp": "65186bf0f619f255a18af9c63d7ee6014810fc93dc03f742f7e5051ce88166df",
+        "caseL4.flp": "3d68d07608190c31766156cd9130884f144da0c0837768b1abc38648c07be70d",
+        "caseL4_ChipLayer.flp": "5ecb12e9f90a3f7494566ba7b98f31c992b58f1644b4bcdcfcd9a55e273ccecc",
+        "caseL5_TIM.flp": "edb1953b98ea171e5001928edcbe11d820695d879cd14516f104ef4b719f94bf",
+        "caselayers.lcf": "10be8a45f4e33abb7fbf34b0afcd3401e04e5edf4dd10853485891680adb6fb3",
+        "casesim.flp": "ebc0602d3570cbadf4b40ca18286d4baedb7774d03edcb290912282c1ea9996b",
+        "new_hotspot.config": "4fe56801c058575eafa57e120b3cf04f00b4214cc80ba15ed70e272666e7b288"
+      }
+    },
+    {
+      "case": "micro150",
+      "upstream_commit": "3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb",
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 45000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 5000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 14000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 23000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 6000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 16000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 6,
+          "centre_x_um": 26000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 7,
+          "centre_x_um": 36000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        }
+      ],
+      "original_witness_thermal_margin_violations": [
+        0,
+        4,
+        5,
+        6,
+        7
+      ],
+      "scope": "source thermal-input compatibility, not a physical keepout or routing feasibility certificate",
+      "total_power_w": 680.0,
+      "partitions": {
+        "caseL0_Substrate.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL1_C4Layer.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL2_Interposer.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL3_UbumpLayer.flp": {
+          "blocks": 62,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL4_ChipLayer.flp": {
+          "blocks": 62,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL5_TIM.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        }
+      },
+      "source_hashes": {
+        "passive_interposer.py": "dcbbaaa86a187bac3f1a1b12f49bd0dfc1c6cb3ed4e50ec51583f762adcf0a52",
+        "util/fill_space.py": "645c0c372509577a77476878ddfac236fd9a0d523133af40011c7bb84db96a82",
+        "util/hotspot.config": "1c92fb1c03d279a26ae0fd7a51ac4a9a0fef004223af0f5603c6619d75b949dc"
+      },
+      "generated_hashes": {
+        "case.ptrace": "75cc44fca2c620d0c117eadced343e6b17ef7633850ee775774152ce3a1daca7",
+        "caseL0_Substrate.flp": "6db011804ed52fb034c7142c2ecc3c12bca375567c52c34105d017badfb49ffb",
+        "caseL1_C4Layer.flp": "c406339dd21ab78b620f014dfc205be15189d6dd421949073e335a7586240fd6",
+        "caseL2_Interposer.flp": "e05c5b086a6415f6de91fcf2298013a5fd9bb30d9956b0c31d5c1ce753d73cbb",
+        "caseL3.flp": "6885536596bf11a6bf76bba7823bf084c35fc332447361d8e03f4a5bc0039b2d",
+        "caseL3_UbumpLayer.flp": "b3c154034849da5c9363b461a1b122017aeb45190c52480caf67e43fd8142afb",
+        "caseL4.flp": "ed75ff045a43b47a91a3c4eda5f940b8d93a5be108fe75ba4ac345a2b02436bc",
+        "caseL4_ChipLayer.flp": "60fedfea59ddf816a35096e8e1c91c3b33f99cfd5bbb752af069df24bf1c31de",
+        "caseL5_TIM.flp": "edb1953b98ea171e5001928edcbe11d820695d879cd14516f104ef4b719f94bf",
+        "caselayers.lcf": "1599e03795bcb404891a81d424f4bcb86d0130d01ac428bd08e841958a66622d",
+        "casesim.flp": "ccccad8552db67a6c930496394895a66eb3dadb87315f4552d5ae0c7646ee919",
+        "new_hotspot.config": "4fe56801c058575eafa57e120b3cf04f00b4214cc80ba15ed70e272666e7b288"
+      }
+    },
+    {
+      "case": "multigpu",
+      "upstream_commit": "3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb",
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 7000,
+          "centre_y_um": 26000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 10000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 29000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 43000,
+          "centre_y_um": 7000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 43000,
+          "centre_y_um": 20000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 18000,
+          "centre_y_um": 26000,
+          "rotation_deg": 0
+        }
+      ],
+      "original_witness_thermal_margin_violations": [],
+      "scope": "source thermal-input compatibility, not a physical keepout or routing feasibility certificate",
+      "total_power_w": 755.0,
+      "partitions": {
+        "caseL0_Substrate.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL1_C4Layer.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL2_Interposer.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL3_UbumpLayer.flp": {
+          "blocks": 53,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL4_ChipLayer.flp": {
+          "blocks": 53,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        },
+        "caseL5_TIM.flp": {
+          "blocks": 1,
+          "area_m2": 0.0025000000000000005,
+          "package_area_m2": 0.0025000000000000005
+        }
+      },
+      "source_hashes": {
+        "passive_interposer.py": "dcbbaaa86a187bac3f1a1b12f49bd0dfc1c6cb3ed4e50ec51583f762adcf0a52",
+        "util/fill_space.py": "645c0c372509577a77476878ddfac236fd9a0d523133af40011c7bb84db96a82",
+        "util/hotspot.config": "1c92fb1c03d279a26ae0fd7a51ac4a9a0fef004223af0f5603c6619d75b949dc"
+      },
+      "generated_hashes": {
+        "case.ptrace": "fa46675b2971dcd51e2bb2809b106611dbf27ac2436fae68aff68d22b59388d4",
+        "caseL0_Substrate.flp": "6db011804ed52fb034c7142c2ecc3c12bca375567c52c34105d017badfb49ffb",
+        "caseL1_C4Layer.flp": "c406339dd21ab78b620f014dfc205be15189d6dd421949073e335a7586240fd6",
+        "caseL2_Interposer.flp": "e05c5b086a6415f6de91fcf2298013a5fd9bb30d9956b0c31d5c1ce753d73cbb",
+        "caseL3.flp": "87f1475fef52cbb8dd1dad3b073ffe64849c63399b09cdd8233fcd9a7363e4bb",
+        "caseL3_UbumpLayer.flp": "e642458d5f472ccc960382a826d97c88acdcdb28d5cb15d70285a82100e5fedb",
+        "caseL4.flp": "d35f01ab08d2601360c97efbdb04aa9b609cc93b8f6a0aee03a605a965758ccb",
+        "caseL4_ChipLayer.flp": "124d1bdb6aa2b42fcb2e4ea4164b9cf527051310afc3d89111f3cee8dff4ec01",
+        "caseL5_TIM.flp": "edb1953b98ea171e5001928edcbe11d820695d879cd14516f104ef4b719f94bf",
+        "caselayers.lcf": "1daaac776a149334b44d7e5d818e5e12f1b362acd67f0d3c0b69814deece52b8",
+        "casesim.flp": "cfe34d206c3e61213ef52c4f6698ffd3a63725cb5f745ac8500f385771b54bf9",
+        "new_hotspot.config": "4fe56801c058575eafa57e120b3cf04f00b4214cc80ba15ed70e272666e7b288"
+      }
+    }
+  ],
+  "ascend_hits": {
+    "physical_qualified": false,
+    "model_transfer_status": "HotSpot6_to_7_detailed3D_equivalence_not_established",
+    "invariants": {
+      "source_power_w": 349.99999999800275,
+      "expected_power_w": 350.0,
+      "boundary_heat_out_w": 349.9997872951228,
+      "minimum_boundary_conductance_w_k": -4.440892098500626e-16,
+      "maximum_offdiagonal_w_k": -1.599999999999994e-05,
+      "maximum_asymmetry_w_k": 0,
+      "minimum_temperature_above_ambient_k": 1.1601876018233384
+    },
+    "shape": [
+      64,
+      64,
+      8
+    ],
+    "nodes": 32780,
+    "receipt": {
+      "accepted": true,
+      "info": 0,
+      "absolute_residual": 1.303808309014475e-06,
+      "relative_residual": 9.998936897411396e-11,
+      "acceptance_rtol": 1e-10,
+      "acceptance_atol": 1e-12,
+      "assembly_identity": "tap-native-input",
+      "backend": "generic-gmres",
+      "qualification": {
+        "solid_spd": "UNKNOWN",
+        "regular_gmg": "UNKNOWN",
+        "fluid_2rm": "UNKNOWN",
+        "coupled_multilevel": "UNKNOWN",
+        "preconditioner_admissibility": "UNKNOWN",
+        "reason": "No specialized execution requested or qualified"
+      },
+      "solve_seconds": 12.980360199930146,
+      "validation_seconds": 0.0002161000156775117,
+      "shift_seconds": 0.0
+    },
+    "native_difference_max_k": 5.4137561335210194e-05,
+    "peak_chip_layer_c": 118.89765698148352
+  },
+  "native_version_comparison": {
+    "hotspot6_commit": "47b1e83c19f12e476a7b6b936cf0497aab26e174",
+    "hotspot7_commit": "9f92256f7a45db6057c809e94fcd224ddad9157a",
+    "hits_commit": "be59924de3f0c1a3d6d134aea411d1264cfa64c6",
+    "compared_layer": 0,
+    "layer_identity": "substrate",
+    "native6_output_resolution_k": 0.01,
+    "max_absolute_difference_k": 45.582304943165184,
+    "native6_grid_sha256": "6a572490883bc5d521f6a305992d1fe0abc781e5d291377ad643bc42ed6bfccf",
+    "native7_reference_sha256": "8fb61bae206a08a28fd9dbee532d47f4427faa0cb3b8760822d4b65d2f62acf9"
+  }
+}
