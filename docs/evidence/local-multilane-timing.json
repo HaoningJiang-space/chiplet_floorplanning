@@ -1,0 +1,962 @@
+{
+  "git": {
+    "commit": "fcf0dcb412c81dce25809afac7bc7cce2b27e65b",
+    "dirty": false
+  },
+  "source_sha256": "d3e436de71da8f524ef8fa0641872dd01786dcbf38312758e823bba965894ca2",
+  "sta_version": "2.2.0",
+  "executable_sha256": "45680a57b1e215ddd3732e6f91a472efca20720c23d0f6a95bf6302610aa953a",
+  "numerical_checks_passed": true,
+  "cases": {
+    "one_lane": {
+      "model": {
+        "receivers": 1,
+        "lanes": 1,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "bffbcf089ab887a1894d52cc6ac73d0cdcb20e9bb876d95843154434206c07c5",
+        "fabric.v": "93601efa668f7057fc976df328b50931c89e96f34e4adfd291839ef89d27fb98",
+        "run.tcl": "275fe39aa0c17d7268f396f0abeb076a1e8668734219e2f10738f32fc9e23787"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.058220300008542836,
+      "log_sha256": "3ee93c77e151e2e964b73aaae4e4a493063fa0f73075e663a832a47a7498e925",
+      "max_time_error_ns": 1.000000000139778e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 96,
+      "checked_paths": 4,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 3.35,
+      "worst_hold_ns": 5.75
+    },
+    "chiplets_2": {
+      "model": {
+        "receivers": 1,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "4043b52f4626e1182717019877284443dc02a08bc39784bb26a0312c94e0b81c",
+        "fabric.v": "206e2c78ad2a08406a3090cd6fd53112826aedf5c09eb896dd1156b2bf58eb08",
+        "run.tcl": "3b80bdb860f60ebdb5003d4c7a4582454d78914d3e4d918a14e51549b07b456b"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.05417339992709458,
+      "log_sha256": "b6b46e38fa0ad1fd03a88d724e2ad861ae04d23c9b1ed8bf779ca3d76331ab0f",
+      "max_time_error_ns": 1.000000000139778e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 768,
+      "checked_paths": 32,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 3.0,
+      "worst_hold_ns": 5.75
+    },
+    "chiplets_4": {
+      "model": {
+        "receivers": 3,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "60cff061824b5f93cc56f353f117e9e56a588ba6c077ad59f2daa4003e0303b5",
+        "fabric.v": "a164724352fc838adee9168a7af3c94f1f38ab97f7287f292117deaf46cd943f",
+        "run.tcl": "50d742f72ae837cea06976714df75a457ce52437f942594f2dde911c08f2d3ca"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.08033590007107705,
+      "log_sha256": "a5f04f2f4aba9efb4550b400ce9f11931805dc410d9fb8f2642ff7c266a46b6c",
+      "max_time_error_ns": 1.0000000005838672e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 2304,
+      "checked_paths": 96,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 3.0,
+      "worst_hold_ns": 5.71
+    },
+    "chiplets_8": {
+      "model": {
+        "receivers": 7,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "cf395ee8f9a7b3c989444851da2304d8aa9d920338426653df4114be93e33cef",
+        "fabric.v": "261352f1d3d70e3ed11ad15d4cac1cc241fab249fd20ee21e8f8b18ff52fab52",
+        "run.tcl": "445c6f989922d3760bcc50dbcf4ef10eebab22abd187ce76f8c2bce481004dcd"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.10486149997450411,
+      "log_sha256": "0b633f5e2339ef7e54bc75a6e22db51f07bd6b3a5798e12fdb40798e8e524fe6",
+      "max_time_error_ns": 1.0000000010279564e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 5376,
+      "checked_paths": 224,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 3.0,
+      "worst_hold_ns": 5.63
+    },
+    "chiplets_16": {
+      "model": {
+        "receivers": 15,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "7efe5dc117044eecf138a3333d1d11432487c3756c0711d7672ff206fbacf3ee",
+        "fabric.v": "0a7e5740e478c6cf9066d948039c948aca8bcdbe1cd2c0d2ecfa6a01140ed807",
+        "run.tcl": "4d1d2747a78f0b8d9cac8033777d56e3def1e822ff04892e4f5d61082dad0ad8"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.20013799995649606,
+      "log_sha256": "eba5d52bbe44850cd463408c81043df077ae3269da725e320c686eeb701f54ca",
+      "max_time_error_ns": 1.0000000010279564e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 11520,
+      "checked_paths": 480,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 3.0,
+      "worst_hold_ns": 5.47
+    },
+    "one_data_shift": {
+      "model": {
+        "receivers": 1,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.5,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "9d1cd8a27174ad73b68f76251a18c834e97ff90f069af5336373c81176df9327",
+        "fabric.v": "206e2c78ad2a08406a3090cd6fd53112826aedf5c09eb896dd1156b2bf58eb08",
+        "run.tcl": "3b80bdb860f60ebdb5003d4c7a4582454d78914d3e4d918a14e51549b07b456b"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.054616799927316606,
+      "log_sha256": "8a3ccdec7b04644f6351d3e716f152d0713f90f9302a9f70b6723a7717831527",
+      "max_time_error_ns": 1.000000000139778e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 768,
+      "checked_paths": 32,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 2.85,
+      "worst_hold_ns": 5.82
+    },
+    "one_receiver_shift": {
+      "model": {
+        "receivers": 3,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.5
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "cbbb534b22efa4025f26b3a2eb7b12662e3676148458d33c367c4cdca38c4a39",
+        "fabric.v": "a164724352fc838adee9168a7af3c94f1f38ab97f7287f292117deaf46cd943f",
+        "run.tcl": "50d742f72ae837cea06976714df75a457ce52437f942594f2dde911c08f2d3ca"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.06904289999511093,
+      "log_sha256": "6069d58526e79520a76f7c7212822ade064c9e7f23c6926f6dc1d5b56d5449d8",
+      "max_time_error_ns": 1.0000000005838672e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 2304,
+      "checked_paths": 96,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 3.03,
+      "worst_hold_ns": 5.25
+    },
+    "shared_clock_shift": {
+      "model": {
+        "receivers": 1,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          1.3,
+          1.5
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "e30be0307eaf147bdf71792abf300e77deb2415b86b740cfccbb1fce90790a63",
+        "fabric.v": "206e2c78ad2a08406a3090cd6fd53112826aedf5c09eb896dd1156b2bf58eb08",
+        "run.tcl": "3b80bdb860f60ebdb5003d4c7a4582454d78914d3e4d918a14e51549b07b456b"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.04928109992761165,
+      "log_sha256": "a5cf2e16acc21f277bb0e62a4140b052282ca329423e2da022120c1d37270468",
+      "max_time_error_ns": 1.000000000139778e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 768,
+      "checked_paths": 32,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 3.5,
+      "worst_hold_ns": 5.25
+    },
+    "common_root_shift": {
+      "model": {
+        "receivers": 1,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.9,
+          1.1
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "00a8e7f3c73aef533076e4e06c4466e112f3af3decc5abf36e6a97756c34601c",
+        "fabric.v": "206e2c78ad2a08406a3090cd6fd53112826aedf5c09eb896dd1156b2bf58eb08",
+        "run.tcl": "3b80bdb860f60ebdb5003d4c7a4582454d78914d3e4d918a14e51549b07b456b"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.05378789990209043,
+      "log_sha256": "10fbb1514b882fd376dba205e4e1e295e352e8ffc1e203019ba0cf366ee302db",
+      "max_time_error_ns": 1.000000000139778e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 768,
+      "checked_paths": 32,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 3.0,
+      "worst_hold_ns": 5.75
+    },
+    "root_duty_distortion": {
+      "model": {
+        "receivers": 1,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          1.1
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "61c69e806ab0a4cabc1d5fc8bdbada7771b883eb0e381305c65240ab8dec9de4",
+        "fabric.v": "206e2c78ad2a08406a3090cd6fd53112826aedf5c09eb896dd1156b2bf58eb08",
+        "run.tcl": "3b80bdb860f60ebdb5003d4c7a4582454d78914d3e4d918a14e51549b07b456b"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.05103229999076575,
+      "log_sha256": "317f64cf564dc21edfc1b70ae22105a4e6b554ec75edc39cb0878034e0c8e9b9",
+      "max_time_error_ns": 1.000000000139778e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 768,
+      "checked_paths": 32,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 3.5,
+      "worst_hold_ns": 5.25
+    },
+    "setup_failure": {
+      "model": {
+        "receivers": 1,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 7.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "2d8ef7d16aab7a3a366e1daace96bcb83d787e3048fb473b669b551443c9d649",
+        "fabric.v": "206e2c78ad2a08406a3090cd6fd53112826aedf5c09eb896dd1156b2bf58eb08",
+        "run.tcl": "3b80bdb860f60ebdb5003d4c7a4582454d78914d3e4d918a14e51549b07b456b"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.05020069994498044,
+      "log_sha256": "578b406ea80c4bc54018e2661b0e455c6f9b2844fd9c3dcf4932b9c470b40a9b",
+      "max_time_error_ns": 1.0000000010279564e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 768,
+      "checked_paths": 32,
+      "numerical_contract_accepted": true,
+      "setup_pass": false,
+      "hold_pass": true,
+      "worst_setup_ns": -3.65,
+      "worst_hold_ns": 5.82
+    },
+    "hold_failure": {
+      "model": {
+        "receivers": 1,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          7.8,
+          8.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": false,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "9c0bf48ad8e3ee1874dfe427e01fe0a041955030d70161edfd2e9c4ca1c044c8",
+        "fabric.v": "206e2c78ad2a08406a3090cd6fd53112826aedf5c09eb896dd1156b2bf58eb08",
+        "run.tcl": "3b80bdb860f60ebdb5003d4c7a4582454d78914d3e4d918a14e51549b07b456b"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.05130529997404665,
+      "log_sha256": "4cb0122930e3f846d74d881001fdb74da2503848e8882e329e375a9cf9b86515",
+      "max_time_error_ns": 1.0000000010279564e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 768,
+      "checked_paths": 32,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": false,
+      "worst_setup_ns": 9.999999,
+      "worst_hold_ns": -1.249999
+    },
+    "early_late_uncorrected": {
+      "model": {
+        "receivers": 1,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": true,
+      "correlated_root": false,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "4043b52f4626e1182717019877284443dc02a08bc39784bb26a0312c94e0b81c",
+        "fabric.v": "206e2c78ad2a08406a3090cd6fd53112826aedf5c09eb896dd1156b2bf58eb08",
+        "run.tcl": "a5f8a508b3d799aaaad6d80ef75c00eb567f762b8a4ee92c361dead349378c5a",
+        "early.lib": "ef07a31b0a6700aabee5d5dc2a44da35fad70f068a46953762a21af6fee8ea95"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.054925099946558475,
+      "log_sha256": "a1419c321ca35f8f7476a7549e04b7edc28d57c1ab2204d81e2973579c103259",
+      "max_time_error_ns": 1.0000000010279564e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 768,
+      "checked_paths": 32,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 2.26,
+      "worst_hold_ns": 4.98
+    },
+    "early_late_correlated": {
+      "model": {
+        "receivers": 1,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": true,
+      "correlated_root": true,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "4043b52f4626e1182717019877284443dc02a08bc39784bb26a0312c94e0b81c",
+        "fabric.v": "206e2c78ad2a08406a3090cd6fd53112826aedf5c09eb896dd1156b2bf58eb08",
+        "run.tcl": "253c60da88ee6ea789dc952896a5fed7a2e4181b5bd99baebbafa9a43ebfff07",
+        "early.lib": "ef07a31b0a6700aabee5d5dc2a44da35fad70f068a46953762a21af6fee8ea95"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.04898129997309297,
+      "log_sha256": "1dbad619421ca689e63c6e11eae345f6790e07757f12efe85d661975f7edd199",
+      "max_time_error_ns": 1.0000000010279564e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 800,
+      "checked_paths": 32,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 2.46,
+      "worst_hold_ns": 5.180001
+    },
+    "chiplets_16_correlated": {
+      "model": {
+        "receivers": 15,
+        "lanes": 8,
+        "period_ns": 10.0,
+        "fall_ns": 4.0,
+        "root_ns": [
+          0.4,
+          0.6
+        ],
+        "trunk_ns": [
+          0.8,
+          1.0
+        ],
+        "bank_ns": [
+          0.2,
+          0.3
+        ],
+        "inverter_ns": [
+          0.4,
+          0.8
+        ],
+        "cq_ns": [
+          0.7,
+          0.9
+        ],
+        "setup_ns": [
+          0.2,
+          0.35
+        ],
+        "hold_ns": [
+          0.15,
+          0.1
+        ],
+        "selected_data_shift_ns": 0.0,
+        "selected_branch_shift_ns": 0.0
+      },
+      "min_max": true,
+      "correlated_root": true,
+      "mutation": null,
+      "input_sha256": {
+        "fixture.lib": "7efe5dc117044eecf138a3333d1d11432487c3756c0711d7672ff206fbacf3ee",
+        "fabric.v": "0a7e5740e478c6cf9066d948039c948aca8bcdbe1cd2c0d2ecfa6a01140ed807",
+        "run.tcl": "723eb721aed131194f0c125113f6d2688b3039b80df31a7d303040e738b4bc7f",
+        "early.lib": "f01bb432cc073930022acfd5e7e876eef4d342b2cb8a4abb0e1f4376f250fcc5"
+      },
+      "physical_d2d_qualified": false,
+      "routing_qualified": false,
+      "thermal_feedback_qualified": false,
+      "returncode": 0,
+      "elapsed_s": 0.20696520002093166,
+      "log_sha256": "273aee5805c6229b3094b8e3fb6f4760e915418b3ed3e95b4694868f415b07d0",
+      "max_time_error_ns": 1.0000000010279564e-06,
+      "max_capacitance_error_pf": 0.0,
+      "checked_time_fields": 12000,
+      "checked_paths": 480,
+      "numerical_contract_accepted": true,
+      "setup_pass": true,
+      "hold_pass": true,
+      "worst_setup_ns": 2.46,
+      "worst_hold_ns": 4.774001
+    }
+  },
+  "negative_controls": {
+    "missing_capture_clock": {
+      "numerical_contract_accepted": false,
+      "rejection_reason": "missing generated capture clock",
+      "log_sha256": "1619bb1d748d541687fc3891b892fc84689aed1f80fba1c531851dc82864d338"
+    },
+    "wrong_capture_polarity": {
+      "numerical_contract_accepted": false,
+      "rejection_reason": "event/fanout mismatch: time=10.0 ns cap=0.0 pF",
+      "log_sha256": "ce9379e04fc0212bba74d4f522d1267ffec8abdf0c063a97d23d6af087211de4"
+    },
+    "missing_last_lane": {
+      "numerical_contract_accepted": false,
+      "rejection_reason": "missing, duplicate or unexpected lane path",
+      "log_sha256": "65e3d151f72386bbc5200e0af2aa2c1d74f86f0abd7e79c52696764224644fb8"
+    },
+    "wrong_lane_endpoint": {
+      "numerical_contract_accepted": false,
+      "rejection_reason": "0_0_setup_rise: wrong endpoint or clock",
+      "log_sha256": "4caa32ea5982882549dd4f512b7eab8176dd266ab35c4bfe37e972f002e4ca9a"
+    },
+    "overloaded_bank": {
+      "numerical_contract_accepted": false,
+      "rejection_reason": "missing checks or electrical violation",
+      "log_sha256": "203f943920ff7f5636cc27d93fb3b25628e17ad067deed493e63717e4696b5c2"
+    }
+  },
+  "physical_d2d_qualified": false,
+  "routing_qualified": false,
+  "thermal_feedback_qualified": false,
+  "checked_paths": 1668,
+  "checked_numeric_time_fields": 40544
+}

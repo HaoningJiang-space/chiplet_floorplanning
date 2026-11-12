@@ -234,6 +234,11 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
 
 ## 独立热源与边界敏感性（v0.8 / E1）
 
+多 Lane 基础能力：[共享时钟完整路径核对](docs/multilane-timing-results.md)。
+本地覆盖 2/4/8/16 个 chiplet、最多 120 条数据 Lane，1,668 个路径结果与独立
+边沿时间参考一致；错误接线、漏 Lane、时钟极性和负载控制均检出，157 项测试通过。
+该人工延迟实验只验证共享时钟与路径记账，真实布线容量、Pad 和温度耦合仍未完成。
+
 最新本地进展：[封装瞬态与储热检查](docs/ttc-package-transient-results.md)。
 原始降阶失败已保留；补足快速扩散后，四种粗网格模型全部通过同网格数值控制，
 26 个原生实测记录保留两种初态与三级阶数。大幅储热可以与近稳态差温并存；
