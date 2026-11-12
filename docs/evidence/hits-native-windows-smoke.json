@@ -1,0 +1,48 @@
+{
+  "shape": [
+    16,
+    16,
+    4
+  ],
+  "nodes": 1036,
+  "max_absolute_temperature_difference_k": 5.520276431525417e-07,
+  "temperature_range_k": [
+    321.5811511612222,
+    339.58171959932656
+  ],
+  "receipt": {
+    "accepted": true,
+    "info": 0,
+    "absolute_residual": 1.1627051479309817e-07,
+    "relative_residual": 9.93307188322165e-11,
+    "acceptance_rtol": 1e-10,
+    "acceptance_atol": 1e-12,
+    "assembly_identity": "native-smoke",
+    "backend": "generic-gmres",
+    "qualification": {
+      "solid_spd": "UNKNOWN",
+      "regular_gmg": "UNKNOWN",
+      "fluid_2rm": "UNKNOWN",
+      "coupled_multilevel": "UNKNOWN",
+      "preconditioner_admissibility": "UNKNOWN",
+      "reason": "No specialized execution requested or qualified"
+    },
+    "solve_seconds": 0.1706305000698194,
+    "validation_seconds": 4.5900000259280205e-05,
+    "shift_seconds": 0.0
+  },
+  "scope": "local Windows native interface smoke only; not TAP calibration or performance qualification",
+  "revisions": {
+    "HiTS": "be59924de3f0c1a3d6d134aea411d1264cfa64c6",
+    "HotSpot": "9f92256f7a45db6057c809e94fcd224ddad9157a",
+    "SuperLU": "d6a031ca56499eefa7c742d51fae5e8c644138cc"
+  },
+  "sha256": {
+    "fields.bin": "8eccd0d1efb32cc7e55c0afec7f51c2a3db652aa65e1296b171488f0971c2234",
+    "reference.bin": "ba7472580ed74d815fb6acf8ae92c68b4f34f0c118a1e9371a20bb8a479a0c37",
+    "ev6.flp": "3134eaef3383f6c8b72bdd080eef85f561fc8ed02b10c72a0f2c4a6e4aeac5ae",
+    "example.config": "f39da8da69faf61c6b4c93744ee72112281ac2ef4366e94c98322b989aa2d824",
+    "example.materials": "55177de9b2b57c71a1de8ab3265e8d65e47fdf44b2dd506013714d747384bccc",
+    "gcc.ptrace": "75b578facbc1c2a158d943bfbdd1aadabbc435d0ecbbead4a5530c99134b45d5"
+  }
+}
