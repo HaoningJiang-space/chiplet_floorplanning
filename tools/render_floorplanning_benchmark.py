@@ -16,6 +16,9 @@ from chiplet_floorplanning.characterization import digest
 from chiplet_floorplanning.decision import summarize_decisions
 from chiplet_floorplanning.floorplanning import write_json
 from chiplet_floorplanning.model import parse_case
+from benchmark_floorplanning import compact
+from validation.decision_evidence import (verify_coverage, verify_inputs, verify_artifact_links,
+    verify_timing_identity, verify_saved_sta_files)
 
 
 def read(path):
@@ -33,20 +36,66 @@ def main():
     args = parser.parse_args(); args.output.mkdir(parents=True, exist_ok=True)
     benchmark = read(args.benchmark/'report.json'); witness = read(args.witness/'report.json')
     thermal = read(args.thermal_audit); channel = read(args.channel_audit)
-    if not all(r['complete'] for r in (benchmark, witness, thermal)) or not channel['accepted']:
-        raise ValueError('complete source evidence and accepted RC channel audit required')
-    if witness['benchmark_inputs_sha256']!=digest(args.benchmark/'frozen-inputs.json'):
-        raise ValueError('witness belongs to a different benchmark')
-    rows = []
+    frozen = read(args.benchmark/'frozen-inputs.json')
+    verify_artifact_links(digest(args.benchmark/'frozen-inputs.json'), benchmark, witness, thermal, channel,
+                          [digest(args.benchmark/'report.json'), digest(args.witness/'report.json')])
+    verify_coverage(benchmark['cases'], frozen)
+    if set(benchmark['profiles'])!=set(frozen['profiles']):
+        raise ValueError('operating profile coverage differs from frozen domain')
+    expected_channels = {item['id']+'_'+mode for record in (benchmark, witness)
+                         for item in record['cases']+record['paired_refinement'] if item['status']=='analyzed'
+                         for mode in ('reference', 'feedback')}
+    if set(channel['cases'])!=expected_channels:
+        raise ValueError('channel audit coverage is incomplete')
+    rows = []; case_reports = {}; timing_reports = {}
     for root, record in ((args.benchmark, benchmark), (args.witness, witness)):
-        for item in record['cases']:
-            row = read(root/item['id']/'report.json')
+        for item in record['cases']+record['paired_refinement']:
+            folder = root/item['id']; row = read(folder/'report.json')
             row.update({k: item[k] for k in ('id', 'layout_id', 'profile', 'policy')})
-            rows.append(row)
+            verify_inputs(row, read(folder/'inputs.json'), frozen, refinement_factor=item.get('factor', 1))
+            if compact(row)!={k: v for k, v in item.items() if k!='factor'}:
+                raise ValueError('aggregate candidate differs from original evaluator receipt')
+            if item['id'] in case_reports:
+                raise ValueError('duplicate evaluator receipt ID')
+            case_reports[item['id']] = digest(folder/'report.json')
+            for mode, value in row.get('timing', {}).items():
+                if 'executable_sha256' not in value:
+                    if value['status']=='analyzed':
+                        raise ValueError('analyzed timing is missing its runtime identity')
+                    continue
+                timing_path = folder/mode/'report.json'; receipt = read(timing_path)
+                verify_timing_identity(receipt, frozen)
+                verify_saved_sta_files(receipt, timing_path.parent)
+                # Bind every field used by the proof to its original STA receipt.
+                if any(value.get(k)!=v for k, v in receipt.items() if k not in ('models', 'rc')):
+                    raise ValueError('evaluator timing differs from original STA receipt')
+                key = item['id']+'_'+mode
+                timing_reports[key] = digest(timing_path)
+                if row['status']=='analyzed':
+                    check = channel['cases'][key]
+                    if check['report_sha256']!=timing_reports[key] or check['accepted'] is not True:
+                        raise ValueError('channel audit belongs to another STA receipt or failed')
+            if item in record['cases']:
+                rows.append(row)
+    if set(thermal['profiles'])!={'nominal', 'tx_power_125pct', 'cooling_800'}:
+        raise ValueError('thermal audit must cover the three declared heat problems')
+    for profile_rows in thermal['profiles'].values():
+        if set(profile_rows)!={'2', '4'}:
+            raise ValueError('thermal audit must cover both declared refinement levels')
+        for level_rows in profile_rows.values():
+            if len(level_rows)!=len(frozen['layouts']) or {r['layout_id'] for r in level_rows}!=set(frozen['layouts']):
+                raise ValueError('thermal refinement lacks complete placement coverage')
     report = dict(schema_version=1, source_sha256={str(p): digest(p) for p in
                   (args.benchmark/'report.json', args.witness/'report.json', args.thermal_audit, args.channel_audit)},
-                  frozen_inputs=read(args.benchmark/'frozen-inputs.json'),
-                  frozen_budget_results=benchmark['profiles'], proof_with_additional_witness={},
+                  frozen_inputs=frozen,
+                  frozen_budget_results={}, proof_with_additional_witness={},
+                  proof_admission=dict(complete_cartesian_domain=True, exact_saved_inputs_verified=True,
+                      timing_runtime_identity_verified=True, saved_STA_files_verified=True,
+                      linked_audit_hashes_verified=True,
+                      artifact_manifest=dict(case_report_sha256=case_reports, timing_report_sha256=timing_reports),
+                      source_sha256={str(p): digest(p) for p in (Path(__file__), Path('tools/benchmark_floorplanning.py'),
+                                                           Path('tools/validation/decision_evidence.py'),
+                                                           Path('src/chiplet_floorplanning/decision.py'))}),
                   thermal_domain_refinement=thermal, channel_audit_summary={k: v for k, v in channel.items() if k!='cases'},
                   cases=benchmark['cases']+witness['cases'],
                   paired_refinement=benchmark['paired_refinement']+witness['paired_refinement'],
@@ -55,7 +104,11 @@ def main():
                   scientific_conclusion='conditional_zero_timing_temperature_cost_in_this_finite_core_boundary_model; no demonstrated need for joint optimization',
                   unresolved='actual Pad/channel and SPICE validation; temperature interpolation; package boundary and z-refinement; calibrated uncertainty')
     for condition in benchmark['profiles']:
-        summary = summarize_decisions([r for r in rows if r['profile']==condition])
+        original_rows = [r for r in rows if r['profile']==condition and r['policy']!='witness']
+        report['frozen_budget_results'][condition] = summarize_decisions(original_rows,
+            expected_layout_ids=frozen['layouts'], expected_profile=condition)
+        summary = summarize_decisions([r for r in rows if r['profile']==condition],
+                                      expected_layout_ids=frozen['layouts'], expected_profile=condition)
         # The extra adaptive witness is proof evidence, not a fair baseline run.
         summary.pop('baselines'); summary.pop('baseline_scope')
         report['proof_with_additional_witness'][condition] = summary
@@ -64,13 +117,13 @@ def main():
         raise ValueError('this report narrative requires verified zero-cost witnesses in every condition')
     write_json(args.output/'chiplet-integrated-decision.json', report)
     if args.evidence:
-        compact = {k: v for k, v in report.items() if k!='frozen_inputs'}
-        compact['frozen_inputs_manifest_sha256'] = digest(args.benchmark/'frozen-inputs.json')
-        compact['frozen_source_sha256'] = report['frozen_inputs']['source_sha256']
-        compact['pdk_source_sha256'] = report['frozen_inputs']['pdk_source_sha256']
-        compact['configuration_sha256'] = report['frozen_inputs']['configuration_sha256']
-        compact['placement_domain'] = report['frozen_inputs']['layouts']
-        write_json(args.evidence, compact)
+        evidence = {k: v for k, v in report.items() if k!='frozen_inputs'}
+        evidence['frozen_inputs_manifest_sha256'] = digest(args.benchmark/'frozen-inputs.json')
+        evidence['frozen_source_sha256'] = report['frozen_inputs']['source_sha256']
+        evidence['pdk_source_sha256'] = report['frozen_inputs']['pdk_source_sha256']
+        evidence['configuration_sha256'] = report['frozen_inputs']['configuration_sha256']
+        evidence['placement_domain'] = report['frozen_inputs']['layouts']
+        write_json(args.evidence, evidence)
 
     # Render the actual witness geometry and paths beside the nominal decision
     # data. Unrouted candidates have no fabricated slack coordinate.

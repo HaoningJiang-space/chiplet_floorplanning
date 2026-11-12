@@ -67,7 +67,8 @@ rules, model uncertainty, or a fully characterized interface.
   budget or model temperature-dependent leakage and route loss.
 - Existing shared-routing regressions still pass all seven positive cases
   (1,824 paths) and both missing/doubled-clock-capacitance negative controls.
-  Full unit suite: 182 passed; the documented basic CLI case also passed.
+  Initial unit suite: 182 passed. After the proof-admission fixes below, 189
+  passed; the documented basic CLI case also passed.
 
 ## Decision-focused mesh check
 
@@ -110,6 +111,41 @@ introduced to obtain a positive cost.
 
 ## Reproduction and evidence
 
+The GitHub-only Chat review at `5e6ef7c` enumerated all 43 reachable commits,
+read the four changes since its prior review and the eight principal core
+modules/six experiment tools. It independently confirmed the finite-domain
+zero-cost argument, and identified three admission gaps: a witness could use
+a different executable/PDK, the generic proof function did not require the
+expected layout IDs, and the renderer did not bind attached audit hashes.
+The reviewer did not execute tests or receive local raw logs/waveforms.
+
+The fixes leave all original solver results unchanged. A benchmark now checks
+the actual selected model directory against every locked PDK file; a witness
+must match both the frozen executable and full PDK manifest before evaluation.
+The merge also checks every saved timing receipt's executable/source identity,
+generated libraries, netlist, SPEF, script and log against their recorded hashes.
+The independent channel audit verifies those exact inputs before reading pin C.
+
+Proofs require an explicit complete layout domain and a single expected
+condition. Calls without a declared domain return subset statistics with no
+optimality/empty-set certificate. The experiment admission layer additionally
+requires the exact original layout x profile x routing-policy ledger, binds
+saved configuration/placement inputs to that frozen experiment, and recomputes
+the summaries rather than reusing old certificates. The renderer verifies
+benchmark/witness/thermal/channel associations and per-STA receipt hashes;
+the new evidence includes a content-hash manifest for 106 evaluator receipts
+and 164 timing receipts. Missing layouts, wrong runtime/PDK, modified saved
+libraries, mislabeled configurations and unrelated audit files are rejected
+by negative tests. This protects against accidental evidence mixing; it is
+not an authenticity signature or a replacement for independent reproduction.
+
+The original 164 channel audits were rerun with these admission checks in
+`integrated-channels-v2.json`; all still pass and the doubled-R negative control
+still fails. All four numerical zero-cost proofs survive the stricter merge.
+A separate same-machine repeat of the nominal witness produced an identical
+complete saved report, including input/thermal/STA input and log hashes. This
+does not establish cross-platform bitwise reproducibility or physical validity.
+
 ```powershell
 . ./tools/windows_env.ps1
 python tools/benchmark_floorplanning.py --output results/decision-benchmark
@@ -117,10 +153,11 @@ python tools/find_floorplan_route_witness.py results/decision-benchmark --layout
 python tools/evaluate_floorplan_witness.py results/decision-benchmark results/decision-search/report.json --output results/decision-witness
 python tools/audit_floorplan_thermal_domain.py results/decision-benchmark --output results/decision-thermal.json
 python tools/audit_integrated_channels.py results/decision-benchmark --additional-run results/decision-witness --output results/decision-channels.json
+python tools/render_floorplanning_benchmark.py results/decision-benchmark results/decision-witness --thermal-audit results/decision-thermal.json --channel-audit results/decision-channels.json --output results/decision-report
 ```
 
 The immutable local runs are `integrated-decision-v1`, `integrated-witness-v1`,
-`integrated-thermal-domain-v1.json`, and `integrated-channels-v1.json` under
+`integrated-thermal-domain-v1.json`, and `integrated-channels-v2.json` under
 `results/physical-calibration`. The
 [compact tracked evidence](evidence/local-integrated-decision.json) records
 all coarse candidates, bounds, source/PDK hashes, numerical checks and refined

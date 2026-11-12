@@ -9,7 +9,8 @@ import time
 from chiplet_floorplanning.characterization import digest
 from chiplet_floorplanning.decision import summarize_decisions
 from chiplet_floorplanning.floorplanning import evaluate, write_json
-from validation.sources import git_revision, verify
+from validation.sources import git_revision, LOCK
+from validation.decision_evidence import verify_pdk
 
 
 def domain():
@@ -66,12 +67,15 @@ def main():
     profiles = ('nominal', 'tx_power_125pct', 'cooling_800', 'package_load_25ff')
     names = [n['id'] for n in base['design']['links'] if n['kind']=='data']
     orders = {'data_first': names+['forwarded_clock'], 'clock_first': ['forwarded_clock']+names}
-    code = list(Path('src/chiplet_floorplanning').glob('*.py'))+[Path(__file__), Path('tools/validation/sources.py')]
+    code = list(Path('src/chiplet_floorplanning').glob('*.py'))+[Path(__file__), Path('tools/validation/sources.py'),
+                                                              Path('tools/validation/decision_evidence.py'), LOCK]
+    pdk_manifest = {r['path']: r['sha256'] for r in json.loads(LOCK.read_text())['files']
+                    if r['path'].startswith('pdk-v03/')}
     frozen = dict(git=git_revision(Path('.')), source_sha256={str(p): digest(p) for p in code},
                   configuration_sha256=digest(args.configuration), executable_sha256=digest(args.sta),
-                  pdk_source_sha256=verify(args.model_root.parent, 'pdk-v03/'),
+                  pdk_source_sha256=verify_pdk(args.model_root, pdk_manifest),
                   layouts=layouts, profiles={n: profile(base, n) for n in profiles}, route_orders=orders,
-                  domain_size=96, started_after_domain_freeze=True, physical_interface_qualified=False)
+                  domain_size=len(layouts)*len(profiles)*len(orders), started_after_domain_freeze=True, physical_interface_qualified=False)
     write_json(args.output/'frozen-inputs.json', frozen)
     report = dict(complete=False, frozen_inputs_sha256=digest(args.output/'frozen-inputs.json'),
                   cases=[], profiles={}, physical_interface_qualified=False)
@@ -89,7 +93,7 @@ def main():
                 write_json(args.output/'report.json', report)
                 print(len(all_rows), '/', frozen['domain_size'], name, row['status'],
                       row.get('thermal', {}).get('peak_c'), flush=True)
-        report['profiles'][condition] = summarize_decisions(rows)
+        report['profiles'][condition] = summarize_decisions(rows, expected_layout_ids=layouts, expected_profile=condition)
         write_json(args.output/'report.json', report)
     # Refine the best and nearest distinct thermal competitor, preserving their
     # exact route policy. This diagnoses numerical difference, not model error.

@@ -14,6 +14,7 @@ from chiplet_floorplanning.characterization import digest
 from chiplet_floorplanning.floorplanning import write_json
 from chiplet_floorplanning.liberty_checks import unique_group
 from chiplet_floorplanning.network_reports import NUMBER
+from validation.decision_evidence import verify_saved_sta_files
 
 
 def moments(rc, models, transition, resistance_scale=1.):
@@ -75,6 +76,8 @@ def main():
     if not all(report['complete'] for _, report in reports):
         raise ValueError('benchmark must finish before complete channel audit')
     result = dict(input_report_sha256={str(root/'report.json'): digest(root/'report.json') for root in runs}, script_sha256=digest(__file__),
+                  admission_source_sha256=digest(Path(__file__).parent/'validation/decision_evidence.py'),
+                  saved_STA_files_verified=True,
                   cases={}, physical_channel_qualified=False,
                   scope='polarity_specific_Liberty_capacitance_unique_RC_conductors_and_simple_rc_one_pole_only')
     first = None
@@ -83,6 +86,7 @@ def main():
             continue
         for mode in ('reference', 'feedback'):
             path = root/row['id']/mode/'report.json'; receipt = json.loads(path.read_text())
+            verify_saved_sta_files(receipt, path.parent)
             if first is None:
                 first = receipt
             result['cases'][row['id']+'_'+mode] = dict(report_sha256=digest(path), **compare(receipt))

@@ -8,6 +8,7 @@ from pathlib import Path
 from chiplet_floorplanning.characterization import digest
 from chiplet_floorplanning.floorplanning import evaluate, write_json
 from benchmark_floorplanning import compact
+from validation.decision_evidence import verify_runtime
 
 
 def main():
@@ -25,10 +26,12 @@ def main():
     for path, expected in frozen['source_sha256'].items():
         if digest(path)!=expected:
             raise ValueError('benchmark source changed: '+path)
+    runtime_identity = verify_runtime(args.sta, args.model_root, frozen)
     layout_id = search['layout_id']; layout = frozen['layouts'][layout_id]
     result = dict(complete=False, search_sha256=digest(args.search),
                   benchmark_inputs_sha256=digest(args.benchmark/'frozen-inputs.json'),
                   script_sha256=digest(__file__), cases=[], paired_refinement=[],
+                  runtime_identity=runtime_identity,
                   purpose='feasible_witness_to_close_thermal_bound_not_equal_budget_algorithm_comparison')
     for condition, original in frozen['profiles'].items():
         for factor in ((1, 2, 4) if condition=='nominal' else (1,)):
