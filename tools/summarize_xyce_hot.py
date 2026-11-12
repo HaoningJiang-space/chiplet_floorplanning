@@ -12,6 +12,7 @@ from compare_xyce_fabric import measure
 from chiplet_floorplanning.characterization import digest
 from validation.xyce_output import read_wave, warning_inventory
 from validation.decision_evidence import verify_saved_sta_files
+from validation.xyce_fabric_contract import verify_hot_deck, hot_model_root
 
 
 def summarize(hot_root, cold_root, layout):
@@ -24,7 +25,7 @@ def summarize(hot_root, cold_root, layout):
         raise ValueError('receipt binding mismatch')
     if hot['thermal_field_sha256'] != digest(args.layout/'temperature.npz'):
         raise ValueError('thermal field changed')
-    results = []
+    results, diagnostic_cases = [], []
     sta = {}
     for mode in ('reference', 'feedback'):
         folder = args.layout/mode
@@ -40,8 +41,12 @@ def summarize(hot_root, cold_root, layout):
             for name, sha in cases[0]['artifacts_sha256'].items():
                 if digest(folder/name) != sha:
                     raise ValueError('modified raw artifact')
-            if warning_inventory((folder/'xyce.log').read_text())['unknown_messages']:
+            warnings = warning_inventory((folder/'xyce.log').read_text())
+            if warnings['unknown_messages']:
                 raise ValueError('unknown or suppressed diagnostic in paired evidence')
+            diagnostic_cases.append(dict(mode=label, step_ps=step,
+                warning_count=len(warnings['messages']), unknown_warning_count=0,
+                log_sha256=digest(folder/'xyce.log')))
             reference = args.layout/mode
             expected, nodes = build_fabric((reference/'fabric.v').read_text(), sta[mode], (reference/'package.spef').read_text())
             if label == 'hot':
@@ -50,8 +55,9 @@ def summarize(hot_root, cold_root, layout):
             if Counter(l for l in lines if l.startswith(('X_', 'R_', 'C_'))) != Counter(expected):
                 raise ValueError('actual circuit differs from temperature/RC assignment')
             if label == 'hot':
-                libline, = [line for line in lines if line.startswith('.lib ')]
-                modelroot = Path(libline.split('"')[1]).parents[2]
+                verify_hot_deck((args.cold/f'step_{step:g}ps/deck.cir').read_text(),
+                                (folder/'deck.cir').read_text(), expected, args.hot)
+                modelroot = hot_model_root(args.hot)
                 for transform in hot['transforms']:
                     target = (args.hot if '/' not in transform['path'] else modelroot)/transform['path']
                     if digest(target) != transform['transformed_sha256']:
@@ -80,6 +86,9 @@ def summarize(hot_root, cold_root, layout):
         opposite_directions=sum(r['opposite_change_direction'] for r in fine),
         max_paired_step_change_ps=max(abs(r['xyce_feedback_change_ps']-coarse[r['lane'], r['edge'], r['window']]['xyce_feedback_change_ps']) for r in fine),
         max_abs_model_change_difference_ps=max(abs(r['model_change_difference_ps']) for r in fine),
+        whole_hot_deck_contract_passed=True,
+        whole_hot_deck_contract_source_sha256=digest(Path(__file__).parent/'validation/xyce_fabric_contract.py'),
+        diagnostic_cases=diagnostic_cases,
         windows={}, paths=results)
     for kind in ('setup', 'hold'):
         rows = [r for r in fine if r['window'] == kind]

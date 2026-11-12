@@ -376,13 +376,45 @@
       "complete": true,
       "diagnostics_admitted": true,
       "physical_qualified": false,
-      "source_sha256": "c300d0b8e9cf501b60c244e27e4321f14ccae2df1704929f78f887c63d8b5e5a",
+      "source_sha256": "d01fb950947ffe6b8f34ecc3544223b692024f94f506679ee4d82d087fa81d38",
       "scope": "one assumed-package layout; available windows, not physical slack or layout optimum",
       "hot_receipt_sha256": "dfd954083789c110c6028595ec95fc7095c9fb395589c987ce6ab6bf570a5142",
       "cold_receipt_sha256": "bbd28b81fe6a11949723763e0c4e9c88943d61dda1c737f5379f14082e3328bd",
       "opposite_directions": 0,
       "max_paired_step_change_ps": 0.25302343544453265,
       "max_abs_model_change_difference_ps": 1.3191500577640625,
+      "whole_hot_deck_contract_passed": true,
+      "whole_hot_deck_contract_source_sha256": "09cd37ead339793554c05f5afd3439f514452de599b5ab7072f6db10de7c2c44",
+      "diagnostic_cases": [
+        {
+          "mode": "hot",
+          "step_ps": 5.0,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "81febc1a976433b80cd29bd661eed9d978a9f7261a48cf2b4671fbe3f6b52b2f"
+        },
+        {
+          "mode": "cold",
+          "step_ps": 5.0,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "a31b7199bc7f5975d2dc653c63b9b9d90d7fd3c1b83718124b5c8a650f0d96c9"
+        },
+        {
+          "mode": "hot",
+          "step_ps": 2.5,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "fe4e6ade1501866405415915d453d29d412ef39d39d310da218ac7d887c168da"
+        },
+        {
+          "mode": "cold",
+          "step_ps": 2.5,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "d6fc8a466ddf2100041d370ec69f40dc16f2f4d0a9c7a73d99d40955cfe72855"
+        }
+      ],
       "windows": {
         "setup": {
           "cold_min_ns": 9.870691991933022,
@@ -1304,13 +1336,45 @@
       "complete": true,
       "diagnostics_admitted": true,
       "physical_qualified": false,
-      "source_sha256": "c300d0b8e9cf501b60c244e27e4321f14ccae2df1704929f78f887c63d8b5e5a",
+      "source_sha256": "d01fb950947ffe6b8f34ecc3544223b692024f94f506679ee4d82d087fa81d38",
       "scope": "one assumed-package layout; available windows, not physical slack or layout optimum",
       "hot_receipt_sha256": "4854271fabd77c400628020e022afa900a573f27cf8c73359071617a801c38e0",
       "cold_receipt_sha256": "093b7d0b174ab1bc399de5f582ac19f99d9034b89a8205c1ff26475a030f18c2",
       "opposite_directions": 0,
       "max_paired_step_change_ps": 0.0521465714768965,
       "max_abs_model_change_difference_ps": 1.2312563694631962,
+      "whole_hot_deck_contract_passed": true,
+      "whole_hot_deck_contract_source_sha256": "09cd37ead339793554c05f5afd3439f514452de599b5ab7072f6db10de7c2c44",
+      "diagnostic_cases": [
+        {
+          "mode": "hot",
+          "step_ps": 5.0,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "7a4d7af8332005b841f21f91f991ff2e84224603af53ab7b5d29a45ac651caf0"
+        },
+        {
+          "mode": "cold",
+          "step_ps": 5.0,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "fca67ad5731ff8d20c5f71135fa4f70b7989bec87917e335e1b183b86d833f3d"
+        },
+        {
+          "mode": "hot",
+          "step_ps": 2.5,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "83bae0ab0ebe483586aa5d8fc3f4786d84bc24df3e76702a4261114b141d4367"
+        },
+        {
+          "mode": "cold",
+          "step_ps": 2.5,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "21690b031f040560a282777e220599c31ef33ce2f9c702daaf0be282bb0831c1"
+        }
+      ],
       "windows": {
         "setup": {
           "cold_min_ns": 9.892397106001042,
@@ -2232,13 +2296,45 @@
       "complete": true,
       "diagnostics_admitted": true,
       "physical_qualified": false,
-      "source_sha256": "c300d0b8e9cf501b60c244e27e4321f14ccae2df1704929f78f887c63d8b5e5a",
+      "source_sha256": "d01fb950947ffe6b8f34ecc3544223b692024f94f506679ee4d82d087fa81d38",
       "scope": "one assumed-package layout; available windows, not physical slack or layout optimum",
       "hot_receipt_sha256": "11b1aed6d5a1da8bd641a8f046db4f436d199d34f170e9c3be87df1cce7ab810",
       "cold_receipt_sha256": "6fa0a77268e13d9405213af833562369ce23c632575bd08ea9b1f48c38ed3d9d",
       "opposite_directions": 0,
       "max_paired_step_change_ps": 0.2856985655235178,
       "max_abs_model_change_difference_ps": 1.236679835276533,
+      "whole_hot_deck_contract_passed": true,
+      "whole_hot_deck_contract_source_sha256": "09cd37ead339793554c05f5afd3439f514452de599b5ab7072f6db10de7c2c44",
+      "diagnostic_cases": [
+        {
+          "mode": "hot",
+          "step_ps": 5.0,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "6e7044a85df2a7f32e0a61b9498e38155ac5d4fa5e64236c3fcab236327248ff"
+        },
+        {
+          "mode": "cold",
+          "step_ps": 5.0,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "29041b3a4ec3b03648a319ac783554a3e921aefa2bc063f3bb62875196ad0ba3"
+        },
+        {
+          "mode": "hot",
+          "step_ps": 2.5,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "3aa1870dad4b8f13a611f15e14a149c22678803193fbddf231f50e479883d8c2"
+        },
+        {
+          "mode": "cold",
+          "step_ps": 2.5,
+          "warning_count": 2785,
+          "unknown_warning_count": 0,
+          "log_sha256": "7cbe4004e227535d9338aaf23b2fbf46b2c16b5a98dab5c8d0d2130af4ade275"
+        }
+      ],
       "windows": {
         "setup": {
           "cold_min_ns": 9.95578260576308,

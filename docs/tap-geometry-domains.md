@@ -17,6 +17,12 @@ inside the interposer. This explicitly stated envelope convention must be
 shared by all later baselines; it is not a detailed bump escape model.
 
 Every chiplet independently selects its centre and one of 0/90/180/270 degrees.
+The four orientations are an explicit extension of TAP's width/height-swap
+geometry, not a claim that the upstream model has four direction-sensitive PHY
+maps. For geometry alone, 0/180 and 90/270 coincide for rectangles; all four
+coincide for squares. Candidate counts include these orientation labels, not
+that many distinct geometric boxes. Baselines must use the same extension or
+the same explicitly deduplicated geometry quotient until port maps exist.
 The domain is the Cartesian product of all individual choices, filtered by
 pairwise gap conditions. It is not restricted to common translations, fixed
 slots or a common rotation. Square shapes retain four orientations because

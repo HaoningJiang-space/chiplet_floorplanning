@@ -101,10 +101,13 @@ geometry, finite package resources and thermal problem structure. The new
 [TAP geometry domains](tap-geometry-domains.md) are an input milestone, not a
 completed physical benchmark. The need for a new optimizer remains unproven.
 
-Local validation: 248 tests and the documented two-chiplet CLI passed in the
-same code state (3 W, 34.1886 C; uncalibrated; timing not run). All experiments
-ran locally. Chat review of this complete stage is pending publication; earlier
-reviews through ba4fbeb do not cover these results.
+Initial local validation: 248 tests and the documented two-chiplet CLI passed
+in the same code state (3 W, 34.1886 C; uncalibrated; timing not run). All
+experiments ran locally. [Chat's complete stage review and response](fabric-exit-chat-review.md)
+accepted the bounded exit and independently recomputed the published arithmetic.
+The subsequent evidence-only replay adds whole hot/cold deck equivalence and
+per-case warning counts/hashes. All measured paths, pair verdicts and uniform
+controls are exactly unchanged; no transistor simulation was rerun.
 
 Reproduce with the retained local trees:
 
