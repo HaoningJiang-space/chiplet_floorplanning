@@ -15,6 +15,13 @@ from chiplet_floorplanning.package import assemble_package
 from chiplet_floorplanning.characterization import digest
 
 
+def completion_status(cases, expected_profiles):
+    actual = [case['profile'] for case in cases]
+    finished = len(actual) == len(set(actual)) and set(actual) == set(expected_profiles)
+    accepted = finished and all(case['receipt'].get('accepted') is True for case in cases)
+    return dict(execution_complete=finished, all_solvers_accepted=accepted, complete=accepted)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--hits', type=Path, required=True)
@@ -24,7 +31,7 @@ def main():
     sys.path.insert(0, str(args.hits.resolve()))
     from core.thermal.operator import HiTS, ThermalOperator, EquationConvention, NodeRegion
     revision = subprocess.check_output(['git', '-C', str(args.hits), 'rev-parse', 'HEAD'], text=True).strip()
-    report = dict(complete=False, hits_revision=revision, cpu_only=True,
+    report = dict(complete=False, execution_complete=False, all_solvers_accepted=False, hits_revision=revision, cpu_only=True,
                   source_sha256=digest(__file__), physical_calibration=False,
                   scope='three single-run API smoke checks, not statistical performance evidence or GPU qualification', cases=[])
     for profile in ('nominal', 'tx_power_125pct', 'cooling_800'):
@@ -60,8 +67,10 @@ def main():
         report['cases'].append(entry)
         args.output.write_text(json.dumps(report, indent=2)+'\n')
         print(json.dumps(entry), flush=True)
-    report['complete'] = True
+    report.update(completion_status(report['cases'], ('nominal', 'tx_power_125pct', 'cooling_800')))
     args.output.write_text(json.dumps(report, indent=2)+'\n')
+    if not report['all_solvers_accepted']:
+        raise RuntimeError('HiTS smoke execution ended with rejected or missing solves')
 
 
 if __name__ == '__main__':

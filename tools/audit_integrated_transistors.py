@@ -13,12 +13,13 @@ import subprocess
 import numpy as np
 
 from chiplet_floorplanning.characterization import digest
+from chiplet_floorplanning.shared_parasitics import SPEF_HEADER, spef_tree
 from validation.decision_evidence import verify_saved_sta_files
 from validation.pad_sources import prepare
 from validation.pad_spice import crossing_ns
 
 
-def build_fabric(verilog, receipt):
+def build_fabric(verilog, receipt, spef):
     connections = {}
     for model, instance, ports in re.findall(r'(thermal_\w+)\s+(\w+)\s*\(([^;]+)\);', verilog):
         connections[instance] = dict(re.findall(r'\.(\w+)\(([^)]+)\)', ports))
@@ -26,6 +27,36 @@ def build_fabric(verilog, receipt):
             raise ValueError('Verilog and receipt model differ')
     if set(connections) != set(receipt['models']) or len(connections) != 32:
         raise ValueError('expected complete 32-cell eight-lane fabric')
+    expected = {f'data_{g}_{l}': (f'data_{g}_{l}', f'data_cell_{g}_{l}:X', [f'rx_{g}_{l}:D'])
+                for g in range(2) for l in range(4)}
+    expected['forwarded_clock'] = ('forwarded', 'clock_trunk:X', ['branch_0_cell:A', 'branch_1_cell:A'])
+    if set(receipt['rc']) != set(expected):
+        raise ValueError('complete nine-net RC domain required')
+    reconstructed = SPEF_HEADER
+    for net, rc in receipt['rc'].items():
+        design, source, sinks = expected[net]
+        if (rc['design_net'], rc['source_pin'], rc['sink_pins']) != (design, source, sinks):
+            raise ValueError('unexpected routed terminal mapping')
+        for pin in [source, *sinks]:
+            instance, port = pin.split(':')
+            if connections.get(instance, {}).get(port) != design:
+                raise ValueError('routed terminal differs from Verilog')
+        n = len(rc['nodes'])
+        terminals = [rc['source_index'], *rc['sink_indices']]
+        if n != len(rc['node_parasitic_pf']) or len(set(terminals)) != len(terminals) or any(type(i) is not int or not 0 <= i < n for i in terminals):
+            raise ValueError('invalid RC node/terminal indices')
+        if len(sinks) != len(rc['sink_indices']):
+            raise ValueError('incomplete receiver mapping')
+        if any(not np.isfinite(c) or c < 0 for c in rc['node_parasitic_pf']):
+            raise ValueError('invalid parasitic capacitance')
+        for conductor in rc['conductors']:
+            if any(type(conductor[k]) is not int or not 0 <= conductor[k] < n for k in ('a', 'b')) or conductor['a'] == conductor['b']:
+                raise ValueError('invalid conductor endpoints')
+            if not np.isfinite(conductor['resistance_ohm']) or conductor['resistance_ohm'] <= 0:
+                raise ValueError('nonpositive or nonfinite resistance')
+        reconstructed += spef_tree(design, source, sinks, rc)
+    if reconstructed.split() != spef.split():
+        raise ValueError('RC receipt differs from verified SPEF')
     wires, elements = {}, []
     for net, rc in receipt['rc'].items():
         name = lambda index: f'wire_{net}_{index}'
@@ -91,8 +122,8 @@ def main():
         target = out/(cell+'.spice')
         target.write_bytes(source.read_bytes())
         includes.append(f'.include "{target.resolve().as_posix()}"')
-    elements, nodes = build_fabric((root/'fabric.v').read_text(), receipt)
-    observed = ['clk']+list(dict.fromkeys(nodes.values()))
+    elements, nodes = build_fabric((root/'fabric.v').read_text(), receipt, (root/'package.spef').read_text())
+    observed = list(dict.fromkeys(['clk', *nodes.values()]))
     indices = {node: i+1 for i, node in enumerate(observed)}
     init = out/'empty-init'
     init.mkdir()

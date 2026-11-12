@@ -19,7 +19,7 @@ def summarize(root, reference):
         raise ValueError('different STA reference')
     if not report['complete'] or [c['step_ps'] for c in report['cases']] != [5., 2.5]:
         raise ValueError('incomplete time-step experiment')
-    _, nodes = build_fabric((reference/'fabric.v').read_text(), sta)
+    _, nodes = build_fabric((reference/'fabric.v').read_text(), sta, (reference/'package.spef').read_text())
     columns = {node: i+1 for i, node in enumerate(report['observed_nodes'])}
     records = []
     for case in report['cases']:
@@ -47,11 +47,16 @@ def summarize(root, reference):
                     qmask = (t >= launch+14) & (t <= launch+15)
                     if np.max(abs(wave[qmask, columns[nodes['rx_'+suffix+':Q']]]-(1.8 if edge == 'rise' else 0))) > .018:
                         raise ValueError('capture replay failed')
+                    event_mask = (t >= launch) & (t <= launch+15)
+                    q_time = crossing_ns(t[event_mask], wave[event_mask, columns[nodes['rx_'+suffix+':Q']]], .9, edge == 'rise')-origin
+                    if q_time < capture:
+                        raise ValueError('receiver Q transitioned before its capture edge')
                     setup = sta['paths'][suffix+'_setup_'+edge]
                     hold = sta['paths'][suffix+'_hold_'+edge]
                     setup_window = capture-arrival
                     hold_window = arrival-previous_capture
                     records.append(dict(step_ps=case['step_ps'], lane=suffix, edge=edge,
+                        receiver_clock_to_q_ns=q_time-capture,
                         setup_window_ns=setup_window, hold_window_ns=hold_window,
                         setup_window_difference_ps=(setup_window-(setup['capture_arrival_ns']-setup['data_arrival_ns']))*1000,
                         hold_window_difference_ps=(hold_window-(hold['data_arrival_ns']-hold['capture_arrival_ns']))*1000))
@@ -59,7 +64,9 @@ def summarize(root, reference):
     fine = [r for r in records if r['step_ps'] == 2.5]
     numerical = max(abs(r[k]-coarse[r['lane'], r['edge']][k])*1000
                     for r in fine for k in ('setup_window_ns', 'hold_window_ns'))
-    return dict(physical_qualified=False, raw_report_sha256=digest(root/'report.json'),
+    return dict(physical_qualified=False, summary_source_sha256=digest(__file__),
+        rc_matches_saved_spef=True, receiver_capture_edges_checked=True,
+        raw_report_sha256=digest(root/'report.json'),
         scope='available data/capture windows, not characterized setup/hold slack or uncertainty bounds',
         replayed_paths=len(records), max_step_window_change_ps=numerical,
         minimum_setup_window_ns=min(r['setup_window_ns'] for r in fine),

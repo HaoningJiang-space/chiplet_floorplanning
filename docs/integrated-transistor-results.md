@@ -74,3 +74,42 @@ Next extend the common-reference comparison to the declared temperature field
 and receiver constraint behavior. Preserve this nominal baseline and its model
 differences; do not replace STA values by fitted offsets or call an observed
 maximum discrepancy a universal uncertainty bound.
+
+## GitHub Chat review and local corrections
+
+The Chat review at `6f8f49c` enumerated 53 reachable commits, obtained all nine
+new patches after `171c5e9`, and read the principal HEAD sources/evidence. The
+previous 44 commits relied on earlier review; raw local waveforms and tests
+were not independently rerun. It confirmed window signs/reference edges and
+the distinction between windows and slack. Its three new findings were:
+
+1. Missing receipt RC could silently fall back to an ideal Verilog connection.
+   The generator and replay now require the exact eight data nets plus shared
+   clock, exact source/sink terminals tied to Verilog, valid RC node indices and
+   finite passive values. Re-exported coefficients/terminals/units must match
+   the independently hash-verified saved SPEF. Missing data/clock nets, changed
+   capacitance and wrong terminals have negative tests.
+2. HiTS completion could be true with a rejected solve. Its tool now separates
+   `execution_complete`, `all_solvers_accepted` and successful `complete`, and
+   exits with an error if any expected solve is missing or rejected. Synthetic
+   rejection and incomplete-domain tests exercise those cases. All three
+   original saved solves were accepted; the original evidence is retained.
+3. The observation list repeated `clk`. New generation deduplicates the entire
+   list. Both original raw files were checked: the two old clock columns are
+   exactly equal. Existing traces remain unchanged and replay with their own
+   recorded column lists.
+
+The strengthened replay additionally requires exactly one receiver Q threshold
+transition in each expected event window, occurring after the capture clock,
+alongside the existing stable-level check. All 32 observations pass; this
+improves capture evidence without characterizing setup/hold or metastability.
+The [reviewed replay](evidence/local-integrated-transistors-reviewed.json)
+has unchanged window metrics and retains the original raw report hash.
+The local correction suite passed 204 tests and the documented CLI case.
+These corrections are locally verified; the external review itself covers
+`6f8f49c`, not the subsequent correction commit.
+
+The next decision experiment should compare paired layouts with identical
+stimuli and models, testing whether SPICE and STA agree on the **difference**
+in setup/hold windows. This directly addresses ranking sensitivity before
+investing in more isolated-cell or solver residual refinement.
