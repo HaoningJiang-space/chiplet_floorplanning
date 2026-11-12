@@ -1,0 +1,947 @@
+{
+  "source_sha256": "a32a295ddc624661ed2793ef5ed8a8190d15b9b33c13329819908054535b964e",
+  "ledger_sha256": "2d436d4f5dac547fc9d6e061725903a59ecac863dd8c5680eee0a4c7d5054786",
+  "upstream_commit": "3a3f4e5a4d019b2d9cda1f72d8d1755238845dbb",
+  "scope": "complete direct pin-clump graph, no length limits or track capacity; not physical routing signoff",
+  "physical_qualified": false,
+  "cases": [
+    {
+      "name": "ascend910",
+      "bump_ring_mm": [
+        0.09,
+        0.045,
+        0.045,
+        0.045,
+        0.045,
+        0.045
+      ],
+      "port_capacities": [
+        [
+          1398,
+          648,
+          1398,
+          648
+        ],
+        [
+          356,
+          234,
+          356,
+          234
+        ],
+        [
+          264,
+          173,
+          264,
+          173
+        ],
+        [
+          264,
+          173,
+          264,
+          173
+        ],
+        [
+          264,
+          173,
+          264,
+          173
+        ],
+        [
+          264,
+          173,
+          264,
+          173
+        ]
+      ],
+      "status": "feasible_in_complete_direct_pin_model",
+      "incident_demands": [
+        2448,
+        400,
+        512,
+        512,
+        512,
+        512
+      ],
+      "port_usage": [
+        [
+          1398,
+          648,
+          402,
+          0
+        ],
+        [
+          356,
+          44,
+          0,
+          0
+        ],
+        [
+          264,
+          173,
+          75,
+          0
+        ],
+        [
+          264,
+          173,
+          75,
+          0
+        ],
+        [
+          264,
+          173,
+          75,
+          0
+        ],
+        [
+          264,
+          173,
+          75,
+          0
+        ]
+      ],
+      "flows": [
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 1,
+          "sink_port": 0,
+          "amount": 200
+        },
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 2,
+          "sink_port": 0,
+          "amount": 256
+        },
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 3,
+          "sink_port": 0,
+          "amount": 256
+        },
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 4,
+          "sink_port": 0,
+          "amount": 256
+        },
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 5,
+          "sink_port": 0,
+          "amount": 256
+        },
+        {
+          "source": 1,
+          "source_port": 0,
+          "sink": 0,
+          "sink_port": 0,
+          "amount": 156
+        },
+        {
+          "source": 1,
+          "source_port": 1,
+          "sink": 0,
+          "sink_port": 0,
+          "amount": 18
+        },
+        {
+          "source": 1,
+          "source_port": 1,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 26
+        },
+        {
+          "source": 2,
+          "source_port": 0,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 8
+        },
+        {
+          "source": 2,
+          "source_port": 1,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 173
+        },
+        {
+          "source": 2,
+          "source_port": 2,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 75
+        },
+        {
+          "source": 3,
+          "source_port": 0,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 8
+        },
+        {
+          "source": 3,
+          "source_port": 1,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 173
+        },
+        {
+          "source": 3,
+          "source_port": 2,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 75
+        },
+        {
+          "source": 4,
+          "source_port": 0,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 8
+        },
+        {
+          "source": 4,
+          "source_port": 1,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 102
+        },
+        {
+          "source": 4,
+          "source_port": 1,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 71
+        },
+        {
+          "source": 4,
+          "source_port": 2,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 75
+        },
+        {
+          "source": 5,
+          "source_port": 0,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 8
+        },
+        {
+          "source": 5,
+          "source_port": 1,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 173
+        },
+        {
+          "source": 5,
+          "source_port": 2,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 75
+        }
+      ]
+    },
+    {
+      "name": "micro150",
+      "bump_ring_mm": [
+        0.18,
+        0.18,
+        0.18,
+        0.18,
+        0.135,
+        0.135,
+        0.135,
+        0.135
+      ],
+      "port_capacities": [
+        [
+          816,
+          748,
+          816,
+          748
+        ],
+        [
+          816,
+          748,
+          816,
+          748
+        ],
+        [
+          816,
+          748,
+          816,
+          748
+        ],
+        [
+          816,
+          748,
+          816,
+          748
+        ],
+        [
+          591,
+          591,
+          591,
+          591
+        ],
+        [
+          591,
+          591,
+          591,
+          591
+        ],
+        [
+          591,
+          591,
+          591,
+          591
+        ],
+        [
+          591,
+          591,
+          591,
+          591
+        ]
+      ],
+      "status": "feasible_in_complete_direct_pin_model",
+      "incident_demands": [
+        3072,
+        3072,
+        3072,
+        3072,
+        2048,
+        2048,
+        2048,
+        2048
+      ],
+      "port_usage": [
+        [
+          816,
+          748,
+          816,
+          692
+        ],
+        [
+          816,
+          748,
+          816,
+          692
+        ],
+        [
+          816,
+          748,
+          816,
+          692
+        ],
+        [
+          816,
+          748,
+          816,
+          692
+        ],
+        [
+          591,
+          591,
+          591,
+          275
+        ],
+        [
+          591,
+          591,
+          591,
+          275
+        ],
+        [
+          591,
+          591,
+          591,
+          275
+        ],
+        [
+          591,
+          591,
+          591,
+          275
+        ]
+      ],
+      "flows": [
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 1,
+          "sink_port": 0,
+          "amount": 256
+        },
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 3,
+          "sink_port": 0,
+          "amount": 256
+        },
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 4,
+          "sink_port": 0,
+          "amount": 304
+        },
+        {
+          "source": 0,
+          "source_port": 1,
+          "sink": 4,
+          "sink_port": 0,
+          "amount": 287
+        },
+        {
+          "source": 0,
+          "source_port": 1,
+          "sink": 4,
+          "sink_port": 1,
+          "amount": 433
+        },
+        {
+          "source": 1,
+          "source_port": 0,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 28
+        },
+        {
+          "source": 1,
+          "source_port": 0,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 228
+        },
+        {
+          "source": 1,
+          "source_port": 0,
+          "sink": 2,
+          "sink_port": 0,
+          "amount": 256
+        },
+        {
+          "source": 1,
+          "source_port": 0,
+          "sink": 5,
+          "sink_port": 0,
+          "amount": 48
+        },
+        {
+          "source": 1,
+          "source_port": 1,
+          "sink": 5,
+          "sink_port": 0,
+          "amount": 543
+        },
+        {
+          "source": 1,
+          "source_port": 1,
+          "sink": 5,
+          "sink_port": 1,
+          "amount": 205
+        },
+        {
+          "source": 1,
+          "source_port": 2,
+          "sink": 5,
+          "sink_port": 1,
+          "amount": 228
+        },
+        {
+          "source": 2,
+          "source_port": 0,
+          "sink": 1,
+          "sink_port": 2,
+          "amount": 256
+        },
+        {
+          "source": 2,
+          "source_port": 0,
+          "sink": 3,
+          "sink_port": 0,
+          "amount": 256
+        },
+        {
+          "source": 2,
+          "source_port": 0,
+          "sink": 6,
+          "sink_port": 0,
+          "amount": 48
+        },
+        {
+          "source": 2,
+          "source_port": 1,
+          "sink": 6,
+          "sink_port": 0,
+          "amount": 543
+        },
+        {
+          "source": 2,
+          "source_port": 1,
+          "sink": 6,
+          "sink_port": 1,
+          "amount": 205
+        },
+        {
+          "source": 2,
+          "source_port": 2,
+          "sink": 6,
+          "sink_port": 1,
+          "amount": 228
+        },
+        {
+          "source": 3,
+          "source_port": 0,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 256
+        },
+        {
+          "source": 3,
+          "source_port": 0,
+          "sink": 2,
+          "sink_port": 2,
+          "amount": 48
+        },
+        {
+          "source": 3,
+          "source_port": 1,
+          "sink": 2,
+          "sink_port": 2,
+          "amount": 208
+        },
+        {
+          "source": 3,
+          "source_port": 1,
+          "sink": 7,
+          "sink_port": 0,
+          "amount": 540
+        },
+        {
+          "source": 3,
+          "source_port": 2,
+          "sink": 7,
+          "sink_port": 0,
+          "amount": 51
+        },
+        {
+          "source": 3,
+          "source_port": 2,
+          "sink": 7,
+          "sink_port": 1,
+          "amount": 433
+        },
+        {
+          "source": 4,
+          "source_port": 1,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 158
+        },
+        {
+          "source": 4,
+          "source_port": 2,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 174
+        },
+        {
+          "source": 4,
+          "source_port": 2,
+          "sink": 0,
+          "sink_port": 3,
+          "amount": 417
+        },
+        {
+          "source": 4,
+          "source_port": 3,
+          "sink": 0,
+          "sink_port": 3,
+          "amount": 275
+        },
+        {
+          "source": 5,
+          "source_port": 1,
+          "sink": 1,
+          "sink_port": 2,
+          "amount": 158
+        },
+        {
+          "source": 5,
+          "source_port": 2,
+          "sink": 1,
+          "sink_port": 2,
+          "amount": 174
+        },
+        {
+          "source": 5,
+          "source_port": 2,
+          "sink": 1,
+          "sink_port": 3,
+          "amount": 417
+        },
+        {
+          "source": 5,
+          "source_port": 3,
+          "sink": 1,
+          "sink_port": 3,
+          "amount": 275
+        },
+        {
+          "source": 6,
+          "source_port": 1,
+          "sink": 2,
+          "sink_port": 2,
+          "amount": 158
+        },
+        {
+          "source": 6,
+          "source_port": 2,
+          "sink": 2,
+          "sink_port": 2,
+          "amount": 174
+        },
+        {
+          "source": 6,
+          "source_port": 2,
+          "sink": 2,
+          "sink_port": 3,
+          "amount": 417
+        },
+        {
+          "source": 6,
+          "source_port": 3,
+          "sink": 2,
+          "sink_port": 3,
+          "amount": 275
+        },
+        {
+          "source": 7,
+          "source_port": 1,
+          "sink": 3,
+          "sink_port": 2,
+          "amount": 158
+        },
+        {
+          "source": 7,
+          "source_port": 2,
+          "sink": 3,
+          "sink_port": 2,
+          "amount": 174
+        },
+        {
+          "source": 7,
+          "source_port": 2,
+          "sink": 3,
+          "sink_port": 3,
+          "amount": 417
+        },
+        {
+          "source": 7,
+          "source_port": 3,
+          "sink": 3,
+          "sink_port": 3,
+          "amount": 275
+        }
+      ]
+    },
+    {
+      "name": "multigpu",
+      "bump_ring_mm": [
+        0.135,
+        0.09,
+        0.09,
+        0.135,
+        0.135,
+        0.135
+      ],
+      "port_capacities": [
+        [
+          807,
+          807,
+          807,
+          807
+        ],
+        [
+          812,
+          812,
+          812,
+          812
+        ],
+        [
+          812,
+          812,
+          812,
+          812
+        ],
+        [
+          798,
+          525,
+          798,
+          525
+        ],
+        [
+          798,
+          525,
+          798,
+          525
+        ],
+        [
+          798,
+          525,
+          798,
+          525
+        ]
+      ],
+      "status": "feasible_in_complete_direct_pin_model",
+      "incident_demands": [
+        2560,
+        2560,
+        2560,
+        2048,
+        2048,
+        2048
+      ],
+      "port_usage": [
+        [
+          807,
+          807,
+          807,
+          139
+        ],
+        [
+          812,
+          812,
+          812,
+          124
+        ],
+        [
+          812,
+          812,
+          812,
+          124
+        ],
+        [
+          798,
+          525,
+          725,
+          0
+        ],
+        [
+          798,
+          525,
+          725,
+          0
+        ],
+        [
+          798,
+          525,
+          725,
+          0
+        ]
+      ],
+      "flows": [
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 1,
+          "sink_port": 0,
+          "amount": 128
+        },
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 2,
+          "sink_port": 0,
+          "amount": 128
+        },
+        {
+          "source": 0,
+          "source_port": 0,
+          "sink": 3,
+          "sink_port": 0,
+          "amount": 551
+        },
+        {
+          "source": 0,
+          "source_port": 1,
+          "sink": 3,
+          "sink_port": 0,
+          "amount": 247
+        },
+        {
+          "source": 0,
+          "source_port": 1,
+          "sink": 3,
+          "sink_port": 1,
+          "amount": 226
+        },
+        {
+          "source": 1,
+          "source_port": 0,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 128
+        },
+        {
+          "source": 1,
+          "source_port": 0,
+          "sink": 2,
+          "sink_port": 0,
+          "amount": 128
+        },
+        {
+          "source": 1,
+          "source_port": 0,
+          "sink": 4,
+          "sink_port": 0,
+          "amount": 428
+        },
+        {
+          "source": 1,
+          "source_port": 1,
+          "sink": 4,
+          "sink_port": 0,
+          "amount": 370
+        },
+        {
+          "source": 1,
+          "source_port": 1,
+          "sink": 4,
+          "sink_port": 1,
+          "amount": 226
+        },
+        {
+          "source": 2,
+          "source_port": 0,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 128
+        },
+        {
+          "source": 2,
+          "source_port": 0,
+          "sink": 1,
+          "sink_port": 1,
+          "amount": 128
+        },
+        {
+          "source": 2,
+          "source_port": 0,
+          "sink": 5,
+          "sink_port": 0,
+          "amount": 300
+        },
+        {
+          "source": 2,
+          "source_port": 1,
+          "sink": 5,
+          "sink_port": 0,
+          "amount": 498
+        },
+        {
+          "source": 2,
+          "source_port": 1,
+          "sink": 5,
+          "sink_port": 1,
+          "amount": 226
+        },
+        {
+          "source": 3,
+          "source_port": 1,
+          "sink": 0,
+          "sink_port": 1,
+          "amount": 78
+        },
+        {
+          "source": 3,
+          "source_port": 1,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 221
+        },
+        {
+          "source": 3,
+          "source_port": 2,
+          "sink": 0,
+          "sink_port": 2,
+          "amount": 586
+        },
+        {
+          "source": 3,
+          "source_port": 2,
+          "sink": 0,
+          "sink_port": 3,
+          "amount": 139
+        },
+        {
+          "source": 4,
+          "source_port": 1,
+          "sink": 1,
+          "sink_port": 1,
+          "amount": 88
+        },
+        {
+          "source": 4,
+          "source_port": 1,
+          "sink": 1,
+          "sink_port": 2,
+          "amount": 211
+        },
+        {
+          "source": 4,
+          "source_port": 2,
+          "sink": 1,
+          "sink_port": 2,
+          "amount": 601
+        },
+        {
+          "source": 4,
+          "source_port": 2,
+          "sink": 1,
+          "sink_port": 3,
+          "amount": 124
+        },
+        {
+          "source": 5,
+          "source_port": 1,
+          "sink": 2,
+          "sink_port": 1,
+          "amount": 88
+        },
+        {
+          "source": 5,
+          "source_port": 1,
+          "sink": 2,
+          "sink_port": 2,
+          "amount": 211
+        },
+        {
+          "source": 5,
+          "source_port": 2,
+          "sink": 2,
+          "sink_port": 2,
+          "amount": 601
+        },
+        {
+          "source": 5,
+          "source_port": 2,
+          "sink": 2,
+          "sink_port": 3,
+          "amount": 124
+        }
+      ]
+    }
+  ]
+}
