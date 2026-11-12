@@ -68,6 +68,9 @@ counts and access to either layer are shared explicit assumptions. Pin identity,
 clock/return allocation, detailed escape, track identity/spacing inside each
 bin, and channel timing/SI are not qualified. Aggregate feasibility is a
 relaxation of those detailed constraints, not a manufactured routing result.
+This is not a certified relaxation of any particular real manufacturing stack:
+the assumed layer count can also exclude routes that a real multilayer process
+allows. A mapping to a compatible detailed model is still required.
 Accordingly, delta_T_graph=0 is not delta_T_physical=0, and does not complete the
 original sourced physical benchmark goal. The next meaningful step is to check
 whether a sourced detailed access/track model preserves these witnesses, not
@@ -88,3 +91,6 @@ are retained locally. Published [compact evidence](evidence/tap-global-routing-c
 contains protocol/input/source hashes, all 77 class statuses, witness artifact
 hashes and independent replay summaries. It contains no raw local process logs.
 All 267 unit tests and the fresh documented two-chiplet CLI passed locally.
+The [completed GitHub-only Chat review](tap-routing-chat-review.md) records
+independently checked scope, remaining certificate limits and the next physical
+access experiment.
