@@ -9,12 +9,18 @@ import statistics
 from build_tap_ihp_endpoints import source_bytes
 
 
-def move_graph(rows):
+def move_graph(rows, mode='joint'):
+    if mode not in ('atomic', 'joint'):
+        raise ValueError('Unknown move mode')
     keys=[[(p['centre_x_um'],p['centre_y_um'],p['rotation_deg']%180) for p in r['placement']] for r in rows]
     graph=[[] for _ in rows]
     for a in range(len(rows)):
         for b in range(a):
-            if sum(x!=y for x,y in zip(keys[a],keys[b],strict=True))==1:
+            changed = [(x, y) for x, y in zip(keys[a], keys[b], strict=True) if x != y]
+            if len(changed) == 1:
+                x, y = changed[0]
+                if mode == 'atomic' and x[:2] != y[:2] and x[2] != y[2]:
+                    continue
                 graph[a].append(b);graph[b].append(a)
     return graph
 
@@ -37,14 +43,16 @@ def score(row,reference,objective):
     raise ValueError('Unknown objective')
 
 
-def search(query,n,graph,budget,seed,method):
+def search(query,n,graph,budget,seed,method,start=0):
     if not 1<=budget<=n:raise ValueError('Budget outside domain')
+    if method not in ('random','descent','annealing'):raise ValueError('Unknown method')
+    if not 0<=start<n:raise ValueError('Start outside domain')
     rng=random.Random(seed);cache={};trace=[]
     def evaluate(i):
         if i not in cache:
             cache[i]=query(i);trace.append(i)
         return cache[i]
-    current=0;evaluate(current);proposals=0;stale=0;restarts=0
+    current=start;evaluate(current);proposals=0;stale=0;restarts=0
     while len(cache)<budget:
         proposals+=1
         unqueried=[i for i in range(n) if i not in cache]
@@ -62,7 +70,7 @@ def search(query,n,graph,budget,seed,method):
         stale=0 if fresh else stale+1
     best=min(cache,key=lambda i:(cache[i],i))
     return dict(best_class=best,best_score=cache[best],queries=len(cache),proposals=proposals,
-                restarts=restarts,queried_classes=trace)
+                restarts=restarts,queried_classes=trace,cache_hits=proposals+1-len(cache))
 
 
 def main():

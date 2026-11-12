@@ -20,6 +20,10 @@ Peak temperatures span 76.19670–77.17357 C. The minimum-centre-span reference
 has peak 77.17357 C and span 31.29412 mm. The coolest layout has peak 76.19670 C
 and span 46.78431 mm: **0.97688 C cooler, with 49.50% larger centre span**.
 Eight numerically distinct Pareto tradeoff points occur in the fixed model.
+This original raw-float list is historical. The later
+[numerical-tie audit](tap-search-structure-results.md) retains eight objective
+bins and groups classes 0 and 76, whose tiny numerical difference is not a
+meaningful layout improvement.
 Centre span is a communication-distance proxy, not routed wirelength or timing.
 This establishes a model-level tradeoff without tightening a clock or reducing
 resources; it is not evidence of a routed thermal penalty.
