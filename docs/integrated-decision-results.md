@@ -190,6 +190,24 @@ cell instances use no m multiplier. Original PEX, stimulus/extraction convention
 primitive revision matching and active-device charge/energy validation remain
 open. This is neither a qualified Pad model nor a physical error bound.
 
+An additional [bundle identity audit](evidence/local-core-bundle-identity.json)
+checks the HD standard-cell archive from the same open_pdks `fa87f8f4` release
+as the installed primitive models. Its `buf_8` subcircuit is token-for-token
+identical to the probe netlist. All axes and values of the four output timing
+tables at both 25 C and 100 C are exactly identical to the existing JSON
+sources. Merely replacing these inputs with this release bundle therefore
+cannot resolve the discrepancy. This establishes release-file identity, not
+identity with the original foundry characterization deck or PEX.
+
+The archive SHA-256 is
+`d4081b3c0fbfa2afe31dba789c03157ad137ea08b11910e2c8b3ec81b2a61bf6`.
+To reproduce, obtain the archive URL recorded in the evidence and place it as
+`local/core-archive-fa87/sky130_fd_sc_hd.tar.zst`, then run
+`python tools/audit_core_bundle.py --output results/core-bundle-identity.json`.
+The audit checks the archive hash and compares/extracts exactly the three
+required members directly from that archive, rather than trusting a separate
+local extraction manifest. It does not overwrite conflicting existing members.
+
 ```powershell
 python tools/audit_core_buffer_spice.py --output results/core-buffer-original
 python tools/audit_core_buffer_spice.py --restore-stress-geometry --output results/core-buffer-stress

@@ -1,0 +1,68 @@
+{
+  "archive_url": "https://github.com/chipfoundry/volare/releases/download/sky130-fa87f8f4bbcc7255b6f0c0fb506960f531ae2392/sky130_fd_sc_hd.tar.zst",
+  "archive_sha256": "d4081b3c0fbfa2afe31dba789c03157ad137ea08b11910e2c8b3ec81b2a61bf6",
+  "source_sha256": "68f0d0e852ae364a1fcdf323c35170a1c68588e329e8982b5ed996cd4270ae08",
+  "archive_members_verified": true,
+  "installed_buf_netlist_equals_probe": true,
+  "tables": [
+    {
+      "temperature_c": 25,
+      "table": "cell_rise",
+      "exact_axes_values_equal": true,
+      "installed_lib_sha256": "8725d472becbb2d016ee59cdc0207e1102f24a5c6f5fb4ed194cecc278372575",
+      "probe_lib_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf"
+    },
+    {
+      "temperature_c": 25,
+      "table": "cell_fall",
+      "exact_axes_values_equal": true,
+      "installed_lib_sha256": "8725d472becbb2d016ee59cdc0207e1102f24a5c6f5fb4ed194cecc278372575",
+      "probe_lib_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf"
+    },
+    {
+      "temperature_c": 25,
+      "table": "rise_transition",
+      "exact_axes_values_equal": true,
+      "installed_lib_sha256": "8725d472becbb2d016ee59cdc0207e1102f24a5c6f5fb4ed194cecc278372575",
+      "probe_lib_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf"
+    },
+    {
+      "temperature_c": 25,
+      "table": "fall_transition",
+      "exact_axes_values_equal": true,
+      "installed_lib_sha256": "8725d472becbb2d016ee59cdc0207e1102f24a5c6f5fb4ed194cecc278372575",
+      "probe_lib_sha256": "e964e8b99b817de4d1e7e11636023067c296f73ce5215e6798ce195aea1bddaf"
+    },
+    {
+      "temperature_c": 100,
+      "table": "cell_rise",
+      "exact_axes_values_equal": true,
+      "installed_lib_sha256": "d9e437d2c28999b7450abffbc4b3f34595f2c782e8aaaf8488a63eec81700b16",
+      "probe_lib_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6"
+    },
+    {
+      "temperature_c": 100,
+      "table": "cell_fall",
+      "exact_axes_values_equal": true,
+      "installed_lib_sha256": "d9e437d2c28999b7450abffbc4b3f34595f2c782e8aaaf8488a63eec81700b16",
+      "probe_lib_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6"
+    },
+    {
+      "temperature_c": 100,
+      "table": "rise_transition",
+      "exact_axes_values_equal": true,
+      "installed_lib_sha256": "d9e437d2c28999b7450abffbc4b3f34595f2c782e8aaaf8488a63eec81700b16",
+      "probe_lib_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6"
+    },
+    {
+      "temperature_c": 100,
+      "table": "fall_transition",
+      "exact_axes_values_equal": true,
+      "installed_lib_sha256": "d9e437d2c28999b7450abffbc4b3f34595f2c782e8aaaf8488a63eec81700b16",
+      "probe_lib_sha256": "d71033105da71c18ef2f53bd78a5bd3d7f88ef934dca8ce2e51adddb3a7bb0f6"
+    }
+  ],
+  "physical_qualified": false,
+  "scope": "bundle identity only; not original characterization PEX or primitive-model provenance",
+  "all_compared_inputs_identical": true
+}
