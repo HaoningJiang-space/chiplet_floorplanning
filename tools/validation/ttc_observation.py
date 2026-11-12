@@ -63,11 +63,18 @@ def propagate(g, c, power, initial, dt_s, operator='end', ledger=False):
         stored = float(c @ (final - initial))
         removed = float(g.sum(axis=0) @ integral)
         error = supplied - stored - removed
+        interval_input = p.sum(axis=1)*dt_s
+        interval_storage = (np.expm1(-x)*z + b*u) @ (w.T @ c)
+        interval_removed = (b*z + d*u) @ (w.T @ g.sum(axis=0))
+        interval_error = interval_input - interval_storage - interval_removed
         details.update(interval_count=len(p), duration_s=len(p)*dt_s,
                        input_energy_j=supplied, storage_change_j=stored,
                        removed_heat_j=removed, energy_balance_error_j=error,
                        normalized_energy_residual=abs(error)/max(1., abs(supplied)),
-                       numerical_energy_screen=bool(abs(error) < 1e-7*max(1., abs(supplied))))
+                       max_interval_energy_error_j=float(np.abs(interval_error).max()),
+                       max_normalized_interval_energy_residual=float(np.max(np.abs(interval_error)/np.maximum(1., np.abs(interval_input)))),
+                       numerical_energy_screen=bool(abs(error) < 1e-7*max(1., abs(supplied))
+                                                    and np.all(np.abs(interval_error) < 1e-7*np.maximum(1., np.abs(interval_input)))))
     return values @ w.T, details
 
 

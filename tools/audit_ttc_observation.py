@@ -37,11 +37,18 @@ def evaluate(params, cases, operator, folder=None):
     for case in cases:
         theta, ledger = simulate(params, case['power_w'], case['initial_cells_k'], operator, True)
         error = theta[:, :16] - case['temperature_rise_k']
+        common = error.mean(axis=1, keepdims=True)
+        spatial = error-common
         ix = observations(case)
         worst = np.unravel_index(np.argmax(np.abs(error)), error.shape)
         entry = dict(name=case['name'], role=case['role'], native=raw_metrics(error),
                      one_second=raw_metrics(error[ix]),
                      after_conditioned_second=raw_metrics(error[10:]), ledger=ledger,
+                     residual_decomposition=dict(common_rmse_k=float(np.sqrt(np.mean(common**2))),
+                                                  spatial_rmse_k=float(np.sqrt(np.mean(spatial**2))),
+                                                  mse_identity_error_k2=float(np.mean(error**2)-np.mean(common**2)-np.mean(spatial**2)),
+                                                  per_sensor_bias_k=error.mean(axis=0).tolist(),
+                                                  per_sensor_rmse_k=np.sqrt(np.mean(error**2, axis=0)).tolist()),
                      worst=dict(relative_row=int(worst[0]), raw_row=int(worst[0]+case['start_index']),
                                 nominal_row_time_s=float(worst[0]*.1), sensor_index=int(worst[1]),
                                 signed_error_k=float(error[worst])),

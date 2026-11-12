@@ -1,0 +1,36 @@
+{
+  "remote_checked_commit": "c124aa982eb97f49a7f4be907554c94436ace2d2",
+  "fetch_succeeded": true,
+  "local_only": true,
+  "checked_utc": "2026-11-12T01:30:08.086108+00:00",
+  "source_milestone": "78c7958",
+  "physical_model_qualified": false,
+  "production_modules_changed": false,
+  "tests_passed": 125,
+  "python": "3.12.16",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "reports": {
+    "v1": {
+      "path": "results/physical-calibration/ttc-observation-v1/report.json",
+      "sha256": "16f5db6d4036356fe81784f47ed5d4c927c8da6fb9f846229ca8c76138948592"
+    },
+    "v2": {
+      "path": "results/physical-calibration/ttc-observation-v2/report.json",
+      "sha256": "704a55119c0cd866b017e6a094ab57f079a6c4b61aa72e7e10e3bb361e460237"
+    }
+  },
+  "source_locks": {
+    "tools\\ttc-upstream.lock.json": "c3fa3d7278e9f7b6f79b21989f7b533048cbdd24974db776ebddd2a6d1bfe7ef",
+    "tools\\measured-sources.lock.json": "f1dcfded41ea345fa8b0dbbd702dd11b10e65faf1092e222c80527a547ee2b95"
+  },
+  "checks": {
+    "results\\physical-calibration\\ttc-observation-tests-final.log": "fcf77f5dae2273014b61cef5f914cd6fc84874fd14029b2566568fbef0379b3f",
+    "results\\physical-calibration\\ttc-observation-cli-final\\report.json": "5151efadc0244482f605fed8ff7d23a46e3ef36a3f057d27f3bf02914d950ce2"
+  },
+  "review": {
+    "url": "https://chatgpt.com/c/6af41d50-059c-83e8-92e6-eb975244c865",
+    "completed_rounds": 2,
+    "scope": "advisory review of supplied method/results; not independent numerical or physical validation"
+  }
+}

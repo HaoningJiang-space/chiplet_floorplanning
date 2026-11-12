@@ -51,6 +51,7 @@ class TTCObservationTest(unittest.TestCase):
             np.testing.assert_allclose(result, expected[operator], atol=1e-12)
             self.assertEqual(audit['interval_count'], 3)
             self.assertLess(abs(audit['energy_balance_error_j']), 1e-12)
+            self.assertLess(audit['max_interval_energy_error_j'], 1e-12)
 
     def test_begin_preserves_previous_predictions(self):
         params = np.log([.1, .2, .8, .03, 10.])
