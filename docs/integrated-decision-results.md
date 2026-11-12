@@ -67,7 +67,7 @@ rules, model uncertainty, or a fully characterized interface.
   budget or model temperature-dependent leakage and route loss.
 - Existing shared-routing regressions still pass all seven positive cases
   (1,824 paths) and both missing/doubled-clock-capacitance negative controls.
-  Initial unit suite: 182 passed. After the proof-admission fixes below, 189
+  Initial unit suite: 182 passed. After the proof-admission fixes below, 190
   passed; the documented basic CLI case also passed.
 
 ## Decision-focused mesh check
@@ -138,6 +138,16 @@ and 164 timing receipts. Missing layouts, wrong runtime/PDK, modified saved
 libraries, mislabeled configurations and unrelated audit files are rejected
 by negative tests. This protects against accidental evidence mixing; it is
 not an authenticity signature or a replacement for independent reproduction.
+
+The follow-up GitHub review at `171c5e9` closed all three original findings
+after reading the ten-file commit, related implementation/tests and updated
+evidence. It identified one additional low-priority completeness gap: a saved
+STA input manifest could omit a non-library input. The subsequent small fix
+requires exactly `fabric.v`, `package.spef`, `run.tcl` and every instance library,
+both in the manifest and among actual candidate input files. Missing entries
+and extra unknown inputs now fail explicit negative controls. All 164 original
+STA receipts pass this stronger complete-set admission during report rendering.
+The external review covers `171c5e9`; this final small fix is locally tested.
 
 The original 164 channel audits were rerun with these admission checks in
 `integrated-channels-v2.json`; all still pass and the doubled-R negative control

@@ -60,8 +60,11 @@ class DecisionEvidenceTests(unittest.TestCase):
     def test_changed_runtime_receipt_or_saved_library_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             folder = Path(directory); lib = folder/'driver.lib'; lib.write_bytes(b'original library')
+            for name in ('fabric.v', 'package.spef', 'run.tcl'):
+                (folder/name).write_bytes(b'frozen '+name.encode())
+            hashes = {p.name: file_hash(p) for p in folder.iterdir()}
             (folder/'sta.log').write_bytes(b'observed paths')
-            receipt = dict(executable_sha256='exe', input_sha256={'driver.lib': file_hash(lib)},
+            receipt = dict(executable_sha256='exe', input_sha256=hashes,
                 log_sha256=file_hash(folder/'sta.log'), models={'driver': dict(path=str(lib),
                     source_files={'source.json': 'source'})})
             frozen = dict(executable_sha256='exe', pdk_source_sha256={'pdk-v03/source.json': 'source'})
@@ -76,6 +79,27 @@ class DecisionEvidenceTests(unittest.TestCase):
                     verify_timing_identity(changed, frozen)
             lib.write_bytes(b'changed input capacitance after STA')
             with self.assertRaisesRegex(ValueError, 'input hash'):
+                verify_saved_sta_files(receipt, folder)
+
+    def test_missing_or_extra_sta_input_cannot_escape_hash_check(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            for name in ('fabric.v', 'package.spef', 'run.tcl', 'driver.lib'):
+                (folder/name).write_bytes(name.encode())
+            hashes = {p.name: file_hash(p) for p in folder.iterdir()}
+            (folder/'sta.log').write_bytes(b'observed paths')
+            receipt = dict(input_sha256=hashes, log_sha256=file_hash(folder/'sta.log'),
+                           models={'driver': {'path': str(folder/'driver.lib')}})
+            verify_saved_sta_files(receipt, folder)
+            for missing in ('fabric.v', 'package.spef', 'run.tcl', 'driver.lib'):
+                changed = copy.deepcopy(receipt); del changed['input_sha256'][missing]
+                with self.assertRaisesRegex(ValueError, 'exactly the expected'):
+                    verify_saved_sta_files(changed, folder)
+            (folder/'unrecorded.lib').write_bytes(b'extra model')
+            with self.assertRaisesRegex(ValueError, 'exactly the expected'):
+                verify_saved_sta_files(receipt, folder)
+            receipt['input_sha256']['unrecorded.lib'] = file_hash(folder/'unrecorded.lib')
+            with self.assertRaisesRegex(ValueError, 'exactly the expected'):
                 verify_saved_sta_files(receipt, folder)
 
     def test_accepted_audits_from_another_experiment_are_rejected(self):

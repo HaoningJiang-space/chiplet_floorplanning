@@ -39,6 +39,10 @@ def verify_saved_sta_files(receipt, folder):
     folder = Path(folder).resolve(strict=True)
     if not receipt['input_sha256'] or not receipt['models']:
         raise ValueError('missing saved STA input or model manifest')
+    expected_inputs = {'fabric.v', 'package.spef', 'run.tcl'} | {name+'.lib' for name in receipt['models']}
+    present_inputs = {p.name for p in folder.iterdir() if p.suffix in ('.lib', '.spef', '.v', '.tcl')}
+    if set(receipt['input_sha256'])!=expected_inputs or present_inputs!=expected_inputs:
+        raise ValueError('STA input manifest must contain exactly the expected netlist, SPEF, script and libraries')
     for name, expected in receipt['input_sha256'].items():
         if Path(name).name!=name or file_hash(folder/name)!=expected:
             raise ValueError('saved STA input hash mismatch: '+name)
