@@ -68,6 +68,10 @@ class PinFabricTests(unittest.TestCase):
         self.assertEqual(len(warm['conductors']), len(edges))
         for a, b in zip(nominal['first_moment_ns'], warm['first_moment_ns']):
             self.assertAlmostEqual(b, 1.2*a, places=12)
+        shunted = tree_rc(fabric, net, edges, sink_cap_pf=[.01, .02], sink_shunt_pf=.025)
+        self.assertEqual(shunted['total_sink_pin_pf'], nominal['total_sink_pin_pf'])
+        self.assertAlmostEqual(shunted['total_parasitic_pf']-nominal['total_parasitic_pf'], .05)
+        self.assertTrue(all(b>a for a, b in zip(nominal['first_moment_ns'], shunted['first_moment_ns'])))
         with self.assertRaises(ValueError):
             tree_rc(fabric, net, edges, resistance_factors={e: -1 for e in edges})
 

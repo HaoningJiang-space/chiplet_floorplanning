@@ -141,7 +141,8 @@ def evaluate(layout, configuration):
             n: {k: v for k, v in m.items() if k != 'path'} for n, m in timing['models'].items()}
         result['timing'][mode]['parasitics'] = {n: dict(
             unique_length_mm=sum(e['length_mm'] for e in rc['conductors']),
-            total_wire_capacitance_pf=rc['total_parasitic_pf'],
+            total_package_parasitic_pf=rc['total_parasitic_pf'],
+            total_package_sink_shunt_pf=rc['total_package_sink_shunt_pf'],
             total_sink_capacitance_pf=rc['total_sink_pin_pf'],
             sum_conductor_resistance_ohm=sum(e['resistance_ohm'] for e in rc['conductors']),
             nodal_relative_residual=rc['nodal_relative_residual']) for n, rc in timing['rc'].items()}

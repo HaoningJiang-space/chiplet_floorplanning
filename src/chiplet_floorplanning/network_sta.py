@@ -184,7 +184,7 @@ def run_network(sta, model_root, folder, contract, locations, temperatures, fabr
         rc = tree_rc(fabric, net, routes[net.name], r_ohm_per_mm=electrical['r_ohm_per_mm'],
                      c_pf_per_mm=electrical['c_pf_per_mm'], via_r_ohm=electrical['via_r_ohm'],
                      via_c_pf=electrical['via_c_pf'], sink_cap_pf=[pin_caps[n] for n in targets],
-                     resistance_factors=factors)
+                     resistance_factors=factors, sink_shunt_pf=electrical.get('package_input_load_pf', 0.))
         text += spef_tree(design_net, source, pins, rc)
         records[net.name] = dict(design_net=design_net, source_pin=source, sink_pins=pins,
             sink_capacitance_by_edge_pf={edge: sum(edge_caps[n][edge] for n in targets) for edge in ('rise', 'fall')}, **rc)
