@@ -61,3 +61,10 @@ now separates electrical, incremental timing and combined routing-to-timing
 costs and replays the frozen benchmark. This implementation has not yet
 received a new Chat closure review; the remaining warning/observation items
 above are unchanged.
+
+Further local follow-up: [strict diagnostic handling](xyce-strict-diagnostics.md)
+replaces warning substring admission, records invalid observations, and fixes
+independent test imports. It also exposes previously suppressed warnings;
+the old statement that every cell log contained only known diagnostics must
+be limited to the displayed messages. New complete buffer/flip-flop control
+logs are available, while old full-fabric diagnostic coverage remains incomplete.

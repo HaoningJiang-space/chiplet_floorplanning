@@ -65,3 +65,9 @@ python tools/summarize_xyce_hot.py results/xyce-hot results/physical-calibration
 
 The full 221-test suite, documented two-chiplet CLI and actual-cell helper
 regression passed locally during this stage. Goal 01 remains active.
+
+Later [diagnostic replay](xyce-strict-diagnostics.md) found warning suppression
+in these historical logs. The window comparisons above remain preserved
+numerical observations, but complete warning coverage is unproven. They must
+not be promoted to full model admission on the strength of known displayed
+warnings alone.

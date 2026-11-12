@@ -1,0 +1,331 @@
+{
+  "physical_qualified": false,
+  "classifier_sha256": "e3a760661452f2c9acf4567346ea93b48b30a30fb9594ddf0191baaa15a2996f",
+  "new_runs": [
+    {
+      "cell": "buf_8",
+      "report_sha256": "bfdfe2646edb90390744f59a0930f8e8bbce894ae39a55dde4d3a300861a39c2",
+      "forwarding_controls_pass": true,
+      "cases": [
+        {
+          "name": "global25",
+          "warning_count": 177,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 44,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 44,
+            "Source conductance reset to 1.0e3 mho": 44,
+            "Drain conductance reset to 1.0e3 mho": 44
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "c166fb3c8078e145d3ea460fb9e0b20a2e8d32f096ec7ea9ef04e82557ea4676"
+        },
+        {
+          "name": "global100",
+          "warning_count": 177,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 44,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 44,
+            "Source conductance reset to 1.0e3 mho": 44,
+            "Drain conductance reset to 1.0e3 mho": 44
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "8e4b08e00108ee38a78a01523fb82289a9d8672e53c717281794c24fa8acd76d"
+        },
+        {
+          "name": "local25",
+          "warning_count": 177,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 44,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 44,
+            "Source conductance reset to 1.0e3 mho": 44,
+            "Drain conductance reset to 1.0e3 mho": 44
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "02dcc9359e8310222c68310b8650f8f03099bc05f9985c233f5128f6379ebf8d"
+        },
+        {
+          "name": "local100",
+          "warning_count": 177,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 44,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 44,
+            "Source conductance reset to 1.0e3 mho": 44,
+            "Drain conductance reset to 1.0e3 mho": 44
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "613e7a2d6a18003d3bd46636ea1702d78f3c5f26540981a3bce94da9b658e815"
+        },
+        {
+          "name": "mixed",
+          "warning_count": 177,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 44,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 44,
+            "Source conductance reset to 1.0e3 mho": 44,
+            "Drain conductance reset to 1.0e3 mho": 44
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "ef8976e592c9d51477bd2c3b313b700a9e2173d12b93157c6712f3dd9d54f20d"
+        },
+        {
+          "name": "mixed_reverse",
+          "warning_count": 177,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 44,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 44,
+            "Source conductance reset to 1.0e3 mho": 44,
+            "Drain conductance reset to 1.0e3 mho": 44
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "7e87bb0776b42b04afa3564e5cb3fbcaee0f322025510c636e5d0dcececc0ec5"
+        }
+      ]
+    },
+    {
+      "cell": "dfxtp_1",
+      "report_sha256": "0a7f6ba0ac5b943d68c10fcf7e96730a35ecd97a9c63bf5511a08b5190f67963",
+      "forwarding_controls_pass": true,
+      "cases": [
+        {
+          "name": "global25",
+          "warning_count": 193,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 48,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 48,
+            "Source conductance reset to 1.0e3 mho": 48,
+            "Drain conductance reset to 1.0e3 mho": 48
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "5e08258aba4f7358892e6df38cdd050352851ce8fcbb7fd71ceccb5d52190a2d"
+        },
+        {
+          "name": "global100",
+          "warning_count": 193,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 48,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 48,
+            "Source conductance reset to 1.0e3 mho": 48,
+            "Drain conductance reset to 1.0e3 mho": 48
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "f1a8df9267447594050f27905251f23f169a3e87ece5d88ff2d49e0d7b78f022"
+        },
+        {
+          "name": "local25",
+          "warning_count": 193,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 48,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 48,
+            "Source conductance reset to 1.0e3 mho": 48,
+            "Drain conductance reset to 1.0e3 mho": 48
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "68e618bbc813a53176ea4a17139ef8307b146da6a53e24d4ba54842121df87f3"
+        },
+        {
+          "name": "local100",
+          "warning_count": 193,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 48,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 48,
+            "Source conductance reset to 1.0e3 mho": 48,
+            "Drain conductance reset to 1.0e3 mho": 48
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "68d6e33bf81119d95cc155480958b5beda61b62eee58c96b5ec0380a0f821edb"
+        },
+        {
+          "name": "mixed",
+          "warning_count": 193,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 48,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 48,
+            "Source conductance reset to 1.0e3 mho": 48,
+            "Drain conductance reset to 1.0e3 mho": 48
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "dcc68749a18aeb988eac1fd58238ad5ad9fef5cf2cfc18129b42c0bc5bd4be63"
+        },
+        {
+          "name": "mixed_reverse",
+          "warning_count": 193,
+          "normalized_diagnostic_counts": {
+            "SCALE: duplicate PARSER parameter. Using the first value found = 1.0u": 1,
+            "Model card specifies BSIM4 version 4.5 which is older than the oldest version supported in Xyce (4.6.1). Using oldest version available.": 48,
+            "Given pbswgd is less than 0.1. Pbswgd is set to 0.1": 48,
+            "Source conductance reset to 1.0e3 mho": 48,
+            "Drain conductance reset to 1.0e3 mho": 48
+          },
+          "unknown_count": 0,
+          "max_change_from_previous_metrics_ps": 0.0,
+          "log_sha256": "9a61407c69130ba59025577eb08b0621eebb30c0b556c77f592eb13210789974"
+        }
+      ]
+    }
+  ],
+  "historical_logs": [
+    {
+      "run": "xyce-local-inverter-v3",
+      "logs": 6,
+      "unknown_diagnostics": []
+    },
+    {
+      "run": "xyce-local-buffer-v1",
+      "logs": 6,
+      "unknown_diagnostics": [
+        {
+          "case": "global100",
+          "log_sha256": "a757ff370a799a38324f6e6b5ce45a653a40c87fad8a066b985a6fb9a7bac415",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "global25",
+          "log_sha256": "462f0fa9b966603736003e121e7b79c9c08492ac6302e03d7b277c26458bcdb9",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "local100",
+          "log_sha256": "4db70eb6302255c24484c15bb601dd267813d40734d2cdc6577424c7736c7ff7",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "local25",
+          "log_sha256": "17e7e8c77ca5edaaac59d38a3de3d4ab8115355122290dda95c283b88307e70e",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "mixed",
+          "log_sha256": "2d8685aeca1ae6466cdd193cdcf3a8752de1afef41a08906eb3cd5f3ceabbd63",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "mixed_reverse",
+          "log_sha256": "a2ba6c8a9d9c6eb2f387b797febd4c115029f13db88f9df1b491d7c137cc6453",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "xyce-local-ff-v1",
+      "logs": 6,
+      "unknown_diagnostics": [
+        {
+          "case": "global100",
+          "log_sha256": "bacfa2540519eaec68d3589be7843937930d067681114b0962a6487cf762d809",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "global25",
+          "log_sha256": "9a1a810dd41cdc4dab65397eac54a92ee96bb0b40e908947e1752d0acbc825c3",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "local100",
+          "log_sha256": "27c0ffa45d2fe9f0a369d973383dab14596d84cf1bdacc925c3b040cf5f3843e",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "local25",
+          "log_sha256": "ee0f48135e55e997668785cc344c55a5e02f47e36a53560758a089389cee609d",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "mixed",
+          "log_sha256": "75c078c7d35ef259881d658fec0f37f09ea1f29c515111dd5bc31f209e403db3",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "mixed_reverse",
+          "log_sha256": "593be8b044c826b11d7b5c16d067f7faa31f5ac52f8e3db428256e73356230bb",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "xyce-fabric-rot180-reviewed",
+      "logs": 2,
+      "unknown_diagnostics": [
+        {
+          "case": "step_2.5ps",
+          "log_sha256": "8cabccdc52e800a957415448c9c170b9edfac22f885cb574e9e054b087590578",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "step_5ps",
+          "log_sha256": "0c52ea2998835488b64574e52e59fedea142ec1ecd5f6c7683f828deaeadf2cc",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "xyce-hot-rot180-v1",
+      "logs": 2,
+      "unknown_diagnostics": [
+        {
+          "case": "step_2.5ps",
+          "log_sha256": "92a0a3259905904ded5bce6ac712c6db62ee0dadad5919116f3972e924e0b075",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        },
+        {
+          "case": "step_5ps",
+          "log_sha256": "5ac8e95f002dc6b465670e78ff5f948be000de2c356662f881c9864e6fd9055b",
+          "messages": [
+            "Maximum warning count has been exceeded and will no longer be displayed"
+          ]
+        }
+      ]
+    }
+  ]
+}

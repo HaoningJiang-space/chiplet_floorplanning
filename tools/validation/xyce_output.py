@@ -21,7 +21,7 @@ def read_wave(path, columns):
 def execute(executable, folder, timeout_s=60):
     with (Path(folder)/'xyce.log').open('w') as log:
         try:
-            run = subprocess.run([str(Path(executable).resolve()), 'deck.cir'], cwd=folder,
+            run = subprocess.run([str(Path(executable).resolve()), '-max-warnings', '100000', 'deck.cir'], cwd=folder,
                                  stdout=log, stderr=subprocess.STDOUT, timeout=timeout_s)
         except subprocess.TimeoutExpired:
             return dict(status='execution_timeout', returncode=None, timeout_s=timeout_s)
@@ -29,10 +29,29 @@ def execute(executable, folder, timeout_s=60):
 
 
 def warning_inventory(log):
-    blocks = re.findall(r'Netlist warning.*?(?=Netlist warning|\*\*\*\*\*|\Z)', log, re.S)
-    messages = [' '.join(b.split()) for b in blocks]
-    known = ('duplicate PARSER parameter', 'oldest version supported',
-             'Pbswgd is set to 0.1', 'Pbswgs is set to 0.1',
-             'Source conductance reset to 1.0e3 mho', 'Drain conductance reset to 1.0e3 mho')
-    return dict(messages=messages, unknown_messages=[m for m in messages if not any(k in m for k in known)],
+    # Scan warning markers regardless of prefix/case. Only the observed Netlist
+    # prefix can enter the allowlist; unfamiliar diagnostic formats fail closed.
+    lines = log.splitlines()
+    starts = {i for i, line in enumerate(lines) if re.search(r'\bwarning\b', line, re.I)}
+    messages, unknown = [], []
+    patterns = (
+        r'SCALE: duplicate PARSER parameter\. Using the first value found = (?:1\.0u|1u)',
+        r'Model card specifies BSIM4 version 4\.5 which is older than the oldest version supported in Xyce \(4\.6\.1\)\. Using oldest version available\.',
+        r'Given pbswgd is less than 0\.1\. Pbswgd is set to 0\.1',
+        r'Given pbswgs is less than 0\.1\. Pbswgs is set to 0\.1',
+        r'(?:Source|Drain) conductance reset to 1\.0e3 mho',
+    )
+    for start in sorted(starts):
+        end = start+1
+        while end < len(lines) and end not in starts and lines[end].strip() and not lines[end].lstrip().startswith('*****'):
+            end += 1
+        message = ' '.join(' '.join(lines[start:end]).split())
+        messages.append(message)
+        body = re.sub(r'^Netlist warning in file .+? at or near line \d+\s+', '', message)
+        body = re.sub(r'^Netlist warning:\s*', '', body)
+        recognized_prefix = body != message
+        body = re.sub(r'^Device (?:model|instance) \S+:\s*', '', body)
+        if not recognized_prefix or not any(re.fullmatch(pattern, body) for pattern in patterns):
+            unknown.append(message)
+    return dict(messages=messages, unknown_messages=unknown, classification_version=2,
                 physical_harmlessness_proven=False)

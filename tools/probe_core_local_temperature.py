@@ -69,6 +69,25 @@ def prepare_models(root, refroot, ref):
     return models, transforms
 
 
+def observe_case(report, root, folder, name, cell):
+    """Keep rejected observations as evidence, without manufacturing measurements."""
+    try:
+        columns = (['V(clk)', 'V(d)', 'V(q1)', 'V(q2)', 'I(VDD1)', 'I(VDD2)', 'I(VCLK)', 'I(VD)']
+                   if cell == 'dfxtp_1' else
+                   ['V(vin)', 'V(out1)', 'V(out2)', 'I(VDD1)', 'I(VDD2)', 'I(VIN)'])
+        wave = read_wave(folder/'deck.cir.csv', columns)
+        return ([measure_ff(wave[:, [0, 1, 2, col, col+2, 7, 8]]) for col in (3, 4)]
+                if cell == 'dfxtp_1' else
+                [measure(wave[:, [0, 1, col, col+2, 6]], cell, .122474) for col in (2, 3)])
+    except (ValueError, OSError, IndexError) as error:
+        report['cases'].append(dict(name=name, status='invalid_observation',
+            error_type=type(error).__name__, reason=str(error),
+            artifacts_sha256={n: digest(folder/n) for n in ('deck.cir', 'deck.cir.csv', 'xyce.log') if (folder/n).exists()}))
+        report.update(complete=False, forwarding_controls_pass=False, failure_case=name)
+        (root/'report.json').write_text(json.dumps(report, indent=2)+'\n')
+        raise
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
@@ -137,12 +156,7 @@ C2 q2 0 .0254232p
             report.update(complete=False, forwarding_controls_pass=False, failure_case=name)
             (root/'report.json').write_text(json.dumps(report, indent=2)+'\n')
             raise ValueError('execution failed: '+name)
-        wave = read_wave(folder/'deck.cir.csv', ['V(clk)', 'V(d)', 'V(q1)', 'V(q2)', 'I(VDD1)', 'I(VDD2)', 'I(VCLK)', 'I(VD)'] if args.cell == 'dfxtp_1' else ['V(vin)', 'V(out1)', 'V(out2)', 'I(VDD1)', 'I(VDD2)', 'I(VIN)'])
-        if wave.ndim != 2 or wave.shape[1] != (9 if args.cell == 'dfxtp_1' else 7) or not np.isfinite(wave).all():
-            raise ValueError('unexpected output')
-        metrics = ([measure_ff(wave[:, [0, 1, 2, col, col+2, 7, 8]]) for col in (3, 4)]
-                   if args.cell == 'dfxtp_1' else
-                   [measure(wave[:, [0, 1, col, col+2, 6]], args.cell, .122474) for col in (2, 3)])
+        metrics = observe_case(report, root, folder, name, args.cell)
         report['cases'].append(dict(name=name, global_temperature_c=global_temp, local_temperatures_c=temps,
             metrics_ns=metrics, warnings=warning_inventory((folder/'xyce.log').read_text()),
             warning_count=len(re.findall('Netlist warning', (folder/'xyce.log').read_text())),

@@ -3,6 +3,9 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 import subprocess
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 
 from validation.xyce_output import read_wave, execute, warning_inventory
 
@@ -52,3 +55,25 @@ class XyceOutputTest(unittest.TestCase):
         self.assertFalse(known['unknown_messages'])
         self.assertTrue(unknown['unknown_messages'])
         self.assertFalse(known['physical_harmlessness_proven'])
+
+    def test_known_substring_does_not_admit_extra_diagnostic(self):
+        result = warning_inventory('Netlist warning: Source conductance reset to 1.0e3 mho; TEMP ignored\n')
+        self.assertTrue(result['unknown_messages'])
+
+    def test_other_prefix_and_case_fail_closed(self):
+        for prefix in ('WARNING:', 'Device Warning:', 'Solver warning:'):
+            with self.subTest(prefix=prefix):
+                result = warning_inventory(prefix+' Source conductance reset to 1.0e3 mho\n')
+                self.assertEqual(len(result['unknown_messages']), 1)
+
+    def test_warning_limit_is_incomplete_diagnostics(self):
+        result = warning_inventory('Maximum warning count has been exceeded and will no longer be displayed\n')
+        self.assertTrue(result['unknown_messages'])
+
+    def test_wrapped_known_message_has_exact_normalized_identity(self):
+        result = warning_inventory('Netlist warning in file\n C:/model.spice at or near line 31\n Device instance X:A:M1: Source conductance\n reset to 1.0e3 mho\n***** End')
+        self.assertFalse(result['unknown_messages'])
+
+
+if __name__ == '__main__':
+    unittest.main()
