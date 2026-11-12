@@ -60,3 +60,25 @@ This is a source-backed next-stage candidate, not an implemented baseline,
 performance result, exhaustive current SOTA survey, or completion of the goal's
 published-method comparison requirement. The current 45-run pilot remains a
 mechanism comparison and continues without modification.
+
+## Isolated proposal adapter
+
+`tools/tap_published_moves.py` now implements the close/jump proposal component
+against the existing evaluator. It is not imported by the running pilot and has
+no annealing acceptance, initialization, schedule or comparative runner yet.
+The next review must still settle those choices before an experiment.
+
+The default jump probability is 0.1 and the upstream exhausted-retry threshold
+is represented as 10,001 attempts. Every failed candidate is passed through the
+common geometry checker and charged to its proposal cap, including a subsequent
+close scan. The original three/four-value fallback inconsistency is eliminated
+by returning the evaluator row in either case. No legal close neighbour raises
+a local-neighbourhood exception, not a global infeasibility certificate.
+Evaluator budget exceptions and numerical failures propagate unchanged.
+
+Declared adaptation differences: one injected Python RNG replaces the upstream
+mixed Python/NumPy streams; full expanded-footprint geometry replaces occupancy
+grid tests; the absolute quarter-turn genotype is retained; the evaluator owns
+cache and attempt accounting. These changes preclude bitwise upstream replay.
+Four regression controls cover charged fallback, exhaustion, proposal cap and
+failure propagation. They use synthetic geometry/mocks, not new thermal solves.
