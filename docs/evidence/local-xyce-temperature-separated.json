@@ -1,0 +1,128 @@
+{
+  "complete": true,
+  "physical_calibration": false,
+  "scope": "manufactured BSIM4 parameter semantics, not PDK or timing validation",
+  "source_sha256": "3a06dc5851b5a971986786c4956562d8675b7818f7659a1e604aa286c9129934",
+  "executable_sha256": "e1f572cd2406bc04b8fbbddba85931346e6ab2b5f0750563848fcabecb10dfe1",
+  "separate_models": true,
+  "bsim_version": "4.8.2",
+  "cases": [
+    {
+      "name": "global25",
+      "ambient_c": 25,
+      "instance_parameters": [
+        "",
+        ""
+      ],
+      "returncode": 0,
+      "clean_execution": true,
+      "supply_currents_a": [
+        -0.00044224505754196584,
+        -0.00044224505754196584
+      ],
+      "deck_sha256": "d3556515251087d4b27bb5bfb8d83a3134f34ba401a29bbaa19b80c3a0627f77",
+      "log_sha256": "1cef11f5b6dacbc1fc73d4d84f2ea37b602adaae8ab696f708de9989f631b574",
+      "output_sha256": "27cfbe44fca719db9045ff15acad8dbe2806059ad034ebb611042989df813283"
+    },
+    {
+      "name": "global100",
+      "ambient_c": 100,
+      "instance_parameters": [
+        "",
+        ""
+      ],
+      "returncode": 0,
+      "clean_execution": true,
+      "supply_currents_a": [
+        -0.0003655796834108922,
+        -0.0003655796834108922
+      ],
+      "deck_sha256": "1d07bfad7dd57f5e1f0c3cbd1725edefeccfe635b2b8601d3d20ecf3e840a7f5",
+      "log_sha256": "957b31393949cd1294428cb2f37337a25ef9f4d01694033e90b1402cb3eb8eb7",
+      "output_sha256": "c3add86cc030c39478d9cadf009ce1dfba234048ee11177d3ac4bf0e5037b9c0"
+    },
+    {
+      "name": "local100",
+      "ambient_c": 25,
+      "instance_parameters": [
+        "TEMP=100",
+        "TEMP=100"
+      ],
+      "returncode": 0,
+      "clean_execution": true,
+      "supply_currents_a": [
+        -0.0003655796834108922,
+        -0.0003655796834108922
+      ],
+      "deck_sha256": "9c7c426eeb2b8c8bffddbe2cf1e8d2199b0453feaf4eb9608eaad6ed61a20194",
+      "log_sha256": "77f32dc2bdbba415e16d8d9831d0da30ecac63b3349fb5ea94b76466152bd613",
+      "output_sha256": "c3add86cc030c39478d9cadf009ce1dfba234048ee11177d3ac4bf0e5037b9c0"
+    },
+    {
+      "name": "offset75",
+      "ambient_c": 25,
+      "instance_parameters": [
+        "DTEMP=75",
+        "DTEMP=75"
+      ],
+      "returncode": 0,
+      "clean_execution": true,
+      "supply_currents_a": [
+        -0.0003655796834108922,
+        -0.0003655796834108922
+      ],
+      "deck_sha256": "44a25df8241adc1cbe9140328e99dbbd2ea2a8696b03c2513e1b6d8c35b887e2",
+      "log_sha256": "444b8eb9d29ed606cd8e7b18a71d00f9f267723fa9c8668952baaac94e6c2523",
+      "output_sha256": "c3add86cc030c39478d9cadf009ce1dfba234048ee11177d3ac4bf0e5037b9c0"
+    },
+    {
+      "name": "mixed",
+      "ambient_c": 25,
+      "instance_parameters": [
+        "TEMP=25",
+        "TEMP=100"
+      ],
+      "returncode": 0,
+      "clean_execution": true,
+      "supply_currents_a": [
+        -0.00044224505754196584,
+        -0.0003655796834108922
+      ],
+      "deck_sha256": "196e75e0c68b6548e4aaa6daddf59cf8604f06416dd26c1d643f073ce25ead89",
+      "log_sha256": "f39ea6d2294b9eea7dcca4a28c3f28239f796d8b89c09c086a510c6ab959de42",
+      "output_sha256": "8349499e031f659f98ed75505f41663302fdf8115f204d8048182617ed007027"
+    },
+    {
+      "name": "mixed_reverse",
+      "ambient_c": 25,
+      "instance_parameters": [
+        "TEMP=100",
+        "TEMP=25"
+      ],
+      "returncode": 0,
+      "clean_execution": true,
+      "supply_currents_a": [
+        -0.0003655796834108922,
+        -0.00044224505754196584
+      ],
+      "deck_sha256": "51750932302cedb0120e18331009d6cae91ce01abe86c3a4b0056db70a6cfce4",
+      "log_sha256": "4b49a7f9ebef8645762f55e83d02bbbcebf7b2581c302c48d82d9d911713d7a4",
+      "output_sha256": "1f81202234e05aff7dd0fe4cb9c76aaaf17f3a5756a640370b35998691d9d682"
+    }
+  ],
+  "all_runs_clean": true,
+  "checks": {
+    "global_controls_distinct": true,
+    "global25_matches": true,
+    "global100_matches": true,
+    "local100_matches": true,
+    "offset75_matches": true,
+    "mixed_matches": true,
+    "mixed_reverse_matches": true
+  },
+  "local_temperature_controls_pass": true,
+  "comparison_tolerance": {
+    "relative": 1e-09,
+    "absolute_a": 1e-15
+  }
+}

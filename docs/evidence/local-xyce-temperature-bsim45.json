@@ -1,0 +1,120 @@
+{
+  "complete": true,
+  "physical_calibration": false,
+  "scope": "manufactured BSIM4 parameter semantics, not PDK or timing validation",
+  "source_sha256": "3a06dc5851b5a971986786c4956562d8675b7818f7659a1e604aa286c9129934",
+  "executable_sha256": "e1f572cd2406bc04b8fbbddba85931346e6ab2b5f0750563848fcabecb10dfe1",
+  "separate_models": true,
+  "bsim_version": "4.5",
+  "cases": [
+    {
+      "name": "global25",
+      "ambient_c": 25,
+      "instance_parameters": [
+        "",
+        ""
+      ],
+      "returncode": 0,
+      "clean_execution": false,
+      "supply_currents_a": [
+        -0.00044224505754196584,
+        -0.00044224505754196584
+      ],
+      "deck_sha256": "766f02c4d6f988f4a2d14dd1a25952a9a0066f72c7b486d4fca3a501919d9fe2",
+      "log_sha256": "6da2c92d6d1187fae2d1f0d4fcb540f3f26aecedb3588e6e4bf13baa454a8445",
+      "output_sha256": "27cfbe44fca719db9045ff15acad8dbe2806059ad034ebb611042989df813283"
+    },
+    {
+      "name": "global100",
+      "ambient_c": 100,
+      "instance_parameters": [
+        "",
+        ""
+      ],
+      "returncode": 0,
+      "clean_execution": false,
+      "supply_currents_a": [
+        -0.0003655796834108922,
+        -0.0003655796834108922
+      ],
+      "deck_sha256": "d56449affc61ebe95c1e2eb1cb59d655220f440891661627763e603bb83d905d",
+      "log_sha256": "de183aab7befc248d9065eb8168e265228ed966b1786ef8212ecf1380994544a",
+      "output_sha256": "c3add86cc030c39478d9cadf009ce1dfba234048ee11177d3ac4bf0e5037b9c0"
+    },
+    {
+      "name": "local100",
+      "ambient_c": 25,
+      "instance_parameters": [
+        "TEMP=100",
+        "TEMP=100"
+      ],
+      "returncode": 0,
+      "clean_execution": false,
+      "supply_currents_a": [
+        -0.0003655796834108922,
+        -0.0003655796834108922
+      ],
+      "deck_sha256": "7f75f057269984ce12f40b2ff30a0c57c7b2cc3e6e5cd6ce8c4d208df1e9767f",
+      "log_sha256": "ecda80812fbebf9a1cc3d2be4a4e0897643858f477c8547ca5813a7590ca1864",
+      "output_sha256": "c3add86cc030c39478d9cadf009ce1dfba234048ee11177d3ac4bf0e5037b9c0"
+    },
+    {
+      "name": "offset75",
+      "ambient_c": 25,
+      "instance_parameters": [
+        "DTEMP=75",
+        "DTEMP=75"
+      ],
+      "returncode": 0,
+      "clean_execution": false,
+      "supply_currents_a": [
+        -0.0003655796834108922,
+        -0.0003655796834108922
+      ],
+      "deck_sha256": "4f2a4dc19cd98fa6f7a9b95b0196e0216ca85ed298fc97f9c6af7413bff94173",
+      "log_sha256": "446271187a8f0647b3117b0a7e6797c674a402baf79d2c84e65357712574051f",
+      "output_sha256": "c3add86cc030c39478d9cadf009ce1dfba234048ee11177d3ac4bf0e5037b9c0"
+    },
+    {
+      "name": "mixed",
+      "ambient_c": 25,
+      "instance_parameters": [
+        "TEMP=25",
+        "TEMP=100"
+      ],
+      "returncode": 0,
+      "clean_execution": false,
+      "supply_currents_a": [
+        -0.00044224505754196584,
+        -0.0003655796834108922
+      ],
+      "deck_sha256": "9193bed72f0c0b2642d7753aee3d9748aa46218f58afdebc448a4952192240a1",
+      "log_sha256": "acee95425d4cb426a06ce80424b90c6fbfb9aaa1c22e9c8bc7e4846aed2723da",
+      "output_sha256": "8349499e031f659f98ed75505f41663302fdf8115f204d8048182617ed007027"
+    },
+    {
+      "name": "mixed_reverse",
+      "ambient_c": 25,
+      "instance_parameters": [
+        "TEMP=100",
+        "TEMP=25"
+      ],
+      "returncode": 0,
+      "clean_execution": false,
+      "supply_currents_a": [
+        -0.0003655796834108922,
+        -0.00044224505754196584
+      ],
+      "deck_sha256": "fd1be6708ae81d14b973bbb3a7ea97f6447daba6e469b49bcdc1a87c94793aa3",
+      "log_sha256": "cbfc557e7836ba649518246247e1c2dce62d3eae54bd56f8e99d9a8ac3698838",
+      "output_sha256": "1f81202234e05aff7dd0fe4cb9c76aaaf17f3a5756a640370b35998691d9d682"
+    }
+  ],
+  "all_runs_clean": false,
+  "checks": {},
+  "local_temperature_controls_pass": false,
+  "comparison_tolerance": {
+    "relative": 1e-09,
+    "absolute_a": 1e-15
+  }
+}

@@ -43,3 +43,7 @@ stimuli and boundary definitions. Do not fit away simulator differences or
 claim the already completed reference-temperature experiments validate hot
 timing. Receiver setup/hold constraints and real Pad/package calibration
 remain separate open requirements.
+
+Follow-up: [local Xyce controls](xyce-temperature-admission.md) pass only with
+separate identical model cards in the tested mixed-temperature case. The
+SKY130 BSIM4-version substitution remains an explicit unqualified difference.
