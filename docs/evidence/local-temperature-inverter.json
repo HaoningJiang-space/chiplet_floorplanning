@@ -1,0 +1,313 @@
+{
+  "complete": true,
+  "physical_qualified": false,
+  "source_sha256": "1feeb13baec9b2610b94770a879371136a36671c01de28e710da991b237f433a",
+  "executable_sha256": "e1f572cd2406bc04b8fbbddba85931346e6ab2b5f0750563848fcabecb10dfe1",
+  "primitive_manifest_reference_sha256": "d867060c4b1d92f8981ebaa261ddec2f699a1c4cc3f8ecef88cd2afdd4c33ebe",
+  "transforms": [
+    {
+      "path": "libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8__tt.pm3.spice",
+      "original_sha256": "fda72fe5717ce354d61887bef1432478be431121f70896b39f653eacc6f8eafa",
+      "transformed_sha256": "2a13a26c7a2028c6083df4aec687084f7c1c15aeb2a0397048bd52752e609c20",
+      "devices": 1
+    },
+    {
+      "path": "libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pfet_01v8_hvt__tt.pm3.spice",
+      "original_sha256": "9ee2827efa84cdb6d3c8c2110b0b8b3665973d4da5032b63bb78e0a1ee20d983",
+      "transformed_sha256": "396e3b7e0d37a5bebd3c80af8894ec2d3fb250773eeca48014f4c854e55b953a",
+      "devices": 1
+    },
+    {
+      "path": "buf_8.spice",
+      "original_sha256": "98bafb7bbd4aa107e9b0090ee241f30a6a84aa5b394bb8eaca5b189a207cd5c7",
+      "transformed_sha256": "b1ce034b954414374d22e8587676b8a98c33746199a0b9ee42ca2733185ea09f",
+      "devices": 22
+    },
+    {
+      "path": "inv_1.spice",
+      "original_sha256": "1099e3641c46d241852db47974540b3ad161e20e01b74f2fd5cc152627011909",
+      "transformed_sha256": "46b4599f9ec2b22173c5395cd228fa539ca9d38da7bd224f2ffc2ccd668413f2",
+      "devices": 2
+    },
+    {
+      "path": "dfxtp_1.spice",
+      "original_sha256": "39049c3c6a74ac24fdc0d93528dd5b0e15f7ef51729008913bdeeee0d8ead2df",
+      "transformed_sha256": "d38b3f7bfd76ed3016a7b3fb0302175ac40a56e57abd80590a44e932b133b0ab",
+      "devices": 24
+    }
+  ],
+  "cell": "inv_1",
+  "cases": [
+    {
+      "name": "global25",
+      "global_temperature_c": 25,
+      "local_temperatures_c": [
+        null,
+        null
+      ],
+      "metrics_ns": [
+        {
+          "fall_delay": 0.12314052489042071,
+          "fall_slew": 0.09976806809361483,
+          "rise_delay": 0.23588759927578185,
+          "rise_slew": 0.24067097293625928
+        },
+        {
+          "fall_delay": 0.12314052489042071,
+          "fall_slew": 0.09976806809361483,
+          "rise_delay": 0.23588759927578185,
+          "rise_slew": 0.24067097293625928
+        }
+      ],
+      "warning_count": 17,
+      "artifacts_sha256": {
+        "deck.cir": "a23bfeb5887b3ba7048e25d073133c5717e21f5e2f97667d2d875c42c79ce204",
+        "deck.cir.csv": "b51fe8e8e928e062c53759fe4941217e11f28969453f4102fee8bd91d4d18b4f",
+        "xyce.log": "6a3b824fefe9cbc815cbab838930f7a1342eb4e256052871da42f736112bd682"
+      }
+    },
+    {
+      "name": "global100",
+      "global_temperature_c": 100,
+      "local_temperatures_c": [
+        null,
+        null
+      ],
+      "metrics_ns": [
+        {
+          "fall_delay": 0.13065534868686823,
+          "fall_slew": 0.1116612724478494,
+          "rise_delay": 0.21536966883096653,
+          "rise_slew": 0.22389793174441674
+        },
+        {
+          "fall_delay": 0.13065534868686823,
+          "fall_slew": 0.1116612724478494,
+          "rise_delay": 0.21536966883096653,
+          "rise_slew": 0.22389793174441674
+        }
+      ],
+      "warning_count": 17,
+      "artifacts_sha256": {
+        "deck.cir": "429264ab930c20b01c562f818ee1074ac72b45c0746d5f9130d78d7dae3d31b4",
+        "deck.cir.csv": "2e61f418f7c71124dc568b1d18e9ffaa641925f3c6382fb6937ab84d735a22a3",
+        "xyce.log": "fbb36e513792525667370baf61d45336e2067e08ecb15703b45bd64f4696162a"
+      }
+    },
+    {
+      "name": "local25",
+      "global_temperature_c": 25,
+      "local_temperatures_c": [
+        25,
+        25
+      ],
+      "metrics_ns": [
+        {
+          "fall_delay": 0.12314052489042071,
+          "fall_slew": 0.09976806809361483,
+          "rise_delay": 0.23588759927578185,
+          "rise_slew": 0.24067097293625928
+        },
+        {
+          "fall_delay": 0.12314052489042071,
+          "fall_slew": 0.09976806809361483,
+          "rise_delay": 0.23588759927578185,
+          "rise_slew": 0.24067097293625928
+        }
+      ],
+      "warning_count": 17,
+      "artifacts_sha256": {
+        "deck.cir": "c509b8efbb8cdd8fd9e08b213dbafdbd54f0e065039fd5a8180285934b56ca20",
+        "deck.cir.csv": "b51fe8e8e928e062c53759fe4941217e11f28969453f4102fee8bd91d4d18b4f",
+        "xyce.log": "c216408241460e635a8343ca5624cebb9f1f2bdbeec9f30978506126c05623eb"
+      }
+    },
+    {
+      "name": "local100",
+      "global_temperature_c": 25,
+      "local_temperatures_c": [
+        100,
+        100
+      ],
+      "metrics_ns": [
+        {
+          "fall_delay": 0.13065534868686823,
+          "fall_slew": 0.1116612724478494,
+          "rise_delay": 0.21536966883096653,
+          "rise_slew": 0.22389793174441674
+        },
+        {
+          "fall_delay": 0.13065534868686823,
+          "fall_slew": 0.1116612724478494,
+          "rise_delay": 0.21536966883096653,
+          "rise_slew": 0.22389793174441674
+        }
+      ],
+      "warning_count": 17,
+      "artifacts_sha256": {
+        "deck.cir": "725234c581a539d913b72f2d4355cddc88f14e78fb2dde70a3e7b6f26b145119",
+        "deck.cir.csv": "2e61f418f7c71124dc568b1d18e9ffaa641925f3c6382fb6937ab84d735a22a3",
+        "xyce.log": "aea56a64a624bb5e4b57b63c3002439679839cb28feaa63bb2b3185313b31a25"
+      }
+    },
+    {
+      "name": "mixed",
+      "global_temperature_c": 25,
+      "local_temperatures_c": [
+        25,
+        100
+      ],
+      "metrics_ns": [
+        {
+          "fall_delay": 0.12314052489042071,
+          "fall_slew": 0.09976806809361483,
+          "rise_delay": 0.23588759927578273,
+          "rise_slew": 0.24067097293625928
+        },
+        {
+          "fall_delay": 0.13065534868686912,
+          "fall_slew": 0.11166127244784896,
+          "rise_delay": 0.21536966883096564,
+          "rise_slew": 0.22389793174441586
+        }
+      ],
+      "warning_count": 17,
+      "artifacts_sha256": {
+        "deck.cir": "16cdfc4d8fa88d5a8cc822c4e54c30ad818fc1a26982d748e7e9a1a5dd31603f",
+        "deck.cir.csv": "41fb868874ff678e3f9a7ef29a41c4432172ed9fec470487c2455d39a3dba6f6",
+        "xyce.log": "99ca8a2d2044414fdb699b958ab256c827f48dea879c0eaea98b00d0d37a2481"
+      }
+    },
+    {
+      "name": "mixed_reverse",
+      "global_temperature_c": 25,
+      "local_temperatures_c": [
+        100,
+        25
+      ],
+      "metrics_ns": [
+        {
+          "fall_delay": 0.13065534868686912,
+          "fall_slew": 0.11166127244784896,
+          "rise_delay": 0.21536966883096564,
+          "rise_slew": 0.22389793174441586
+        },
+        {
+          "fall_delay": 0.12314052489042071,
+          "fall_slew": 0.09976806809361483,
+          "rise_delay": 0.23588759927578273,
+          "rise_slew": 0.24067097293625928
+        }
+      ],
+      "warning_count": 17,
+      "artifacts_sha256": {
+        "deck.cir": "c9fac78229056ba76c7532eb373ed0610336ca61829fc1effcfeaa6e6ff0eacd",
+        "deck.cir.csv": "b85c3cb5533ae76385d2fd8500612888550c0b91cf94321b488ac6ca9b228429",
+        "xyce.log": "d9dd2eda0b3fb81bdb8dd0a532aba3c30c4652b4726bd65dd306b8de88cf15b6"
+      }
+    }
+  ],
+  "scope": "actual cell temperature forwarding controls, not hot-layout or Pad validation",
+  "checks": [
+    {
+      "case": "local25",
+      "instance": 0,
+      "reference": "global25",
+      "differences_ps": {
+        "fall_delay": 0.0,
+        "fall_slew": 0.0,
+        "rise_delay": 0.0,
+        "rise_slew": 0.0
+      },
+      "within_0_05ps": true
+    },
+    {
+      "case": "local25",
+      "instance": 1,
+      "reference": "global25",
+      "differences_ps": {
+        "fall_delay": 0.0,
+        "fall_slew": 0.0,
+        "rise_delay": 0.0,
+        "rise_slew": 0.0
+      },
+      "within_0_05ps": true
+    },
+    {
+      "case": "local100",
+      "instance": 0,
+      "reference": "global100",
+      "differences_ps": {
+        "fall_delay": 0.0,
+        "fall_slew": 0.0,
+        "rise_delay": 0.0,
+        "rise_slew": 0.0
+      },
+      "within_0_05ps": true
+    },
+    {
+      "case": "local100",
+      "instance": 1,
+      "reference": "global100",
+      "differences_ps": {
+        "fall_delay": 0.0,
+        "fall_slew": 0.0,
+        "rise_delay": 0.0,
+        "rise_slew": 0.0
+      },
+      "within_0_05ps": true
+    },
+    {
+      "case": "mixed",
+      "instance": 0,
+      "reference": "global25",
+      "differences_ps": {
+        "fall_delay": 0.0,
+        "fall_slew": 0.0,
+        "rise_delay": 8.881784197001252e-13,
+        "rise_slew": 0.0
+      },
+      "within_0_05ps": true
+    },
+    {
+      "case": "mixed",
+      "instance": 1,
+      "reference": "global100",
+      "differences_ps": {
+        "fall_delay": 8.881784197001252e-13,
+        "fall_slew": -4.440892098500626e-13,
+        "rise_delay": -8.881784197001252e-13,
+        "rise_slew": -8.881784197001252e-13
+      },
+      "within_0_05ps": true
+    },
+    {
+      "case": "mixed_reverse",
+      "instance": 0,
+      "reference": "global100",
+      "differences_ps": {
+        "fall_delay": 8.881784197001252e-13,
+        "fall_slew": -4.440892098500626e-13,
+        "rise_delay": -8.881784197001252e-13,
+        "rise_slew": -8.881784197001252e-13
+      },
+      "within_0_05ps": true
+    },
+    {
+      "case": "mixed_reverse",
+      "instance": 1,
+      "reference": "global25",
+      "differences_ps": {
+        "fall_delay": 0.0,
+        "fall_slew": 0.0,
+        "rise_delay": 8.881784197001252e-13,
+        "rise_slew": 0.0
+      },
+      "within_0_05ps": true
+    }
+  ],
+  "global_temperature_controls_distinct": true,
+  "forwarding_controls_pass": true,
+  "tolerance_ps": 0.05,
+  "tolerance_scope": "declared numerical equivalence screen, not a physical uncertainty bound"
+}

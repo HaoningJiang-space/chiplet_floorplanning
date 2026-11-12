@@ -74,3 +74,6 @@ The 211-test suite and documented two-chiplet CLI passed. The next substantive
 step is to propagate local operating temperatures through the primitive
 wrappers and verify uniform-temperature equivalence and independent mixed
 temperatures before comparing hot layouts. Goal 01 remains incomplete.
+
+The [actual cell temperature-forwarding controls](core-local-temperature.md)
+now pass for the inverter, buffer and flip-flop, including mixed temperatures.
