@@ -172,8 +172,10 @@ def main():
     table = ''
     for condition, summary in report['proof_with_additional_witness'].items():
         stage = summary['stages']['timing_feedback']; cost = summary['timing_temperature_cost']['feedback']
+        electrical_cost = summary['electrical_temperature_cost']['feedback']
+        combined_cost = summary['combined_electrical_timing_temperature_cost']['feedback']
         row = next(r for r in rows if r['id']==stage['best_witness'])
-        table += f'<tr><td>{labels[condition]}</td><td>{stage["feasible_upper_bound_c"]:.6f}</td><td>{row["timing"]["feedback"]["worst_setup_ns"]:.6f}</td><td>{row["timing"]["feedback"]["worst_hold_ns"]:.6f}</td><td>{cost["exact_penalty_k"]}</td></tr>'
+        table += f'<tr><td>{labels[condition]}</td><td>{stage["feasible_upper_bound_c"]:.6f}</td><td>{row["timing"]["feedback"]["worst_setup_ns"]:.6f}</td><td>{row["timing"]["feedback"]["worst_hold_ns"]:.6f}</td><td>{electrical_cost["exact_penalty_k"]}</td><td>{cost["exact_penalty_k"]}</td><td>{combined_cost["exact_penalty_k"]}</td></tr>'
     image = base64.b64encode(png.read_bytes()).decode()
     text = f'''<!doctype html><html lang="zh"><meta charset="utf-8"><title>Chiplet 统一布局决策基准</title>
 <style>body{{font:16px/1.7 system-ui,sans-serif;color:#172033;background:#f6f8fc;max-width:1150px;margin:35px auto;padding:0 25px}}h1{{font-size:30px}}.card{{background:white;padding:24px;border:1px solid #dce3ee;border-radius:12px;margin:20px 0}}.scope{{border-left:5px solid #d97706}}table{{width:100%;border-collapse:collapse}}td,th{{padding:11px;text-align:left;border-bottom:1px solid #dde3ec}}img{{width:100%}}small{{color:#566276}}</style>
@@ -181,7 +183,7 @@ def main():
 <div class="card"><b>在这组声明模型和有限设计域内，时序温度代价为 0。</b><p>3 个芯粒、8 条数据 Lane、1 棵共享转发时钟树。12 个预定义位置／旋转组合 × 2 个布线顺序 × 4 组条件，共 96 个固定预算组合。另有 4 个布线见证用于闭合最优性证明，{report['checked_paths']:,} 条完整时序路径检查（含网格加密）。这些布局不覆盖任意连续位置或全部独立旋转组合。</p></div>
 <div class="card scope"><b>结论范围：机制实验，尚非真实芯片预测。</b><p>单元来自同工艺、同电压的 SKY130 核心库；封装几何、功耗、边界与额外负载是假设。真实 Pad、独立 SPICE 波形校验、温度插值误差和实物封装校准仍未闭合。数值残差不是物理误差界。</p></div>
 <div class="card"><img src="data:image/png;base64,{image}" alt="实际引脚、共享路由和布局时序对照"></div>
-<div class="card"><table><thead><tr><th>声明条件</th><th>粗网格最低峰温 °C</th><th>反馈 setup ns</th><th>反馈 hold ns</th><th>ΔT K</th></tr></thead><tbody>{table}</tbody></table><small>h 的单位为 W/(m²·K)。每项均用同一配置比较热最优和时序可行最优；额外负载不改变固定功率热模型。</small></div>
+<div class="card"><table><thead><tr><th>声明条件</th><th>粗网格最低峰温 °C</th><th>反馈 setup ns</th><th>反馈 hold ns</th><th>电气筛选 ΔT K</th><th>增量时序 ΔT K</th><th>合计 ΔT K</th></tr></thead><tbody>{table}</tbody></table><small>h 的单位为 W/(m²·K)。三项分别使用可布线→电气可分析、电气可分析→时序可行、可布线→时序可行的基线；额外负载不改变固定功率热模型。</small></div>
 <div class="card"><b>为什么可以证明这里的 0？</b><p>先枚举全部 12 个布局的温度，得到热下界；再找到位于下界的合法布线并检查全部 Lane。可行解上界与热下界相等，因而在该离散布局域、声明布线资源和数值模型内达到最优。无需把其他路由搜索失败当作不可行。</p><p>最初两种布线顺序漏掉了热最优布局。额外搜索第 2 次尝试找到合法线路，消除了基准条件下约 0.087 K 的搜索缺口。固定预算三种遍历基线结果相同；新增见证不计入它们的公平对比，也没有算法提速或联合优化优势的主张。</p></div>
 <div class="card"><b>数值可靠性与下一道物理门槛</b><p>对三个不同热问题的全部布局进行了 2×、4× 平面网格加密，最优布局均保持不变。基准条件下最优与次优温差从约 0.087 K 到 0.091 K；这支持所测试网格上的排序稳定性，尚未覆盖厚度离散、材料、热边界与电气模型误差。</p><p>时序核对包含局部温度、rise/fall 负载、唯一导体 RC、完整公共时钟路径和全部 setup/hold。后续优先判断模型差异是否改变布局可行性与排序，不要求跨模型误差归零。当前没有覆盖完整路径与物理输入的误差界，决策不确定性标为 uncertainty_unquantified；这既不是零误差，也不表示候选布局已经证明等价。结构化结果列出每个候选的 setup／hold 最小裕量及距零边界的距离，作为敏感性指标，不能当作实际误差估计。</p></div>
 <p><a href="chiplet-integrated-decision.json">完整结构化证据</a> · <a href="https://github.com/HaoningJiang-space/chiplet_floorplanning">GitHub 仓库</a></p></html>'''

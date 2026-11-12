@@ -60,16 +60,21 @@ def summarize_decisions(rows, *, expected_layout_ids=None, expected_profile=None
             lower_bound_c=lower, feasible_upper_bound_c=upper, best_witness=best['id'] if best else None,
             certified_numerical_optimum=closed, proof='thermal_lower_bound_attained' if closed else 'open_bound',
             empty_set_proven=(domain_verified and not geometry), physical_optimum_certified=False)
-    costs = {}
-    routing = report['routing']
+    def cost(baseline_name, target_name):
+        baseline_stage, target = report[baseline_name], report[target_name]
+        base, value = baseline_stage['feasible_upper_bound_c'], target['feasible_upper_bound_c']
+        exact = baseline_stage['certified_numerical_optimum'] and target['certified_numerical_optimum']
+        return dict(baseline_stage=baseline_name, target_stage=target_name,
+                    evaluated_subset_penalty_k=value-base if value is not None and base is not None else None,
+                    exact_penalty_k=value-base if exact else None,
+                    penalty_bounds_k=[0., value-lower] if value is not None and lower is not None else None,
+                    exact=exact)
+
+    costs, electrical_costs, combined_costs = {}, {}, {}
     for mode in ('reference', 'feedback'):
-        timing = report['timing_'+mode]
-        r, t = routing['feasible_upper_bound_c'], timing['feasible_upper_bound_c']
-        exact = routing['certified_numerical_optimum'] and timing['certified_numerical_optimum']
-        costs[mode] = dict(evaluated_subset_penalty_k=t-r if t is not None and r is not None else None,
-                          exact_penalty_k=t-r if exact else None,
-                          penalty_bounds_k=[0., t-lower] if t is not None and lower is not None else None,
-                          exact=exact)
+        electrical_costs[mode] = cost('routing', 'electrical_'+mode)
+        costs[mode] = cost('electrical_'+mode, 'timing_'+mode)
+        combined_costs[mode] = cost('routing', 'timing_'+mode)
     # Full-budget controls: identical evaluator calls; no speedup claim. Thermal
     # and timing ordering only changes traversal, not the common final objective.
     baseline = {}
@@ -89,7 +94,10 @@ def summarize_decisions(rows, *, expected_layout_ids=None, expected_profile=None
         baseline[name] = dict(evaluator_calls=len(rows), feedback_feasible_pairs=len(feasible),
                              best_witness=best['id'] if best else None,
                              peak_c=best['thermal']['peak_c'] if best else None)
-    return dict(stages=report, timing_temperature_cost=costs, baselines=baseline,
+    return dict(stages=report, timing_temperature_cost=costs,
+                electrical_temperature_cost=electrical_costs,
+                combined_electrical_timing_temperature_cost=combined_costs,
+                cost_definition_version=2, baselines=baseline,
                 domain_coverage_verified=domain_verified, expected_profile=expected_profile,
                 observed_layout_ids=sorted({r['layout_id'] for r in rows}),
                 expected_layout_ids=sorted(expected) if domain_verified else None,

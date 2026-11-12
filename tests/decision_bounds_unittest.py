@@ -12,6 +12,34 @@ def row(name, temperature, route=True):
 
 
 class DecisionBoundTests(unittest.TestCase):
+    def test_electrical_screen_is_not_charged_to_incremental_timing(self):
+        cold, middle, warm = row('cold', 30), row('middle', 33), row('warm', 35)
+        for mode in ('reference', 'feedback'):
+            cold['timing'][mode] = dict(status='model_domain_rejected')
+            middle['timing'][mode]['timing_feasible'] = False
+        result = summarize_decisions([cold, middle, warm],
+            expected_layout_ids=['cold', 'middle', 'warm'], expected_profile='test')
+        for mode in ('reference', 'feedback'):
+            electrical = result['electrical_temperature_cost'][mode]
+            timing = result['timing_temperature_cost'][mode]
+            combined = result['combined_electrical_timing_temperature_cost'][mode]
+            self.assertEqual(electrical['evaluated_subset_penalty_k'], 3)
+            self.assertEqual(timing['evaluated_subset_penalty_k'], 2)
+            self.assertEqual(combined['evaluated_subset_penalty_k'], 5)
+            self.assertEqual(timing['baseline_stage'], 'electrical_'+mode)
+            # This ledger is not proof that no unsearched route improves a stage.
+            self.assertIsNone(timing['exact_penalty_k'])
+            self.assertEqual(timing['penalty_bounds_k'], [0, 5])
+
+    def test_electrical_failure_with_no_timing_failures_has_zero_subset_timing_cost(self):
+        cold, warm = row('cold', 30), row('warm', 35)
+        for mode in ('reference', 'feedback'):
+            cold['timing'][mode] = dict(status='execution_timeout')
+        result = summarize_decisions([cold, warm])
+        self.assertEqual(result['timing_temperature_cost']['feedback']['evaluated_subset_penalty_k'], 0)
+        self.assertEqual(result['combined_electrical_timing_temperature_cost']['feedback']['evaluated_subset_penalty_k'], 5)
+        self.assertIsNone(result['timing_temperature_cost']['feedback']['exact_penalty_k'])
+
     def test_unknown_better_route_keeps_bound_open(self):
         result = summarize_decisions([row('cold_unknown', 30, False), row('warm_witness', 35)],
                                      expected_layout_ids=['cold_unknown', 'warm_witness'], expected_profile='test')

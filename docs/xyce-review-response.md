@@ -55,3 +55,9 @@ classification only partially closed. Specific remaining items are:
 
 The review inspected GitHub code and compact evidence, not local waveforms or
 test execution. Its closure does not constitute independent physical replication.
+
+Subsequent local fix: [cost baseline version 2](decision-cost-baselines.md)
+now separates electrical, incremental timing and combined routing-to-timing
+costs and replays the frozen benchmark. This implementation has not yet
+received a new Chat closure review; the remaining warning/observation items
+above are unchanged.
