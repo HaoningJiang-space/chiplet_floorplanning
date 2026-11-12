@@ -47,6 +47,11 @@ median span reductions of 0.6980%, 6.1033%, and 0.3759% respectively. These
 reverse results can select different layouts from the primary table. They are
 not simultaneous gains to combine into one proposed layout.
 
+Budget dependence matters: under the tighter p25 MultiGPU span budget, the
+NSGA-II/Random paired temperature-reduction median is -0.3668 K, compared with
++0.8233 K at p50 and +1.4641 K at p75. Reporting only an unconstrained minimum,
+HV, or the favorable budget would conceal this change in which method is better.
+
 The published figure shows every paired value at all three span anchors and
 the median only when all pairs attain the constraint. It was visually checked.
 No new seed or new physics calibration was required for this reanalysis.
@@ -67,6 +72,13 @@ No new seed or new physics calibration was required for this reanalysis.
 
 The [local receipt](evidence/tap-r3-physical-smoke.json) includes source hashes,
 actual evaluated smoke points and their new metric summaries. The
-[frozen R3 manifest](evidence/tap-online-plan-r3.json) and
+[current frozen R3 manifest](evidence/tap-online-plan-r3-v2.json) and
 [commands](tap-r3-protocol.md) are ready. The full 18-new-run comparison and
 ATPlace pin-aware scale extension are not completed by this metric migration.
+
+The [Chat metric-stage review](tap-physical-metric-review.md) accepted the
+comparison and independently recomputed the published selections/statistics.
+Its sole reporting addition was to expose mutation enumeration and filter costs
+already present in raw results. This is included in the current reporter and
+v2 manifest; algorithm behavior, physics and existing numerical results did not
+change, so the completed development smoke is retained without another solve.

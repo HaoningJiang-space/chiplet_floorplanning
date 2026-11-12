@@ -21,16 +21,23 @@ from the complete comparison. Do not add more seeds without a concrete reason.
 Freeze a new plan after executable code and this protocol are ready:
 
 ```powershell
-python tools/run_tap_online.py --freeze --plan docs/evidence/tap-online-plan-r3.json
-python tools/run_tap_online.py --plan docs/evidence/tap-online-plan-r3.json --hits ../HiTS --case micro150 --seed 2026111200 --method nsga2_legal --smoke-budget 32 --output results/r3-micro150-legal-smoke
-python tools/run_tap_online_batch.py --plan docs/evidence/tap-online-plan-r3.json --hits ../HiTS --output results/tap-online-r3
-python tools/report_tap_physical.py --input docs/evidence/tap-online-pilot-v4.json --plan docs/evidence/tap-online-plan-r3.json --batch results/tap-online-r3 --output docs/evidence/tap-online-r3-physical
+python tools/run_tap_online.py --freeze --plan docs/evidence/tap-online-plan-r3-v2.json
+python tools/run_tap_online.py --plan docs/evidence/tap-online-plan-r3-v2.json --hits ../HiTS --case micro150 --seed 2026111200 --method nsga2_legal --smoke-budget 32 --output results/r3-micro150-legal-smoke
+python tools/run_tap_online_batch.py --plan docs/evidence/tap-online-plan-r3-v2.json --hits ../HiTS --output results/tap-online-r3
+python tools/report_tap_physical.py --input docs/evidence/tap-online-pilot-v4.json --plan docs/evidence/tap-online-plan-r3-v2.json --batch results/tap-online-r3 --output docs/evidence/tap-online-r3-physical
 ```
 
 The new plan binds source hashes, HiTS revision, original plan/evidence hashes,
 copied initializations and p25/p50/p75 physical anchors from the earlier
 sensitivity sample. The old v4 manifest is never rewritten to fit new code;
 its exact reproduction uses its recorded old revision.
+
+The checked-in `tap-online-plan-r3-v2.json` is already frozen: use it directly,
+without rerunning `--freeze` onto the same path. It supersedes the original R3
+manifest only to bind the post-review reporter addition of mutation enumeration
+and filtering costs. Search, physics, thresholds, seeds and budgets are identical.
+The original R3 manifest remains the source-bound record for development smoke
+and retrospective pilot analysis; no thermal rerun is needed for this change.
 
 The reporter checks new run geometry, original numerical invariants, objective
 values, accounting, physical summaries and deterministic policy replay using
@@ -48,7 +55,7 @@ does not by itself establish a controlled speedup on a loaded workstation.
 The same reporter can reanalyze all **45 original trials** without new solves:
 
 ```powershell
-python tools/report_tap_physical.py --input docs/evidence/tap-online-pilot-v4.json --plan docs/evidence/tap-online-plan-r3.json --output docs/evidence/tap-pilot-physical
+python tools/report_tap_physical.py --input docs/evidence/tap-online-pilot-v4.json --plan docs/evidence/tap-online-plan-r3-v2.json --output results/tap-pilot-physical-reanalysis
 ```
 
 This is retrospective because the physical comparison anchors were chosen

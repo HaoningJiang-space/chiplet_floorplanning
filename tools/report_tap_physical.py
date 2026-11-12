@@ -62,7 +62,9 @@ def analyze(records, contracts):
                              for n in sorted({n for n in (16, 32, 64) if n <= len(points)} | {len(points)})],
                     auxiliary_hypervolume=record['final_metrics']['hypervolume'],
                     effort={k: record[k] for k in ('proposals', 'cache_hits', 'illegal_proposals',
-                            'elapsed_seconds', 'solve_seconds', 'geometry_seconds') if k in record}))
+                            'elapsed_seconds', 'solve_seconds', 'geometry_seconds',
+                            'construction_candidate_checks', 'mutation_candidate_checks',
+                            'mutation_filter_seconds', 'empty_mutation_sets') if k in record}))
     contrasts = []
     for case in cases:
         for candidate, baseline in CONTRASTS:

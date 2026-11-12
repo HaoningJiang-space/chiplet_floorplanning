@@ -72,13 +72,16 @@ class PhysicalMetricsTest(unittest.TestCase):
                 n = 32 if capped else 64
                 rows = initial + [dict(query_index=i, peak_c=value, centre_span_mm=20) for i in range(16, n)]
                 records.append(dict(case='test', method=method, seed=seed, queries=n, points=rows,
-                    status='stopped_at_limit' if capped else 'complete_query_budget', final_metrics=dict(hypervolume=0)))
+                    status='stopped_at_limit' if capped else 'complete_query_budget', final_metrics=dict(hypervolume=0),
+                    mutation_candidate_checks=123, mutation_filter_seconds=.25))
         report = analyze(records, {'test': contract()})
         diff = report['contrasts'][0]
         summary = diff['temperature_at_span_budget'][1]
         self.assertEqual(summary['paired_values'], [1, -2, 1])
         self.assertEqual(summary['conditional_median'], 1)
         self.assertEqual(diff['both_complete'], [True, True, False])
+        self.assertEqual(report['runs'][0]['effort']['mutation_candidate_checks'], 123)
+        self.assertEqual(report['runs'][0]['effort']['mutation_filter_seconds'], .25)
         records[0]['points'] = copy.deepcopy(records[0]['points'])
         records[0]['points'][0]['peak_c'] += .1
         with self.assertRaisesRegex(ValueError, 'initialization'):
