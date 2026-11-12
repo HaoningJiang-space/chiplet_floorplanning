@@ -18,6 +18,9 @@ here; do not place these changes in adjacent placement repositories.
   still run locally. Use [skip ci] in the pushed HEAD commit message while this
   local-only execution constraint remains, and verify remote HEAD after pushing.
   Continue fetching for freshness; never force-push over remote work.
+- Before a major-stage ChatGPT review, finish local validation, commit, push and
+  verify the remote SHA first. Give the reviewer that published SHA so it can
+  autonomously inspect actual code/history through GitHub rather than summaries.
 - During long research, commit independently validated local sub-milestones
   promptly. Keep unfinished experiments and failed controls explicitly labeled.
 - Maintain `main` as the only branch, locally and on `origin`. Commit validated

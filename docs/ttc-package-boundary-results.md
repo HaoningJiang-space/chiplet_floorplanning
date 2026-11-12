@@ -1,9 +1,10 @@
-# Explicit package boundary: first completed checkpoints
+# Explicit package boundary: completed refinement checkpoints
 
 Implementation/frozen protocol commit: `506f314`. Starting checkout was
 `a87e529`; GitHub fetch succeeded and origin remained `c124aa9`. All work is
-local, without a push or remote job. This document records completed levels
-0 and 1; levels 2 and 3 are still being calculated. Do not read it as a final
+local, initially without a push or remote job. The user later authorized timely
+code pushes; calculations remain local. This document records completed levels
+0, 1 and 2; level 3 is still being calculated. Do not read it as a final
 convergence result. The active run is `ttc-package-boundary-v1` under
 `results/physical-calibration/`.
 
@@ -66,6 +67,34 @@ limitation below. Raw FV predictions are also saved and shown in the report.
 The correction `R*=R_U_continuum+(R_package_FV-R_U_FV)` is not a true solution
 or a proven error bound. Its boundary difference must independently converge.
 The previous coarse transient experiment and its failure remain unchanged.
+
+## Completed level-2 checkpoint
+
+Both cooling groups now have complete U/C/P results at level 2: respectively
+169,260, 688,044 and 759,532 nodes. The original frozen code/input hashes and
+all six level-2 transfer hashes were rechecked when exporting this checkpoint.
+The immutable local `checkpoint-level2.json` and tracked
+`evidence/local-ttc-package-boundary-level2.json` preserve this intermediate state.
+Level 3 is still running; no final convergence conclusion is available.
+
+| Material group | C-U level 1 to 2 change (K) | P-C level 1 to 2 change (K) |
+|---|---:|---:|
+| Natural | 0.051819 | 0.209836 |
+| Fan | 0.061113 | 0.159794 |
+
+All four changes remain above the frozen 0.02 K requirement. The relative
+changes are 3.58%/13.96% for natural C-U/P-C and 3.87%/12.74% for fan C-U/P-C.
+C-U passes the separate 10% relative screen but still fails the absolute one;
+P-C fails both. The pad-extent contrast has decreased much less rapidly than
+the copper/boundary contrast. Do not extrapolate an error bound or select a
+new contact coefficient from these two successive changes.
+
+The exploratory level-2 corrected held-out spatial RMSE is 1.127433/1.210150 K
+for natural C/P and 0.692121/0.764031 K for fan C/P. Raw FV values are
+1.148583/1.232314 K and 0.711583/0.785027 K. U's continuum reference is unchanged.
+The same correction limitations and transient-storage caveats above apply.
+The separate transient study now also demonstrates spatial grid sensitivity
+in both natural C and P; see `ttc-package-transient-results.md`.
 
 ## A material physical finding: common temperature is still changing
 
