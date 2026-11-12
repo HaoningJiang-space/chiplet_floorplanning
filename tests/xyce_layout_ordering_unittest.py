@@ -44,6 +44,9 @@ class LayoutOrderingTest(unittest.TestCase):
             self.assertEqual(row['critical_paths_a_b']['cold_2.5ps'][0]['lane'], '0_0')
             self.assertEqual(row['critical_paths_a_b']['hot_2.5ps'][0]['lane'], '0_1')
             self.assertEqual(row['ordering'], 'stable')
+            self.assertAlmostEqual(row['sta_pair_difference_ps']['cold'], 100)
+            self.assertAlmostEqual(row['sta_pair_difference_ps']['hot'], 100)
+            self.assertAlmostEqual(row['interaction_model_difference_ps'], 0)
 
 
 if __name__ == '__main__':

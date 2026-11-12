@@ -65,6 +65,7 @@ def compare(a, b, controls_passed, uniform_discrepancy_ps):
     minima = []
     for kind in ('setup', 'hold'):
         critical, paired = {}, []
+        sta_minima = {}
         for mode in ('cold', 'hot'):
             differences = []
             for step in (5., 2.5):
@@ -74,7 +75,13 @@ def compare(a, b, controls_passed, uniform_discrepancy_ps):
                 critical[f'{mode}_{step:g}ps'] = [dict(lane=r['lane'], edge=r['edge'],
                     window_ns=r[mode+'_window_ns']) for r in best]
             paired.append(differences)
+            sta_values = [min(r['sta_'+mode+'_window_ns'] for k, r in idx.items()
+                              if k[0] == 2.5 and k[3] == kind) for idx in (ia, ib)]
+            sta_minima[mode] = (sta_values[1]-sta_values[0])*1000
         minima.append(dict(window=kind, **classify(*paired, controls_passed, uniform_discrepancy_ps),
+                           sta_pair_difference_ps=sta_minima,
+                           interaction_model_difference_ps=(paired[1][1]-paired[0][1])-
+                               (sta_minima['hot']-sta_minima['cold']),
                            critical_paths_a_b=critical))
     return dict(paths=rows, minimum_windows=minima)
 
