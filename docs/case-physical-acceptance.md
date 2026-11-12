@@ -100,10 +100,16 @@ is faster, meets a clock target, or closes detailed routing.
 
 ## 4. Next acceptance, without a new calibration campaign
 
-Finish and report the already-frozen R3 as a mechanism comparison. Then connect
-one declared pin-level case to legal placement and rotated pin-to-pin distance,
-with an explicit package/boundary contract and final-layout thermal evaluation.
-Confirm that chain before extending to 20/61 dies. For a stronger physical
+Update: R3 is now [complete](tap-online-r3-results.md), and the first
+[Case1 pin/geometry/thermal acceptance](atplace-case1-acceptance.md) has passed
+on three fixed layouts. This does not alter the R3 evaluator described above.
+Its uniform CPU rotation leaves the thermal problem unchanged while changing
+the pin objective; future search must keep full orientation states separate
+from thermal-cache equivalence. Optimization and larger-case coverage remain open.
+
+The sequence was to finish R3, then connect one declared pin-level case to legal
+placement and rotated pin distance with explicit package/boundary assumptions.
+Keep that bounded acceptance before extending to 20/61 dies. For a stronger physical
 claim, compare only a small set of relevant final layouts against an independent
 matched thermal model or a bounded boundary/material sensitivity check; examine
 whether the decision changes, rather than demanding arbitrary tiny temperature

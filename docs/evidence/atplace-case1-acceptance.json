@@ -1,0 +1,473 @@
+{
+  "status": "complete_case1_pin_geometry_thermal_acceptance",
+  "plan": {
+    "scope": "three preselected acceptance layouts, not optimization or independent physical calibration",
+    "source_commit": "fe3dbfdaf78dc0ddeac3a2cfc3a85ff0971f88df",
+    "imported_sha256": "f2d55207a86fee7e03d14778ac5eea3847d3a101584d451a751d654295a4bb72",
+    "source_sha256": {
+      "blocks": "bd8bed490eeb65a9ba8dda6913a6a8f8931e259534ff4fbde06319c1a0d54ad9",
+      "power": "48332cac2e68c74e14cf33810ae8d8c3da0b2e04d665b31829ec04cc1a727375",
+      "nets": "598e068bda0ff880391bc3e932faa2ceb21b5cad2f3b3a194d11208e9a16434e"
+    },
+    "source_case": "Case1",
+    "gap_um": 1000,
+    "gap_provenance": "declared research clearance, not supplied by the three source input files",
+    "grid": "continuous centres accepted; this fixture uses integer micrometres",
+    "package": "TAP-family FV materials; source 42x42 mm carrier; fixed 100/200 mm spreader/sink",
+    "heat_boundary": "ambient 45 C; top h=2777.7777778 W/(m2 K); other external faces adiabatic",
+    "power": "uniform full source die, fixed source power; no extra bump ring or leakage feedback",
+    "metric": "total two-pin Manhattan lower bound in metres, unweighted source-net multiplicity",
+    "electrical_timing": "not connected; undirected source B pins do not define clock/data direction",
+    "cache": "private uniform-die thermal cache by physical bounds; recompute pin objective for every full-orientation layout",
+    "code_base_commit": "b9a54b0152c29c3edae87e106e8fec3f05f134c2",
+    "code_version": "listed source hashes bind the executed worktree, including new files after the base commit",
+    "source_hashes": {
+      "tools/atplace_pin_geometry.py": "24975ffe920d3c15a408411557850b8499fe070b015a4de323f94cfa3230ff0c",
+      "tools/validate_atplace_case1.py": "335e4b902c03df9ef5e04722acd482f1509825b0cab06dfd5f502b79a9f5b86c",
+      "tools/solve_tap_fv_hits.py": "7a37f52fdb48d87a37f8fa57b2e783771b798db815679b0f4eaca2102875b52d",
+      "src/chiplet_floorplanning/model.py": "40767387d2e65240fddf65cbeb00891beaf6c6b57dc3ddd2229dc7ff2f934c27",
+      "src/chiplet_floorplanning/package.py": "adbea6349a949601a21456dc1dcb18fe0730a8dd26085a6b9eb27c4e18de406f",
+      "src/chiplet_floorplanning/mesh.py": "3463ad89569368f970f3cd48be180fc9cc8afbcdcf5ba95a4edcd196e66ab585",
+      "src/chiplet_floorplanning/power.py": "ddc487e0cb2a77a922461b4e1a1d5e166ce0f160d9f6e722d3e0caeafdd24439"
+    },
+    "hits_commit": "be59924de3f0c1a3d6d134aea411d1264cfa64c6",
+    "layouts": [
+      {
+        "name": "base",
+        "placements": [
+          {
+            "chiplet": "CPU1_0",
+            "centre_x_um": 7000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_0",
+            "centre_x_um": 10000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_1",
+            "centre_x_um": 30000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_0",
+            "centre_x_um": 19000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_1",
+            "centre_x_um": 29000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_2",
+            "centre_x_um": 38000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          }
+        ]
+      },
+      {
+        "name": "cpu_rotation_180",
+        "placements": [
+          {
+            "chiplet": "CPU1_0",
+            "centre_x_um": 7000,
+            "centre_y_um": 29000,
+            "rotation_deg": 180
+          },
+          {
+            "chiplet": "GPU_0",
+            "centre_x_um": 10000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_1",
+            "centre_x_um": 30000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_0",
+            "centre_x_um": 19000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_1",
+            "centre_x_um": 29000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_2",
+            "centre_x_um": 38000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          }
+        ]
+      },
+      {
+        "name": "gpu_translation_1mm_xy",
+        "placements": [
+          {
+            "chiplet": "CPU1_0",
+            "centre_x_um": 7000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_0",
+            "centre_x_um": 11000,
+            "centre_y_um": 11000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_1",
+            "centre_x_um": 30000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_0",
+            "centre_x_um": 19000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_1",
+            "centre_x_um": 29000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_2",
+            "centre_x_um": 38000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          }
+        ]
+      }
+    ]
+  },
+  "records": [
+    {
+      "name": "base",
+      "placements": [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 7000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 10000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 30000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 19000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 29000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 38000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        }
+      ],
+      "thermal_cache_hit": false,
+      "metric": {
+        "total_pin_manhattan_um_decimal": "73840208.80600",
+        "total_pin_manhattan_mm": 73840.208806,
+        "total_pin_manhattan_m": 73.840208806,
+        "total_centre_manhattan_mm": 83776.0,
+        "net_count": 3168,
+        "scope": "total two-pin Manhattan lower bound; no obstacle detours, capacity, RC or timing"
+      },
+      "registered_pin_count": 6336,
+      "max_endpoint_transform_error_mm": 1.4210854715202004e-14,
+      "production_transform_total_length_mm": 73840.20880600008,
+      "thermal": {
+        "case": "atplace_fv_Case1",
+        "nodes": 7856,
+        "mesh": [
+          70,
+          68
+        ],
+        "assembly_seconds": 0.05366410000715405,
+        "source_power_w": 780.0,
+        "mapped_power_w": 780.0,
+        "heat_removed_w": 779.9999997320376,
+        "energy_balance_error_w": -2.6796237762027886e-07,
+        "original_relative_residual": 7.737106368056542e-11,
+        "max_reference_difference_k": 1.3060542869425262e-08,
+        "min_rise_k": 1.1400894501436127,
+        "peak_power_layer_c": 107.45047721858577,
+        "max_internal_coefficient_change_w_k": 0,
+        "max_asymmetry_w_k": 0,
+        "max_offdiagonal_w_k": -5.333333333333334e-06,
+        "hits_receipt": {
+          "accepted": true,
+          "info": 0,
+          "absolute_residual": 5.590256573533679e-10,
+          "relative_residual": 9.401801218270638e-11,
+          "acceptance_rtol": 1e-10,
+          "acceptance_atol": 1e-12,
+          "assembly_identity": "atplace_fv_Case1",
+          "backend": "generic-gmres",
+          "qualification": {
+            "solid_spd": "UNKNOWN",
+            "regular_gmg": "UNKNOWN",
+            "fluid_2rm": "UNKNOWN",
+            "coupled_multilevel": "UNKNOWN",
+            "preconditioner_admissibility": "UNKNOWN",
+            "reason": "No specialized execution requested or qualified"
+          },
+          "solve_seconds": 0.1600996000925079,
+          "validation_seconds": 7.889990229159594e-05,
+          "shift_seconds": 0.0
+        },
+        "physical_calibrated": false,
+        "scope": "declared common FV model on ATPlace Case1; not native ATPlace or independently calibrated",
+        "numerical_admission_passed": true
+      },
+      "case_sha256": "4f31a8b3b12d9d4dbacad6038128074c5492c4239d542582fb74d121534b4b2e",
+      "pins_sha256": "9ba0262f7d45b839ceca45b0ad07036640411d80dac87c324244447404e2daa1"
+    },
+    {
+      "name": "cpu_rotation_180",
+      "placements": [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 7000,
+          "centre_y_um": 29000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 10000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 30000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 19000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 29000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 38000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        }
+      ],
+      "thermal_cache_hit": true,
+      "metric": {
+        "total_pin_manhattan_um_decimal": "74688592.94680",
+        "total_pin_manhattan_mm": 74688.5929468,
+        "total_pin_manhattan_m": 74.6885929468,
+        "total_centre_manhattan_mm": 83776.0,
+        "net_count": 3168,
+        "scope": "total two-pin Manhattan lower bound; no obstacle detours, capacity, RC or timing"
+      },
+      "registered_pin_count": 6336,
+      "max_endpoint_transform_error_mm": 1.4210854715202004e-14,
+      "production_transform_total_length_mm": 74688.59294680016,
+      "thermal": {
+        "case": "atplace_fv_Case1",
+        "nodes": 7856,
+        "mesh": [
+          70,
+          68
+        ],
+        "assembly_seconds": 0.05366410000715405,
+        "source_power_w": 780.0,
+        "mapped_power_w": 780.0,
+        "heat_removed_w": 779.9999997320376,
+        "energy_balance_error_w": -2.6796237762027886e-07,
+        "original_relative_residual": 7.737106368056542e-11,
+        "max_reference_difference_k": 1.3060542869425262e-08,
+        "min_rise_k": 1.1400894501436127,
+        "peak_power_layer_c": 107.45047721858577,
+        "max_internal_coefficient_change_w_k": 0,
+        "max_asymmetry_w_k": 0,
+        "max_offdiagonal_w_k": -5.333333333333334e-06,
+        "hits_receipt": {
+          "accepted": true,
+          "info": 0,
+          "absolute_residual": 5.590256573533679e-10,
+          "relative_residual": 9.401801218270638e-11,
+          "acceptance_rtol": 1e-10,
+          "acceptance_atol": 1e-12,
+          "assembly_identity": "atplace_fv_Case1",
+          "backend": "generic-gmres",
+          "qualification": {
+            "solid_spd": "UNKNOWN",
+            "regular_gmg": "UNKNOWN",
+            "fluid_2rm": "UNKNOWN",
+            "coupled_multilevel": "UNKNOWN",
+            "preconditioner_admissibility": "UNKNOWN",
+            "reason": "No specialized execution requested or qualified"
+          },
+          "solve_seconds": 0.1600996000925079,
+          "validation_seconds": 7.889990229159594e-05,
+          "shift_seconds": 0.0
+        },
+        "physical_calibrated": false,
+        "scope": "declared common FV model on ATPlace Case1; not native ATPlace or independently calibrated",
+        "numerical_admission_passed": true
+      },
+      "case_sha256": "389e63ce960ad8d22a4298bc2789234abbe0c96d47cba2ca12afce083ee12107",
+      "pins_sha256": "13df2819307a17d1f88e9db398d9a802b93150d985c5e9846e7dc9cfcbe1169b",
+      "rotation_control": {
+        "operator_identical": true,
+        "source_identical": true,
+        "max_cached_field_difference_k": 0.0
+      }
+    },
+    {
+      "name": "gpu_translation_1mm_xy",
+      "placements": [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 7000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 11000,
+          "centre_y_um": 11000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 30000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 19000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 29000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 38000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        }
+      ],
+      "thermal_cache_hit": false,
+      "metric": {
+        "total_pin_manhattan_um_decimal": "72404992.80600",
+        "total_pin_manhattan_mm": 72404.992806,
+        "total_pin_manhattan_m": 72.404992806,
+        "total_centre_manhattan_mm": 82368.0,
+        "net_count": 3168,
+        "scope": "total two-pin Manhattan lower bound; no obstacle detours, capacity, RC or timing"
+      },
+      "registered_pin_count": 6336,
+      "max_endpoint_transform_error_mm": 1.4210854715202004e-14,
+      "production_transform_total_length_mm": 72404.99280599994,
+      "thermal": {
+        "case": "atplace_fv_Case1",
+        "nodes": 8280,
+        "mesh": [
+          71,
+          69
+        ],
+        "assembly_seconds": 0.057949500042013824,
+        "source_power_w": 780.0,
+        "mapped_power_w": 780.0,
+        "heat_removed_w": 779.9999997195758,
+        "energy_balance_error_w": -2.804241603371338e-07,
+        "original_relative_residual": 8.554191489537333e-11,
+        "max_reference_difference_k": 1.5306412137761072e-08,
+        "min_rise_k": 1.1546147320526665,
+        "peak_power_layer_c": 108.63813629353129,
+        "max_internal_coefficient_change_w_k": 0,
+        "max_asymmetry_w_k": 0,
+        "max_offdiagonal_w_k": -5.333333333333334e-06,
+        "hits_receipt": {
+          "accepted": true,
+          "info": 0,
+          "absolute_residual": 6.178229547324215e-10,
+          "relative_residual": 9.61631671358231e-11,
+          "acceptance_rtol": 1e-10,
+          "acceptance_atol": 1e-12,
+          "assembly_identity": "atplace_fv_Case1",
+          "backend": "generic-gmres",
+          "qualification": {
+            "solid_spd": "UNKNOWN",
+            "regular_gmg": "UNKNOWN",
+            "fluid_2rm": "UNKNOWN",
+            "coupled_multilevel": "UNKNOWN",
+            "preconditioner_admissibility": "UNKNOWN",
+            "reason": "No specialized execution requested or qualified"
+          },
+          "solve_seconds": 0.160356399952434,
+          "validation_seconds": 9.049999061971903e-05,
+          "shift_seconds": 0.0
+        },
+        "physical_calibrated": false,
+        "scope": "declared common FV model on ATPlace Case1; not native ATPlace or independently calibrated",
+        "numerical_admission_passed": true
+      },
+      "case_sha256": "5d1d74f480dd021bdf1de8bcd9f6d53f54230111848670e65ea29abb92a0370b",
+      "pins_sha256": "80ed2e5e1c5ea6384c7b2a3f74c513bbe40fd93e0007ffc38e9f3705d1382cd5"
+    }
+  ],
+  "rotation_changes_pin_objective": true,
+  "movement_changes_pin_objective": true,
+  "movement_peak_change_k": 1.1876590749455147,
+  "full_layout_states": 3,
+  "full_thermal_solves": 2,
+  "thermal_cache_hits": 1,
+  "physical_calibrated": false,
+  "timing_closed": false,
+  "scope": "source pin geometry and declared thermal evaluator connected; no optimizer, routed wirelength, RC or timing claim"
+}

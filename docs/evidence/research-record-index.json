@@ -1,15 +1,20 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "8bed2effdd157e7243adad7ca1905e4e041dc13f",
-  "record_count": 235,
+  "parent_commit": "b9a54b0152c29c3edae87e106e8fec3f05f134c2",
+  "record_count": 238,
   "counts_by_kind": {
-    "md": 123,
-    "json": 98,
+    "md": 125,
+    "json": 99,
     "pdf": 6,
     "png": 7,
     "svg": 1
   },
   "records": [
+    {
+      "path": "docs/atplace-case1-acceptance.md",
+      "git_blob_sha1": "a897c124c1829b3f748ef60b7c2da9668d3e9931",
+      "kind": "md"
+    },
     {
       "path": "docs/benchmark-source-screening.md",
       "git_blob_sha1": "8248b1db8365a0828db28b941331ecedd7604dd2",
@@ -17,7 +22,7 @@
     },
     {
       "path": "docs/case-physical-acceptance.md",
-      "git_blob_sha1": "fe0d49c5b8ad42d8f8273e79e398e455974c0bd2",
+      "git_blob_sha1": "cdb2bf2386bec7aaa6a87334f95a3a4b707f3b2f",
       "kind": "md"
     },
     {
@@ -39,6 +44,11 @@
       "path": "docs/decision-uncertainty.md",
       "git_blob_sha1": "f697ec5f7edb5eb9923a10959495d0de01596dea",
       "kind": "md"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-acceptance.json",
+      "git_blob_sha1": "4b6b0e1ab4420bb02e51992e4c5d3354611534ba",
+      "kind": "json"
     },
     {
       "path": "docs/evidence/atplace-import.json",
@@ -702,7 +712,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "eab1ae855ae35307a9f9e18a4d2a67f5ab948a71",
+      "git_blob_sha1": "65e8d9a86e8f9ee47ee7a7e3e4038c5244e93faf",
       "kind": "md"
     },
     {
@@ -922,7 +932,12 @@
     },
     {
       "path": "docs/tap-online-r3-results.md",
-      "git_blob_sha1": "813d78e8903a7e8e7e406f0926045230606aad87",
+      "git_blob_sha1": "b044badb5a123465a1c74ab802d3c77aae1a0d83",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-online-r3-review.md",
+      "git_blob_sha1": "188ccf2dae289dea22911609e17b84f29c0567a5",
       "kind": "md"
     },
     {
