@@ -53,6 +53,20 @@ def instances(case, contract):
     return rows
 
 
+def execute_opensta(sta, folder, timeout_s=120):
+    """Return auditable execution state; a timeout is not timing infeasibility."""
+    command = [str(Path(sta).resolve(strict=True)), '-no_init', '-exit', 'run.tcl']
+    try:
+        execution = subprocess.run(command, cwd=folder, capture_output=True, text=True, timeout=timeout_s)
+        return dict(log=execution.stdout+execution.stderr, returncode=execution.returncode,
+                    execution_status='completed')
+    except subprocess.TimeoutExpired as error:
+        def text(value):
+            return value.decode('utf-8', errors='replace') if isinstance(value, bytes) else (value or '')
+        return dict(log=text(error.stdout)+text(error.stderr)+'\nOpenSTA timeout: partial output retained.\n',
+                    returncode=None, execution_status='timeout', timeout_s=timeout_s)
+
+
 def netlist(lanes):
     lines = [f'module fabric(input clk, input [{2*lanes-1}:0] d, output [{2*lanes-1}:0] q);',
              'wire common, forwarded;',
@@ -192,14 +206,17 @@ def run_network(sta, model_root, folder, contract, locations, temperatures, fabr
              'run.tcl': script(models, contract, records)}
     for name, content in files.items():
         (folder/name).write_text(content, encoding='utf-8')
-    execution = subprocess.run([str(Path(sta).resolve(strict=True)), '-no_init', '-exit', 'run.tcl'],
-                               cwd=folder, capture_output=True, text=True, timeout=120)
-    log = execution.stdout+execution.stderr; (folder/'sta.log').write_text(log, encoding='utf-8')
+    execution = execute_opensta(sta, folder)
+    log = execution['log']; (folder/'sta.log').write_text(log, encoding='utf-8')
     result = dict(status='unresolved', physical_interface_qualified=False, models=models, rc=records,
                   executable_sha256=digest(sta),
                   input_sha256={p.name: digest(p) for p in sorted(folder.iterdir()) if p.suffix in ('.lib', '.spef', '.v', '.tcl')},
-                  log_sha256=digest(folder/'sta.log'), returncode=execution.returncode)
-    if execution.returncode:
+                  log_sha256=digest(folder/'sta.log'),
+                  **{k: v for k, v in execution.items() if k != 'log'})
+    if execution['execution_status'] == 'timeout':
+        result.update(status='execution_timeout', reason='OpenSTA time limit exceeded; timing feasibility unknown')
+        return result
+    if execution['returncode']:
         result['reason'] = 'OpenSTA execution failed'; return result
     try:
         paths = extract(log, 2, contract['lanes_per_receiver'], True, core_pins=True)

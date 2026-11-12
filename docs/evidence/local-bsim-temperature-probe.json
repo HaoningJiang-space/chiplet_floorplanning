@@ -1,0 +1,56 @@
+{
+  "complete": true,
+  "source_sha256": "04c78adb1322a8a0010189c752889236eef7465bb2bcabe9680ce9adf9c3497d",
+  "executable_sha256": "c37b8fb34a2a263c6b51c68a5743414931ef2f4e4ad0ae21048c44d81205daaf",
+  "physical_calibration": false,
+  "scope": "manufactured BSIM4 parameter support, not a SKY130 calibration",
+  "cases": [
+    {
+      "name": "global25",
+      "returncode": 0,
+      "log_has_parameter_or_execution_warning": false,
+      "clean_execution": true,
+      "supply_current_a": -0.000442245057541966,
+      "deck_sha256": "8949c0c4380a973c05ce92f4228c0fb13fd4464c13635b2972cc00f3c7948f04",
+      "log_sha256": "bb69ab0e6c3965fd7667da6fb4d6c40c1fb65cfd8b3fbaf86cfba3d24b338f14"
+    },
+    {
+      "name": "global100",
+      "returncode": 0,
+      "log_has_parameter_or_execution_warning": false,
+      "clean_execution": true,
+      "supply_current_a": -0.000365579683410892,
+      "deck_sha256": "0a3433df9535f3bdff31453cd5c8843be1345bd41a5a592ad6d2591c93a4697b",
+      "log_sha256": "15a7fc67f36d58b920f6f2dd4408ed0aab653c473baae724a2d8b58b3fe2971a"
+    },
+    {
+      "name": "instance_temp",
+      "returncode": 1,
+      "log_has_parameter_or_execution_warning": true,
+      "clean_execution": false,
+      "supply_current_a": null,
+      "deck_sha256": "7eea84d5b711c7c1c5c503c0e8518581769bc9511e64c8d542b6110f34e85284",
+      "log_sha256": "f2deb4c836eee736b974f56baaeeca3b292d738f7d8d1ae6359b342f7c28f0fd"
+    },
+    {
+      "name": "instance_dtemp",
+      "returncode": 1,
+      "log_has_parameter_or_execution_warning": true,
+      "clean_execution": false,
+      "supply_current_a": null,
+      "deck_sha256": "9db89dd6198974a4060ed1ee4ee263c6ac5c2da2ed72afc40fee65a1f749df80",
+      "log_sha256": "d0eb4946350ab222858abc66e6b8aa087b8d7adabdce86ea2b0eeaa6da5fe0eb"
+    },
+    {
+      "name": "model_t_abs",
+      "returncode": 0,
+      "log_has_parameter_or_execution_warning": true,
+      "clean_execution": false,
+      "supply_current_a": -0.000442245057541966,
+      "deck_sha256": "1cbef32405ef954daedae6461f7d410fb558faba818391c4f668fdb39a8be96a",
+      "log_sha256": "18fb9212ce1cc920e838e13c0a31a99f2b8c9a695741e11ff6f6d0b799d1543c"
+    }
+  ],
+  "global_temperature_control_changes_current": true,
+  "tested_local_temperature_methods_accepted": []
+}

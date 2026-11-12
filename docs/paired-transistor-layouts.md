@@ -53,6 +53,32 @@ It was not simulated again as if it were an independent physical case.
 
 ## Decision implication
 
+### Third candidate: rot270
+
+C is `nominal_slot1_rot270_clock_first`, simulated with the same full circuit,
+stimuli and two maximum time steps. Its assumed-package thermal peak is
+66.463536859 C. All electrical comparisons remain uniformly 25 C.
+
+| Comparison | Worst setup change SPICE / STA | Worst hold change SPICE / STA |
+|---|---:|---:|
+| C minus A (rot180) | +85.140425 / +108.872771 ps | -78.041091 / -102.981567 ps |
+| C minus B (rot90) | +63.448070 / +79.446495 ps | -87.599479 / -113.019944 ps |
+
+The three pairwise comparisons have no ordering reversals across 96
+lane/edge/window comparisons. These reuse three candidates and are not 96
+independent experiments. For C-minus-A the maximum paired time-step change
+is 0.072423 ps and the largest per-path differential model discrepancy is
+45.190785 ps; for C-minus-B these are 0.067955 ps and 41.597613 ps.
+The model difference is much larger than the tested step sensitivity, but
+does not reverse these tested orderings. Neither quantity is a bound on
+physical error. C improves setup windows while reducing hold windows; it
+does not demonstrate that the cooler A is infeasible.
+
+Evidence: [C minus A](evidence/local-paired-transistor-rot270.json),
+[C minus B](evidence/local-paired-transistor-90-270.json). Reproduce using the
+same commands below with `rot270` replacing `rot90`, then compare the saved
+B and C runs for the second pair.
+
 The two declared electrical models agree on this candidate comparison, while
 the measured amount of the difference is model dependent. A is cooler; B has
 larger worst available timing windows. This is a tradeoff, **not evidence that

@@ -6,6 +6,10 @@
 这是封装参数仍为假设的机制实验；真实 Pad 表征及实物结论尚未闭合。
 首个 [完整决策基准](docs/integrated-decision-results.md) 已完成 96 个固定组合：
 补充合法布线见证后，4 组条件均证明该离散模型内 ΔT=0；未发现联合优化必要性。
+新增 [三个完整候选的 SPICE/STA 差分对照](docs/paired-transistor-layouts.md)：
+常温下所有已测路径的排序方向一致，但这不是热场反馈或真实 Pad 校准。
+[局部晶体管温度能力检查](docs/local-temperature-capability.md) 保留失败证据；
+[STA 超时处理](docs/sta-execution-status.md) 将未完成分析明确记录为未知。
 
 面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.8.0**
 支持分层热网络、MFIT 数值对照、几何 RC/SPEF、真实 SKY130/GF180 库时序、

@@ -1,0 +1,58 @@
+{
+  "scope": "injected timeout through real evaluator plus normal native execution; not physical validation",
+  "input_sha256": "359fc399f3d11bfe861375b289d51848a1deefa65009c41abfcc695ecd4f5125",
+  "cases": {
+    "injected_timeout": {
+      "report_sha256": "88138437b46cbceabcf0224ff5bdbf0f1a0d99fe3e991a4e6b838dbe53b0bdba",
+      "status": "timing_unresolved",
+      "geometry_feasible": true,
+      "routing_status": "feasible",
+      "peak_c": 66.35320220884805,
+      "timing": {
+        "reference": {
+          "status": "execution_timeout",
+          "execution_status": "timeout",
+          "returncode": null,
+          "log_sha256": "bb1b27219d61bd61519911947299461266ceaa9f1db47ac986d13f85a038e6d7",
+          "reason": "OpenSTA time limit exceeded; timing feasibility unknown",
+          "timeout_s": 120
+        },
+        "feedback": {
+          "status": "execution_timeout",
+          "execution_status": "timeout",
+          "returncode": null,
+          "log_sha256": "bb1b27219d61bd61519911947299461266ceaa9f1db47ac986d13f85a038e6d7",
+          "reason": "OpenSTA time limit exceeded; timing feasibility unknown",
+          "timeout_s": 120
+        }
+      }
+    },
+    "normal": {
+      "report_sha256": "3d22465ce99f59c561f7d6abdac998c46b0e923bd1621b1690d73209131a66e0",
+      "status": "analyzed",
+      "geometry_feasible": true,
+      "routing_status": "feasible",
+      "peak_c": 66.35320220884805,
+      "timing": {
+        "reference": {
+          "status": "analyzed",
+          "execution_status": "completed",
+          "returncode": 0,
+          "log_sha256": "29ce309eba2513b46b5b52782fc783f834bc8959c646ad075ccf7c40d7e5a6b3",
+          "timing_feasible": true,
+          "worst_setup_ns": 9.59963131,
+          "worst_hold_ns": 10.126203537
+        },
+        "feedback": {
+          "status": "analyzed",
+          "execution_status": "completed",
+          "returncode": 0,
+          "log_sha256": "e913bbe18f5b8d72813b2bcd02af2d9fe19aa9c6167eca54e4b3756f928b4828",
+          "timing_feasible": true,
+          "worst_setup_ns": 9.61312294,
+          "worst_hold_ns": 10.134310722
+        }
+      }
+    }
+  }
+}
