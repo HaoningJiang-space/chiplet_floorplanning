@@ -13,9 +13,11 @@ here; do not place these changes in adjacent placement repositories.
   documented two-chiplet CLI case before publishing a milestone.
 - Keep numerical checks separate from physical model validation. Missing timing
   and external thermal validation must remain explicit in outputs.
-- Commit coherent validated local milestones. The user's latest direction is
-  to run research experiments locally; do not push or trigger remote CI unless
-  the user subsequently requests publication. Continue fetching for freshness.
+- Commit and promptly push coherent validated milestones to origin/main; the
+  user explicitly authorized timely pushes on 2026-11-11. Research experiments
+  still run locally. Use [skip ci] in the pushed HEAD commit message while this
+  local-only execution constraint remains, and verify remote HEAD after pushing.
+  Continue fetching for freshness; never force-push over remote work.
 - During long research, commit independently validated local sub-milestones
   promptly. Keep unfinished experiments and failed controls explicitly labeled.
 - Maintain `main` as the only branch, locally and on `origin`. Commit validated

@@ -2,8 +2,10 @@
 
 The user's ten-metric goal is active. Success means defensible physical and
 optimization evidence, not a desired ranking, a test count, or a promise of SOTA.
-All runs stay local. Fetch GitHub at each new research session and before local
-milestones; preserve coherent tested commits on main without pushing.
+All runs stay local. Fetch GitHub at each new research session and before
+publication. The user now explicitly requests timely pushes: preserve coherent
+tested commits on main and push them, using [skip ci] to keep computation local.
+Verify remote HEAD after each push. Earlier no-push records describe past policy.
 
 | # | Metric | Current evidence and remaining gate |
 |---|---|---|

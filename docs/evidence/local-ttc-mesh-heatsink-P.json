@@ -1,0 +1,1461 @@
+{
+  "source_report_sha256": "d5b9955e257327e85426f60e5f3c90d5b7dacddf24c8418dece6064a271d699f",
+  "group": "heatsink",
+  "model": "P",
+  "levels": [
+    0,
+    1
+  ],
+  "analysis": "retrospective localization, no parameter changes",
+  "model_sample_interval_s": 0.1,
+  "physical_model_qualified": false,
+  "interpretation": "Observed two-grid differences, not an error bound, convergence proof, or physical causal attribution.",
+  "records": [
+    {
+      "name": "one",
+      "initial": "conditional_gradient",
+      "role": "calibration",
+      "source_power_domain": true,
+      "sample_count": 21783,
+      "raw_mse_k2": 0.00262628151634973,
+      "common_mse_k2": 2.1175372283634414e-05,
+      "spatial_mse_k2": 0.0026051061440660953,
+      "mse_closure_k2": 4.336808689942018e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.2674561190144402,
+          "signed_change_k": 0.2674561190144402,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18030,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 0,
+          "instantaneous_input_w": 5.7999248,
+          "common_at_same_sample_k": 0.007565323194610674,
+          "spatial_at_same_sample_k": 0.25989079581982955
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.02572876167488669,
+          "signed_change_k": -0.02572876167488669,
+          "sample_index_zero_based": 18601,
+          "raw_index_zero_based": 36031,
+          "model_interval_end_since_initialization_s": 1860.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 2.4999999999999998e-06
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.25989079581982955,
+          "signed_change_k": 0.25989079581982955,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18030,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 0,
+          "instantaneous_input_w": 5.7999248
+        }
+      },
+      "waveform_sha256": [
+        "6a7db7771b320d87dbb027ab71a7b47f1240cb19fd3334233fa5b5253dc59ba0",
+        "e9be4676b5986617af51f33b595c69cc3c5038f835ba03e82afa4c7b4ac255fa"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.20545766814860578,
+      "diagnostic_window_max_static_spatial_change_k": 0.20545759128848573,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 1.916112518651758e-06
+    },
+    {
+      "name": "one",
+      "initial": "uniform",
+      "role": "calibration",
+      "source_power_domain": true,
+      "sample_count": 21783,
+      "raw_mse_k2": 0.0026228540313828702,
+      "common_mse_k2": 1.775489455159545e-05,
+      "spatial_mse_k2": 0.002605099136831275,
+      "mse_closure_k2": 4.336808689942018e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.26959094087055746,
+          "signed_change_k": 0.26959094087055746,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18030,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 0,
+          "instantaneous_input_w": 5.7999248,
+          "common_at_same_sample_k": 0.00970109379397277,
+          "spatial_at_same_sample_k": 0.2598898470765847
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.025648600592734994,
+          "signed_change_k": -0.025648600592734994,
+          "sample_index_zero_based": 18601,
+          "raw_index_zero_based": 36031,
+          "model_interval_end_since_initialization_s": 1860.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 2.4999999999999998e-06
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.2598898470765847,
+          "signed_change_k": 0.2598898470765847,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18030,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 0,
+          "instantaneous_input_w": 5.7999248
+        }
+      },
+      "waveform_sha256": [
+        "6a7db7771b320d87dbb027ab71a7b47f1240cb19fd3334233fa5b5253dc59ba0",
+        "e9be4676b5986617af51f33b595c69cc3c5038f835ba03e82afa4c7b4ac255fa"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.20545762815939916,
+      "diagnostic_window_max_static_spatial_change_k": 0.20545759128848573,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 1.9080183846220677e-06
+    },
+    {
+      "name": "four",
+      "initial": "conditional_gradient",
+      "role": "calibration",
+      "source_power_domain": true,
+      "sample_count": 8464,
+      "raw_mse_k2": 0.004011903419769832,
+      "common_mse_k2": 6.492638763863328e-05,
+      "spatial_mse_k2": 0.0039469770321311996,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.3449017219591326,
+          "signed_change_k": 0.3449017219591326,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18068,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 14.364944699999999,
+          "common_at_same_sample_k": 0.050641751716847594,
+          "spatial_at_same_sample_k": 0.294259970242285
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.05220996363890684,
+          "signed_change_k": -0.05220996363890684,
+          "sample_index_zero_based": 3335,
+          "raw_index_zero_based": 20802,
+          "model_interval_end_since_initialization_s": 333.6,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 8.5e-06
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.294259970242285,
+          "signed_change_k": 0.294259970242285,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18068,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 14.364944699999999
+        }
+      },
+      "waveform_sha256": [
+        "1ea38f97373e67e87563d072ce5cbe50dcbb657d0baa9caf83bfc900f9856a6d",
+        "3245ff6643c66156cc22a950daa9cbb04e157f46f803a8456a4340158ec6086f"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.27379330447212347,
+      "diagnostic_window_max_static_spatial_change_k": 0.2738190541501382,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 3.045317158356653e-05
+    },
+    {
+      "name": "four",
+      "initial": "uniform",
+      "role": "calibration",
+      "source_power_domain": true,
+      "sample_count": 8464,
+      "raw_mse_k2": 0.004021275605176701,
+      "common_mse_k2": 7.429484886959468e-05,
+      "spatial_mse_k2": 0.003946980756307106,
+      "mse_closure_k2": 8.673617379884035e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.34702629325221324,
+          "signed_change_k": 0.34702629325221324,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18068,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 14.364944699999999,
+          "common_at_same_sample_k": 0.05276539518168377,
+          "spatial_at_same_sample_k": 0.29426089807052946
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.05276539518168377,
+          "signed_change_k": 0.05276539518168377,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18068,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 14.364944699999999
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.29426089807052946,
+          "signed_change_k": 0.29426089807052946,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18068,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 14.364944699999999
+        }
+      },
+      "waveform_sha256": [
+        "1ea38f97373e67e87563d072ce5cbe50dcbb657d0baa9caf83bfc900f9856a6d",
+        "3245ff6643c66156cc22a950daa9cbb04e157f46f803a8456a4340158ec6086f"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.27379388337447175,
+      "diagnostic_window_max_static_spatial_change_k": 0.2738190541501382,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 2.98633909920909e-05
+    },
+    {
+      "name": "nine",
+      "initial": "conditional_gradient",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 16312,
+      "raw_mse_k2": 0.0015979975340277511,
+      "common_mse_k2": 0.00014765027026665564,
+      "spatial_mse_k2": 0.0014503472637610955,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.34058042902494634,
+          "signed_change_k": 0.34058042902494634,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18069,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 10,
+          "instantaneous_input_w": 28.208791100000003,
+          "common_at_same_sample_k": 0.1268898186907168,
+          "spatial_at_same_sample_k": 0.21369061033422954
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.1268898186907168,
+          "signed_change_k": 0.1268898186907168,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18069,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 28.208791100000003
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.23358535977554284,
+          "signed_change_k": 0.23358535977554284,
+          "sample_index_zero_based": 799,
+          "raw_index_zero_based": 18267,
+          "model_interval_end_since_initialization_s": 80.0,
+          "sensor_index_zero_based": 10,
+          "instantaneous_input_w": 28.0859563
+        }
+      },
+      "waveform_sha256": [
+        "55084f39c231153f089c4492c58aeba054f4332d1996315bf15394c5147c71b7",
+        "1826a0da3f48e4e15e918f7f153e243a5b7cb33f1ab14316ca1c07dd223f5630"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.22746769168171044,
+      "diagnostic_window_max_static_spatial_change_k": 0.22755156560265277,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 8.7283854453446e-05
+    },
+    {
+      "name": "nine",
+      "initial": "uniform",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 16312,
+      "raw_mse_k2": 0.0016051389091534603,
+      "common_mse_k2": 0.00015478526755430158,
+      "spatial_mse_k2": 0.0014503536415991587,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.3427028260290186,
+          "signed_change_k": 0.3427028260290186,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18069,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 10,
+          "instantaneous_input_w": 28.208791100000003,
+          "common_at_same_sample_k": 0.12901128851333077,
+          "spatial_at_same_sample_k": 0.2136915375156878
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.12901128851333077,
+          "signed_change_k": 0.12901128851333077,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18069,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 28.208791100000003
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.23358625459796079,
+          "signed_change_k": 0.23358625459796079,
+          "sample_index_zero_based": 799,
+          "raw_index_zero_based": 18267,
+          "model_interval_end_since_initialization_s": 80.0,
+          "sensor_index_zero_based": 10,
+          "instantaneous_input_w": 28.0859563
+        }
+      },
+      "waveform_sha256": [
+        "55084f39c231153f089c4492c58aeba054f4332d1996315bf15394c5147c71b7",
+        "1826a0da3f48e4e15e918f7f153e243a5b7cb33f1ab14316ca1c07dd223f5630"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.2274684867760337,
+      "diagnostic_window_max_static_spatial_change_k": 0.22755156560265277,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 8.647266505423801e-05
+    },
+    {
+      "name": "sixteen",
+      "initial": "conditional_gradient",
+      "role": "calibration",
+      "source_power_domain": false,
+      "sample_count": 3118,
+      "raw_mse_k2": 0.0015577527495731923,
+      "common_mse_k2": 0.0005062686269008813,
+      "spatial_mse_k2": 0.0010514841226723108,
+      "mse_closure_k2": 2.168404344971009e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.28738149344707153,
+          "signed_change_k": 0.28738149344707153,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18042,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 9,
+          "instantaneous_input_w": 47.792856900000004,
+          "common_at_same_sample_k": 0.19821651243124006,
+          "spatial_at_same_sample_k": 0.08916498101583148
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.19821651243124006,
+          "signed_change_k": 0.19821651243124006,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18042,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 47.792856900000004
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.11863205982665015,
+          "signed_change_k": -0.11863205982665015,
+          "sample_index_zero_based": 660,
+          "raw_index_zero_based": 18101,
+          "model_interval_end_since_initialization_s": 66.10000000000001,
+          "sensor_index_zero_based": 3,
+          "instantaneous_input_w": 47.595348
+        }
+      },
+      "waveform_sha256": [
+        "58765dade0ae3bc6a91890227d1213eebb166076d4be974d81722495c6074678",
+        "3a64199282129fce40f8e2e38f32f88a96b68bf85b80c9de9c6c578da8193aec"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.11554926632306906,
+      "diagnostic_window_max_static_spatial_change_k": 0.11571412931601799,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 0.00016583975998152312
+    },
+    {
+      "name": "sixteen",
+      "initial": "uniform",
+      "role": "calibration",
+      "source_power_domain": false,
+      "sample_count": 3118,
+      "raw_mse_k2": 0.001580231727485725,
+      "common_mse_k2": 0.0005287459177129257,
+      "spatial_mse_k2": 0.0010514858097727994,
+      "mse_closure_k2": 2.168404344971009e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.28951495309908637,
+          "signed_change_k": 0.28951495309908637,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18042,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 9,
+          "instantaneous_input_w": 47.792856900000004,
+          "common_at_same_sample_k": 0.20034904155262456,
+          "spatial_at_same_sample_k": 0.0891659115464618
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.20034904155262456,
+          "signed_change_k": 0.20034904155262456,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18042,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 47.792856900000004
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.1186329990799253,
+          "signed_change_k": -0.1186329990799253,
+          "sample_index_zero_based": 660,
+          "raw_index_zero_based": 18101,
+          "model_interval_end_since_initialization_s": 66.10000000000001,
+          "sensor_index_zero_based": 3,
+          "instantaneous_input_w": 47.595348
+        }
+      },
+      "waveform_sha256": [
+        "58765dade0ae3bc6a91890227d1213eebb166076d4be974d81722495c6074678",
+        "3a64199282129fce40f8e2e38f32f88a96b68bf85b80c9de9c6c578da8193aec"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.1155501523910274,
+      "diagnostic_window_max_static_spatial_change_k": 0.11571412931601799,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 0.0001649518907402836
+    },
+    {
+      "name": "line_1",
+      "initial": "conditional_gradient",
+      "role": "calibration",
+      "source_power_domain": true,
+      "sample_count": 9065,
+      "raw_mse_k2": 0.004339477142516084,
+      "common_mse_k2": 2.7800636466171804e-05,
+      "spatial_mse_k2": 0.0043116765060499124,
+      "mse_closure_k2": 8.673617379884035e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.2947564041661934,
+          "signed_change_k": 0.2947564041661934,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18025,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 1,
+          "instantaneous_input_w": 14.179272199999998,
+          "common_at_same_sample_k": 0.04336504301558719,
+          "spatial_at_same_sample_k": 0.25139136115060623
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.05336917829069865,
+          "signed_change_k": -0.05336917829069865,
+          "sample_index_zero_based": 4128,
+          "raw_index_zero_based": 21552,
+          "model_interval_end_since_initialization_s": 412.90000000000003,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 3e-06
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.25139136115060623,
+          "signed_change_k": 0.25139136115060623,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18025,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 1,
+          "instantaneous_input_w": 14.179272199999998
+        }
+      },
+      "waveform_sha256": [
+        "489731b8c87c638427fe165050822066ed90cec0346d6bf96ca2a85960fa6990",
+        "8aaad0eba35576e774f64c9ea13e0d4462454c2d90cd881fb716501373bbb3a5"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.22466170078776315,
+      "diagnostic_window_max_static_spatial_change_k": 0.22466582131391988,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 2.5302639364177537e-05
+    },
+    {
+      "name": "line_1",
+      "initial": "uniform",
+      "role": "calibration",
+      "source_power_domain": true,
+      "sample_count": 9065,
+      "raw_mse_k2": 0.004341740623799171,
+      "common_mse_k2": 3.0075865002449852e-05,
+      "spatial_mse_k2": 0.004311664758796721,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.29688180988820534,
+          "signed_change_k": 0.29688180988820534,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18025,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 1,
+          "instantaneous_input_w": 14.179272199999998,
+          "common_at_same_sample_k": 0.045490259476313355,
+          "spatial_at_same_sample_k": 0.251391550411892
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.052251164075927115,
+          "signed_change_k": -0.052251164075927115,
+          "sample_index_zero_based": 4128,
+          "raw_index_zero_based": 21552,
+          "model_interval_end_since_initialization_s": 412.90000000000003,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 3e-06
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.251391550411892,
+          "signed_change_k": 0.251391550411892,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18025,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 1,
+          "instantaneous_input_w": 14.179272199999998
+        }
+      },
+      "waveform_sha256": [
+        "489731b8c87c638427fe165050822066ed90cec0346d6bf96ca2a85960fa6990",
+        "8aaad0eba35576e774f64c9ea13e0d4462454c2d90cd881fb716501373bbb3a5"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.22466180429314875,
+      "diagnostic_window_max_static_spatial_change_k": 0.22466582131391988,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 2.4787824680849724e-05
+    },
+    {
+      "name": "line_2",
+      "initial": "conditional_gradient",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 16751,
+      "raw_mse_k2": 0.0049901823968873495,
+      "common_mse_k2": 9.15990512591873e-05,
+      "spatial_mse_k2": 0.004898583345628162,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.3607597703695262,
+          "signed_change_k": 0.3607597703695262,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18029,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 14.2466948,
+          "common_at_same_sample_k": 0.056461301456576685,
+          "spatial_at_same_sample_k": 0.30429846891294954
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.056461301456576685,
+          "signed_change_k": 0.056461301456576685,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18029,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 14.2466948
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.30429846891294954,
+          "signed_change_k": 0.30429846891294954,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18029,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 14.2466948
+        }
+      },
+      "waveform_sha256": [
+        "5badb714ad5ef93d406580df8957de41e2e2975fb2411b2867e107f9a27ece05",
+        "8a19e97c1df60b1d432472e0b53128bffe3f44c6fc6d28e334107113a09bfc5d"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.2905954343520687,
+      "diagnostic_window_max_static_spatial_change_k": 0.2906196951774831,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 2.498068337786208e-05
+    },
+    {
+      "name": "line_2",
+      "initial": "uniform",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 16751,
+      "raw_mse_k2": 0.0050008349392633945,
+      "common_mse_k2": 0.00010223912147947053,
+      "spatial_mse_k2": 0.004898595817783924,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.3628863765995334,
+          "signed_change_k": 0.3628863765995334,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18029,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 14.2466948,
+          "common_at_same_sample_k": 0.05858697962637427,
+          "spatial_at_same_sample_k": 0.3042993969731591
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.05858697962637427,
+          "signed_change_k": 0.05858697962637427,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18029,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 14.2466948
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.3042993969731591,
+          "signed_change_k": 0.3042993969731591,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18029,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 14.2466948
+        }
+      },
+      "waveform_sha256": [
+        "5badb714ad5ef93d406580df8957de41e2e2975fb2411b2867e107f9a27ece05",
+        "8a19e97c1df60b1d432472e0b53128bffe3f44c6fc6d28e334107113a09bfc5d"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.2905959252246815,
+      "diagnostic_window_max_static_spatial_change_k": 0.2906196951774831,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 2.4479543900390865e-05
+    },
+    {
+      "name": "thickline_1",
+      "initial": "conditional_gradient",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 5974,
+      "raw_mse_k2": 0.003340512592410313,
+      "common_mse_k2": 0.0001575142089924665,
+      "spatial_mse_k2": 0.0031829983834178468,
+      "mse_closure_k2": 4.336808689942018e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.3272458372387206,
+          "signed_change_k": 0.3272458372387206,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18229,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 25.4821522,
+          "common_at_same_sample_k": 0.09980255160084273,
+          "spatial_at_same_sample_k": 0.22744328563787786
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.09980255160084273,
+          "signed_change_k": 0.09980255160084273,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18229,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 25.4821522
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.23239562499271083,
+          "signed_change_k": 0.23239562499271083,
+          "sample_index_zero_based": 602,
+          "raw_index_zero_based": 18230,
+          "model_interval_end_since_initialization_s": 60.300000000000004,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 25.410693800000004
+        }
+      },
+      "waveform_sha256": [
+        "271a3c34ceacddae2c9cc3eeeaf138ed715d0fde680cd6413f7e1cef9ea3abd5",
+        "4f1b4183a9ef9f4f2da46e263e88b341bbfd5597c9c07d243dc354cc9e871d3a"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.22052281009210528,
+      "diagnostic_window_max_static_spatial_change_k": 0.2205955213674713,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 7.669854396752385e-05
+    },
+    {
+      "name": "thickline_1",
+      "initial": "uniform",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 5974,
+      "raw_mse_k2": 0.0033528718556963405,
+      "common_mse_k2": 0.00016986998308631023,
+      "spatial_mse_k2": 0.00318300187261003,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.32936972378604423,
+          "signed_change_k": 0.32936972378604423,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18229,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 25.4821522,
+          "common_at_same_sample_k": 0.1019255093674305,
+          "spatial_at_same_sample_k": 0.22744421441861373
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.1019255093674305,
+          "signed_change_k": 0.1019255093674305,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18229,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 25.4821522
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.23239655361558142,
+          "signed_change_k": 0.23239655361558142,
+          "sample_index_zero_based": 602,
+          "raw_index_zero_based": 18230,
+          "model_interval_end_since_initialization_s": 60.300000000000004,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 25.410693800000004
+        }
+      },
+      "waveform_sha256": [
+        "271a3c34ceacddae2c9cc3eeeaf138ed715d0fde680cd6413f7e1cef9ea3abd5",
+        "4f1b4183a9ef9f4f2da46e263e88b341bbfd5597c9c07d243dc354cc9e871d3a"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.2205235775266594,
+      "diagnostic_window_max_static_spatial_change_k": 0.2205955213674713,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 7.591669398543388e-05
+    },
+    {
+      "name": "thickline_2",
+      "initial": "conditional_gradient",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 4540,
+      "raw_mse_k2": 0.009005978492865977,
+      "common_mse_k2": 0.00047479750136108123,
+      "spatial_mse_k2": 0.008531180991504897,
+      "mse_closure_k2": 1.734723475976807e-18,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.3443228730256891,
+          "signed_change_k": 0.3443228730256891,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18068,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 25.3474706,
+          "common_at_same_sample_k": 0.11203298842836107,
+          "spatial_at_same_sample_k": 0.23228988459732802
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.11203298842836107,
+          "signed_change_k": 0.11203298842836107,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18068,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 25.3474706
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.23593681448751314,
+          "signed_change_k": 0.23593681448751314,
+          "sample_index_zero_based": 602,
+          "raw_index_zero_based": 18069,
+          "model_interval_end_since_initialization_s": 60.300000000000004,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 25.3174961
+        }
+      },
+      "waveform_sha256": [
+        "ae3daeafca977653e4a7c77442f3bfa1d145e4d0ff3e621e47715e5f1ac28ccb",
+        "8ae1c4b70350a132953e95161155a25e12a6125f0b19ed093f8de5758692c38c"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.22821972473362084,
+      "diagnostic_window_max_static_spatial_change_k": 0.2282928999733258,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 7.639177372098516e-05
+    },
+    {
+      "name": "thickline_2",
+      "initial": "uniform",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 4540,
+      "raw_mse_k2": 0.009041227562973785,
+      "common_mse_k2": 0.0005100122225570285,
+      "spatial_mse_k2": 0.008531215340416757,
+      "mse_closure_k2": 1.734723475976807e-18,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.3464532835822496,
+          "signed_change_k": 0.3464532835822496,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18068,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 25.3474706,
+          "common_at_same_sample_k": 0.11416246960076482,
+          "spatial_at_same_sample_k": 0.23229081398148477
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.11416246960076482,
+          "signed_change_k": 0.11416246960076482,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18068,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 25.3474706
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.23593774371355014,
+          "signed_change_k": 0.23593774371355014,
+          "sample_index_zero_based": 602,
+          "raw_index_zero_based": 18069,
+          "model_interval_end_since_initialization_s": 60.300000000000004,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 25.3174961
+        }
+      },
+      "waveform_sha256": [
+        "ae3daeafca977653e4a7c77442f3bfa1d145e4d0ff3e621e47715e5f1ac28ccb",
+        "8ae1c4b70350a132953e95161155a25e12a6125f0b19ed093f8de5758692c38c"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.22822047989438676,
+      "diagnostic_window_max_static_spatial_change_k": 0.2282928999733258,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 7.562267885408147e-05
+    },
+    {
+      "name": "checkboard",
+      "initial": "conditional_gradient",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 16769,
+      "raw_mse_k2": 0.0031522515419484215,
+      "common_mse_k2": 7.404614464003004e-05,
+      "spatial_mse_k2": 0.003078205397308392,
+      "mse_closure_k2": 4.336808689942018e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.34604041528471896,
+          "signed_change_k": 0.34604041528471896,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18029,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 9,
+          "instantaneous_input_w": 25.575937000000003,
+          "common_at_same_sample_k": 0.10019075289687462,
+          "spatial_at_same_sample_k": 0.24584966238784434
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.10019075289687462,
+          "signed_change_k": 0.10019075289687462,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18029,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 25.575937000000003
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.2603910630679884,
+          "signed_change_k": 0.2603910630679884,
+          "sample_index_zero_based": 756,
+          "raw_index_zero_based": 18184,
+          "model_interval_end_since_initialization_s": 75.7,
+          "sensor_index_zero_based": 9,
+          "instantaneous_input_w": 25.5032029
+        }
+      },
+      "waveform_sha256": [
+        "42388d0f4c0663472970a326eb7986b762f2520f651e4382031dbcc07f11c4b2",
+        "3e45aed34fe0abb7aadbc39854d94db9ecf062454a6ae2423c9527c3f0113b61"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.2530423768273877,
+      "diagnostic_window_max_static_spatial_change_k": 0.2531103447304872,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 7.206622818500819e-05
+    },
+    {
+      "name": "checkboard",
+      "initial": "uniform",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 16769,
+      "raw_mse_k2": 0.0031568805536051087,
+      "common_mse_k2": 7.86729459351628e-05,
+      "spatial_mse_k2": 0.0030782076076699464,
+      "mse_closure_k2": 4.336808689942018e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.34816829609876265,
+          "signed_change_k": 0.34816829609876265,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18029,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 9,
+          "instantaneous_input_w": 25.575937000000003,
+          "common_at_same_sample_k": 0.10231770364439585,
+          "spatial_at_same_sample_k": 0.2458505924543668
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.10231770364439585,
+          "signed_change_k": 0.10231770364439585,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18029,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 25.575937000000003
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.2603919675848134,
+          "signed_change_k": 0.2603919675848134,
+          "sample_index_zero_based": 756,
+          "raw_index_zero_based": 18184,
+          "model_interval_end_since_initialization_s": 75.7,
+          "sensor_index_zero_based": 9,
+          "instantaneous_input_w": 25.5032029
+        }
+      },
+      "waveform_sha256": [
+        "42388d0f4c0663472970a326eb7986b762f2520f651e4382031dbcc07f11c4b2",
+        "3e45aed34fe0abb7aadbc39854d94db9ecf062454a6ae2423c9527c3f0113b61"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.2530431010705527,
+      "diagnostic_window_max_static_spatial_change_k": 0.2531103447304872,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 7.132790377539777e-05
+    },
+    {
+      "name": "hotspot_1",
+      "initial": "conditional_gradient",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 7929,
+      "raw_mse_k2": 0.01781500758009116,
+      "common_mse_k2": 9.577970075629745e-05,
+      "spatial_mse_k2": 0.017719227879334862,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.8705557192521667,
+          "signed_change_k": 0.8705557192521667,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18048,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 1,
+          "instantaneous_input_w": 10.0603516,
+          "common_at_same_sample_k": 0.03593077692538982,
+          "spatial_at_same_sample_k": 0.8346249423267769
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.03593077692538982,
+          "signed_change_k": 0.03593077692538982,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18048,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 10.0603516
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.8346249423267769,
+          "signed_change_k": 0.8346249423267769,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18048,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 1,
+          "instantaneous_input_w": 10.0603516
+        }
+      },
+      "waveform_sha256": [
+        "1a3eb515a70ce7864e12edb70cb52fd5840587de6b340dcb84e68b616fdd1765",
+        "5059b74a1a3e83055a71a6736e13a23cb3870b08ee5c9112ba64b23845861748"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.7812837360921989,
+      "diagnostic_window_max_static_spatial_change_k": 0.7812892079956129,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 1.7003028477624582e-05
+    },
+    {
+      "name": "hotspot_1",
+      "initial": "uniform",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 7929,
+      "raw_mse_k2": 0.017831992885131005,
+      "common_mse_k2": 0.00011275945223652894,
+      "spatial_mse_k2": 0.01771923343289447,
+      "mse_closure_k2": 3.469446951953614e-18,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.8726838857955812,
+          "signed_change_k": 0.8726838857955812,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18048,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 1,
+          "instantaneous_input_w": 10.0603516,
+          "common_at_same_sample_k": 0.0380587542247417,
+          "spatial_at_same_sample_k": 0.8346251315708395
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.0380587542247417,
+          "signed_change_k": 0.0380587542247417,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18048,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 10.0603516
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.8346251315708395,
+          "signed_change_k": 0.8346251315708395,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18048,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 1,
+          "instantaneous_input_w": 10.0603516
+        }
+      },
+      "waveform_sha256": [
+        "1a3eb515a70ce7864e12edb70cb52fd5840587de6b340dcb84e68b616fdd1765",
+        "5059b74a1a3e83055a71a6736e13a23cb3870b08ee5c9112ba64b23845861748"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.7812838427359239,
+      "diagnostic_window_max_static_spatial_change_k": 0.7812892079956129,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 1.647381102731771e-05
+    },
+    {
+      "name": "hotspot_2",
+      "initial": "conditional_gradient",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 19591,
+      "raw_mse_k2": 0.002479448808593925,
+      "common_mse_k2": 1.468406889486323e-05,
+      "spatial_mse_k2": 0.0024647647396990615,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.8053129283609906,
+          "signed_change_k": 0.8053129283609906,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18106,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 0,
+          "instantaneous_input_w": 11.396051199999999,
+          "common_at_same_sample_k": 0.022136466085000972,
+          "spatial_at_same_sample_k": 0.7831764622759896
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.04002114558024772,
+          "signed_change_k": -0.04002114558024772,
+          "sample_index_zero_based": 2977,
+          "raw_index_zero_based": 20483,
+          "model_interval_end_since_initialization_s": 297.8,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 7e-06
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.7831764622759896,
+          "signed_change_k": 0.7831764622759896,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18106,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 0,
+          "instantaneous_input_w": 11.396051199999999
+        }
+      },
+      "waveform_sha256": [
+        "40166855b881bb8b8090ef5823e0555550c622c6f2aa3f961ddec1fa69a41879",
+        "4f10cb11cb64f78a3abc5fcc367c3aa2dbaf8785a8210343f9874c4355396c75"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.5236774656669354,
+      "diagnostic_window_max_static_spatial_change_k": 0.5236593998018293,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 1.9875845380656898e-05
+    },
+    {
+      "name": "hotspot_2",
+      "initial": "uniform",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 19591,
+      "raw_mse_k2": 0.002474336684550363,
+      "common_mse_k2": 9.580150958591849e-06,
+      "spatial_mse_k2": 0.0024647565335917717,
+      "mse_closure_k2": 4.336808689942018e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.8074416372300561,
+          "signed_change_k": 0.8074416372300561,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18106,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 0,
+          "instantaneous_input_w": 11.396051199999999,
+          "common_at_same_sample_k": 0.024266123108103166,
+          "spatial_at_same_sample_k": 0.783175514121953
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.038639662090812266,
+          "signed_change_k": -0.038639662090812266,
+          "sample_index_zero_based": 2977,
+          "raw_index_zero_based": 20483,
+          "model_interval_end_since_initialization_s": 297.8,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 7e-06
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.783175514121953,
+          "signed_change_k": 0.783175514121953,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18106,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 0,
+          "instantaneous_input_w": 11.396051199999999
+        }
+      },
+      "waveform_sha256": [
+        "40166855b881bb8b8090ef5823e0555550c622c6f2aa3f961ddec1fa69a41879",
+        "4f10cb11cb64f78a3abc5fcc367c3aa2dbaf8785a8210343f9874c4355396c75"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.523676836854559,
+      "diagnostic_window_max_static_spatial_change_k": 0.5236593998018293,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 1.924562231137017e-05
+    },
+    {
+      "name": "hotspot_3",
+      "initial": "conditional_gradient",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 16957,
+      "raw_mse_k2": 0.006610137644795565,
+      "common_mse_k2": 8.27853377420335e-06,
+      "spatial_mse_k2": 0.006601859111021362,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.8267910596035932,
+          "signed_change_k": 0.8267910596035932,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18020,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 4,
+          "instantaneous_input_w": 10.054947499999999,
+          "common_at_same_sample_k": 0.023276813406229113,
+          "spatial_at_same_sample_k": 0.8035142461973641
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.03984944483930519,
+          "signed_change_k": -0.03984944483930519,
+          "sample_index_zero_based": 3782,
+          "raw_index_zero_based": 21202,
+          "model_interval_end_since_initialization_s": 378.3,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 9e-06
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.8035142461973641,
+          "signed_change_k": 0.8035142461973641,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18020,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 4,
+          "instantaneous_input_w": 10.054947499999999
+        }
+      },
+      "waveform_sha256": [
+        "f07bce8c729e1e56eabe70c4995243046b80fe24725f3d9996e21fa9de72b809",
+        "6abb50d86c4daff6e08c5e259b4c2ce6911692418d4dd59ef2316e3fbe86a961"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.7023148171974753,
+      "diagnostic_window_max_static_spatial_change_k": 0.7023069014579875,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 1.9456396640471496e-05
+    },
+    {
+      "name": "hotspot_3",
+      "initial": "uniform",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 16957,
+      "raw_mse_k2": 0.0066087296472023705,
+      "common_mse_k2": 6.8719460852489536e-06,
+      "spatial_mse_k2": 0.006601857701117123,
+      "mse_closure_k2": 8.673617379884035e-19,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.8289151090353215,
+          "signed_change_k": 0.8289151090353215,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18020,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 4,
+          "instantaneous_input_w": 10.054947499999999,
+          "common_at_same_sample_k": 0.025401033307328902,
+          "spatial_at_same_sample_k": 0.8035140757279926
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.03865945874298937,
+          "signed_change_k": -0.03865945874298937,
+          "sample_index_zero_based": 3782,
+          "raw_index_zero_based": 21202,
+          "model_interval_end_since_initialization_s": 378.3,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 9e-06
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.8035140757279926,
+          "signed_change_k": 0.8035140757279926,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18020,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 4,
+          "instantaneous_input_w": 10.054947499999999
+        }
+      },
+      "waveform_sha256": [
+        "f07bce8c729e1e56eabe70c4995243046b80fe24725f3d9996e21fa9de72b809",
+        "6abb50d86c4daff6e08c5e259b4c2ce6911692418d4dd59ef2316e3fbe86a961"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.702314719244189,
+      "diagnostic_window_max_static_spatial_change_k": 0.7023069014579875,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 1.8911061723247968e-05
+    },
+    {
+      "name": "hotspot_4",
+      "initial": "conditional_gradient",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 11776,
+      "raw_mse_k2": 0.016343884822298812,
+      "common_mse_k2": 0.000188824613436059,
+      "spatial_mse_k2": 0.016155060208862756,
+      "mse_closure_k2": 3.469446951953614e-18,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.9345667229534627,
+          "signed_change_k": 0.9345667229534627,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18017,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 9.9155856,
+          "common_at_same_sample_k": 0.04380433197568623,
+          "spatial_at_same_sample_k": 0.8907623909777764
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.04380433197568623,
+          "signed_change_k": 0.04380433197568623,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18017,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 9.9155856
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.8978490077593007,
+          "signed_change_k": 0.8978490077593007,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18016,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 9.9033254
+        }
+      },
+      "waveform_sha256": [
+        "d956fabfd7479e6026a4d241669fc381233fa0c1b3ebfd459226b8e28a58fbff",
+        "9bc8044a367b40f28e0a17a0b83c02c365a55cb05f41418414da758e6277536b"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.8519623517222108,
+      "diagnostic_window_max_static_spatial_change_k": 0.851977268609474,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 1.4916887263183298e-05
+    },
+    {
+      "name": "hotspot_4",
+      "initial": "uniform",
+      "role": "held_out",
+      "source_power_domain": true,
+      "sample_count": 11776,
+      "raw_mse_k2": 0.016365507549600124,
+      "common_mse_k2": 0.00021042375745265515,
+      "spatial_mse_k2": 0.01615508379214747,
+      "mse_closure_k2": 0.0,
+      "extrema": {
+        "raw": {
+          "component": "raw",
+          "max_abs_k": 0.9366933816407936,
+          "signed_change_k": 0.9366933816407936,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18017,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 9.9155856,
+          "common_at_same_sample_k": 0.04593005970553543,
+          "spatial_at_same_sample_k": 0.8907633219352582
+        },
+        "common": {
+          "component": "common",
+          "max_abs_k": 0.04593005970553543,
+          "signed_change_k": 0.04593005970553543,
+          "sample_index_zero_based": 601,
+          "raw_index_zero_based": 18017,
+          "model_interval_end_since_initialization_s": 60.2,
+          "sensor_index_zero_based": null,
+          "instantaneous_input_w": 9.9155856
+        },
+        "spatial": {
+          "component": "spatial",
+          "max_abs_k": 0.897849938876333,
+          "signed_change_k": 0.897849938876333,
+          "sample_index_zero_based": 600,
+          "raw_index_zero_based": 18016,
+          "model_interval_end_since_initialization_s": 60.1,
+          "sensor_index_zero_based": 5,
+          "instantaneous_input_w": 9.9033254
+        }
+      },
+      "waveform_sha256": [
+        "d956fabfd7479e6026a4d241669fc381233fa0c1b3ebfd459226b8e28a58fbff",
+        "9bc8044a367b40f28e0a17a0b83c02c365a55cb05f41418414da758e6277536b"
+      ],
+      "diagnostic_window_max_dynamic_spatial_change_k": 0.8519628268312722,
+      "diagnostic_window_max_static_spatial_change_k": 0.851977268609474,
+      "diagnostic_window_max_dynamic_minus_static_grid_change_k": 1.444177820175696e-05
+    }
+  ],
+  "aggregates": {
+    "conditional_gradient/all_records": {
+      "cases": 13,
+      "samples_per_sensor": 159029,
+      "duration_weighted_rmse_k": {
+        "raw": 0.07324243474064651,
+        "common": 0.009559774207524078,
+        "spatial": 0.07261587267146914
+      },
+      "spatial_fraction_of_grid_change_mse": 0.9829639179131004,
+      "worst_case": "hotspot_4",
+      "worst_location": {
+        "component": "raw",
+        "max_abs_k": 0.9345667229534627,
+        "signed_change_k": 0.9345667229534627,
+        "sample_index_zero_based": 601,
+        "raw_index_zero_based": 18017,
+        "model_interval_end_since_initialization_s": 60.2,
+        "sensor_index_zero_based": 5,
+        "instantaneous_input_w": 9.9155856,
+        "common_at_same_sample_k": 0.04380433197568623,
+        "spatial_at_same_sample_k": 0.8907623909777764
+      }
+    },
+    "conditional_gradient/eligible_held_out": {
+      "cases": 9,
+      "samples_per_sensor": 116599,
+      "duration_weighted_rmse_k": {
+        "raw": 0.07845804266415402,
+        "common": 0.010013836105366273,
+        "spatial": 0.07781637067574583
+      },
+      "spatial_fraction_of_grid_change_mse": 0.9837098148838228,
+      "worst_case": "hotspot_4",
+      "worst_location": {
+        "component": "raw",
+        "max_abs_k": 0.9345667229534627,
+        "signed_change_k": 0.9345667229534627,
+        "sample_index_zero_based": 601,
+        "raw_index_zero_based": 18017,
+        "model_interval_end_since_initialization_s": 60.2,
+        "sensor_index_zero_based": 5,
+        "instantaneous_input_w": 9.9155856,
+        "common_at_same_sample_k": 0.04380433197568623,
+        "spatial_at_same_sample_k": 0.8907623909777764
+      }
+    },
+    "uniform/all_records": {
+      "cases": 13,
+      "samples_per_sensor": 159029,
+      "duration_weighted_rmse_k": {
+        "raw": 0.07328393221087705,
+        "common": 0.009872536652822917,
+        "spatial": 0.07261589178910557
+      },
+      "spatial_fraction_of_grid_change_mse": 0.9818515315443119,
+      "worst_case": "hotspot_4",
+      "worst_location": {
+        "component": "raw",
+        "max_abs_k": 0.9366933816407936,
+        "signed_change_k": 0.9366933816407936,
+        "sample_index_zero_based": 601,
+        "raw_index_zero_based": 18017,
+        "model_interval_end_since_initialization_s": 60.2,
+        "sensor_index_zero_based": 5,
+        "instantaneous_input_w": 9.9155856,
+        "common_at_same_sample_k": 0.04593005970553543,
+        "spatial_at_same_sample_k": 0.8907633219352582
+      }
+    },
+    "uniform/eligible_held_out": {
+      "cases": 9,
+      "samples_per_sensor": 116599,
+      "duration_weighted_rmse_k": {
+        "raw": 0.07850567174255217,
+        "common": 0.010380137611580556,
+        "spatial": 0.07781640726038438
+      },
+      "spatial_fraction_of_grid_change_mse": 0.9825174751557809,
+      "worst_case": "hotspot_4",
+      "worst_location": {
+        "component": "raw",
+        "max_abs_k": 0.9366933816407936,
+        "signed_change_k": 0.9366933816407936,
+        "sample_index_zero_based": 601,
+        "raw_index_zero_based": 18017,
+        "model_interval_end_since_initialization_s": 60.2,
+        "sensor_index_zero_based": 5,
+        "instantaneous_input_w": 9.9155856,
+        "common_at_same_sample_k": 0.04593005970553543,
+        "spatial_at_same_sample_k": 0.8907633219352582
+      }
+    }
+  }
+}

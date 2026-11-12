@@ -116,6 +116,23 @@ The report preserves both initial states, all cases, peak coordinates and source
 hashes. Tracked evidence: `evidence/local-ttc-mesh-heatsink-C.json`. It does not
 provide a two-grid error bound or establish spatial convergence.
 
+The natural-P level-1 model has now also completed and passes its fixed-mesh
+reduction screen: maximum frequency discrepancy 0.000298151 K, full-BE pulse
+discrepancy 0.000273570 K and native middle-to-fine order change 0.00142210 K.
+This brings the completed combinations to six of eight; the two fan level-1
+combinations are still in progress. The paired four-model plots remain at level 0
+until all four fine-grid cases finish.
+
+Applying the same localization to natural P gives a conditional-gradient peak
+two-grid change of 0.934567 K in `hotspot_4`, sensor index 5, model time 60.2 s.
+Its simultaneous common/spatial components are 0.043804/0.890762 K. Across the
+nine eligible held-out cases, grid-change RMSE is 0.078458 K and 98.37% of its
+MSE is spatial. Thus the second pad extent also retains substantial spatial grid
+dependence after its ROM checks pass. Evidence is
+`evidence/local-ttc-mesh-heatsink-P.json`; reproduce with `--model P` in the
+localization command above. The six-model input checkpoint is preserved locally
+as `checkpoint-natural-level1.json`. These results do not qualify the model.
+
 Complete level-1 full-network controls and native simulations; compare identical
 power/observation arrays across grids, and preserve any failures. Two grids do
 not establish an error bound. Continue the independent level-3 steady package
