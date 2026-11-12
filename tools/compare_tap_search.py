@@ -6,6 +6,7 @@ import math
 from pathlib import Path
 import random
 import statistics
+from build_tap_ihp_endpoints import source_bytes
 
 
 def move_graph(rows):
@@ -68,7 +69,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--oracle',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
-    args=p.parse_args();raw=args.oracle.read_bytes();oracle=json.loads(raw);rows=oracle['rows']
+    args=p.parse_args();raw=source_bytes(args.oracle);oracle=json.loads(raw);rows=oracle['rows']
     if oracle['status']!='complete_finite_domain_oracle' or len(rows)!=oracle['classes'] or not all(r['thermal_admitted'] for r in rows):
         raise ValueError('Incomplete/unadmitted oracle')
     if [r['class_index'] for r in rows]!=list(range(len(rows))):raise ValueError('Oracle index mismatch')
@@ -97,6 +98,7 @@ def main():
                    (s['peak_c']<r['peak_c'] or s['centre_span_mm']<r['centre_span_mm']) for s in rows):
             pareto.append(dict(class_index=r['class_index'],peak_c=r['peak_c'],centre_span_mm=r['centre_span_mm']))
     result=dict(status='finite_domain_baseline_replay_complete',oracle_sha256=hashlib.sha256(raw).hexdigest(),
+                oracle_hash_convention='UTF-8 text with CRLF normalized to LF',
                 oracle_build_seconds=oracle['elapsed_seconds'],classes=len(rows),
                 local_move_component_sizes=components(graph),pareto=pareto,
                 summaries=summaries,runs=runs,physical_optimum_certified=False,

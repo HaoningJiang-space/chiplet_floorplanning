@@ -1,6 +1,7 @@
 {
   "status": "finite_domain_baseline_replay_complete",
-  "oracle_sha256": "f095890752ed2533702c52667df1143a92ab3a0347fdef39a57755124dbe5e83",
+  "oracle_sha256": "74ccd612eebfb3d8fbeb7c90b41349a3c440325bf177cc711ff10618b8723526",
+  "oracle_hash_convention": "UTF-8 text with CRLF normalized to LF",
   "oracle_build_seconds": 70.41934739996213,
   "classes": 77,
   "local_move_component_sizes": [
