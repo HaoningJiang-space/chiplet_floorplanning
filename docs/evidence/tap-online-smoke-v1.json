@@ -1,0 +1,405 @@
+{
+  "status": "five_real_smoke_trials_verified",
+  "plan_sha256": "7b3cd3cc0211d7198b574c715ef20d91215aa37c436547bbebd2998db5c6ea61",
+  "total_hits_queries": 160,
+  "records": [
+    {
+      "raw_result_sha256": "70e17113c3d06638a0e8e8303ed10621af61d3a9f88c5e3e6efd05ac5aa1a247",
+      "case": "ascend910",
+      "method": "random",
+      "seed": 2026111200,
+      "status": "complete_query_budget",
+      "budget": 32,
+      "queries": 32,
+      "solve_attempts": 32,
+      "proposals": 56,
+      "illegal_proposals": 9,
+      "cache_hits": 15,
+      "generations": 0,
+      "construction_candidate_checks": 1345352,
+      "geometry_seconds": 0.0028428995283320546,
+      "solve_seconds": 69.59717909933534,
+      "elapsed_seconds": 71.89404829998966,
+      "checkpoints": [
+        {
+          "queries": 16,
+          "proposals": 16,
+          "elapsed_seconds": 34.99351159995422,
+          "archive_query_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            10,
+            11,
+            15
+          ],
+          "hypervolume": 0.8987971082789193,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 76.6740467139879,
+          "best_centre_span_mm": 26.26143790849673
+        },
+        {
+          "queries": 32,
+          "proposals": 56,
+          "elapsed_seconds": 71.89329569996335,
+          "archive_query_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            11,
+            15,
+            16,
+            17,
+            18,
+            21,
+            27
+          ],
+          "hypervolume": 0.9144994234343895,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 76.6740467139879,
+          "best_centre_span_mm": 26.26143790849673
+        }
+      ],
+      "final_metrics": {
+        "archive_query_indices": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          7,
+          11,
+          15,
+          16,
+          17,
+          18,
+          21,
+          27
+        ],
+        "hypervolume": 0.9144994234343895,
+        "archive_points_outside_reference": 0,
+        "best_peak_c": 76.6740467139879,
+        "best_centre_span_mm": 26.26143790849673
+      },
+      "timing_scope": "online elapsed includes per-run domain setup and all evaluation/reference checks; offline manifest construction separately counted"
+    },
+    {
+      "raw_result_sha256": "f526667380a2451cff69b48c600a973f10700e15d20c282b1f444f3e8c0a425f",
+      "case": "ascend910",
+      "method": "sa",
+      "seed": 2026111200,
+      "status": "complete_query_budget",
+      "budget": 32,
+      "queries": 32,
+      "solve_attempts": 32,
+      "proposals": 88,
+      "illegal_proposals": 52,
+      "cache_hits": 4,
+      "generations": 0,
+      "construction_candidate_checks": 0,
+      "geometry_seconds": 0.0035381997004151344,
+      "solve_seconds": 68.35435060050804,
+      "elapsed_seconds": 68.4982976000756,
+      "checkpoints": [
+        {
+          "queries": 16,
+          "proposals": 16,
+          "elapsed_seconds": 33.85685310000554,
+          "archive_query_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            10,
+            11,
+            15
+          ],
+          "hypervolume": 0.8987971082789193,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 76.6740467139879,
+          "best_centre_span_mm": 26.26143790849673
+        },
+        {
+          "queries": 32,
+          "proposals": 88,
+          "elapsed_seconds": 68.4975186000811,
+          "archive_query_indices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            7,
+            10,
+            11,
+            15,
+            16,
+            19,
+            20,
+            21,
+            22,
+            25,
+            29
+          ],
+          "hypervolume": 0.9269416412159478,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 76.64849402538292,
+          "best_centre_span_mm": 25.424836601307188
+        }
+      ],
+      "final_metrics": {
+        "archive_query_indices": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          7,
+          10,
+          11,
+          15,
+          16,
+          19,
+          20,
+          21,
+          22,
+          25,
+          29
+        ],
+        "hypervolume": 0.9269416412159478,
+        "archive_points_outside_reference": 0,
+        "best_peak_c": 76.64849402538292,
+        "best_centre_span_mm": 25.424836601307188
+      },
+      "timing_scope": "online elapsed includes per-run domain setup and all evaluation/reference checks; offline manifest construction separately counted"
+    },
+    {
+      "raw_result_sha256": "2d562ec45ee35188da766a429dda5f9749ad119eca44c873cac967a803ab137c",
+      "case": "ascend910",
+      "method": "nsga2",
+      "seed": 2026111200,
+      "status": "complete_query_budget",
+      "budget": 32,
+      "queries": 32,
+      "solve_attempts": 32,
+      "proposals": 346,
+      "illegal_proposals": 293,
+      "cache_hits": 21,
+      "generations": 1,
+      "construction_candidate_checks": 0,
+      "geometry_seconds": 0.011492198915220797,
+      "solve_seconds": 69.3601306003984,
+      "elapsed_seconds": 69.51671300001908,
+      "checkpoints": [
+        {
+          "queries": 16,
+          "proposals": 16,
+          "elapsed_seconds": 34.43770780006889,
+          "archive_query_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            10,
+            11,
+            15
+          ],
+          "hypervolume": 0.8987971082789193,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 76.6740467139879,
+          "best_centre_span_mm": 26.26143790849673
+        },
+        {
+          "queries": 32,
+          "proposals": 346,
+          "elapsed_seconds": 69.51490409998223,
+          "archive_query_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            10,
+            11,
+            16,
+            19,
+            22,
+            23,
+            30,
+            31
+          ],
+          "hypervolume": 0.9387778947481306,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 76.39012220888378,
+          "best_centre_span_mm": 26.26143790849673
+        }
+      ],
+      "final_metrics": {
+        "archive_query_indices": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          7,
+          10,
+          11,
+          16,
+          19,
+          22,
+          23,
+          30,
+          31
+        ],
+        "hypervolume": 0.9387778947481306,
+        "archive_points_outside_reference": 0,
+        "best_peak_c": 76.39012220888378,
+        "best_centre_span_mm": 26.26143790849673
+      },
+      "timing_scope": "online elapsed includes per-run domain setup and all evaluation/reference checks; offline manifest construction separately counted"
+    },
+    {
+      "raw_result_sha256": "6df02040f99637f453540372aa8c351fe094b5d4c25442b8ed9c2b1dd674b7a7",
+      "case": "micro150",
+      "method": "nsga2",
+      "seed": 2026111200,
+      "status": "complete_query_budget",
+      "budget": 32,
+      "queries": 32,
+      "solve_attempts": 32,
+      "proposals": 196,
+      "illegal_proposals": 157,
+      "cache_hits": 7,
+      "generations": 1,
+      "construction_candidate_checks": 0,
+      "geometry_seconds": 0.0069738992024213076,
+      "solve_seconds": 75.41552540007979,
+      "elapsed_seconds": 75.59406579995994,
+      "checkpoints": [
+        {
+          "queries": 16,
+          "proposals": 16,
+          "elapsed_seconds": 42.07683219993487,
+          "archive_query_indices": [
+            7,
+            13,
+            15
+          ],
+          "hypervolume": 1.2332587002665052,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 110.12150593790996,
+          "best_centre_span_mm": 24.1
+        },
+        {
+          "queries": 32,
+          "proposals": 196,
+          "elapsed_seconds": 75.59225949994288,
+          "archive_query_indices": [
+            7,
+            13,
+            15,
+            29,
+            31
+          ],
+          "hypervolume": 1.276401768210993,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 107.20850631238352,
+          "best_centre_span_mm": 24.1
+        }
+      ],
+      "final_metrics": {
+        "archive_query_indices": [
+          7,
+          13,
+          15,
+          29,
+          31
+        ],
+        "hypervolume": 1.276401768210993,
+        "archive_points_outside_reference": 0,
+        "best_peak_c": 107.20850631238352,
+        "best_centre_span_mm": 24.1
+      },
+      "timing_scope": "online elapsed includes per-run domain setup and all evaluation/reference checks; offline manifest construction separately counted"
+    },
+    {
+      "raw_result_sha256": "fb60c424bed4cd1630155239260ac7fe31e60671180008e1ce214f4ef5a91a17",
+      "case": "multigpu",
+      "method": "nsga2",
+      "seed": 2026111200,
+      "status": "complete_query_budget",
+      "budget": 32,
+      "queries": 32,
+      "solve_attempts": 32,
+      "proposals": 942,
+      "illegal_proposals": 839,
+      "cache_hits": 71,
+      "generations": 1,
+      "construction_candidate_checks": 0,
+      "geometry_seconds": 0.02614360093139112,
+      "solve_seconds": 59.20888479996938,
+      "elapsed_seconds": 59.39656650007237,
+      "checkpoints": [
+        {
+          "queries": 16,
+          "proposals": 16,
+          "elapsed_seconds": 28.43856660008896,
+          "archive_query_indices": [
+            2,
+            4,
+            11
+          ],
+          "hypervolume": 0.8886465363699663,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 99.71933583307286,
+          "best_centre_span_mm": 20.88888888888889
+        },
+        {
+          "queries": 32,
+          "proposals": 942,
+          "elapsed_seconds": 59.394785100012086,
+          "archive_query_indices": [
+            2,
+            4,
+            11,
+            17,
+            28
+          ],
+          "hypervolume": 0.9435888075293906,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 99.41963453533032,
+          "best_centre_span_mm": 20.88888888888889
+        }
+      ],
+      "final_metrics": {
+        "archive_query_indices": [
+          2,
+          4,
+          11,
+          17,
+          28
+        ],
+        "hypervolume": 0.9435888075293906,
+        "archive_points_outside_reference": 0,
+        "best_peak_c": 99.41963453533032,
+        "best_centre_span_mm": 20.88888888888889
+      },
+      "timing_scope": "online elapsed includes per-run domain setup and all evaluation/reference checks; offline manifest construction separately counted"
+    }
+  ],
+  "scope": "execution and accounting smoke only; no method-performance conclusion"
+}
