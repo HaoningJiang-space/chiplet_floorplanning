@@ -1,0 +1,45 @@
+{
+  "local_only": true,
+  "physical_model_qualified": false,
+  "production_modules_changed": false,
+  "fetch_succeeded": true,
+  "remote_checked_commit": "c124aa982eb97f49a7f4be907554c94436ace2d2",
+  "checked_utc": "2026-11-12T01:58:10.136291+00:00",
+  "implementation_commit": "708fb4289881d655c6c935d26bdb5d875457d956",
+  "tests_passed": 140,
+  "python": "3.12.16",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "reports": {
+    "report.json": {
+      "path": "results/physical-calibration/ttc-numerical-closure-v1/report.json",
+      "sha256": "cebe644cb53dc8f7fdec5c9f8adfc40f61643e831593d42c6e9b2e32de2ab1aa"
+    },
+    "frozen-inputs.json": {
+      "path": "results/physical-calibration/ttc-numerical-closure-v1/frozen-inputs.json",
+      "sha256": "9f92e6268f3676b874500574144317f7ce92ed5e512a98dd21963906f83ad795"
+    }
+  },
+  "checks": {
+    "results/physical-calibration/ttc-closure-tests-implementation.log": "b6f1dbb5eedd53cffdf552f8516660a377ccf938a1099269c1fcbfc3b9635753",
+    "results/physical-calibration/ttc-closure-cli-implementation/report.json": "0c5de5516a4aa0da5b43135ec26de3be5cec15c44733b64bc4db5709adb7048a"
+  },
+  "source_locks": {
+    "tools\\ttc-upstream.lock.json": "c3fa3d7278e9f7b6f79b21989f7b533048cbdd24974db776ebddd2a6d1bfe7ef",
+    "tools\\ttc-layer-order.lock.json": "c299d13d5fc3b272251732261f77ef46fc9831917fbfa9922a38ff951c2d8e0e"
+  },
+  "review": {
+    "url": "https://chatgpt.com/c/6af41d50-059c-83e8-92e6-eb975244c865",
+    "completed_rounds": 2,
+    "scope": "advisory numerical design and result review; no independent numerical execution"
+  },
+  "outcome": {
+    "steady_numerical_screen": true,
+    "old_transient_qualified": false,
+    "independent_physical_validation": false,
+    "max_difference_to_fixed_continuum_k": {
+      "heatsink": 0.019554242752050754,
+      "heatsink_with_fan": 0.01972542849250658
+    }
+  }
+}

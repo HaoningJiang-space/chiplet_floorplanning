@@ -234,6 +234,11 @@ OPENBLAS_NUM_THREADS=1 python tools/validate_routing_policies.py \
 
 ## 独立热源与边界敏感性（v0.8 / E1）
 
+最新数值进展：[TTC 稳态数值一致性](docs/ttc-numerical-closure-results.md)。
+不修改材料或边界，联合加密横向与厚度网格，使 13 种功率图样、两组材料下
+与独立连续体参考的最大差异从约 1.7 K 降至 0.020 K；140 项测试通过。
+此结果只通过预定稳态数值门槛，原粗网格瞬态与真实 Pad/封装校准仍未获准。
+
 最新本地进展见 [42 个时序参数配置与 4 个热输入案例](docs/local-multicase-results.md)：
 两类电路的真实库契约、逐路径源表核对、定量时钟控制和失败分类。仅本机实验，
 没有推送或触发远端 CI；数值一致性与物理校准分别报告。

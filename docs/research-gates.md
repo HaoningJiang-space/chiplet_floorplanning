@@ -9,7 +9,7 @@ milestones; preserve coherent tested commits on main without pushing.
 |---|---|---|
 | 1 | Geometry legality | Rectangle/rotation/overlap checks exist. Additional bump escape and realistic package design-rule domains must accompany new interfaces. Legality is always relative to declared rules. |
 | 2 | Power conservation | Area mapping and reciprocal thermal network audits exist; new TTC geometry preserves each input across two heaters. Add link/PHY power with explicit ownership before claiming whole-system power. |
-| 3 | Thermal accuracy | Independent numerical comparisons and 26 public TTC transients exist. The source-geometry FV experiment fails improvement and mesh gates. An independent layered-continuum series and spatial-DC contrast expose remaining numerical/boundary assumptions; see `ttc-spatial-results.md`. Logger timing and full spatial boundary prediction remain unresolved. |
+| 3 | Thermal accuracy | Independent numerical comparisons and 26 public TTC transients exist. The original source-geometry FV experiment fails improvement and mesh gates. A new coupled-refinement study closes the declared steady uniform-boundary numerical screen (~0.020 K vs continuum); see `ttc-numerical-closure-results.md`. This does not qualify the coarse transient model. Logger timing, nonuniform package boundaries and physical calibration remain unresolved. |
 | 4 | Routing feasibility | Two-line resource/obstacle prototype. Failure of a greedy search is not proof of infeasibility. Need explicit bump escape, layers, capacities, return paths and small-case exhaustive or certificate-backed controls. |
 | 5 | Electrical accuracy | Real-library Pad provenance, primitive measured IV and ideal passive channel controls. Full extracted Pad, stimulus/reference planes and measured package-channel calibration remain open. IV agreement is not waveform validation. |
 | 6 | Timing correctness | Single-lane source-synchronous semantics and independent edge checks. Need complete coverage of intended data/clock paths, min/max, operating modes, slew/cap and stated PVT domain. Negative-slack cases test correct rejection; they are not failures of the analyzer. |
@@ -53,7 +53,9 @@ cannot be converted into invented probabilistic confidence intervals.
    Source-fitted material properties stay labeled fitted, not independent truth.
    This fixture now exists. Its frozen 3,361-node grid fails refinement and
    differs from the independent continuum by about 1.7 K on nominal controls.
-   Close this numerical gap before promoting transient spatial predictions.
+   The steady gap is now reduced to about 0.020 K by coupled xy/z refinement,
+   with no material changes. The new separable solver is restricted to uniform
+   layers/boundary; transient convergence remains open.
 3. Use fixed total power with distinct spatial excitations to test whether the
    geometry model predicts sensor differences better. Compare old and spatial
    models on identical cases, observation operator and fitting freedom. Hold
