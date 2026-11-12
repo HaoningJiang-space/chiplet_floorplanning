@@ -1,12 +1,12 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "ec10483d9cbd40c5766157a448ea613226881e2a",
-  "record_count": 230,
+  "parent_commit": "8bed2effdd157e7243adad7ca1905e4e041dc13f",
+  "record_count": 235,
   "counts_by_kind": {
-    "md": 121,
-    "json": 97,
-    "pdf": 5,
-    "png": 6,
+    "md": 123,
+    "json": 98,
+    "pdf": 6,
+    "png": 7,
     "svg": 1
   },
   "records": [
@@ -436,6 +436,26 @@
       "kind": "json"
     },
     {
+      "path": "docs/evidence/tap-online-r3-physical.json",
+      "git_blob_sha1": "c9598622363be4641427012a5d773e74455fdc3e",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/tap-online-r3-physical.md",
+      "git_blob_sha1": "8d681e00ae77ef011ef74d489d1b38fdbcb13c64",
+      "kind": "md"
+    },
+    {
+      "path": "docs/evidence/tap-online-r3-physical.pdf",
+      "git_blob_sha1": "1d29f31135511d01c12190f67280f0a2c26f1db5",
+      "kind": "pdf"
+    },
+    {
+      "path": "docs/evidence/tap-online-r3-physical.png",
+      "git_blob_sha1": "50886bded1310cbb7d88890dd08618886c71f876",
+      "kind": "png"
+    },
+    {
       "path": "docs/evidence/tap-online-smoke-v1.json",
       "git_blob_sha1": "c31ef6872046e11bb8eb655f259fcc75280c8b6c",
       "kind": "json"
@@ -682,7 +702,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "fea1ff65e22d3891f166522937be5ba1501bdfbd",
+      "git_blob_sha1": "eab1ae855ae35307a9f9e18a4d2a67f5ab948a71",
       "kind": "md"
     },
     {
@@ -898,6 +918,11 @@
     {
       "path": "docs/tap-online-r2-review.md",
       "git_blob_sha1": "010ad75a5aa8f050e6874f465021b8e502ad71b2",
+      "kind": "md"
+    },
+    {
+      "path": "docs/tap-online-r3-results.md",
+      "git_blob_sha1": "813d78e8903a7e8e7e406f0926045230606aad87",
       "kind": "md"
     },
     {
