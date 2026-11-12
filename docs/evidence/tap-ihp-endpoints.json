@@ -1,0 +1,287 @@
+{
+  "source_hash_convention": "UTF-8 text with CRLF normalized to LF; artifact hashes use original bytes",
+  "geometry_sha256": "ae36aa7ad4ddf439fbd50e37592fb51791fd2a6fb28f3e2672a4bcd7d3de872f",
+  "contract_sha256": "d28541e8ea3828ab4e49ef7cc2f4111503cf99a2a3c8863eccebabe5c65532da",
+  "attachment_audit_sha256": "b9128ad0e77afb48959e422ee8a616988910a13e207f0138e22e860fb7a5281a",
+  "cases": [
+    {
+      "case": "ascend910",
+      "status": "attachment_geometry_and_endpoint_identity_verified",
+      "minimum_all_site_distance_um": 75,
+      "minimum_opening_gap_um": 40,
+      "landing_edge_clearance_um": 12.5,
+      "chips": [
+        {
+          "id": 0,
+          "ring_rows": 4,
+          "width_um": 15150.0,
+          "height_um": 32025.0,
+          "core_power_w": 256.0,
+          "sites_by_role": {
+            "signal": 2448,
+            "reserved_pdn": 2484,
+            "unpopulated": 36
+          }
+        },
+        {
+          "id": 1,
+          "ring_rows": 2,
+          "width_um": 10800.0,
+          "height_um": 16350.0,
+          "core_power_w": 14.0,
+          "sites_by_role": {
+            "signal": 400,
+            "reserved_pdn": 716,
+            "unpopulated": 316
+          }
+        },
+        {
+          "id": 2,
+          "ring_rows": 2,
+          "width_um": 8100.0,
+          "height_um": 12225.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 512,
+            "reserved_pdn": 534,
+            "unpopulated": 22
+          }
+        },
+        {
+          "id": 3,
+          "ring_rows": 2,
+          "width_um": 8100.0,
+          "height_um": 12225.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 512,
+            "reserved_pdn": 534,
+            "unpopulated": 22
+          }
+        },
+        {
+          "id": 4,
+          "ring_rows": 2,
+          "width_um": 8100.0,
+          "height_um": 12225.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 512,
+            "reserved_pdn": 534,
+            "unpopulated": 22
+          }
+        },
+        {
+          "id": 5,
+          "ring_rows": 2,
+          "width_um": 8100.0,
+          "height_um": 12225.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 512,
+            "reserved_pdn": 534,
+            "unpopulated": 22
+          }
+        }
+      ],
+      "physical_qualified": false,
+      "phy_qualified": false,
+      "artifact": "ascend910.json",
+      "sha256": "8626aeaf34879b449c702c90929cfed4d5983969710b1947569d4023b5fc1e7f"
+    },
+    {
+      "case": "micro150",
+      "status": "attachment_geometry_and_endpoint_identity_verified",
+      "minimum_all_site_distance_um": 75,
+      "minimum_opening_gap_um": 40,
+      "landing_edge_clearance_um": 12.5,
+      "chips": [
+        {
+          "id": 0,
+          "ring_rows": 13,
+          "width_um": 10200.0,
+          "height_um": 10950.0,
+          "core_power_w": 150.0,
+          "sites_by_role": {
+            "signal": 3072,
+            "reserved_pdn": 3328,
+            "unpopulated": 256
+          }
+        },
+        {
+          "id": 1,
+          "ring_rows": 13,
+          "width_um": 10200.0,
+          "height_um": 10950.0,
+          "core_power_w": 150.0,
+          "sites_by_role": {
+            "signal": 3072,
+            "reserved_pdn": 3328,
+            "unpopulated": 256
+          }
+        },
+        {
+          "id": 2,
+          "ring_rows": 13,
+          "width_um": 10200.0,
+          "height_um": 10950.0,
+          "core_power_w": 150.0,
+          "sites_by_role": {
+            "signal": 3072,
+            "reserved_pdn": 3328,
+            "unpopulated": 256
+          }
+        },
+        {
+          "id": 3,
+          "ring_rows": 13,
+          "width_um": 10200.0,
+          "height_um": 10950.0,
+          "core_power_w": 150.0,
+          "sites_by_role": {
+            "signal": 3072,
+            "reserved_pdn": 3328,
+            "unpopulated": 256
+          }
+        },
+        {
+          "id": 4,
+          "ring_rows": 9,
+          "width_um": 10125.0,
+          "height_um": 10125.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 2048,
+            "reserved_pdn": 2268,
+            "unpopulated": 220
+          }
+        },
+        {
+          "id": 5,
+          "ring_rows": 9,
+          "width_um": 10125.0,
+          "height_um": 10125.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 2048,
+            "reserved_pdn": 2268,
+            "unpopulated": 220
+          }
+        },
+        {
+          "id": 6,
+          "ring_rows": 9,
+          "width_um": 10125.0,
+          "height_um": 10125.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 2048,
+            "reserved_pdn": 2268,
+            "unpopulated": 220
+          }
+        },
+        {
+          "id": 7,
+          "ring_rows": 9,
+          "width_um": 10125.0,
+          "height_um": 10125.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 2048,
+            "reserved_pdn": 2268,
+            "unpopulated": 220
+          }
+        }
+      ],
+      "physical_qualified": false,
+      "phy_qualified": false,
+      "artifact": "micro150.json",
+      "sha256": "d0c5d510ae1257680e4189a20685cb7ac6d4900f5a9f40314798c869490ed213"
+    },
+    {
+      "case": "multigpu",
+      "status": "attachment_geometry_and_endpoint_identity_verified",
+      "minimum_all_site_distance_um": 75,
+      "minimum_opening_gap_um": 40,
+      "landing_edge_clearance_um": 12.5,
+      "chips": [
+        {
+          "id": 0,
+          "ring_rows": 8,
+          "width_um": 13200.0,
+          "height_um": 13200.0,
+          "core_power_w": 105.0,
+          "sites_by_role": {
+            "signal": 2560,
+            "reserved_pdn": 2688,
+            "unpopulated": 128
+          }
+        },
+        {
+          "id": 1,
+          "ring_rows": 6,
+          "width_um": 19125.0,
+          "height_um": 19125.0,
+          "core_power_w": 295.0,
+          "sites_by_role": {
+            "signal": 2560,
+            "reserved_pdn": 2988,
+            "unpopulated": 428
+          }
+        },
+        {
+          "id": 2,
+          "ring_rows": 6,
+          "width_um": 19125.0,
+          "height_um": 19125.0,
+          "core_power_w": 295.0,
+          "sites_by_role": {
+            "signal": 2560,
+            "reserved_pdn": 2988,
+            "unpopulated": 428
+          }
+        },
+        {
+          "id": 3,
+          "ring_rows": 8,
+          "width_um": 9000.0,
+          "height_um": 13125.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 2048,
+            "reserved_pdn": 2232,
+            "unpopulated": 184
+          }
+        },
+        {
+          "id": 4,
+          "ring_rows": 8,
+          "width_um": 9000.0,
+          "height_um": 13125.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 2048,
+            "reserved_pdn": 2232,
+            "unpopulated": 184
+          }
+        },
+        {
+          "id": 5,
+          "ring_rows": 8,
+          "width_um": 9000.0,
+          "height_um": 13125.0,
+          "core_power_w": 20.0,
+          "sites_by_role": {
+            "signal": 2048,
+            "reserved_pdn": 2232,
+            "unpopulated": 184
+          }
+        }
+      ],
+      "physical_qualified": false,
+      "phy_qualified": false,
+      "artifact": "multigpu.json",
+      "sha256": "3092c64ad3bdbe231c058d36571c3a930baefe81e569c679a94855d2f81fed9c"
+    }
+  ]
+}

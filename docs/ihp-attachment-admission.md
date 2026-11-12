@@ -1,5 +1,10 @@
 # IHP source admission and a necessary attachment bound
 
+Follow-up: [a separately frozen redesigned endpoint family](tap-ihp-endpoint-results.md)
+now has constructive attachment geometry and complete placement witnesses.
+Its explicit assumptions and missing PHY/package qualification remain distinct
+from the original TAP domain audited here.
+
 Research resumed after a successful fetch at `67a1d6a`, with a clean worktree.
 The previous Chat review requested compatible endpoint and package sources before
 detailed routing. This audit checks one public candidate locally; it does not

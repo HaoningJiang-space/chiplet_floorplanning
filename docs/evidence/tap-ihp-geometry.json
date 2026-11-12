@@ -1,0 +1,322 @@
+{
+  "status": "independent_geometry_domains_frozen",
+  "physical_qualified": false,
+  "source_hash_convention": "UTF-8 text with CRLF normalized to LF; endpoint artifact hashes use original bytes",
+  "endpoint_evidence_sha256": "a83142f94bd276ee60dfc29b6fdc0c598d15b7f5f8c2003fd90e1bb14992f01b",
+  "geometry_contract_sha256": "c3c8f62c0d2e75780dc54da89cbf5cbb572d09c0c7bf98b321a83747294cc6a6",
+  "adk_spacing_rules_sha256": "cf95da5d52486e70b9cac2879a13122ec9c6e1040f59a905fa7240e3bab484ad",
+  "cases": [
+    {
+      "case": "ascend910",
+      "interposer_side_um": 50000,
+      "centre_grid_um": 1000,
+      "minimum_gap_um": 200,
+      "rotations_deg": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "footprints": [
+        {
+          "id": 0,
+          "width_um": 15150,
+          "height_um": 32025
+        },
+        {
+          "id": 1,
+          "width_um": 10800,
+          "height_um": 16350
+        },
+        {
+          "id": 2,
+          "width_um": 8100,
+          "height_um": 12225
+        },
+        {
+          "id": 3,
+          "width_um": 8100,
+          "height_um": 12225
+        },
+        {
+          "id": 4,
+          "width_um": 8100,
+          "height_um": 12225
+        },
+        {
+          "id": 5,
+          "width_um": 8100,
+          "height_um": 12225
+        }
+      ],
+      "per_chiplet_candidate_counts": [
+        2380,
+        5148,
+        6068,
+        6068,
+        6068,
+        6068
+      ],
+      "witness": {
+        "status": "geometry_feasible",
+        "checked_chiplets": 6,
+        "checked_pairs": 15,
+        "exact_integer_geometry": true,
+        "placement": [
+          {
+            "id": 0,
+            "centre_x_um": 8000,
+            "centre_y_um": 17000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 1,
+            "centre_x_um": 22000,
+            "centre_y_um": 9000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 2,
+            "centre_x_um": 32000,
+            "centre_y_um": 7000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 3,
+            "centre_x_um": 41000,
+            "centre_y_um": 7000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 4,
+            "centre_x_um": 32000,
+            "centre_y_um": 20000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 5,
+            "centre_x_um": 41000,
+            "centre_y_um": 20000,
+            "rotation_deg": 0
+          }
+        ]
+      }
+    },
+    {
+      "case": "micro150",
+      "interposer_side_um": 50000,
+      "centre_grid_um": 1000,
+      "minimum_gap_um": 200,
+      "rotations_deg": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "footprints": [
+        {
+          "id": 0,
+          "width_um": 10200,
+          "height_um": 10950
+        },
+        {
+          "id": 1,
+          "width_um": 10200,
+          "height_um": 10950
+        },
+        {
+          "id": 2,
+          "width_um": 10200,
+          "height_um": 10950
+        },
+        {
+          "id": 3,
+          "width_um": 10200,
+          "height_um": 10950
+        },
+        {
+          "id": 4,
+          "width_um": 10125,
+          "height_um": 10125
+        },
+        {
+          "id": 5,
+          "width_um": 10125,
+          "height_um": 10125
+        },
+        {
+          "id": 6,
+          "width_um": 10125,
+          "height_um": 10125
+        },
+        {
+          "id": 7,
+          "width_um": 10125,
+          "height_um": 10125
+        }
+      ],
+      "per_chiplet_candidate_counts": [
+        6084,
+        6084,
+        6084,
+        6084,
+        6084,
+        6084,
+        6084,
+        6084
+      ],
+      "witness": {
+        "status": "geometry_feasible",
+        "checked_chiplets": 8,
+        "checked_pairs": 28,
+        "exact_integer_geometry": true,
+        "placement": [
+          {
+            "id": 0,
+            "centre_x_um": 6000,
+            "centre_y_um": 6000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 1,
+            "centre_x_um": 17000,
+            "centre_y_um": 6000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 2,
+            "centre_x_um": 28000,
+            "centre_y_um": 6000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 3,
+            "centre_x_um": 39000,
+            "centre_y_um": 6000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 4,
+            "centre_x_um": 6000,
+            "centre_y_um": 17000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 5,
+            "centre_x_um": 17000,
+            "centre_y_um": 17000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 6,
+            "centre_x_um": 28000,
+            "centre_y_um": 17000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 7,
+            "centre_x_um": 39000,
+            "centre_y_um": 17000,
+            "rotation_deg": 0
+          }
+        ]
+      }
+    },
+    {
+      "case": "multigpu",
+      "interposer_side_um": 50000,
+      "centre_grid_um": 1000,
+      "minimum_gap_um": 200,
+      "rotations_deg": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "footprints": [
+        {
+          "id": 0,
+          "width_um": 13200,
+          "height_um": 13200
+        },
+        {
+          "id": 1,
+          "width_um": 19125,
+          "height_um": 19125
+        },
+        {
+          "id": 2,
+          "width_um": 19125,
+          "height_um": 19125
+        },
+        {
+          "id": 3,
+          "width_um": 9000,
+          "height_um": 13125
+        },
+        {
+          "id": 4,
+          "width_um": 9000,
+          "height_um": 13125
+        },
+        {
+          "id": 5,
+          "width_um": 9000,
+          "height_um": 13125
+        }
+      ],
+      "per_chiplet_candidate_counts": [
+        5476,
+        3844,
+        3844,
+        6068,
+        6068,
+        6068
+      ],
+      "witness": {
+        "status": "geometry_feasible",
+        "checked_chiplets": 6,
+        "checked_pairs": 15,
+        "exact_integer_geometry": true,
+        "placement": [
+          {
+            "id": 0,
+            "centre_x_um": 7000,
+            "centre_y_um": 27000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 1,
+            "centre_x_um": 10000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 2,
+            "centre_x_um": 30000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 3,
+            "centre_x_um": 45000,
+            "centre_y_um": 7000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 4,
+            "centre_x_um": 45000,
+            "centre_y_um": 21000,
+            "rotation_deg": 0
+          },
+          {
+            "id": 5,
+            "centre_x_um": 19000,
+            "centre_y_um": 27000,
+            "rotation_deg": 0
+          }
+        ]
+      }
+    }
+  ]
+}
