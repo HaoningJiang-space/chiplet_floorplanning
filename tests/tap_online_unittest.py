@@ -19,6 +19,42 @@ def row(t, distance):
 
 
 class OnlineTest(unittest.TestCase):
+    def test_conditional_mutation_choices_match_full_geometry(self):
+        from freeze_tap_geometry import verify
+        space = Space(self.domain())
+        placement = self.initial()[0]
+        original = copy.deepcopy(placement)
+        expected = []
+        for p, _ in space.options[0]:
+            candidate = copy.deepcopy(placement)
+            candidate[0] = p
+            try:
+                verify(self.domain(), candidate)
+            except ValueError:
+                continue
+            expected.append(p)
+        class Capture:
+            def choice(inner, choices):
+                self.assertEqual(choices, expected)
+                return choices[0]
+        selected = space.conditional_mutation(placement, 0, Capture())
+        self.assertIn(selected, expected)
+        self.assertEqual(placement, original)
+        self.assertEqual(space.mutation_candidate_checks, len(space.options[0]))
+
+    def test_legal_nsga_completes_same_query_and_generation_budget(self):
+        from freeze_tap_geometry import verify
+        def solve(p):
+            verify(self.domain(), p)
+            return dict(peak_power_layer_c=70+sum(x['centre_x_um'] for x in p)/10000,
+                        numerical_admission_passed=True)
+        initial = self.initial()
+        result = run_policy(self.domain(), initial, SCALE, 'nsga2_legal', 23, solve)
+        self.assertEqual(result['status'], 'complete_query_budget')
+        self.assertEqual((result['queries'], result['generations']), (64, 3))
+        self.assertEqual([r['placement'] for r in result['rows'][:16]], initial)
+        self.assertGreater(result['mutation_candidate_checks'], 0)
+
     def domain(self):
         return dict(name='test', interposer_side_um=50000, centre_grid_um=10000,
                     minimum_gap_um=100, rotations_deg=[0, 90, 180, 270],

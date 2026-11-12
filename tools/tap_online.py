@@ -3,7 +3,7 @@ import copy
 import math
 import random
 import time
-from freeze_tap_geometry import candidates, separated, verify
+from freeze_tap_geometry import box, candidates, separated, verify
 from diagnose_tap_sensitivity import thermal_key
 from build_tap_algorithm_oracle import centre_span
 
@@ -81,6 +81,30 @@ class Space:
         self.domain = domain
         self.options = [list(candidates(domain, chip)) for chip in domain['chiplets']]
         self.construction_candidate_checks = 0
+        self.mutation_candidate_checks = 0
+        self.mutation_filter_seconds = 0.
+        self.empty_mutation_sets = 0
+
+    def conditional_mutation(self, placement, index, rng):
+        """Uniform among this chip's states separated from all fixed other chips.
+
+        Other chips may still overlap after crossover; the final full check
+        remains mandatory. An empty set leaves this chip unchanged.
+        """
+        started = time.perf_counter()
+        try:
+            others = [box(self.domain, p) for j, p in enumerate(placement) if j != index]
+            legal = []
+            for p, bounds in self.options[index]:
+                self.mutation_candidate_checks += 1
+                if all(separated(bounds, old, self.domain['minimum_gap_um']) for old in others):
+                    legal.append(p)
+            if not legal:
+                self.empty_mutation_sets += 1
+                return copy.deepcopy(placement[index])
+            return copy.deepcopy(rng.choice(legal))
+        finally:
+            self.mutation_filter_seconds += time.perf_counter()-started
 
     def construct(self, rng):
         order = list(range(len(self.options)))
@@ -180,7 +204,7 @@ class Evaluator:
 
 
 def run_policy(domain, initial, scale, method, seed, solve, budget=64, proposal_cap=10000):
-    if method not in ('random', 'sa', 'nsga2') or budget < 16 or len(initial) != 16:
+    if method not in ('random', 'sa', 'nsga2', 'nsga2_legal') or budget < 16 or len(initial) != 16:
         raise ValueError('Invalid online protocol')
     if len({thermal_key(p) for p in initial}) != 16:
         raise ValueError('Initialization must contain 16 distinct thermal states')
@@ -234,7 +258,10 @@ def run_policy(domain, initial, scale, method, seed, solve, budget=64, proposal_
                         placement = copy.deepcopy(a)
                     for i in range(len(placement)):
                         if rng.random() < 1/len(placement):
-                            placement[i] = copy.deepcopy(rng.choice(space.options[i])[0])
+                            if method == 'nsga2_legal':
+                                placement[i] = space.conditional_mutation(placement, i, rng)
+                            else:
+                                placement[i] = copy.deepcopy(rng.choice(space.options[i])[0])
                     old_count = len(ev.rows)
                     candidate = ev.evaluate(placement, 'crossover_mutation')
                     # Duplicate suppression is global within this run, explicitly charged as cache hits.
@@ -250,6 +277,9 @@ def run_policy(domain, initial, scale, method, seed, solve, budget=64, proposal_
         queries=len(ev.rows), solve_attempts=ev.solve_attempts, proposals=ev.proposals,
         illegal_proposals=ev.illegal, cache_hits=ev.cache_hits,
         construction_candidate_checks=space.construction_candidate_checks if space else 0,
+        mutation_candidate_checks=space.mutation_candidate_checks if space else 0,
+        mutation_filter_seconds=space.mutation_filter_seconds if space else 0.,
+        empty_mutation_sets=space.empty_mutation_sets if space else 0,
         geometry_seconds=ev.geometry_seconds, solve_seconds=ev.solve_seconds,
         elapsed_seconds=time.perf_counter()-ev.started, generations=generations,
         checkpoints=ev.checkpoints, rows=ev.rows, events=ev.events)
