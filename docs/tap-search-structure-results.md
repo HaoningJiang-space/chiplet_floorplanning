@@ -18,6 +18,9 @@ a lower bound for algorithms with restarts, or a proof about the full centre
 grid. The original implementation already allowed joint moves. The earlier
 plan's wording was ambiguous; its saved results remain unchanged.
 
+The subsequent [GitHub-only Chat review](tap-online-guidance.md) accepted the
+published evidence and guided the next direct-coordinate online comparison.
+
 ## All 77 starts, same query budget
 
 The predeclared [audit protocol](tap-search-structure-plan.md) uses all starting
