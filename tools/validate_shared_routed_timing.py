@@ -139,6 +139,7 @@ def main():
     args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=False);sta=args.sta.resolve(strict=True)
     paths=[Path(__file__),Path('tools/validate_multilane_timing.py'),Path('tools/validate_shared_routing.py'),
         Path('src/chiplet_floorplanning/routing_graph.py'),Path('tools/validation/shared_routing_electrical.py'),
+        Path('src/chiplet_floorplanning/shared_parasitics.py'),Path('src/chiplet_floorplanning/network_reports.py'),
         Path('tools/validation/shared_routing_fixture.py'),Path('tools/validation/timing_fixture.py'),
         Path('tools/validation/timing_oracle.py'),Path('tools/validation/timing_report.py'),Path('docs/shared-routing-plan.md')]+list(Path('tools/validation').glob('multilane_*.py'))
     report=dict(git=git_revision(Path('.')),code_sha256={str(p):digest(p) for p in paths},executable_sha256=digest(sta),

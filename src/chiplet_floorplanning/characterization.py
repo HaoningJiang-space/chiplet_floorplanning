@@ -214,7 +214,7 @@ def sample_instance_temperature(case, grid_c, die_id, point_mm):
 def sky_instance_model(root, cell, instance, temperature_c, output, corners=('tt_025C_1v80', 'tt_100C_1v80')):
     identifier(instance)
     number(temperature_c, 'local temperature_c')
-    if cell not in ('buf_8', 'dfxtp_1'):
+    if cell not in ('buf_8', 'dfxtp_1', 'inv_1'):
         raise ValueError('unsupported characterized SKY130 cell')
     root = Path(root)
     a, b = [sky_header(root, corner) for corner in corners]

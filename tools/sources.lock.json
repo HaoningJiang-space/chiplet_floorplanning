@@ -565,6 +565,18 @@
       "url": "https://raw.githubusercontent.com/IHP-GmbH/IHP-Open-ADK/093ae2e75fbc0b1eb3838a426cc1a59d37240aa0/pdk_adapters/README.md",
       "sha256": "84f4ccda4dd1ea4268cce2ff7ca0ae978348c22b8ad79ba01b03987ca65a1be8",
       "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_inv_1_tt_025C_1v80.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/inv/sky130_fd_sc_hd__inv_1__tt_025C_1v80.lib.json",
+      "sha256": "2ebd0770e6de56dd67ce2c46c3d242be923778492c2ab814dfd3741445f8f86d",
+      "decompress_gzip": false
+    },
+    {
+      "path": "pdk-v03/sky_inv_1_tt_100C_1v80.json",
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/inv/sky130_fd_sc_hd__inv_1__tt_100C_1v80.lib.json",
+      "sha256": "4d68e66382d3a5b2883b54b0a6af8560a1cc36512b19b1bb712c570e68339b7a",
+      "decompress_gzip": false
     }
   ],
   "open_cases": {

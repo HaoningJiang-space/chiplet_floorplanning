@@ -91,6 +91,7 @@ def main():
     args.output.mkdir(parents=True,exist_ok=False)
     paths = [Path(__file__)]+list(Path('tools/validation').glob('multilane_*.py'))+[
         Path('tools/validation/timing_fixture.py'), Path('tools/validation/timing_oracle.py'),
+        Path('src/chiplet_floorplanning/network_reports.py'),
         Path('tools/validation/timing_report.py'), Path('docs/multilane-validation-plan.md')]
     frozen = dict(git=git_revision(Path('.')), code_sha256={str(p):digest(p) for p in paths},
                   executable_sha256=digest(sta), sta_version=subprocess.check_output([str(sta),'-version'],text=True).strip(),

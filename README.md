@@ -1,5 +1,10 @@
 # Chiplet Floorplanning
 
+当前主线是 [Goal 01：统一电热布局决策](docs/goal01-integrated-decision.md)。
+新的 `evaluate(layout, configuration)` 已接通 3 芯粒、8 Lane、显式 Pin 旋转、
+有限共享布线、分层热场、唯一导体 SPEF 和同工艺 SKY130 核心单元全路径 STA。
+这是封装参数仍为假设的机制实验；真实 Pad 表征及实物结论尚未闭合。
+
 面向 2.5D chiplet 布局的 Power–Thermal–Timing 评估项目。当前版本 **v0.8.0**
 支持分层热网络、MFIT 数值对照、几何 RC/SPEF、真实 SKY130/GF180 库时序、
 25 组核心单元 PVT 组合，以及逐实例局部温度到时序的实验性耦合。

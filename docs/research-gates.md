@@ -1,6 +1,8 @@
 # Research evidence gates
 
-The user's ten-metric goal is active. Success means defensible physical and
+The active goal is now [Goal 01: the integrated decision system](goal01-integrated-decision.md).
+The table and sequence below retain the previous ten-metric evidence ledger;
+they no longer set the execution priority. Success means defensible physical and
 optimization evidence, not a desired ranking, a test count, or a promise of SOTA.
 All runs stay local. Fetch GitHub at each new research session and before
 publication. The user now explicitly requests timely pushes: preserve coherent
