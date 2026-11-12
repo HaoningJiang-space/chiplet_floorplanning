@@ -1,0 +1,3631 @@
+{
+  "status": "complete_finite_domain_oracle",
+  "case": "ascend910",
+  "classes": 77,
+  "decision_domain_sha256": "41126d673195b3884e8943c95bd4d10f738dc64cf721d7f39d9a4458f9a8fa0b",
+  "geometry_sha256": "ae36aa7ad4ddf439fbd50e37592fb51791fd2a6fb28f3e2672a4bcd7d3de872f",
+  "plan_sha256": "ae0d10e6e750f07b9ee9c9ed1f1a46b7d03f264ef39a0af8c2ee991929aee3a4",
+  "elapsed_seconds": 70.41934739996213,
+  "physical_optimum_certified": false,
+  "rows": [
+    {
+      "class_index": 0,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 77.17357274131757,
+      "ambient_c": 45,
+      "centre_span_mm": 31.294117647058822,
+      "residual": 3.155747174700894e-10,
+      "max_reference_difference_k": 1.4205603804384737e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 1,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 77.1457959559985,
+      "ambient_c": 45,
+      "centre_span_mm": 33.80392156862745,
+      "residual": 2.794922432583379e-10,
+      "max_reference_difference_k": 1.2930950532563656e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 2,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 77.14724484970186,
+      "ambient_c": 45,
+      "centre_span_mm": 33.80392156862745,
+      "residual": 2.5283376664772637e-10,
+      "max_reference_difference_k": 1.0957604601458115e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 3,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 77.05135263010109,
+      "ambient_c": 45,
+      "centre_span_mm": 33.80392156862745,
+      "residual": 3.551598504530255e-10,
+      "max_reference_difference_k": 1.445142494560514e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 4,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 77.04973337445446,
+      "ambient_c": 45,
+      "centre_span_mm": 33.80392156862745,
+      "residual": 2.1100245036544144e-10,
+      "max_reference_difference_k": 8.563999287503066e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 5,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 77.06038134952774,
+      "ambient_c": 45,
+      "centre_span_mm": 33.80392156862745,
+      "residual": 3.4913302554689527e-10,
+      "max_reference_difference_k": 1.6653912027209117e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 6,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 77.05895076087845,
+      "ambient_c": 45,
+      "centre_span_mm": 33.80392156862745,
+      "residual": 2.5839191662938417e-10,
+      "max_reference_difference_k": 1.2802919613363883e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 7,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 77.04506276110159,
+      "ambient_c": 45,
+      "centre_span_mm": 36.31372549019608,
+      "residual": 1.868768836212534e-10,
+      "max_reference_difference_k": 8.300634846136745e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 8,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 77.01529936144831,
+      "ambient_c": 45,
+      "centre_span_mm": 35.05882352941177,
+      "residual": 2.250824807232528e-10,
+      "max_reference_difference_k": 1.0295188701547886e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 9,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.9897930905867,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 2.530184834934911e-10,
+      "max_reference_difference_k": 1.0801499250590041e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 10,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.99128494455078,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.079686451187307e-10,
+      "max_reference_difference_k": 1.3660960362926744e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 11,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.89329442124739,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.768281961890438e-10,
+      "max_reference_difference_k": 1.5853121482223287e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 12,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.89233824699393,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 1.8228092304991713e-10,
+      "max_reference_difference_k": 7.294898907161951e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 13,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.90001615632531,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 2.1976333467345716e-10,
+      "max_reference_difference_k": 1.2084294453984512e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 14,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.89917884876647,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.211016861540715e-10,
+      "max_reference_difference_k": 1.4496301048438909e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 15,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.88292745922988,
+      "ambient_c": 45,
+      "centre_span_mm": 40.07843137254902,
+      "residual": 2.7591332861830907e-10,
+      "max_reference_difference_k": 1.1941873268028758e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 16,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 77.01442894200386,
+      "ambient_c": 45,
+      "centre_span_mm": 35.05882352941177,
+      "residual": 2.741075798760569e-10,
+      "max_reference_difference_k": 1.3661558995181622e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 17,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.98967901108242,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 5.563635921679961e-10,
+      "max_reference_difference_k": 2.019755473980922e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 18,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.99245302801205,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.066343495692067e-10,
+      "max_reference_difference_k": 1.5162169297866512e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 19,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.89479742685808,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 4.193507141898854e-10,
+      "max_reference_difference_k": 1.7847765931833237e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 20,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.89388882828803,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.4171422892261455e-10,
+      "max_reference_difference_k": 1.6146314507636816e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 21,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.90382743299165,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 2.7926871386763417e-10,
+      "max_reference_difference_k": 1.3419100497458203e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 22,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.90286288682461,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.100904826043587e-10,
+      "max_reference_difference_k": 1.4851309515506728e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 23,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.88674254304546,
+      "ambient_c": 45,
+      "centre_span_mm": 40.07843137254902,
+      "residual": 1.7607658235342812e-10,
+      "max_reference_difference_k": 9.40719058206696e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 24,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.85782733648423,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.47436577438804e-10,
+      "max_reference_difference_k": 1.5213821313864173e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 25,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.86149674018226,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.5819028262319356e-10,
+      "max_reference_difference_k": 1.4464731634689088e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 26,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.76493930061326,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 2.605252156062316e-10,
+      "max_reference_difference_k": 1.4088312738635977e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 27,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.77184878322299,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.3276209878884597e-10,
+      "max_reference_difference_k": 1.4878526855000018e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 28,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.75477707120179,
+      "ambient_c": 45,
+      "centre_span_mm": 40.07843137254902,
+      "residual": 3.3469800870354377e-10,
+      "max_reference_difference_k": 1.4500496803293572e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 29,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.8615888061045,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.0282862496387573e-10,
+      "max_reference_difference_k": 1.3068522264347848e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 30,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.86525262155676,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.1521527451612314e-10,
+      "max_reference_difference_k": 1.3589517067202905e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 31,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.77270628086305,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 1.1330818634238309e-10,
+      "max_reference_difference_k": 1.0291085317248871e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 32,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.77962218574629,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 1.0194650081976751e-10,
+      "max_reference_difference_k": 6.538451557958069e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 33,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.75831486343043,
+      "ambient_c": 45,
+      "centre_span_mm": 40.07843137254902,
+      "residual": 1.2960660322998373e-10,
+      "max_reference_difference_k": 6.378893857572621e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 34,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.89035548634573,
+      "ambient_c": 45,
+      "centre_span_mm": 35.05882352941177,
+      "residual": 2.616911930530434e-10,
+      "max_reference_difference_k": 1.1979396141725829e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 35,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.86044317440667,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.6327800963381447e-10,
+      "max_reference_difference_k": 1.651182479633917e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 36,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.86650776201405,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.311870626244611e-10,
+      "max_reference_difference_k": 1.6099052757567733e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 37,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.76880571270448,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.958662348063491e-10,
+      "max_reference_difference_k": 2.0094562458439214e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 38,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.76827576442858,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.1482937214282965e-10,
+      "max_reference_difference_k": 1.5668819131064993e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 39,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.77823571417647,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.833875101830929e-10,
+      "max_reference_difference_k": 1.661777027095468e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 40,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.77619357490482,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 2.74778021677316e-10,
+      "max_reference_difference_k": 1.4233245693162644e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 41,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.75769575449503,
+      "ambient_c": 45,
+      "centre_span_mm": 40.07843137254902,
+      "residual": 3.6409916067646773e-10,
+      "max_reference_difference_k": 1.6025500926275527e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 42,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.89403559398198,
+      "ambient_c": 45,
+      "centre_span_mm": 35.05882352941177,
+      "residual": 2.936947250216167e-10,
+      "max_reference_difference_k": 1.3588344671688901e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 43,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.86424472022358,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 2.0065313808101093e-10,
+      "max_reference_difference_k": 9.069168527275906e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 44,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.87013383744905,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 2.294841452878629e-10,
+      "max_reference_difference_k": 1.112383607448919e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 45,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.77273861634794,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 3.398242399833035e-10,
+      "max_reference_difference_k": 1.3441947999126569e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 46,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.77603378378356,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 2.2033435572233021e-10,
+      "max_reference_difference_k": 1.1402276456351501e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 47,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.78058288366826,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 2.2157513802700152e-10,
+      "max_reference_difference_k": 1.0939098515905243e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 48,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.78382314209998,
+      "ambient_c": 45,
+      "centre_span_mm": 37.568627450980394,
+      "residual": 1.2081330713031602e-10,
+      "max_reference_difference_k": 7.511375521573882e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 49,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.76111861745665,
+      "ambient_c": 45,
+      "centre_span_mm": 40.07843137254902,
+      "residual": 1.7714410963331815e-10,
+      "max_reference_difference_k": 7.939680912727454e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 50,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.73020754579859,
+      "ambient_c": 45,
+      "centre_span_mm": 38.8235294117647,
+      "residual": 2.5295459760708163e-10,
+      "max_reference_difference_k": 1.2403281957062973e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 51,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.70235526710202,
+      "ambient_c": 45,
+      "centre_span_mm": 41.333333333333336,
+      "residual": 1.9852057149917553e-10,
+      "max_reference_difference_k": 9.690502622561326e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 52,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.70806274778502,
+      "ambient_c": 45,
+      "centre_span_mm": 41.333333333333336,
+      "residual": 2.1460735686992953e-10,
+      "max_reference_difference_k": 1.0373319980772067e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 53,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.61058955661792,
+      "ambient_c": 45,
+      "centre_span_mm": 41.333333333333336,
+      "residual": 2.686222686439031e-10,
+      "max_reference_difference_k": 1.265131288619159e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 54,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.61455902471853,
+      "ambient_c": 45,
+      "centre_span_mm": 41.333333333333336,
+      "residual": 2.3946714588515346e-10,
+      "max_reference_difference_k": 1.1418256562478746e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 55,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.61799665739238,
+      "ambient_c": 45,
+      "centre_span_mm": 41.333333333333336,
+      "residual": 2.031857552139167e-10,
+      "max_reference_difference_k": 1.1156237711418271e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 56,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.62042550210843,
+      "ambient_c": 45,
+      "centre_span_mm": 41.333333333333336,
+      "residual": 2.3550089189929685e-10,
+      "max_reference_difference_k": 1.1324720716743286e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 57,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.60028132192761,
+      "ambient_c": 45,
+      "centre_span_mm": 43.84313725490196,
+      "residual": 2.482068243766034e-10,
+      "max_reference_difference_k": 1.1297510482677353e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 58,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.69782986137649,
+      "ambient_c": 45,
+      "centre_span_mm": 36.745098039215684,
+      "residual": 3.4224247000751374e-10,
+      "max_reference_difference_k": 1.2272261429302489e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 59,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.68912238057456,
+      "ambient_c": 45,
+      "centre_span_mm": 36.745098039215684,
+      "residual": 4.603964008264905e-10,
+      "max_reference_difference_k": 1.9247503146857525e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 60,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.55448678042639,
+      "ambient_c": 45,
+      "centre_span_mm": 40.509803921568626,
+      "residual": 4.600337909458348e-10,
+      "max_reference_difference_k": 1.624226442231702e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 61,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.54626436971665,
+      "ambient_c": 45,
+      "centre_span_mm": 40.509803921568626,
+      "residual": 3.1600697521873865e-10,
+      "max_reference_difference_k": 1.1168051372578702e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 62,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.55370164075592,
+      "ambient_c": 45,
+      "centre_span_mm": 40.509803921568626,
+      "residual": 4.555699078027556e-10,
+      "max_reference_difference_k": 1.778404801200395e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 63,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.5474172077985,
+      "ambient_c": 45,
+      "centre_span_mm": 40.509803921568626,
+      "residual": 3.158466707393111e-10,
+      "max_reference_difference_k": 1.673562088910785e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 64,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.55424582637394,
+      "ambient_c": 45,
+      "centre_span_mm": 40.509803921568626,
+      "residual": 3.2213239190419283e-10,
+      "max_reference_difference_k": 1.3905662399338325e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 65,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.55242498631054,
+      "ambient_c": 45,
+      "centre_span_mm": 40.509803921568626,
+      "residual": 3.514141605528667e-10,
+      "max_reference_difference_k": 1.2108120728271388e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 66,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        }
+      ],
+      "peak_c": 76.55314951130154,
+      "ambient_c": 45,
+      "centre_span_mm": 40.509803921568626,
+      "residual": 1.8927159865806298e-10,
+      "max_reference_difference_k": 7.798705681238971e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 67,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.55356794891574,
+      "ambient_c": 45,
+      "centre_span_mm": 40.509803921568626,
+      "residual": 3.937027593963657e-10,
+      "max_reference_difference_k": 1.5699772148991542e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 68,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.60839979222918,
+      "ambient_c": 45,
+      "centre_span_mm": 39.254901960784316,
+      "residual": 2.1662382753066923e-10,
+      "max_reference_difference_k": 8.581533705864786e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 69,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.46245294772665,
+      "ambient_c": 45,
+      "centre_span_mm": 43.01960784313726,
+      "residual": 2.987699709032859e-10,
+      "max_reference_difference_k": 1.2951215211387535e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 70,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.46671718603419,
+      "ambient_c": 45,
+      "centre_span_mm": 43.01960784313726,
+      "residual": 3.459337125283144e-10,
+      "max_reference_difference_k": 1.6239264155615274e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 71,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.46718869946378,
+      "ambient_c": 45,
+      "centre_span_mm": 43.01960784313726,
+      "residual": 1.1634446252936138e-10,
+      "max_reference_difference_k": 6.065675961508532e-09,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 72,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.47145029392838,
+      "ambient_c": 45,
+      "centre_span_mm": 43.01960784313726,
+      "residual": 2.5805865620646153e-10,
+      "max_reference_difference_k": 1.2120276338123404e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 73,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.34371470524019,
+      "ambient_c": 45,
+      "centre_span_mm": 43.01960784313726,
+      "residual": 3.3479875682464003e-10,
+      "max_reference_difference_k": 1.5093059246851226e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 74,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.34641043756251,
+      "ambient_c": 45,
+      "centre_span_mm": 43.01960784313726,
+      "residual": 4.243853730850963e-10,
+      "max_reference_difference_k": 1.6100770494631433e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 75,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 76.19669556740331,
+      "ambient_c": 45,
+      "centre_span_mm": 46.78431372549019,
+      "residual": 2.422540034987371e-10,
+      "max_reference_difference_k": 1.1428841872884732e-08,
+      "thermal_admitted": true
+    },
+    {
+      "class_index": 76,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 34000,
+          "centre_y_um": 8000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "peak_c": 77.17357274127828,
+      "ambient_c": 45,
+      "centre_span_mm": 31.294117647058822,
+      "residual": 3.169108772348597e-10,
+      "max_reference_difference_k": 1.4264305292499557e-08,
+      "thermal_admitted": true
+    }
+  ]
+}
