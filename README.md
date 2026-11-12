@@ -7,7 +7,12 @@
 [独立位置与旋转的 TAP 几何域](docs/tap-geometry-domains.md)及有限封装资源问题；
 完整物理基准和新算法必要性仍未建立。
 
-当前主线是 [Goal 01：统一电热布局决策](docs/goal01-integrated-decision.md)。
+热评估现采用 [冻结的 TAP 有限体积研究模型](docs/tap-fv-contract.md)，由现有组装器和 HiTS 本地求解。
+[三个完整案例的数值准入](docs/tap-fv-admission.md) 已通过；这不是实测校准或 HotSpot 原温度复现。
+固定 HotSpot 7 Detailed-3D 的 [内部边界问题](docs/tap-native-boundary-audit.md) 保留为拒绝证据，
+[Chat 审核](docs/tap-boundary-chat-review.md) 已确认问题；下一步冻结有限互连资源与精确布局子域。
+
+此前建立的评估平台见 [Goal 01：统一电热布局决策](docs/goal01-integrated-decision.md)。
 新的 `evaluate(layout, configuration)` 已接通 3 芯粒、8 Lane、显式 Pin 旋转、
 有限共享布线、分层热场、唯一导体 SPEF 和同工艺 SKY130 核心单元全路径 STA。
 这是封装参数仍为假设的机制实验；真实 Pad 表征及实物结论尚未闭合。
