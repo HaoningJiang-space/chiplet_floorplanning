@@ -56,3 +56,43 @@ workloads. Neither this availability audit nor the current small pilot meets
 that entire requirement. Missing code in one candidate does not justify ending
 the comparison effort: ATPlace's public optimizer is the next concrete source
 to inspect.
+
+## ATPlace interface audit at the pinned source
+
+Read directly from Git objects; no module import or execution. The relevant
+files are `src/opt/place_flow.py`, `place_obj.py`, and `legalization.py` at
+`fe3dbfdaf78dc0ddeac3a2cfc3a85ff0971f88df`.
+
+- The placement flow initializes through an ILP, perturbs orientations,
+  runs continuous optimization, snaps orientations, and legalizes coordinates.
+  It retries initialization with a changed `overflow_init` until a result is
+  returned. An adapter needs an outer attempt/time limit and a saved retry
+  history; an unsuccessful attempt is not proof of global infeasibility.
+- The thermal callback receives tensors `(x, y, size_x, size_y, powermap)` and
+  returns temperature rise; the objective adds ambient. Effective dimensions
+  are relaxed mixtures of orientations. The objective combines wirelength,
+  density and a temperature penalty, and differentiates through that callback.
+  Our discrete FV/HiTS evaluator is not a drop-in differentiable replacement.
+  A trained common-model surrogate would be a declared adaptation with charged
+  training data/cost and final direct evaluation, not unchanged upstream ATPlace.
+- Both legalization implementations use continuous centre variables. Binary
+  separation variables do not enforce our 1 mm centre grid. Rounding a native
+  result can violate separation/boundaries, so it is not a legitimate silent
+  conversion. A same-domain variant needs explicit integer-grid legalization
+  with the common expanded footprints and gap, followed by independent checking.
+- Legalization tries a wirelength/displacement objective and may retry with
+  displacement alone. Its returned final layout must be thermally reevaluated:
+  the relaxed pre-legalization objective is not the final layout score.
+- CBC accepts the status labelled Optimal; Gurobi accepts a positive solution
+  count. These wrappers return positions or None, not a complete proof ledger.
+  Preserve raw solver termination and independently check any incumbent before
+  reporting it as feasible; None must remain unknown without a solver proof.
+- `place_flow.py` sets environment/PyTorch threads to 64 at import. Do not import
+  it inside our measured pilot. A future local runner needs explicit resource
+  control and must count initialization, training, optimization and legalization.
+
+This audit identifies actual adaptation work rather than excluding the method.
+The proposed review choice is between a common-grid ATPlace-derived variant
+and a separately labelled native-domain pipeline comparison. A native continuous
+pipeline cannot establish same-domain optimizer superiority over this grid pilot.
+The source remains untouched, and no learned model or native pipeline was run.
