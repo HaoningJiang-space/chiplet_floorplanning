@@ -246,6 +246,30 @@ python tools/audit_core_buffer_spice.py --temperatures 62.5 --output results/cor
 python tools/audit_core_temperature.py results/core-buffer-original results/core-buffer-midpoint --output results/core-temperature.json
 ```
 
+The same diagnostic now supports `--cell inv_1`, with input and output crossing
+directions explicitly reversed and checked against the negative-unate Liberty
+arc. An initial per-temperature-knot sweep revealed that this cell's load axes
+vary with temperature; that sweep is retained locally but rejected as a
+temperature-only comparison. The runner now freezes 25 C input-slew/load knots
+for every temperature, with bounded table interpolation elsewhere. Existing
+buffer stimuli are unchanged.
+
+The [fixed-load inverter evidence](evidence/local-core-inverter-temperature.json)
+covers twelve cases at 25/62.5/100 C, two loads (0.00952062/0.0254232 pF),
+0.122474 ns input slew and 2/1 ps maximum steps. At the finer step, the
+SPICE-minus-Liberty temperature-change discrepancy reaches 4.577430 ps for delay
+and 6.687414 ps for output slew. Midpoint curvature reaches 0.517184 ps for delay
+and 0.709250 ps for slew. The raw [inverter receipts](evidence/local-core-inverter-spice.json)
+retain the absolute differences; none is applied as a correction. The changed
+auditor still accepts the original twelve buffer cases and rejects the
+variable-load inverter sweep. This remains a schematic-level comparison with
+the same primitive/PEX limitations; FF setup/hold and clock-to-Q remain open.
+
+```powershell
+python tools/audit_core_buffer_spice.py --cell inv_1 --temperatures 25 62.5 100 --output results/core-inverter
+python tools/audit_core_temperature.py results/core-inverter --output results/core-inverter-temperature.json
+```
+
 The GitHub-only Chat review at `5e6ef7c` enumerated all 43 reachable commits,
 read the four changes since its prior review and the eight principal core
 modules/six experiment tools. It independently confirmed the finite-domain

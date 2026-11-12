@@ -4,9 +4,30 @@ Implementation/frozen protocol commit: `506f314`. Starting checkout was
 `a87e529`; GitHub fetch succeeded and origin remained `c124aa9`. All work is
 local, initially without a push or remote job. The user later authorized timely
 code pushes; calculations remain local. This document records completed levels
-0, 1 and 2; level 3 is still being calculated. Do not read it as a final
-convergence result. The active run is `ttc-package-boundary-v1` under
+0 through 3; the frozen planned sequence has now completed. Completion of the
+planned runs does not imply convergence. The run is `ttc-package-boundary-v1` under
 `results/physical-calibration/`.
+
+## Final planned level 3 checkpoint
+
+All 24 model receipts across two cooling groups, four meshes and U/C/P were
+checked against the completed report and the hashes of saved transfer matrices.
+The [level 3 evidence](evidence/local-ttc-package-boundary-level3.json) preserves
+the last contrasts and corrected held-out summaries. No model or fitting rule
+was changed while this frozen job ran.
+
+| Cooling | C-U last spatial change K | C-U gate | P-C last spatial change K | P-C gate |
+|---|---:|---|---:|---|
+| Natural | 0.0172384 | pass | 0.1819471 | fail |
+| Fan | 0.0202752 | fail | 0.1384874 | fail |
+
+The original numerical gates remain unchanged. In particular, the fan C-U
+value is not rounded down to pass 0.02 K. Corrected held-out sensor-difference
+RMSEs for U/C/P are 1.524935/1.129101/1.226092 K under natural cooling and
+1.154269/0.694004/0.779251 K with the fan. These are exploratory DC comparisons,
+not measured steady-state/field validation. The full experiment remains
+physically unqualified, and pad-extent differences remain numerically unresolved.
+The earlier checkpoints below are retained as historical results.
 
 The complete coupled FV network now represents the die, actual pad footprint,
 copper base and 23 fins. Bodies share a conforming Cartesian partition so

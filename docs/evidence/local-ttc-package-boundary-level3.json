@@ -1,0 +1,295 @@
+{
+  "complete": true,
+  "physical_model_qualified": false,
+  "local_only": true,
+  "completed_paired_levels": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "checkpoint_sha256": "00d17a8f87eb01863cb16b3db539829a3e988ecc2378d72b406396d9508cfa17",
+  "verified_model_receipts": 24,
+  "groups": {
+    "heatsink": {
+      "contrasts": {
+        "C-U": {
+          "max_full_effect_k": 333.5917336053573,
+          "max_spatial_effect_k": 1.44135501746959,
+          "last_spatial_refinement_change_k": 0.017238398504119345,
+          "relative_change": 0.011959856034901578,
+          "numerical_screen": true
+        },
+        "P-C": {
+          "max_full_effect_k": 2.025916296678752,
+          "max_spatial_effect_k": 1.6854331149856396,
+          "last_spatial_refinement_change_k": 0.18194711958049115,
+          "relative_change": 0.10795273806047259,
+          "numerical_screen": false
+        }
+      },
+      "models": {
+        "U": {
+          "receipt_sha256": "989eb409b6d5fc00fdc95334bcef52e00504aae55c42d67d54f9d637524af505",
+          "transfer_sha256": "b88c675ea3eaf61fb2c19b1783e29b9010da59dcf4dfb4956810d5523eeab600",
+          "node_count": 1169480,
+          "last_corrected_refinement_change_k": 0.0,
+          "corrected_summary": {
+            "calibration_all": {
+              "case_count": 4,
+              "spatial_rmse_k": 1.2849406118389153,
+              "uniform_continuum_spatial_rmse_k": 1.2849406118389148,
+              "relative_reduction": -4.440892098500626e-16,
+              "improved_patterns": 0,
+              "boundary_improvement_screen": null
+            },
+            "calibration_below_40w": {
+              "case_count": 3,
+              "spatial_rmse_k": 1.331534005062675,
+              "uniform_continuum_spatial_rmse_k": 1.3315340050626743,
+              "relative_reduction": -4.440892098500626e-16,
+              "improved_patterns": 0,
+              "boundary_improvement_screen": null
+            },
+            "held_out_all": {
+              "case_count": 9,
+              "spatial_rmse_k": 1.5249354537912134,
+              "uniform_continuum_spatial_rmse_k": 1.524935453791213,
+              "relative_reduction": -2.220446049250313e-16,
+              "improved_patterns": 0,
+              "boundary_improvement_screen": false
+            },
+            "held_out_below_40w": {
+              "case_count": 9,
+              "spatial_rmse_k": 1.5249354537912134,
+              "uniform_continuum_spatial_rmse_k": 1.524935453791213,
+              "relative_reduction": -2.220446049250313e-16,
+              "improved_patterns": 0,
+              "boundary_improvement_screen": null
+            }
+          }
+        },
+        "C": {
+          "receipt_sha256": "256208f2aef253f8be00cb4e1354724fd3330568416e48bc213d098080972239",
+          "transfer_sha256": "5bc21a8f2b0c4f8c0b2f81b845d53476f6bd9efb0e219021d4da6717d8562b58",
+          "node_count": 4605608,
+          "last_corrected_refinement_change_k": 0.039278111367025303,
+          "corrected_summary": {
+            "calibration_all": {
+              "case_count": 4,
+              "spatial_rmse_k": 0.8611439462358282,
+              "uniform_continuum_spatial_rmse_k": 1.2849406118389148,
+              "relative_reduction": 0.3298180956367931,
+              "improved_patterns": 4,
+              "boundary_improvement_screen": null
+            },
+            "calibration_below_40w": {
+              "case_count": 3,
+              "spatial_rmse_k": 0.875309254218927,
+              "uniform_continuum_spatial_rmse_k": 1.3315340050626743,
+              "relative_reduction": 0.34263094228845703,
+              "improved_patterns": 3,
+              "boundary_improvement_screen": null
+            },
+            "held_out_all": {
+              "case_count": 9,
+              "spatial_rmse_k": 1.129100637061429,
+              "uniform_continuum_spatial_rmse_k": 1.524935453791213,
+              "relative_reduction": 0.2595748008518529,
+              "improved_patterns": 9,
+              "boundary_improvement_screen": true
+            },
+            "held_out_below_40w": {
+              "case_count": 9,
+              "spatial_rmse_k": 1.129100637061429,
+              "uniform_continuum_spatial_rmse_k": 1.524935453791213,
+              "relative_reduction": 0.2595748008518529,
+              "improved_patterns": 9,
+              "boundary_improvement_screen": null
+            }
+          }
+        },
+        "P": {
+          "receipt_sha256": "5813b1d98b73a1f77d7f909d8154ec12494955f4d223f6e2318be7c8728a7128",
+          "transfer_sha256": "69d6e3705b4867baacb92e87ab3eb1b4fd164cb57723995074a9ac5a5e86e9ba",
+          "node_count": 5089608,
+          "last_corrected_refinement_change_k": 0.24082938896161465,
+          "corrected_summary": {
+            "calibration_all": {
+              "case_count": 4,
+              "spatial_rmse_k": 1.0385956651561599,
+              "uniform_continuum_spatial_rmse_k": 1.2849406118389148,
+              "relative_reduction": 0.19171699019630473,
+              "improved_patterns": 3,
+              "boundary_improvement_screen": null
+            },
+            "calibration_below_40w": {
+              "case_count": 3,
+              "spatial_rmse_k": 1.1326210452681247,
+              "uniform_continuum_spatial_rmse_k": 1.3315340050626743,
+              "relative_reduction": 0.14938631611228503,
+              "improved_patterns": 2,
+              "boundary_improvement_screen": null
+            },
+            "held_out_all": {
+              "case_count": 9,
+              "spatial_rmse_k": 1.2260917905011834,
+              "uniform_continuum_spatial_rmse_k": 1.524935453791213,
+              "relative_reduction": 0.1959713524576141,
+              "improved_patterns": 8,
+              "boundary_improvement_screen": false
+            },
+            "held_out_below_40w": {
+              "case_count": 9,
+              "spatial_rmse_k": 1.2260917905011834,
+              "uniform_continuum_spatial_rmse_k": 1.524935453791213,
+              "relative_reduction": 0.1959713524576141,
+              "improved_patterns": 8,
+              "boundary_improvement_screen": null
+            }
+          }
+        }
+      }
+    },
+    "heatsink_with_fan": {
+      "contrasts": {
+        "C-U": {
+          "max_full_effect_k": 50.9412365705216,
+          "max_spatial_effect_k": 1.5728868644841363,
+          "last_spatial_refinement_change_k": 0.020275218308963616,
+          "relative_change": 0.012890449254030316,
+          "numerical_screen": false
+        },
+        "P-C": {
+          "max_full_effect_k": 1.650497904442277,
+          "max_spatial_effect_k": 1.3923264106237196,
+          "last_spatial_refinement_change_k": 0.13848741329856784,
+          "relative_change": 0.09946476073561639,
+          "numerical_screen": false
+        }
+      },
+      "models": {
+        "U": {
+          "receipt_sha256": "16ea0932a2ee1274cbaeaed1e702868ad57d7d30275b57ca2376995aee445207",
+          "transfer_sha256": "ab7868cd0bbf7c39bc5b09be9b5e507e86f4e03c53a68fdb8e188992ac5ffa10",
+          "node_count": 1169480,
+          "last_corrected_refinement_change_k": 0.0,
+          "corrected_summary": {
+            "calibration_all": {
+              "case_count": 4,
+              "spatial_rmse_k": 1.026818448361521,
+              "uniform_continuum_spatial_rmse_k": 1.0268184483615213,
+              "relative_reduction": 2.220446049250313e-16,
+              "improved_patterns": 2,
+              "boundary_improvement_screen": null
+            },
+            "calibration_below_40w": {
+              "case_count": 3,
+              "spatial_rmse_k": 0.965320506108969,
+              "uniform_continuum_spatial_rmse_k": 0.9653205061089695,
+              "relative_reduction": 4.440892098500626e-16,
+              "improved_patterns": 2,
+              "boundary_improvement_screen": null
+            },
+            "held_out_all": {
+              "case_count": 9,
+              "spatial_rmse_k": 1.1542686583640847,
+              "uniform_continuum_spatial_rmse_k": 1.1542686583640847,
+              "relative_reduction": 0.0,
+              "improved_patterns": 4,
+              "boundary_improvement_screen": false
+            },
+            "held_out_below_40w": {
+              "case_count": 9,
+              "spatial_rmse_k": 1.1542686583640847,
+              "uniform_continuum_spatial_rmse_k": 1.1542686583640847,
+              "relative_reduction": 0.0,
+              "improved_patterns": 4,
+              "boundary_improvement_screen": null
+            }
+          }
+        },
+        "C": {
+          "receipt_sha256": "1c5266535df485543b9ae71e12ac15777851724f9d2b99f288a1719b732607cb",
+          "transfer_sha256": "d052846912ed57a070a86c1470d084ce6eeac2f05082b7306fbb2b8d85918f2c",
+          "node_count": 4605608,
+          "last_corrected_refinement_change_k": 0.039795841254473885,
+          "corrected_summary": {
+            "calibration_all": {
+              "case_count": 4,
+              "spatial_rmse_k": 0.5744929656163872,
+              "uniform_continuum_spatial_rmse_k": 1.0268184483615213,
+              "relative_reduction": 0.44051164396871034,
+              "improved_patterns": 4,
+              "boundary_improvement_screen": null
+            },
+            "calibration_below_40w": {
+              "case_count": 3,
+              "spatial_rmse_k": 0.4585142507073404,
+              "uniform_continuum_spatial_rmse_k": 0.9653205061089695,
+              "relative_reduction": 0.5250134563539652,
+              "improved_patterns": 3,
+              "boundary_improvement_screen": null
+            },
+            "held_out_all": {
+              "case_count": 9,
+              "spatial_rmse_k": 0.6940042437494099,
+              "uniform_continuum_spatial_rmse_k": 1.1542686583640847,
+              "relative_reduction": 0.39874981554727096,
+              "improved_patterns": 9,
+              "boundary_improvement_screen": true
+            },
+            "held_out_below_40w": {
+              "case_count": 9,
+              "spatial_rmse_k": 0.6940042437494099,
+              "uniform_continuum_spatial_rmse_k": 1.1542686583640847,
+              "relative_reduction": 0.39874981554727096,
+              "improved_patterns": 9,
+              "boundary_improvement_screen": null
+            }
+          }
+        },
+        "P": {
+          "receipt_sha256": "cc1b076e6f11b98cb1bc7e09abf82a5584ac8ac4a441c021a4fa5f9e1f8b90dc",
+          "transfer_sha256": "3d14a34e239643fd2c2ad7bf33e2cd5391b370f16268df91da69b9b4d45b6788",
+          "node_count": 5089608,
+          "last_corrected_refinement_change_k": 0.1895982990569749,
+          "corrected_summary": {
+            "calibration_all": {
+              "case_count": 4,
+              "spatial_rmse_k": 0.6870335647676181,
+              "uniform_continuum_spatial_rmse_k": 1.0268184483615213,
+              "relative_reduction": 0.33091038063845923,
+              "improved_patterns": 4,
+              "boundary_improvement_screen": null
+            },
+            "calibration_below_40w": {
+              "case_count": 3,
+              "spatial_rmse_k": 0.6763529229661644,
+              "uniform_continuum_spatial_rmse_k": 0.9653205061089695,
+              "relative_reduction": 0.29934884974896114,
+              "improved_patterns": 3,
+              "boundary_improvement_screen": null
+            },
+            "held_out_all": {
+              "case_count": 9,
+              "spatial_rmse_k": 0.7792510408993357,
+              "uniform_continuum_spatial_rmse_k": 1.1542686583640847,
+              "relative_reduction": 0.3248963010017545,
+              "improved_patterns": 9,
+              "boundary_improvement_screen": true
+            },
+            "held_out_below_40w": {
+              "case_count": 9,
+              "spatial_rmse_k": 0.7792510408993357,
+              "uniform_continuum_spatial_rmse_k": 1.1542686583640847,
+              "relative_reduction": 0.3248963010017545,
+              "improved_patterns": 9,
+              "boundary_improvement_screen": null
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -15,20 +15,26 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--restore-stress-geometry',action='store_true')
     parser.add_argument('--temperatures',type=float,nargs='+',default=[25.,100.])
+    parser.add_argument('--cell',choices=('buf_8','inv_1'),default='buf_8')
     args=parser.parse_args()
+    if args.restore_stress_geometry and args.cell!='buf_8':
+        raise ValueError('stress-geometry counterfactual is declared only for buf_8')
     if len(set(args.temperatures))!=len(args.temperatures) or any(not 25<=t<=100 for t in args.temperatures):
         raise ValueError('unique temperatures within the 25..100 C bracket required')
     out=args.output; out.mkdir(exist_ok=False)
     primitive=prepare(Path('local/pad-spice'))
-    url='https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/buf/sky130_fd_sc_hd__buf_8.spice'
+    family=args.cell.split('_')[0]
+    url=f'https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/{family}/sky130_fd_sc_hd__{args.cell}.spice'
     raw=urlopen(url,timeout=30).read()
-    original=out/'buf_8_original.spice'; original.write_bytes(raw)
-    if digest(original)!='98bafb7bbd4aa107e9b0090ee241f30a6a84aa5b394bb8eaca5b189a207cd5c7':
+    original=out/(args.cell+'_original.spice'); original.write_bytes(raw)
+    hashes={'buf_8':'98bafb7bbd4aa107e9b0090ee241f30a6a84aa5b394bb8eaca5b189a207cd5c7',
+            'inv_1':'1099e3641c46d241852db47974540b3ad161e20e01b74f2fd5cc152627011909'}
+    if digest(original)!=hashes[args.cell]:
         raise ValueError('pinned core netlist hash mismatch')
-    cdl=out/'buf_8.cdl'; cdl.write_bytes(urlopen(url.replace('.spice','.cdl'),timeout=30).read())
-    if cdl.read_text().count('sa=0.265')!=4 or cdl.read_text().count('sb=0.265 sd=0.28')!=4:
+    cdl=out/(args.cell+'.cdl'); cdl.write_bytes(urlopen(url.replace('.spice','.cdl'),timeout=30).read())
+    if args.restore_stress_geometry and (cdl.read_text().count('sa=0.265')!=4 or cdl.read_text().count('sb=0.265 sd=0.28')!=4):
         raise ValueError('unexpected source stress geometry')
-    net=out/'buf_8.spice'
+    net=out/(args.cell+'.spice')
     if args.restore_stress_geometry:
         text='\n'.join(line+' sa=265000u sb=265000u sd=280000u' if line.startswith('X') else line for line in raw.decode().splitlines())+'\n'
         net.write_text(text)
@@ -37,26 +43,32 @@ def main():
     init=out/'empty-init'; init.mkdir(); (init/'spinit').write_text('* explicit transistor models only\n')
     exe=Path('local/ngspice-42-msys2/ucrt64/bin/ngspice_con.exe').resolve()
     lib=Path('local/pad-spice/sky130A/libs.tech/ngspice/sky130.lib.spice').resolve()
-    report=dict(complete=False,source_sha256=digest(__file__),netlist_url=url,netlist_sha256=digest(net),
+    report=dict(complete=False,cell=args.cell,source_sha256=digest(__file__),netlist_url=url,netlist_sha256=digest(net),
                 primitive_sources=primitive,executable_sha256=digest(exe),physical_qualified=False, original_netlist_sha256=digest(original), cdl_sha256=digest(cdl), restore_stress_geometry=args.restore_stress_geometry, cases=[])
-    libraries=[Path(f'local/pdk-v03/sky_buf_8_tt_{t:03d}C_1v80.json') for t in (25,100)]
+    libraries=[Path(f'local/pdk-v03/sky_{args.cell}_tt_{t:03d}C_1v80.json') for t in (25,100)]
     endpoints=[json.loads(p.read_text()) for p in libraries]
+    output_pin='X' if args.cell=='buf_8' else 'Y'
+    reference=endpoints[0]['pin,'+output_pin]['timing']['cell_rise,del_1_7_7']
+    slew=reference['index_1'][3]; loads=reference['index_2'][3:5]
+    report['declared_stimulus']=dict(input_slew_ns=slew,external_loads_pf=loads,steps_ps=[2.,1.],
+        policy='fixed_25C_knots_bounded_queries_at_other_temperatures')
     for temp in args.temperatures:
-        tables=interpolate_cell(*endpoints,(temp-25)/75)['pin,X']['timing']
-        # Two exact load knots per temperature; eliminate load/slew interpolation as a confounder.
-        tab=tables['cell_rise,del_1_7_7']; slew=tab['index_1'][3]
-        for load in tab['index_2'][3:5]:
+        tables=interpolate_cell(*endpoints,(temp-25)/75)['pin,'+output_pin]['timing']
+        if tables['timing_sense']!=('positive_unate' if args.cell=='buf_8' else 'negative_unate'):
+            raise ValueError('unexpected cell edge semantics')
+        # Hold physical stimuli fixed; other temperatures may require bounded interpolation.
+        for load in loads:
             for step in (2.,1.):
                 name=f't{temp}_c{load}_dt{step:g}'; folder=out/name; folder.mkdir()
                 ramp=slew/.6
-                deck=f'''Same-revision buf_8 diagnostic, not qualified characterization
+                deck=f'''Same-revision {args.cell} diagnostic, not qualified characterization
     .lib "{lib.as_posix()}" tt
     .include "{net.resolve().as_posix()}"
     .options scale=1u reltol=1e-6 abstol=1e-13 vntol=1e-8
     .temp {temp}
     VDD vdd 0 1.8
     VIN vin 0 PWL(0 0 2n 0 {2+ramp}n 1.8 6n 1.8 {6+ramp}n 0 10n 0)
-    Xbuf vin 0 0 vdd vdd out sky130_fd_sc_hd__buf_8
+    Xbuf vin 0 0 vdd vdd out sky130_fd_sc_hd__{args.cell}
     Cload out 0 {load}p
     .control
     set numdgt=15
@@ -76,9 +88,10 @@ def main():
                 if run.returncode or re.search(r'(?im)^\s*(?:error|fatal|warning):',screened_log):
                     raise ValueError('unadmitted simulator log '+name)
                 data=np.loadtxt(folder/'wave.txt'); t=data[:,0]*1e9; measured={}
-                for edge,start,stop in [('rise',1.9,5.9),('fall',5.9,9.9)]:
+                for input_edge,start,stop in [('rise',1.9,5.9),('fall',5.9,9.9)]:
+                    edge=input_edge if args.cell=='buf_8' else ('fall' if input_edge=='rise' else 'rise')
                     mask=(t>=start)&(t<=stop); times=t[mask]; a,b=data[mask,1],data[mask,2]; rising=edge=='rise'
-                    delay=crossing_ns(times,b,.9,rising)-crossing_ns(times,a,.9,rising)
+                    delay=crossing_ns(times,b,.9,rising)-crossing_ns(times,a,.9,input_edge=='rise')
                     transition=abs(crossing_ns(times,b,.36,rising)-crossing_ns(times,b,1.44,rising))
                     for quantity,value,key in [('delay',delay,'cell_'+edge),('slew',transition,edge+'_transition')]:
                         table=tables[key+',del_1_7_7']

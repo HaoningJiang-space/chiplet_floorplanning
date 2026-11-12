@@ -1,0 +1,167 @@
+{
+  "source_sha256": "55738255e06596744d2718c58cc89e75d8d144e566fd50edda17875337bb5c35",
+  "input_sha256": {
+    "results\\physical-calibration\\core-inverter-v2\\report.json": "dce02d3e42693ffed7c7fbf05843418278cd177677b89e7fc5174bd4ccb41af3"
+  },
+  "physical_qualified": false,
+  "cell": "inv_1",
+  "declared_stimulus": {
+    "input_slew_ns": 0.122474,
+    "external_loads_pf": [
+      0.00952062,
+      0.0254232
+    ],
+    "steps_ps": [
+      2.0,
+      1.0
+    ],
+    "policy": "fixed_25C_knots_bounded_queries_at_other_temperatures"
+  },
+  "scope": "fixed-stimulus schematic diagnostic; no production slack or physical error bound",
+  "rows": [
+    {
+      "load_pf": 0.00952062,
+      "step_ps": 2.0,
+      "metric": "fall_delay",
+      "spice_delta_25_100_ps": 2.871418693167982,
+      "liberty_delta_25_100_ps": 3.6821295935585003,
+      "delta_discrepancy_ps": -0.8107109003905184,
+      "spice_midpoint_curvature_ps": -0.0051944251628910365
+    },
+    {
+      "load_pf": 0.00952062,
+      "step_ps": 2.0,
+      "metric": "fall_slew",
+      "spice_delta_25_100_ps": 4.228318129527953,
+      "liberty_delta_25_100_ps": 5.8289941683194595,
+      "delta_discrepancy_ps": -1.6006760387915069,
+      "spice_midpoint_curvature_ps": 0.015347828784983975
+    },
+    {
+      "load_pf": 0.00952062,
+      "step_ps": 2.0,
+      "metric": "rise_delay",
+      "spice_delta_25_100_ps": -11.1763354699006,
+      "liberty_delta_25_100_ps": -9.335423026421818,
+      "delta_discrepancy_ps": -1.840912443478782,
+      "spice_midpoint_curvature_ps": -0.22972891931649642
+    },
+    {
+      "load_pf": 0.00952062,
+      "step_ps": 2.0,
+      "metric": "rise_slew",
+      "spice_delta_25_100_ps": -3.7894752691736144,
+      "liberty_delta_25_100_ps": -0.7103993447993562,
+      "delta_discrepancy_ps": -3.0790759243742585,
+      "spice_midpoint_curvature_ps": -0.36165239612584443
+    },
+    {
+      "load_pf": 0.00952062,
+      "step_ps": 1.0,
+      "metric": "fall_delay",
+      "spice_delta_25_100_ps": 2.8680911344456383,
+      "liberty_delta_25_100_ps": 3.6821295935585003,
+      "delta_discrepancy_ps": -0.814038459112862,
+      "spice_midpoint_curvature_ps": -0.002978369632034017
+    },
+    {
+      "load_pf": 0.00952062,
+      "step_ps": 1.0,
+      "metric": "fall_slew",
+      "spice_delta_25_100_ps": 4.2433208370513675,
+      "liberty_delta_25_100_ps": 5.8289941683194595,
+      "delta_discrepancy_ps": -1.585673331268092,
+      "spice_midpoint_curvature_ps": 0.009707171915840362
+    },
+    {
+      "load_pf": 0.00952062,
+      "step_ps": 1.0,
+      "metric": "rise_delay",
+      "spice_delta_25_100_ps": -11.175828212397043,
+      "liberty_delta_25_100_ps": -9.335423026421818,
+      "delta_discrepancy_ps": -1.840405185975225,
+      "spice_midpoint_curvature_ps": -0.23114465218521119
+    },
+    {
+      "load_pf": 0.00952062,
+      "step_ps": 1.0,
+      "metric": "rise_slew",
+      "spice_delta_25_100_ps": -3.78625367531793,
+      "liberty_delta_25_100_ps": -0.7103993447993562,
+      "delta_discrepancy_ps": -3.075854330518574,
+      "spice_midpoint_curvature_ps": -0.35439503390799487
+    },
+    {
+      "load_pf": 0.0254232,
+      "step_ps": 2.0,
+      "metric": "fall_delay",
+      "spice_delta_25_100_ps": 7.514794069109598,
+      "liberty_delta_25_100_ps": 9.697556199874363,
+      "delta_discrepancy_ps": -2.1827621307647647,
+      "spice_midpoint_curvature_ps": -0.02429738715648
+    },
+    {
+      "load_pf": 0.0254232,
+      "step_ps": 2.0,
+      "metric": "fall_slew",
+      "spice_delta_25_100_ps": 11.892096410837105,
+      "liberty_delta_25_100_ps": 15.11707686477512,
+      "delta_discrepancy_ps": -3.2249804539380147,
+      "spice_midpoint_curvature_ps": -0.11051374510495648
+    },
+    {
+      "load_pf": 0.0254232,
+      "step_ps": 2.0,
+      "metric": "rise_delay",
+      "spice_delta_25_100_ps": -20.51662586465053,
+      "liberty_delta_25_100_ps": -15.94049951198484,
+      "delta_discrepancy_ps": -4.576126352665689,
+      "spice_midpoint_curvature_ps": -0.5167881352163839
+    },
+    {
+      "load_pf": 0.0254232,
+      "step_ps": 2.0,
+      "metric": "rise_slew",
+      "spice_delta_25_100_ps": -16.77360782660564,
+      "liberty_delta_25_100_ps": -10.085630521704719,
+      "delta_discrepancy_ps": -6.687977304900922,
+      "spice_midpoint_curvature_ps": -0.7102292890017736
+    },
+    {
+      "load_pf": 0.0254232,
+      "step_ps": 1.0,
+      "metric": "fall_delay",
+      "spice_delta_25_100_ps": 7.514828105209315,
+      "liberty_delta_25_100_ps": 9.697556199874363,
+      "delta_discrepancy_ps": -2.1827280946650482,
+      "spice_midpoint_curvature_ps": -0.024280968335732567
+    },
+    {
+      "load_pf": 0.0254232,
+      "step_ps": 1.0,
+      "metric": "fall_slew",
+      "spice_delta_25_100_ps": 11.893427941202184,
+      "liberty_delta_25_100_ps": 15.11707686477512,
+      "delta_discrepancy_ps": -3.223648923572936,
+      "spice_midpoint_curvature_ps": -0.11403053583958211
+    },
+    {
+      "load_pf": 0.0254232,
+      "step_ps": 1.0,
+      "metric": "rise_delay",
+      "spice_delta_25_100_ps": -20.517929073519348,
+      "liberty_delta_25_100_ps": -15.94049951198484,
+      "delta_discrepancy_ps": -4.577429561534508,
+      "spice_midpoint_curvature_ps": -0.5171841113029707
+    },
+    {
+      "load_pf": 0.0254232,
+      "step_ps": 1.0,
+      "metric": "rise_slew",
+      "spice_delta_25_100_ps": -16.773044862731012,
+      "liberty_delta_25_100_ps": -10.085630521704719,
+      "delta_discrepancy_ps": -6.687414341026294,
+      "spice_midpoint_curvature_ps": -0.7092501739300872
+    }
+  ]
+}
