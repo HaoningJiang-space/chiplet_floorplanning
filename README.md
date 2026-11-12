@@ -10,7 +10,9 @@
 热评估现采用 [冻结的 TAP 有限体积研究模型](docs/tap-fv-contract.md)，由现有组装器和 HiTS 本地求解。
 [三个完整案例的数值准入](docs/tap-fv-admission.md) 已通过；这不是实测校准或 HotSpot 原温度复现。
 固定 HotSpot 7 Detailed-3D 的 [内部边界问题](docs/tap-native-boundary-audit.md) 保留为拒绝证据，
-[Chat 审核](docs/tap-boundary-chat-review.md) 已确认问题；下一步冻结有限互连资源与精确布局子域。
+[Chat 审核](docs/tap-boundary-chat-review.md) 已确认该原生边界问题。
+新增 [有限资源图的路由覆盖证据](docs/tap-global-routing-results.md)：冻结域中 77 个热等价类均有整数路由见证，
+因此该粗粒度图模型内的最优热代价为零；详细逃逸、轨道分配、PHY 与回流仍未验证。
 
 此前建立的评估平台见 [Goal 01：统一电热布局决策](docs/goal01-integrated-decision.md)。
 新的 `evaluate(layout, configuration)` 已接通 3 芯粒、8 Lane、显式 Pin 旋转、
