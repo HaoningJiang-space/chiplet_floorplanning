@@ -285,4 +285,6 @@ def run_policy(domain, initial, scale, method, seed, solve, budget=64, proposal_
         checkpoints=ev.checkpoints, rows=ev.rows, events=ev.events)
     if ev.rows:
         result['final_metrics'] = metrics(ev.rows, scale)
+    from tap_r3_metrics import summarize
+    result['research_metrics'] = summarize(result, scale)
     return result

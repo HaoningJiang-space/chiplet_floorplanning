@@ -6,10 +6,36 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from tap_online import Evaluator, LimitReached
-from tap_published_moves import NeighbourhoodExhausted, propose
+from tap_published_moves import NeighbourhoodExhausted, propose, acceptance, run_tap_policy
 
 
 class PublishedMovesTest(unittest.TestCase):
+    def test_upstream_adaptive_acceptance_and_degenerate_range(self):
+        import math
+        old = dict(peak_c=75, centre_span_mm=20)
+        new = dict(peak_c=79, centre_span_mm=30)
+        self.assertAlmostEqual(acceptance(old, new, ((75, 79), (20, 30)), .5), math.exp(-2))
+        self.assertAlmostEqual(acceptance(old, new, ((75, 79), (20, 20)), 1), math.exp(-10))
+        new = dict(peak_c=81, centre_span_mm=10)
+        self.assertEqual(acceptance(old, new, ((75, 81), (10, 20)), 1), 1)
+
+    def test_tap_complete_budget_and_common_metrics(self):
+        from tap_online_unittest import OnlineTest, SCALE
+        from tap_r3_metrics import summarize, paired_difference
+        fixture = OnlineTest()
+        def solve(p):
+            return dict(peak_power_layer_c=70+sum(x['centre_x_um'] for x in p)/10000,
+                        numerical_admission_passed=True)
+        result = run_tap_policy(fixture.domain(), fixture.initial(), SCALE, 23, solve)
+        self.assertEqual((result['status'], result['queries']), ('complete_query_budget', 64))
+        self.assertTrue(result['decisions'])
+        score = summarize(result, SCALE)
+        self.assertGreaterEqual(score['hypervolume_gain_from_initial'], 0)
+        self.assertEqual(score['distinct_thermal_states'], 64)
+        self.assertEqual(score['hypervolume'], result['final_metrics']['hypervolume'])
+        self.assertEqual(paired_difference(score, score)['hypervolume'], 0)
+        self.assertAlmostEqual(score['legal_proposal_fraction']+score['illegal_proposal_fraction'], 1)
+
     def evaluator(self, side=6000, cap=100):
         domain = dict(interposer_side_um=side, centre_grid_um=1000, minimum_gap_um=100,
                       rotations_deg=[0, 90, 180, 270], connection_wire_demands=[[0]],
