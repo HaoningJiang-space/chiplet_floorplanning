@@ -8,13 +8,16 @@ from scipy.interpolate import RegularGridInterpolator
 
 from validation.pad_sources import prepare
 from validation.pad_spice import crossing_ns
-from chiplet_floorplanning.characterization import digest
+from chiplet_floorplanning.characterization import digest, interpolate_cell
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--restore-stress-geometry',action='store_true')
+    parser.add_argument('--temperatures',type=float,nargs='+',default=[25.,100.])
     args=parser.parse_args()
+    if len(set(args.temperatures))!=len(args.temperatures) or any(not 25<=t<=100 for t in args.temperatures):
+        raise ValueError('unique temperatures within the 25..100 C bracket required')
     out=args.output; out.mkdir(exist_ok=False)
     primitive=prepare(Path('local/pad-spice'))
     url='https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/cells/buf/sky130_fd_sc_hd__buf_8.spice'
@@ -36,9 +39,10 @@ def main():
     lib=Path('local/pad-spice/sky130A/libs.tech/ngspice/sky130.lib.spice').resolve()
     report=dict(complete=False,source_sha256=digest(__file__),netlist_url=url,netlist_sha256=digest(net),
                 primitive_sources=primitive,executable_sha256=digest(exe),physical_qualified=False, original_netlist_sha256=digest(original), cdl_sha256=digest(cdl), restore_stress_geometry=args.restore_stress_geometry, cases=[])
-    for temp in (25,100):
-        library=Path(f'local/pdk-v03/sky_buf_8_tt_{temp:03d}C_1v80.json')
-        tables=json.loads(library.read_text())['pin,X']['timing']
+    libraries=[Path(f'local/pdk-v03/sky_buf_8_tt_{t:03d}C_1v80.json') for t in (25,100)]
+    endpoints=[json.loads(p.read_text()) for p in libraries]
+    for temp in args.temperatures:
+        tables=interpolate_cell(*endpoints,(temp-25)/75)['pin,X']['timing']
         # Two exact load knots per temperature; eliminate load/slew interpolation as a confounder.
         tab=tables['cell_rise,del_1_7_7']; slew=tab['index_1'][3]
         for load in tab['index_2'][3:5]:
@@ -81,7 +85,10 @@ def main():
                         reference=float(RegularGridInterpolator((table['index_1'],table['index_2']),table['values'],bounds_error=True)([[slew,load]])[0])
                         measured[edge+'_'+quantity]=dict(spice_ns=value,liberty_ns=reference,difference_ps=(value-reference)*1000)
                 report['cases'].append(dict(name=name,temp_c=temp,input_slew_ns=slew,external_load_pf=load,step_ps=step,
-                    known_library_warning=known_warning if known_warning in log else None, library_sha256=digest(library),deck_sha256=digest(folder/'deck.sp'),waveform_sha256=digest(folder/'wave.txt'),metrics=measured))
+                    known_library_warning=known_warning if known_warning in log else None,
+                    library_source_sha256={str(p):digest(p) for p in libraries},
+                    temperature_interpolated=temp not in (25,100),
+                    deck_sha256=digest(folder/'deck.sp'),waveform_sha256=digest(folder/'wave.txt'),metrics=measured))
                 print(name,measured,flush=True)
                 (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
     report['complete']=True

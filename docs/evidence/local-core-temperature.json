@@ -1,0 +1,155 @@
+{
+  "source_sha256": "dd744247c8d68932f138cca3c2c66d59ebc90095142d49828115d5b9e9bc9a59",
+  "input_sha256": {
+    "results\\physical-calibration\\core-buf-repro-v1\\report.json": "9086c47e6a8e993fa5ba1e9d651f29a1b063112d58e5a2698249cdc3d8bc4cc1",
+    "results\\physical-calibration\\core-buf-midpoint-v1\\report.json": "01ce0e4b977bbae47f9bb66e30a69942a8183bea83273e70152536b85a2ecad5"
+  },
+  "physical_qualified": false,
+  "scope": "two-load buf_8 schematic diagnostic; no production slack or physical error bound",
+  "rows": [
+    {
+      "load_pf": 0.05,
+      "step_ps": 1.0,
+      "metric": "rise_delay",
+      "spice_delta_25_100_ps": -2.41183259472999,
+      "liberty_delta_25_100_ps": -3.7961000000000245,
+      "delta_discrepancy_ps": 1.3842674052700343,
+      "spice_midpoint_curvature_ps": -0.22140924592695121
+    },
+    {
+      "load_pf": 0.05,
+      "step_ps": 1.0,
+      "metric": "rise_slew",
+      "spice_delta_25_100_ps": -2.946867809060283,
+      "liberty_delta_25_100_ps": -2.9354999999999936,
+      "delta_discrepancy_ps": -0.011367809060289336,
+      "spice_midpoint_curvature_ps": -0.23776064280878195
+    },
+    {
+      "load_pf": 0.05,
+      "step_ps": 1.0,
+      "metric": "fall_delay",
+      "spice_delta_25_100_ps": -13.255462706861287,
+      "liberty_delta_25_100_ps": -12.617900000000015,
+      "delta_discrepancy_ps": -0.6375627068612726,
+      "spice_midpoint_curvature_ps": -0.0735030671292769
+    },
+    {
+      "load_pf": 0.05,
+      "step_ps": 1.0,
+      "metric": "fall_slew",
+      "spice_delta_25_100_ps": 4.3951504241785955,
+      "liberty_delta_25_100_ps": 4.8357999999999945,
+      "delta_discrepancy_ps": -0.4406495758213991,
+      "spice_midpoint_curvature_ps": -0.023402355097346117
+    },
+    {
+      "load_pf": 0.05,
+      "step_ps": 2.0,
+      "metric": "rise_delay",
+      "spice_delta_25_100_ps": -2.408563400527086,
+      "liberty_delta_25_100_ps": -3.7961000000000245,
+      "delta_discrepancy_ps": 1.3875365994729383,
+      "spice_midpoint_curvature_ps": -0.2211891834891233
+    },
+    {
+      "load_pf": 0.05,
+      "step_ps": 2.0,
+      "metric": "rise_slew",
+      "spice_delta_25_100_ps": -2.9520322772591534,
+      "liberty_delta_25_100_ps": -2.9354999999999936,
+      "delta_discrepancy_ps": -0.016532277259159844,
+      "spice_midpoint_curvature_ps": -0.24087766598168692
+    },
+    {
+      "load_pf": 0.05,
+      "step_ps": 2.0,
+      "metric": "fall_delay",
+      "spice_delta_25_100_ps": -13.254992066380922,
+      "liberty_delta_25_100_ps": -12.617900000000015,
+      "delta_discrepancy_ps": -0.637092066380907,
+      "spice_midpoint_curvature_ps": -0.0733424527519233
+    },
+    {
+      "load_pf": 0.05,
+      "step_ps": 2.0,
+      "metric": "fall_slew",
+      "spice_delta_25_100_ps": 4.381407413569072,
+      "liberty_delta_25_100_ps": 4.8357999999999945,
+      "delta_discrepancy_ps": -0.45439258643092284,
+      "spice_midpoint_curvature_ps": -0.019367193593300414
+    },
+    {
+      "load_pf": 0.232079,
+      "step_ps": 1.0,
+      "metric": "rise_delay",
+      "spice_delta_25_100_ps": -15.51200550264431,
+      "liberty_delta_25_100_ps": -18.604300000000016,
+      "delta_discrepancy_ps": 3.092294497355706,
+      "spice_midpoint_curvature_ps": -0.6580582258515211
+    },
+    {
+      "load_pf": 0.232079,
+      "step_ps": 1.0,
+      "metric": "rise_slew",
+      "spice_delta_25_100_ps": -18.88574851111624,
+      "liberty_delta_25_100_ps": -18.91670000000001,
+      "delta_discrepancy_ps": 0.030951488883768974,
+      "spice_midpoint_curvature_ps": -0.8072984240534709
+    },
+    {
+      "load_pf": 0.232079,
+      "step_ps": 1.0,
+      "metric": "fall_delay",
+      "spice_delta_25_100_ps": -5.383840355713154,
+      "liberty_delta_25_100_ps": -4.4695999999999625,
+      "delta_discrepancy_ps": -0.9142403557131917,
+      "spice_midpoint_curvature_ps": -0.13435079407786432
+    },
+    {
+      "load_pf": 0.232079,
+      "step_ps": 1.0,
+      "metric": "fall_slew",
+      "spice_delta_25_100_ps": 14.236244927423591,
+      "liberty_delta_25_100_ps": 16.672500000000007,
+      "delta_discrepancy_ps": -2.436255072576415,
+      "spice_midpoint_curvature_ps": -0.13670610015781293
+    },
+    {
+      "load_pf": 0.232079,
+      "step_ps": 2.0,
+      "metric": "rise_delay",
+      "spice_delta_25_100_ps": -15.511223946429897,
+      "liberty_delta_25_100_ps": -18.604300000000016,
+      "delta_discrepancy_ps": 3.093076053570119,
+      "spice_midpoint_curvature_ps": -0.6588051572438136
+    },
+    {
+      "load_pf": 0.232079,
+      "step_ps": 2.0,
+      "metric": "rise_slew",
+      "spice_delta_25_100_ps": -18.886916666820852,
+      "liberty_delta_25_100_ps": -18.91670000000001,
+      "delta_discrepancy_ps": 0.029783333179157268,
+      "spice_midpoint_curvature_ps": -0.8055975453555853
+    },
+    {
+      "load_pf": 0.232079,
+      "step_ps": 2.0,
+      "metric": "fall_delay",
+      "spice_delta_25_100_ps": -5.383483570052583,
+      "liberty_delta_25_100_ps": -4.4695999999999625,
+      "delta_discrepancy_ps": -0.9138835700526204,
+      "spice_midpoint_curvature_ps": -0.1339415465797522
+    },
+    {
+      "load_pf": 0.232079,
+      "step_ps": 2.0,
+      "metric": "fall_slew",
+      "spice_delta_25_100_ps": 14.23317942310387,
+      "liberty_delta_25_100_ps": 16.672500000000007,
+      "delta_discrepancy_ps": -2.4393205768961366,
+      "spice_midpoint_curvature_ps": -0.1393746400126794
+    }
+  ]
+}

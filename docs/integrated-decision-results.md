@@ -218,6 +218,34 @@ retain source/deck/waveform hashes locally. The evidence distinguishes the
 original exploratory source fingerprints from the reproduced runner. Validation
 after adding the runner: 190 unit checks and the documented basic CLI passed.
 
+The [temperature differential audit](evidence/local-core-temperature.json)
+adds four independent SPICE runs at 62.5 C to the eight endpoint runs. The
+auditor requires all twelve frozen temperature/load/step combinations, unchanged
+netlist/executable/primitive identities, unchanged hashed decks/waveforms, equal
+actual input slew, and decks differing only in temperature and the path to the
+same cell. It separates absolute mismatch from temperature response:
+
+| Load pF | Metric | SPICE minus Liberty 25-to-100 C change, ps | SPICE midpoint minus endpoint mean, ps |
+|---|---|---:|---:|
+| 0.05 | rise delay | 1.384267 | -0.221409 |
+| 0.05 | fall delay | -0.637563 | -0.073503 |
+| 0.232079 | rise delay | 3.092294 | -0.658058 |
+| 0.232079 | fall delay | -0.914240 | -0.134351 |
+
+Values use the 1 ps maximum step; both step levels remain in the evidence.
+Output-slew midpoint curvature reaches 0.807299 ps. These are observed differences
+in the declared schematic, not certified uncertainty bounds or evidence that
+the original absolute mismatch has been resolved. A buf_8 result at two loads
+cannot qualify the FF clock-to-Q/setup/hold, inverter, all slew/load domains,
+Pad behavior or whole-path temperature correction. No measured correction is
+applied to production timing. The positive next step is matched temperature
+validation of those other active cell arcs, while preserving the PEX limitation.
+
+```powershell
+python tools/audit_core_buffer_spice.py --temperatures 62.5 --output results/core-buffer-midpoint
+python tools/audit_core_temperature.py results/core-buffer-original results/core-buffer-midpoint --output results/core-temperature.json
+```
+
 The GitHub-only Chat review at `5e6ef7c` enumerated all 43 reachable commits,
 read the four changes since its prior review and the eight principal core
 modules/six experiment tools. It independently confirmed the finite-domain
