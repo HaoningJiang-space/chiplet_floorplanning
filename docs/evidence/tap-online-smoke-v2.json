@@ -1,0 +1,100 @@
+{
+  "status": "rng_regression_verified",
+  "plan_sha256": "e07cb5c2002ef9285b731927cc900e8d5e8743f429ed753be72dcfe2ae543a30",
+  "total_hits_queries": 32,
+  "records": [
+    {
+      "raw_result_sha256": "5d070ffbbd34985a483c01fdfe2e25ec352303ea991749c267bf0678407d29ef",
+      "search_seed": 2027111200,
+      "case": "ascend910",
+      "method": "random",
+      "seed": 2026111200,
+      "status": "complete_query_budget",
+      "budget": 32,
+      "queries": 32,
+      "solve_attempts": 32,
+      "proposals": 34,
+      "illegal_proposals": 2,
+      "cache_hits": 0,
+      "generations": 0,
+      "construction_candidate_checks": 623520,
+      "geometry_seconds": 0.003750700270757079,
+      "solve_seconds": 72.66848349978682,
+      "elapsed_seconds": 73.87037610006519,
+      "checkpoints": [
+        {
+          "queries": 16,
+          "proposals": 16,
+          "elapsed_seconds": 36.008552900049835,
+          "archive_query_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            10,
+            11,
+            15
+          ],
+          "hypervolume": 0.8987971082789193,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 76.6740467139879,
+          "best_centre_span_mm": 26.26143790849673
+        },
+        {
+          "queries": 32,
+          "proposals": 34,
+          "elapsed_seconds": 73.86963980004657,
+          "archive_query_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            11,
+            15,
+            16,
+            20,
+            22,
+            25,
+            26,
+            28,
+            30
+          ],
+          "hypervolume": 0.9100179235555436,
+          "archive_points_outside_reference": 0,
+          "best_peak_c": 76.6740467139879,
+          "best_centre_span_mm": 26.26143790849673
+        }
+      ],
+      "final_metrics": {
+        "archive_query_indices": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          7,
+          11,
+          15,
+          16,
+          20,
+          22,
+          25,
+          26,
+          28,
+          30
+        ],
+        "hypervolume": 0.9100179235555436,
+        "archive_points_outside_reference": 0,
+        "best_peak_c": 76.6740467139879,
+        "best_centre_span_mm": 26.26143790849673
+      },
+      "timing_scope": "online elapsed includes per-run domain setup and all evaluation/reference checks; offline manifest construction separately counted"
+    }
+  ],
+  "scope": "execution and accounting smoke only; no method-performance conclusion"
+}

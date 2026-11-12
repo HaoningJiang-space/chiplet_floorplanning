@@ -80,6 +80,7 @@ class OnlineTest(unittest.TestCase):
                             numerical_admission_passed=True)
             result = run_policy(self.domain(), initial, SCALE, method, 23, solve, budget=32)
             self.assertEqual(result['status'], 'complete_query_budget', result['reason'])
+            self.assertEqual(result['search_seed'], 1000023)
             self.assertEqual(len(calls), 32)
             self.assertEqual(len(set(calls)), 32)
             self.assertEqual(calls[:16], [thermal_key(p) for p in initial])

@@ -1,4 +1,4 @@
-# Online baseline protocol v1
+# Online baseline protocol v2
 
 This is a mechanism comparison, not a new optimizer or SOTA result. Use the
 three original TAP domains, uniform source powers and frozen FV/HiTS contract.
@@ -16,6 +16,10 @@ the next chip's legal candidates. This is biased joint sampling. All methods
 evaluate exactly that same list first. Each run has its own initially empty
 cache; initialization costs 16 of its 64 HiTS queries. The complete pilot has
 45 runs and at most 2,880 charged queries. No cross-run cached values are used.
+Initialization uses the listed seed; online policy proposals use seed + 1000000
+for every method. This avoids replaying the initialization construction stream.
+V1 smoke evidence remains historical; v2 changes only this RNG separation and
+extends source fingerprints to the imported key/span/hash helper scripts.
 
 The offline manifest records construction attempts and candidate checks; these
 are common setup, excluded from per-run wall time and never claimed as speedup.

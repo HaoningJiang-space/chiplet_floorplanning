@@ -35,3 +35,19 @@ query caps, failure-as-unknown, HV rectangle union and NSGA-II rank/crowding/
 elitist selection. Three workspace tests cover uncommitted IHP access work
 outside this milestone. The code/protocol was published as `71b6553`; the
 main 45-run pilot has not started. Chat protocol review is the next step.
+
+## V2 setup correction and regression
+
+Online policies now use seed + 1000000, while manifest construction retains
+the original seed. Key/span/hash helpers are included in the implementation
+fingerprints. All 15 per-case/seed initialization sets and objective scales
+were compared and are identical between the v1 and v2 manifests. Operators,
+acceptance, population, objective weights and query budgets were not retuned.
+
+A further real Ascend Random run at budget 32 completed with 34 proposals,
+zero cache hits and two rejected constructions, eliminating the systematic
+initialization replay. See [v2 regression evidence](evidence/tap-online-smoke-v2.json).
+All policies passed controlled accounting/selection tests with the new stream;
+the complete 291-test suite and basic CLI passed again. V1 smoke remains an
+execution check of the unchanged operators, not comparative v2 trial data.
+The five-seed full pilot must use `tap-online-plan-v2.json`.

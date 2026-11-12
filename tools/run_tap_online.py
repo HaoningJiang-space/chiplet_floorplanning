@@ -14,6 +14,8 @@ from chiplet_floorplanning.model import parse_case
 
 HITS_COMMIT = 'be59924de3f0c1a3d6d134aea411d1264cfa64c6'
 SOURCES = ('tools/tap_online.py', 'tools/run_tap_online.py', 'tools/prepare_tap_fv.py',
+           'tools/diagnose_tap_sensitivity.py', 'tools/build_tap_algorithm_oracle.py',
+           'tools/build_tap_ihp_endpoints.py',
            'tools/solve_tap_fv_hits.py', 'tools/freeze_tap_geometry.py',
            'src/chiplet_floorplanning/package.py', 'src/chiplet_floorplanning/power.py',
            'src/chiplet_floorplanning/model.py', 'docs/tap-online-protocol.md',
@@ -27,7 +29,7 @@ def hashes():
 def freeze(path):
     geometry = json.loads(source_bytes('docs/evidence/tap-geometry-domains.json'))
     diagnostic = json.loads(source_bytes('docs/evidence/tap-sensitivity.json'))
-    plan = dict(protocol='tap-online-v1', budget=64, proposal_cap=10000, population=16,
+    plan = dict(protocol='tap-online-v2', budget=64, proposal_cap=10000, population=16,
                 seeds=list(range(2026111200, 2026111205)), hits_commit=HITS_COMMIT,
                 source_sha256=hashes(), cases=[])
     for entry in geometry['cases']:

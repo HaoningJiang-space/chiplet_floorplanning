@@ -184,7 +184,9 @@ def run_policy(domain, initial, scale, method, seed, solve, budget=64, proposal_
     if len({thermal_key(p) for p in initial}) != 16:
         raise ValueError('Initialization must contain 16 distinct thermal states')
     ev = Evaluator(domain, solve, budget, scale, proposal_cap)
-    rng = random.Random(seed)
+    # Keep online proposals separate from objective-independent initialization.
+    search_seed = seed + 1000000
+    rng = random.Random(search_seed)
     status, reason = 'complete_query_budget', None
     generations = 0
     space = None
@@ -243,7 +245,7 @@ def run_policy(domain, initial, scale, method, seed, solve, budget=64, proposal_
         status, reason = 'stopped_at_limit', str(error)
     except Exception as error:
         status, reason = 'failed_unknown', str(error)
-    result = dict(status=status, reason=reason, method=method, seed=seed, budget=budget,
+    result = dict(status=status, reason=reason, method=method, seed=seed, search_seed=search_seed, budget=budget,
         queries=len(ev.rows), solve_attempts=ev.solve_attempts, proposals=ev.proposals,
         illegal_proposals=ev.illegal, cache_hits=ev.cache_hits,
         construction_candidate_checks=space.construction_candidate_checks if space else 0,
