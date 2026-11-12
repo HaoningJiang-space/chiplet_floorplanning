@@ -1,0 +1,24 @@
+{
+  "layouts": {
+    "rot180": {
+      "layout": "results/physical-calibration/integrated-witness-v1/nominal_slot1_rot180_witness",
+      "cold": "results/physical-calibration/xyce-fabric-rot180-strict-v1",
+      "hot": "results/physical-calibration/xyce-hot-rot180-strict-v1"
+    },
+    "rot90": {
+      "layout": "results/physical-calibration/integrated-decision-v1/nominal_slot1_rot90_clock_first",
+      "cold": "results/physical-calibration/xyce-fabric-rot90-strict-v1",
+      "hot": "results/physical-calibration/xyce-hot-rot90-strict-v1"
+    },
+    "rot270": {
+      "layout": "results/physical-calibration/integrated-decision-v1/nominal_slot1_rot270_clock_first",
+      "cold": "results/physical-calibration/xyce-fabric-rot270-strict-v1",
+      "hot": "results/physical-calibration/xyce-hot-rot270-strict-v1"
+    }
+  },
+  "uniform": {
+    "runs": ["results/physical-calibration/xyce-uniform25-v1", "results/physical-calibration/xyce-uniform65-v1"],
+    "cold": "results/physical-calibration/xyce-fabric-rot180-reviewed",
+    "layout": "results/physical-calibration/integrated-witness-v1/nominal_slot1_rot180_witness"
+  }
+}

@@ -3,23 +3,19 @@ import argparse
 from collections import Counter
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 
 from audit_integrated_transistors import build_fabric
 from compare_xyce_fabric import measure
 from chiplet_floorplanning.characterization import digest
-from validation.xyce_output import read_wave
+from validation.xyce_output import read_wave, warning_inventory
 from validation.decision_evidence import verify_saved_sta_files
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('hot', type=Path)
-    parser.add_argument('cold', type=Path)
-    parser.add_argument('layout', type=Path)
-    parser.add_argument('--output', type=Path, required=True)
-    args = parser.parse_args()
+def summarize(hot_root, cold_root, layout):
+    args = SimpleNamespace(hot=hot_root, cold=cold_root, layout=layout)
     hot = json.loads((args.hot/'report.json').read_text())
     cold = json.loads((args.cold/'report.json').read_text())
     if not hot['complete'] or not cold['complete'] or hot['executable_sha256'] != cold['executable_sha256']:
@@ -44,6 +40,8 @@ def main():
             for name, sha in cases[0]['artifacts_sha256'].items():
                 if digest(folder/name) != sha:
                     raise ValueError('modified raw artifact')
+            if warning_inventory((folder/'xyce.log').read_text())['unknown_messages']:
+                raise ValueError('unknown or suppressed diagnostic in paired evidence')
             reference = args.layout/mode
             expected, nodes = build_fabric((reference/'fabric.v').read_text(), sta[mode], (reference/'package.spef').read_text())
             if label == 'hot':
@@ -71,11 +69,12 @@ def main():
                 sta_delta = (window('feedback')-window('reference'))*1000
                 results.append(dict(step_ps=step, lane=h['lane'], edge=h['edge'], window=kind,
                     cold_window_ns=c[metric], hot_window_ns=h[metric], xyce_feedback_change_ps=delta,
+                    sta_cold_window_ns=window('reference'), sta_hot_window_ns=window('feedback'),
                     sta_feedback_change_ps=sta_delta, model_change_difference_ps=delta-sta_delta,
                     opposite_change_direction=delta*sta_delta < 0))
     fine = [r for r in results if r['step_ps'] == 2.5]
     coarse = {(r['lane'], r['edge'], r['window']): r for r in results if r['step_ps'] == 5}
-    summary = dict(complete=True, physical_qualified=False, source_sha256=digest(__file__),
+    summary = dict(complete=True, diagnostics_admitted=True, physical_qualified=False, source_sha256=digest(__file__),
         scope='one assumed-package layout; available windows, not physical slack or layout optimum',
         hot_receipt_sha256=digest(args.hot/'report.json'), cold_receipt_sha256=digest(args.cold/'report.json'),
         opposite_directions=sum(r['opposite_change_direction'] for r in fine),
@@ -87,6 +86,17 @@ def main():
         summary['windows'][kind] = dict(cold_min_ns=min(r['cold_window_ns'] for r in rows),
             hot_min_ns=min(r['hot_window_ns'] for r in rows),
             feedback_change_range_ps=[min(r['xyce_feedback_change_ps'] for r in rows), max(r['xyce_feedback_change_ps'] for r in rows)])
+    return summary
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('hot', type=Path)
+    parser.add_argument('cold', type=Path)
+    parser.add_argument('layout', type=Path)
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    summary = summarize(args.hot, args.cold, args.layout)
     args.output.write_text(json.dumps(summary, indent=2)+'\n')
     print(json.dumps({k: v for k, v in summary.items() if k != 'paths'}, indent=2))
 
