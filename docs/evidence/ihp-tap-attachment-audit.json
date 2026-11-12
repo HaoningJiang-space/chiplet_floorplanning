@@ -1,0 +1,927 @@
+{
+  "status": "conditional_attachment_capacity_audit",
+  "source_commits": {
+    "ADK-Tools": "6b6ffcfdfb0deb9f5e0a2259b7193d128c59d2ea",
+    "OpenIntM4TM2": "a700e4a04724e0e2f266b3161eb19e0476b747d3",
+    "IHP-Open-ADK": "093ae2e75fbc0b1eb3838a426cc1a59d37240aa0",
+    "IHP-Interconnect-IntM4TM2": "6a519e962f7459843a31944e5a86cc1d4ff1cb59"
+  },
+  "source_sha256": {
+    "IHP-Interconnect-IntM4TM2/manifest/interconnect_methods.json": "f425d13e6da09007a7045f6cfd0e617ace7a8038b8b6fbad6cac1789675e9ac2",
+    "OpenIntM4TM2/libs.tech/adk/technology.json": "2bd477c284272efa5573cac0c66379edbd99b8bd612b6481d11d71d58ff5f170",
+    "OpenIntM4TM2/libs.tech/adk/routing/ihp_sg13g2_intm4tm2.routing_tech.json": "45092a4edff92e2f25dd7166e651d11ee0e4f934e52d43ae63647c9dc2b6bbcb",
+    "ADK-Tools/examples/two_die_interposer/carrier_drc_baseline.json": "d4b674450fc250bafca76e04ed9afda6da03351194ce72b0d12d92d632fdbb78",
+    "ADK-Tools/examples/two_die_interposer/outputs/two_die_interposer.chiplet": "0342a52bbf8db4b9afc14b63220a695dbb568edfba138eda34bb624c6f3c1798",
+    "ADK-Tools/examples/two_die_interposer/chiplets/metal_test_chiplet.pins.json": "1a266e8fb096663df98b9bf402ffcc365bb802da7d02a100810f478f458d451e",
+    "ADK-Tools/examples/two_die_interposer/outputs/layout/two_die_interposer_interposer.pillars.json": "7c9c7c5a04f9632575fb546e30655a7494587b9bb29da8f3ce435e8378dd26f0"
+  },
+  "source_hash_convention": "committed Git blob bytes",
+  "geometry_sha256": "b5ae18741cc1ce756bf29ff42b4065a73dc3f902c9e146b0ba7bc68394b04f7e",
+  "routing_layers": [
+    {
+      "abstract_name": "met1",
+      "emitter_name": "Metal4",
+      "gds_layer": 50,
+      "gds_datatype": 0,
+      "preferred_direction": "HORIZONTAL",
+      "min_width_um": 0.2,
+      "min_spacing_um": 0.21,
+      "max_width_um": 30.0,
+      "pitch_um": 0.41,
+      "pitch_provenance": "derived = min_width + min_spacing (not an IHP fab rule)",
+      "kicad_copper_layer": "B.Cu"
+    },
+    {
+      "abstract_name": "met2",
+      "emitter_name": "Metal5",
+      "gds_layer": 67,
+      "gds_datatype": 0,
+      "preferred_direction": "VERTICAL",
+      "min_width_um": 0.2,
+      "min_spacing_um": 0.21,
+      "max_width_um": 30.0,
+      "pitch_um": 0.41,
+      "pitch_provenance": "derived = min_width + min_spacing (not an IHP fab rule)",
+      "kicad_copper_layer": "In2.Cu"
+    },
+    {
+      "abstract_name": "met3",
+      "emitter_name": "TopMetal1",
+      "gds_layer": 126,
+      "gds_datatype": 0,
+      "preferred_direction": "HORIZONTAL",
+      "min_width_um": 1.64,
+      "min_spacing_um": 1.64,
+      "max_width_um": 30.0,
+      "pitch_um": 3.28,
+      "pitch_provenance": "derived = min_width + min_spacing (not an IHP fab rule)",
+      "kicad_copper_layer": "In1.Cu",
+      "width_spacing": []
+    },
+    {
+      "abstract_name": "met4",
+      "emitter_name": "TopMetal2",
+      "gds_layer": 134,
+      "gds_datatype": 0,
+      "preferred_direction": "VERTICAL",
+      "min_width_um": 2.0,
+      "min_spacing_um": 2.0,
+      "max_width_um": 30.0,
+      "pitch_um": 4.0,
+      "pitch_provenance": "derived = min_width + min_spacing (not an IHP fab rule)",
+      "kicad_copper_layer": "F.Cu",
+      "width_spacing": [
+        {
+          "wider_than_um": 5.0,
+          "spacing_um": 5.0,
+          "parallel_run_over_um": 50.0,
+          "rule": "TM2.bR",
+          "source": "interposer_tech_default.json v1.7, keys TM2_bR_w, TM2_bR, TM2_bR_cr"
+        }
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "method": "cupillar_opt1",
+      "vendor": "PacTech (IHP)",
+      "opening_um": 35.0,
+      "spacing_um": 40.0,
+      "conservative_min_separation_nm": 74990,
+      "chips": [
+        {
+          "case": "ascend910",
+          "chip_id": 0,
+          "incident_wire_demand": 2448.0,
+          "block_side_sites": 2,
+          "site_count": 4092,
+          "populated_sites_upper_bound": 1024,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 1,
+          "incident_wire_demand": 400.0,
+          "block_side_sites": 2,
+          "site_count": 1180,
+          "populated_sites_upper_bound": 590,
+          "necessary_capacity_passed": true
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 2,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 3,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 4,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 5,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 0,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 1,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 2,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 3,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 4,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 5,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 6,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 7,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 0,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 2,
+          "site_count": 3228,
+          "populated_sites_upper_bound": 1080,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 1,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 2,
+          "site_count": 3248,
+          "populated_sites_upper_bound": 812,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 2,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 2,
+          "site_count": 3248,
+          "populated_sites_upper_bound": 812,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 3,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 884,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 4,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 884,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 5,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 884,
+          "necessary_capacity_passed": false
+        }
+      ]
+    },
+    {
+      "method": "cupillar_opt2",
+      "vendor": "PacTech (IHP)",
+      "opening_um": 40.0,
+      "spacing_um": 40.0,
+      "conservative_min_separation_nm": 79990,
+      "chips": [
+        {
+          "case": "ascend910",
+          "chip_id": 0,
+          "incident_wire_demand": 2448.0,
+          "block_side_sites": 2,
+          "site_count": 4092,
+          "populated_sites_upper_bound": 1024,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 1,
+          "incident_wire_demand": 400.0,
+          "block_side_sites": 2,
+          "site_count": 1180,
+          "populated_sites_upper_bound": 590,
+          "necessary_capacity_passed": true
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 2,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 3,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 4,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 5,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 0,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 1,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 2,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 3,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 4,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 5,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 6,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 7,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 0,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 2,
+          "site_count": 3228,
+          "populated_sites_upper_bound": 1080,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 1,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 2,
+          "site_count": 3248,
+          "populated_sites_upper_bound": 812,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 2,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 2,
+          "site_count": 3248,
+          "populated_sites_upper_bound": 812,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 3,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 884,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 4,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 884,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 5,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 884,
+          "necessary_capacity_passed": false
+        }
+      ]
+    },
+    {
+      "method": "cupillar_opt3",
+      "vendor": "PacTech (IHP)",
+      "opening_um": 45.0,
+      "spacing_um": 50.0,
+      "conservative_min_separation_nm": 94990,
+      "chips": [
+        {
+          "case": "ascend910",
+          "chip_id": 0,
+          "incident_wire_demand": 2448.0,
+          "block_side_sites": 2,
+          "site_count": 4092,
+          "populated_sites_upper_bound": 1024,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 1,
+          "incident_wire_demand": 400.0,
+          "block_side_sites": 2,
+          "site_count": 1180,
+          "populated_sites_upper_bound": 590,
+          "necessary_capacity_passed": true
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 2,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 3,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 4,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 5,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 2,
+          "site_count": 874,
+          "populated_sites_upper_bound": 438,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 0,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 1,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 2,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 3,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 2,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 784,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 4,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 5,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 6,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 7,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 792,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 0,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 2,
+          "site_count": 3228,
+          "populated_sites_upper_bound": 1080,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 1,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 2,
+          "site_count": 3248,
+          "populated_sites_upper_bound": 812,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 2,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 2,
+          "site_count": 3248,
+          "populated_sites_upper_bound": 812,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 3,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 884,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 4,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 884,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 5,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 2,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 884,
+          "necessary_capacity_passed": false
+        }
+      ]
+    },
+    {
+      "method": "sbump_sac305",
+      "vendor": "PacTech (IHP)",
+      "opening_um": 60.0,
+      "spacing_um": 70.0,
+      "conservative_min_separation_nm": 129990,
+      "chips": [
+        {
+          "case": "ascend910",
+          "chip_id": 0,
+          "incident_wire_demand": 2448.0,
+          "block_side_sites": 3,
+          "site_count": 4092,
+          "populated_sites_upper_bound": 682,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 1,
+          "incident_wire_demand": 400.0,
+          "block_side_sites": 3,
+          "site_count": 1180,
+          "populated_sites_upper_bound": 394,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 2,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 3,
+          "site_count": 874,
+          "populated_sites_upper_bound": 292,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 3,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 3,
+          "site_count": 874,
+          "populated_sites_upper_bound": 292,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 4,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 3,
+          "site_count": 874,
+          "populated_sites_upper_bound": 292,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "ascend910",
+          "chip_id": 5,
+          "incident_wire_demand": 512.0,
+          "block_side_sites": 3,
+          "site_count": 874,
+          "populated_sites_upper_bound": 292,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 0,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 3,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 524,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 1,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 3,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 524,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 2,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 3,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 524,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 3,
+          "incident_wire_demand": 3072.0,
+          "block_side_sites": 3,
+          "site_count": 3128,
+          "populated_sites_upper_bound": 524,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 4,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 3,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 264,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 5,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 3,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 264,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 6,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 3,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 264,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "micro150",
+          "chip_id": 7,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 3,
+          "site_count": 2364,
+          "populated_sites_upper_bound": 264,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 0,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 3,
+          "site_count": 3228,
+          "populated_sites_upper_bound": 360,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 1,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 3,
+          "site_count": 3248,
+          "populated_sites_upper_bound": 544,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 2,
+          "incident_wire_demand": 2560.0,
+          "block_side_sites": 3,
+          "site_count": 3248,
+          "populated_sites_upper_bound": 544,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 3,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 3,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 296,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 4,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 3,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 296,
+          "necessary_capacity_passed": false
+        },
+        {
+          "case": "multigpu",
+          "chip_id": 5,
+          "incident_wire_demand": 2048.0,
+          "block_side_sites": 3,
+          "site_count": 2646,
+          "populated_sites_upper_bound": 296,
+          "necessary_capacity_passed": false
+        }
+      ]
+    }
+  ],
+  "reference_carrier_known_debt": {
+    "TM2.b": {
+      "count": 3,
+      "why": "Minimum TopMetal2 space or notch, 2 um. Was 40 before the exporter's notch heal; the 37 it closed were notches inside one piece of copper, mostly where a trace takes its first bend while still inside a round Cu-pillar pad and so leaves the pad almost tangentially. The 3 that remain all sit on the left edge of a 100 x 100 um wire-bond pad, which the heal stays out of on purpose: Pad.fR measures its 7 um exit band from the edge where the trace crosses the pad marker, so widening the trace there lengthens that edge and enlarges the band that has to stay covered. Healing them was measured and it moved Pad.fR_TM2 from 27 markers to 30 and its uncovered area from 450 to 466 um2, i.e. it traded a notch for a bigger exit violation. Closing these 3 is the same layout fix as Pad.fR_TM2: leave the bond pad orthogonally for 7 um before turning."
+    },
+    "Pad.fR_TM2": {
+      "count": 27,
+      "why": "Recommended, not mandatory (IHP marks recommendations with the R suffix): minimum TopMetal2 exit length of 7 um from a pad. Each marker is the corner of the 7 um exit band left uncovered because the trace leaves the bond pad diagonally. Appeared when the bond pads gained their dfpad and passivation opening, which is what makes them pads to the deck at all; before that the same pads were 35 hard Slt.c violations. Closing it means leaving each bond pad orthogonally for 7 um before turning, which also closes the 3 remaining TM2.b."
+    }
+  },
+  "local_pad_alignment": {
+    "source": {
+      "exit_code": 0,
+      "summary": {
+        "devices_checked": 2,
+        "findings": 0,
+        "warnings": 2,
+        "passed": true
+      },
+      "devices": {
+        "U1": {
+          "pads": 58,
+          "pillars": 58,
+          "matched": 58,
+          "findings": 0
+        },
+        "U2": {
+          "pads": 58,
+          "pillars": 58,
+          "matched": 58,
+          "findings": 0
+        }
+      },
+      "findings": [],
+      "warnings": [
+        "die U1: pillar 'GND' sits 4.995000 um from pad 'GND' (tolerance 1.000000 um) but is flagged moved_by_auto_resolve (shift 4.995106 um) \u2014 the producer's collision auto-resolve shifted it on purpose; not a finding",
+        "die U1: pillar 'GND' sits 5.000000 um from pad 'GND' (tolerance 1.000000 um) but is flagged moved_by_auto_resolve (shift 4.997547 um) \u2014 the producer's collision auto-resolve shifted it on purpose; not a finding"
+      ],
+      "report_sha256": "42a566252a2fbfb60b704ccd45b0f1d04b9651cb2c966722fc2e546f071a2535"
+    },
+    "displaced": {
+      "exit_code": 1,
+      "summary": {
+        "devices_checked": 2,
+        "findings": 1,
+        "warnings": 2,
+        "passed": false
+      },
+      "devices": {
+        "U1": {
+          "pads": 58,
+          "pillars": 58,
+          "matched": 58,
+          "findings": 1
+        },
+        "U2": {
+          "pads": 58,
+          "pillars": 58,
+          "matched": 58,
+          "findings": 0
+        }
+      },
+      "findings": [
+        {
+          "type": "MISALIGNED",
+          "device_ref": "U1",
+          "message": "pad 'DIV_OUTn' sits 99.999000 um from its pillar (tolerance 1.000000 um)",
+          "pad_name": "DIV_OUTn",
+          "pillar_pin_name": "DIV_OUTn",
+          "pad_x_um": 2154.1210000000137,
+          "pad_y_um": 1122.6840000000036,
+          "pillar_x_um": 2254.12,
+          "pillar_y_um": 1122.685,
+          "distance_um": 99.9990000049862
+        }
+      ],
+      "warnings": [
+        "die U1: pillar 'GND' sits 4.995000 um from pad 'GND' (tolerance 1.000000 um) but is flagged moved_by_auto_resolve (shift 4.995106 um) \u2014 the producer's collision auto-resolve shifted it on purpose; not a finding",
+        "die U1: pillar 'GND' sits 5.000000 um from pad 'GND' (tolerance 1.000000 um) but is flagged moved_by_auto_resolve (shift 4.997547 um) \u2014 the producer's collision auto-resolve shifted it on purpose; not a finding"
+      ],
+      "report_sha256": "d4c75705ae6433ec219a84e98d03ce639211945e7d79d25fc428bef535d1a213"
+    }
+  },
+  "scope": "Only subsets of existing 45 um TAP ring sites, one distinct bump per incident conductor; rigid rotations/translations preserve bound.",
+  "excluded": "No new bump coordinates, ring resizing, multiplexing, demo VendorX method, physical TAP infeasibility or complete manufacturing qualification."
+}

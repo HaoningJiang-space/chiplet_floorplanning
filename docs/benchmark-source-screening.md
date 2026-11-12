@@ -1,5 +1,9 @@
 # Initial source screening, 2026-11-12
 
+Follow-up: the [IHP attachment admission audit](ihp-attachment-admission.md)
+checks a compatible pinned public ADK/PDK bundle and proves why its standard
+attachment methods cannot be applied unchanged to the frozen TAP bump sites.
+
 This is provenance screening, not a frozen benchmark or physical qualification.
 Read-only source clones are stored under ignored `local/upstream/`. No external
 tool was executed and no remote experiment was launched.
