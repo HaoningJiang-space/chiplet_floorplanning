@@ -70,6 +70,13 @@ cannot be converted into invented probabilistic confidence intervals.
    common-temperature slopes and a slow-mode lower bound expose the need for
    copper storage/fin heat-loss transient checks before physical attribution;
    see `ttc-package-boundary-results.md`. Finer local grids are still running.
+   The new package transient reduction initially failed; numerical enrichment
+   now passes the frozen same-grid controls on all four level-0 combinations
+   without changing physical parameters. Large package storage and nearly
+   settled spatial contrast coexist in the measured diagnostic windows within
+   this coarse model. Level-1 transient and level-3 steady computations remain
+   active; see `ttc-package-transient-results.md`. This does not close spatial
+   convergence, initialization/measurement uncertainty or physical validation.
 4. Develop multi-lane routing/timing bookkeeping in parallel only as a declared
    engineering model; do not promote it to physically qualified optimization
    until electrical and thermal domains close. Preserve routing failures.
@@ -82,3 +89,6 @@ cannot be converted into invented probabilistic confidence intervals.
 ChatGPT review is advisory: send concrete assumptions/results, record applied
 methodological corrections, and independently verify factual claims in sources.
 Its approval does not close any physical evidence gate.
+Per the user's latest direction, request a comprehensive review of the full
+relevant Git history only after completing a coherent major goal/stage. Keep
+local commits timely while advancing; do not review each small code change.

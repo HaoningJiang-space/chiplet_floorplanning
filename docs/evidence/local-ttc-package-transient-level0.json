@@ -1,0 +1,2338 @@
+{
+  "source_report_sha256": "2565e4cdb66843638ce2c48e97630b9e34c2e4787b2684f9ed34141668689f83",
+  "git": {
+    "commit": "b387f207e33ba486b05200ba97671c0129d6a1a9",
+    "dirty": false
+  },
+  "computation_complete": false,
+  "physical_model_qualified": false,
+  "models": {
+    "heatsink_C_level0": {
+      "group": "heatsink",
+      "model": "C",
+      "level": 0,
+      "full_nodes": 20328,
+      "fixed_mesh_reduction_screen": true,
+      "max_native_trace_order_change_k": 0.0006766695090618668,
+      "numerical_controls": {
+        "finest": {
+          "audit": {
+            "full_nodes": 20328,
+            "reduced_order": 474,
+            "shifts_per_s": [
+              0.0,
+              0.001,
+              0.0017782794100389228,
+              0.0031622776601683794,
+              0.005623413251903491,
+              0.01,
+              0.01778279410038923,
+              0.03162277660168379,
+              0.05623413251903491,
+              0.1,
+              0.1778279410038923,
+              0.31622776601683794,
+              0.5623413251903491,
+              1.0,
+              1.7782794100389228,
+              3.1622776601683795,
+              5.623413251903491,
+              10.0,
+              17.78279410038923,
+              31.622776601683793,
+              56.23413251903491,
+              100.0,
+              177.82794100389228,
+              316.22776601683796,
+              562.341325190349,
+              1000.0,
+              1778.2794100389228,
+              3162.2776601683795,
+              5623.413251903491,
+              10000.0,
+              17782.794100389227,
+              31622.776601683792,
+              56234.13251903491,
+              100000.0,
+              177827.94100389228,
+              316227.7660168379,
+              562341.3251903491,
+              1000000.0,
+              1778279.410038923,
+              3162277.6601683795,
+              5623413.251903491,
+              10000000.0
+            ],
+            "orthogonality_error": 5.329070518200751e-15,
+            "projected_relative_asymmetry": 4.732477828786256e-16,
+            "constant_field_error": 9.138023671084738e-12,
+            "body_dynamic_identity_error": 4.700297463648988e-11,
+            "body_input_identity_error": 9.429840856599444e-14,
+            "dc_full_state_max_error_k_per_w": 7.181629513297594e-09,
+            "dc_capacity_norm_relative_error": 9.056003517276417e-10,
+            "slowest_time_constant_s": 546.4588519380075,
+            "fastest_time_constant_s": 2.0296080899934596e-05,
+            "physical_model_qualified": false
+          },
+          "withheld_frequency_omega_per_s": [
+            0.003,
+            0.03,
+            0.3,
+            3.0,
+            30.0,
+            300.0
+          ],
+          "withheld_frequency_max_error_k": [
+            7.946506359200564e-08,
+            1.2371248904634871e-09,
+            1.9418572277358723e-09,
+            1.9055873481744683e-06,
+            2.2339861312865134e-05,
+            2.8595791969187414e-05
+          ],
+          "max_reconstructed_interface_flux_coefficient_error": 4.5189546549195825e-13,
+          "minimum_step_temperature_k": 0.0,
+          "max_step_decrease_k": 0.0,
+          "step_positivity_monotonicity_screen": true,
+          "sensors_max_error_to_be_extrapolate_k": 0.00030167956850846167,
+          "body_means_max_error_to_be_extrapolate_k": 0.00016241536328109873,
+          "fixed_mesh_numerical_screen": true
+        },
+        "backward_euler": {
+          "0.005": {
+            "max_numerical_heat_balance_error_j": 3.08646441737892e-11
+          },
+          "0.0025": {
+            "max_numerical_heat_balance_error_j": 5.53219692278617e-11
+          },
+          "0.00125": {
+            "max_numerical_heat_balance_error_j": 9.193801275841906e-11
+          },
+          "sensors_extrapolation_change_k": 0.0008646705245141106,
+          "body_means_extrapolation_change_k": 0.0004829603012694861
+        }
+      },
+      "held_out_duration_weighted_scores": {
+        "conditional_gradient": {
+          "common_rmse_k": 1.5318928005896306,
+          "spatial_rmse_k": 0.5219413928850785,
+          "raw_rmse_k": 1.6183690463257006,
+          "held_out_cases": 9,
+          "samples_per_sensor": 116599
+        },
+        "uniform": {
+          "common_rmse_k": 1.7334439698685902,
+          "spatial_rmse_k": 0.521940201717087,
+          "raw_rmse_k": 1.8103175331533004,
+          "held_out_cases": 9,
+          "samples_per_sensor": 116599
+        }
+      },
+      "max_initial_state_sensitivity_k": 1.7132409131293898,
+      "max_normalized_heat_error": 1.4126109320369686e-09,
+      "cases": [
+        {
+          "name": "one",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0024691358024679427,
+              "predicted_sensor_mean_slope_k_per_s": 0.0009191592949456941,
+              "dynamic_spatial_rmse_k": 0.46900456324054207,
+              "static_spatial_rmse_k": 0.4689910823797364,
+              "max_dynamic_minus_static_spatial_k": 6.733754242738144e-05,
+              "power_w": 5.75016284,
+              "storage_rate_w": 0.10631574015753721,
+              "die_storage_w": 0.0001196680294213364,
+              "pad_storage_w": 0.0005445984259491669,
+              "base_storage_w": 0.04545644547474762,
+              "fins_storage_w": 0.0601950282274191,
+              "boundary_heat_loss_w": 5.643847104723938
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0024691358024679427,
+              "predicted_sensor_mean_slope_k_per_s": 0.0008123199619076457,
+              "dynamic_spatial_rmse_k": 0.46900473890402883,
+              "static_spatial_rmse_k": 0.4689910823797364,
+              "max_dynamic_minus_static_spatial_k": 6.820017111763832e-05,
+              "power_w": 5.75016284,
+              "storage_rate_w": 0.09767113303214073,
+              "die_storage_w": 0.00010821433676954658,
+              "pad_storage_w": 0.000488582855950612,
+              "base_storage_w": 0.04174660375846401,
+              "fins_storage_w": 0.05532773208095658,
+              "boundary_heat_loss_w": 5.652491711856893
+            }
+          }
+        },
+        {
+          "name": "four",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.08216049382715893,
+              "predicted_sensor_mean_slope_k_per_s": 0.0828980462629308,
+              "dynamic_spatial_rmse_k": 1.378348541976705,
+              "static_spatial_rmse_k": 1.3783675516320415,
+              "max_dynamic_minus_static_spatial_k": 0.000911480264036868,
+              "power_w": 14.154522771111115,
+              "storage_rate_w": 6.834164458826109,
+              "die_storage_w": 0.008851002577408975,
+              "pad_storage_w": 0.04382513729328745,
+              "base_storage_w": 2.9327971093388734,
+              "fins_storage_w": 3.8486912096165393,
+              "boundary_heat_loss_w": 7.320358318566467
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.08216049382715893,
+              "predicted_sensor_mean_slope_k_per_s": 0.08115518218083809,
+              "dynamic_spatial_rmse_k": 1.3783471306833897,
+              "static_spatial_rmse_k": 1.3783675516320415,
+              "max_dynamic_minus_static_spatial_k": 0.0008974082504007441,
+              "power_w": 14.154522771111115,
+              "storage_rate_w": 6.693145464844112,
+              "die_storage_w": 0.00866415912787971,
+              "pad_storage_w": 0.04291135842353201,
+              "base_storage_w": 2.8722786682953463,
+              "fins_storage_w": 3.7692912789973536,
+              "boundary_heat_loss_w": 7.46137731267177
+            }
+          }
+        },
+        {
+          "name": "nine",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.24623456790122905,
+              "predicted_sensor_mean_slope_k_per_s": 0.26033624791355536,
+              "dynamic_spatial_rmse_k": 1.7313572059084519,
+              "static_spatial_rmse_k": 1.7303678468575048,
+              "max_dynamic_minus_static_spatial_k": 0.0022763961714744596,
+              "power_w": 27.820512575555558,
+              "storage_rate_w": 21.19993674533331,
+              "die_storage_w": 0.027911115936086934,
+              "pad_storage_w": 0.13689413811335388,
+              "base_storage_w": 9.097756427357208,
+              "fins_storage_w": 11.937375063926666,
+              "boundary_heat_loss_w": 6.620575835936018
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.24623456790122905,
+              "predicted_sensor_mean_slope_k_per_s": 0.2579101601738027,
+              "dynamic_spatial_rmse_k": 1.7313473900222103,
+              "static_spatial_rmse_k": 1.7303678468575048,
+              "max_dynamic_minus_static_spatial_k": 0.00225550550493292,
+              "power_w": 27.820512575555558,
+              "storage_rate_w": 21.00363661161201,
+              "die_storage_w": 0.02765102760974255,
+              "pad_storage_w": 0.13562214694918784,
+              "base_storage_w": 9.013514030400627,
+              "fins_storage_w": 11.826849406652453,
+              "boundary_heat_loss_w": 6.816875969828965
+            }
+          }
+        },
+        {
+          "name": "sixteen",
+          "role": "calibration",
+          "source_power_domain": false,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.5359567901234547,
+              "predicted_sensor_mean_slope_k_per_s": 0.5017411254107205,
+              "dynamic_spatial_rmse_k": 0.8280301644761311,
+              "static_spatial_rmse_k": 0.8263802528563511,
+              "max_dynamic_minus_static_spatial_k": 0.004317163083050191,
+              "power_w": 47.2034085411111,
+              "storage_rate_w": 41.262914386221475,
+              "die_storage_w": 0.05380112277355643,
+              "pad_storage_w": 0.26481031058134197,
+              "base_storage_w": 17.705647158763675,
+              "fins_storage_w": 23.2386557941029,
+              "boundary_heat_loss_w": 5.940494160229597
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.5359567901234547,
+              "predicted_sensor_mean_slope_k_per_s": 0.49908290157081425,
+              "dynamic_spatial_rmse_k": 0.8280212971792186,
+              "static_spatial_rmse_k": 0.8263802528563511,
+              "max_dynamic_minus_static_spatial_k": 0.00429427365888102,
+              "power_w": 47.2034085411111,
+              "storage_rate_w": 41.04783160636742,
+              "die_storage_w": 0.05351614833580512,
+              "pad_storage_w": 0.26341661109498793,
+              "base_storage_w": 17.61334417060212,
+              "fins_storage_w": 23.117554676334507,
+              "boundary_heat_loss_w": 6.15557694027172
+            }
+          }
+        },
+        {
+          "name": "line_1",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.06370370370370419,
+              "predicted_sensor_mean_slope_k_per_s": 0.07262509840130507,
+              "dynamic_spatial_rmse_k": 1.1708832796623982,
+              "static_spatial_rmse_k": 1.1710352081637048,
+              "max_dynamic_minus_static_spatial_k": 0.0008101175334775945,
+              "power_w": 13.992053653333336,
+              "storage_rate_w": 5.869752689553961,
+              "die_storage_w": 0.00770692003135003,
+              "pad_storage_w": 0.037901032256489546,
+              "base_storage_w": 2.5188910330045418,
+              "fins_storage_w": 3.3052537042615784,
+              "boundary_heat_loss_w": 8.122300970686744
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.06370370370370419,
+              "predicted_sensor_mean_slope_k_per_s": 0.07111481026963891,
+              "dynamic_spatial_rmse_k": 1.1708861570767024,
+              "static_spatial_rmse_k": 1.1710352081637048,
+              "max_dynamic_minus_static_spatial_k": 0.0007979233552806164,
+              "power_w": 13.992053653333336,
+              "storage_rate_w": 5.747551930963484,
+              "die_storage_w": 0.007545009847300266,
+              "pad_storage_w": 0.037109192321208836,
+              "base_storage_w": 2.4664484563316704,
+              "fins_storage_w": 3.236449272463304,
+              "boundary_heat_loss_w": 8.244501729384076
+            }
+          }
+        },
+        {
+          "name": "line_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.06262345679012388,
+              "predicted_sensor_mean_slope_k_per_s": 0.07100758684284693,
+              "dynamic_spatial_rmse_k": 1.3871237683518949,
+              "static_spatial_rmse_k": 1.3868789621760513,
+              "max_dynamic_minus_static_spatial_k": 0.000640766427914663,
+              "power_w": 14.009839338888893,
+              "storage_rate_w": 5.760487688970427,
+              "die_storage_w": 0.0077247220232084905,
+              "pad_storage_w": 0.037534104710417356,
+              "base_storage_w": 2.4719994557244953,
+              "fins_storage_w": 3.2432294065123046,
+              "boundary_heat_loss_w": 8.24935165711366
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.06262345679012388,
+              "predicted_sensor_mean_slope_k_per_s": 0.06953890950329525,
+              "dynamic_spatial_rmse_k": 1.387118962252558,
+              "static_spatial_rmse_k": 1.3868789621760513,
+              "max_dynamic_minus_static_spatial_k": 0.000628119884505729,
+              "power_w": 14.009839338888893,
+              "storage_rate_w": 5.641653751753965,
+              "die_storage_w": 0.007567272717099397,
+              "pad_storage_w": 0.03676408119959791,
+              "base_storage_w": 2.421001753781431,
+              "fins_storage_w": 3.176320644055835,
+              "boundary_heat_loss_w": 8.368185594434031
+            }
+          }
+        },
+        {
+          "name": "thickline_1",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.2134567901234574,
+              "predicted_sensor_mean_slope_k_per_s": 0.22548861412005136,
+              "dynamic_spatial_rmse_k": 1.4633288891015703,
+              "static_spatial_rmse_k": 1.4631599338319488,
+              "max_dynamic_minus_static_spatial_k": 0.0020191699236189464,
+              "power_w": 25.098175561111113,
+              "storage_rate_w": 18.36147804228485,
+              "die_storage_w": 0.02419439740313459,
+              "pad_storage_w": 0.11875024772059486,
+              "base_storage_w": 7.879770997342165,
+              "fins_storage_w": 10.338762399818958,
+              "boundary_heat_loss_w": 6.736697524494825
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.2134567901234574,
+              "predicted_sensor_mean_slope_k_per_s": 0.22315357721284734,
+              "dynamic_spatial_rmse_k": 1.4633264457461845,
+              "static_spatial_rmse_k": 1.4631599338319488,
+              "max_dynamic_minus_static_spatial_k": 0.0019990632854547385,
+              "power_w": 25.098175561111113,
+              "storage_rate_w": 18.172545033136963,
+              "die_storage_w": 0.023944070165914006,
+              "pad_storage_w": 0.11752599425881871,
+              "base_storage_w": 7.798690209198459,
+              "fins_storage_w": 10.23238475951377,
+              "boundary_heat_loss_w": 6.925630533807918
+            }
+          }
+        },
+        {
+          "name": "thickline_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.2168827160493802,
+              "predicted_sensor_mean_slope_k_per_s": 0.220014635247054,
+              "dynamic_spatial_rmse_k": 1.6104700793174298,
+              "static_spatial_rmse_k": 1.609334508263783,
+              "max_dynamic_minus_static_spatial_k": 0.0019438462174319326,
+              "power_w": 24.93918240777777,
+              "storage_rate_w": 17.8386245711435,
+              "die_storage_w": 0.02357156631136242,
+              "pad_storage_w": 0.11540207630543801,
+              "base_storage_w": 7.6551986524845415,
+              "fins_storage_w": 10.044452276042156,
+              "boundary_heat_loss_w": 7.100557842943802
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.2168827160493802,
+              "predicted_sensor_mean_slope_k_per_s": 0.217718608467275,
+              "dynamic_spatial_rmse_k": 1.6104583264317642,
+              "static_spatial_rmse_k": 1.609334508263783,
+              "max_dynamic_minus_static_spatial_k": 0.0019240755020693001,
+              "power_w": 24.93918240777777,
+              "storage_rate_w": 17.6528479578274,
+              "die_storage_w": 0.023325421148262786,
+              "pad_storage_w": 0.11419827574673705,
+              "base_storage_w": 7.575472434740626,
+              "fins_storage_w": 9.939851826191774,
+              "boundary_heat_loss_w": 7.286334456422349
+            }
+          }
+        },
+        {
+          "name": "checkboard",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.2012345679012368,
+              "predicted_sensor_mean_slope_k_per_s": 0.2107439894762485,
+              "dynamic_spatial_rmse_k": 1.3355216373626388,
+              "static_spatial_rmse_k": 1.3352046562825721,
+              "max_dynamic_minus_static_spatial_k": 0.0018769802834079918,
+              "power_w": 25.139306458888882,
+              "storage_rate_w": 17.085032278124043,
+              "die_storage_w": 0.022644887994273437,
+              "pad_storage_w": 0.11067237669029328,
+              "base_storage_w": 7.3316862066456885,
+              "fins_storage_w": 9.620028806793789,
+              "boundary_heat_loss_w": 8.05427418789228
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.2012345679012368,
+              "predicted_sensor_mean_slope_k_per_s": 0.20854311983647258,
+              "dynamic_spatial_rmse_k": 1.3355184542384377,
+              "static_spatial_rmse_k": 1.3352046562825721,
+              "max_dynamic_minus_static_spatial_k": 0.0018580289503318248,
+              "power_w": 25.139306458888882,
+              "storage_rate_w": 16.906955039814843,
+              "die_storage_w": 0.022408944136295107,
+              "pad_storage_w": 0.10951846675974797,
+              "base_storage_w": 7.255264183317503,
+              "fins_storage_w": 9.519763445601296,
+              "boundary_heat_loss_w": 8.232351426357187
+            }
+          }
+        },
+        {
+          "name": "hotspot_1",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.042654320987654475,
+              "predicted_sensor_mean_slope_k_per_s": 0.0470703425443304,
+              "dynamic_spatial_rmse_k": 1.3742555942732182,
+              "static_spatial_rmse_k": 1.3742898332362412,
+              "max_dynamic_minus_static_spatial_k": 0.0005016510062603174,
+              "power_w": 9.94684063555556,
+              "storage_rate_w": 3.7893793456772715,
+              "die_storage_w": 0.004880994452090603,
+              "pad_storage_w": 0.024314638509618267,
+              "base_storage_w": 1.6264839218700653,
+              "fins_storage_w": 2.133699790845497,
+              "boundary_heat_loss_w": 6.157461295135968
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.042654320987654475,
+              "predicted_sensor_mean_slope_k_per_s": 0.045512395680890765,
+              "dynamic_spatial_rmse_k": 1.3742550868928292,
+              "static_spatial_rmse_k": 1.3742898332362412,
+              "max_dynamic_minus_static_spatial_k": 0.0004890720279364658,
+              "power_w": 9.94684063555556,
+              "storage_rate_w": 3.663322413517582,
+              "die_storage_w": 0.004713975021752026,
+              "pad_storage_w": 0.023497811231667182,
+              "base_storage_w": 1.5723864644877785,
+              "fins_storage_w": 2.062724162776384,
+              "boundary_heat_loss_w": 6.2835182274058825
+            }
+          }
+        },
+        {
+          "name": "hotspot_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.05348765432098743,
+              "predicted_sensor_mean_slope_k_per_s": 0.05649676544462068,
+              "dynamic_spatial_rmse_k": 1.0164377469807588,
+              "static_spatial_rmse_k": 1.016550494670903,
+              "max_dynamic_minus_static_spatial_k": 0.0005070512881708567,
+              "power_w": 10.004907793333338,
+              "storage_rate_w": 4.601480877787194,
+              "die_storage_w": 0.006130333285378758,
+              "pad_storage_w": 0.029864441385922078,
+              "base_storage_w": 1.9745093740155413,
+              "fins_storage_w": 2.590976729100351,
+              "boundary_heat_loss_w": 5.403426920123314
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.05348765432098743,
+              "predicted_sensor_mean_slope_k_per_s": 0.054633656865201864,
+              "dynamic_spatial_rmse_k": 1.0164411954399646,
+              "static_spatial_rmse_k": 1.016550494670903,
+              "max_dynamic_minus_static_spatial_k": 0.0004920084115624945,
+              "power_w": 10.004907793333338,
+              "storage_rate_w": 4.450732635139392,
+              "die_storage_w": 0.005930599044823994,
+              "pad_storage_w": 0.02888761865520605,
+              "base_storage_w": 1.9098156162635824,
+              "fins_storage_w": 2.50609880117578,
+              "boundary_heat_loss_w": 5.55417516290293
+            }
+          }
+        },
+        {
+          "name": "hotspot_3",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.04496913580247034,
+              "predicted_sensor_mean_slope_k_per_s": 0.04945910674008758,
+              "dynamic_spatial_rmse_k": 1.2237874234037942,
+              "static_spatial_rmse_k": 1.223729892993573,
+              "max_dynamic_minus_static_spatial_k": 0.000490838777160274,
+              "power_w": 9.949213181111112,
+              "storage_rate_w": 3.978064992734631,
+              "die_storage_w": 0.005342888109838546,
+              "pad_storage_w": 0.025950538479588003,
+              "base_storage_w": 1.707242078072099,
+              "fins_storage_w": 2.2395294880731056,
+              "boundary_heat_loss_w": 5.971148193585361
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.04496913580247034,
+              "predicted_sensor_mean_slope_k_per_s": 0.04785179535546212,
+              "dynamic_spatial_rmse_k": 1.2237865663186098,
+              "static_spatial_rmse_k": 1.223729892993573,
+              "max_dynamic_minus_static_spatial_k": 0.0004769984787165171,
+              "power_w": 9.949213181111112,
+              "storage_rate_w": 3.8480138678043465,
+              "die_storage_w": 0.0051705765643439115,
+              "pad_storage_w": 0.02510782951823782,
+              "base_storage_w": 1.6514305089033203,
+              "fins_storage_w": 2.166304952818445,
+              "boundary_heat_loss_w": 6.101199318629364
+            }
+          }
+        },
+        {
+          "name": "hotspot_4",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.04160493827160236,
+              "predicted_sensor_mean_slope_k_per_s": 0.041710036584866036,
+              "dynamic_spatial_rmse_k": 1.6146609096485347,
+              "static_spatial_rmse_k": 1.6145648338744205,
+              "max_dynamic_minus_static_spatial_k": 0.0003724878954267652,
+              "power_w": 9.797059377777778,
+              "storage_rate_w": 3.400796650032429,
+              "die_storage_w": 0.004537513416940495,
+              "pad_storage_w": 0.02210875305169782,
+              "base_storage_w": 1.4594313962286742,
+              "fins_storage_w": 1.9147189873351163,
+              "boundary_heat_loss_w": 6.396262733339193
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.04160493827160236,
+              "predicted_sensor_mean_slope_k_per_s": 0.040290274331072046,
+              "dynamic_spatial_rmse_k": 1.614657262867046,
+              "static_spatial_rmse_k": 1.6145648338744205,
+              "max_dynamic_minus_static_spatial_k": 0.0003610246298730857,
+              "power_w": 9.797059377777778,
+              "storage_rate_w": 3.285920540769763,
+              "die_storage_w": 0.00438530804433744,
+              "pad_storage_w": 0.021364375586508007,
+              "base_storage_w": 1.4101322000749283,
+              "fins_storage_w": 1.85003865706399,
+              "boundary_heat_loss_w": 6.511138842702307
+            }
+          }
+        }
+      ]
+    },
+    "heatsink_P_level0": {
+      "group": "heatsink",
+      "model": "P",
+      "level": 0,
+      "full_nodes": 22600,
+      "fixed_mesh_reduction_screen": true,
+      "max_native_trace_order_change_k": 0.0009050630159777029,
+      "numerical_controls": {
+        "finest": {
+          "audit": {
+            "full_nodes": 22600,
+            "reduced_order": 478,
+            "shifts_per_s": [
+              0.0,
+              0.001,
+              0.0017782794100389228,
+              0.0031622776601683794,
+              0.005623413251903491,
+              0.01,
+              0.01778279410038923,
+              0.03162277660168379,
+              0.05623413251903491,
+              0.1,
+              0.1778279410038923,
+              0.31622776601683794,
+              0.5623413251903491,
+              1.0,
+              1.7782794100389228,
+              3.1622776601683795,
+              5.623413251903491,
+              10.0,
+              17.78279410038923,
+              31.622776601683793,
+              56.23413251903491,
+              100.0,
+              177.82794100389228,
+              316.22776601683796,
+              562.341325190349,
+              1000.0,
+              1778.2794100389228,
+              3162.2776601683795,
+              5623.413251903491,
+              10000.0,
+              17782.794100389227,
+              31622.776601683792,
+              56234.13251903491,
+              100000.0,
+              177827.94100389228,
+              316227.7660168379,
+              562341.3251903491,
+              1000000.0,
+              1778279.410038923,
+              3162277.6601683795,
+              5623413.251903491,
+              10000000.0
+            ],
+            "orthogonality_error": 3.68594044175552e-14,
+            "projected_relative_asymmetry": 4.677561982018348e-16,
+            "constant_field_error": 4.707567669015589e-12,
+            "body_dynamic_identity_error": 1.1767957857349218e-10,
+            "body_input_identity_error": 1.1152627181953891e-13,
+            "dc_full_state_max_error_k_per_w": 4.854434187961942e-09,
+            "dc_capacity_norm_relative_error": 5.419332294634144e-10,
+            "slowest_time_constant_s": 567.56027909591,
+            "fastest_time_constant_s": 2.028928260890068e-05,
+            "physical_model_qualified": false
+          },
+          "withheld_frequency_omega_per_s": [
+            0.003,
+            0.03,
+            0.3,
+            3.0,
+            30.0,
+            300.0
+          ],
+          "withheld_frequency_max_error_k": [
+            4.50658489239493e-08,
+            8.58682810965758e-10,
+            1.7402144823434312e-09,
+            1.848197959755598e-06,
+            2.444668564774812e-05,
+            3.558869581589205e-05
+          ],
+          "max_reconstructed_interface_flux_coefficient_error": 6.122810591868699e-13,
+          "minimum_step_temperature_k": 0.0,
+          "max_step_decrease_k": 0.0,
+          "step_positivity_monotonicity_screen": true,
+          "sensors_max_error_to_be_extrapolate_k": 0.00027935552651925377,
+          "body_means_max_error_to_be_extrapolate_k": 0.00016601572971097767,
+          "fixed_mesh_numerical_screen": true
+        },
+        "backward_euler": {
+          "0.005": {
+            "max_numerical_heat_balance_error_j": 4.2655656784518214e-11
+          },
+          "0.0025": {
+            "max_numerical_heat_balance_error_j": 7.302825011379355e-11
+          },
+          "0.00125": {
+            "max_numerical_heat_balance_error_j": 1.2708989416410077e-10
+          },
+          "sensors_extrapolation_change_k": 0.0008039063377545119,
+          "body_means_extrapolation_change_k": 0.00047107535929313826
+        }
+      },
+      "held_out_duration_weighted_scores": {
+        "conditional_gradient": {
+          "common_rmse_k": 1.3850126043104232,
+          "spatial_rmse_k": 0.5434399304540435,
+          "raw_rmse_k": 1.4878127812700885,
+          "held_out_cases": 9,
+          "samples_per_sensor": 116599
+        },
+        "uniform": {
+          "common_rmse_k": 1.4987307548855555,
+          "spatial_rmse_k": 0.5434389515557344,
+          "raw_rmse_k": 1.5942144679144719,
+          "held_out_cases": 9,
+          "samples_per_sensor": 116599
+        }
+      },
+      "max_initial_state_sensitivity_k": 1.6590481720103654,
+      "max_normalized_heat_error": 8.576359788445116e-10,
+      "cases": [
+        {
+          "name": "one",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0024691358024679427,
+              "predicted_sensor_mean_slope_k_per_s": 0.0010556467260490383,
+              "dynamic_spatial_rmse_k": 0.5803859698428444,
+              "static_spatial_rmse_k": 0.5803722347640391,
+              "max_dynamic_minus_static_spatial_k": 5.9034189234807855e-05,
+              "power_w": 5.75016284,
+              "storage_rate_w": 0.12026188256566137,
+              "die_storage_w": 0.0001369606212011219,
+              "pad_storage_w": 0.0050083689802969365,
+              "base_storage_w": 0.04959538706009687,
+              "fins_storage_w": 0.06552116590406643,
+              "boundary_heat_loss_w": 5.62990095448791
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0024691358024679427,
+              "predicted_sensor_mean_slope_k_per_s": 0.0009426126895198826,
+              "dynamic_spatial_rmse_k": 0.5803861799252527,
+              "static_spatial_rmse_k": 0.5803722347640391,
+              "max_dynamic_minus_static_spatial_k": 5.9907952193682945e-05,
+              "power_w": 5.75016284,
+              "storage_rate_w": 0.11076621588441579,
+              "die_storage_w": 0.00012484287473531574,
+              "pad_storage_w": 0.0045964218201103935,
+              "base_storage_w": 0.04567148782834655,
+              "fins_storage_w": 0.06037346336122353,
+              "boundary_heat_loss_w": 5.639396621164312
+            }
+          }
+        },
+        {
+          "name": "four",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.08216049382715893,
+              "predicted_sensor_mean_slope_k_per_s": 0.08132816537338922,
+              "dynamic_spatial_rmse_k": 1.5352088172737806,
+              "static_spatial_rmse_k": 1.5352641727131142,
+              "max_dynamic_minus_static_spatial_k": 0.0008448578625159797,
+              "power_w": 14.154522771111115,
+              "storage_rate_w": 6.958779034464017,
+              "die_storage_w": 0.008681263258584983,
+              "pad_storage_w": 0.30127690503206817,
+              "base_storage_w": 2.8755752994790225,
+              "fins_storage_w": 3.7732455666943414,
+              "boundary_heat_loss_w": 7.195743732789783
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.08216049382715893,
+              "predicted_sensor_mean_slope_k_per_s": 0.07966618070676804,
+              "dynamic_spatial_rmse_k": 1.535208215634682,
+              "static_spatial_rmse_k": 1.5352641727131142,
+              "max_dynamic_minus_static_spatial_k": 0.0008320105761434604,
+              "power_w": 14.154522771111115,
+              "storage_rate_w": 6.81916044780393,
+              "die_storage_w": 0.008503091183695015,
+              "pad_storage_w": 0.29521988110583086,
+              "base_storage_w": 2.81788063902768,
+              "fins_storage_w": 3.6975568364867244,
+              "boundary_heat_loss_w": 7.335362319378632
+            }
+          }
+        },
+        {
+          "name": "nine",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.24623456790122905,
+              "predicted_sensor_mean_slope_k_per_s": 0.2522266379229434,
+              "dynamic_spatial_rmse_k": 1.7913992052604144,
+              "static_spatial_rmse_k": 1.7906793076006178,
+              "max_dynamic_minus_static_spatial_k": 0.002053878363709849,
+              "power_w": 27.820512575555558,
+              "storage_rate_w": 21.326207616883835,
+              "die_storage_w": 0.027039946718459724,
+              "pad_storage_w": 0.9244262207204071,
+              "base_storage_w": 8.812506310975204,
+              "fins_storage_w": 11.562235138469767,
+              "boundary_heat_loss_w": 6.4943049551060215
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.24623456790122905,
+              "predicted_sensor_mean_slope_k_per_s": 0.24994146393063943,
+              "dynamic_spatial_rmse_k": 1.791392047842737,
+              "static_spatial_rmse_k": 1.7906793076006178,
+              "max_dynamic_minus_static_spatial_k": 0.0020362137707161665,
+              "power_w": 27.820512575555558,
+              "storage_rate_w": 21.13423667425981,
+              "die_storage_w": 0.026794966003612784,
+              "pad_storage_w": 0.9160980129908228,
+              "base_storage_w": 8.733178059514087,
+              "fins_storage_w": 11.458165635751284,
+              "boundary_heat_loss_w": 6.6862758976320995
+            }
+          }
+        },
+        {
+          "name": "sixteen",
+          "role": "calibration",
+          "source_power_domain": false,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.5359567901234547,
+              "predicted_sensor_mean_slope_k_per_s": 0.48459598618696176,
+              "dynamic_spatial_rmse_k": 0.7148876829936726,
+              "static_spatial_rmse_k": 0.7143526601614416,
+              "max_dynamic_minus_static_spatial_k": 0.00375942724223155,
+              "power_w": 47.2034085411111,
+              "storage_rate_w": 41.37661143827507,
+              "die_storage_w": 0.051965591186127466,
+              "pad_storage_w": 1.7905254825184937,
+              "base_storage_w": 17.09669178192847,
+              "fins_storage_w": 22.43742858264197,
+              "boundary_heat_loss_w": 5.826797099743154
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.5359567901234547,
+              "predicted_sensor_mean_slope_k_per_s": 0.48210031753467003,
+              "dynamic_spatial_rmse_k": 0.7148847990295152,
+              "static_spatial_rmse_k": 0.7143526601614416,
+              "max_dynamic_minus_static_spatial_k": 0.0037401351379429126,
+              "power_w": 47.2034085411111,
+              "storage_rate_w": 41.16695744025618,
+              "die_storage_w": 0.05169804451680797,
+              "pad_storage_w": 1.7814301370304102,
+              "base_storage_w": 17.010056352382012,
+              "fins_storage_w": 22.32377290632696,
+              "boundary_heat_loss_w": 6.036451097655058
+            }
+          }
+        },
+        {
+          "name": "line_1",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.06370370370370419,
+              "predicted_sensor_mean_slope_k_per_s": 0.07162178662958733,
+              "dynamic_spatial_rmse_k": 1.4085136009653008,
+              "static_spatial_rmse_k": 1.4086896820905253,
+              "max_dynamic_minus_static_spatial_k": 0.0007544112282076298,
+              "power_w": 13.992053653333336,
+              "storage_rate_w": 6.009886755315053,
+              "die_storage_w": 0.00760097980652548,
+              "pad_storage_w": 0.2604630797804305,
+              "base_storage_w": 2.483409664502348,
+              "fins_storage_w": 3.2584130312257487,
+              "boundary_heat_loss_w": 7.982166893924135
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.06370370370370419,
+              "predicted_sensor_mean_slope_k_per_s": 0.07017379852725014,
+              "dynamic_spatial_rmse_k": 1.4085167902487632,
+              "static_spatial_rmse_k": 1.4086896820905253,
+              "max_dynamic_minus_static_spatial_k": 0.0007432181539304139,
+              "power_w": 13.992053653333336,
+              "storage_rate_w": 5.888245409033039,
+              "die_storage_w": 0.007445749105671578,
+              "pad_storage_w": 0.25518595613611456,
+              "base_storage_w": 2.4331437483484266,
+              "fins_storage_w": 3.192469955442826,
+              "boundary_heat_loss_w": 8.103808240144085
+            }
+          }
+        },
+        {
+          "name": "line_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.06262345679012388,
+              "predicted_sensor_mean_slope_k_per_s": 0.07009969428082741,
+              "dynamic_spatial_rmse_k": 1.3765454505078054,
+              "static_spatial_rmse_k": 1.376320457198734,
+              "max_dynamic_minus_static_spatial_k": 0.0005790715169151639,
+              "power_w": 14.009839338888893,
+              "storage_rate_w": 5.904234868003365,
+              "die_storage_w": 0.00762538399297195,
+              "pad_storage_w": 0.2562952065167292,
+              "base_storage_w": 2.4397165506861564,
+              "fins_storage_w": 3.200597726807507,
+              "boundary_heat_loss_w": 8.105604466715631
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.06262345679012388,
+              "predicted_sensor_mean_slope_k_per_s": 0.06869021256420164,
+              "dynamic_spatial_rmse_k": 1.3765411860258692,
+              "static_spatial_rmse_k": 1.376320457198734,
+              "max_dynamic_minus_static_spatial_k": 0.0005680589036289874,
+              "power_w": 14.009839338888893,
+              "storage_rate_w": 5.785828333243818,
+              "die_storage_w": 0.007474281346230493,
+              "pad_storage_w": 0.25115841756034524,
+              "base_storage_w": 2.3907873573631817,
+              "fins_storage_w": 3.136408276974061,
+              "boundary_heat_loss_w": 8.224011001414768
+            }
+          }
+        },
+        {
+          "name": "thickline_1",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.2134567901234574,
+              "predicted_sensor_mean_slope_k_per_s": 0.21881235675341928,
+              "dynamic_spatial_rmse_k": 1.66247452868066,
+              "static_spatial_rmse_k": 1.66249039610676,
+              "max_dynamic_minus_static_spatial_k": 0.0018261201550835438,
+              "power_w": 25.098175561111113,
+              "storage_rate_w": 18.49885283258121,
+              "die_storage_w": 0.023472130764740053,
+              "pad_storage_w": 0.8020630953894471,
+              "base_storage_w": 7.64424520863267,
+              "fins_storage_w": 10.029072397794357,
+              "boundary_heat_loss_w": 6.5993227251143205
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.2134567901234574,
+              "predicted_sensor_mean_slope_k_per_s": 0.21660967761766237,
+              "dynamic_spatial_rmse_k": 1.6624739507994881,
+              "static_spatial_rmse_k": 1.66249039610676,
+              "max_dynamic_minus_static_spatial_k": 0.0018090932533887383,
+              "power_w": 25.098175561111113,
+              "storage_rate_w": 18.313812047322692,
+              "die_storage_w": 0.023235993861785688,
+              "pad_storage_w": 0.7940355362338078,
+              "base_storage_w": 7.567780709667844,
+              "fins_storage_w": 9.928759807559256,
+              "boundary_heat_loss_w": 6.784363510278426
+            }
+          }
+        },
+        {
+          "name": "thickline_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.2168827160493802,
+              "predicted_sensor_mean_slope_k_per_s": 0.2136355624644766,
+              "dynamic_spatial_rmse_k": 1.550917967071855,
+              "static_spatial_rmse_k": 1.5498566518741914,
+              "max_dynamic_minus_static_spatial_k": 0.001765843317759419,
+              "power_w": 24.93918240777777,
+              "storage_rate_w": 17.983586572738105,
+              "die_storage_w": 0.02288666299220753,
+              "pad_storage_w": 0.7797588542452165,
+              "base_storage_w": 7.431199953616111,
+              "fins_storage_w": 9.749741101884572,
+              "boundary_heat_loss_w": 6.955595831418485
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.2168827160493802,
+              "predicted_sensor_mean_slope_k_per_s": 0.2114682509588148,
+              "dynamic_spatial_rmse_k": 1.5509072744963421,
+              "static_spatial_rmse_k": 1.5498566518741914,
+              "max_dynamic_minus_static_spatial_k": 0.0017490898695706747,
+              "power_w": 24.93918240777777,
+              "storage_rate_w": 17.801516921104678,
+              "die_storage_w": 0.022654317654942392,
+              "pad_storage_w": 0.7718601907322399,
+              "base_storage_w": 7.355963217728947,
+              "fins_storage_w": 9.651039194988554,
+              "boundary_heat_loss_w": 7.137665482959015
+            }
+          }
+        },
+        {
+          "name": "checkboard",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.2012345679012368,
+              "predicted_sensor_mean_slope_k_per_s": 0.20494904745282522,
+              "dynamic_spatial_rmse_k": 1.3398926703738336,
+              "static_spatial_rmse_k": 1.3397509908634775,
+              "max_dynamic_minus_static_spatial_k": 0.0017269689627479323,
+              "power_w": 25.139306458888882,
+              "storage_rate_w": 17.251187293525515,
+              "die_storage_w": 0.022024407000677298,
+              "pad_storage_w": 0.7480801627503827,
+              "base_storage_w": 7.128458687312466,
+              "fins_storage_w": 9.352624036461991,
+              "boundary_heat_loss_w": 7.888119161278268
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.2012345679012368,
+              "predicted_sensor_mean_slope_k_per_s": 0.2028682440282018,
+              "dynamic_spatial_rmse_k": 1.3398913464529538,
+              "static_spatial_rmse_k": 1.3397509908634775,
+              "max_dynamic_minus_static_spatial_k": 0.0017108842272399727,
+              "power_w": 25.139306458888882,
+              "storage_rate_w": 17.076384938788305,
+              "die_storage_w": 0.02180133571064192,
+              "pad_storage_w": 0.7404967738167612,
+              "base_storage_w": 7.056225020263454,
+              "fins_storage_w": 9.257861808997443,
+              "boundary_heat_loss_w": 8.0629215159263
+            }
+          }
+        },
+        {
+          "name": "hotspot_1",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.042654320987654475,
+              "predicted_sensor_mean_slope_k_per_s": 0.04633810521952202,
+              "dynamic_spatial_rmse_k": 1.4752437846718567,
+              "static_spatial_rmse_k": 1.4752984661129138,
+              "max_dynamic_minus_static_spatial_k": 0.0004659716177184414,
+              "power_w": 9.94684063555556,
+              "storage_rate_w": 3.873521438465179,
+              "die_storage_w": 0.004804252585166841,
+              "pad_storage_w": 0.16787789563406733,
+              "base_storage_w": 1.6008734016405617,
+              "fins_storage_w": 2.0999658886053836,
+              "boundary_heat_loss_w": 6.073319193953161
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.042654320987654475,
+              "predicted_sensor_mean_slope_k_per_s": 0.044846136942740915,
+              "dynamic_spatial_rmse_k": 1.4752439226083125,
+              "static_spatial_rmse_k": 1.4752984661129138,
+              "max_dynamic_minus_static_spatial_k": 0.0004544385728597611,
+              "power_w": 9.94684063555556,
+              "storage_rate_w": 3.7481854432974373,
+              "die_storage_w": 0.004644307015943998,
+              "pad_storage_w": 0.1624404883395926,
+              "base_storage_w": 1.5490807438253182,
+              "fins_storage_w": 2.032019904116583,
+              "boundary_heat_loss_w": 6.1986551890569555
+            }
+          }
+        },
+        {
+          "name": "hotspot_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.05348765432098743,
+              "predicted_sensor_mean_slope_k_per_s": 0.05525750247183857,
+              "dynamic_spatial_rmse_k": 1.2641005290371166,
+              "static_spatial_rmse_k": 1.2642210429172343,
+              "max_dynamic_minus_static_spatial_k": 0.0004808880431781404,
+              "power_w": 10.004907793333338,
+              "storage_rate_w": 4.6720463234804015,
+              "die_storage_w": 0.005995738365193818,
+              "pad_storage_w": 0.2025970777650351,
+              "base_storage_w": 1.9304588820477926,
+              "fins_storage_w": 2.5329946253023796,
+              "boundary_heat_loss_w": 5.332861466958285
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.05348765432098743,
+              "predicted_sensor_mean_slope_k_per_s": 0.05348515239613505,
+              "dynamic_spatial_rmse_k": 1.2641040334508107,
+              "static_spatial_rmse_k": 1.2642210429172343,
+              "max_dynamic_minus_static_spatial_k": 0.00046718762257924595,
+              "power_w": 10.004907793333338,
+              "storage_rate_w": 4.523156253910984,
+              "die_storage_w": 0.005805734632450984,
+              "pad_storage_w": 0.19613783236415788,
+              "base_storage_w": 1.8689329619401955,
+              "fins_storage_w": 2.45227972497418,
+              "boundary_heat_loss_w": 5.4817515364517355
+            }
+          }
+        },
+        {
+          "name": "hotspot_3",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.04496913580247034,
+              "predicted_sensor_mean_slope_k_per_s": 0.04863791563318406,
+              "dynamic_spatial_rmse_k": 1.2719795471876392,
+              "static_spatial_rmse_k": 1.271920595979743,
+              "max_dynamic_minus_static_spatial_k": 0.00045591490170604487,
+              "power_w": 9.949213181111112,
+              "storage_rate_w": 4.061701617817083,
+              "die_storage_w": 0.005253997998607828,
+              "pad_storage_w": 0.17643748561424732,
+              "base_storage_w": 1.6784369264585213,
+              "fins_storage_w": 2.2015732077457058,
+              "boundary_heat_loss_w": 5.887511560103466
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.04496913580247034,
+              "predicted_sensor_mean_slope_k_per_s": 0.04710051363902165,
+              "dynamic_spatial_rmse_k": 1.271978750080634,
+              "static_spatial_rmse_k": 1.271920595979743,
+              "max_dynamic_minus_static_spatial_k": 0.00044403069191201183,
+              "power_w": 9.949213181111112,
+              "storage_rate_w": 3.9325488657701917,
+              "die_storage_w": 0.005089181734810743,
+              "pad_storage_w": 0.170834497301581,
+              "base_storage_w": 1.625067068232963,
+              "fins_storage_w": 2.1315581185008368,
+              "boundary_heat_loss_w": 6.0166643120844645
+            }
+          }
+        },
+        {
+          "name": "hotspot_4",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.04160493827160236,
+              "predicted_sensor_mean_slope_k_per_s": 0.041210916025406163,
+              "dynamic_spatial_rmse_k": 1.601656553743997,
+              "static_spatial_rmse_k": 1.6015761107387079,
+              "max_dynamic_minus_static_spatial_k": 0.00035239296209155224,
+              "power_w": 9.797059377777778,
+              "storage_rate_w": 3.4888010100519495,
+              "die_storage_w": 0.0044830754407640715,
+              "pad_storage_w": 0.1514177928244636,
+              "base_storage_w": 1.4416617612658356,
+              "fins_storage_w": 1.8912383805208868,
+              "boundary_heat_loss_w": 6.308258364432101
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.04160493827160236,
+              "predicted_sensor_mean_slope_k_per_s": 0.03984650702952308,
+              "dynamic_spatial_rmse_k": 1.6016535321787897,
+              "static_spatial_rmse_k": 1.6015761107387079,
+              "max_dynamic_minus_static_spatial_k": 0.0003418459615965874,
+              "power_w": 9.797059377777778,
+              "storage_rate_w": 3.3741809058730916,
+              "die_storage_w": 0.0043368047881655655,
+              "pad_storage_w": 0.14644526925115584,
+              "base_storage_w": 1.3942972366012474,
+              "fins_storage_w": 1.8291015952325227,
+              "boundary_heat_loss_w": 6.42287846855248
+            }
+          }
+        }
+      ]
+    },
+    "heatsink_with_fan_C_level0": {
+      "group": "heatsink_with_fan",
+      "model": "C",
+      "level": 0,
+      "full_nodes": 20328,
+      "fixed_mesh_reduction_screen": true,
+      "max_native_trace_order_change_k": 0.0009636341793264336,
+      "numerical_controls": {
+        "finest": {
+          "audit": {
+            "full_nodes": 20328,
+            "reduced_order": 476,
+            "shifts_per_s": [
+              0.0,
+              0.001,
+              0.0017782794100389228,
+              0.0031622776601683794,
+              0.005623413251903491,
+              0.01,
+              0.01778279410038923,
+              0.03162277660168379,
+              0.05623413251903491,
+              0.1,
+              0.1778279410038923,
+              0.31622776601683794,
+              0.5623413251903491,
+              1.0,
+              1.7782794100389228,
+              3.1622776601683795,
+              5.623413251903491,
+              10.0,
+              17.78279410038923,
+              31.622776601683793,
+              56.23413251903491,
+              100.0,
+              177.82794100389228,
+              316.22776601683796,
+              562.341325190349,
+              1000.0,
+              1778.2794100389228,
+              3162.2776601683795,
+              5623.413251903491,
+              10000.0,
+              17782.794100389227,
+              31622.776601683792,
+              56234.13251903491,
+              100000.0,
+              177827.94100389228,
+              316227.7660168379,
+              562341.3251903491,
+              1000000.0,
+              1778279.410038923,
+              3162277.6601683795,
+              5623413.251903491,
+              10000000.0
+            ],
+            "orthogonality_error": 1.432187701766452e-14,
+            "projected_relative_asymmetry": 2.6892068635341066e-16,
+            "constant_field_error": 3.5444980284182748e-12,
+            "body_dynamic_identity_error": 3.197941911281532e-11,
+            "body_input_identity_error": 1.5576776498993822e-13,
+            "dc_full_state_max_error_k_per_w": 1.9794466066258565e-10,
+            "dc_capacity_norm_relative_error": 1.84167601891927e-10,
+            "slowest_time_constant_s": 69.33789326808828,
+            "fastest_time_constant_s": 2.028919224972565e-05,
+            "physical_model_qualified": false
+          },
+          "withheld_frequency_omega_per_s": [
+            0.003,
+            0.03,
+            0.3,
+            3.0,
+            30.0,
+            300.0
+          ],
+          "withheld_frequency_max_error_k": [
+            7.268550262183696e-09,
+            1.4453646180595912e-09,
+            4.896790271992711e-09,
+            2.0216008068633544e-06,
+            2.331438873749996e-05,
+            4.2131145000191474e-05
+          ],
+          "max_reconstructed_interface_flux_coefficient_error": 3.7593886337283777e-13,
+          "minimum_step_temperature_k": 0.0,
+          "max_step_decrease_k": 0.0,
+          "step_positivity_monotonicity_screen": true,
+          "sensors_max_error_to_be_extrapolate_k": 0.0002941558585494164,
+          "body_means_max_error_to_be_extrapolate_k": 0.0001634593268526885,
+          "fixed_mesh_numerical_screen": true
+        },
+        "backward_euler": {
+          "0.005": {
+            "max_numerical_heat_balance_error_j": 3.3351099659739702e-12
+          },
+          "0.0025": {
+            "max_numerical_heat_balance_error_j": 7.099210108663101e-12
+          },
+          "0.00125": {
+            "max_numerical_heat_balance_error_j": 1.2741807609017997e-11
+          },
+          "sensors_extrapolation_change_k": 0.0008542080373548089,
+          "body_means_extrapolation_change_k": 0.0004745354130442081
+        }
+      },
+      "held_out_duration_weighted_scores": {
+        "conditional_gradient": {
+          "common_rmse_k": 0.8081079180773614,
+          "spatial_rmse_k": 0.9635474238538669,
+          "raw_rmse_k": 1.2575619449055981,
+          "held_out_cases": 9,
+          "samples_per_sensor": 171364
+        },
+        "uniform": {
+          "common_rmse_k": 0.8082651502300731,
+          "spatial_rmse_k": 0.963546808621692,
+          "raw_rmse_k": 1.2576625165287745,
+          "held_out_cases": 9,
+          "samples_per_sensor": 171364
+        }
+      },
+      "max_initial_state_sensitivity_k": 1.3943271402044317,
+      "max_normalized_heat_error": 1.8348235215840073e-10,
+      "cases": [
+        {
+          "name": "one",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.00043209876543236366,
+              "predicted_sensor_mean_slope_k_per_s": 0.00023601378406349718,
+              "dynamic_spatial_rmse_k": 0.415224995926914,
+              "static_spatial_rmse_k": 0.4152247208178634,
+              "max_dynamic_minus_static_spatial_k": 4.407130257688685e-05,
+              "power_w": 5.845172224444445,
+              "storage_rate_w": 0.0012421971150557295,
+              "die_storage_w": 3.309475871330199e-05,
+              "pad_storage_w": 0.0001102480769325752,
+              "base_storage_w": 0.0006783968217979871,
+              "fins_storage_w": 0.0004204574576118652,
+              "boundary_heat_loss_w": 5.843930028380855
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.00043209876543236366,
+              "predicted_sensor_mean_slope_k_per_s": 0.00023601378401178548,
+              "dynamic_spatial_rmse_k": 0.4152249959269141,
+              "static_spatial_rmse_k": 0.4152247208178634,
+              "max_dynamic_minus_static_spatial_k": 4.407130257688685e-05,
+              "power_w": 5.845172224444445,
+              "storage_rate_w": 0.0012421971108944898,
+              "die_storage_w": 3.309475870773676e-05,
+              "pad_storage_w": 0.00011024807690536793,
+              "base_storage_w": 0.0006783968200000833,
+              "fins_storage_w": 0.00042045745528130165,
+              "boundary_heat_loss_w": 5.843930028385018
+            }
+          }
+        },
+        {
+          "name": "four",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.003950617283951235,
+              "predicted_sensor_mean_slope_k_per_s": 4.0504557146745254e-05,
+              "dynamic_spatial_rmse_k": 0.8730612006495099,
+              "static_spatial_rmse_k": 0.8730581024112547,
+              "max_dynamic_minus_static_spatial_k": 3.27234091797024e-05,
+              "power_w": 14.409249343333332,
+              "storage_rate_w": 0.00023798552465721195,
+              "die_storage_w": -7.809873397102936e-06,
+              "pad_storage_w": -4.811438642582676e-05,
+              "base_storage_w": -1.0468166234090535e-06,
+              "fins_storage_w": 0.0002949566011035507,
+              "boundary_heat_loss_w": 14.40901136039634
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.003950617283951235,
+              "predicted_sensor_mean_slope_k_per_s": 4.050455709542828e-05,
+              "dynamic_spatial_rmse_k": 0.8730612006495093,
+              "static_spatial_rmse_k": 0.8730581024112547,
+              "max_dynamic_minus_static_spatial_k": 3.272340917925831e-05,
+              "power_w": 14.409249343333332,
+              "storage_rate_w": 0.00023798552051152976,
+              "die_storage_w": -7.80987340264737e-06,
+              "pad_storage_w": -4.811438645293214e-05,
+              "base_storage_w": -1.0468184145916925e-06,
+              "fins_storage_w": 0.00029495659878170095,
+              "boundary_heat_loss_w": 14.409011360400486
+            }
+          }
+        },
+        {
+          "name": "nine",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.004722222222221085,
+              "predicted_sensor_mean_slope_k_per_s": -0.0004036334392259909,
+              "dynamic_spatial_rmse_k": 1.3782371425638,
+              "static_spatial_rmse_k": 1.3782974014708131,
+              "max_dynamic_minus_static_spatial_k": 0.00039580828023133563,
+              "power_w": 28.13306600444444,
+              "storage_rate_w": -0.0038064432229887165,
+              "die_storage_w": -9.866986972996195e-05,
+              "pad_storage_w": -0.00020777362861196447,
+              "base_storage_w": -0.001618702211212663,
+              "fins_storage_w": -0.0018812975134341276,
+              "boundary_heat_loss_w": 28.136872452708996
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.004722222222221085,
+              "predicted_sensor_mean_slope_k_per_s": -0.00040363343927967636,
+              "dynamic_spatial_rmse_k": 1.3782371425638,
+              "static_spatial_rmse_k": 1.3782974014708131,
+              "max_dynamic_minus_static_spatial_k": 0.00039580828023133563,
+              "power_w": 28.13306600444444,
+              "storage_rate_w": -0.0038064432271706517,
+              "die_storage_w": -9.8669869735555e-05,
+              "pad_storage_w": -0.00020777362863930694,
+              "base_storage_w": -0.001618702213019509,
+              "fins_storage_w": -0.0018812975157762803,
+              "boundary_heat_loss_w": 28.136872452713185
+            }
+          }
+        },
+        {
+          "name": "sixteen",
+          "role": "calibration",
+          "source_power_domain": false,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.014722222222224622,
+              "predicted_sensor_mean_slope_k_per_s": -0.00031560901361634325,
+              "dynamic_spatial_rmse_k": 0.8422042445469391,
+              "static_spatial_rmse_k": 0.8421900401598184,
+              "max_dynamic_minus_static_spatial_k": 7.655820184798712e-05,
+              "power_w": 47.15123175555555,
+              "storage_rate_w": -0.001269186124681775,
+              "die_storage_w": 8.146741046556874e-05,
+              "pad_storage_w": 0.00014163689427387747,
+              "base_storage_w": -0.0008624248800696573,
+              "fins_storage_w": -0.0006298655493515641,
+              "boundary_heat_loss_w": 47.15250095011111
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.014722222222224622,
+              "predicted_sensor_mean_slope_k_per_s": -0.00031560954849396694,
+              "dynamic_spatial_rmse_k": 0.8422042445449834,
+              "static_spatial_rmse_k": 0.8421900401598184,
+              "max_dynamic_minus_static_spatial_k": 7.655819703122901e-05,
+              "power_w": 47.15123175555555,
+              "storage_rate_w": -0.0012692290418998586,
+              "die_storage_w": 8.146735306854968e-05,
+              "pad_storage_w": 0.00014163661367144214,
+              "base_storage_w": -0.0008624434228735906,
+              "fins_storage_w": -0.0006298895857662596,
+              "boundary_heat_loss_w": 47.152500993028326
+            }
+          }
+        },
+        {
+          "name": "line_1",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0006790123456789211,
+              "predicted_sensor_mean_slope_k_per_s": 0.00028599545585529366,
+              "dynamic_spatial_rmse_k": 0.5869641784569382,
+              "static_spatial_rmse_k": 0.5869590891211077,
+              "max_dynamic_minus_static_spatial_k": 3.366126139603409e-05,
+              "power_w": 14.150098972222223,
+              "storage_rate_w": 0.0012046655393918692,
+              "die_storage_w": 4.684230292010488e-05,
+              "pad_storage_w": 0.00010266689980509612,
+              "base_storage_w": 0.0005419269628534261,
+              "fins_storage_w": 0.0005132293738132421,
+              "boundary_heat_loss_w": 14.148894309252443
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0006790123456789211,
+              "predicted_sensor_mean_slope_k_per_s": 0.00028599545580555567,
+              "dynamic_spatial_rmse_k": 0.5869641784569386,
+              "static_spatial_rmse_k": 0.5869590891211077,
+              "max_dynamic_minus_static_spatial_k": 3.366126139781045e-05,
+              "power_w": 14.150098972222223,
+              "storage_rate_w": 0.0012046655352317532,
+              "die_storage_w": 4.68423029145412e-05,
+              "pad_storage_w": 0.00010266689977789623,
+              "base_storage_w": 0.0005419269610560076,
+              "fins_storage_w": 0.0005132293714833082,
+              "boundary_heat_loss_w": 14.148894309256601
+            }
+          }
+        },
+        {
+          "name": "line_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.0010493827160497442,
+              "predicted_sensor_mean_slope_k_per_s": -0.00016230879586250543,
+              "dynamic_spatial_rmse_k": 0.7849823478385065,
+              "static_spatial_rmse_k": 0.7849977674082583,
+              "max_dynamic_minus_static_spatial_k": 4.835246998702303e-05,
+              "power_w": 14.294058897777775,
+              "storage_rate_w": -0.0025298062586865894,
+              "die_storage_w": -0.00010958679227317982,
+              "pad_storage_w": -0.00022467809928850596,
+              "base_storage_w": -0.0010219203096264026,
+              "fins_storage_w": -0.001173621057498501,
+              "boundary_heat_loss_w": 14.296588706608206
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.0010493827160497442,
+              "predicted_sensor_mean_slope_k_per_s": -0.0001623087959138224,
+              "dynamic_spatial_rmse_k": 0.7849823478385063,
+              "static_spatial_rmse_k": 0.7849977674082583,
+              "max_dynamic_minus_static_spatial_k": 4.835246998702303e-05,
+              "power_w": 14.294058897777775,
+              "storage_rate_w": -0.0025298062628428745,
+              "die_storage_w": -0.00010958679227873837,
+              "pad_storage_w": -0.0002246780993156806,
+              "base_storage_w": -0.001021920311422166,
+              "fins_storage_w": -0.0011736210598262894,
+              "boundary_heat_loss_w": 14.296588706612367
+            }
+          }
+        },
+        {
+          "name": "thickline_1",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.0016666666666667299,
+              "predicted_sensor_mean_slope_k_per_s": -0.0006621271363213862,
+              "dynamic_spatial_rmse_k": 0.8485023248758653,
+              "static_spatial_rmse_k": 0.8485561945399483,
+              "max_dynamic_minus_static_spatial_k": 0.00014115741226294887,
+              "power_w": 25.320199918888886,
+              "storage_rate_w": 0.0010658734384544541,
+              "die_storage_w": -0.00012763767887065283,
+              "pad_storage_w": -0.00036027980666227926,
+              "base_storage_w": 0.00047111157191630096,
+              "fins_storage_w": 0.0010826793520710852,
+              "boundary_heat_loss_w": 25.31913405003252
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.0016666666666667299,
+              "predicted_sensor_mean_slope_k_per_s": -0.0006621271363719137,
+              "dynamic_spatial_rmse_k": 0.8485023248758652,
+              "static_spatial_rmse_k": 0.8485561945399483,
+              "max_dynamic_minus_static_spatial_k": 0.00014115741226294887,
+              "power_w": 25.320199918888886,
+              "storage_rate_w": 0.0010658734343059967,
+              "die_storage_w": -0.00012763767887620083,
+              "pad_storage_w": -0.0003602798066894028,
+              "base_storage_w": 0.00047111157012391956,
+              "fins_storage_w": 0.0010826793497476807,
+              "boundary_heat_loss_w": 25.31913405003667
+            }
+          }
+        },
+        {
+          "name": "thickline_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0017901234567874427,
+              "predicted_sensor_mean_slope_k_per_s": 0.0003820478557262024,
+              "dynamic_spatial_rmse_k": 1.3130124915756332,
+              "static_spatial_rmse_k": 1.31300241544712,
+              "max_dynamic_minus_static_spatial_k": 9.61587916865625e-05,
+              "power_w": 25.286267564444447,
+              "storage_rate_w": 0.0017300141379940068,
+              "die_storage_w": 0.00012228166445085354,
+              "pad_storage_w": 0.0003275779531557459,
+              "base_storage_w": 0.000898709037777734,
+              "fins_storage_w": 0.00038144548260967353,
+              "boundary_heat_loss_w": 25.2845375548214
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0017901234567874427,
+              "predicted_sensor_mean_slope_k_per_s": 0.00038204785567725393,
+              "dynamic_spatial_rmse_k": 1.3130124915756336,
+              "static_spatial_rmse_k": 1.31300241544712,
+              "max_dynamic_minus_static_spatial_k": 9.61587916865625e-05,
+              "power_w": 25.286267564444447,
+              "storage_rate_w": 0.0017300141338330581,
+              "die_storage_w": 0.00012228166444528863,
+              "pad_storage_w": 0.0003275779531285409,
+              "base_storage_w": 0.0008987090359799555,
+              "fins_storage_w": 0.0003814454802792732,
+              "boundary_heat_loss_w": 25.28453755482556
+            }
+          }
+        },
+        {
+          "name": "checkboard",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.002808641975308193,
+              "predicted_sensor_mean_slope_k_per_s": 0.00038119403695525815,
+              "dynamic_spatial_rmse_k": 0.9997875849635655,
+              "static_spatial_rmse_k": 0.999784546847315,
+              "max_dynamic_minus_static_spatial_k": 0.00011518083985917471,
+              "power_w": 25.479663467777783,
+              "storage_rate_w": 0.001921908859492372,
+              "die_storage_w": 3.873650895992408e-05,
+              "pad_storage_w": 0.00018236089494612736,
+              "base_storage_w": 0.0013324613410831986,
+              "fins_storage_w": 0.00036835011450312197,
+              "boundary_heat_loss_w": 25.47774156347842
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.002808641975308193,
+              "predicted_sensor_mean_slope_k_per_s": 0.00038119403690315166,
+              "dynamic_spatial_rmse_k": 0.9997875849635658,
+              "static_spatial_rmse_k": 0.999784546847315,
+              "max_dynamic_minus_static_spatial_k": 0.00011518083985917471,
+              "power_w": 25.479663467777783,
+              "storage_rate_w": 0.0019219088553236504,
+              "die_storage_w": 3.87365089543488e-05,
+              "pad_storage_w": 0.0001823608949188713,
+              "base_storage_w": 0.0013324613392820617,
+              "fins_storage_w": 0.0003683501121683687,
+              "boundary_heat_loss_w": 25.477741563482596
+            }
+          }
+        },
+        {
+          "name": "hotspot_1",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0017283950617282705,
+              "predicted_sensor_mean_slope_k_per_s": 0.00024786476551991795,
+              "dynamic_spatial_rmse_k": 0.7752504180806539,
+              "static_spatial_rmse_k": 0.7752555188993242,
+              "max_dynamic_minus_static_spatial_k": 6.038579551326251e-05,
+              "power_w": 10.100048367777777,
+              "storage_rate_w": -0.0002546273142899098,
+              "die_storage_w": -4.364749412321937e-05,
+              "pad_storage_w": -0.00012618043597002184,
+              "base_storage_w": -6.259768995796939e-05,
+              "fins_storage_w": -2.2201694238699195e-05,
+              "boundary_heat_loss_w": 10.100302996910425
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0017283950617282705,
+              "predicted_sensor_mean_slope_k_per_s": 0.000247864765467022,
+              "dynamic_spatial_rmse_k": 0.7752504180806538,
+              "static_spatial_rmse_k": 0.7752555188993242,
+              "max_dynamic_minus_static_spatial_k": 6.038579551326251e-05,
+              "power_w": 10.100048367777777,
+              "storage_rate_w": -0.00025462731842775096,
+              "die_storage_w": -4.3647494128753266e-05,
+              "pad_storage_w": -0.00012618043599707602,
+              "base_storage_w": -6.259769174576459e-05,
+              "fins_storage_w": -2.2201696556157046e-05,
+              "boundary_heat_loss_w": 10.100302996914564
+            }
+          }
+        },
+        {
+          "name": "hotspot_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.0008024691358023972,
+              "predicted_sensor_mean_slope_k_per_s": -4.655178560497575e-05,
+              "dynamic_spatial_rmse_k": 0.5866395325873446,
+              "static_spatial_rmse_k": 0.5866380814404676,
+              "max_dynamic_minus_static_spatial_k": 4.273284935996102e-05,
+              "power_w": 10.141556310000002,
+              "storage_rate_w": 0.0029810438229015486,
+              "die_storage_w": -1.2810551597282545e-07,
+              "pad_storage_w": 4.576096314764479e-05,
+              "base_storage_w": 0.0014905906813699656,
+              "fins_storage_w": 0.0014448202838999108,
+              "boundary_heat_loss_w": 10.138575268006289
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.0008024691358023972,
+              "predicted_sensor_mean_slope_k_per_s": -4.655178565668747e-05,
+              "dynamic_spatial_rmse_k": 0.5866395325873444,
+              "static_spatial_rmse_k": 0.5866380814404676,
+              "max_dynamic_minus_static_spatial_k": 4.2732849359516933e-05,
+              "power_w": 10.141556310000002,
+              "storage_rate_w": 0.0029810438187551592,
+              "die_storage_w": -1.28105521518116e-07,
+              "pad_storage_w": 4.5760963120534865e-05,
+              "base_storage_w": 0.0014905906795784774,
+              "fins_storage_w": 0.001444820281577665,
+              "boundary_heat_loss_w": 10.138575268010433
+            }
+          }
+        },
+        {
+          "name": "hotspot_3",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0006172839506177752,
+              "predicted_sensor_mean_slope_k_per_s": 0.0009201358802148402,
+              "dynamic_spatial_rmse_k": 0.8962032291759502,
+              "static_spatial_rmse_k": 0.896168060691363,
+              "max_dynamic_minus_static_spatial_k": 0.0001349405576576146,
+              "power_w": 10.10856423666667,
+              "storage_rate_w": 0.0013735474760075946,
+              "die_storage_w": 9.653785812748708e-05,
+              "pad_storage_w": 0.00027100800157214144,
+              "base_storage_w": 0.0008096897450290977,
+              "fins_storage_w": 0.00019631187127886818,
+              "boundary_heat_loss_w": 10.107190691003003
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0006172839506177752,
+              "predicted_sensor_mean_slope_k_per_s": 0.0009201358801611548,
+              "dynamic_spatial_rmse_k": 0.8962032291759502,
+              "static_spatial_rmse_k": 0.896168060691363,
+              "max_dynamic_minus_static_spatial_k": 0.0001349405576576146,
+              "power_w": 10.10856423666667,
+              "storage_rate_w": 0.0013735474718643411,
+              "die_storage_w": 9.653785812194591e-05,
+              "pad_storage_w": 0.000271008001545052,
+              "base_storage_w": 0.0008096897432389643,
+              "fins_storage_w": 0.0001963118689583788,
+              "boundary_heat_loss_w": 10.107190691007148
+            }
+          }
+        },
+        {
+          "name": "hotspot_4",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0008950617283953003,
+              "predicted_sensor_mean_slope_k_per_s": -0.00012967700642402887,
+              "dynamic_spatial_rmse_k": 0.9684826704609848,
+              "static_spatial_rmse_k": 0.9684825632668185,
+              "max_dynamic_minus_static_spatial_k": 3.600939738923614e-05,
+              "power_w": 9.960793404444436,
+              "storage_rate_w": -0.0006764929814560846,
+              "die_storage_w": 1.9517099954938864e-05,
+              "pad_storage_w": 6.763331650622617e-05,
+              "base_storage_w": -0.00022117265568485404,
+              "fins_storage_w": -0.0005424707422323957,
+              "boundary_heat_loss_w": 9.961469899201322
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0008950617283953003,
+              "predicted_sensor_mean_slope_k_per_s": -0.00012967700647534584,
+              "dynamic_spatial_rmse_k": 0.968482670460983,
+              "static_spatial_rmse_k": 0.9684825632668185,
+              "max_dynamic_minus_static_spatial_k": 3.60093973900133e-05,
+              "power_w": 9.960793404444436,
+              "storage_rate_w": -0.0006764929855956737,
+              "die_storage_w": 1.951709994940269e-05,
+              "pad_storage_w": 6.763331647916053e-05,
+              "base_storage_w": -0.00022117265747340393,
+              "fins_storage_w": -0.000542470744550833,
+              "boundary_heat_loss_w": 9.961469899205461
+            }
+          }
+        }
+      ]
+    },
+    "heatsink_with_fan_P_level0": {
+      "group": "heatsink_with_fan",
+      "model": "P",
+      "level": 0,
+      "full_nodes": 22600,
+      "fixed_mesh_reduction_screen": true,
+      "max_native_trace_order_change_k": 0.0015118477147684217,
+      "numerical_controls": {
+        "finest": {
+          "audit": {
+            "full_nodes": 22600,
+            "reduced_order": 482,
+            "shifts_per_s": [
+              0.0,
+              0.001,
+              0.0017782794100389228,
+              0.0031622776601683794,
+              0.005623413251903491,
+              0.01,
+              0.01778279410038923,
+              0.03162277660168379,
+              0.05623413251903491,
+              0.1,
+              0.1778279410038923,
+              0.31622776601683794,
+              0.5623413251903491,
+              1.0,
+              1.7782794100389228,
+              3.1622776601683795,
+              5.623413251903491,
+              10.0,
+              17.78279410038923,
+              31.622776601683793,
+              56.23413251903491,
+              100.0,
+              177.82794100389228,
+              316.22776601683796,
+              562.341325190349,
+              1000.0,
+              1778.2794100389228,
+              3162.2776601683795,
+              5623.413251903491,
+              10000.0,
+              17782.794100389227,
+              31622.776601683792,
+              56234.13251903491,
+              100000.0,
+              177827.94100389228,
+              316227.7660168379,
+              562341.3251903491,
+              1000000.0,
+              1778279.410038923,
+              3162277.6601683795,
+              5623413.251903491,
+              10000000.0
+            ],
+            "orthogonality_error": 1.0436096431476471e-14,
+            "projected_relative_asymmetry": 3.474038065477137e-16,
+            "constant_field_error": 5.760281140965162e-12,
+            "body_dynamic_identity_error": 2.938324627013711e-11,
+            "body_input_identity_error": 1.1956760451528603e-13,
+            "dc_full_state_max_error_k_per_w": 8.066070034118411e-11,
+            "dc_capacity_norm_relative_error": 5.824855885621313e-11,
+            "slowest_time_constant_s": 72.06140696890893,
+            "fastest_time_constant_s": 2.0286851799565814e-05,
+            "physical_model_qualified": false
+          },
+          "withheld_frequency_omega_per_s": [
+            0.003,
+            0.03,
+            0.3,
+            3.0,
+            30.0,
+            300.0
+          ],
+          "withheld_frequency_max_error_k": [
+            2.2907273606995105e-09,
+            4.640505101811349e-10,
+            2.6949819955025896e-09,
+            2.537812721882617e-06,
+            4.812961237912969e-05,
+            6.783612103651326e-05
+          ],
+          "max_reconstructed_interface_flux_coefficient_error": 9.774681064556034e-13,
+          "minimum_step_temperature_k": 0.0,
+          "max_step_decrease_k": 0.0,
+          "step_positivity_monotonicity_screen": true,
+          "sensors_max_error_to_be_extrapolate_k": 0.00023172727272502414,
+          "body_means_max_error_to_be_extrapolate_k": 0.00015856818392911975,
+          "fixed_mesh_numerical_screen": true
+        },
+        "backward_euler": {
+          "0.005": {
+            "max_numerical_heat_balance_error_j": 4.6984638402136625e-12
+          },
+          "0.0025": {
+            "max_numerical_heat_balance_error_j": 9.319212068703564e-12
+          },
+          "0.00125": {
+            "max_numerical_heat_balance_error_j": 1.8123280653981055e-11
+          },
+          "sensors_extrapolation_change_k": 0.0006951505573500327,
+          "body_means_extrapolation_change_k": 0.00046045327856525375
+        }
+      },
+      "held_out_duration_weighted_scores": {
+        "conditional_gradient": {
+          "common_rmse_k": 0.9845969224292088,
+          "spatial_rmse_k": 1.0127871789486516,
+          "raw_rmse_k": 1.4125045024706424,
+          "held_out_cases": 9,
+          "samples_per_sensor": 171364
+        },
+        "uniform": {
+          "common_rmse_k": 0.9748693530610644,
+          "spatial_rmse_k": 1.0127866214006185,
+          "raw_rmse_k": 1.4057407285932133,
+          "held_out_cases": 9,
+          "samples_per_sensor": 171364
+        }
+      },
+      "max_initial_state_sensitivity_k": 1.349607180241943,
+      "max_normalized_heat_error": 5.7130539161224334e-11,
+      "cases": [
+        {
+          "name": "one",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.00043209876543236366,
+              "predicted_sensor_mean_slope_k_per_s": 0.00023181799627419112,
+              "dynamic_spatial_rmse_k": 0.5205732981003848,
+              "static_spatial_rmse_k": 0.5205735315222295,
+              "max_dynamic_minus_static_spatial_k": 3.904573532653721e-05,
+              "power_w": 5.845172224444445,
+              "storage_rate_w": 0.0012574040705983884,
+              "die_storage_w": 3.101679742963442e-05,
+              "pad_storage_w": 0.0002510507366967628,
+              "base_storage_w": 0.0006046231601903803,
+              "fins_storage_w": 0.00037071337628161107,
+              "boundary_heat_loss_w": 5.843914820056574
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.00043209876543236366,
+              "predicted_sensor_mean_slope_k_per_s": 0.00023181799614096436,
+              "dynamic_spatial_rmse_k": 0.5205732981003853,
+              "static_spatial_rmse_k": 0.5205735315222295,
+              "max_dynamic_minus_static_spatial_k": 3.904573532542699e-05,
+              "power_w": 5.845172224444445,
+              "storage_rate_w": 0.0012574040595350526,
+              "die_storage_w": 3.101679741535821e-05,
+              "pad_storage_w": 0.00025105073621214404,
+              "base_storage_w": 0.0006046231555879416,
+              "fins_storage_w": 0.00037071337031960874,
+              "boundary_heat_loss_w": 5.843914820067637
+            }
+          }
+        },
+        {
+          "name": "four",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.003950617283951235,
+              "predicted_sensor_mean_slope_k_per_s": 4.1995378996122985e-05,
+              "dynamic_spatial_rmse_k": 1.0221041996764701,
+              "static_spatial_rmse_k": 1.0221018473165573,
+              "max_dynamic_minus_static_spatial_k": 2.682351443317188e-05,
+              "power_w": 14.409249343333332,
+              "storage_rate_w": 0.00023711457387103158,
+              "die_storage_w": -6.392414233123983e-06,
+              "pad_storage_w": -8.991631520656117e-05,
+              "base_storage_w": 4.8219715925800184e-05,
+              "fins_storage_w": 0.0002852035873849166,
+              "boundary_heat_loss_w": 14.409012227960249
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.003950617283951235,
+              "predicted_sensor_mean_slope_k_per_s": 4.199537886269885e-05,
+              "dynamic_spatial_rmse_k": 1.02210419967647,
+              "static_spatial_rmse_k": 1.0221018473165573,
+              "max_dynamic_minus_static_spatial_k": 2.6823514434504148e-05,
+              "power_w": 14.409249343333332,
+              "storage_rate_w": 0.00023711456281305586,
+              "die_storage_w": -6.3924142473931255e-06,
+              "pad_storage_w": -8.991631569094537e-05,
+              "base_storage_w": 4.821971132559122e-05,
+              "fins_storage_w": 0.0002852035814258032,
+              "boundary_heat_loss_w": 14.409012227971306
+            }
+          }
+        },
+        {
+          "name": "nine",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.004722222222221085,
+              "predicted_sensor_mean_slope_k_per_s": -0.0003843218348957104,
+              "dynamic_spatial_rmse_k": 1.4423518674492288,
+              "static_spatial_rmse_k": 1.442416050286647,
+              "max_dynamic_minus_static_spatial_k": 0.0003411631894998379,
+              "power_w": 28.13306600444444,
+              "storage_rate_w": -0.0038412048082796598,
+              "die_storage_w": -9.527083004272954e-05,
+              "pad_storage_w": -0.0003905187721073541,
+              "base_storage_w": -0.0015526167541206936,
+              "fins_storage_w": -0.0018027984520088828,
+              "boundary_heat_loss_w": 28.136907207743203
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.004722222222221085,
+              "predicted_sensor_mean_slope_k_per_s": -0.00038432183502676607,
+              "dynamic_spatial_rmse_k": 1.4423518674492286,
+              "static_spatial_rmse_k": 1.442416050286647,
+              "max_dynamic_minus_static_spatial_k": 0.0003411631894998379,
+              "power_w": 28.13306600444444,
+              "storage_rate_w": -0.0038412048193211443,
+              "die_storage_w": -9.527083005697747e-05,
+              "pad_storage_w": -0.00039051877259101527,
+              "base_storage_w": -0.0015526167587140425,
+              "fins_storage_w": -0.0018027984579591088,
+              "boundary_heat_loss_w": 28.13690720775424
+            }
+          }
+        },
+        {
+          "name": "sixteen",
+          "role": "calibration",
+          "source_power_domain": false,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.014722222222224622,
+              "predicted_sensor_mean_slope_k_per_s": -0.00030714050266706435,
+              "dynamic_spatial_rmse_k": 0.7126142403652244,
+              "static_spatial_rmse_k": 0.7126011685219873,
+              "max_dynamic_minus_static_spatial_k": 5.8718146292324747e-05,
+              "power_w": 47.15123175555555,
+              "storage_rate_w": -0.0013415837880646152,
+              "die_storage_w": 7.915591963982136e-05,
+              "pad_storage_w": -8.57804379433842e-05,
+              "base_storage_w": -0.0007888994983098507,
+              "fins_storage_w": -0.0005460597714512016,
+              "boundary_heat_loss_w": 47.15257333685897
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.014722222222224622,
+              "predicted_sensor_mean_slope_k_per_s": -0.0003071414709220714,
+              "dynamic_spatial_rmse_k": 0.7126142403632202,
+              "static_spatial_rmse_k": 0.7126011685219873,
+              "max_dynamic_minus_static_spatial_k": 5.871813821101135e-05,
+              "power_w": 47.15123175555555,
+              "storage_rate_w": -0.001341664302735195,
+              "die_storage_w": 7.915581574371223e-05,
+              "pad_storage_w": -8.578396481164108e-05,
+              "base_storage_w": -0.000788932993075304,
+              "fins_storage_w": -0.0005461031605919622,
+              "boundary_heat_loss_w": 47.15257341737364
+            }
+          }
+        },
+        {
+          "name": "line_1",
+          "role": "calibration",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0006790123456789211,
+              "predicted_sensor_mean_slope_k_per_s": 0.0002672372552960193,
+              "dynamic_spatial_rmse_k": 0.7810188477387457,
+              "static_spatial_rmse_k": 0.7810161648854399,
+              "max_dynamic_minus_static_spatial_k": 2.868955879264945e-05,
+              "power_w": 14.150098972222223,
+              "storage_rate_w": 0.0012039849482456048,
+              "die_storage_w": 4.572667985274486e-05,
+              "pad_storage_w": 0.00018687695652552338,
+              "base_storage_w": 0.0005012091643399031,
+              "fins_storage_w": 0.0004701721475274335,
+              "boundary_heat_loss_w": 14.148894986531594
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0006790123456789211,
+              "predicted_sensor_mean_slope_k_per_s": 0.00026723725516338465,
+              "dynamic_spatial_rmse_k": 0.7810188477387456,
+              "static_spatial_rmse_k": 0.7810161648854399,
+              "max_dynamic_minus_static_spatial_k": 2.868955879264945e-05,
+              "power_w": 14.150098972222223,
+              "storage_rate_w": 0.0012039849371928064,
+              "die_storage_w": 4.5726679838482386e-05,
+              "pad_storage_w": 0.00018687695604136613,
+              "base_storage_w": 0.0005012091597418481,
+              "fins_storage_w": 0.0004701721415711097,
+              "boundary_heat_loss_w": 14.148894986542647
+            }
+          }
+        },
+        {
+          "name": "line_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.0010493827160497442,
+              "predicted_sensor_mean_slope_k_per_s": -0.00016089494807797818,
+              "dynamic_spatial_rmse_k": 0.7778196713176663,
+              "static_spatial_rmse_k": 0.7778350628745225,
+              "max_dynamic_minus_static_spatial_k": 4.97308129157048e-05,
+              "power_w": 14.294058897777775,
+              "storage_rate_w": -0.0025224266065098267,
+              "die_storage_w": -0.00010985198456814247,
+              "pad_storage_w": -0.00035076587994309875,
+              "base_storage_w": -0.0009842130520177257,
+              "fins_storage_w": -0.00107759568998086,
+              "boundary_heat_loss_w": 14.296581323625405
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.0010493827160497442,
+              "predicted_sensor_mean_slope_k_per_s": -0.0001608949482106128,
+              "dynamic_spatial_rmse_k": 0.7778196713176659,
+              "static_spatial_rmse_k": 0.7778350628745225,
+              "max_dynamic_minus_static_spatial_k": 4.973081291748116e-05,
+              "power_w": 14.294058897777775,
+              "storage_rate_w": -0.0025224266175307747,
+              "die_storage_w": -0.00010985198458236382,
+              "pad_storage_w": -0.0003507658804258611,
+              "base_storage_w": -0.0009842130566025302,
+              "fins_storage_w": -0.0010775956959200189,
+              "boundary_heat_loss_w": 14.296581323636428
+            }
+          }
+        },
+        {
+          "name": "thickline_1",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.0016666666666667299,
+              "predicted_sensor_mean_slope_k_per_s": -0.0006425476591402912,
+              "dynamic_spatial_rmse_k": 0.9626138610127851,
+              "static_spatial_rmse_k": 0.962671106162665,
+              "max_dynamic_minus_static_spatial_k": 0.00012505924180139516,
+              "power_w": 25.320199918888886,
+              "storage_rate_w": 0.001090600197477146,
+              "die_storage_w": -0.00012152819433107514,
+              "pad_storage_w": -0.00031979788904692465,
+              "base_storage_w": 0.00048493663415037213,
+              "fins_storage_w": 0.0010469896467047736,
+              "boundary_heat_loss_w": 25.319109317354965
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.0016666666666667299,
+              "predicted_sensor_mean_slope_k_per_s": -0.0006425476592745048,
+              "dynamic_spatial_rmse_k": 0.9626138610127857,
+              "static_spatial_rmse_k": 0.962671106162665,
+              "max_dynamic_minus_static_spatial_k": 0.00012505924179784245,
+              "power_w": 25.320199918888886,
+              "storage_rate_w": 0.0010906001864534837,
+              "die_storage_w": -0.00012152819434529991,
+              "pad_storage_w": -0.0003197978895298056,
+              "base_storage_w": 0.0004849366295644378,
+              "fins_storage_w": 0.0010469896407641513,
+              "boundary_heat_loss_w": 25.31910931736599
+            }
+          }
+        },
+        {
+          "name": "thickline_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0017901234567874427,
+              "predicted_sensor_mean_slope_k_per_s": 0.0003687525319517388,
+              "dynamic_spatial_rmse_k": 1.292697407749268,
+              "static_spatial_rmse_k": 1.2926871320660211,
+              "max_dynamic_minus_static_spatial_k": 9.085977613221274e-05,
+              "power_w": 25.286267564444447,
+              "storage_rate_w": 0.0016513864011784467,
+              "die_storage_w": 0.00011923442595840644,
+              "pad_storage_w": 0.0005120671049250673,
+              "base_storage_w": 0.0007363942110395541,
+              "fins_storage_w": 0.00028369065925541866,
+              "boundary_heat_loss_w": 25.28461617671209
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0017901234567874427,
+              "predicted_sensor_mean_slope_k_per_s": 0.00036875253181752515,
+              "dynamic_spatial_rmse_k": 1.292697407749267,
+              "static_spatial_rmse_k": 1.2926871320660211,
+              "max_dynamic_minus_static_spatial_k": 9.085977612866003e-05,
+              "power_w": 25.286267564444447,
+              "storage_rate_w": 0.0016513863900734283,
+              "die_storage_w": 0.00011923442594407658,
+              "pad_storage_w": 0.0005120671044386224,
+              "base_storage_w": 0.0007363942064197752,
+              "fins_storage_w": 0.00028369065327095444,
+              "boundary_heat_loss_w": 25.284616176723194
+            }
+          }
+        },
+        {
+          "name": "checkboard",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.002808641975308193,
+              "predicted_sensor_mean_slope_k_per_s": 0.0003603358402936389,
+              "dynamic_spatial_rmse_k": 1.0286049050022883,
+              "static_spatial_rmse_k": 1.0286047432442031,
+              "max_dynamic_minus_static_spatial_k": 0.00010447713271899417,
+              "power_w": 25.479663467777783,
+              "storage_rate_w": 0.0018934587756468126,
+              "die_storage_w": 3.6438318377909634e-05,
+              "pad_storage_w": 0.0005516376950486979,
+              "base_storage_w": 0.001105390544998396,
+              "fins_storage_w": 0.00019999221722180933,
+              "boundary_heat_loss_w": 25.477770007655543
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.002808641975308193,
+              "predicted_sensor_mean_slope_k_per_s": 0.00036033584015942525,
+              "dynamic_spatial_rmse_k": 1.0286049050022883,
+              "static_spatial_rmse_k": 1.0286047432442031,
+              "max_dynamic_minus_static_spatial_k": 0.00010447713271899417,
+              "power_w": 25.479663467777783,
+              "storage_rate_w": 0.0018934587645447368,
+              "die_storage_w": 3.643831836358355e-05,
+              "pad_storage_w": 0.0005516376945623819,
+              "base_storage_w": 0.001105390540379841,
+              "fins_storage_w": 0.0001999922112389305,
+              "boundary_heat_loss_w": 25.47777000766665
+            }
+          }
+        },
+        {
+          "name": "hotspot_1",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0017283950617282705,
+              "predicted_sensor_mean_slope_k_per_s": 0.0002361848546898039,
+              "dynamic_spatial_rmse_k": 0.8595586219021879,
+              "static_spatial_rmse_k": 0.8595647037242523,
+              "max_dynamic_minus_static_spatial_k": 5.7285445645760547e-05,
+              "power_w": 10.100048367777777,
+              "storage_rate_w": -0.00026953804530527114,
+              "die_storage_w": -4.2017093427728046e-05,
+              "pad_storage_w": -0.00010301971566742948,
+              "base_storage_w": -8.139521242361955e-05,
+              "fins_storage_w": -4.310602378649402e-05,
+              "boundary_heat_loss_w": 10.100317905283898
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0017283950617282705,
+              "predicted_sensor_mean_slope_k_per_s": 0.00023618485455835348,
+              "dynamic_spatial_rmse_k": 0.8595586219021877,
+              "static_spatial_rmse_k": 0.8595647037242523,
+              "max_dynamic_minus_static_spatial_k": 5.7285445647092814e-05,
+              "power_w": 10.100048367777777,
+              "storage_rate_w": -0.0002695380563588902,
+              "die_storage_w": -4.2017093441991626e-05,
+              "pad_storage_w": -0.0001030197161516228,
+              "base_storage_w": -8.139521702201599e-05,
+              "fins_storage_w": -4.310602974325983e-05,
+              "boundary_heat_loss_w": 10.100317905294952
+            }
+          }
+        },
+        {
+          "name": "hotspot_2",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": -0.0008024691358023972,
+              "predicted_sensor_mean_slope_k_per_s": -4.5787271402117665e-05,
+              "dynamic_spatial_rmse_k": 0.8033767385527925,
+              "static_spatial_rmse_k": 0.8033721174436894,
+              "max_dynamic_minus_static_spatial_k": 4.320648958699991e-05,
+              "power_w": 10.141556310000002,
+              "storage_rate_w": 0.0029979997575639533,
+              "die_storage_w": -8.471088805765569e-07,
+              "pad_storage_w": 0.000273095702272291,
+              "base_storage_w": 0.0013839837097665262,
+              "fins_storage_w": 0.001341767454405713,
+              "boundary_heat_loss_w": 10.1385583096849
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": -0.0008024691358023972,
+              "predicted_sensor_mean_slope_k_per_s": -4.578727153435757e-05,
+              "dynamic_spatial_rmse_k": 0.8033767385527917,
+              "static_spatial_rmse_k": 0.8033721174436894,
+              "max_dynamic_minus_static_spatial_k": 4.320648958522355e-05,
+              "power_w": 10.141556310000002,
+              "storage_rate_w": 0.0029979997465237576,
+              "die_storage_w": -8.471088948228035e-07,
+              "pad_storage_w": 0.0002730957017886859,
+              "base_storage_w": 0.001383983705173714,
+              "fins_storage_w": 0.0013417674484561806,
+              "boundary_heat_loss_w": 10.138558309695943
+            }
+          }
+        },
+        {
+          "name": "hotspot_3",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0006172839506177752,
+              "predicted_sensor_mean_slope_k_per_s": 0.0008894796958540181,
+              "dynamic_spatial_rmse_k": 0.952448877496394,
+              "static_spatial_rmse_k": 0.9524122005007941,
+              "max_dynamic_minus_static_spatial_k": 0.00013105526602785744,
+              "power_w": 10.10856423666667,
+              "storage_rate_w": 0.0013695908933116618,
+              "die_storage_w": 9.497097431589922e-05,
+              "pad_storage_w": 0.00047908702615435803,
+              "base_storage_w": 0.0006891814955032098,
+              "fins_storage_w": 0.00010635139733819472,
+              "boundary_heat_loss_w": 10.107194645188946
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0006172839506177752,
+              "predicted_sensor_mean_slope_k_per_s": 0.0008894796957217781,
+              "dynamic_spatial_rmse_k": 0.952448877496395,
+              "static_spatial_rmse_k": 0.9524122005007941,
+              "max_dynamic_minus_static_spatial_k": 0.00013105526603141016,
+              "power_w": 10.10856423666667,
+              "storage_rate_w": 0.0013695908822734305,
+              "die_storage_w": 9.497097430165549e-05,
+              "pad_storage_w": 0.0004790870256708387,
+              "base_storage_w": 0.0006891814909112148,
+              "fins_storage_w": 0.0001063513913897215,
+              "boundary_heat_loss_w": 10.107194645199984
+            }
+          }
+        },
+        {
+          "name": "hotspot_4",
+          "role": "held_out",
+          "source_power_domain": true,
+          "windows": {
+            "conditional_gradient": {
+              "measured_sensor_mean_slope_k_per_s": 0.0008950617283953003,
+              "predicted_sensor_mean_slope_k_per_s": -0.00013587166965775863,
+              "dynamic_spatial_rmse_k": 0.9552214659705887,
+              "static_spatial_rmse_k": 0.9552207588718555,
+              "max_dynamic_minus_static_spatial_k": 3.201378091899354e-05,
+              "power_w": 9.960793404444436,
+              "storage_rate_w": -0.0006773756488061184,
+              "die_storage_w": 1.753778616131004e-05,
+              "pad_storage_w": 6.759951518093521e-05,
+              "base_storage_w": -0.00025191981643220594,
+              "fins_storage_w": -0.0005105931337161578,
+              "boundary_heat_loss_w": 9.961470779551462
+            },
+            "uniform": {
+              "measured_sensor_mean_slope_k_per_s": 0.0008950617283953003,
+              "predicted_sensor_mean_slope_k_per_s": -0.00013587166978999853,
+              "dynamic_spatial_rmse_k": 0.9552214659705885,
+              "static_spatial_rmse_k": 0.9552207588718555,
+              "max_dynamic_minus_static_spatial_k": 3.2013780920769896e-05,
+              "power_w": 9.960793404444436,
+              "storage_rate_w": -0.0006773756598208992,
+              "die_storage_w": 1.753778614709656e-05,
+              "pad_storage_w": 6.759951469844321e-05,
+              "base_storage_w": -0.00025191982101444536,
+              "fins_storage_w": -0.0005105931396519936,
+              "boundary_heat_loss_w": 9.961470779562474
+            }
+          }
+        }
+      ]
+    }
+  },
+  "mesh_changes": [],
+  "plotted_paired_level": 0,
+  "checkpoint_sha256": "2565e4cdb66843638ce2c48e97630b9e34c2e4787b2684f9ed34141668689f83"
+}
