@@ -12,6 +12,7 @@ from audit_integrated_transistors import build_fabric
 from compare_transistor_layouts import validate_decks
 from summarize_integrated_transistors import summarize
 from chiplet_floorplanning.characterization import digest
+from validation.xyce_output import read_wave
 from validation.pad_spice import crossing_ns
 
 
@@ -123,7 +124,7 @@ def main():
         log = (folder/'xyce.log').read_text()
         if execution.returncode:
             raise ValueError('Xyce failed; raw evidence retained')
-        wave = np.loadtxt(folder/'deck.cir.csv', delimiter=',', skiprows=1)
+        wave = read_wave(folder/'deck.cir.csv', [*[f'V({n})' for n in observed], 'I(VDD)', 'I(VCLK)'])
         rows = measure(wave, observed, nodes, step)
         for row in rows:
             ref = next(r for r in baseline['paths'] if all(r[k] == row[k] for k in ('step_ps', 'lane', 'edge')))

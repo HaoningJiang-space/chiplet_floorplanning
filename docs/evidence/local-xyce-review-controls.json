@@ -1,0 +1,18 @@
+[
+  {
+    "injected": true,
+    "status": "execution_timeout",
+    "report_sha256": "0ad09caa7e2c67fe668f057cc97bdfac5ec13c28c227c003bb0ec445e0e00ef1"
+  },
+  {
+    "injected": true,
+    "status": "execution_failed",
+    "report_sha256": "796a0b249b2f8b6476cde6d7a5c2c8f4090de6b1222c08bcd869cfb756684665"
+  },
+  {
+    "scope": "existing complete fabric CSV headers",
+    "cases": 2,
+    "passed": true,
+    "report_sha256": "77da6e2d5d0cd801af61fe48f30f6400e3a914e58a290b01395dfb756fdbc4f7"
+  }
+]

@@ -9,6 +9,7 @@ import subprocess
 import numpy as np
 
 from chiplet_floorplanning.characterization import digest
+from validation.xyce_output import read_wave
 from validation.pad_spice import crossing_ns
 
 
@@ -88,7 +89,7 @@ def main():
         (folder/'log.txt').write_text(log)
         if run.returncode or re.search(r'(?i)netlist error|simulation aborted', log):
             raise ValueError('Xyce failed; retained raw log at '+str(folder))
-        wave = np.loadtxt(folder/'deck.cir.csv', delimiter=',', skiprows=1)
+        wave = read_wave(folder/'deck.cir.csv', ['V(vin)', 'V(out)', 'I(VDD)', 'I(VIN)'])
         metrics = measure(wave, cell, row['input_slew_ns'])
         report['cases'].append(dict(name=row['name'], temp_c=row['temp_c'], load_pf=row['external_load_pf'], step_ps=row['step_ps'],
             xyce_ns=metrics, ngspice_ns=reference, difference_ps={k: (metrics[k]-reference[k])*1000 for k in metrics},

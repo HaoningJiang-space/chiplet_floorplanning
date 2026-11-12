@@ -10,6 +10,7 @@ import subprocess
 import numpy as np
 
 from chiplet_floorplanning.characterization import digest
+from validation.xyce_output import read_wave, execute, warning_inventory
 from compare_xyce_core import measure
 from audit_core_ff_spice import measure as measure_ff
 
@@ -41,15 +42,7 @@ def instrument(text, primitive=False):
     return ''.join(lines), len(devices)
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--cell', choices=['inv_1', 'buf_8', 'dfxtp_1'], default='inv_1')
-    args = parser.parse_args()
-    root = args.output
-    root.mkdir(exist_ok=False)
-    refroot = Path('results/physical-calibration/integrated-transistors-v1')
-    ref = json.loads((refroot/'report.json').read_text())
+def prepare_models(root, refroot, ref):
     source = Path('local/pad-spice')
     for name, sha in ref['primitive_sources']['files'].items():
         if digest(source/name) != sha:
@@ -73,6 +66,20 @@ def main():
         target = root/(cell+'.spice')
         target.write_text(changed)
         transforms.append(dict(path=cell+'.spice', original_sha256=sha, transformed_sha256=digest(target), devices=count))
+    return models, transforms
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--cell', choices=['inv_1', 'buf_8', 'dfxtp_1'], default='inv_1')
+    args = parser.parse_args()
+    root = args.output
+    root.mkdir(exist_ok=False)
+    refroot = Path('results/physical-calibration/integrated-transistors-v1')
+    ref = json.loads((refroot/'report.json').read_text())
+    source = Path('local/pad-spice')
+    models, transforms = prepare_models(root, refroot, ref)
     exe = Path('local/xyce-7.10/portable/bin/Xyce.exe').resolve()
     report = dict(complete=False, physical_qualified=False, source_sha256=digest(__file__),
         executable_sha256=digest(exe), primitive_manifest_reference_sha256=digest(refroot/'report.json'),
@@ -123,18 +130,22 @@ C2 q2 0 .0254232p
 .end
 '''
         (folder/'deck.cir').write_text(deck)
-        with (folder/'xyce.log').open('w') as log:
-            run = subprocess.run([str(exe), 'deck.cir'], cwd=folder, stdout=log, stderr=subprocess.STDOUT, timeout=60)
-        if run.returncode:
+        execution = execute(exe, folder)
+        if execution['status'] != 'completed':
+            report['cases'].append(dict(name=name, **execution,
+                artifacts_sha256={n: digest(folder/n) for n in ('deck.cir', 'xyce.log')}))
+            report.update(complete=False, forwarding_controls_pass=False, failure_case=name)
+            (root/'report.json').write_text(json.dumps(report, indent=2)+'\n')
             raise ValueError('execution failed: '+name)
-        wave = np.loadtxt(folder/'deck.cir.csv', delimiter=',', skiprows=1)
+        wave = read_wave(folder/'deck.cir.csv', ['V(clk)', 'V(d)', 'V(q1)', 'V(q2)', 'I(VDD1)', 'I(VDD2)', 'I(VCLK)', 'I(VD)'] if args.cell == 'dfxtp_1' else ['V(vin)', 'V(out1)', 'V(out2)', 'I(VDD1)', 'I(VDD2)', 'I(VIN)'])
         if wave.ndim != 2 or wave.shape[1] != (9 if args.cell == 'dfxtp_1' else 7) or not np.isfinite(wave).all():
             raise ValueError('unexpected output')
         metrics = ([measure_ff(wave[:, [0, 1, 2, col, col+2, 7, 8]]) for col in (3, 4)]
                    if args.cell == 'dfxtp_1' else
                    [measure(wave[:, [0, 1, col, col+2, 6]], args.cell, .122474) for col in (2, 3)])
         report['cases'].append(dict(name=name, global_temperature_c=global_temp, local_temperatures_c=temps,
-            metrics_ns=metrics, warning_count=len(re.findall('Netlist warning', (folder/'xyce.log').read_text())),
+            metrics_ns=metrics, warnings=warning_inventory((folder/'xyce.log').read_text()),
+            warning_count=len(re.findall('Netlist warning', (folder/'xyce.log').read_text())),
             artifacts_sha256={n: digest(folder/n) for n in ('deck.cir', 'deck.cir.csv', 'xyce.log')}))
         (root/'report.json').write_text(json.dumps(report, indent=2)+'\n')
     byname = {r['name']: r for r in report['cases']}
@@ -148,7 +159,8 @@ C2 q2 0 .0254232p
     distinct = any(abs(byname['global100']['metrics_ns'][0][k]-v)*1000 > .05
                    for k, v in byname['global25']['metrics_ns'][0].items())
     report.update(complete=True, checks=checks, global_temperature_controls_distinct=distinct,
-        forwarding_controls_pass=distinct and all(r['within_0_05ps'] for r in checks),
+        forwarding_controls_pass=distinct and all(r['within_0_05ps'] for r in checks)
+            and not any(r['warnings']['unknown_messages'] for r in report['cases']),
         tolerance_ps=.05, tolerance_scope='declared numerical equivalence screen, not a physical uncertainty bound')
     (root/'report.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps({k: v for k, v in report.items() if k not in ('cases', 'transforms')}, indent=2))
