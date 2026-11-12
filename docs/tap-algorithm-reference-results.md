@@ -66,7 +66,10 @@ states; all baselines received that same reuse in this comparison.
 
 These numerical temperatures use the already-frozen FV research model. The
 new IHP attachment family is a separate branch of the research data, not an
-unannounced change of evaluator. This increment is not yet Chat-reviewed.
+unannounced change of evaluator. This increment has now received a
+[GitHub-only Chat review](tap-algorithm-chat-review.md). It accepted the saved
+query accounting and summaries, while requesting explicit atomic/joint move
+definitions and numerical Pareto tie handling before the next experiment.
 All 280 current local tests and the documented two-chiplet CLI passed (3 W,
 34.1886 C reference peak). Some tests cover the still-running access-check work;
 the two algorithm-specific tests separately verified budget isolation and
