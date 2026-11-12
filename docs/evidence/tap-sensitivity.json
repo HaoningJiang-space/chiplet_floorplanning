@@ -1,0 +1,3707 @@
+{
+  "status": "complete_bounded_diagnostic",
+  "plan_sha256": "6722f463f5c661e6931cc18954b274f1f671752fd7ec2a14832363831465222e",
+  "cases": [
+    {
+      "case": "ascend910",
+      "rows": [
+        {
+          "index": 0,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 19000,
+              "centre_y_um": 33000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 20000,
+              "centre_y_um": 11000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 7000,
+              "centre_y_um": 43000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 43000,
+              "centre_y_um": 31000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 7000,
+              "centre_y_um": 23000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 37000,
+              "centre_y_um": 13000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 26.34640522875817,
+          "thermal": {
+            "peak_power_layer_c": 77.86550609484183,
+            "source_power_w": 350.0000000000001,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -3.4166259865742177e-07,
+            "original_relative_residual": 2.313740377310657e-10,
+            "max_reference_difference_k": 1.2047848940710537e-08
+          }
+        },
+        {
+          "index": 1,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 38000,
+              "centre_y_um": 17000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 18000,
+              "centre_y_um": 40000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 8000,
+              "centre_y_um": 10000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 29000,
+              "centre_y_um": 39000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 16000,
+              "centre_y_um": 25000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 5000,
+              "centre_y_um": 36000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 38.39869281045752,
+          "thermal": {
+            "peak_power_layer_c": 76.76906203385104,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.7586219175645965e-07,
+            "original_relative_residual": 1.5405395409713437e-10,
+            "max_reference_difference_k": 1.1827056667357283e-08
+          }
+        },
+        {
+          "index": 2,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 26000,
+              "centre_y_um": 20000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 10000,
+              "centre_y_um": 42000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 38000,
+              "centre_y_um": 26000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 29000,
+              "centre_y_um": 40000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 10000,
+              "centre_y_um": 20000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 39000,
+              "centre_y_um": 9000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 23.15032679738562,
+          "thermal": {
+            "peak_power_layer_c": 78.33383817607343,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.8351670405536424e-07,
+            "original_relative_residual": 1.7547174181799408e-10,
+            "max_reference_difference_k": 8.936677176052399e-09
+          }
+        },
+        {
+          "index": 3,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 19000,
+              "centre_y_um": 10000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 42000,
+              "centre_y_um": 21000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 2,
+              "centre_x_um": 16000,
+              "centre_y_um": 41000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 28000,
+              "centre_y_um": 38000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 4000,
+              "centre_y_um": 43000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 31000,
+              "centre_y_um": 24000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 35.88235294117647,
+          "thermal": {
+            "peak_power_layer_c": 76.8473180749057,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -3.7600318592012627e-07,
+            "original_relative_residual": 3.767132984661522e-10,
+            "max_reference_difference_k": 1.3883621363675047e-08
+          }
+        },
+        {
+          "index": 4,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 25000,
+              "centre_y_um": 39000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 29000,
+              "centre_y_um": 7000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 44000,
+              "centre_y_um": 16000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 27000,
+              "centre_y_um": 22000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 12000,
+              "centre_y_um": 4000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 13000,
+              "centre_y_um": 16000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 36.0,
+          "thermal": {
+            "peak_power_layer_c": 76.87544617389895,
+            "source_power_w": 349.99999999999994,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.4332746306754416e-07,
+            "original_relative_residual": 2.0067029981352258e-10,
+            "max_reference_difference_k": 1.072588684536413e-08
+          }
+        },
+        {
+          "index": 5,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 42000,
+              "centre_y_um": 30000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 22000,
+              "centre_y_um": 33000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 11000,
+              "centre_y_um": 12000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 7000,
+              "centre_y_um": 39000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 7000,
+              "centre_y_um": 28000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 22000,
+              "centre_y_um": 17000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 37.849673202614376,
+          "thermal": {
+            "peak_power_layer_c": 76.59316498542687,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.2747582306692493e-07,
+            "original_relative_residual": 1.0473038369943511e-10,
+            "max_reference_difference_k": 8.707523591056088e-09
+          }
+        },
+        {
+          "index": 6,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 23000,
+              "centre_y_um": 37000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 25000,
+              "centre_y_um": 10000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 2,
+              "centre_x_um": 9000,
+              "centre_y_um": 4000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 38000,
+              "centre_y_um": 20000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 8000,
+              "centre_y_um": 19000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 43000,
+              "centre_y_um": 7000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 38.62091503267974,
+          "thermal": {
+            "peak_power_layer_c": 76.71014191690135,
+            "source_power_w": 349.99999999999994,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.4467345838274923e-07,
+            "original_relative_residual": 1.3258276405996895e-10,
+            "max_reference_difference_k": 9.07973252139982e-09
+          }
+        },
+        {
+          "index": 7,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 26000,
+              "centre_y_um": 21000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 42000,
+              "centre_y_um": 16000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 36000,
+              "centre_y_um": 43000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 7000,
+              "centre_y_um": 19000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 6000,
+              "centre_y_um": 8000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 9000,
+              "centre_y_um": 38000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 28.529411764705884,
+          "thermal": {
+            "peak_power_layer_c": 77.58818896521949,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -8.585482191847404e-08,
+            "original_relative_residual": 9.185863171711283e-11,
+            "max_reference_difference_k": 4.900002181784657e-09
+          }
+        },
+        {
+          "index": 8,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 24000,
+              "centre_y_um": 15000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 29000,
+              "centre_y_um": 31000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 2,
+              "centre_x_um": 11000,
+              "centre_y_um": 36000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 44000,
+              "centre_y_um": 32000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 45000,
+              "centre_y_um": 17000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 44000,
+              "centre_y_um": 44000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 33.33986928104575,
+          "thermal": {
+            "peak_power_layer_c": 77.24001731915911,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -3.105828909610864e-07,
+            "original_relative_residual": 2.54241524484094e-10,
+            "max_reference_difference_k": 1.19146754684607e-08
+          }
+        },
+        {
+          "index": 9,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 28000,
+              "centre_y_um": 26000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 20000,
+              "centre_y_um": 8000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 2,
+              "centre_x_um": 11000,
+              "centre_y_um": 41000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 7000,
+              "centre_y_um": 8000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 41000,
+              "centre_y_um": 12000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 33000,
+              "centre_y_um": 39000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 28.50980392156863,
+          "thermal": {
+            "peak_power_layer_c": 77.82847659243194,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -4.24394443143683e-07,
+            "original_relative_residual": 4.848180295442314e-10,
+            "max_reference_difference_k": 1.7015914011153654e-08
+          }
+        },
+        {
+          "index": 10,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 32000,
+              "centre_y_um": 15000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 31000,
+              "centre_y_um": 33000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 43000,
+              "centre_y_um": 37000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 10000,
+              "centre_y_um": 43000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 10000,
+              "centre_y_um": 25000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 10000,
+              "centre_y_um": 6000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 33.64052287581699,
+          "thermal": {
+            "peak_power_layer_c": 77.13433655369619,
+            "source_power_w": 349.99999999999994,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.945125518432178e-07,
+            "original_relative_residual": 1.8755464265167464e-10,
+            "max_reference_difference_k": 8.706908971589655e-09
+          }
+        },
+        {
+          "index": 11,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 15000,
+              "centre_y_um": 27000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 32000,
+              "centre_y_um": 29000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 19000,
+              "centre_y_um": 5000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 41000,
+              "centre_y_um": 16000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 38000,
+              "centre_y_um": 6000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 38000,
+              "centre_y_um": 42000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 33.431372549019606,
+          "thermal": {
+            "peak_power_layer_c": 77.03531771309972,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.0195398064970504e-07,
+            "original_relative_residual": 9.885436475318348e-11,
+            "max_reference_difference_k": 8.941722029476296e-09
+          }
+        },
+        {
+          "index": 12,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 33000,
+              "centre_y_um": 38000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 11000,
+              "centre_y_um": 18000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 23000,
+              "centre_y_um": 14000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 12000,
+              "centre_y_um": 40000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 32000,
+              "centre_y_um": 17000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 39000,
+              "centre_y_um": 4000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 31.751633986928105,
+          "thermal": {
+            "peak_power_layer_c": 77.07518434746015,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.3996972231543623e-07,
+            "original_relative_residual": 1.7860465776930959e-10,
+            "max_reference_difference_k": 1.0775183412192746e-08
+          }
+        },
+        {
+          "index": 13,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 28000,
+              "centre_y_um": 23000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 15000,
+              "centre_y_um": 20000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 41000,
+              "centre_y_um": 20000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 12000,
+              "centre_y_um": 33000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 8000,
+              "centre_y_um": 5000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 10000,
+              "centre_y_um": 44000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 27.50326797385621,
+          "thermal": {
+            "peak_power_layer_c": 77.97004080204835,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.5839913203308242e-07,
+            "original_relative_residual": 9.714569629664551e-11,
+            "max_reference_difference_k": 7.98423549497329e-09
+          }
+        },
+        {
+          "index": 14,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 21000,
+              "centre_y_um": 27000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 9000,
+              "centre_y_um": 40000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 27000,
+              "centre_y_um": 44000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 46000,
+              "centre_y_um": 33000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 12000,
+              "centre_y_um": 4000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 42000,
+              "centre_y_um": 6000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 30.856209150326798,
+          "thermal": {
+            "peak_power_layer_c": 77.30532670572846,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -4.187834861113515e-07,
+            "original_relative_residual": 2.8708682018633297e-10,
+            "max_reference_difference_k": 1.3116789432388032e-08
+          }
+        },
+        {
+          "index": 15,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 34000,
+              "centre_y_um": 21000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 33000,
+              "centre_y_um": 7000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 44000,
+              "centre_y_um": 40000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 15000,
+              "centre_y_um": 34000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 12000,
+              "centre_y_um": 9000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 22000,
+              "centre_y_um": 45000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 29.84967320261438,
+          "thermal": {
+            "peak_power_layer_c": 77.53715174911176,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.288023779328796e-07,
+            "original_relative_residual": 1.7159594454003114e-10,
+            "max_reference_difference_k": 9.343487761270808e-09
+          }
+        },
+        {
+          "index": 16,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 11000,
+              "centre_y_um": 18000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 32000,
+              "centre_y_um": 26000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 2,
+              "centre_x_um": 36000,
+              "centre_y_um": 10000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 26000,
+              "centre_y_um": 39000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 46000,
+              "centre_y_um": 32000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 9000,
+              "centre_y_um": 40000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 34.43790849673203,
+          "thermal": {
+            "peak_power_layer_c": 76.96887332956969,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.1220807866484392e-07,
+            "original_relative_residual": 1.750126705731829e-10,
+            "max_reference_difference_k": 9.269042422488383e-09
+          }
+        },
+        {
+          "index": 17,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 34000,
+              "centre_y_um": 29000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 30000,
+              "centre_y_um": 10000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 42000,
+              "centre_y_um": 10000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 18000,
+              "centre_y_um": 11000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 4000,
+              "centre_y_um": 22000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 8000,
+              "centre_y_um": 35000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 30.947712418300654,
+          "thermal": {
+            "peak_power_layer_c": 77.14834920590138,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -4.512482973950682e-07,
+            "original_relative_residual": 3.693412761302193e-10,
+            "max_reference_difference_k": 1.782148295603747e-08
+          }
+        },
+        {
+          "index": 18,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 24000,
+              "centre_y_um": 22000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 16000,
+              "centre_y_um": 8000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 26000,
+              "centre_y_um": 34000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 8000,
+              "centre_y_um": 38000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 30000,
+              "centre_y_um": 44000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 34000,
+              "centre_y_um": 7000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 24.30065359477124,
+          "thermal": {
+            "peak_power_layer_c": 78.24336707957306,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -5.2936155725547e-07,
+            "original_relative_residual": 5.888825603601973e-10,
+            "max_reference_difference_k": 1.9778351401100736e-08
+          }
+        },
+        {
+          "index": 19,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 35000,
+              "centre_y_um": 32000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 8000,
+              "centre_y_um": 39000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 25000,
+              "centre_y_um": 5000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 20000,
+              "centre_y_um": 19000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 6000,
+              "centre_y_um": 9000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 46000,
+              "centre_y_um": 8000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 37.34640522875817,
+          "thermal": {
+            "peak_power_layer_c": 76.90127659992422,
+            "source_power_w": 350.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -4.121874326301622e-07,
+            "original_relative_residual": 2.6842372176546225e-10,
+            "max_reference_difference_k": 1.1643479069789464e-08
+          }
+        }
+      ],
+      "min_peak_c": 76.59316498542687,
+      "max_peak_c": 78.33383817607343,
+      "sampled_span_k": 1.740673190646561
+    },
+    {
+      "case": "micro150",
+      "rows": [
+        {
+          "index": 0,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 10000,
+              "centre_y_um": 28000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 38000,
+              "centre_y_um": 18000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 21000,
+              "centre_y_um": 27000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 5000,
+              "centre_y_um": 13000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 44000,
+              "centre_y_um": 6000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 33000,
+              "centre_y_um": 43000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 6,
+              "centre_x_um": 18000,
+              "centre_y_um": 11000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 7,
+              "centre_x_um": 33000,
+              "centre_y_um": 33000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 36.3,
+          "thermal": {
+            "peak_power_layer_c": 116.32991655785051,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -8.469069143757224e-07,
+            "original_relative_residual": 1.6702011169853976e-10,
+            "max_reference_difference_k": 3.1999547900340986e-08
+          }
+        },
+        {
+          "index": 1,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 26000,
+              "centre_y_um": 38000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 27000,
+              "centre_y_um": 27000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 2,
+              "centre_x_um": 17000,
+              "centre_y_um": 23000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 40000,
+              "centre_y_um": 30000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 39000,
+              "centre_y_um": 5000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 8000,
+              "centre_y_um": 34000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 6,
+              "centre_x_um": 11000,
+              "centre_y_um": 11000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 7,
+              "centre_x_um": 44000,
+              "centre_y_um": 21000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 24.5,
+          "thermal": {
+            "peak_power_layer_c": 122.83804116165415,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -7.904984613560373e-07,
+            "original_relative_residual": 2.2201138636602877e-10,
+            "max_reference_difference_k": 3.419232896817448e-08
+          }
+        },
+        {
+          "index": 2,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 17000,
+              "centre_y_um": 11000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 12000,
+              "centre_y_um": 42000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 12000,
+              "centre_y_um": 33000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 40000,
+              "centre_y_um": 27000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 33000,
+              "centre_y_um": 41000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 32000,
+              "centre_y_um": 15000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 6,
+              "centre_x_um": 8000,
+              "centre_y_um": 23000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 7,
+              "centre_x_um": 24000,
+              "centre_y_um": 31000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 31.3,
+          "thermal": {
+            "peak_power_layer_c": 115.98717675741199,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.2260170478839427e-06,
+            "original_relative_residual": 3.218247502621533e-10,
+            "max_reference_difference_k": 4.7444316919609264e-08
+          }
+        },
+        {
+          "index": 3,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 44000,
+              "centre_y_um": 43000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 29000,
+              "centre_y_um": 45000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 30000,
+              "centre_y_um": 26000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 25000,
+              "centre_y_um": 16000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 11000,
+              "centre_y_um": 17000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 10000,
+              "centre_y_um": 43000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 6,
+              "centre_x_um": 44000,
+              "centre_y_um": 5000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 7,
+              "centre_x_um": 45000,
+              "centre_y_um": 30000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 34.7,
+          "thermal": {
+            "peak_power_layer_c": 115.3039935372116,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.5248898534991895e-06,
+            "original_relative_residual": 3.775947032719488e-10,
+            "max_reference_difference_k": 5.159388649644825e-08
+          }
+        },
+        {
+          "index": 4,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 5000,
+              "centre_y_um": 33000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 34000,
+              "centre_y_um": 24000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 14000,
+              "centre_y_um": 19000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 26000,
+              "centre_y_um": 41000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 43000,
+              "centre_y_um": 32000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 7000,
+              "centre_y_um": 45000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 6,
+              "centre_x_um": 33000,
+              "centre_y_um": 14000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 7,
+              "centre_x_um": 16000,
+              "centre_y_um": 29000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 32.9,
+          "thermal": {
+            "peak_power_layer_c": 112.29242754628473,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -8.801970352578792e-07,
+            "original_relative_residual": 2.5105561374275595e-10,
+            "max_reference_difference_k": 3.503742362909179e-08
+          }
+        },
+        {
+          "index": 5,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 34000,
+              "centre_y_um": 15000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 7000,
+              "centre_y_um": 23000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 45000,
+              "centre_y_um": 26000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 20000,
+              "centre_y_um": 18000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 32000,
+              "centre_y_um": 43000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 23000,
+              "centre_y_um": 28000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 6,
+              "centre_x_um": 7000,
+              "centre_y_um": 45000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 7,
+              "centre_x_um": 34000,
+              "centre_y_um": 25000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 32.1,
+          "thermal": {
+            "peak_power_layer_c": 115.27754491556078,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.6985018191917334e-06,
+            "original_relative_residual": 4.6234872622605183e-10,
+            "max_reference_difference_k": 5.692070459417664e-08
+          }
+        },
+        {
+          "index": 6,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 37000,
+              "centre_y_um": 19000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 25000,
+              "centre_y_um": 24000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 5000,
+              "centre_y_um": 20000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 37000,
+              "centre_y_um": 39000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 10000,
+              "centre_y_um": 6000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 25000,
+              "centre_y_um": 34000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 6,
+              "centre_x_um": 16000,
+              "centre_y_um": 45000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 7,
+              "centre_x_um": 23000,
+              "centre_y_um": 10000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 31.4,
+          "thermal": {
+            "peak_power_layer_c": 115.61253774750669,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.52303562117595e-06,
+            "original_relative_residual": 3.961254612367923e-10,
+            "max_reference_difference_k": 5.43519718121388e-08
+          }
+        },
+        {
+          "index": 7,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 19000,
+              "centre_y_um": 7000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 41000,
+              "centre_y_um": 45000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 7000,
+              "centre_y_um": 26000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 34000,
+              "centre_y_um": 35000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 29000,
+              "centre_y_um": 22000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 21000,
+              "centre_y_um": 37000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 6,
+              "centre_x_um": 16000,
+              "centre_y_um": 19000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 7,
+              "centre_x_um": 10000,
+              "centre_y_um": 36000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 28.4,
+          "thermal": {
+            "peak_power_layer_c": 111.27671543490544,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -7.787820095472853e-07,
+            "original_relative_residual": 1.868661931244031e-10,
+            "max_reference_difference_k": 3.332178266646224e-08
+          }
+        },
+        {
+          "index": 8,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 11000,
+              "centre_y_um": 11000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 40000,
+              "centre_y_um": 22000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 37000,
+              "centre_y_um": 41000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 10000,
+              "centre_y_um": 44000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 28000,
+              "centre_y_um": 21000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 36000,
+              "centre_y_um": 11000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 6,
+              "centre_x_um": 17000,
+              "centre_y_um": 32000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 7,
+              "centre_x_um": 26000,
+              "centre_y_um": 6000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 31.3,
+          "thermal": {
+            "peak_power_layer_c": 107.67512809974235,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.6172400592040503e-06,
+            "original_relative_residual": 3.849372264796334e-10,
+            "max_reference_difference_k": 5.856120210978588e-08
+          }
+        },
+        {
+          "index": 9,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 29000,
+              "centre_y_um": 5000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 9000,
+              "centre_y_um": 40000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 2,
+              "centre_x_um": 14000,
+              "centre_y_um": 8000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 32000,
+              "centre_y_um": 19000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 25000,
+              "centre_y_um": 28000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 45000,
+              "centre_y_um": 16000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 6,
+              "centre_x_um": 14000,
+              "centre_y_um": 18000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 7,
+              "centre_x_um": 37000,
+              "centre_y_um": 31000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 29.7,
+          "thermal": {
+            "peak_power_layer_c": 113.38690148147609,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -8.309183385790675e-07,
+            "original_relative_residual": 1.8314594788474662e-10,
+            "max_reference_difference_k": 3.1615751794333846e-08
+          }
+        },
+        {
+          "index": 10,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 19000,
+              "centre_y_um": 24000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 27000,
+              "centre_y_um": 36000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 16000,
+              "centre_y_um": 7000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 14000,
+              "centre_y_um": 38000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 45000,
+              "centre_y_um": 13000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 6000,
+              "centre_y_um": 17000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 6,
+              "centre_x_um": 34000,
+              "centre_y_um": 16000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 7,
+              "centre_x_um": 41000,
+              "centre_y_um": 37000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 32.0,
+          "thermal": {
+            "peak_power_layer_c": 117.4317412952372,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.0548972113610944e-06,
+            "original_relative_residual": 2.1821136902901982e-10,
+            "max_reference_difference_k": 3.9740356783113384e-08
+          }
+        },
+        {
+          "index": 11,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 34000,
+              "centre_y_um": 10000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 22000,
+              "centre_y_um": 22000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 2,
+              "centre_x_um": 42000,
+              "centre_y_um": 24000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 17000,
+              "centre_y_um": 32000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 30000,
+              "centre_y_um": 40000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 20000,
+              "centre_y_um": 44000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 6,
+              "centre_x_um": 13000,
+              "centre_y_um": 11000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 7,
+              "centre_x_um": 42000,
+              "centre_y_um": 38000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 32.1,
+          "thermal": {
+            "peak_power_layer_c": 117.47221271090423,
+            "source_power_w": 680.0000000000001,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.4899645748300827e-06,
+            "original_relative_residual": 3.8344490477786665e-10,
+            "max_reference_difference_k": 5.094426569485222e-08
+          }
+        },
+        {
+          "index": 12,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 13000,
+              "centre_y_um": 25000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 24000,
+              "centre_y_um": 45000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 26000,
+              "centre_y_um": 6000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 41000,
+              "centre_y_um": 5000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 9000,
+              "centre_y_um": 37000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 37000,
+              "centre_y_um": 37000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 6,
+              "centre_x_um": 39000,
+              "centre_y_um": 22000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 7,
+              "centre_x_um": 13000,
+              "centre_y_um": 6000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 25.8,
+          "thermal": {
+            "peak_power_layer_c": 108.9779350894542,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.3824644611304393e-06,
+            "original_relative_residual": 3.715183425176378e-10,
+            "max_reference_difference_k": 5.040431716452076e-08
+          }
+        },
+        {
+          "index": 13,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 23000,
+              "centre_y_um": 37000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 41000,
+              "centre_y_um": 43000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 2,
+              "centre_x_um": 40000,
+              "centre_y_um": 12000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 10000,
+              "centre_y_um": 21000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 27000,
+              "centre_y_um": 13000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 9000,
+              "centre_y_um": 5000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 6,
+              "centre_x_um": 28000,
+              "centre_y_um": 28000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 7,
+              "centre_x_um": 8000,
+              "centre_y_um": 32000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 34.0,
+          "thermal": {
+            "peak_power_layer_c": 110.00093517159802,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.0322817161068087e-06,
+            "original_relative_residual": 2.0868222115218617e-10,
+            "max_reference_difference_k": 3.762921352290505e-08
+          }
+        },
+        {
+          "index": 14,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 23000,
+              "centre_y_um": 20000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 15000,
+              "centre_y_um": 30000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 42000,
+              "centre_y_um": 24000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 43000,
+              "centre_y_um": 37000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 41000,
+              "centre_y_um": 14000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 5000,
+              "centre_y_um": 42000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 6,
+              "centre_x_um": 6000,
+              "centre_y_um": 9000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 7,
+              "centre_x_um": 26000,
+              "centre_y_um": 45000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 29.5,
+          "thermal": {
+            "peak_power_layer_c": 113.87383956475543,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -9.110740393225569e-07,
+            "original_relative_residual": 1.6731788135443974e-10,
+            "max_reference_difference_k": 3.199159692712783e-08
+          }
+        },
+        {
+          "index": 15,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 23000,
+              "centre_y_um": 14000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 40000,
+              "centre_y_um": 25000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 7000,
+              "centre_y_um": 39000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 25000,
+              "centre_y_um": 31000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 34000,
+              "centre_y_um": 40000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 10000,
+              "centre_y_um": 15000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 6,
+              "centre_x_um": 44000,
+              "centre_y_um": 39000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 7,
+              "centre_x_um": 35000,
+              "centre_y_um": 13000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 34.4,
+          "thermal": {
+            "peak_power_layer_c": 114.74737753307383,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.5910460433588014e-06,
+            "original_relative_residual": 4.0096689550522887e-10,
+            "max_reference_difference_k": 6.010563424752036e-08
+          }
+        },
+        {
+          "index": 16,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 45000,
+              "centre_y_um": 41000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 42000,
+              "centre_y_um": 16000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 2,
+              "centre_x_um": 16000,
+              "centre_y_um": 28000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 27000,
+              "centre_y_um": 6000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 32000,
+              "centre_y_um": 26000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 6000,
+              "centre_y_um": 21000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 6,
+              "centre_x_um": 17000,
+              "centre_y_um": 13000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 7,
+              "centre_x_um": 32000,
+              "centre_y_um": 44000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 33.2,
+          "thermal": {
+            "peak_power_layer_c": 108.81357816969432,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -7.213245680759428e-07,
+            "original_relative_residual": 1.0744144172122669e-10,
+            "max_reference_difference_k": 2.784523900345448e-08
+          }
+        },
+        {
+          "index": 17,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 25000,
+              "centre_y_um": 40000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 9000,
+              "centre_y_um": 21000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 2,
+              "centre_x_um": 37000,
+              "centre_y_um": 28000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 23000,
+              "centre_y_um": 10000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 37000,
+              "centre_y_um": 39000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 39000,
+              "centre_y_um": 16000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 6,
+              "centre_x_um": 21000,
+              "centre_y_um": 27000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 7,
+              "centre_x_um": 11000,
+              "centre_y_um": 35000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 27.1,
+          "thermal": {
+            "peak_power_layer_c": 111.51235798657821,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.3180149380787043e-06,
+            "original_relative_residual": 3.6264471613840857e-10,
+            "max_reference_difference_k": 4.954684129643283e-08
+          }
+        },
+        {
+          "index": 18,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 11000,
+              "centre_y_um": 23000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 30000,
+              "centre_y_um": 18000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 45000,
+              "centre_y_um": 5000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 12000,
+              "centre_y_um": 33000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 32000,
+              "centre_y_um": 39000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 44000,
+              "centre_y_um": 37000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 6,
+              "centre_x_um": 19000,
+              "centre_y_um": 8000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 7,
+              "centre_x_um": 32000,
+              "centre_y_um": 6000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 35.4,
+          "thermal": {
+            "peak_power_layer_c": 113.4063064550898,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.069782330087037e-07,
+            "original_relative_residual": 1.1216460001248187e-10,
+            "max_reference_difference_k": 2.384987851655751e-08
+          }
+        },
+        {
+          "index": 19,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 14000,
+              "centre_y_um": 38000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 34000,
+              "centre_y_um": 28000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 17000,
+              "centre_y_um": 7000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 36000,
+              "centre_y_um": 44000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 28000,
+              "centre_y_um": 6000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 40000,
+              "centre_y_um": 11000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 6,
+              "centre_x_um": 7000,
+              "centre_y_um": 14000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 7,
+              "centre_x_um": 26000,
+              "centre_y_um": 18000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 32.0,
+          "thermal": {
+            "peak_power_layer_c": 111.49980951327842,
+            "source_power_w": 680.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -1.9613594304246362e-07,
+            "original_relative_residual": 8.319460718002705e-11,
+            "max_reference_difference_k": 2.581481695074217e-08
+          }
+        }
+      ],
+      "min_peak_c": 107.67512809974235,
+      "max_peak_c": 122.83804116165415,
+      "sampled_span_k": 15.162913061911794
+    },
+    {
+      "case": "multigpu",
+      "rows": [
+        {
+          "index": 0,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 24000,
+              "centre_y_um": 7000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 31000,
+              "centre_y_um": 37000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 10000,
+              "centre_y_um": 29000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 8000,
+              "centre_y_um": 10000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 24000,
+              "centre_y_um": 20000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 40000,
+              "centre_y_um": 21000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 27.77777777777778,
+          "thermal": {
+            "peak_power_layer_c": 103.167377734327,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -5.474764748214511e-07,
+            "original_relative_residual": 2.029045607494235e-10,
+            "max_reference_difference_k": 2.2078630479427375e-08
+          }
+        },
+        {
+          "index": 1,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 39000,
+              "centre_y_um": 7000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 34000,
+              "centre_y_um": 40000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 2,
+              "centre_x_um": 17000,
+              "centre_y_um": 13000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 16000,
+              "centre_y_um": 32000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 42000,
+              "centre_y_um": 24000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 33000,
+              "centre_y_um": 24000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 33.407407407407405,
+          "thermal": {
+            "peak_power_layer_c": 99.3308356176517,
+            "source_power_w": 754.9999999999999,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -4.6315142299135914e-07,
+            "original_relative_residual": 1.0563989425407852e-10,
+            "max_reference_difference_k": 1.826638396096314e-08
+          }
+        },
+        {
+          "index": 2,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 11000,
+              "centre_y_um": 18000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 39000,
+              "centre_y_um": 37000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 36000,
+              "centre_y_um": 15000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 15000,
+              "centre_y_um": 6000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 23000,
+              "centre_y_um": 39000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 5000,
+              "centre_y_um": 31000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 27.703703703703702,
+          "thermal": {
+            "peak_power_layer_c": 102.62102449551072,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -8.375948254979448e-07,
+            "original_relative_residual": 3.0929123428926656e-10,
+            "max_reference_difference_k": 3.289240879666977e-08
+          }
+        },
+        {
+          "index": 3,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 31000,
+              "centre_y_um": 38000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 36000,
+              "centre_y_um": 22000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 14000,
+              "centre_y_um": 40000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 30000,
+              "centre_y_um": 7000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 12000,
+              "centre_y_um": 25000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 18000,
+              "centre_y_um": 13000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 29.62962962962963,
+          "thermal": {
+            "peak_power_layer_c": 102.72216884570423,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -3.423854195716558e-07,
+            "original_relative_residual": 1.1206418031937979e-10,
+            "max_reference_difference_k": 1.7591432310837263e-08
+          }
+        },
+        {
+          "index": 4,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 8000,
+              "centre_y_um": 13000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 10000,
+              "centre_y_um": 37000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 2,
+              "centre_x_um": 25000,
+              "centre_y_um": 12000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 39000,
+              "centre_y_um": 39000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 43000,
+              "centre_y_um": 16000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 24000,
+              "centre_y_um": 29000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 41.333333333333336,
+          "thermal": {
+            "peak_power_layer_c": 101.97833344854558,
+            "source_power_w": 754.9999999999999,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -4.210140787108685e-07,
+            "original_relative_residual": 2.1525322316651992e-10,
+            "max_reference_difference_k": 2.2631123641758677e-08
+          }
+        },
+        {
+          "index": 5,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 10000,
+              "centre_y_um": 9000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 26000,
+              "centre_y_um": 11000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 21000,
+              "centre_y_um": 39000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 43000,
+              "centre_y_um": 13000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 26000,
+              "centre_y_um": 25000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 38000,
+              "centre_y_um": 40000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 23.85185185185185,
+          "thermal": {
+            "peak_power_layer_c": 102.28803728893122,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -5.145820978214033e-07,
+            "original_relative_residual": 1.2960436405087356e-10,
+            "max_reference_difference_k": 1.9895043834594617e-08
+          }
+        },
+        {
+          "index": 6,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 40000,
+              "centre_y_um": 11000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 38000,
+              "centre_y_um": 38000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 10000,
+              "centre_y_um": 12000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 27000,
+              "centre_y_um": 9000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 30000,
+              "centre_y_um": 23000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 10000,
+              "centre_y_um": 33000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 21.703703703703702,
+          "thermal": {
+            "peak_power_layer_c": 96.70186663391182,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -5.552340098802233e-07,
+            "original_relative_residual": 2.6899132245902997e-10,
+            "max_reference_difference_k": 2.285475986241181e-08
+          }
+        },
+        {
+          "index": 7,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 31000,
+              "centre_y_um": 23000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 13000,
+              "centre_y_um": 10000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 2,
+              "centre_x_um": 12000,
+              "centre_y_um": 33000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 29000,
+              "centre_y_um": 10000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 43000,
+              "centre_y_um": 9000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 37000,
+              "centre_y_um": 39000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 25.925925925925927,
+          "thermal": {
+            "peak_power_layer_c": 103.29624632201939,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.347451062538312e-07,
+            "original_relative_residual": 2.214721874577669e-10,
+            "max_reference_difference_k": 2.3847384511554992e-08
+          }
+        },
+        {
+          "index": 8,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 16000,
+              "centre_y_um": 7000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 11000,
+              "centre_y_um": 40000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 2,
+              "centre_x_um": 36000,
+              "centre_y_um": 20000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 42000,
+              "centre_y_um": 36000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 25000,
+              "centre_y_um": 39000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 18000,
+              "centre_y_um": 26000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 32.148148148148145,
+          "thermal": {
+            "peak_power_layer_c": 99.32731312121734,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.507267471533851e-07,
+            "original_relative_residual": 2.387286545124076e-10,
+            "max_reference_difference_k": 2.680190647197378e-08
+          }
+        },
+        {
+          "index": 9,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 11000,
+              "centre_y_um": 30000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 10000,
+              "centre_y_um": 12000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 29000,
+              "centre_y_um": 28000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 43000,
+              "centre_y_um": 22000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 37000,
+              "centre_y_um": 7000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 6000,
+              "centre_y_um": 43000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 35.333333333333336,
+          "thermal": {
+            "peak_power_layer_c": 103.62292410713508,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.839799198132823e-07,
+            "original_relative_residual": 2.513861773865076e-10,
+            "max_reference_difference_k": 2.646298469244357e-08
+          }
+        },
+        {
+          "index": 10,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 7000,
+              "centre_y_um": 31000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 35000,
+              "centre_y_um": 11000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 39000,
+              "centre_y_um": 32000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 9000,
+              "centre_y_um": 10000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 18000,
+              "centre_y_um": 45000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 24000,
+              "centre_y_um": 30000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 30.88888888888889,
+          "thermal": {
+            "peak_power_layer_c": 102.89028213126912,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -8.004835763131268e-07,
+            "original_relative_residual": 3.058203938392702e-10,
+            "max_reference_difference_k": 2.989735392588955e-08
+          }
+        },
+        {
+          "index": 11,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 42000,
+              "centre_y_um": 43000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 28000,
+              "centre_y_um": 10000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 14000,
+              "centre_y_um": 38000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 3,
+              "centre_x_um": 45000,
+              "centre_y_um": 24000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 31000,
+              "centre_y_um": 28000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 10000,
+              "centre_y_um": 22000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 23.185185185185187,
+          "thermal": {
+            "peak_power_layer_c": 98.5624409460469,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.553327693836764e-07,
+            "original_relative_residual": 2.4493391553456373e-10,
+            "max_reference_difference_k": 2.6041711009838764e-08
+          }
+        },
+        {
+          "index": 12,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 29000,
+              "centre_y_um": 43000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 13000,
+              "centre_y_um": 16000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 2,
+              "centre_x_um": 35000,
+              "centre_y_um": 24000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 33000,
+              "centre_y_um": 7000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 4,
+              "centre_x_um": 43000,
+              "centre_y_um": 38000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 11000,
+              "centre_y_um": 36000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 41.55555555555556,
+          "thermal": {
+            "peak_power_layer_c": 103.49277509292608,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -7.018848009465728e-07,
+            "original_relative_residual": 2.6568745088121624e-10,
+            "max_reference_difference_k": 2.7645413069876668e-08
+          }
+        },
+        {
+          "index": 13,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 9000,
+              "centre_y_um": 23000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 39000,
+              "centre_y_um": 30000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 10000,
+              "centre_y_um": 40000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 22000,
+              "centre_y_um": 26000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 27000,
+              "centre_y_um": 45000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 5,
+              "centre_x_um": 37000,
+              "centre_y_um": 7000,
+              "rotation_deg": 180
+            }
+          ],
+          "centre_span_mm": 34.0,
+          "thermal": {
+            "peak_power_layer_c": 101.08628610843729,
+            "source_power_w": 754.9999999999999,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.53911342851643e-07,
+            "original_relative_residual": 2.2966930974237403e-10,
+            "max_reference_difference_k": 2.4461165537559282e-08
+          }
+        },
+        {
+          "index": 14,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 38000,
+              "centre_y_um": 7000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 12000,
+              "centre_y_um": 39000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 34000,
+              "centre_y_um": 31000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 9000,
+              "centre_y_um": 9000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 24000,
+              "centre_y_um": 12000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 14000,
+              "centre_y_um": 25000,
+              "rotation_deg": 270
+            }
+          ],
+          "centre_span_mm": 32.74074074074074,
+          "thermal": {
+            "peak_power_layer_c": 102.0660054541676,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.593695616174955e-07,
+            "original_relative_residual": 2.6482619745491997e-10,
+            "max_reference_difference_k": 2.748431526811146e-08
+          }
+        },
+        {
+          "index": 15,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 40000,
+              "centre_y_um": 15000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 1,
+              "centre_x_um": 10000,
+              "centre_y_um": 39000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 2,
+              "centre_x_um": 29000,
+              "centre_y_um": 33000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 43000,
+              "centre_y_um": 39000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 10000,
+              "centre_y_um": 23000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 27000,
+              "centre_y_um": 8000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 24.74074074074074,
+          "thermal": {
+            "peak_power_layer_c": 105.02738788483614,
+            "source_power_w": 754.9999999999999,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.5728627406351734e-07,
+            "original_relative_residual": 7.728982279883658e-11,
+            "max_reference_difference_k": 1.2913282887438982e-08
+          }
+        },
+        {
+          "index": 16,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 18000,
+              "centre_y_um": 13000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 23000,
+              "centre_y_um": 38000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 35000,
+              "centre_y_um": 14000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 37000,
+              "centre_y_um": 39000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 4,
+              "centre_x_um": 5000,
+              "centre_y_um": 27000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 7000,
+              "centre_y_um": 13000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 33.629629629629626,
+          "thermal": {
+            "peak_power_layer_c": 102.33458143452975,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -8.844922376738396e-07,
+            "original_relative_residual": 3.239063883218091e-10,
+            "max_reference_difference_k": 2.9639949161719414e-08
+          }
+        },
+        {
+          "index": 17,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 7000,
+              "centre_y_um": 28000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 1,
+              "centre_x_um": 35000,
+              "centre_y_um": 11000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 2,
+              "centre_x_um": 27000,
+              "centre_y_um": 35000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 3,
+              "centre_x_um": 8000,
+              "centre_y_um": 41000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 42000,
+              "centre_y_um": 30000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 5,
+              "centre_x_um": 18000,
+              "centre_y_um": 14000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 24.59259259259259,
+          "thermal": {
+            "peak_power_layer_c": 102.24760189436469,
+            "source_power_w": 754.9999999999999,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.408689614545438e-07,
+            "original_relative_residual": 2.6415836093775174e-10,
+            "max_reference_difference_k": 2.623972505944039e-08
+          }
+        },
+        {
+          "index": 18,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 8000,
+              "centre_y_um": 38000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 1,
+              "centre_x_um": 39000,
+              "centre_y_um": 10000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 2,
+              "centre_x_um": 14000,
+              "centre_y_um": 17000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 3,
+              "centre_x_um": 27000,
+              "centre_y_um": 38000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 4,
+              "centre_x_um": 35000,
+              "centre_y_um": 24000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 5,
+              "centre_x_um": 44000,
+              "centre_y_um": 37000,
+              "rotation_deg": 0
+            }
+          ],
+          "centre_span_mm": 30.14814814814815,
+          "thermal": {
+            "peak_power_layer_c": 100.9484099949667,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.4464236503263237e-07,
+            "original_relative_residual": 1.1164413816278979e-10,
+            "max_reference_difference_k": 1.1509918351748638e-08
+          }
+        },
+        {
+          "index": 19,
+          "placement": [
+            {
+              "id": 0,
+              "centre_x_um": 7000,
+              "centre_y_um": 7000,
+              "rotation_deg": 270
+            },
+            {
+              "id": 1,
+              "centre_x_um": 28000,
+              "centre_y_um": 10000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 2,
+              "centre_x_um": 13000,
+              "centre_y_um": 36000,
+              "rotation_deg": 0
+            },
+            {
+              "id": 3,
+              "centre_x_um": 9000,
+              "centre_y_um": 22000,
+              "rotation_deg": 90
+            },
+            {
+              "id": 4,
+              "centre_x_um": 43000,
+              "centre_y_um": 12000,
+              "rotation_deg": 180
+            },
+            {
+              "id": 5,
+              "centre_x_um": 34000,
+              "centre_y_um": 33000,
+              "rotation_deg": 90
+            }
+          ],
+          "centre_span_mm": 20.88888888888889,
+          "thermal": {
+            "peak_power_layer_c": 100.31345522699024,
+            "source_power_w": 755.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -7.329251729970565e-07,
+            "original_relative_residual": 3.1653627138009647e-10,
+            "max_reference_difference_k": 2.8598179824257386e-08
+          }
+        }
+      ],
+      "min_peak_c": 96.70186663391182,
+      "max_peak_c": 105.02738788483614,
+      "sampled_span_k": 8.325521250924325
+    }
+  ],
+  "decomposition": [
+    {
+      "class_index": 75,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 41000,
+          "centre_y_um": 21000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 44000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 31000,
+          "centre_y_um": 39000,
+          "rotation_deg": 90
+        }
+      ],
+      "thermal": {
+        "peak_power_layer_c": 76.19669556740331,
+        "source_power_w": 350.0,
+        "numerical_admission_passed": true,
+        "energy_balance_error_w": -3.103758672295953e-07,
+        "original_relative_residual": 2.422540034987371e-10,
+        "max_reference_difference_k": 1.1428841872884732e-08
+      },
+      "hotspot": {
+        "node": 3724,
+        "layer": 4,
+        "row": 32,
+        "column": 28,
+        "owner": "chip0"
+      },
+      "self_rise_k": 29.0985099163502,
+      "other_sources_rise_k": 2.0981856510531074,
+      "field_superposition_error_k": 7.592229067654443e-09,
+      "rhs_superposition_error_w": 0.0,
+      "original_oracle_peak_difference_k": 0.0,
+      "contributions": [
+        {
+          "source": "chip0",
+          "power_w": 255.99999999999997,
+          "hotspot_contribution_k": 29.0985099163502,
+          "thermal": {
+            "peak_power_layer_c": 74.0985099163502,
+            "source_power_w": 255.99999999999997,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.8840861432399834e-07,
+            "original_relative_residual": 2.2988538042440317e-10,
+            "max_reference_difference_k": 1.0530634142469353e-08
+          }
+        },
+        {
+          "source": "chip1",
+          "power_w": 14.0,
+          "hotspot_contribution_k": 0.32403147399502746,
+          "thermal": {
+            "peak_power_layer_c": 47.648447156052654,
+            "source_power_w": 14.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -3.001880344299934e-08,
+            "original_relative_residual": 3.0428531176884683e-10,
+            "max_reference_difference_k": 1.1253278309197867e-09
+          }
+        },
+        {
+          "source": "chip2",
+          "power_w": 20.0,
+          "hotspot_contribution_k": 0.3693777883153306,
+          "thermal": {
+            "peak_power_layer_c": 50.29509610062855,
+            "source_power_w": 20.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -4.637093908854695e-08,
+            "original_relative_residual": 2.60379359011505e-10,
+            "max_reference_difference_k": 2.3584831865264277e-09
+          }
+        },
+        {
+          "source": "chip3",
+          "power_w": 20.000000000000004,
+          "hotspot_contribution_k": 0.3213199861127173,
+          "thermal": {
+            "peak_power_layer_c": 50.32974929020768,
+            "source_power_w": 20.000000000000004,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -5.562986160612127e-08,
+            "original_relative_residual": 2.952698572803766e-10,
+            "max_reference_difference_k": 2.127938936169471e-09
+          }
+        },
+        {
+          "source": "chip4",
+          "power_w": 19.999999999999996,
+          "hotspot_contribution_k": 0.5985578846593277,
+          "thermal": {
+            "peak_power_layer_c": 50.28905026081928,
+            "source_power_w": 19.999999999999996,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -3.9568394782918404e-08,
+            "original_relative_residual": 2.1869613024353224e-10,
+            "max_reference_difference_k": 1.619329448310225e-09
+          }
+        },
+        {
+          "source": "chip5",
+          "power_w": 20.0,
+          "hotspot_contribution_k": 0.48489851412400453,
+          "thermal": {
+            "peak_power_layer_c": 50.321233502344434,
+            "source_power_w": 20.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -4.9308731320252264e-08,
+            "original_relative_residual": 2.618472829180806e-10,
+            "max_reference_difference_k": 1.8916517241507336e-09
+          }
+        }
+      ]
+    },
+    {
+      "class_index": 39,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 44000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 31000,
+          "rotation_deg": 90
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "thermal": {
+        "peak_power_layer_c": 76.77823571417647,
+        "source_power_w": 350.0,
+        "numerical_admission_passed": true,
+        "energy_balance_error_w": -4.450125175026187e-07,
+        "original_relative_residual": 3.833875101830929e-10,
+        "max_reference_difference_k": 1.661777027095468e-08
+      },
+      "hotspot": {
+        "node": 4548,
+        "layer": 4,
+        "row": 38,
+        "column": 28,
+        "owner": "chip0"
+      },
+      "self_rise_k": 29.114961147172814,
+      "other_sources_rise_k": 2.6632745670036684,
+      "field_superposition_error_k": 1.1536284816315856e-08,
+      "rhs_superposition_error_w": 0.0,
+      "original_oracle_peak_difference_k": 0.0,
+      "contributions": [
+        {
+          "source": "chip0",
+          "power_w": 256.0,
+          "hotspot_contribution_k": 29.114961147172814,
+          "thermal": {
+            "peak_power_layer_c": 74.1149611471728,
+            "source_power_w": 256.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -3.8148343151078734e-07,
+            "original_relative_residual": 3.548452542125625e-10,
+            "max_reference_difference_k": 1.5640904571512237e-08
+          }
+        },
+        {
+          "source": "chip1",
+          "power_w": 14.0,
+          "hotspot_contribution_k": 0.7495036159183048,
+          "thermal": {
+            "peak_power_layer_c": 47.666728997233875,
+            "source_power_w": 14.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -3.611680554627128e-08,
+            "original_relative_residual": 3.6573899755518954e-10,
+            "max_reference_difference_k": 1.3578291824245525e-09
+          }
+        },
+        {
+          "source": "chip2",
+          "power_w": 20.0,
+          "hotspot_contribution_k": 0.3639034862537366,
+          "thermal": {
+            "peak_power_layer_c": 50.32210754121773,
+            "source_power_w": 20.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -8.044144550467536e-08,
+            "original_relative_residual": 4.431762949532832e-10,
+            "max_reference_difference_k": 2.996206394101364e-09
+          }
+        },
+        {
+          "source": "chip3",
+          "power_w": 20.0,
+          "hotspot_contribution_k": 0.46967408239912595,
+          "thermal": {
+            "peak_power_layer_c": 50.343087566462145,
+            "source_power_w": 20.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.119991979858241e-08,
+            "original_relative_residual": 4.1942053239458977e-10,
+            "max_reference_difference_k": 3.075230958771158e-09
+          }
+        },
+        {
+          "source": "chip4",
+          "power_w": 20.0,
+          "hotspot_contribution_k": 0.5841107266007234,
+          "thermal": {
+            "peak_power_layer_c": 50.31491161338094,
+            "source_power_w": 20.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -8.090299274954305e-08,
+            "original_relative_residual": 4.2898398705929056e-10,
+            "max_reference_difference_k": 3.0645603832368806e-09
+          }
+        },
+        {
+          "source": "chip5",
+          "power_w": 19.999999999999996,
+          "hotspot_contribution_k": 0.4960826483396438,
+          "thermal": {
+            "peak_power_layer_c": 50.33292770796622,
+            "source_power_w": 19.999999999999996,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.264205509864951e-08,
+            "original_relative_residual": 4.077281828911264e-10,
+            "max_reference_difference_k": 2.688726574717748e-09
+          }
+        }
+      ]
+    },
+    {
+      "class_index": 0,
+      "placement": [
+        {
+          "id": 0,
+          "centre_x_um": 8000,
+          "centre_y_um": 16000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 1,
+          "centre_x_um": 21000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 2,
+          "centre_x_um": 31000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 3,
+          "centre_x_um": 39000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 4,
+          "centre_x_um": 31000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "id": 5,
+          "centre_x_um": 39000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        }
+      ],
+      "thermal": {
+        "peak_power_layer_c": 77.17357274131757,
+        "source_power_w": 349.99999999999994,
+        "numerical_admission_passed": true,
+        "energy_balance_error_w": -3.6826514815402334e-07,
+        "original_relative_residual": 3.155747174700894e-10,
+        "max_reference_difference_k": 1.4205603804384737e-08
+      },
+      "hotspot": {
+        "node": 4024,
+        "layer": 4,
+        "row": 38,
+        "column": 28,
+        "owner": "chip0"
+      },
+      "self_rise_k": 29.10946474103748,
+      "other_sources_rise_k": 3.06410800028009,
+      "field_superposition_error_k": 6.8442780332134134e-09,
+      "rhs_superposition_error_w": 0.0,
+      "original_oracle_peak_difference_k": 0.0,
+      "contributions": [
+        {
+          "source": "chip0",
+          "power_w": 256.0,
+          "hotspot_contribution_k": 29.10946474103748,
+          "thermal": {
+            "peak_power_layer_c": 74.10946474103748,
+            "source_power_w": 256.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -2.2764439222555666e-07,
+            "original_relative_residual": 2.482732337023264e-10,
+            "max_reference_difference_k": 1.069620880755906e-08
+          }
+        },
+        {
+          "source": "chip1",
+          "power_w": 14.0,
+          "hotspot_contribution_k": 0.7497432043116612,
+          "thermal": {
+            "peak_power_layer_c": 47.64287704064705,
+            "source_power_w": 14.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -3.0216671831340136e-08,
+            "original_relative_residual": 3.461729500666392e-10,
+            "max_reference_difference_k": 1.1924801146534492e-09
+          }
+        },
+        {
+          "source": "chip2",
+          "power_w": 20.0,
+          "hotspot_contribution_k": 0.6473631332102655,
+          "thermal": {
+            "peak_power_layer_c": 50.316070121924355,
+            "source_power_w": 20.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.643286454277586e-08,
+            "original_relative_residual": 3.544218575578017e-10,
+            "max_reference_difference_k": 2.6015933851653017e-09
+          }
+        },
+        {
+          "source": "chip3",
+          "power_w": 20.0,
+          "hotspot_contribution_k": 0.4698446254090545,
+          "thermal": {
+            "peak_power_layer_c": 50.326838926707595,
+            "source_power_w": 20.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.418220621640103e-08,
+            "original_relative_residual": 3.773579638948837e-10,
+            "max_reference_difference_k": 2.4531389142268267e-09
+          }
+        },
+        {
+          "source": "chip4",
+          "power_w": 20.0,
+          "hotspot_contribution_k": 0.7009400503347286,
+          "thermal": {
+            "peak_power_layer_c": 50.309173457623785,
+            "source_power_w": 20.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.414039077640155e-08,
+            "original_relative_residual": 3.4932238950467545e-10,
+            "max_reference_difference_k": 2.5058989328030634e-09
+          }
+        },
+        {
+          "source": "chip5",
+          "power_w": 20.0,
+          "hotspot_contribution_k": 0.4962169835577028,
+          "thermal": {
+            "peak_power_layer_c": 50.31789843860101,
+            "source_power_w": 20.0,
+            "numerical_admission_passed": true,
+            "energy_balance_error_w": -6.463701751613371e-08,
+            "original_relative_residual": 3.51362754609997e-10,
+            "max_reference_difference_k": 2.5389786939555847e-09
+          }
+        }
+      ]
+    }
+  ],
+  "physical_calibrated": false,
+  "scope": "preselected samples, not global extrema or uniform-distribution estimates",
+  "elapsed_seconds": 167.5119018999394,
+  "full_power_solves": 63,
+  "single_source_solves": 18,
+  "raw_result_sha256": "c1ee1ea3fd87b2b63607a7beb3c460411466f7e0b738de196d5b6e14408d4ef3",
+  "source_hashes": {
+    "tools/diagnose_tap_sensitivity.py": "c6d909b3463abeb2a83e1de7f4238abb5708597a9c589e9eeb67f14e56cb0209",
+    "tools/prepare_tap_fv.py": "d87a07c142bbeef49007a6372b47f1cf59ddf1d017e7a3339cecf97da3c098af",
+    "tools/solve_tap_fv_hits.py": "7a37f52fdb48d87a37f8fa57b2e783771b798db815679b0f4eaca2102875b52d",
+    "src/chiplet_floorplanning/package.py": "adbea6349a949601a21456dc1dcb18fe0730a8dd26085a6b9eb27c4e18de406f"
+  }
+}
