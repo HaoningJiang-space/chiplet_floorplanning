@@ -96,3 +96,36 @@ The proposed review choice is between a common-grid ATPlace-derived variant
 and a separately labelled native-domain pipeline comparison. A native continuous
 pipeline cannot establish same-domain optimizer superiority over this grid pilot.
 The source remains untouched, and no learned model or native pipeline was run.
+
+## Larger-case input inventory
+
+All ten pinned `.blocks`, `.power`, and `.nets` files were read directly from
+Git. Power-record counts match declared hard-block counts; net-degree record
+counts and their sums match declared net/pin totals. Raw source-byte hashes and
+counts are preserved in [the inventory](evidence/atplace-source-inventory.json).
+This checks counts, not complete parsing, name consistency, port legality,
+placement feasibility, physical qualification or measured workload provenance.
+
+| Case | Chiplets | Interposer (mm) | Power (W) | Nets |
+| --- | ---: | --- | ---: | ---: |
+| 1 | 6 | 42 x 42 | 780 | 3168 |
+| 2 | 6 | 55 x 52 | 370 | 3520 |
+| 3 | 8 | 39 x 39 | 680 | 8448 |
+| 4 | 11 | 57 x 59 | 1535 | 7040 |
+| 5 | 12 | 37 x 37 | 1020 | 7392 |
+| 6 | 20 | 49 x 53 | 852 | 5632 |
+| 7 | 28 | 30 x 25 | 260 | 2816 |
+| 8 | 36 | 26 x 23 | 240 | 2948 |
+| 9 | 44 | 59 x 61 | 1548 | 7656 |
+| 10 | 61 | 47 x 47 | 1006 | 5280 |
+
+All listed nets have degree two and all cases declare zero fixed terminals.
+The inspected Case1 pin records have signed percentage offsets; retain their
+source units and rotations instead of replacing them with chip centres.
+These are published benchmark inputs, not newly verified commercial devices.
+Case dimensions and power totals differ from our original TAP family and must
+not silently inherit its 50 mm geometry or thermal results. The full collection
+offers a concrete scale-extension candidate without fabricating smaller routing
+capacity or tighter clock targets. Selection and any common-model adaptation
+must be declared before new comparative results, with the 6/8-chiplet pilot
+kept separate from this larger-domain study.
