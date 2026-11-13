@@ -1,0 +1,682 @@
+{
+  "protocol": "atplace-case1-constrained-selection-v1",
+  "seed": 2026111200,
+  "population": 16,
+  "grid_um": 1000,
+  "gap_um": 1000,
+  "thermal_budget": 48,
+  "post_initial_thermal_budget": 32,
+  "proposal_cap": 512,
+  "pin_call_cap": 2048,
+  "candidate_check_cap": 2000000,
+  "methods": [
+    "nsga2_pin_guided_slack_pool",
+    "ga_length_constrained_slack_pool"
+  ],
+  "length_cap_m": 73.840208806,
+  "temperature_cap_c": 107.45047721858577,
+  "imported_sha256": "f2d55207a86fee7e03d14778ac5eea3847d3a101584d451a751d654295a4bb72",
+  "accepted_evidence_sha256": "62084fc0b89b0e58146cb9e0710111e9ccee289569010bb7e44317b7bf334565",
+  "source_commit": "fe3dbfdaf78dc0ddeac3a2cfc3a85ff0971f88df",
+  "hits_commit": "be59924de3f0c1a3d6d134aea411d1264cfa64c6",
+  "code_base_commit": "b6f3955367bc416e32261de5c375df9b576bcbb8",
+  "source_sha256": {
+    "tools/atplace_search.py": "4986fd19d465a1c40a18ad2c40a97b51b8c36e2799e92b2002b2b7e6cbcf5f76",
+    "tools/run_atplace_search.py": "c82ad11e073c355c93695191b84da0099e270487a2d49396072a8e7861127413",
+    "tools/atplace_pin_geometry.py": "24975ffe920d3c15a408411557850b8499fe070b015a4de323f94cfa3230ff0c",
+    "tools/import_atplace_cases.py": "72858659b4d42cb4ec91a799c54c9a59619bc6b2732394628cae2df4ff7fa805",
+    "tools/solve_tap_fv_hits.py": "7a37f52fdb48d87a37f8fa57b2e783771b798db815679b0f4eaca2102875b52d",
+    "src/chiplet_floorplanning/model.py": "40767387d2e65240fddf65cbeb00891beaf6c6b57dc3ddd2229dc7ff2f934c27",
+    "src/chiplet_floorplanning/package.py": "adbea6349a949601a21456dc1dcb18fe0730a8dd26085a6b9eb27c4e18de406f",
+    "src/chiplet_floorplanning/power.py": "ddc487e0cb2a77a922461b4e1a1d5e166ce0f160d9f6e722d3e0caeafdd24439",
+    "src/chiplet_floorplanning/mesh.py": "3463ad89569368f970f3cd48be180fc9cc8afbcdcf5ba95a4edcd196e66ab585",
+    "docs/atplace-case1-search-protocol.md": "b530c17c5289ee23b910d4a019cbe33ef5dbacb7b0ff5b421ad5bfd3bcda0d18",
+    "tools/atplace_crossover.py": "75d0a7712fd901921a39872d79fe2a3ce49bf472e0ed8c105813196f2f8f34ef",
+    "tools/run_atplace_crossover.py": "cab9c98602ab99b6476212fd03093f6752b1bbc1f1969555b7a3577dc82877ef",
+    "docs/atplace-case1-crossover-protocol.md": "bd2cfe32b5241768a5c26aeaafe7b0b13ae2407c45c308aa31073bec1b1967b3",
+    "tools/atplace_slack.py": "af6df56712961d1cc355cc96d07c978591ea01f09c8cef2058c5c0676babd5b6",
+    "tools/atplace_slack_search.py": "41b85435444509faf82c08a747ebbef45b068848bdd28784223f3aefa37e8ef5",
+    "tools/run_atplace_slack.py": "a82cbb1fe0cefb40b27f00d329afe665c087e6704755a336b6a6696788325e1b",
+    "docs/atplace-case1-slack-protocol.md": "fd2435d4e7b326245ff96438922f38d74e357286e0e8b77873aa814b641cc3ee",
+    "tools/atplace_slack_guided.py": "98781e5b519e930d781793a42f812b970e39adf7bae361696a153f2bc1d7f49e",
+    "tools/run_atplace_slack_guided.py": "a445eaf2b5ab364737b2ecc50a3241e311c89f68297ae3d63af3f9e20e1c56f9",
+    "docs/atplace-case1-guided-slack-protocol.md": "0e23a1064fc83b6a133dd388379a940695873c59c004e66df40016839833aa4f",
+    "tools/atplace_constrained_selection.py": "c1cca1e00555ffe978b1e54188e8cdb54f7b21fd59995c1ca8bb753dc4d48573",
+    "tools/run_atplace_constrained_selection.py": "06b1d0a2a2d32c872fc72ad1a2668e245e9fc807eee78aaa2fca077a2d904308",
+    "docs/atplace-case1-constrained-selection-protocol.md": "6cf9d6d9b060514cb5172c812a85702bf0e11daac6703fdad044724458e9bfc0"
+  },
+  "initialization": {
+    "placements": [
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 7000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 10000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 30000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 19000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 29000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 38000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 35000,
+          "centre_y_um": 20000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 19000,
+          "centre_y_um": 33000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 10000,
+          "centre_y_um": 11000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 4000,
+          "centre_y_um": 28000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 26000,
+          "centre_y_um": 5000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 34000,
+          "centre_y_um": 36000,
+          "rotation_deg": 0
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 34000,
+          "centre_y_um": 35000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 20000,
+          "centre_y_um": 13000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 13000,
+          "centre_y_um": 32000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 36000,
+          "centre_y_um": 18000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 37000,
+          "centre_y_um": 6000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 4000,
+          "centre_y_um": 8000,
+          "rotation_deg": 180
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 36000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 19000,
+          "centre_y_um": 32000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 10000,
+          "centre_y_um": 9000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 36000,
+          "centre_y_um": 33000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 24000,
+          "centre_y_um": 6000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 38000,
+          "centre_y_um": 19000,
+          "rotation_deg": 180
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 32000,
+          "centre_y_um": 35000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 28000,
+          "centre_y_um": 19000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 9000,
+          "centre_y_um": 15000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 25000,
+          "centre_y_um": 4000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 4000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 18000,
+          "centre_y_um": 36000,
+          "rotation_deg": 270
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 31000,
+          "centre_y_um": 26000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 33000,
+          "centre_y_um": 9000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 11000,
+          "centre_y_um": 18000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 14000,
+          "centre_y_um": 4000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 9000,
+          "centre_y_um": 36000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 35000,
+          "centre_y_um": 38000,
+          "rotation_deg": 270
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 30000,
+          "centre_y_um": 6000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 33000,
+          "centre_y_um": 24000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 10000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 9000,
+          "centre_y_um": 36000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 9000,
+          "centre_y_um": 7000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 31000,
+          "centre_y_um": 38000,
+          "rotation_deg": 90
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 27000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 31000,
+          "centre_y_um": 12000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 11000,
+          "centre_y_um": 23000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 38000,
+          "centre_y_um": 28000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 13000,
+          "centre_y_um": 9000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 6000,
+          "centre_y_um": 37000,
+          "rotation_deg": 90
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 35000,
+          "centre_y_um": 34000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 31000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 12000,
+          "centre_y_um": 23000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 34000,
+          "centre_y_um": 23000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 12000,
+          "centre_y_um": 6000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 22000,
+          "centre_y_um": 38000,
+          "rotation_deg": 90
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 6000,
+          "centre_y_um": 27000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 24000,
+          "centre_y_um": 10000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 24000,
+          "centre_y_um": 29000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 38000,
+          "centre_y_um": 21000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 6000,
+          "centre_y_um": 7000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 38000,
+          "centre_y_um": 6000,
+          "rotation_deg": 180
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 8000,
+          "centre_y_um": 7000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 10000,
+          "centre_y_um": 24000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 30000,
+          "centre_y_um": 23000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 26000,
+          "centre_y_um": 4000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 29000,
+          "centre_y_um": 37000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 10000,
+          "centre_y_um": 38000,
+          "rotation_deg": 90
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 6000,
+          "centre_y_um": 17000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 33000,
+          "centre_y_um": 10000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 23000,
+          "centre_y_um": 30000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 13000,
+          "centre_y_um": 6000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 37000,
+          "centre_y_um": 30000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 4000,
+          "centre_y_um": 36000,
+          "rotation_deg": 0
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 35000,
+          "centre_y_um": 32000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 21000,
+          "centre_y_um": 12000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 19000,
+          "centre_y_um": 32000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 5000,
+          "centre_y_um": 23000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 4000,
+          "centre_y_um": 6000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 38000,
+          "centre_y_um": 13000,
+          "rotation_deg": 180
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 31000,
+          "centre_y_um": 24000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 13000,
+          "centre_y_um": 33000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 13000,
+          "centre_y_um": 10000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 27000,
+          "centre_y_um": 9000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 29000,
+          "centre_y_um": 35000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 37000,
+          "centre_y_um": 6000,
+          "rotation_deg": 180
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 33000,
+          "centre_y_um": 7000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 30000,
+          "centre_y_um": 27000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 11000,
+          "centre_y_um": 31000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 22000,
+          "centre_y_um": 10000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 11000,
+          "centre_y_um": 7000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 10000,
+          "centre_y_um": 16000,
+          "rotation_deg": 270
+        }
+      ],
+      [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 10000,
+          "centre_y_um": 15000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 21000,
+          "centre_y_um": 33000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 27000,
+          "centre_y_um": 13000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 10000,
+          "centre_y_um": 4000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 35000,
+          "centre_y_um": 36000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 6000,
+          "centre_y_um": 32000,
+          "rotation_deg": 180
+        }
+      ]
+    ],
+    "construction_attempts": 36,
+    "candidate_checks": 559192,
+    "elapsed_seconds": 0.4186168999876827,
+    "distribution": "base plus descending-area sequential legal construction; seeded random ties; not uniform over joint layouts"
+  },
+  "baseline": {
+    "commit": "b6f3955367bc416e32261de5c375df9b576bcbb8",
+    "path": "docs/evidence/atplace-case1-guided-slack-v1.json",
+    "sha256": "ef597a825209911b3b31506bd21ac835d657c32f34615563ff394a5e4ce95916",
+    "plan_path": "docs/evidence/atplace-case1-guided-slack-plan-v1.json",
+    "plan_sha256": "c1fa0ac6f039cc6e33d6b5715b145fd8bedc071a4bbee078c0dd35b3f0528e28",
+    "method": "nsga2_pin_guided_slack_pool",
+    "admission": "locally verified E plus saved-response replay; Chat review deferred by user"
+  },
+  "physical_scenario": {
+    "design_sha256": "a38f0d0737ad39a15376b9736d724ef16fd0ccae4bbca16dff37fe4bbdc4d4cd",
+    "source_power_w": 780.0,
+    "ambient_c": 45,
+    "top_area_m2": 0.04,
+    "top_h_w_m2k": 2777.777777777778,
+    "boundary_surface_mean_c_from_global_balance": 52.019999999999996,
+    "scope": "constant source powers/materials/boundaries; only rigid chip poses vary; no measured package or routed RC"
+  }
+}

@@ -1,10 +1,10 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "3f0c8325cf1bacade582d64f8109ca76769ca452",
-  "record_count": 269,
+  "parent_commit": "b6f3955367bc416e32261de5c375df9b576bcbb8",
+  "record_count": 271,
   "counts_by_kind": {
-    "md": 138,
-    "json": 109,
+    "md": 139,
+    "json": 110,
     "pdf": 10,
     "png": 11,
     "svg": 1
@@ -13,6 +13,11 @@
     {
       "path": "docs/atplace-case1-acceptance.md",
       "git_blob_sha1": "8838d63246101d935de7d0cbc06bf8ba59f7df28",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-constrained-selection-protocol.md",
+      "git_blob_sha1": "1f297308894617a9281461b9db65287f0e7b4723",
       "kind": "md"
     },
     {
@@ -113,6 +118,11 @@
     {
       "path": "docs/evidence/atplace-case1-acceptance.json",
       "git_blob_sha1": "4b6b0e1ab4420bb02e51992e4c5d3354611534ba",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-constrained-selection-plan-v1.json",
+      "git_blob_sha1": "3e125205083f560124583faa9d7b27c9cf8fc514",
       "kind": "json"
     },
     {
@@ -867,7 +877,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "73fcba4870073a34a7c21b048f37c8f7433c1264",
+      "git_blob_sha1": "17252aff96570928748cb8512630d451099b49b8",
       "kind": "md"
     },
     {
