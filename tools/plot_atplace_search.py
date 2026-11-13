@@ -14,12 +14,13 @@ def main():
     p.add_argument('--evidence', type=Path, required=True)
     p.add_argument('--input', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--labels', nargs=2, default=['A: legal mutation', 'B: pin-guided mutation'])
     args = p.parse_args()
     data = json.loads(args.evidence.read_text())
     source = json.loads(args.input.read_text())
     chips = {c['name']: c for c in source['chiplets']}
     colors = ('#2366a8', '#d66b13')
-    labels = ('A: legal mutation', 'B: pin-guided mutation')
+    labels = args.labels
     fig, axes = plt.subplots(1, 3, figsize=(15.4, 5.2), gridspec_kw={'width_ratios': [1.25, 1, 1]})
     ax = axes[0]
     initial = data['records'][0]['rows'][:16]
@@ -55,7 +56,8 @@ def main():
                title=f"{label}: min T under L0\n{row['peak_c']:.3f} C; {row['pin_length_m']:.3f} m; row {row['row_index']}")
         ax.set_xticks((0, 10, 20, 30, 42))
         ax.set_yticks((0, 10, 20, 30, 42))
-    fig.suptitle('Case1 | one paired seed | 48 fresh thermal queries per method | L0 = 73.840 m; T0 = 107.450 C', fontsize=12)
+    counts = ' / '.join(str(r['effort']['thermal_queries']) for r in data['records'])
+    fig.suptitle(f'Case1 | one paired seed | thermal queries: {counts} | L0 = 73.840 m; T0 = 107.450 C', fontsize=12)
     fig.text(.5, .025, 'Declared steady uniform-die FV/HiTS model. Pin distance is a geometric objective; no routed RC or timing claim.', ha='center', fontsize=9)
     fig.tight_layout(rect=(0, .06, 1, .94))
     for suffix in ('.png', '.pdf'):
