@@ -1,10 +1,10 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "f108f72e2a2b9c556061644dc199bbe0ccf4897a",
-  "record_count": 297,
+  "parent_commit": "499cf423ebfa4d0bb2ae0d6c6162ef163c9bf461",
+  "record_count": 300,
   "counts_by_kind": {
-    "json": 123,
-    "md": 149,
+    "json": 124,
+    "md": 151,
     "pdf": 11,
     "png": 13,
     "svg": 1
@@ -127,7 +127,17 @@
     },
     {
       "path": "docs/atplace-case1-temperature-feedback-results.md",
-      "git_blob_sha1": "6bc421ae93dd2e0753bffc3ad92e20c64570734f",
+      "git_blob_sha1": "1a202cd74334821e0038554f1fb1073f04f0cd46",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-temperature-feedback-review.md",
+      "git_blob_sha1": "37223112eb7a5cf8f85437dd14e93074d8c49538",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-tight-budget-protocol.md",
+      "git_blob_sha1": "60b27dcfec880b728305e0c0c94b7b196f0bd9b3",
       "kind": "md"
     },
     {
@@ -344,6 +354,11 @@
       "path": "docs/evidence/atplace-case1-temperature-feedback-v1.png",
       "git_blob_sha1": "644a3cd82d60f673f8a9fa07f4f8bb34da49e362",
       "kind": "png"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-tight-budget-plan-v1.json",
+      "git_blob_sha1": "514556cb2fd5216a3a37ec3bf5640338923ff3be",
+      "kind": "json"
     },
     {
       "path": "docs/evidence/atplace-import.json",
@@ -1007,7 +1022,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "2e942f72c00eeee316493c1d5184078c646b425f",
+      "git_blob_sha1": "784cea9c3e76bd2ef0fb4b03a42e630f80b5aa7b",
       "kind": "md"
     },
     {

@@ -120,7 +120,9 @@ net 长度计算减少 48.72%。这不是跨机器速度承诺，也不是热模
 有限温度与距离收益，仍未超过最冷历史参考，不追加预算、种子或算子。
 固定 ±2 mm 移动不能遍历全部 1 mm 网格状态，且有限预算不证明局部或全局最优。
 真实 Pad、详细布线、RC/时序与实物热校准仍不在当前闭合范围。
-Chat 已完整审核上一阶段并指导本次设计；本次新实现与 32 次结果尚未经下一轮独立审核。
+2026-11-13 后续已完成 [Chat 独立复核](atplace-case1-temperature-feedback-review.md)：
+实际读取 `499cf42`，重算 255 输入的方向决策、41 事件及 42 联合行，接受上述限定
+结论；没有要求使现有实验失效或强制重跑。Chat 没有亲自执行本地 HiTS 与测试。
 
 证据：[冻结计划](evidence/atplace-case1-temperature-feedback-plan-v1.json)、
 [完整运行](evidence/atplace-case1-temperature-feedback-v1.json)、
