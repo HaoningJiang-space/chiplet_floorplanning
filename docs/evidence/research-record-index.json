@@ -1,12 +1,12 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "5c7ba81eb334ec0322e07142dc644820f8a09116",
-  "record_count": 265,
+  "parent_commit": "3f0c8325cf1bacade582d64f8109ca76769ca452",
+  "record_count": 269,
   "counts_by_kind": {
-    "md": 137,
-    "json": 108,
-    "pdf": 9,
-    "png": 10,
+    "md": 138,
+    "json": 109,
+    "pdf": 10,
+    "png": 11,
     "svg": 1
   },
   "records": [
@@ -41,6 +41,11 @@
       "kind": "md"
     },
     {
+      "path": "docs/atplace-case1-guided-slack-results.md",
+      "git_blob_sha1": "8e4df156da5b0b81acb34c7492d97fcdbcabced2",
+      "kind": "md"
+    },
+    {
       "path": "docs/atplace-case1-review.md",
       "git_blob_sha1": "b785b1f9f3d1d415de6d59acb38f3b85e03b93cf",
       "kind": "md"
@@ -72,7 +77,7 @@
     },
     {
       "path": "docs/atplace-case1-slack-review.md",
-      "git_blob_sha1": "0c76d71374b1dabc6cdb1c63e721ad6bba3f3fb8",
+      "git_blob_sha1": "df72f3ae8f8ad34880d034daabce21ea30641e68",
       "kind": "md"
     },
     {
@@ -139,6 +144,21 @@
       "path": "docs/evidence/atplace-case1-guided-slack-plan-v1.json",
       "git_blob_sha1": "8fb73ea77b3992ee4a8c362da8b59b1c79b6346b",
       "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-guided-slack-v1.json",
+      "git_blob_sha1": "1075d2f32b2366e5bb8de4fdd1df4207ae6d5b4c",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-guided-slack-v1.pdf",
+      "git_blob_sha1": "be1cc11de00b645191d25a28ad573c39b70adcb1",
+      "kind": "pdf"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-guided-slack-v1.png",
+      "git_blob_sha1": "7778aea1556c4d68f816ad439fc22e9554dd8047",
+      "kind": "png"
     },
     {
       "path": "docs/evidence/atplace-case1-initialization-preflight.json",
@@ -847,7 +867,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "dcd10658d5e961cc4ccc6d59b76563c3626179a6",
+      "git_blob_sha1": "73fcba4870073a34a7c21b048f37c8f7433c1264",
       "kind": "md"
     },
     {
