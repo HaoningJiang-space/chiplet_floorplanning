@@ -18,6 +18,7 @@
 | 4 算法 | 改进算子是否提高布局质量，而不只是提高合法率？ | R3 执行与比较验收通过；稳定算法优势未通过，Chat 同意此裁决 | [正式结果](tap-online-r3-results.md)、[审核](tap-online-r3-review.md)：18 次全部完成并通过回放，复用 27 条旧基线。合法变异减少拒绝，但主指标收益 0 / +0.374 / +0.150 K，MultiGPU 反向距离指标中位数变差 9.962%。 |
 | 5 扩展 | 在更多芯粒与实际 pin 位置下是否仍有效？ | B/C 已审查；D/E/F 本地执行通过，未形成稳定质量优势；按用户决定保留待审核 | [表示](atplace-case1-slack-results.md)、[候选预筛](atplace-case1-guided-slack-results.md)、[约束选择](atplace-case1-constrained-selection-results.md)：F 的种群可行数 4→12→16，选择目标已对齐；但较 E 变热 0.090 K，反向距离增加 9.934%。保留 B/C/D 更好联合点和有限负结果，不用可行数代替温度质量。 |
 | 6 耦合结论 | 是否证明真实热—时序耦合改变布局决策？ | 未证明 | [三布局晶体管/STA结果](xyce-three-layout-results.md)。需要明确接口、通道、工作点和约束后再回答；R3 不承担这个尚未接通的问题。 |
+| 7 必要布线与边界稳健性 | 当前候选能否通过有限资源检查，降温是否依赖单一热边界？ | F 的 48 行及五个候选通过必要容量筛选；边界检查已冻结，待运行 | [协议](atplace-case1-routing-boundary-protocol.md)、[分项验收](atplace-case1-routing-boundary-results.md)。必要切割检查不是详细布通证明；不改资源制造约束，不重跑旧热响应。 |
 
 ## 历史记录的含义
 

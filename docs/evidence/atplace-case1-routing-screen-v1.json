@@ -1,0 +1,4546 @@
+{
+  "status": "completed_necessary_routing_screen",
+  "plan_sha256": "50717f65f44fc291caf0f81216f7c8e64047da577bf63cc85f5000f483033b68",
+  "seed": 2026111200,
+  "historical_thermal_queries": 48,
+  "new_thermal_queries": 0,
+  "archive_rows": 48,
+  "admitted_rows": 48,
+  "screening_calls": 53,
+  "nominal_response_callbacks": 51,
+  "screening_rejections": 0,
+  "filtered_physical_comparison": {
+    "length_cap_m": 73.840208806,
+    "temperature_cap_c": 107.45047721858577,
+    "temperature_at_length": {
+      "status": "attained",
+      "eligible_layouts": 24,
+      "selected": {
+        "row_index": 20,
+        "proposal": 42,
+        "placement": [
+          {
+            "chiplet": "CPU1_0",
+            "centre_x_um": 33000,
+            "centre_y_um": 35000,
+            "rotation_deg": 180
+          },
+          {
+            "chiplet": "GPU_0",
+            "centre_x_um": 33000,
+            "centre_y_um": 9000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_1",
+            "centre_x_um": 12000,
+            "centre_y_um": 21000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_0",
+            "centre_x_um": 28000,
+            "centre_y_um": 24000,
+            "rotation_deg": 90
+          },
+          {
+            "chiplet": "HBM_1",
+            "centre_x_um": 12000,
+            "centre_y_um": 6000,
+            "rotation_deg": 270
+          },
+          {
+            "chiplet": "HBM_2",
+            "centre_x_um": 14000,
+            "centre_y_um": 38000,
+            "rotation_deg": 270
+          }
+        ],
+        "layout_key": [
+          [
+            "CPU1_0",
+            33000,
+            35000,
+            180
+          ],
+          [
+            "GPU_0",
+            33000,
+            9000,
+            0
+          ],
+          [
+            "GPU_1",
+            12000,
+            21000,
+            0
+          ],
+          [
+            "HBM_0",
+            28000,
+            24000,
+            90
+          ],
+          [
+            "HBM_1",
+            12000,
+            6000,
+            270
+          ],
+          [
+            "HBM_2",
+            14000,
+            38000,
+            270
+          ]
+        ],
+        "thermal_key": [
+          [
+            "CPU1_0",
+            "27000",
+            "29000",
+            "39000",
+            "41000"
+          ],
+          [
+            "GPU_0",
+            "24000",
+            "0",
+            "42000",
+            "18000"
+          ],
+          [
+            "GPU_1",
+            "3000",
+            "12000",
+            "21000",
+            "30000"
+          ],
+          [
+            "HBM_0",
+            "22000",
+            "20000",
+            "34000",
+            "28000"
+          ],
+          [
+            "HBM_1",
+            "6000",
+            "2000",
+            "18000",
+            "10000"
+          ],
+          [
+            "HBM_2",
+            "8000",
+            "34000",
+            "20000",
+            "42000"
+          ]
+        ],
+        "thermal_solve_id": 20,
+        "thermal_cache_hit": false,
+        "thermal_queries_so_far": 21,
+        "peak_c": 105.11624156317502,
+        "pin_length_m": 69.3835813664,
+        "pin_length_um_decimal": "69383581.36640"
+      }
+    },
+    "length_at_temperature": {
+      "status": "attained",
+      "eligible_layouts": 27,
+      "selected": {
+        "row_index": 35,
+        "proposal": 57,
+        "placement": [
+          {
+            "chiplet": "CPU1_0",
+            "centre_x_um": 7000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_0",
+            "centre_x_um": 9000,
+            "centre_y_um": 13000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_1",
+            "centre_x_um": 30000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_0",
+            "centre_x_um": 20000,
+            "centre_y_um": 29000,
+            "rotation_deg": 180
+          },
+          {
+            "chiplet": "HBM_1",
+            "centre_x_um": 29000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_2",
+            "centre_x_um": 38000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          }
+        ],
+        "layout_key": [
+          [
+            "CPU1_0",
+            7000,
+            29000,
+            0
+          ],
+          [
+            "GPU_0",
+            9000,
+            13000,
+            0
+          ],
+          [
+            "GPU_1",
+            30000,
+            10000,
+            0
+          ],
+          [
+            "HBM_0",
+            20000,
+            29000,
+            180
+          ],
+          [
+            "HBM_1",
+            29000,
+            29000,
+            0
+          ],
+          [
+            "HBM_2",
+            38000,
+            29000,
+            0
+          ]
+        ],
+        "thermal_key": [
+          [
+            "CPU1_0",
+            "1000",
+            "23000",
+            "13000",
+            "35000"
+          ],
+          [
+            "GPU_0",
+            "0",
+            "4000",
+            "18000",
+            "22000"
+          ],
+          [
+            "GPU_1",
+            "21000",
+            "1000",
+            "39000",
+            "19000"
+          ],
+          [
+            "HBM_0",
+            "16000",
+            "23000",
+            "24000",
+            "35000"
+          ],
+          [
+            "HBM_1",
+            "25000",
+            "23000",
+            "33000",
+            "35000"
+          ],
+          [
+            "HBM_2",
+            "34000",
+            "23000",
+            "42000",
+            "35000"
+          ]
+        ],
+        "thermal_solve_id": 35,
+        "thermal_cache_hit": false,
+        "thermal_queries_so_far": 36,
+        "peak_c": 107.25736947734374,
+        "pin_length_m": 68.4795849468,
+        "pin_length_um_decimal": "68479584.94680"
+      }
+    }
+  },
+  "archive_joint_metrics_unchanged": true,
+  "rows": [
+    {
+      "row_index": 0,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              29
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              29
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 1,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              21000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              20000
+            ],
+            "demand": 3168,
+            "capacity": 21000,
+            "utilization": 0.15085714285714286,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              0,
+              27
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              26,
+              1
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 2,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              22000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              15000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              0,
+              7
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              33,
+              5
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 3,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              21000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              11000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              6
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              27,
+              6
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 4,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              11000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              24000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              25,
+              0
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              25,
+              0
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 5,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              20000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              20000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              14,
+              0
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              14,
+              0
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 6,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              22000
+            ],
+            "demand": 2723,
+            "capacity": 21000,
+            "utilization": 0.12966666666666668,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              30,
+              0
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              30,
+              0
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 7,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              15000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              29000
+            ],
+            "demand": 1672,
+            "capacity": 21000,
+            "utilization": 0.07961904761904762,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              28
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              12
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 8,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              21000
+            ],
+            "demand": 2024,
+            "capacity": 21000,
+            "utilization": 0.09638095238095239,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              27000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              21,
+              41
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              2
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 9,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              8000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              27000
+            ],
+            "demand": 2464,
+            "capacity": 21000,
+            "utilization": 0.11733333333333333,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              0,
+              26
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              34,
+              5
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 10,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              12000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              9000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              26,
+              0
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              26,
+              0
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 11,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              12000
+            ],
+            "demand": 2020,
+            "capacity": 21000,
+            "utilization": 0.09619047619047619,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              12000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              9
+            ],
+            "demand": 260,
+            "capacity": 1500,
+            "utilization": 0.17333333333333334,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              13,
+              2
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 12,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              28000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              23000
+            ],
+            "demand": 1760,
+            "capacity": 21000,
+            "utilization": 0.0838095238095238,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              0,
+              5
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              0,
+              5
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 13,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              24000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              12000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              13,
+              41
+            ],
+            "demand": 260,
+            "capacity": 1500,
+            "utilization": 0.17333333333333334,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              33,
+              5
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 14,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              13000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              33,
+              1
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              33,
+              1
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 15,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              13000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              17000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              9,
+              7
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              9,
+              7
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 16,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              15000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              31000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              5,
+              41
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              12
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 17,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              28000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              23000
+            ],
+            "demand": 1760,
+            "capacity": 21000,
+            "utilization": 0.0838095238095238,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              8,
+              8
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              8,
+              8
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 18,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              21000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              23,
+              0
+            ],
+            "demand": 260,
+            "capacity": 1500,
+            "utilization": 0.17333333333333334,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              6,
+              8
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 19,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              20000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              26000
+            ],
+            "demand": 2464,
+            "capacity": 21000,
+            "utilization": 0.11733333333333333,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              31,
+              20
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              31,
+              20
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 20,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              16000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              28000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              8
+            ],
+            "demand": 260,
+            "capacity": 1500,
+            "utilization": 0.17333333333333334,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              2
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 21,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              16000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              25000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              10,
+              0
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              10,
+              0
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 22,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              15000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              26000
+            ],
+            "demand": 1672,
+            "capacity": 21000,
+            "utilization": 0.07961904761904762,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              25
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              12
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 23,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              11000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              24000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              0,
+              15
+            ],
+            "demand": 260,
+            "capacity": 1500,
+            "utilization": 0.17333333333333334,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              32,
+              1
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 24,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              14000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              12000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              30
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              2
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 25,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              13000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              18000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              9,
+              7
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              9,
+              7
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 26,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              30000
+            ],
+            "demand": 1500,
+            "capacity": 21000,
+            "utilization": 0.07142857142857142,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              0,
+              16
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              30,
+              8
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 27,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              20000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              30
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              8,
+              28
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 28,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              12000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              9000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              26,
+              0
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              26,
+              0
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 29,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              18000
+            ],
+            "demand": 1760,
+            "capacity": 21000,
+            "utilization": 0.0838095238095238,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              29000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              26,
+              0
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              26,
+              0
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 30,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              20000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              20000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              14,
+              0
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              14,
+              0
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 31,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              24000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              12000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              24,
+              7
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              24,
+              7
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 32,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              28000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              25000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              8,
+              7
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              8,
+              7
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 33,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              20000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              0,
+              32
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              6,
+              27
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 34,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              20000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              30
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              8,
+              28
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 35,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              13000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              29
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              16,
+              28
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 36,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              17000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              31000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              14,
+              7
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              14,
+              7
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 37,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              20000
+            ],
+            "demand": 2816,
+            "capacity": 21000,
+            "utilization": 0.1340952380952381,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              20000
+            ],
+            "demand": 1056,
+            "capacity": 21000,
+            "utilization": 0.05028571428571429,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              8,
+              41
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              2
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 38,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              13000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              22000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              5,
+              9
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              5,
+              9
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 39,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              7000
+            ],
+            "demand": 1416,
+            "capacity": 21000,
+            "utilization": 0.06742857142857143,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              17000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              0,
+              14
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              5,
+              7
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 40,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              30
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              29
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 41,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              29000
+            ],
+            "demand": 1672,
+            "capacity": 21000,
+            "utilization": 0.07961904761904762,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              28
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              16,
+              10
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 42,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              8000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              17000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              0,
+              14
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              9,
+              7
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 43,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              10000
+            ],
+            "demand": 1672,
+            "capacity": 21000,
+            "utilization": 0.07961904761904762,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              12000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              10,
+              0
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              10,
+              0
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 44,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              20000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              33,
+              25
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              33,
+              25
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 45,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              21000
+            ],
+            "demand": 2024,
+            "capacity": 21000,
+            "utilization": 0.09638095238095239,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              27000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              21,
+              41
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              2
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 46,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              9000
+            ],
+            "demand": 1932,
+            "capacity": 21000,
+            "utilization": 0.092,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              17000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              7,
+              7
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              7,
+              7
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "row_index": 47,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              28000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              14000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              32,
+              8
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              32,
+              8
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    }
+  ],
+  "finalists": [
+    {
+      "label": "base",
+      "row": {
+        "row_index": 0,
+        "proposal": 22,
+        "placement": [
+          {
+            "chiplet": "CPU1_0",
+            "centre_x_um": 7000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_0",
+            "centre_x_um": 10000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_1",
+            "centre_x_um": 30000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_0",
+            "centre_x_um": 19000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_1",
+            "centre_x_um": 29000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_2",
+            "centre_x_um": 38000,
+            "centre_y_um": 29000,
+            "rotation_deg": 0
+          }
+        ],
+        "layout_key": [
+          [
+            "CPU1_0",
+            7000,
+            29000,
+            0
+          ],
+          [
+            "GPU_0",
+            10000,
+            10000,
+            0
+          ],
+          [
+            "GPU_1",
+            30000,
+            10000,
+            0
+          ],
+          [
+            "HBM_0",
+            19000,
+            29000,
+            0
+          ],
+          [
+            "HBM_1",
+            29000,
+            29000,
+            0
+          ],
+          [
+            "HBM_2",
+            38000,
+            29000,
+            0
+          ]
+        ],
+        "thermal_key": [
+          [
+            "CPU1_0",
+            "1000",
+            "23000",
+            "13000",
+            "35000"
+          ],
+          [
+            "GPU_0",
+            "1000",
+            "1000",
+            "19000",
+            "19000"
+          ],
+          [
+            "GPU_1",
+            "21000",
+            "1000",
+            "39000",
+            "19000"
+          ],
+          [
+            "HBM_0",
+            "15000",
+            "23000",
+            "23000",
+            "35000"
+          ],
+          [
+            "HBM_1",
+            "25000",
+            "23000",
+            "33000",
+            "35000"
+          ],
+          [
+            "HBM_2",
+            "34000",
+            "23000",
+            "42000",
+            "35000"
+          ]
+        ],
+        "thermal_solve_id": 0,
+        "thermal_cache_hit": false,
+        "thermal_queries_so_far": 1,
+        "peak_c": 107.45047721858577,
+        "pin_length_m": 73.840208806,
+        "pin_length_um_decimal": "73840208.80600"
+      },
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              29
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              29
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "label": "B",
+      "row": {
+        "row_index": 38,
+        "proposal": 123,
+        "placement": [
+          {
+            "chiplet": "CPU1_0",
+            "centre_x_um": 6000,
+            "centre_y_um": 17000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_0",
+            "centre_x_um": 33000,
+            "centre_y_um": 9000,
+            "rotation_deg": 90
+          },
+          {
+            "chiplet": "GPU_1",
+            "centre_x_um": 23000,
+            "centre_y_um": 33000,
+            "rotation_deg": 90
+          },
+          {
+            "chiplet": "HBM_0",
+            "centre_x_um": 13000,
+            "centre_y_um": 6000,
+            "rotation_deg": 270
+          },
+          {
+            "chiplet": "HBM_1",
+            "centre_x_um": 37000,
+            "centre_y_um": 30000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_2",
+            "centre_x_um": 6000,
+            "centre_y_um": 30000,
+            "rotation_deg": 0
+          }
+        ],
+        "layout_key": [
+          [
+            "CPU1_0",
+            6000,
+            17000,
+            0
+          ],
+          [
+            "GPU_0",
+            33000,
+            9000,
+            90
+          ],
+          [
+            "GPU_1",
+            23000,
+            33000,
+            90
+          ],
+          [
+            "HBM_0",
+            13000,
+            6000,
+            270
+          ],
+          [
+            "HBM_1",
+            37000,
+            30000,
+            0
+          ],
+          [
+            "HBM_2",
+            6000,
+            30000,
+            0
+          ]
+        ],
+        "thermal_key": [
+          [
+            "CPU1_0",
+            "0",
+            "11000",
+            "12000",
+            "23000"
+          ],
+          [
+            "GPU_0",
+            "24000",
+            "0",
+            "42000",
+            "18000"
+          ],
+          [
+            "GPU_1",
+            "14000",
+            "24000",
+            "32000",
+            "42000"
+          ],
+          [
+            "HBM_0",
+            "7000",
+            "2000",
+            "19000",
+            "10000"
+          ],
+          [
+            "HBM_1",
+            "33000",
+            "24000",
+            "41000",
+            "36000"
+          ],
+          [
+            "HBM_2",
+            "2000",
+            "24000",
+            "10000",
+            "36000"
+          ]
+        ],
+        "thermal_solve_id": 38,
+        "thermal_cache_hit": false,
+        "thermal_queries_so_far": 39,
+        "peak_c": 103.71227057486777,
+        "pin_length_m": 72.5969555632,
+        "pin_length_um_decimal": "72596955.56320"
+      },
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              12000
+            ],
+            "demand": 2020,
+            "capacity": 21000,
+            "utilization": 0.09619047619047619,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              18000
+            ],
+            "demand": 1496,
+            "capacity": 21000,
+            "utilization": 0.07123809523809524,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              23,
+              41
+            ],
+            "demand": 260,
+            "capacity": 1500,
+            "utilization": 0.17333333333333334,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              13,
+              2
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "label": "D",
+      "row": {
+        "row_index": 45,
+        "proposal": 68,
+        "placement": [
+          {
+            "chiplet": "CPU1_0",
+            "centre_x_um": 9000,
+            "centre_y_um": 15000,
+            "rotation_deg": 270
+          },
+          {
+            "chiplet": "GPU_0",
+            "centre_x_um": 21000,
+            "centre_y_um": 33000,
+            "rotation_deg": 180
+          },
+          {
+            "chiplet": "GPU_1",
+            "centre_x_um": 28000,
+            "centre_y_um": 9000,
+            "rotation_deg": 90
+          },
+          {
+            "chiplet": "HBM_0",
+            "centre_x_um": 10000,
+            "centre_y_um": 4000,
+            "rotation_deg": 90
+          },
+          {
+            "chiplet": "HBM_1",
+            "centre_x_um": 35000,
+            "centre_y_um": 36000,
+            "rotation_deg": 180
+          },
+          {
+            "chiplet": "HBM_2",
+            "centre_x_um": 6000,
+            "centre_y_um": 29000,
+            "rotation_deg": 180
+          }
+        ],
+        "layout_key": [
+          [
+            "CPU1_0",
+            9000,
+            15000,
+            270
+          ],
+          [
+            "GPU_0",
+            21000,
+            33000,
+            180
+          ],
+          [
+            "GPU_1",
+            28000,
+            9000,
+            90
+          ],
+          [
+            "HBM_0",
+            10000,
+            4000,
+            90
+          ],
+          [
+            "HBM_1",
+            35000,
+            36000,
+            180
+          ],
+          [
+            "HBM_2",
+            6000,
+            29000,
+            180
+          ]
+        ],
+        "thermal_key": [
+          [
+            "CPU1_0",
+            "3000",
+            "9000",
+            "15000",
+            "21000"
+          ],
+          [
+            "GPU_0",
+            "12000",
+            "24000",
+            "30000",
+            "42000"
+          ],
+          [
+            "GPU_1",
+            "19000",
+            "0",
+            "37000",
+            "18000"
+          ],
+          [
+            "HBM_0",
+            "4000",
+            "0",
+            "16000",
+            "8000"
+          ],
+          [
+            "HBM_1",
+            "31000",
+            "30000",
+            "39000",
+            "42000"
+          ],
+          [
+            "HBM_2",
+            "2000",
+            "23000",
+            "10000",
+            "35000"
+          ]
+        ],
+        "thermal_solve_id": 45,
+        "thermal_cache_hit": false,
+        "thermal_queries_so_far": 46,
+        "peak_c": 104.84088203990241,
+        "pin_length_m": 58.9054729224,
+        "pin_length_um_decimal": "58905472.92240"
+      },
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              15000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              18000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              9,
+              7
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              9,
+              7
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "label": "E",
+      "row": {
+        "row_index": 27,
+        "proposal": 50,
+        "placement": [
+          {
+            "chiplet": "CPU1_0",
+            "centre_x_um": 35000,
+            "centre_y_um": 35000,
+            "rotation_deg": 90
+          },
+          {
+            "chiplet": "GPU_0",
+            "centre_x_um": 32000,
+            "centre_y_um": 10000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_1",
+            "centre_x_um": 12000,
+            "centre_y_um": 23000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_0",
+            "centre_x_um": 34000,
+            "centre_y_um": 24000,
+            "rotation_deg": 90
+          },
+          {
+            "chiplet": "HBM_1",
+            "centre_x_um": 16000,
+            "centre_y_um": 6000,
+            "rotation_deg": 180
+          },
+          {
+            "chiplet": "HBM_2",
+            "centre_x_um": 22000,
+            "centre_y_um": 38000,
+            "rotation_deg": 90
+          }
+        ],
+        "layout_key": [
+          [
+            "CPU1_0",
+            35000,
+            35000,
+            90
+          ],
+          [
+            "GPU_0",
+            32000,
+            10000,
+            0
+          ],
+          [
+            "GPU_1",
+            12000,
+            23000,
+            0
+          ],
+          [
+            "HBM_0",
+            34000,
+            24000,
+            90
+          ],
+          [
+            "HBM_1",
+            16000,
+            6000,
+            180
+          ],
+          [
+            "HBM_2",
+            22000,
+            38000,
+            90
+          ]
+        ],
+        "thermal_key": [
+          [
+            "CPU1_0",
+            "29000",
+            "29000",
+            "41000",
+            "41000"
+          ],
+          [
+            "GPU_0",
+            "23000",
+            "1000",
+            "41000",
+            "19000"
+          ],
+          [
+            "GPU_1",
+            "3000",
+            "14000",
+            "21000",
+            "32000"
+          ],
+          [
+            "HBM_0",
+            "28000",
+            "20000",
+            "40000",
+            "28000"
+          ],
+          [
+            "HBM_1",
+            "12000",
+            "0",
+            "20000",
+            "12000"
+          ],
+          [
+            "HBM_2",
+            "16000",
+            "34000",
+            "28000",
+            "42000"
+          ]
+        ],
+        "thermal_solve_id": 27,
+        "thermal_cache_hit": false,
+        "thermal_queries_so_far": 28,
+        "peak_c": 105.02626611983499,
+        "pin_length_m": 72.449988,
+        "pin_length_um_decimal": "72449988.00000"
+      },
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              21000
+            ],
+            "demand": 2024,
+            "capacity": 21000,
+            "utilization": 0.09638095238095239,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              28000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              21,
+              41
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              5
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    },
+    {
+      "label": "F",
+      "row": {
+        "row_index": 20,
+        "proposal": 42,
+        "placement": [
+          {
+            "chiplet": "CPU1_0",
+            "centre_x_um": 33000,
+            "centre_y_um": 35000,
+            "rotation_deg": 180
+          },
+          {
+            "chiplet": "GPU_0",
+            "centre_x_um": 33000,
+            "centre_y_um": 9000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "GPU_1",
+            "centre_x_um": 12000,
+            "centre_y_um": 21000,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "HBM_0",
+            "centre_x_um": 28000,
+            "centre_y_um": 24000,
+            "rotation_deg": 90
+          },
+          {
+            "chiplet": "HBM_1",
+            "centre_x_um": 12000,
+            "centre_y_um": 6000,
+            "rotation_deg": 270
+          },
+          {
+            "chiplet": "HBM_2",
+            "centre_x_um": 14000,
+            "centre_y_um": 38000,
+            "rotation_deg": 270
+          }
+        ],
+        "layout_key": [
+          [
+            "CPU1_0",
+            33000,
+            35000,
+            180
+          ],
+          [
+            "GPU_0",
+            33000,
+            9000,
+            0
+          ],
+          [
+            "GPU_1",
+            12000,
+            21000,
+            0
+          ],
+          [
+            "HBM_0",
+            28000,
+            24000,
+            90
+          ],
+          [
+            "HBM_1",
+            12000,
+            6000,
+            270
+          ],
+          [
+            "HBM_2",
+            14000,
+            38000,
+            270
+          ]
+        ],
+        "thermal_key": [
+          [
+            "CPU1_0",
+            "27000",
+            "29000",
+            "39000",
+            "41000"
+          ],
+          [
+            "GPU_0",
+            "24000",
+            "0",
+            "42000",
+            "18000"
+          ],
+          [
+            "GPU_1",
+            "3000",
+            "12000",
+            "21000",
+            "30000"
+          ],
+          [
+            "HBM_0",
+            "22000",
+            "20000",
+            "34000",
+            "28000"
+          ],
+          [
+            "HBM_1",
+            "6000",
+            "2000",
+            "18000",
+            "10000"
+          ],
+          [
+            "HBM_2",
+            "8000",
+            "34000",
+            "20000",
+            "42000"
+          ]
+        ],
+        "thermal_solve_id": 20,
+        "thermal_cache_hit": false,
+        "thermal_queries_so_far": 21,
+        "peak_c": 105.11624156317502,
+        "pin_length_m": 69.3835813664,
+        "pin_length_um_decimal": "69383581.36640"
+      },
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              16000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              28000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              8
+            ],
+            "demand": 260,
+            "capacity": 1500,
+            "utilization": 0.17333333333333334,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              2
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      }
+    }
+  ],
+  "elapsed_seconds": 6.911018499988131,
+  "detailed_routing_proven": false,
+  "adaptive_search_rerun": false
+}
