@@ -1,10 +1,10 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "a63da67a88fa68a146e4244fb9406099017b4e3e",
-  "record_count": 280,
+  "parent_commit": "c78c810334a5b195568d08f94b1831a9c71ab7ec",
+  "record_count": 284,
   "counts_by_kind": {
-    "json": 114,
-    "md": 142,
+    "json": 116,
+    "md": 144,
     "pdf": 11,
     "png": 12,
     "svg": 1
@@ -56,6 +56,11 @@
       "kind": "md"
     },
     {
+      "path": "docs/atplace-case1-orientation-protocol.md",
+      "git_blob_sha1": "9b4b182316a11d51895af702a4436e6a60913de2",
+      "kind": "md"
+    },
+    {
       "path": "docs/atplace-case1-review.md",
       "git_blob_sha1": "b785b1f9f3d1d415de6d59acb38f3b85e03b93cf",
       "kind": "md"
@@ -68,6 +73,11 @@
     {
       "path": "docs/atplace-case1-routing-boundary-results.md",
       "git_blob_sha1": "5f75313e854f64f73188f6c52b8629e939e3d5fc",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-routing-boundary-review.md",
+      "git_blob_sha1": "6c0daf03a2cf5e20d13d66bfea6ebe918b2bf723",
       "kind": "md"
     },
     {
@@ -208,6 +218,16 @@
     {
       "path": "docs/evidence/atplace-case1-initialization-preflight.json",
       "git_blob_sha1": "2084a2fde5af7260c50e70fbf0f8300030a0bd64",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-orientation-plan-v1.json",
+      "git_blob_sha1": "1a42eb54646b72058dbf80e4a2df4e924124019a",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-orientation-zero-heat-v1.json",
+      "git_blob_sha1": "033ec3ad36db4db021541c5e618b0dd2723654d6",
       "kind": "json"
     },
     {
@@ -922,7 +942,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "946416d85d404773d90f63dfac45433bfe683d8c",
+      "git_blob_sha1": "5c7a40b5d85ea45243a2bc867064f066aedfa08c",
       "kind": "md"
     },
     {
