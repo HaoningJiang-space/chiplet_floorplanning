@@ -1,9 +1,9 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "b9a54b0152c29c3edae87e106e8fec3f05f134c2",
-  "record_count": 238,
+  "parent_commit": "b72da5201a37e0c530865e25def3a4da3ce30ff4",
+  "record_count": 239,
   "counts_by_kind": {
-    "md": 125,
+    "md": 126,
     "json": 99,
     "pdf": 6,
     "png": 7,
@@ -12,7 +12,12 @@
   "records": [
     {
       "path": "docs/atplace-case1-acceptance.md",
-      "git_blob_sha1": "a897c124c1829b3f748ef60b7c2da9668d3e9931",
+      "git_blob_sha1": "8838d63246101d935de7d0cbc06bf8ba59f7df28",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-review.md",
+      "git_blob_sha1": "b785b1f9f3d1d415de6d59acb38f3b85e03b93cf",
       "kind": "md"
     },
     {
@@ -712,7 +717,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "65e8d9a86e8f9ee47ee7a7e3e4038c5244e93faf",
+      "git_blob_sha1": "a4156e88989bcf844033b2dd86880cbc1a504751",
       "kind": "md"
     },
     {
