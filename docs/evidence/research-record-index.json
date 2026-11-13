@@ -1,9 +1,9 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "6810a7269ccdebbb2279aae8d745b0beb4965a6a",
-  "record_count": 279,
+  "parent_commit": "a63da67a88fa68a146e4244fb9406099017b4e3e",
+  "record_count": 280,
   "counts_by_kind": {
-    "json": 113,
+    "json": 114,
     "md": 142,
     "pdf": 11,
     "png": 12,
@@ -67,7 +67,7 @@
     },
     {
       "path": "docs/atplace-case1-routing-boundary-results.md",
-      "git_blob_sha1": "883b2ef6ba95e1704c180ed3db8f19e785b08d7e",
+      "git_blob_sha1": "5f75313e854f64f73188f6c52b8629e939e3d5fc",
       "kind": "md"
     },
     {
@@ -133,6 +133,11 @@
     {
       "path": "docs/evidence/atplace-case1-acceptance.json",
       "git_blob_sha1": "4b6b0e1ab4420bb02e51992e4c5d3354611534ba",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-boundary-v1.json",
+      "git_blob_sha1": "aae1f5cb12ee80c4ee5001f6d0fa01a40b72cf06",
       "kind": "json"
     },
     {
@@ -917,7 +922,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "e0a937ca6af89c4170e0467f79564bb03def967d",
+      "git_blob_sha1": "946416d85d404773d90f63dfac45433bfe683d8c",
       "kind": "md"
     },
     {

@@ -1,0 +1,2761 @@
+{
+  "status": "completed_fixed_candidate_boundary_check",
+  "plan_sha256": "50717f65f44fc291caf0f81216f7c8e64047da577bf63cc85f5000f483033b68",
+  "screen_sha256": "830ae72ad6e4254fee77c44e7d53e7922d550650207348af078e75f5122ab611",
+  "hits_commit": "be59924de3f0c1a3d6d134aea411d1264cfa64c6",
+  "new_thermal_queries": 15,
+  "elapsed_seconds": 6.1599642999935895,
+  "points": [
+    {
+      "label": "base",
+      "status": "evaluated",
+      "row_index": 0,
+      "placement": [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 7000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 10000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 30000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 19000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 29000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 38000,
+          "centre_y_um": 29000,
+          "rotation_deg": 0
+        }
+      ],
+      "pin_length_m": 73.840208806,
+      "length_feasible": true,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              19000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              29
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              29
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      },
+      "cooling_monotonicity_passed": true,
+      "scenarios": {
+        "nominal": {
+          "peak_c": 107.45047721858577,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 2777.777777777778,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.009,
+            "surface_mean_c": 52.019999999999996
+          },
+          "evaluated_case_sha256": "40dca6be3c3796830d70460521215f2fa21d63b8b3a314edb0379efe58f26e9b",
+          "reused": true,
+          "cooling_vs_same_scenario_base_k": 0.0,
+          "original_temperature_cap_attained": true
+        },
+        "half_h": {
+          "peak_c": 121.01120021895665,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 1388.888888888889,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.018,
+            "surface_mean_c": 59.04
+          },
+          "evaluated_case_sha256": "fc6855baf5ff2ea0a0c0d0fc69935667ae15370acea0d1ab532442b176787015",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 7856,
+            "mesh": [
+              70,
+              68
+            ],
+            "assembly_seconds": 0.05248539999593049,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999996269967,
+            "energy_balance_error_w": -3.73003331333166e-07,
+            "original_relative_residual": 8.30035754772434e-11,
+            "max_reference_difference_k": 1.8770229814890627e-08,
+            "min_rise_k": 4.966457612510615,
+            "peak_power_layer_c": 121.01120021895665,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 5.891466606966821e-10,
+              "relative_residual": 9.908382056204695e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.20994139998219907,
+              "validation_seconds": 7.409998215734959e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 80.0,
+                  "y": 102.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 80.0,
+                  "y": 80.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 100.0,
+                  "y": 80.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 94.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 104.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 113.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 0.0,
+          "original_temperature_cap_attained": false
+        },
+        "double_h": {
+          "peak_c": 96.34674505293728,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 5555.555555555556,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.0045,
+            "surface_mean_c": 48.51
+          },
+          "evaluated_case_sha256": "557c1abd236ddfaa9fee6a82934ed9c69f07fd792513371b36281db831a16096",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 7856,
+            "mesh": [
+              70,
+              68
+            ],
+            "assembly_seconds": 0.05286549997981638,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999999148412,
+            "energy_balance_error_w": -8.515883109794231e-08,
+            "original_relative_residual": 7.755057835857405e-11,
+            "max_reference_difference_k": 1.20237899636777e-08,
+            "min_rise_k": 0.1677652878747283,
+            "peak_power_layer_c": 96.34674505293728,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 5.886559412980906e-10,
+              "relative_residual": 9.900129042807511e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.1352589000016451,
+              "validation_seconds": 6.97999494150281e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 80.0,
+                  "y": 102.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 80.0,
+                  "y": 80.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 100.0,
+                  "y": 80.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 94.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 104.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 113.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 0.0,
+          "original_temperature_cap_attained": true
+        },
+        "tim_contact": {
+          "peak_c": 112.00200790429676,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 2777.777777777778,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.009,
+            "surface_mean_c": 52.019999999999996
+          },
+          "evaluated_case_sha256": "8e904e7c1d70c5d179926523b1811cb6387200db0f8da1279aa4593e399a28c0",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 7856,
+            "mesh": [
+              70,
+              68
+            ],
+            "assembly_seconds": 0.05196930002421141,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999997482385,
+            "energy_balance_error_w": -2.517615484975977e-07,
+            "original_relative_residual": 7.823477491420858e-11,
+            "max_reference_difference_k": 1.973811691868832e-08,
+            "min_rise_k": 1.140219074978626,
+            "peak_power_layer_c": 112.00200790429676,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 5.685016129137692e-10,
+              "relative_residual": 9.56116966470984e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.1511762998998165,
+              "validation_seconds": 6.120000034570694e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 80.0,
+                  "y": 102.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 80.0,
+                  "y": 80.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 100.0,
+                  "y": 80.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 94.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 104.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 113.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 0.0,
+          "original_temperature_cap_attained": false
+        }
+      }
+    },
+    {
+      "label": "B",
+      "status": "evaluated",
+      "row_index": 38,
+      "placement": [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 6000,
+          "centre_y_um": 17000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 33000,
+          "centre_y_um": 9000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 23000,
+          "centre_y_um": 33000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 13000,
+          "centre_y_um": 6000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 37000,
+          "centre_y_um": 30000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 6000,
+          "centre_y_um": 30000,
+          "rotation_deg": 0
+        }
+      ],
+      "pin_length_m": 72.5969555632,
+      "length_feasible": true,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              12000
+            ],
+            "demand": 2020,
+            "capacity": 21000,
+            "utilization": 0.09619047619047619,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              18000
+            ],
+            "demand": 1496,
+            "capacity": 21000,
+            "utilization": 0.07123809523809524,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              23,
+              41
+            ],
+            "demand": 260,
+            "capacity": 1500,
+            "utilization": 0.17333333333333334,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              13,
+              2
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      },
+      "cooling_monotonicity_passed": true,
+      "scenarios": {
+        "nominal": {
+          "peak_c": 103.71227057486777,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 2777.777777777778,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.009,
+            "surface_mean_c": 52.019999999999996
+          },
+          "evaluated_case_sha256": "4198f1ed3c63e9fac8dde21eaf92efa917e60ee1bc1155505ea9b03262267d5e",
+          "reused": true,
+          "cooling_vs_same_scenario_base_k": 3.7382066437180015,
+          "original_temperature_cap_attained": true
+        },
+        "half_h": {
+          "peak_c": 116.94266691159434,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 1388.888888888889,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.018,
+            "surface_mean_c": 59.04
+          },
+          "evaluated_case_sha256": "06643c9554228afac134e7ec5e175c407c2b5bf7e6164add01c59d6ce6c15dda",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8072,
+            "mesh": [
+              70,
+              69
+            ],
+            "assembly_seconds": 0.05144149996340275,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 780.0000000396948,
+            "energy_balance_error_w": 3.969478257204173e-08,
+            "original_relative_residual": 9.236922748076268e-11,
+            "max_reference_difference_k": 1.4474387910468067e-08,
+            "min_rise_k": 5.447745739382273,
+            "peak_power_layer_c": 116.94266691159434,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.39626235362165e-10,
+              "relative_residual": 9.797837739222199e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.1838215000461787,
+              "validation_seconds": 6.440002471208572e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 79.0,
+                  "y": 90.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 103.0,
+                  "y": 79.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 93.0,
+                  "y": 103.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 86.0,
+                  "y": 81.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 112.0,
+                  "y": 103.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 81.0,
+                  "y": 103.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 4.068533307362301,
+          "original_temperature_cap_attained": false
+        },
+        "double_h": {
+          "peak_c": 93.01402200486893,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 5555.555555555556,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.0045,
+            "surface_mean_c": 48.51
+          },
+          "evaluated_case_sha256": "7e3b47663d4c6f2dc578fa248a063b11d60485ef1d8aa2be3181269b5b59bd2a",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8072,
+            "mesh": [
+              70,
+              69
+            ],
+            "assembly_seconds": 0.061165699968114495,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999998464697,
+            "energy_balance_error_w": -1.5353032267739763e-07,
+            "original_relative_residual": 8.172634651711807e-11,
+            "max_reference_difference_k": 9.608250195469736e-09,
+            "min_rise_k": 0.20099840525440665,
+            "peak_power_layer_c": 93.01402200486893,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 5.740334955185566e-10,
+              "relative_residual": 8.793083733947849e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.16423800005577505,
+              "validation_seconds": 7.449998520314693e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 79.0,
+                  "y": 90.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 103.0,
+                  "y": 79.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 93.0,
+                  "y": 103.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 86.0,
+                  "y": 81.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 112.0,
+                  "y": 103.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 81.0,
+                  "y": 103.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 3.3327230480683454,
+          "original_temperature_cap_attained": true
+        },
+        "tim_contact": {
+          "peak_c": 108.25136978883198,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 2777.777777777778,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.009,
+            "surface_mean_c": 52.019999999999996
+          },
+          "evaluated_case_sha256": "246ddb72c84034edfe21c920dc7596848846aadbd44c84c7e091a72cac78bd3b",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8072,
+            "mesh": [
+              70,
+              69
+            ],
+            "assembly_seconds": 0.052169100032188,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999996892558,
+            "energy_balance_error_w": -3.1074421258381335e-07,
+            "original_relative_residual": 9.05849045921058e-11,
+            "max_reference_difference_k": 1.851437758659813e-08,
+            "min_rise_k": 1.2997826990561678,
+            "peak_power_layer_c": 108.25136978883198,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.476773715637868e-10,
+              "relative_residual": 9.92116558564051e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.15104150003753603,
+              "validation_seconds": 0.00010159995872527361,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 79.0,
+                  "y": 90.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 103.0,
+                  "y": 79.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 93.0,
+                  "y": 103.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 86.0,
+                  "y": 81.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 112.0,
+                  "y": 103.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 81.0,
+                  "y": 103.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 3.750638115464781,
+          "original_temperature_cap_attained": false
+        }
+      }
+    },
+    {
+      "label": "D",
+      "status": "evaluated",
+      "row_index": 45,
+      "placement": [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 9000,
+          "centre_y_um": 15000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 21000,
+          "centre_y_um": 33000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 28000,
+          "centre_y_um": 9000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 10000,
+          "centre_y_um": 4000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 35000,
+          "centre_y_um": 36000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 6000,
+          "centre_y_um": 29000,
+          "rotation_deg": 180
+        }
+      ],
+      "pin_length_m": 58.9054729224,
+      "length_feasible": true,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              15000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              18000
+            ],
+            "demand": 1408,
+            "capacity": 21000,
+            "utilization": 0.06704761904761905,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              9,
+              7
+            ],
+            "demand": 264,
+            "capacity": 2000,
+            "utilization": 0.132,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              9,
+              7
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      },
+      "cooling_monotonicity_passed": true,
+      "scenarios": {
+        "nominal": {
+          "peak_c": 104.84088203990241,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 2777.777777777778,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.009,
+            "surface_mean_c": 52.019999999999996
+          },
+          "evaluated_case_sha256": "e1912c81ce3defa1fd1a923a0eb9e9a62bf558fcb867d194fcc38b5dbc129afa",
+          "reused": true,
+          "cooling_vs_same_scenario_base_k": 2.6095951786833638,
+          "original_temperature_cap_attained": true
+        },
+        "half_h": {
+          "peak_c": 118.16460877071628,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 1388.888888888889,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.018,
+            "surface_mean_c": 59.04
+          },
+          "evaluated_case_sha256": "62238a191a6505d5f14a41792ed920a8cf5f587c472609712cd8c7c1d3d39602",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8072,
+            "mesh": [
+              70,
+              69
+            ],
+            "assembly_seconds": 0.054943300085142255,
+            "source_power_w": 780.0000000000001,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999998682117,
+            "energy_balance_error_w": -1.317883970841649e-07,
+            "original_relative_residual": 6.602209895163819e-11,
+            "max_reference_difference_k": 1.590254328220908e-08,
+            "min_rise_k": 5.642405911501741,
+            "peak_power_layer_c": 118.16460877071628,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.240275200987527e-10,
+              "relative_residual": 9.975207723943992e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.209322499926202,
+              "validation_seconds": 8.510006591677666e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 82.0,
+                  "y": 88.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 91.0,
+                  "y": 103.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 98.0,
+                  "y": 79.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 83.0,
+                  "y": 79.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 110.0,
+                  "y": 109.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 24.999999999999996,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 81.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 2.8465914482403605,
+          "original_temperature_cap_attained": false
+        },
+        "double_h": {
+          "peak_c": 94.00709231136753,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 5555.555555555556,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.0045,
+            "surface_mean_c": 48.51
+          },
+          "evaluated_case_sha256": "b6936060d9c8aa3ad0f715d7a8e787473da6959b6ae8e969e6df51557c4a2733",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8072,
+            "mesh": [
+              70,
+              69
+            ],
+            "assembly_seconds": 0.05288599990308285,
+            "source_power_w": 780.0000000000001,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999998482119,
+            "energy_balance_error_w": -1.517881855761516e-07,
+            "original_relative_residual": 8.804550511542167e-11,
+            "max_reference_difference_k": 1.1461601445716951e-08,
+            "min_rise_k": 0.21649478742855682,
+            "peak_power_layer_c": 94.00709231136753,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.028600170236116e-10,
+              "relative_residual": 9.636840851697171e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.12380529998335987,
+              "validation_seconds": 6.849993951618671e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 82.0,
+                  "y": 88.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 91.0,
+                  "y": 103.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 98.0,
+                  "y": 79.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 83.0,
+                  "y": 79.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 110.0,
+                  "y": 109.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 24.999999999999996,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 81.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 2.3396527415697506,
+          "original_temperature_cap_attained": true
+        },
+        "tim_contact": {
+          "peak_c": 109.3784614001427,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 2777.777777777778,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.009,
+            "surface_mean_c": 52.019999999999996
+          },
+          "evaluated_case_sha256": "ce0cd61ee8ffc64c3cdeee129a92d1b8e47954add242222c274d567ea334fc98",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8072,
+            "mesh": [
+              70,
+              69
+            ],
+            "assembly_seconds": 0.05148150003515184,
+            "source_power_w": 780.0000000000001,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999996721047,
+            "energy_balance_error_w": -3.2789546366984723e-07,
+            "original_relative_residual": 9.213537906917132e-11,
+            "max_reference_difference_k": 1.6600893104623538e-08,
+            "min_rise_k": 1.3689673548652543,
+            "peak_power_layer_c": 109.3784614001427,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.226427762754688e-10,
+              "relative_residual": 9.953072310301466e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.15263070003129542,
+              "validation_seconds": 7.16999638825655e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 82.0,
+                  "y": 88.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 91.0,
+                  "y": 103.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 98.0,
+                  "y": 79.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 83.0,
+                  "y": 79.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 110.0,
+                  "y": 109.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 24.999999999999996,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 81.0,
+                  "y": 102.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 2.6235465041540635,
+          "original_temperature_cap_attained": false
+        }
+      }
+    },
+    {
+      "label": "E",
+      "status": "evaluated",
+      "row_index": 27,
+      "placement": [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 35000,
+          "centre_y_um": 35000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 32000,
+          "centre_y_um": 10000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 12000,
+          "centre_y_um": 23000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 34000,
+          "centre_y_um": 24000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 16000,
+          "centre_y_um": 6000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 22000,
+          "centre_y_um": 38000,
+          "rotation_deg": 90
+        }
+      ],
+      "pin_length_m": 72.449988,
+      "length_feasible": true,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              21000
+            ],
+            "demand": 2024,
+            "capacity": 21000,
+            "utilization": 0.09638095238095239,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              28000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              21,
+              41
+            ],
+            "demand": 264,
+            "capacity": 1500,
+            "utilization": 0.176,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              5
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      },
+      "cooling_monotonicity_passed": true,
+      "scenarios": {
+        "nominal": {
+          "peak_c": 105.02626611983499,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 2777.777777777778,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.009,
+            "surface_mean_c": 52.019999999999996
+          },
+          "evaluated_case_sha256": "f19b6709fe43dd97d91ec07e2749378bdd905717b82ad85dcce634a19b49cf6b",
+          "reused": true,
+          "cooling_vs_same_scenario_base_k": 2.4242110987507886,
+          "original_temperature_cap_attained": true
+        },
+        "half_h": {
+          "peak_c": 118.37559793696614,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 1388.888888888889,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.018,
+            "surface_mean_c": 59.04
+          },
+          "evaluated_case_sha256": "76fa033fba3e77f504beefb8965d08dbd81b98caed62df4659186b5ed8715550",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8728,
+            "mesh": [
+              71,
+              71
+            ],
+            "assembly_seconds": 0.0564194000326097,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999999232598,
+            "energy_balance_error_w": -7.674020707781892e-08,
+            "original_relative_residual": 8.766833851740745e-11,
+            "max_reference_difference_k": 1.7188732215345226e-08,
+            "min_rise_k": 5.3837668566839625,
+            "peak_power_layer_c": 118.37559793696614,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.637440100259518e-10,
+              "relative_residual": 9.596540764627992e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.2055691999848932,
+              "validation_seconds": 7.609999738633633e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 108.0,
+                  "y": 108.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 102.0,
+                  "y": 80.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 82.0,
+                  "y": 93.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 107.0,
+                  "y": 99.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 91.0,
+                  "y": 79.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 95.0,
+                  "y": 113.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 2.6356022819905007,
+          "original_temperature_cap_attained": false
+        },
+        "double_h": {
+          "peak_c": 94.18309434629349,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 5555.555555555556,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.0045,
+            "surface_mean_c": 48.51
+          },
+          "evaluated_case_sha256": "06385426fdd80b15b4c9ce760976574432411472f95b148cd56c9882f0a99a68",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8728,
+            "mesh": [
+              71,
+              71
+            ],
+            "assembly_seconds": 0.056295700022019446,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999999601249,
+            "energy_balance_error_w": -3.9875089896668214e-08,
+            "original_relative_residual": 8.581849414528292e-11,
+            "max_reference_difference_k": 1.4281047455710905e-08,
+            "min_rise_k": 0.19851892903984653,
+            "peak_power_layer_c": 94.18309434629349,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.702641353500668e-10,
+              "relative_residual": 9.69081001228705e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.1440079000312835,
+              "validation_seconds": 6.830005440860987e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 108.0,
+                  "y": 108.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 102.0,
+                  "y": 80.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 82.0,
+                  "y": 93.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 107.0,
+                  "y": 99.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 91.0,
+                  "y": 79.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 95.0,
+                  "y": 113.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 2.163650706643793,
+          "original_temperature_cap_attained": true
+        },
+        "tim_contact": {
+          "peak_c": 109.57019742165862,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 2777.777777777778,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.009,
+            "surface_mean_c": 52.019999999999996
+          },
+          "evaluated_case_sha256": "8774b50b81ef14c73df6ecdb5a03243ba3d81a604132be33b60d2043a2f8a0df",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8728,
+            "mesh": [
+              71,
+              71
+            ],
+            "assembly_seconds": 0.05737190006766468,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.999999743689,
+            "energy_balance_error_w": -2.563109546827036e-07,
+            "original_relative_residual": 8.973158347275392e-11,
+            "max_reference_difference_k": 1.4268216830259917e-08,
+            "min_rise_k": 1.2830234711954218,
+            "peak_power_layer_c": 109.57019742165862,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.801966800893359e-10,
+              "relative_residual": 9.834416687521921e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.1645843000151217,
+              "validation_seconds": 7.16999638825655e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 108.0,
+                  "y": 108.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 102.0,
+                  "y": 80.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 82.0,
+                  "y": 93.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 107.0,
+                  "y": 99.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 91.0,
+                  "y": 79.0,
+                  "width": 8.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 95.0,
+                  "y": 113.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 2.4318104826381415,
+          "original_temperature_cap_attained": false
+        }
+      }
+    },
+    {
+      "label": "F",
+      "status": "evaluated",
+      "row_index": 20,
+      "placement": [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 33000,
+          "centre_y_um": 35000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 33000,
+          "centre_y_um": 9000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 12000,
+          "centre_y_um": 21000,
+          "rotation_deg": 0
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 28000,
+          "centre_y_um": 24000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 12000,
+          "centre_y_um": 6000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 14000,
+          "centre_y_um": 38000,
+          "rotation_deg": 270
+        }
+      ],
+      "pin_length_m": 69.3835813664,
+      "length_feasible": true,
+      "routing": {
+        "status": "necessary_conditions_passed",
+        "admitted": true,
+        "net_count": 3168,
+        "terminal_count": 6336,
+        "checked_conditions": 3610,
+        "failed_conditions": [],
+        "worst_by_kind": {
+          "vertical_cut": {
+            "kind": "vertical_cut",
+            "location": [
+              16000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "horizontal_cut": {
+            "kind": "horizontal_cut",
+            "location": [
+              28000
+            ],
+            "demand": 2112,
+            "capacity": 21000,
+            "utilization": 0.10057142857142858,
+            "passed": true
+          },
+          "bin_escape": {
+            "kind": "bin_escape",
+            "location": [
+              41,
+              8
+            ],
+            "demand": 260,
+            "capacity": 1500,
+            "utilization": 0.17333333333333334,
+            "passed": true
+          },
+          "terminal_access": {
+            "kind": "terminal_access",
+            "location": [
+              12,
+              2
+            ],
+            "demand": 264,
+            "capacity": 250000,
+            "utilization": 0.001056,
+            "passed": true
+          }
+        },
+        "resources": {
+          "bin_um": 1000,
+          "track_pitch_um": 2,
+          "horizontal_layers": 1,
+          "vertical_layers": 1,
+          "access_pitch_um": 2
+        },
+        "carrier_um": [
+          42000,
+          42000
+        ],
+        "detailed_routing_proven": false,
+        "scope": "necessary cuts/access bounds in an ideal aggregate graph; no paths, detailed escape, RC or timing"
+      },
+      "cooling_monotonicity_passed": true,
+      "scenarios": {
+        "nominal": {
+          "peak_c": 105.11624156317502,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 2777.777777777778,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.009,
+            "surface_mean_c": 52.019999999999996
+          },
+          "evaluated_case_sha256": "6043be28b4c14c8f72cb737b257299fad1de056734a12f5a20c37b4e39b2cf0d",
+          "reused": true,
+          "cooling_vs_same_scenario_base_k": 2.334235655410751,
+          "original_temperature_cap_attained": true
+        },
+        "half_h": {
+          "peak_c": 118.47423252135351,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 1388.888888888889,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.018,
+            "surface_mean_c": 59.04
+          },
+          "evaluated_case_sha256": "48b46f7874eabd98f2e9007ad94c52aaa4e70bbfb64a78b2cb816a695b2b5efa",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8504,
+            "mesh": [
+              70,
+              71
+            ],
+            "assembly_seconds": 0.05743699998129159,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999995712935,
+            "energy_balance_error_w": -4.287064712116262e-07,
+            "original_relative_residual": 9.970603041641546e-11,
+            "max_reference_difference_k": 2.1621197276999737e-08,
+            "min_rise_k": 5.337620257093808,
+            "peak_power_layer_c": 118.47423252135351,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.738156267095506e-10,
+              "relative_residual": 9.903669797584233e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.2153622000478208,
+              "validation_seconds": 7.099995855242014e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 106.0,
+                  "y": 108.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 103.0,
+                  "y": 79.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 82.0,
+                  "y": 91.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 101.0,
+                  "y": 99.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 85.0,
+                  "y": 81.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 87.0,
+                  "y": 113.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 2.5369676976031315,
+          "original_temperature_cap_attained": false
+        },
+        "double_h": {
+          "peak_c": 94.23480179574422,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 5555.555555555556,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.0045,
+            "surface_mean_c": 48.51
+          },
+          "evaluated_case_sha256": "6b4f8ee11d4ce2d4b53bd2f3bf30cb44217abe68643d3a4b02df94a1322f83eb",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8504,
+            "mesh": [
+              70,
+              71
+            ],
+            "assembly_seconds": 0.054226300097070634,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.999999704224,
+            "energy_balance_error_w": -2.9577597615570994e-07,
+            "original_relative_residual": 9.349117028660542e-11,
+            "max_reference_difference_k": 1.489646805907796e-08,
+            "min_rise_k": 0.1957450518041074,
+            "peak_power_layer_c": 94.23480179574422,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.662637975734169e-10,
+              "relative_residual": 9.79267382306629e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.132657999987714,
+              "validation_seconds": 7.82000133767724e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 106.0,
+                  "y": 108.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 103.0,
+                  "y": 79.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 82.0,
+                  "y": 91.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 101.0,
+                  "y": 99.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 85.0,
+                  "y": 81.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 87.0,
+                  "y": 113.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 2.1119432571930616,
+          "original_temperature_cap_attained": true
+        },
+        "tim_contact": {
+          "peak_c": 109.65082414283654,
+          "boundary": {
+            "power_w": 780.0,
+            "top_h_w_m2k": 2777.777777777778,
+            "top_area_m2": 0.04,
+            "convection_resistance_k_w": 0.009,
+            "surface_mean_c": 52.019999999999996
+          },
+          "evaluated_case_sha256": "386a0b5f74681913790a3957005714e12601907eca0e1ba6b36854e2b14687d6",
+          "reused": false,
+          "thermal": {
+            "case": "atplace_fv_Case1",
+            "nodes": 8504,
+            "mesh": [
+              70,
+              71
+            ],
+            "assembly_seconds": 0.05624489998444915,
+            "source_power_w": 780.0,
+            "mapped_power_w": 780.0,
+            "heat_removed_w": 779.9999996677124,
+            "energy_balance_error_w": -3.3228764095838415e-07,
+            "original_relative_residual": 9.353822815031917e-11,
+            "max_reference_difference_k": 1.653451420224883e-08,
+            "min_rise_k": 1.2686072782458129,
+            "peak_power_layer_c": 109.65082414283654,
+            "max_internal_coefficient_change_w_k": 0,
+            "max_asymmetry_w_k": 0,
+            "max_offdiagonal_w_k": -5.333333333333334e-06,
+            "hits_receipt": {
+              "accepted": true,
+              "info": 0,
+              "absolute_residual": 6.648058214756631e-10,
+              "relative_residual": 9.771244646786371e-11,
+              "acceptance_rtol": 1e-10,
+              "acceptance_atol": 1e-12,
+              "assembly_identity": "atplace_fv_Case1",
+              "backend": "generic-gmres",
+              "qualification": {
+                "solid_spd": "UNKNOWN",
+                "regular_gmg": "UNKNOWN",
+                "fluid_2rm": "UNKNOWN",
+                "coupled_multilevel": "UNKNOWN",
+                "preconditioner_admissibility": "UNKNOWN",
+                "reason": "No specialized execution requested or qualified"
+              },
+              "solve_seconds": 0.15598620008677244,
+              "validation_seconds": 6.969994865357876e-05,
+              "shift_seconds": 0.0
+            },
+            "power_mapping": [
+              {
+                "chiplet": "CPU1_0",
+                "block": "core",
+                "input_w": 105.0,
+                "mapped_w": 105.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 106.0,
+                  "y": 108.0,
+                  "width": 12.0,
+                  "height": 12.0
+                }
+              },
+              {
+                "chiplet": "GPU_0",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 103.0,
+                  "y": 79.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "GPU_1",
+                "block": "core",
+                "input_w": 300.0,
+                "mapped_w": 300.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 82.0,
+                  "y": 91.0,
+                  "width": 18.0,
+                  "height": 18.0
+                }
+              },
+              {
+                "chiplet": "HBM_0",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 101.0,
+                  "y": 99.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_1",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 85.0,
+                  "y": 81.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              },
+              {
+                "chiplet": "HBM_2",
+                "block": "core",
+                "input_w": 25.0,
+                "mapped_w": 25.0,
+                "provenance": "ATPlace source geometry/power/pins; declared TAP-family FV materials, fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration",
+                "package_rect_mm": {
+                  "x": 87.0,
+                  "y": 113.0,
+                  "width": 12.0,
+                  "height": 8.0
+                }
+              }
+            ],
+            "physical_calibrated": false,
+            "scope": "frozen FV research model; not HotSpot reproduction or routing benchmark",
+            "numerical_admission_passed": true
+          },
+          "cooling_vs_same_scenario_base_k": 2.35118376146022,
+          "original_temperature_cap_attained": false
+        }
+      }
+    }
+  ],
+  "ordering": {
+    "nominal": {
+      "order_cold_to_hot": [
+        "B",
+        "D",
+        "E",
+        "F",
+        "base"
+      ],
+      "reversed_pairs_vs_nominal": []
+    },
+    "half_h": {
+      "order_cold_to_hot": [
+        "B",
+        "D",
+        "E",
+        "F",
+        "base"
+      ],
+      "reversed_pairs_vs_nominal": []
+    },
+    "double_h": {
+      "order_cold_to_hot": [
+        "B",
+        "D",
+        "E",
+        "F",
+        "base"
+      ],
+      "reversed_pairs_vs_nominal": []
+    },
+    "tim_contact": {
+      "order_cold_to_hot": [
+        "B",
+        "D",
+        "E",
+        "F",
+        "base"
+      ],
+      "reversed_pairs_vs_nominal": []
+    }
+  },
+  "independently_calibrated": false,
+  "timing_closed": false,
+  "reoptimized": false,
+  "scope": "five frozen layouts, one historical seed, three declared stress scenarios; not calibrated uncertainty bounds"
+}
