@@ -1,0 +1,289 @@
+{
+  "status": "exact_reference_equivalence_passed",
+  "new_thermal_queries": 0,
+  "analyzed_commit": "50185da8ce4c9ff5b94922411627e908def39b5e",
+  "input_sha256": "f2d55207a86fee7e03d14778ac5eea3847d3a101584d451a751d654295a4bb72",
+  "parent_plan_sha256": "a6fab2250a2e669ce9d52989ab90f91ec7e53f5db5f712ef196c73907daee77c",
+  "source_sha256": {
+    "tools/atplace_incremental_pins.py": "1af15a01defd05e28f0c3fc5e56602df19512f6f310e88f03d153169f0f5ff5e",
+    "tools/check_atplace_incremental_pins.py": "cc621a1e4a002feca0cf792e2eb912df678a59d0581d8d689044413c917d30df"
+  },
+  "records": [
+    {
+      "candidate_id": "B",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.41225809999741614,
+      "incremental_seconds": 0.07423080003354698,
+      "repaired_pin_length_m": 38.2284345476,
+      "length_slack_m": 35.611774258400004
+    },
+    {
+      "candidate_id": "D",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4174741000169888,
+      "incremental_seconds": 0.07179319998249412,
+      "repaired_pin_length_m": 53.4276809224,
+      "length_slack_m": 20.412527883600006
+    },
+    {
+      "candidate_id": "D:GPU_0:centre_y_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4123488999903202,
+      "incremental_seconds": 0.07533000002149493,
+      "repaired_pin_length_m": 53.264256352,
+      "length_slack_m": 20.57595245400001
+    },
+    {
+      "candidate_id": "B:GPU_1:centre_x_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4007612999994308,
+      "incremental_seconds": 0.07111739995889366,
+      "repaired_pin_length_m": 36.8053426256,
+      "length_slack_m": 37.03486618040001
+    },
+    {
+      "candidate_id": "B:GPU_1:centre_y_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.40922180004417896,
+      "incremental_seconds": 0.07139340008143336,
+      "repaired_pin_length_m": 35.7751225524,
+      "length_slack_m": 38.06508625360001
+    },
+    {
+      "candidate_id": "B:HBM_0:centre_y_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4131073000608012,
+      "incremental_seconds": 0.07430460001341999,
+      "repaired_pin_length_m": 39.6364345476,
+      "length_slack_m": 34.20377425840001
+    },
+    {
+      "candidate_id": "D:CPU1_0:centre_x_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.41705729998648167,
+      "incremental_seconds": 0.07473730004858226,
+      "repaired_pin_length_m": 52.0150729224,
+      "length_slack_m": 21.825135883600005
+    },
+    {
+      "candidate_id": "B:HBM_1:centre_y_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4182416999246925,
+      "incremental_seconds": 0.07591899996623397,
+      "repaired_pin_length_m": 39.6364345476,
+      "length_slack_m": 34.20377425840001
+    },
+    {
+      "candidate_id": "D:CPU1_0:centre_x_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.42210419999901205,
+      "incremental_seconds": 0.07514279999304563,
+      "repaired_pin_length_m": 55.8809929224,
+      "length_slack_m": 17.95921588360001
+    },
+    {
+      "candidate_id": "B:HBM_2:centre_y_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4289701000088826,
+      "incremental_seconds": 0.071491300011985,
+      "repaired_pin_length_m": 37.1831225524,
+      "length_slack_m": 36.657086253600006
+    },
+    {
+      "candidate_id": "D:HBM_2:centre_x_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.42215090000536293,
+      "incremental_seconds": 0.07213849993422627,
+      "repaired_pin_length_m": 54.8356809224,
+      "length_slack_m": 19.004527883600005
+    },
+    {
+      "candidate_id": "D:GPU_1:centre_x_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4091123000252992,
+      "incremental_seconds": 0.07295310008339584,
+      "repaired_pin_length_m": 54.840099962,
+      "length_slack_m": 19.00010884400001
+    },
+    {
+      "candidate_id": "B:HBM_0:centre_x_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.402000300004147,
+      "incremental_seconds": 0.07356449996586889,
+      "repaired_pin_length_m": 39.6364345476,
+      "length_slack_m": 34.20377425840001
+    },
+    {
+      "candidate_id": "D:HBM_2:centre_y_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4200369000900537,
+      "incremental_seconds": 0.06919110007584095,
+      "repaired_pin_length_m": 54.8356809224,
+      "length_slack_m": 19.004527883600005
+    },
+    {
+      "candidate_id": "D:HBM_1:centre_x_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4158504999941215,
+      "incremental_seconds": 0.08487330004572868,
+      "repaired_pin_length_m": 54.8356809224,
+      "length_slack_m": 19.004527883600005
+    },
+    {
+      "candidate_id": "D:GPU_1:centre_x_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.3973771999590099,
+      "incremental_seconds": 0.0908779000164941,
+      "repaired_pin_length_m": 52.0196809224,
+      "length_slack_m": 21.820527883600008
+    },
+    {
+      "candidate_id": "D:HBM_0:centre_x_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4039531999733299,
+      "incremental_seconds": 0.08492129994556308,
+      "repaired_pin_length_m": 54.4729929224,
+      "length_slack_m": 19.367215883600004
+    },
+    {
+      "candidate_id": "B:HBM_0:centre_x_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.3975583999417722,
+      "incremental_seconds": 0.09407479991205037,
+      "repaired_pin_length_m": 36.8204345476,
+      "length_slack_m": 37.019774258400005
+    },
+    {
+      "candidate_id": "D:GPU_1:centre_y_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4141612999374047,
+      "incremental_seconds": 0.07529259996954352,
+      "repaired_pin_length_m": 50.6116809224,
+      "length_slack_m": 23.22852788360001
+    },
+    {
+      "candidate_id": "B:GPU_0:centre_y_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4150652999524027,
+      "incremental_seconds": 0.06967539992183447,
+      "repaired_pin_length_m": 35.4124345476,
+      "length_slack_m": 38.42777425840001
+    },
+    {
+      "candidate_id": "B:HBM_1:centre_y_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.40921329997945577,
+      "incremental_seconds": 0.0692583000054583,
+      "repaired_pin_length_m": 36.8204345476,
+      "length_slack_m": 37.019774258400005
+    },
+    {
+      "candidate_id": "B:CPU1_0:centre_x_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4195787999778986,
+      "incremental_seconds": 0.07243729999754578,
+      "repaired_pin_length_m": 35.4124345476,
+      "length_slack_m": 38.42777425840001
+    },
+    {
+      "candidate_id": "B:GPU_0:centre_x_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.41405349993146956,
+      "incremental_seconds": 0.07234990003053099,
+      "repaired_pin_length_m": 38.9041933448,
+      "length_slack_m": 34.93601546120001
+    },
+    {
+      "candidate_id": "B:HBM_2:centre_x_um:+2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.40501920005772263,
+      "incremental_seconds": 0.07179769990034401,
+      "repaired_pin_length_m": 36.8204345476,
+      "length_slack_m": 37.019774258400005
+    },
+    {
+      "candidate_id": "D:HBM_0:centre_x_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4278789999661967,
+      "incremental_seconds": 0.07787179993465543,
+      "repaired_pin_length_m": 53.4230729224,
+      "length_slack_m": 20.417135883600004
+    },
+    {
+      "candidate_id": "D:HBM_1:centre_y_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4149004000937566,
+      "incremental_seconds": 0.07135209999978542,
+      "repaired_pin_length_m": 52.0196809224,
+      "length_slack_m": 21.820527883600008
+    },
+    {
+      "candidate_id": "B:HBM_2:centre_x_um:-2000",
+      "exact_match": true,
+      "reference_net_length_evaluations": 41184,
+      "incremental_net_length_evaluations": 21120,
+      "reference_seconds": 0.4151892999652773,
+      "incremental_seconds": 0.07257120008580387,
+      "repaired_pin_length_m": 39.6364345476,
+      "length_slack_m": 34.20377425840001
+    }
+  ],
+  "setup_seconds": 0.08993539994116873,
+  "reference_total_seconds": 11.154644599882886,
+  "incremental_total_seconds": 2.1205959998769686,
+  "reference_net_length_evaluations": 1111968,
+  "incremental_net_length_evaluations": 570240,
+  "note": "One local timing observation; exact output and operation-count equivalence are the acceptance criteria"
+}

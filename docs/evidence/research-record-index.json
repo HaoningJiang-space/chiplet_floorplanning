@@ -1,10 +1,10 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "e983b643c8d180461a19465e84982f2c0aad28c2",
-  "record_count": 287,
+  "parent_commit": "50185da8ce4c9ff5b94922411627e908def39b5e",
+  "record_count": 289,
   "counts_by_kind": {
-    "json": 118,
-    "md": 145,
+    "json": 119,
+    "md": 146,
     "pdf": 11,
     "png": 12,
     "svg": 1
@@ -116,6 +116,11 @@
       "kind": "md"
     },
     {
+      "path": "docs/atplace-first-principles-analysis.md",
+      "git_blob_sha1": "3f4dbcd75fe9bca642d6bfc476954bb92e02897f",
+      "kind": "md"
+    },
+    {
       "path": "docs/benchmark-source-screening.md",
       "git_blob_sha1": "8248b1db8365a0828db28b941331ecedd7604dd2",
       "kind": "md"
@@ -219,6 +224,11 @@
       "path": "docs/evidence/atplace-case1-guided-slack-v1.png",
       "git_blob_sha1": "7778aea1556c4d68f816ad439fc22e9554dd8047",
       "kind": "png"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-incremental-pins-v1.json",
+      "git_blob_sha1": "6254968859412ee0076d7b162285e81cd31172a5",
+      "kind": "json"
     },
     {
       "path": "docs/evidence/atplace-case1-initialization-preflight.json",
@@ -957,7 +967,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "59fa1316b85914f4d9abf430f4a6dac7ebd217d3",
+      "git_blob_sha1": "18ebed136a4771d75072006f54a89806b553b761",
       "kind": "md"
     },
     {
