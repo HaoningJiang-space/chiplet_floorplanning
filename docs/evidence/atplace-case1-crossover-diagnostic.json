@@ -1,0 +1,3106 @@
+{
+  "status": "verified_posthoc_geometry_diagnostic",
+  "new_thermal_solves": 0,
+  "counts": {
+    "crossovers": 36,
+    "nontrivial_fully_locked": 19,
+    "graph_vs_geometry_masks_checked": 2304,
+    "directed_cross_parent_pair_checks": 1080
+  },
+  "final_pareto_origin_counts": {
+    "initial": 1,
+    "parent_fallback": 3,
+    "mixed": 3
+  },
+  "rows": [
+    {
+      "proposal": 38,
+      "parent_rows": [
+        5,
+        15
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_1",
+          "HBM_2"
+        ],
+        [
+          "HBM_0"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        8,
+        63
+      ],
+      "distinct_legal_states": 3,
+      "distinct_mixed_states": 1,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [
+        "GPU_1",
+        "HBM_0",
+        "HBM_1"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 16,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 40,
+      "parent_rows": [
+        12,
+        15
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "HBM_1"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 18,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 41,
+      "parent_rows": [
+        12,
+        15
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "GPU_1"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 19,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 42,
+      "parent_rows": [
+        13,
+        15
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [],
+      "event_status": "duplicate_full_state",
+      "child_row": 15,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 43,
+      "parent_rows": [
+        13,
+        8
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "HBM_1"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 20,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 44,
+      "parent_rows": [
+        15,
+        15
+      ],
+      "differing_genes": [],
+      "edges": [],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0"
+        ],
+        [
+          "GPU_1"
+        ],
+        [
+          "HBM_0"
+        ],
+        [
+          "HBM_1"
+        ],
+        [
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "distinct_legal_states": 1,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": false,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "GPU_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 21,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 45,
+      "parent_rows": [
+        12,
+        15
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "GPU_1",
+        "HBM_0",
+        "HBM_2"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 22,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 46,
+      "parent_rows": [
+        7,
+        5
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ],
+        [
+          "GPU_0"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        2,
+        63
+      ],
+      "distinct_legal_states": 3,
+      "distinct_mixed_states": 1,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [],
+      "event_status": "thermal_evaluated",
+      "child_row": 23,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 47,
+      "parent_rows": [
+        7,
+        11
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1"
+        ],
+        [
+          "GPU_0"
+        ],
+        [
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        2,
+        31,
+        63
+      ],
+      "distinct_legal_states": 4,
+      "distinct_mixed_states": 2,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [
+        "HBM_1"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 24,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 48,
+      "parent_rows": [
+        2,
+        15
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [],
+      "event_status": "duplicate_full_state",
+      "child_row": 2,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 49,
+      "parent_rows": [
+        15,
+        2
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "CPU1_0",
+        "HBM_1"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 25,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 50,
+      "parent_rows": [
+        7,
+        2
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "GPU_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 26,
+      "new_child_in_final_pareto": true
+    },
+    {
+      "proposal": 52,
+      "parent_rows": [
+        2,
+        3
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "CPU1_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 28,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 53,
+      "parent_rows": [
+        12,
+        8
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_2"
+        ],
+        [
+          "HBM_1"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        1,
+        47,
+        63
+      ],
+      "distinct_legal_states": 4,
+      "distinct_mixed_states": 2,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [],
+      "event_status": "thermal_evaluated",
+      "child_row": 29,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 55,
+      "parent_rows": [
+        15,
+        10
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "GPU_1",
+        "HBM_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 31,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 56,
+      "parent_rows": [
+        20,
+        3
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [],
+      "event_status": "duplicate_full_state",
+      "child_row": 3,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 57,
+      "parent_rows": [
+        22,
+        26
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0"
+        ],
+        [
+          "GPU_1"
+        ],
+        [
+          "HBM_0"
+        ],
+        [
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        2,
+        48,
+        50,
+        58,
+        62,
+        63
+      ],
+      "distinct_legal_states": 7,
+      "distinct_mixed_states": 5,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [
+        "GPU_0",
+        "HBM_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 32,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 58,
+      "parent_rows": [
+        26,
+        7
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "HBM_2"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 33,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 59,
+      "parent_rows": [
+        26,
+        26
+      ],
+      "differing_genes": [],
+      "edges": [],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0"
+        ],
+        [
+          "GPU_1"
+        ],
+        [
+          "HBM_0"
+        ],
+        [
+          "HBM_1"
+        ],
+        [
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "distinct_legal_states": 1,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": false,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [],
+      "event_status": "duplicate_full_state",
+      "child_row": 26,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 61,
+      "parent_rows": [
+        3,
+        22
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "CPU1_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0",
+          "GPU_1",
+          "HBM_1"
+        ],
+        [
+          "HBM_0"
+        ],
+        [
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        8,
+        9,
+        31,
+        41,
+        63
+      ],
+      "distinct_legal_states": 6,
+      "distinct_mixed_states": 4,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [
+        "CPU1_0",
+        "GPU_1",
+        "HBM_2"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 34,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 62,
+      "parent_rows": [
+        27,
+        26
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        62,
+        63
+      ],
+      "distinct_legal_states": 3,
+      "distinct_mixed_states": 1,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [],
+      "event_status": "thermal_evaluated",
+      "child_row": 35,
+      "new_child_in_final_pareto": true
+    },
+    {
+      "proposal": 63,
+      "parent_rows": [
+        20,
+        1
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "CPU1_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "CPU1_0",
+        "GPU_1"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 36,
+      "new_child_in_final_pareto": true
+    },
+    {
+      "proposal": 64,
+      "parent_rows": [
+        15,
+        3
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "GPU_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 37,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 65,
+      "parent_rows": [
+        26,
+        26
+      ],
+      "differing_genes": [],
+      "edges": [],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0"
+        ],
+        [
+          "GPU_1"
+        ],
+        [
+          "HBM_0"
+        ],
+        [
+          "HBM_1"
+        ],
+        [
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "distinct_legal_states": 1,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": false,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "GPU_0",
+        "HBM_1"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 38,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 66,
+      "parent_rows": [
+        30,
+        29
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "GPU_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 39,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 67,
+      "parent_rows": [
+        27,
+        29
+      ],
+      "differing_genes": [
+        "GPU_0",
+        "HBM_0",
+        "HBM_1"
+      ],
+      "edges": [],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0"
+        ],
+        [
+          "GPU_1"
+        ],
+        [
+          "HBM_0"
+        ],
+        [
+          "HBM_1"
+        ],
+        [
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "distinct_legal_states": 8,
+      "distinct_mixed_states": 6,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [
+        "GPU_0"
+      ],
+      "event_status": "cache_hit_new_layout",
+      "child_row": 40,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 68,
+      "parent_rows": [
+        8,
+        26
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        62,
+        63
+      ],
+      "distinct_legal_states": 3,
+      "distinct_mixed_states": 1,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [
+        "CPU1_0",
+        "HBM_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 41,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 69,
+      "parent_rows": [
+        20,
+        29
+      ],
+      "differing_genes": [
+        "HBM_1"
+      ],
+      "edges": [],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0"
+        ],
+        [
+          "GPU_1"
+        ],
+        [
+          "HBM_0"
+        ],
+        [
+          "HBM_1"
+        ],
+        [
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": false,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "GPU_0"
+      ],
+      "event_status": "cache_hit_new_layout",
+      "child_row": 42,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 70,
+      "parent_rows": [
+        21,
+        29
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "CPU1_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 43,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 72,
+      "parent_rows": [
+        30,
+        30
+      ],
+      "differing_genes": [],
+      "edges": [],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0"
+        ],
+        [
+          "GPU_1"
+        ],
+        [
+          "HBM_0"
+        ],
+        [
+          "HBM_1"
+        ],
+        [
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "distinct_legal_states": 1,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": false,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "CPU1_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 45,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 73,
+      "parent_rows": [
+        1,
+        20
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [],
+      "event_status": "duplicate_full_state",
+      "child_row": 1,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 74,
+      "parent_rows": [
+        30,
+        29
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [
+        "GPU_1",
+        "HBM_0"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 46,
+      "new_child_in_final_pareto": true
+    },
+    {
+      "proposal": 75,
+      "parent_rows": [
+        30,
+        1
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ],
+        [
+          "GPU_0"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        2,
+        63
+      ],
+      "distinct_legal_states": 3,
+      "distinct_mixed_states": 1,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [
+        "GPU_1",
+        "HBM_0",
+        "HBM_1"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 47,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 76,
+      "parent_rows": [
+        46,
+        3
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "CPU1_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "GPU_1"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "HBM_0"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0",
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        63
+      ],
+      "distinct_legal_states": 2,
+      "distinct_mixed_states": 0,
+      "all_genes_differ_and_locked": true,
+      "selection": "parent_fallback",
+      "post_mutation_changed_genes": [],
+      "event_status": "duplicate_full_state",
+      "child_row": 46,
+      "new_child_in_final_pareto": false
+    },
+    {
+      "proposal": 77,
+      "parent_rows": [
+        42,
+        43
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "HBM_1"
+      ],
+      "edges": [],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0"
+        ],
+        [
+          "GPU_1"
+        ],
+        [
+          "HBM_0"
+        ],
+        [
+          "HBM_1"
+        ],
+        [
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "distinct_legal_states": 8,
+      "distinct_mixed_states": 6,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [
+        "HBM_2"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 48,
+      "new_child_in_final_pareto": true
+    },
+    {
+      "proposal": 78,
+      "parent_rows": [
+        26,
+        42
+      ],
+      "differing_genes": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "edges": [
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_0"
+        },
+        {
+          "if_B": "GPU_0",
+          "then_B": "HBM_1"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "GPU_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_0",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "GPU_0"
+        },
+        {
+          "if_B": "HBM_1",
+          "then_B": "HBM_2"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "CPU1_0"
+        },
+        {
+          "if_B": "HBM_2",
+          "then_B": "GPU_1"
+        }
+      ],
+      "strongly_connected_components": [
+        [
+          "CPU1_0"
+        ],
+        [
+          "GPU_0",
+          "GPU_1",
+          "HBM_0",
+          "HBM_1",
+          "HBM_2"
+        ]
+      ],
+      "legal_masks": [
+        0,
+        1,
+        63
+      ],
+      "distinct_legal_states": 3,
+      "distinct_mixed_states": 1,
+      "all_genes_differ_and_locked": false,
+      "selection": "mixed",
+      "post_mutation_changed_genes": [
+        "HBM_2"
+      ],
+      "event_status": "thermal_evaluated",
+      "child_row": 49,
+      "new_child_in_final_pareto": true
+    }
+  ],
+  "interpretation": "pair-conditional rigid-inheritance constraints; not permanent chip groups or causal attribution of temperature loss",
+  "reviewed_commit": "3cb5769af9a91d768276737d858fee8f55f6aef4",
+  "source_evidence_sha256": "ec3468e23baa97e0309ba5a37cfb3d3918119b7f600683ec39a8a6db3f1a0385",
+  "imported_sha256": "f2d55207a86fee7e03d14778ac5eea3847d3a101584d451a751d654295a4bb72",
+  "diagnostic_source_sha256": "cb414ce21c1f8bf4fdd0200c584173614ff41a47f7ffb286f45ca51515ca3596"
+}

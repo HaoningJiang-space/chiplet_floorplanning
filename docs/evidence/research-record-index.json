@@ -1,10 +1,10 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "f0ac16e28dd8e50f57837905e06947e2053cc4fa",
-  "record_count": 253,
+  "parent_commit": "3cb5769af9a91d768276737d858fee8f55f6aef4",
+  "record_count": 256,
   "counts_by_kind": {
-    "md": 131,
-    "json": 104,
+    "md": 133,
+    "json": 105,
     "pdf": 8,
     "png": 9,
     "svg": 1
@@ -16,13 +16,23 @@
       "kind": "md"
     },
     {
+      "path": "docs/atplace-case1-crossover-diagnostic.md",
+      "git_blob_sha1": "1cce521cf5f3b791fe5524136702a9dd2b9cf2c2",
+      "kind": "md"
+    },
+    {
       "path": "docs/atplace-case1-crossover-protocol.md",
       "git_blob_sha1": "ca4ce5f9d219e75931a6d6816afa721ca31f677c",
       "kind": "md"
     },
     {
       "path": "docs/atplace-case1-crossover-results.md",
-      "git_blob_sha1": "1f116bd7995d94b75f3a37fe8365ce8141f94071",
+      "git_blob_sha1": "07cca54801fbca48643603e76b1c7d89e81dbc25",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-crossover-review.md",
+      "git_blob_sha1": "57317ebe833bd1bb6321eea6b6c3d3bd3e9d92d8",
       "kind": "md"
     },
     {
@@ -78,6 +88,11 @@
     {
       "path": "docs/evidence/atplace-case1-acceptance.json",
       "git_blob_sha1": "4b6b0e1ab4420bb02e51992e4c5d3354611534ba",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-crossover-diagnostic.json",
+      "git_blob_sha1": "2e8269242ae896d7bb92c7460a1c1d136c89e6e1",
       "kind": "json"
     },
     {
@@ -787,7 +802,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "00b74a295af598413e30da0187266aa8dea7ee17",
+      "git_blob_sha1": "1ea69c1f98f3919ee50f108f4b0f482fbb4bb39a",
       "kind": "md"
     },
     {
