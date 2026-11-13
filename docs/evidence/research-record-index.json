@@ -1,10 +1,10 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "50185da8ce4c9ff5b94922411627e908def39b5e",
-  "record_count": 289,
+  "parent_commit": "4f70f2788179f4b30983925d0332ffcc7a0d0f8b",
+  "record_count": 293,
   "counts_by_kind": {
-    "json": 119,
-    "md": 146,
+    "json": 121,
+    "md": 148,
     "pdf": 11,
     "png": 12,
     "svg": 1
@@ -62,7 +62,12 @@
     },
     {
       "path": "docs/atplace-case1-orientation-results.md",
-      "git_blob_sha1": "31904e9f542fd0095049328d11f9732fefdbdff8",
+      "git_blob_sha1": "f6dacc47adbf0319c8569c56bb4005852055bb73",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-orientation-review.md",
+      "git_blob_sha1": "e937166b9c43f3eb382720839fa84ef1a9912cb3",
       "kind": "md"
     },
     {
@@ -116,8 +121,13 @@
       "kind": "md"
     },
     {
+      "path": "docs/atplace-case1-temperature-feedback-protocol.md",
+      "git_blob_sha1": "73f8c3e66fb59b40771323486a698dfa7c5682bf",
+      "kind": "md"
+    },
+    {
       "path": "docs/atplace-first-principles-analysis.md",
-      "git_blob_sha1": "3f4dbcd75fe9bca642d6bfc476954bb92e02897f",
+      "git_blob_sha1": "d88f5c7936ae956cf72bba37c7abcc3567bd53f7",
       "kind": "md"
     },
     {
@@ -226,6 +236,11 @@
       "kind": "png"
     },
     {
+      "path": "docs/evidence/atplace-case1-incremental-history-v1.json",
+      "git_blob_sha1": "75e2f1f141f8d217d003d77872004fe2dd5735fb",
+      "kind": "json"
+    },
+    {
       "path": "docs/evidence/atplace-case1-incremental-pins-v1.json",
       "git_blob_sha1": "6254968859412ee0076d7b162285e81cd31172a5",
       "kind": "json"
@@ -304,6 +319,11 @@
       "path": "docs/evidence/atplace-case1-slack-v1.png",
       "git_blob_sha1": "6d779463957b4c18dac15b51d129034143ace365",
       "kind": "png"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-temperature-feedback-plan-v1.json",
+      "git_blob_sha1": "e50ff629398032ac7bae45fb3ca8ea4775c0c4d4",
+      "kind": "json"
     },
     {
       "path": "docs/evidence/atplace-import.json",
@@ -967,7 +987,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "18ebed136a4771d75072006f54a89806b553b761",
+      "git_blob_sha1": "58f9124d956f25d32655796e4ef5b213c70513f8",
       "kind": "md"
     },
     {

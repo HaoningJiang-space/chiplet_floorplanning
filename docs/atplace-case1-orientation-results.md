@@ -9,7 +9,8 @@
 
 - 开始时 fetch 成功，远端为 `c78c810334a5b195568d08f94b1831a9c71ab7ec`，本地一致。
   [Chat](atplace-case1-routing-boundary-review.md) 已完成上一阶段必要布线/边界复核，
-  建议本次唯一算子与小实验。Chat 尚未审查这里的新代码和新结果。
+  建议本次唯一算子与小实验。随后 [Chat 完整复核](atplace-case1-orientation-review.md)
+  已独立核对本阶段源码、50 个候选状态、40 条联合行与冻结/结果哈希，接受本阶段限定结论。
 - 实施、[协议](atplace-case1-orientation-protocol.md)、候选池和零热验收先提交并推送
   `e983b643c8d180461a19465e84982f2c0aad28c2`，确认远端 SHA 后才运行新热查询。
 - 冻结计划 SHA256：`a6fab2250a2e669ce9d52989ab90f91ec7e53f5db5f712ef196c73907daee77c`。
