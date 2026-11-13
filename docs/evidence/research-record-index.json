@@ -1,12 +1,12 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "a99e9763275f559831554abb83a9ce24a8eea1da",
-  "record_count": 258,
+  "parent_commit": "86ba64913eb9547fca559e2925bd87a546351fbc",
+  "record_count": 262,
   "counts_by_kind": {
-    "md": 134,
-    "json": 106,
-    "pdf": 8,
-    "png": 9,
+    "md": 135,
+    "json": 107,
+    "pdf": 9,
+    "png": 10,
     "svg": 1
   },
   "records": [
@@ -58,6 +58,11 @@
     {
       "path": "docs/atplace-case1-slack-protocol.md",
       "git_blob_sha1": "6ec141219266e48607f5db07ddbb763341ddcbf6",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-slack-results.md",
+      "git_blob_sha1": "4dee206dfe1d757c6a00b6fcbcc3d7ee7b067c62",
       "kind": "md"
     },
     {
@@ -149,6 +154,21 @@
       "path": "docs/evidence/atplace-case1-slack-plan-v1.json",
       "git_blob_sha1": "e72316cf8654eadb566a7a01e59c8648c685271d",
       "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-slack-v1.json",
+      "git_blob_sha1": "1be1039839dc01594c035aac6d3147a4ea069988",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-slack-v1.pdf",
+      "git_blob_sha1": "35720e4a864a8937d76707c767c3f8199431b440",
+      "kind": "pdf"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-slack-v1.png",
+      "git_blob_sha1": "6d779463957b4c18dac15b51d129034143ace365",
+      "kind": "png"
     },
     {
       "path": "docs/evidence/atplace-import.json",
@@ -812,7 +832,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "4526ee2b2b26d4e3be51e7ebe7a473f58ec6e8df",
+      "git_blob_sha1": "9845bc1523e51e9523041e7bb152abc44e16b925",
       "kind": "md"
     },
     {
