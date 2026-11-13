@@ -1,12 +1,12 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "4f70f2788179f4b30983925d0332ffcc7a0d0f8b",
-  "record_count": 293,
+  "parent_commit": "f108f72e2a2b9c556061644dc199bbe0ccf4897a",
+  "record_count": 297,
   "counts_by_kind": {
-    "json": 121,
-    "md": 148,
+    "json": 123,
+    "md": 149,
     "pdf": 11,
-    "png": 12,
+    "png": 13,
     "svg": 1
   },
   "records": [
@@ -126,8 +126,13 @@
       "kind": "md"
     },
     {
+      "path": "docs/atplace-case1-temperature-feedback-results.md",
+      "git_blob_sha1": "6bc421ae93dd2e0753bffc3ad92e20c64570734f",
+      "kind": "md"
+    },
+    {
       "path": "docs/atplace-first-principles-analysis.md",
-      "git_blob_sha1": "d88f5c7936ae956cf72bba37c7abcc3567bd53f7",
+      "git_blob_sha1": "26f9b2f74714820650068d5a6c206e34e5a811d3",
       "kind": "md"
     },
     {
@@ -324,6 +329,21 @@
       "path": "docs/evidence/atplace-case1-temperature-feedback-plan-v1.json",
       "git_blob_sha1": "e50ff629398032ac7bae45fb3ca8ea4775c0c4d4",
       "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-temperature-feedback-replay-v1.json",
+      "git_blob_sha1": "b93d41796935b17a2a13521bbbb74ad597d8df53",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-temperature-feedback-v1.json",
+      "git_blob_sha1": "54c7abfb0226e46c26c84f8854af6d8fddbdd954",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-temperature-feedback-v1.png",
+      "git_blob_sha1": "644a3cd82d60f673f8a9fa07f4f8bb34da49e362",
+      "kind": "png"
     },
     {
       "path": "docs/evidence/atplace-import.json",
@@ -987,7 +1007,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "58f9124d956f25d32655796e4ef5b213c70513f8",
+      "git_blob_sha1": "2e942f72c00eeee316493c1d5184078c646b425f",
       "kind": "md"
     },
     {
