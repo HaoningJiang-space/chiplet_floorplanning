@@ -1,0 +1,18 @@
+{
+  "status": "verified_saved_response_replay",
+  "plan_sha256": "a6fab2250a2e669ce9d52989ab90f91ec7e53f5db5f712ef196c73907daee77c",
+  "result_sha256": "80355a1f8c7b672a27dccd79ed8578c66ac74d9012cd8205fde21d8e3368e0c7",
+  "new_thermal_queries": 0,
+  "checks": [
+    {
+      "arm": "original_orientation",
+      "saved_responses_checked": 16,
+      "replay_passed": true
+    },
+    {
+      "arm": "repaired_orientation",
+      "saved_responses_checked": 16,
+      "replay_passed": true
+    }
+  ]
+}

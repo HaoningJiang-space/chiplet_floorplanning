@@ -1,10 +1,10 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "c78c810334a5b195568d08f94b1831a9c71ab7ec",
-  "record_count": 284,
+  "parent_commit": "e983b643c8d180461a19465e84982f2c0aad28c2",
+  "record_count": 287,
   "counts_by_kind": {
-    "json": 116,
-    "md": 144,
+    "json": 118,
+    "md": 145,
     "pdf": 11,
     "png": 12,
     "svg": 1
@@ -58,6 +58,11 @@
     {
       "path": "docs/atplace-case1-orientation-protocol.md",
       "git_blob_sha1": "9b4b182316a11d51895af702a4436e6a60913de2",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-orientation-results.md",
+      "git_blob_sha1": "31904e9f542fd0095049328d11f9732fefdbdff8",
       "kind": "md"
     },
     {
@@ -223,6 +228,16 @@
     {
       "path": "docs/evidence/atplace-case1-orientation-plan-v1.json",
       "git_blob_sha1": "1a42eb54646b72058dbf80e4a2df4e924124019a",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-orientation-replay-v1.json",
+      "git_blob_sha1": "932ebbff36c834f88e34c9919dacb7aeb9befb46",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-orientation-v1.json",
+      "git_blob_sha1": "7908d80fa8c6eb8267b5e4fe49a87331ca455c96",
       "kind": "json"
     },
     {
@@ -942,7 +957,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "5c7a40b5d85ea45243a2bc867064f066aedfa08c",
+      "git_blob_sha1": "59fa1316b85914f4d9abf430f4a6dac7ebd217d3",
       "kind": "md"
     },
     {
