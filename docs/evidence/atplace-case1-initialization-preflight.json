@@ -1,0 +1,16 @@
+{
+  "status": "initialization_candidate_cap_before_manifest_or_thermal_runs",
+  "seed": 2026111200,
+  "candidate_check_cap": 2000000,
+  "thermal_solves": 0,
+  "manifest_created": false,
+  "partial_layout_count": null,
+  "partial_layout_count_note": "not captured by the failed command",
+  "failed_source_sha256": {
+    "tools/atplace_search.py": "2aff479dee432ba21b5c42035d3fae307cb64cf752c8391ecdcfa61f83986fb5",
+    "tools/run_atplace_search.py": "c82ad11e073c355c93695191b84da0099e270487a2d49396072a8e7861127413",
+    "docs/atplace-case1-search-protocol.md": "335891f2f16dd43e4df83cb69c35372a05736d3a0fda188a8baa3625e4028080"
+  },
+  "original_construction": "random die order then uniform next legal placement",
+  "next_change": "descending die area, seeded shuffle within area ties; retain seed and all caps; no thermal or pin-quality selection"
+}
