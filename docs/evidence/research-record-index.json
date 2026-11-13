@@ -1,9 +1,9 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "86ba64913eb9547fca559e2925bd87a546351fbc",
-  "record_count": 262,
+  "parent_commit": "f373006f1c1705974eda84ba88746056c2a696f1",
+  "record_count": 263,
   "counts_by_kind": {
-    "md": 135,
+    "md": 136,
     "json": 107,
     "pdf": 9,
     "png": 10,
@@ -62,7 +62,12 @@
     },
     {
       "path": "docs/atplace-case1-slack-results.md",
-      "git_blob_sha1": "4dee206dfe1d757c6a00b6fcbcc3d7ee7b067c62",
+      "git_blob_sha1": "0cf466e32ef3099bddd63a9ced4eb75689106580",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-slack-review.md",
+      "git_blob_sha1": "f0897024160b86b1ab2bb38238658b4456c3c461",
       "kind": "md"
     },
     {
@@ -832,7 +837,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "9845bc1523e51e9523041e7bb152abc44e16b925",
+      "git_blob_sha1": "3bd128de9808b81a95db85abad122393ac471b31",
       "kind": "md"
     },
     {
