@@ -1,0 +1,18 @@
+{
+  "status": "verified_saved_response_replay",
+  "new_thermal_queries": 0,
+  "result_sha256": "fc42f0340b90690205b7257c7f8b882b882ee12088fbe05d1f67ed9b6c0c5378",
+  "plan_sha256": "7baafaa653ff46136fa9cb3892652a6f60b621c2717eb089a8a8c82df0b1ddb1",
+  "checks": [
+    {
+      "method": "temperature_blind",
+      "replay_passed": true,
+      "saved_responses": 16
+    },
+    {
+      "method": "temperature_guided",
+      "replay_passed": true,
+      "saved_responses": 16
+    }
+  ]
+}

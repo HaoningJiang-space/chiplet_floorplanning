@@ -1,12 +1,12 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "499cf423ebfa4d0bb2ae0d6c6162ef163c9bf461",
-  "record_count": 300,
+  "parent_commit": "972fba0bdbf30e90d2b8a242cf89e470668cfa80",
+  "record_count": 304,
   "counts_by_kind": {
-    "json": 124,
-    "md": 151,
+    "json": 126,
+    "md": 152,
     "pdf": 11,
-    "png": 13,
+    "png": 14,
     "svg": 1
   },
   "records": [
@@ -141,8 +141,13 @@
       "kind": "md"
     },
     {
+      "path": "docs/atplace-case1-tight-budget-results.md",
+      "git_blob_sha1": "b3d7fd0187de2292ddbb566f02f9584bf18a486b",
+      "kind": "md"
+    },
+    {
       "path": "docs/atplace-first-principles-analysis.md",
-      "git_blob_sha1": "26f9b2f74714820650068d5a6c206e34e5a811d3",
+      "git_blob_sha1": "8ac75d35ab4ea3ada0cc85aea9315359bb89d0d1",
       "kind": "md"
     },
     {
@@ -359,6 +364,21 @@
       "path": "docs/evidence/atplace-case1-tight-budget-plan-v1.json",
       "git_blob_sha1": "514556cb2fd5216a3a37ec3bf5640338923ff3be",
       "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-tight-budget-replay-v1.json",
+      "git_blob_sha1": "80cd76db436817430d0bf72f781a8ff96a876f5f",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-tight-budget-v1.json",
+      "git_blob_sha1": "c460fea9fbcda33415f55993b7be503944bd185f",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-tight-budget-v1.png",
+      "git_blob_sha1": "7328f33a381df04d7e2cc3eb55685fda07feff82",
+      "kind": "png"
     },
     {
       "path": "docs/evidence/atplace-import.json",
@@ -1022,7 +1042,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "784cea9c3e76bd2ef0fb4b03a42e630f80b5aa7b",
+      "git_blob_sha1": "630b8f3176122f95067e9381a9f5f55af803f506",
       "kind": "md"
     },
     {
