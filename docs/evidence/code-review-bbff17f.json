@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "analyzed_commit": "bbff17fa0241d7009d3363af2a4e19378df9d1a7",
+  "fetch_succeeded": true,
+  "scope": "Follow-up review of dependency/round-cap/LP-grid fixes and current search/reporting paths; production code unchanged.",
+  "prior_findings_status": {
+    "scipy_111_api_mismatch": "Dependency now requires scipy>=1.12; the previous allowed-1.11 mismatch is closed.",
+    "epsilon_original_reproduction": "Original 100-solve fixture now stops at one round; simultaneous phase-budget/global-round exhaustion is still broken."
+  },
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "status": "reproduced_not_fixed",
+      "location": "src/chiplet_floorplanning/placement/methods.py:52",
+      "related_location": "src/chiplet_floorplanning/placement/methods.py:68",
+      "problem": "When a phase exhausts its budget in the round that reaches max_rounds, keep_going records budget before checking round_cap; restart then clears it and another epsilon phase runs. A simultaneous stalled condition can likewise mask the global cap.",
+      "reproduction": [
+        {
+          "method": "pareto_local_search",
+          "budget": 100,
+          "max_rounds": 1,
+          "actual_rounds": 1,
+          "stop_reason": "round_cap",
+          "solves": 3
+        },
+        {
+          "method": "epsilon_search",
+          "budget": 100,
+          "max_rounds": 1,
+          "actual_rounds": 1,
+          "stop_reason": "round_cap",
+          "solves": 3
+        },
+        {
+          "method": "pareto_local_search",
+          "budget": 7,
+          "max_rounds": 1,
+          "actual_rounds": 1,
+          "stop_reason": "round_cap",
+          "solves": 3
+        },
+        {
+          "method": "epsilon_search",
+          "budget": 7,
+          "max_rounds": 1,
+          "actual_rounds": 3,
+          "stop_reason": "budget",
+          "solves": 7
+        }
+      ],
+      "fixture": {
+        "names": [
+          "a",
+          "b"
+        ],
+        "size_um": [
+          [
+            1000,
+            1000
+          ],
+          [
+            1000,
+            1000
+          ]
+        ],
+        "power_w": [
+          5,
+          1
+        ],
+        "carrier_um": [
+          10000,
+          10000
+        ],
+        "nets": [],
+        "initial_centre_um": [
+          [
+            1000,
+            1000
+          ],
+          [
+            5000,
+            5000
+          ]
+        ],
+        "rotation_deg": [
+          0,
+          0
+        ],
+        "gap_um": 0,
+        "resolution": 12,
+        "seed": 2,
+        "batch": 2,
+        "stall_rounds": 20,
+        "max_rounds": 1,
+        "length_caps_m": [
+          1,
+          2,
+          3
+        ]
+      },
+      "fix_direction": "Enforce rounds >= max_rounds independently of the previously selected stop_reason before entering another phase or proposal round. Retain an accurate global stop reason."
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "status": "reproduced_not_fixed",
+      "location": "tools/run_method_comparison.py:167",
+      "problem": "The relative length gap divides by best_l without a zero-baseline case. Legal touching dies with coincident boundary pins have a zero Manhattan lower bound; reference generation, freeze and execute complete, but report crashes.",
+      "reproduction": {
+        "legal": true,
+        "gap_um": 0,
+        "source_power_w": 2.0,
+        "net_count": 1,
+        "pin_length_m": 0.0,
+        "placement": [
+          {
+            "chiplet": "a",
+            "centre_x_um": 500.0,
+            "centre_y_um": 500.0,
+            "rotation_deg": 0
+          },
+          {
+            "chiplet": "b",
+            "centre_x_um": 1500.0,
+            "centre_y_um": 500.0,
+            "rotation_deg": 0
+          }
+        ],
+        "reference_status": "completed",
+        "execute_status": "budget",
+        "report_error": "ZeroDivisionError: float division by zero",
+        "line": "tools/run_method_comparison.py:167"
+      },
+      "fixture": {
+        "names": [
+          "a",
+          "b"
+        ],
+        "size_um": [
+          [
+            1000,
+            1000
+          ],
+          [
+            1000,
+            1000
+          ]
+        ],
+        "power_w": [
+          1,
+          1
+        ],
+        "carrier_um": [
+          2000,
+          1000
+        ],
+        "net_pin_offsets_um": [
+          [
+            500,
+            0
+          ],
+          [
+            -500,
+            0
+          ]
+        ],
+        "gap_um": 0
+      },
+      "scope": "Supported synthetic input with one cross-die net and positive power. No claim that the frozen ATPlace Case1-10 fronts have a zero baseline.",
+      "fix_direction": "Define zero-baseline reporting explicitly, e.g. retain absolute length gaps and mark relative gaps undefined with a reason; do not divide by zero or introduce an arbitrary epsilon denominator."
+    }
+  ],
+  "validation": {
+    "unit_tests": {
+      "passed": 67,
+      "python": "3.12.7",
+      "numpy": "1.26.4",
+      "scipy": "1.13.1",
+      "command": "PYTHONPATH=src python -m unittest discover -s tests -p '*_unittest.py' -v"
+    },
+    "lp_grid_and_fv": {
+      "cases": [
+        1,
+        4,
+        6
+      ],
+      "candidates": 18,
+      "resolution": 64,
+      "gap_um": 0,
+      "all_corners_integer_um": true,
+      "all_passed": true,
+      "max_linear_residual_inf_w": 9.672937682121112e-12,
+      "max_abs_energy_balance_error_w": 1.1880274541908875e-10,
+      "parent_layout_paths": "results/code-review-3431c40/Case{1,4,6}-sample.json",
+      "parameters": {
+        "levels": 6,
+        "pairs": 10
+      }
+    },
+    "cli_validation_reused": {
+      "analyzed_commit": "34001c5e0290afa799b1e4a17d10835f2c086941",
+      "examples": [
+        "two_chiplets",
+        "layered_two_chiplets"
+      ],
+      "reason": "Git diff confirms the fixed-layout CLI, model, thermal, package, mesh, power, interconnect and examples are unchanged; same SciPy 1.13.1 environment."
+    },
+    "zero_length_pipeline": {
+      "reference": "passed",
+      "freeze": "passed",
+      "execute": "passed",
+      "report": "ZeroDivisionError",
+      "seed": 2,
+      "random_starts": 2,
+      "descent_starts": 2,
+      "batch": 2,
+      "fv_solves": 2,
+      "resolution": 12,
+      "workers": 1
+    }
+  },
+  "local_artifacts": "results/deep-review-bbff17f",
+  "limitations": [
+    "Bounded code review, not exhaustive correctness proof.",
+    "No full Case1-10 comparison campaign was rerun.",
+    "Numerical checks do not establish physical package calibration or real timing qualification."
+  ],
+  "artifact_sha256": {
+    "unittest.log": "d466315e8ad2c488cc4966a29423dd0f3f3b1ee6c8f3c702be16590e84c28365",
+    "round-cap-collision.json": "143e4ca3a75b4751a5ca86d3555d77896a4fa15757d208191bd4ff7c4983b488",
+    "lp-fv-probes.json": "5b8c73cf721243706684b0eebfa7b6775eab05b0c7b2c6553246f5f72e33163e",
+    "touching-pin-case.json": "72049de73229f7fe9c1fa162a5ad4bd7bc4914dce29799648867ae75d0326ff8",
+    "touching-report.log": "811c9f29f866f6fdcd8e42aa40b84560fa6727575b66c67fdeb5e353e5ebee42",
+    "zero-length-report-reproduction.json": "da99b8b2ab89d0bef1c821bc18da2a3771f29f8973fd3a636424e1ab81273e58"
+  }
+}
