@@ -31,8 +31,19 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def same_problem(reference, case_path, gap_um, resolution):
+    """The reference front must describe the same physical problem, not just an unchanged file."""
+    case = json.loads(Path(case_path).read_text())
+    expected = dict(case=case['name'], case_sha256=sha256(case_path), gap_um=gap_um, fv_resolution=resolution)
+    mismatch = {k: (reference.get(k), v) for k, v in expected.items() if reference.get(k) != v}
+    if reference.get('status') != 'completed' or mismatch:
+        raise SystemExit(f'reference front does not match this experiment: {mismatch or reference.get("status")}')
+
+
 def freeze(args):
-    front = json.loads(args.reference.read_text())['front']
+    reference = json.loads(args.reference.read_text())
+    same_problem(reference, args.case, args.gap_um, args.resolution)
+    front = reference['front']
     length = np.array([p['length_m'] for p in front])
     peak = np.array([p['peak_c'] for p in front])
     plan = dict(
@@ -122,6 +133,12 @@ def checked_records(plan_path, plan, output):
     return records
 
 
+def in_seed_order(records, method, seeds):
+    """One method's records in the plan's seed order (file order is not seed order)."""
+    by_key = {(r['method'], r['seed']): r for r in records}
+    return [by_key[method, seed] for seed in seeds]
+
+
 def report(args):
     plan = json.loads(args.plan.read_text())
     records = checked_records(args.plan, plan, args.output)
@@ -134,7 +151,7 @@ def report(args):
     best_l = {str(c): float(all_l[shortest_within(all_l, all_p, c)]) for c in plan['peak_caps_c']}
     table = {}
     for method in plan['methods']:
-        rows = [r for r in records if r['method'] == method]
+        rows = in_seed_order(records, method, plan['seeds'])
         out = {}
         for fraction in map(str, CHECKPOINTS):
             gap_t = {c: [r['metrics'][fraction]['coolest_within_length_cap'][c]['peak_c'] - best_t[c]
@@ -145,10 +162,11 @@ def report(args):
                      for c in best_l}
             out[fraction] = dict(peak_gap_k=gap_t, length_gap_fraction=gap_l)
         table[method] = out
-    summary = dict(best_known_peak_c=best_t, best_known_length_m=best_l, seeds=plan['seeds'],
+    summary = dict(best_known_peak_c=best_t, best_known_length_m=best_l, seed_order=plan['seeds'],
                    plan_sha256=sha256(args.plan), reference_sha256=plan['reference_sha256'],
                    stop_reasons={f"{r['method']}-seed{r['seed']}": r['stop_reason'] for r in records},
-                   note='gaps are per seed (paired by shared start set); None = cap not reached', methods=table)
+                   note='each gap list follows seed_order (paired by shared start set); None = cap not reached',
+                   methods=table)
     (args.output/'report.json').write_text(json.dumps(summary, indent=2) + '\n')
     for method, out in table.items():
         final = out['1.0']

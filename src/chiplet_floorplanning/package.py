@@ -2,6 +2,7 @@
 
 import numpy as np
 from scipy.sparse import coo_matrix
+from scipy.sparse.csgraph import connected_components
 from scipy.sparse.linalg import spsolve
 from time import perf_counter
 
@@ -105,6 +106,22 @@ def assemble_package(case, power):
     return matrix, rhs, sink, nodes, ids, power_z
 
 
+def require_heat_path(matrix, sink):
+    """Every conduction-connected component must reach a boundary conductance.
+
+    An isolated component has G z = 0 for its indicator z, so theta + c z solves
+    the same equations for any c: the steady state is not unique, even though
+    residual and total energy checks still pass.
+    """
+    graph = matrix.tocsr(copy=True)
+    graph.eliminate_zeros()  # explicitly stored zero conductances are not conduction paths
+    count, label = connected_components(graph, directed=False)
+    grounded = np.zeros(count, bool)
+    grounded[label[np.asarray(sink) > 0]] = True
+    if not grounded.all():
+        raise ValueError(f"{int((~grounded).sum())} conduction component(s) have no path to a boundary")
+
+
 def checked_solution(matrix, rhs, sink, rise):
     """Reject non-finite, inaccurate or non-conserving solves; returns (residual W, removed W)."""
     residual = float(np.max(np.abs(matrix @ rise - rhs))) if np.all(np.isfinite(rise)) else np.inf
@@ -117,6 +134,7 @@ def checked_solution(matrix, rhs, sink, rise):
 def solve_package(case, power, *, timings_s=None):
     started = perf_counter()
     matrix, rhs, sink, nodes, ids, power_z = assemble_package(case, power)
+    require_heat_path(matrix, sink)
     assembled = perf_counter()
     rise = spsolve(matrix, rhs)
     solved = perf_counter()

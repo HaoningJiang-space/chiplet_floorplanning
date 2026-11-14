@@ -9,7 +9,7 @@ import numpy as np
 from scipy.sparse.linalg import spsolve
 
 from ..model import parse_case
-from ..package import assemble_package, checked_solution
+from ..package import assemble_package, checked_solution, require_heat_path
 from ..power import rasterize
 from .geometry import boxes, violations
 
@@ -68,6 +68,7 @@ def solve(data):
     case = parse_case(data)
     power, _ = rasterize(case)
     a, b, g, _, ids, power_z = assemble_package(case, power)
+    require_heat_path(a, g)
     theta = spsolve(a.tocsc(), b)
     residual, removed = checked_solution(a, b, g, theta)
     layer = ids[power_z]
