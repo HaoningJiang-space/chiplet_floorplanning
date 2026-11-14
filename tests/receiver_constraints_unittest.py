@@ -8,6 +8,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from receiver_constraints import Constraint, classify, edge_metrics, receivers  # noqa: E402
+from characterize_receiver import ramp  # noqa: E402
 
 
 def liberty(offset):
@@ -57,6 +58,14 @@ class ReceiverConstraintTest(unittest.TestCase):
         rx = receivers(deck)
         self.assertEqual(rx['0_1'], ('capture_0', 'wire_0_1', 25.))
         self.assertEqual(rx['1_3'][2], 64.5)
+
+    def test_characterization_ramp_has_declared_slew_and_midpoint(self):
+        (t0, v0), (t1, v1) = ramp(15., 0.3, False)
+        t = np.linspace(t0 - 1, t1 + 1, 40001)
+        v = np.interp(t, [t0, t1], [v0, v1])
+        middle, slew = edge_metrics(t, v, t0, False)
+        self.assertAlmostEqual(middle, 15., places=6)
+        self.assertAlmostEqual(slew, 0.3, places=6)
 
     def test_screen_matches_original_rule(self):
         self.assertEqual(classify([3., 3.1], [2.9, 3.0], True, .01)['ordering'], 'stable')
