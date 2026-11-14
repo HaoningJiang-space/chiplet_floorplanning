@@ -264,6 +264,42 @@ class PlacementCoreTest(unittest.TestCase):
                 self.assertEqual(run.stop_reason, 'stalled')
                 self.assertLess(evaluator.solves, 50)
 
+    def test_pair_aggregated_lp_matches_one_variable_per_net(self):
+        # Reference: t_k >= |v_a - v_b + c_k| per net and axis, under the same topology rows.
+        from scipy import sparse
+        from scipy.optimize import linprog
+        from chiplet_floorplanning.placement.geometry import rotate
+        problem = Problem.from_imported(synthetic_case(random.Random(29), chips=5, nets=200))
+        rng = np.random.default_rng(8)
+        for gap in (1000, 0):
+            parent = sample_legal(problem, gap, rng)
+            lp = TopologyLP(problem, parent, gap, pairs=4)
+            n, m = problem.count, len(problem.pin_chip)
+            a, b = problem.pin_chip.T
+            offset = rotate(problem.pin_offset_um, parent.rotation_deg[problem.pin_chip])/1000
+            rows, cols, vals, rhs = [], [], [], []
+            for axis in (0, 1):
+                const = offset[:, 0, axis] - offset[:, 1, axis]
+                for sign in (1, -1):
+                    idx = len(rhs) + np.arange(m)
+                    rows += [idx]*3
+                    cols += [axis*n + a, axis*n + b, 2*n + axis*m + np.arange(m)]
+                    vals += [np.full(m, sign), np.full(m, -sign), -np.ones(m)]
+                    rhs += list(-sign*const)
+            per_net = sparse.csr_matrix((np.concatenate(vals), (np.concatenate(rows), np.concatenate(cols))),
+                                        shape=(len(rhs), 2*n + 2*m))
+            topo = lp.A[:, :2*n][lp.A.getnnz(axis=1) == 2]  # side relations touch two centres only
+            topo_b = lp.b[lp.A.getnnz(axis=1) == 2]
+            A = sparse.vstack([per_net, sparse.hstack([topo, sparse.csr_matrix((topo.shape[0], 2*m))])])
+            reference = linprog(np.r_[np.zeros(2*n), np.ones(2*m)], A_ub=A, b_ub=np.r_[rhs, topo_b],
+                                bounds=lp.bounds[:2*n] + [(0, None)]*2*m, method='highs')
+            ours = linprog(lp.length, A_ub=lp.A, b_ub=lp.b, bounds=lp.bounds, method='highs')
+            internal = np.abs(offset[a == b, 0] - offset[a == b, 1]).sum()
+            self.assertAlmostEqual(ours.fun + internal, reference.fun, places=6)
+            x = ours.x[:2*n]
+            exact = pin_manhattan_um(problem, Layout(np.stack((x[:n], x[n:]), 1)*1000, parent.rotation_deg)).sum()/1000
+            self.assertAlmostEqual(ours.fun + internal, exact, places=6)
+
     def test_lp_layouts_sit_on_the_um_grid_without_sliver_gaps(self):
         # Unsnapped LP vertices left die edges ~1 nm apart (Case4/5/6/1 comparison crash):
         # 1 nm mesh cells make the conductance matrix too ill-conditioned for the 1e-8 W check.

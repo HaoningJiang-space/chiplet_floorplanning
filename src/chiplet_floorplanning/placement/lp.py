@@ -4,6 +4,14 @@ With rotations fixed and, for every chiplet pair, one fixed side relation
 (left/right/below/above with the declared gap), the legal set is a convex
 polytope and the two-pin length L = sum |dx| + |dy| is an LP.
 
+Nets between the same two dies depend only on their centre difference D, so
+per pair and axis sum_k |D + c_k| is one convex piecewise-linear function of D:
+it equals the maximum of its pieces' lines (slope 2*left - K between sorted
+breakpoints -c_k). The LP therefore needs one epigraph variable per pair and
+axis, and only pieces that intersect the carrier's range of D. This is exact
+(same optimum as one variable per net) and about 50x faster on ATPlace cases.
+Internal nets (both pins on one die) are constant and omitted.
+
 Thermal proxy (a candidate generator, not a temperature model): coupling between
 dies is taken as C = sum P_i P_j / r_ij with Euclidean centre distance r. Its
 first-order change at the parent is dC = -sum (P_i P_j / r_ij^2) (d_ij / r_ij) . d(d_ij),
@@ -61,26 +69,40 @@ def hot_pairs(problem, layout, count):
 class TopologyLP:
     def __init__(self, problem, layout, gap_um, pairs=10):
         self.problem, self.rotation, self.gap = problem, layout.rotation_deg.copy(), gap_um/1000
-        n, m = problem.count, len(problem.pin_chip)
+        n = problem.count
         size = np.where((self.rotation % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)/1000
+        width, height = (s/1000 for s in problem.carrier_um)
+        centre_bounds = ([(size[k, 0]/2, width - size[k, 0]/2) for k in range(n)]
+                         + [(size[k, 1]/2, height - size[k, 1]/2) for k in range(n)])
         offset = rotate(problem.pin_offset_um, self.rotation[problem.pin_chip])/1000  # (m, 2, 2)
-        # Variables: x (n), y (n), tx (m), ty (m); tx >= |x_a - x_b + c|.
-        self.nvar = 2*n + 2*m
-        rows, cols, vals, rhs = [], [], [], []
-        r = 0
         a, b = problem.pin_chip[:, 0], problem.pin_chip[:, 1]
+        # Variables: x (n), y (n), then one epigraph t per (axis, die pair with nets).
+        rows, cols, vals, rhs = [], [], [], []
+        t = 2*n
         for axis in (0, 1):
             const = offset[:, 0, axis] - offset[:, 1, axis]
-            t = 2*n + axis*m + np.arange(m)
-            for s in (1, -1):
-                # s (v_a - v_b + c) - t <= 0
-                idx = r + np.arange(m)
-                rows += [idx, idx, idx]
-                cols += [axis*n + a, axis*n + b, t]
-                vals += [np.full(m, s), np.full(m, -s), np.full(m, -1.0)]
-                rhs.append(-s*const)
-                r += m
-        # Internal nets (a == b) cancel exactly: their rows reduce to |c| <= t.
+            for i in range(n):
+                for j in range(i + 1, n):
+                    c = np.r_[const[(a == i) & (b == j)], -const[(a == j) & (b == i)]]  # |v_i - v_j + c|
+                    if not c.size:
+                        continue
+                    breaks, count = np.unique(-c, return_counts=True)
+                    left = np.r_[0, np.cumsum(count)]
+                    c_left = np.r_[0, np.cumsum(-breaks*count)]
+                    slope, intercept = 2*left - left[-1], 2*c_left - c_left[-1]
+                    low = centre_bounds[axis*n + i][0] - centre_bounds[axis*n + j][1]
+                    high = centre_bounds[axis*n + i][1] - centre_bounds[axis*n + j][0]
+                    keep = (np.r_[breaks, np.inf] >= low - 1e-9) & (np.r_[-np.inf, breaks] <= high + 1e-9)
+                    k = int(keep.sum())
+                    # slope (v_i - v_j) + intercept - t <= 0
+                    idx = len(rhs) + np.arange(k)
+                    rows += [idx, idx, idx]
+                    cols += [np.full(k, axis*n + i), np.full(k, axis*n + j), np.full(k, t)]
+                    vals += [slope[keep], -slope[keep], -np.ones(k)]
+                    rhs += list(-intercept[keep])
+                    t += 1
+        r = len(rhs)
+        rhs = [np.array(rhs)]
         for i, j, axis, sign in topology(problem, layout, gap_um):
             first, second = (i, j) if sign > 0 else (j, i)
             # v_first + size_first/2 + gap <= v_second - size_second/2
@@ -89,13 +111,12 @@ class TopologyLP:
             vals += [np.array([1.0]), np.array([-1.0])]
             rhs.append(np.array([-(size[first, axis] + size[second, axis])/2 - self.gap]))
             r += 1
+        self.nvar = t
         self.A = sparse.csr_matrix((np.concatenate(vals), (np.concatenate(rows), np.concatenate(cols))),
                                    shape=(r, self.nvar))
         self.b = np.concatenate(rhs)
-        width, height = (s/1000 for s in problem.carrier_um)
-        self.bounds = ([(size[k, 0]/2, width - size[k, 0]/2) for k in range(n)]
-                       + [(size[k, 1]/2, height - size[k, 1]/2) for k in range(n)] + [(0, None)]*(2*m))
-        self.length = np.r_[np.zeros(2*n), np.ones(2*m)]  # mm of pin length
+        self.bounds = centre_bounds + [(0, None)]*(t - 2*n)
+        self.length = np.r_[np.zeros(2*n), np.ones(t - 2*n)]  # mm of inter-die pin length
         self.heat = np.zeros(self.nvar)
         for weight, i, j, direction in hot_pairs(problem, layout, pairs):
             for axis in (0, 1):
@@ -118,8 +139,13 @@ class TopologyLP:
     def sweep(self, levels):
         """Legal, grid-snapped layouts minimising L at `levels` separation targets
         between the two LP extremes; snapped layouts failing the exact legality
-        check are dropped."""
+        check are dropped. min L is usually degenerate, so the sweep starts at the
+        shortest layout with the largest separation (lexicographic), which makes
+        the targets independent of which optimal vertex the solver returns."""
         shortest = self._solve(self.length)
+        if shortest is None:
+            return []
+        shortest = self._solve(-self.heat, (self.length, self.length @ shortest + 1e-6))
         widest = self._solve(-self.heat + 1e-6*self.length)
         if shortest is None or widest is None:
             return []
