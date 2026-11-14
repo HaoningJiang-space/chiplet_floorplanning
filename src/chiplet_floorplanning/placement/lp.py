@@ -2,12 +2,16 @@
 
 With rotations fixed and, for every chiplet pair, one fixed side relation
 (left/right/below/above with the declared gap), the legal set is a convex
-polytope and the two-pin length L = sum |dx| + |dy| is an LP. Temperature is
-not modelled here: thermal coupling between dies falls roughly as P_i P_j / r,
-so its first-order change at the current layout weights the separation of pair
-(i, j) by w_ij = P_i P_j / r_ij^2 along the pair's current direction. The LPs
-trace min L subject to sum w_ij dist_ij >= D between the topology's two
-extremes; every returned layout still needs an exact FV evaluation.
+polytope and the two-pin length L = sum |dx| + |dy| is an LP.
+
+Thermal proxy (a candidate generator, not a temperature model): coupling between
+dies is taken as C = sum P_i P_j / r_ij with Euclidean centre distance r. Its
+first-order change at the parent is dC = -sum (P_i P_j / r_ij^2) (d_ij / r_ij) . d(d_ij),
+so the LP uses the linear separation score S = sum w_ij u_ij . (c_j - c_i) with
+w_ij = P_i P_j / r_ij^2 and unit vector u_ij = d_ij / r_ij at the parent. It is
+only valid near the parent: it neither bounds r nor captures that moving dies
+also changes the conduction matrix. The LPs trace min L subject to S >= D
+between the topology's two extremes; every result needs an exact FV solve.
 Units inside the LP: millimetres.
 """
 import numpy as np
@@ -17,7 +21,7 @@ from scipy.optimize import linprog
 from .geometry import boxes, is_legal, rotate
 from .problem import Layout
 
-SLACK_MM = 1e-6  # keeps HiGHS tolerances on the legal side of every gap
+SLACK_MM = 1e-6  # first attempt keeps HiGHS tolerances on the legal side of every gap
 
 
 def topology(problem, layout, gap_um):
@@ -37,15 +41,16 @@ def topology(problem, layout, gap_um):
 
 
 def hot_pairs(problem, layout, count):
-    """Largest first-order coupling weights P_i P_j / r^2 (r in mm) and their directions."""
+    """Largest weights P_i P_j / r^2 (r in mm) with the unit direction d / r at the parent."""
     c = layout.centre_um/1000
     pairs = []
     for i in range(problem.count):
         for j in range(i + 1, problem.count):
             d = c[j] - c[i]
-            r2 = max(float(d @ d), 1e-6)
-            weight = problem.power_w[i]*problem.power_w[j]/r2
-            pairs.append((weight, i, j, np.sign(d) + (d == 0)))
+            r = float(np.hypot(*d))
+            if r < 1e-9:  # coincident centres cannot occur for legal layouts; keep a defined axis
+                d, r = np.array([1.0, 0.0]), 1.0
+            pairs.append((problem.power_w[i]*problem.power_w[j]/r**2, i, j, d/r))
     pairs.sort(key=lambda p: -p[0])
     return pairs[:count]
 
@@ -73,17 +78,20 @@ class TopologyLP:
                 rhs.append(-s*const)
                 r += m
         # Internal nets (a == b) cancel exactly: their rows reduce to |c| <= t.
+        self.pair_rows = []
         for i, j, axis, sign in topology(problem, layout, gap_um):
             first, second = (i, j) if sign > 0 else (j, i)
             # v_first + size_first/2 + gap <= v_second - size_second/2
             rows += [np.array([r]), np.array([r])]
             cols += [np.array([axis*n + first]), np.array([axis*n + second])]
             vals += [np.array([1.0]), np.array([-1.0])]
-            rhs.append(np.array([-(size[first, axis] + size[second, axis])/2 - self.gap - SLACK_MM]))
+            rhs.append(np.array([-(size[first, axis] + size[second, axis])/2 - self.gap]))
+            self.pair_rows.append(r)
             r += 1
         self.A = sparse.csr_matrix((np.concatenate(vals), (np.concatenate(rows), np.concatenate(cols))),
                                    shape=(r, self.nvar))
-        self.b = np.concatenate(rhs)
+        self.exact_b = np.concatenate(rhs)
+        self.b = self.exact_b
         width, height = (s/1000 for s in problem.carrier_um)
         self.bounds = ([(size[k, 0]/2, width - size[k, 0]/2) for k in range(n)]
                        + [(size[k, 1]/2, height - size[k, 1]/2) for k in range(n)] + [(0, None)]*(2*m))
@@ -108,7 +116,21 @@ class TopologyLP:
         return layout if is_legal(self.problem, layout, self.gap*1000) else None
 
     def sweep(self, levels):
-        """Layouts minimising L at `levels` separation targets between the two LP extremes."""
+        """Layouts minimising L at `levels` separation targets between the two LP extremes.
+
+        Tries a 1 nm safety margin on every pair gap first; layouts that only fit
+        exactly (e.g. dies filling the carrier) are retried without it. Only
+        layouts passing the exact legality check are returned.
+        """
+        for slack in (SLACK_MM, 0.0):
+            self.b = self.exact_b.copy()
+            self.b[self.pair_rows] -= slack
+            layouts = self._sweep(levels)
+            if layouts:
+                return layouts
+        return []
+
+    def _sweep(self, levels):
         shortest = self._solve(self.length)
         widest = self._solve(-self.heat + 1e-6*self.length)
         if shortest is None or widest is None:

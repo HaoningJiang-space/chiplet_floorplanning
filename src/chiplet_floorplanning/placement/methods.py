@@ -5,6 +5,9 @@ exact two-pin lower bound and costs no solve; every method may use it freely.
 Each evaluated layout records the cumulative solves at its evaluation, so
 anytime curves come from the same run. A duplicate layout costs nothing and is
 looked up; a layout sharing an already-solved thermal problem costs no solve.
+Every method also stops after `stall_rounds` consecutive rounds that add no new
+layout (e.g. annealing chains moving among cached states); `Run.stop_reason`
+records 'budget' or 'stalled'.
 """
 import numpy as np
 
@@ -14,14 +17,33 @@ from .search import layout_key, length_descent, mutate
 
 
 class Run:
-    def __init__(self, evaluator, fv_solves):
-        self.evaluator, self.limit = evaluator, fv_solves
+    def __init__(self, evaluator, fv_solves, stall_rounds=20):
+        self.evaluator, self.limit, self.stall_rounds = evaluator, fv_solves, stall_rounds
         self.layouts, self.lengths, self.peaks, self.cost = [], [], [], []
         self.index = {}
+        self.rounds, self.stale, self.stop_reason = 0, 0, None
 
     @property
     def exhausted(self):
         return self.evaluator.solves >= self.limit
+
+    def keep_going(self, added):
+        """Count one proposal round; False once the budget is spent or rounds stall."""
+        self.rounds += 1
+        self.stale = 0 if added else self.stale + 1
+        if self.exhausted:
+            self.stop_reason = "budget"
+        elif self.stale >= self.stall_rounds:
+            self.stop_reason = "stalled"
+        return self.stop_reason is None
+
+    def finish(self):
+        if self.stop_reason is None:
+            self.stop_reason = "budget" if self.exhausted else "stalled"
+
+    def restart(self):
+        """Clear the stall state before a new phase (e.g. the next epsilon cap)."""
+        self.stale, self.stop_reason = 0, None
 
     def evaluate(self, candidates):
         """Evaluate within budget; returns each candidate's row index or None if over budget."""
@@ -70,14 +92,15 @@ def _children(run, parents, rng, batch, max_moves, accept=None):
 
 
 def _loop(run, propose):
-    """Generations until the budget is spent or proposals stop adding rows."""
-    stale = 0
-    while not run.exhausted and stale < 3:
+    """Generations until the budget is spent or proposal rounds stall."""
+    while not run.exhausted:
         before = len(run.layouts)
         candidates = propose()
         if candidates:
             run.evaluate(candidates)
-        stale = stale + 1 if len(run.layouts) == before else 0
+        if not run.keep_going(len(run.layouts) > before):
+            break
+    run.finish()
 
 
 def random_search(run, initial, rng, batch=96, **_):
@@ -135,15 +158,17 @@ def nsga_mutation(run, initial, rng, batch=96, max_moves=3, **_):
 
     while not run.exhausted:
         before = len(run.layouts)
-        candidates = propose()
-        run.evaluate(candidates)
-        if len(run.layouts) == before:
+        run.evaluate(propose())
+        if not run.keep_going(len(run.layouts) > before):
             break
+        if len(run.layouts) == before:
+            continue
         pool = population + list(range(before, len(run.layouts)))
         length, peak, _ = run.arrays()
         rank, crowd = ranks_and_crowding(length[pool], peak[pool])
         keep = np.lexsort((-crowd, rank))[:batch]
         population = [pool[k] for k in keep]
+    run.finish()
 
 
 def annealing(run, initial, rng, batch=96, max_moves=3, t_start=1.0, t_end=0.01, **_):
@@ -172,7 +197,7 @@ def annealing(run, initial, rng, batch=96, max_moves=3, t_start=1.0, t_end=0.01,
             proposals.append(child)
         before = len(run.layouts)
         rows = run.evaluate(proposals)
-        if len(run.layouts) == before and all(r is None or r == s for r, s in zip(rows, state)):
+        if not run.keep_going(len(run.layouts) > before):
             break
         length, peak, _ = run.arrays()
         for c, (w, row) in enumerate(zip(weights, rows)):
@@ -180,6 +205,7 @@ def annealing(run, initial, rng, batch=96, max_moves=3, t_start=1.0, t_end=0.01,
                 delta = score(row, w) - score(state[c], w)
                 if delta <= 0 or rng.random() < np.exp(-delta/tau):
                     state[c] = row
+    run.finish()
 
 
 def epsilon_search(run, initial, rng, batch=96, max_moves=3, length_caps_m=(), parents=8, **_):
@@ -194,6 +220,7 @@ def epsilon_search(run, initial, rng, batch=96, max_moves=3, length_caps_m=(), p
     caps = sorted(length_caps_m)
     for j, cap in enumerate(caps):
         run.limit = run.evaluator.solves + (total - run.evaluator.solves)//(len(caps) - j)
+        run.restart()
         feasible = lambda layout: run.evaluator.length_m(layout) <= cap
         length, peak, _ = run.arrays()
         if not (length <= cap).any():
@@ -210,6 +237,8 @@ def epsilon_search(run, initial, rng, batch=96, max_moves=3, length_caps_m=(), p
             return _children(run, list(best), rng, batch, max_moves, accept=feasible)
         _loop(run, propose)
     run.limit = total
+    run.stop_reason = None
+    run.finish()
 
 
 def _sweep(args):

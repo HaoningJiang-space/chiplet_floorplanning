@@ -10,7 +10,7 @@ from atplace_import_unittest import BLOCKS, POWER, NETS
 from import_atplace_cases import parse_case as import_case
 from chiplet_floorplanning.placement.methods import METHODS, Run, ranks_and_crowding
 from chiplet_floorplanning.placement.evaluate import shelf_pack
-from chiplet_floorplanning.placement.lp import TopologyLP, topology
+from chiplet_floorplanning.placement.lp import TopologyLP, hot_pairs, topology
 from chiplet_floorplanning.placement.search import layout_key, length_target, mutate
 from chiplet_floorplanning.placement import (Evaluator, boxes, Layout, Problem, Superposition, coolest_within,
                                              is_legal, pareto_front, pin_manhattan_um, sample_legal,
@@ -235,6 +235,39 @@ class PlacementCoreTest(unittest.TestCase):
             shortest = pin_manhattan_um(problem, layouts[0]).sum()
             self.assertLessEqual(shortest, pin_manhattan_um(problem, parent).sum() + 1e-2)
             self.assertEqual(len(topology(problem, parent, gap)), problem.count*(problem.count - 1)//2)
+
+    def test_every_method_stops_when_rounds_add_no_new_layout(self):
+        # Two 1x1 mm dies in a 3x1 mm carrier with touching allowed: only a few states
+        # exist, so the FV budget can never be spent and the stall rule must end each run.
+        problem = Problem('tiny', ('a', 'b'), np.array([[1000., 1000.]]*2), np.array([5., 1.]), (3000., 1000.),
+                          np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        start = [sample_legal(problem, 0, np.random.default_rng(1))]
+        for name, method in METHODS.items():
+            with self.subTest(method=name):
+                with Evaluator(problem, 0, resolution=12) as evaluator:
+                    run = Run(evaluator, 50, stall_rounds=5)
+                    method(run, start, np.random.default_rng(2), batch=4, length_caps_m=(1e9,))
+                self.assertEqual(run.stop_reason, 'stalled')
+                self.assertLess(evaluator.solves, 50)
+
+    def test_lp_direction_is_the_euclidean_gradient_of_coupling(self):
+        # Relative position (10, 1) mm -> (9, 3) mm moves the dies closer (10.05 -> 9.49 mm);
+        # the linearised separation must therefore drop.
+        problem = Problem('pair', ('a', 'b'), np.array([[1000., 1000.]]*2), np.array([10., 10.]),
+                          (30000., 30000.), np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        layout = Layout(np.array([[5000., 5000.], [15000., 6000.]]), np.array([0, 0]))
+        weight, i, j, unit = hot_pairs(problem, layout, 1)[0]
+        self.assertAlmostEqual(weight, 100/101)
+        self.assertTrue(np.allclose(unit, np.array([10., 1.])/np.hypot(10, 1)))
+        self.assertLess(unit @ np.array([-1., 2.]), 0)
+
+    def test_lp_keeps_layouts_that_fill_the_carrier_exactly(self):
+        problem = Problem('full', ('a', 'b'), np.array([[1000., 1000.]]*2), np.ones(2), (2000., 1000.),
+                          np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        parent = Layout(np.array([[500., 500.], [1500., 500.]]), np.array([0, 0]))
+        self.assertTrue(is_legal(problem, parent, 0))
+        layouts = TopologyLP(problem, parent, 0, pairs=1).sweep(2)
+        self.assertTrue(layouts and all(is_legal(problem, l, 0) for l in layouts))
 
 
 if __name__ == '__main__':

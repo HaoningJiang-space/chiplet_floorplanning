@@ -85,6 +85,7 @@ def execute(args):
                               batch=plan['batch'], length_caps_m=plan['length_caps_m'])
             length, peak, cost = run.arrays()
             record = dict(method=name, seed=seed, fv_solves=evaluator.solves, layouts=len(run.layouts),
+                          stop_reason=run.stop_reason, rounds=run.rounds,
                           wall_seconds=time.perf_counter() - started, workers=args.workers,
                           code_commit=source['commit'], code_dirty=source['dirty'],
                           plan_sha256=sha256(args.plan), metrics=metrics(plan, length, peak, cost))
@@ -99,9 +100,31 @@ def execute(args):
                   {k: v and round(v['length_m'], 3) for k, v in final['shortest_within_peak_cap'].items()}, flush=True)
 
 
+def checked_records(plan_path, plan, output):
+    """Refuse to report unless inputs, plan identity and the method x seed set are exactly as frozen."""
+    for path, key in ((plan['case_path'], 'case_sha256'), (plan['reference_summary'], 'reference_sha256')):
+        if sha256(path) != plan[key]:
+            raise SystemExit(f'{path} changed since the plan was frozen')
+    plan_sha = sha256(plan_path)
+    records = [json.loads(p.read_text()) for p in sorted(output.glob('*-seed*.json'))]
+    expected = {(m, s) for m in plan['methods'] for s in plan['seeds']}
+    found = [(r['method'], r['seed']) for r in records]
+    if sorted(found) != sorted(expected):
+        raise SystemExit(f'method x seed set incomplete or extra: missing {sorted(expected - set(found))}, '
+                         f'unexpected {sorted(set(found) - expected)}')
+    for r in records:
+        if r['plan_sha256'] != plan_sha:
+            raise SystemExit(f"{r['method']} seed {r['seed']} was run under a different plan")
+        if r['fv_solves'] > plan['fv_solves']:
+            raise SystemExit(f"{r['method']} seed {r['seed']} exceeded the FV budget")
+        if not (output/f"{r['method']}-seed{r['seed']}.npz").exists():
+            raise SystemExit(f"{r['method']} seed {r['seed']} has no layout file")
+    return records
+
+
 def report(args):
     plan = json.loads(args.plan.read_text())
-    records = [json.loads(p.read_text()) for p in sorted(args.output.glob('*-seed*.json'))]
+    records = checked_records(args.plan, plan, args.output)
     ref = json.loads(Path(plan['reference_summary']).read_text())['front']
     ref_l, ref_p = np.array([p['length_m'] for p in ref]), np.array([p['peak_c'] for p in ref])
     runs = {(r['method'], r['seed']): np.load(args.output/f"{r['method']}-seed{r['seed']}.npz") for r in records}
@@ -123,6 +146,8 @@ def report(args):
             out[fraction] = dict(peak_gap_k=gap_t, length_gap_fraction=gap_l)
         table[method] = out
     summary = dict(best_known_peak_c=best_t, best_known_length_m=best_l, seeds=plan['seeds'],
+                   plan_sha256=sha256(args.plan), reference_sha256=plan['reference_sha256'],
+                   stop_reasons={f"{r['method']}-seed{r['seed']}": r['stop_reason'] for r in records},
                    note='gaps are per seed (paired by shared start set); None = cap not reached', methods=table)
     (args.output/'report.json').write_text(json.dumps(summary, indent=2) + '\n')
     for method, out in table.items():
