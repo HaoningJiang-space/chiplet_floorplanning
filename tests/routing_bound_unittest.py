@@ -5,7 +5,8 @@ import unittest
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from bound_routing_screen import window_max
+from bound_routing_screen import bounds, window_max
+from chiplet_floorplanning.placement import Problem
 
 
 def brute(points, size):
@@ -25,6 +26,13 @@ class RoutingBoundTest(unittest.TestCase):
     def test_closed_window_counts_boundary_and_duplicates(self):
         points = np.array([[0., 0.], [1000., 1000.], [1000., 1000.], [1001., 0.]])
         self.assertEqual(window_max(points, 1000), 3)
+
+    def test_touching_dies_need_sides_longer_than_a_bin(self):
+        tiny = Problem('tiny', ('a',), np.array([[1000., 3000.]]), np.ones(1), (10000., 10000.),
+                       np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        with self.assertRaises(ValueError):
+            bounds(tiny, 0)
+        self.assertEqual(bounds(tiny, 1000)['escape_utilization_bound'], 0)
 
 
 if __name__ == '__main__':
