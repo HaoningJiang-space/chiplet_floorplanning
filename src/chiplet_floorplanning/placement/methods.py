@@ -9,6 +9,7 @@ looked up; a layout sharing an already-solved thermal problem costs no solve.
 import numpy as np
 
 from .evaluate import pareto_front, sample_legal, thermal_key
+from .lp import TopologyLP
 from .search import layout_key, length_descent, mutate
 
 
@@ -211,5 +212,34 @@ def epsilon_search(run, initial, rng, batch=96, max_moves=3, length_caps_m=(), p
     run.limit = total
 
 
+def _sweep(args):
+    problem, layout, gap_um, pairs, levels = args
+    return TopologyLP(problem, layout, gap_um, pairs).sweep(levels)
+
+
+def topology_lp(run, initial, rng, batch=96, levels=6, pairs=10, explore=0.5, **_):
+    """Archive parents (optionally mutated to a new topology) polished by topology LP sweeps.
+
+    Each parent's side relations and rotations define an LP; layouts along
+    min L s.t. linearised hot-pair separation >= D are evaluated with FV.
+    Sweeps run in the evaluator's process pool; LP time uses no FV solve.
+    """
+    problem, gap_um = run.evaluator.problem, run.evaluator.gap_um
+    run.evaluate(initial)
+
+    def propose():
+        archive = pareto_front(*run.arrays()[:2])
+        parents = []
+        for _ in range(-(-batch//levels)):
+            parent = run.layouts[archive[rng.integers(len(archive))]]
+            if rng.random() < explore:
+                parent = mutate(problem, parent, rng, gap_um) or parent
+            parents.append((problem, parent, gap_um, pairs, levels))
+        pool = run.evaluator.pool
+        swept = pool.map(_sweep, parents) if pool else map(_sweep, parents)
+        return [c for group in swept for c in group if layout_key(c) not in run.index][:batch]
+    _loop(run, propose)
+
+
 METHODS = dict(random=random_search, pareto_ls=pareto_local_search, nsga=nsga_mutation,
-               annealing=annealing, epsilon=epsilon_search)
+               annealing=annealing, epsilon=epsilon_search, topology_lp=topology_lp)

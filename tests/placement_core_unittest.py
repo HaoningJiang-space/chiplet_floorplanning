@@ -10,6 +10,7 @@ from atplace_import_unittest import BLOCKS, POWER, NETS
 from import_atplace_cases import parse_case as import_case
 from chiplet_floorplanning.placement.methods import METHODS, Run, ranks_and_crowding
 from chiplet_floorplanning.placement.evaluate import shelf_pack
+from chiplet_floorplanning.placement.lp import TopologyLP, topology
 from chiplet_floorplanning.placement.search import layout_key, length_target, mutate
 from chiplet_floorplanning.placement import (Evaluator, boxes, Layout, Problem, Superposition, coolest_within,
                                              is_legal, pareto_front, pin_manhattan_um, sample_legal,
@@ -220,6 +221,20 @@ class PlacementCoreTest(unittest.TestCase):
                           np.zeros((0, 2), int), np.zeros((0, 2, 2)))
         with self.assertRaises(ValueError):
             Superposition(problem, 1000, resolution=16)
+
+    def test_topology_lp_shortest_layout_is_legal_and_no_longer_than_its_parent(self):
+        problem = Problem.from_imported(synthetic_case(random.Random(23), chips=5, nets=150))
+        rng = np.random.default_rng(6)
+        for gap in (1000, 0):
+            parent = sample_legal(problem, gap, rng)
+            layouts = TopologyLP(problem, parent, gap, pairs=4).sweep(4)
+            self.assertTrue(layouts)
+            self.assertTrue(all(is_legal(problem, l, gap) for l in layouts))
+            self.assertTrue(all((l.rotation_deg == parent.rotation_deg).all() for l in layouts))
+            # The parent satisfies its own topology, so the LP minimum cannot be longer.
+            shortest = pin_manhattan_um(problem, layouts[0]).sum()
+            self.assertLessEqual(shortest, pin_manhattan_um(problem, parent).sum() + 1e-2)
+            self.assertEqual(len(topology(problem, parent, gap)), problem.count*(problem.count - 1)//2)
 
 
 if __name__ == '__main__':
