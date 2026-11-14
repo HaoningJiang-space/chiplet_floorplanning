@@ -12,7 +12,9 @@ w_ij = P_i P_j / r_ij^2 and unit vector u_ij = d_ij / r_ij at the parent. It is
 only valid near the parent: it neither bounds r nor captures that moving dies
 also changes the conduction matrix. The LPs trace min L subject to S >= D
 between the topology's two extremes; every result needs an exact FV solve.
-Units inside the LP: millimetres.
+Units inside the LP: millimetres. LP vertices are snapped to a 1 um corner grid:
+unsnapped, HiGHS tolerances leave edges ~1 nm apart, i.e. sliver mesh cells
+whose conductances span ~1e18 and fail the solve's residual check.
 """
 import numpy as np
 from scipy import sparse
@@ -20,8 +22,9 @@ from scipy.optimize import linprog
 
 from .geometry import boxes, is_legal, rotate
 from .problem import Layout
+from .search import snap
 
-SLACK_MM = 1e-6  # first attempt keeps HiGHS tolerances on the legal side of every gap
+GRID_UM = 1.0  # rounding is monotone, so integer-um sizes, gap and carrier keep every fit legal
 
 
 def topology(problem, layout, gap_um):
@@ -78,7 +81,6 @@ class TopologyLP:
                 rhs.append(-s*const)
                 r += m
         # Internal nets (a == b) cancel exactly: their rows reduce to |c| <= t.
-        self.pair_rows = []
         for i, j, axis, sign in topology(problem, layout, gap_um):
             first, second = (i, j) if sign > 0 else (j, i)
             # v_first + size_first/2 + gap <= v_second - size_second/2
@@ -86,12 +88,10 @@ class TopologyLP:
             cols += [np.array([axis*n + first]), np.array([axis*n + second])]
             vals += [np.array([1.0]), np.array([-1.0])]
             rhs.append(np.array([-(size[first, axis] + size[second, axis])/2 - self.gap]))
-            self.pair_rows.append(r)
             r += 1
         self.A = sparse.csr_matrix((np.concatenate(vals), (np.concatenate(rows), np.concatenate(cols))),
                                    shape=(r, self.nvar))
-        self.exact_b = np.concatenate(rhs)
-        self.b = self.exact_b
+        self.b = np.concatenate(rhs)
         width, height = (s/1000 for s in problem.carrier_um)
         self.bounds = ([(size[k, 0]/2, width - size[k, 0]/2) for k in range(n)]
                        + [(size[k, 1]/2, height - size[k, 1]/2) for k in range(n)] + [(0, None)]*(2*m))
@@ -111,26 +111,14 @@ class TopologyLP:
 
     def _layout(self, x):
         n = self.problem.count
-        centre = np.round(np.stack((x[:n], x[n:2*n]), axis=1)*1000, 3)
+        centre = snap(self.problem, np.stack((x[:n], x[n:2*n]), axis=1)*1000, self.rotation, GRID_UM)
         layout = Layout(centre, self.rotation.copy())
         return layout if is_legal(self.problem, layout, self.gap*1000) else None
 
     def sweep(self, levels):
-        """Layouts minimising L at `levels` separation targets between the two LP extremes.
-
-        Tries a 1 nm safety margin on every pair gap first; layouts that only fit
-        exactly (e.g. dies filling the carrier) are retried without it. Only
-        layouts passing the exact legality check are returned.
-        """
-        for slack in (SLACK_MM, 0.0):
-            self.b = self.exact_b.copy()
-            self.b[self.pair_rows] -= slack
-            layouts = self._sweep(levels)
-            if layouts:
-                return layouts
-        return []
-
-    def _sweep(self, levels):
+        """Legal, grid-snapped layouts minimising L at `levels` separation targets
+        between the two LP extremes; snapped layouts failing the exact legality
+        check are dropped."""
         shortest = self._solve(self.length)
         widest = self._solve(-self.heat + 1e-6*self.length)
         if shortest is None or widest is None:

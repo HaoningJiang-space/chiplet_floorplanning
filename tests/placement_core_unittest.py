@@ -165,6 +165,20 @@ class PlacementCoreTest(unittest.TestCase):
         length = run.arrays()[0]
         self.assertTrue(np.all(length[len(start):] <= cap + 1e-12))
 
+    def test_round_cap_is_global_across_epsilon_caps(self):
+        # Review of 34001c5: each cap phase used to clear the stop state, so three caps ran
+        # three rounds under max_rounds=1 and reported 'stalled'.
+        problem = Problem.from_imported(synthetic_case(random.Random(17), chips=2, nets=20))
+        rng = np.random.default_rng(5)
+        start = [sample_legal(problem, 1000, rng) for _ in range(2)]
+        for name in ('pareto_ls', 'epsilon'):
+            with self.subTest(method=name):
+                with Evaluator(problem, 1000, resolution=12) as evaluator:
+                    run = Run(evaluator, 200, max_rounds=1)
+                    METHODS[name](run, start, np.random.default_rng(3), batch=2, length_caps_m=(1e9, 2e9, 3e9))
+                self.assertEqual(run.rounds, 1)
+                self.assertEqual(run.stop_reason, 'round_cap')
+
     def test_ranks_and_crowding(self):
         length, peak = np.array([1., 2., 3., 2., 3.]), np.array([3., 2., 1., 3., 3.])
         rank, crowd = ranks_and_crowding(length, peak)
@@ -249,6 +263,20 @@ class PlacementCoreTest(unittest.TestCase):
                     method(run, start, np.random.default_rng(2), batch=4, length_caps_m=(1e9,))
                 self.assertEqual(run.stop_reason, 'stalled')
                 self.assertLess(evaluator.solves, 50)
+
+    def test_lp_layouts_sit_on_the_um_grid_without_sliver_gaps(self):
+        # Unsnapped LP vertices left die edges ~1 nm apart (Case4/5/6/1 comparison crash):
+        # 1 nm mesh cells make the conductance matrix too ill-conditioned for the 1e-8 W check.
+        problem = Problem.from_imported(synthetic_case(random.Random(23), chips=5, nets=150))
+        rng = np.random.default_rng(6)
+        for gap in (1000, 0):
+            for _ in range(3):
+                for layout in TopologyLP(problem, sample_legal(problem, gap, rng), gap, pairs=4).sweep(4):
+                    corners = boxes(problem, layout)
+                    self.assertTrue(np.allclose(corners, np.round(corners), rtol=0, atol=1e-6))
+                    for axis in (0, 1):
+                        edges = np.unique(np.round(np.r_[corners[:, axis], corners[:, axis + 2]], 6))
+                        self.assertTrue(np.all(np.diff(edges) >= 1 - 1e-6))
 
     def test_lp_direction_is_the_euclidean_gradient_of_coupling(self):
         # Relative position (10, 1) mm -> (9, 3) mm moves the dies closer (10.05 -> 9.49 mm);

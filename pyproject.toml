@@ -8,7 +8,7 @@ version = "0.9.0"
 description = "Thermal- and interconnect-aware 2.5D chiplet placement research"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["numpy>=1.26,<3", "scipy>=1.11,<2"]
+dependencies = ["numpy>=1.26,<3", "scipy>=1.12,<2"]
 
 [project.scripts]
 chiplet-floorplanning = "chiplet_floorplanning.cli:main"
