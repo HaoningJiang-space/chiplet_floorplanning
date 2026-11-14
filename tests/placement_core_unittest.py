@@ -269,6 +269,35 @@ class PlacementCoreTest(unittest.TestCase):
         layouts = TopologyLP(problem, parent, 0, pairs=1).sweep(2)
         self.assertTrue(layouts and all(is_legal(problem, l, 0) for l in layouts))
 
+    def test_touching_edges_with_float_noise_share_one_mesh_boundary(self):
+        # A's right edge and B's left edge are both 5300.001 um; in package mm the two float
+        # expressions (90.30000100000001 vs 90.300001) differ by ~1e-14 and used to be
+        # rejected as overlapping dies or as sub-resolution mesh boundaries.
+        problem = Problem('noise', ('a', 'b'), np.array([[1200., 2000.], [3000., 2000.]]), np.array([5., 5.]),
+                          (30000., 10000.), np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        layout = Layout(np.array([[4700.001, 5000.], [6800.001, 5000.]]), np.array([0, 0]))
+        self.assertTrue(is_legal(problem, layout, 0))
+        result = solve_peak(thermal_case_data(problem, layout, 0, 24))
+        self.assertLess(abs(result['energy_balance_error_w']), 1e-9)
+
+    def test_thermally_equivalent_new_layouts_do_not_count_as_progress(self):
+        # 24 dies of distinct widths fill a 1 mm high strip with no nets. Swaps overlap,
+        # quarter turns leave the carrier and shifts are blocked, but half turns give 2^24
+        # new layouts with the same boxes, length and peak. They must not reset the stall
+        # counter (the review's probe ran 200 rounds with one solve and stall count 0).
+        widths = 1000. + 50.*np.arange(24)
+        problem = Problem('strip', tuple(f'c{k}' for k in range(24)), np.stack([widths, np.full(24, 1000.)], 1),
+                          np.ones(24), (float(widths.sum()), 1000.), np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        left = np.concatenate([[0.], np.cumsum(widths)[:-1]])
+        start = [Layout(np.stack([left + widths/2, np.full(24, 500.)], 1), np.zeros(24, int))]
+        self.assertTrue(is_legal(problem, start[0], 0))
+        for name, method in METHODS.items():
+            with self.subTest(method=name):
+                with Evaluator(problem, 0, resolution=12) as evaluator:
+                    run = Run(evaluator, 3, stall_rounds=5, max_rounds=200)
+                    method(run, start, np.random.default_rng(4), batch=8, length_caps_m=(1e9,))
+                self.assertIn(run.stop_reason, ('stalled', 'budget', 'sampler_failed'))
+                self.assertLessEqual(run.rounds, 3 + 5)
 
 if __name__ == '__main__':
     unittest.main()

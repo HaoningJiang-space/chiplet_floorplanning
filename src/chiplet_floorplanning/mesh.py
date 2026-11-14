@@ -5,6 +5,12 @@ import math
 
 import numpy as np
 
+# Geometry tolerance (mm). The same physical edge reached by different float
+# expressions (e.g. x_a + w_a and x_b for touching dies) differs by ~1e-14 mm;
+# features closer than 0.1 pm are numerical noise, not geometry. Matches the
+# boundary lookup tolerance in package.rectangle_slice.
+GEOMETRY_TOL_MM = 1e-10
+
 
 @dataclass(frozen=True)
 class ThermalMesh:
@@ -53,9 +59,13 @@ class ThermalMesh:
 def _axis(extent, count, boundaries):
     # Subdivide feature intervals instead of overlaying a fixed grid. This
     # avoids tiny artificial cells when a die edge nearly meets a grid line.
-    anchors = sorted(set([0.0, extent]+[float(x) for x in boundaries]))
-    if anchors[0] < 0 or anchors[-1] > extent:
+    anchors = []
+    for value in sorted([0.0, extent]+[float(x) for x in boundaries]):
+        if not anchors or value - anchors[-1] > GEOMETRY_TOL_MM:
+            anchors.append(value)
+    if anchors[0] < -GEOMETRY_TOL_MM or anchors[-1] > extent + GEOMETRY_TOL_MM:
         raise ValueError('mesh feature outside package')
+    anchors[0], anchors[-1] = 0.0, extent
     edges = [anchors[0]]
     target = extent/count
     for left, right in zip(anchors, anchors[1:]):

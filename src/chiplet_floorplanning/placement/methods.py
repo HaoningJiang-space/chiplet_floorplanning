@@ -5,9 +5,12 @@ exact two-pin lower bound and costs no solve; every method may use it freely.
 Each evaluated layout records the cumulative solves at its evaluation, so
 anytime curves come from the same run. A duplicate layout costs nothing and is
 looked up; a layout sharing an already-solved thermal problem costs no solve.
-Every method also stops after `stall_rounds` consecutive rounds that add no new
-layout (e.g. annealing chains moving among cached states); `Run.stop_reason`
-records 'budget' or 'stalled'.
+A round makes progress only if it adds an FV solve or a layout whose (length,
+peak) is not weakly dominated by any earlier layout; new layouts that merely
+repeat known objectives (e.g. thermally equivalent orientations) do not count.
+Every method stops after `stall_rounds` rounds without progress, or after
+`max_rounds` rounds in total; `Run.stop_reason` records 'budget', 'stalled',
+'round_cap' or 'sampler_failed' (random search only).
 """
 import numpy as np
 
@@ -17,24 +20,40 @@ from .search import layout_key, length_descent, mutate
 
 
 class Run:
-    def __init__(self, evaluator, fv_solves, stall_rounds=20):
-        self.evaluator, self.limit, self.stall_rounds = evaluator, fv_solves, stall_rounds
+    def __init__(self, evaluator, fv_solves, stall_rounds=20, max_rounds=2000):
+        self.evaluator, self.limit = evaluator, fv_solves
+        self.stall_rounds, self.max_rounds = stall_rounds, max_rounds
         self.layouts, self.lengths, self.peaks, self.cost = [], [], [], []
         self.index = {}
         self.rounds, self.stale, self.stop_reason = 0, 0, None
+        self._solves_seen = evaluator.solves
 
     @property
     def exhausted(self):
         return self.evaluator.solves >= self.limit
 
-    def keep_going(self, added):
-        """Count one proposal round; False once the budget is spent or rounds stall."""
+    def _improved(self, before):
+        """Some layout added since row `before` is not weakly dominated by any earlier layout."""
+        if before == 0 or len(self.layouts) == before:
+            return len(self.layouts) > before
+        length, peak = np.array(self.lengths), np.array(self.peaks)
+        old_l, old_p = length[:before], peak[:before]
+        new_l, new_p = length[before:], peak[before:]
+        covered = ((old_l[None] <= new_l[:, None]) & (old_p[None] <= new_p[:, None])).any(axis=1)
+        return bool((~covered).any())
+
+    def keep_going(self, before):
+        """Count one proposal round that started at row `before`; False once the run must stop."""
         self.rounds += 1
-        self.stale = 0 if added else self.stale + 1
+        progress = self.evaluator.solves > self._solves_seen or self._improved(before)
+        self._solves_seen = self.evaluator.solves
+        self.stale = 0 if progress else self.stale + 1
         if self.exhausted:
             self.stop_reason = "budget"
         elif self.stale >= self.stall_rounds:
             self.stop_reason = "stalled"
+        elif self.rounds >= self.max_rounds:
+            self.stop_reason = "round_cap"
         return self.stop_reason is None
 
     def finish(self):
@@ -96,9 +115,11 @@ def _loop(run, propose):
     while not run.exhausted:
         before = len(run.layouts)
         candidates = propose()
+        if run.stop_reason:
+            break
         if candidates:
             run.evaluate(candidates)
-        if not run.keep_going(len(run.layouts) > before):
+        if not run.keep_going(before):
             break
     run.finish()
 
@@ -107,7 +128,14 @@ def random_search(run, initial, rng, batch=96, **_):
     """Independent legal samples (sequential constructive sampler)."""
     problem, gap_um = run.evaluator.problem, run.evaluator.gap_um
     run.evaluate(initial)
-    _loop(run, lambda: [sample_legal(problem, gap_um, rng) for _ in range(batch)])
+
+    def propose():
+        try:
+            return [sample_legal(problem, gap_um, rng) for _ in range(batch)]
+        except RuntimeError:
+            run.stop_reason = "sampler_failed"  # keep the evaluated rows; the sampler cannot fill this case
+            return []
+    _loop(run, propose)
 
 
 def pareto_local_search(run, initial, rng, batch=96, max_moves=3, **_):
@@ -159,7 +187,7 @@ def nsga_mutation(run, initial, rng, batch=96, max_moves=3, **_):
     while not run.exhausted:
         before = len(run.layouts)
         run.evaluate(propose())
-        if not run.keep_going(len(run.layouts) > before):
+        if not run.keep_going(before):
             break
         if len(run.layouts) == before:
             continue
@@ -197,7 +225,7 @@ def annealing(run, initial, rng, batch=96, max_moves=3, t_start=1.0, t_end=0.01,
             proposals.append(child)
         before = len(run.layouts)
         rows = run.evaluate(proposals)
-        if not run.keep_going(len(run.layouts) > before):
+        if not run.keep_going(before):
             break
         length, peak, _ = run.arrays()
         for c, (w, row) in enumerate(zip(weights, rows)):

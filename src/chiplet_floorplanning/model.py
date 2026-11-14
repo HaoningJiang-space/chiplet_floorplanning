@@ -7,7 +7,7 @@ import json
 import re
 from time import perf_counter
 
-from .mesh import ThermalMesh, make_mesh
+from .mesh import GEOMETRY_TOL_MM, ThermalMesh, make_mesh
 
 
 class ModelError(ValueError):
@@ -65,10 +65,11 @@ class Rect:
     def area(self):
         return self.width * self.height
 
-    def overlap(self, other):
-        width = max(0.0, min(self.x + self.width, other.x + other.width) - max(self.x, other.x))
-        height = max(0.0, min(self.y + self.height, other.y + other.height) - max(self.y, other.y))
-        return width * height
+    def intersects(self, other):
+        """Positive-area overlap beyond the geometry tolerance; touching edges do not intersect."""
+        width = min(self.x + self.width, other.x + other.width) - max(self.x, other.x)
+        height = min(self.y + self.height, other.y + other.height) - max(self.y, other.y)
+        return width > GEOMETRY_TOL_MM and height > GEOMETRY_TOL_MM
 
     def contains(self, other):
         return (self.x <= other.x and self.y <= other.y
@@ -177,7 +178,7 @@ def parse_case(data, *, timings_s=None):
                       text(block["provenance"], "power provenance"))
             if not local.contains(b.rect):
                 raise ModelError(f"block {b.id} outside chiplet")
-            if any(b.rect.overlap(previous.rect) > 0 for previous in blocks):
+            if any(b.rect.intersects(previous.rect) for previous in blocks):
                 raise ModelError(f"overlapping power block {b.id}")
             blocks.append(b)
         unique([b.id for b in blocks], "block IDs")
@@ -195,7 +196,7 @@ def parse_case(data, *, timings_s=None):
         die = Die(identifier(raw["id"]), local.width, local.height, x, y, rotation, tuple(blocks), ports)
         if not package.contains(die.bounds):
             raise ModelError(f"chiplet {die.id} outside package")
-        if any(die.bounds.overlap(previous.bounds) > 0 for previous in dies):
+        if any(die.bounds.intersects(previous.bounds) for previous in dies):
             raise ModelError(f"overlapping chiplet {die.id}")
         dies.append(die)
     unique([d.id for d in dies], "chiplet IDs")

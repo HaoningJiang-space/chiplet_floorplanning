@@ -52,6 +52,7 @@ def freeze(args):
         methods=args.methods, seeds=args.seeds, fv_solves=args.fv_solves, batch=args.batch,
         random_starts=args.random_starts, descent_starts=args.descent_starts, gap_um=args.gap_um,
         resolution=args.resolution, budget_unit='distinct FV solves, shared start set included',
+        stall_rounds=args.stall_rounds, max_rounds=args.max_rounds,
         length_caps_m=[float(length[peak <= peak.min() + m].min()) for m in PEAK_MARGINS_K],
         peak_caps_c=[float(peak[length <= f*length.min()].min()) for f in LENGTH_FACTORS],
         cap_rules=dict(length=f'shortest front L with T <= Tmin + {PEAK_MARGINS_K} K',
@@ -91,7 +92,7 @@ def execute(args):
         for name in plan['methods']:
             started = time.perf_counter()
             with Evaluator(problem, plan['gap_um'], plan['resolution'], args.workers) as evaluator:
-                run = Run(evaluator, plan['fv_solves'])
+                run = Run(evaluator, plan['fv_solves'], plan['stall_rounds'], plan['max_rounds'])
                 METHODS[name](run, initial, np.random.default_rng([seed, len(name)] + [ord(c) for c in name]),
                               batch=plan['batch'], length_caps_m=plan['length_caps_m'])
             length, peak, cost = run.arrays()
@@ -192,6 +193,8 @@ def main():
     parser.add_argument('--descent-starts', type=int, default=48)
     parser.add_argument('--gap-um', type=float, default=1000)
     parser.add_argument('--resolution', type=int, default=64)
+    parser.add_argument('--stall-rounds', type=int, default=20)
+    parser.add_argument('--max-rounds', type=int, default=2000)
     parser.add_argument('--workers', type=int, default=24)
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
