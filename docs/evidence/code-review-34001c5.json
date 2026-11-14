@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "analyzed_commit": "34001c5e0290afa799b1e4a17d10835f2c086941",
+  "fetch_succeeded": true,
+  "scope": "Latest changes since a17455b, plus current geometry, thermal assembly/solve, search budget/termination and comparison reporting; code review only, production code unchanged.",
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P1",
+      "status": "reproduced_not_fixed",
+      "location": "src/chiplet_floorplanning/package.py:141",
+      "related_location": "pyproject.toml:11",
+      "problem": "CG uses rtol although the declared scipy>=1.11 range includes versions that only accept tol. The valid dependency environment fails before the direct-solver fallback.",
+      "introduced_by": "c07fb84d82d3ba76b446f681cd576542dd5b2f78",
+      "reproduction": {
+        "version": "1.11.4",
+        "signature": "(A, b, x0=None, tol=1e-05, maxiter=None, M=None, callback=None, atol=None)",
+        "dependency_requirement": "scipy>=1.11,<2",
+        "result": "TypeError: cg() got an unexpected keyword argument rtol",
+        "log": "scipy111-reproduction.log",
+        "command": "PYTHONPATH=results/deep-review-34001c5/scipy111:src python -m chiplet_floorplanning evaluate examples/layered_two_chiplets.json --output results/deep-review-34001c5/scipy111-layered"
+      },
+      "fix_direction": "Either require a SciPy release supporting rtol or handle the supported API versions explicitly; exercise the declared minimum dependency."
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "status": "reproduced_not_fixed",
+      "location": "src/chiplet_floorplanning/placement/methods.py:258",
+      "related_location": "src/chiplet_floorplanning/placement/methods.py:275",
+      "problem": "epsilon_search clears a global round_cap stop at each cap, runs additional phases, then overwrites the final stop reason. FV solve budget remains respected.",
+      "reproduction": [
+        {
+          "method": "pareto_local_search",
+          "configured_max_rounds": 1,
+          "actual_rounds": 1,
+          "stop_reason": "round_cap",
+          "solves": 3
+        },
+        {
+          "method": "epsilon_search",
+          "configured_max_rounds": 1,
+          "actual_rounds": 3,
+          "stop_reason": "stalled",
+          "solves": 7
+        }
+      ],
+      "fixture": {
+        "names": [
+          "a",
+          "b"
+        ],
+        "size_um": [
+          [
+            1000,
+            1000
+          ],
+          [
+            1000,
+            1000
+          ]
+        ],
+        "power_w": [
+          5,
+          1
+        ],
+        "carrier_um": [
+          10000,
+          10000
+        ],
+        "pin_nets": [],
+        "initial_centre_um": [
+          [
+            1000,
+            1000
+          ],
+          [
+            5000,
+            5000
+          ]
+        ],
+        "rotation_deg": [
+          0,
+          0
+        ],
+        "gap_um": 0,
+        "resolution": 12,
+        "seed": 2,
+        "batch": 2,
+        "fv_solves": 100,
+        "stall_rounds": 20,
+        "max_rounds": 1,
+        "length_caps_m": [
+          1,
+          2,
+          3
+        ]
+      },
+      "fix_direction": "Preserve global round exhaustion across epsilon phases and preserve the actual terminal stop reason; phase-local budget/stall resets must not clear a global stop."
+    }
+  ],
+  "validation": {
+    "python": "3.12.7",
+    "numpy": "1.26.4",
+    "main_scipy": "1.13.1",
+    "unit_tests_passed": 65,
+    "unit_test_command": "PYTHONPATH=src python -m unittest discover -s tests -p '*_unittest.py' -v",
+    "example_clis_passed": [
+      "two_chiplets",
+      "layered_two_chiplets"
+    ],
+    "old_assembly_commit": "23087095afda98b8dc71ade8c59c343e6db4ec2c",
+    "assembly_and_solver_comparison": [
+      {
+        "case": "results/code-review-a59e380/lp-generated-failure-0.json",
+        "nodes": 1064,
+        "rhs_equal": true,
+        "sink_equal": true,
+        "node_equal": true,
+        "matrix_max_relative_difference": 1.6927782823723687e-16,
+        "cg_direct_max_difference_k": 8.827161224189695e-12,
+        "cg_residual_w": 3.396323955595206e-13,
+        "direct_residual_w": 1.1464605181861721e-14,
+        "energy_error_w": -5.737632591262809e-13,
+        "cg_admission": "passed",
+        "direct_admission": "passed",
+        "seconds": 0.020782040897756815
+      },
+      {
+        "case": "results/code-review-a59e380/lp-generated-failure-1.json",
+        "nodes": 1064,
+        "rhs_equal": true,
+        "sink_equal": true,
+        "node_equal": true,
+        "matrix_max_relative_difference": 1.6927782823723687e-16,
+        "cg_direct_max_difference_k": 6.600098245712616e-11,
+        "cg_residual_w": 3.938715911302597e-13,
+        "direct_residual_w": 1.554410148704333e-14,
+        "energy_error_w": -2.688516076432279e-12,
+        "cg_admission": "passed",
+        "direct_admission": "passed",
+        "seconds": 0.015420207986608148
+      },
+      {
+        "case": "layered_example",
+        "nodes": 912,
+        "rhs_equal": true,
+        "sink_equal": true,
+        "node_equal": true,
+        "matrix_max_relative_difference": 1.2671326689975053e-16,
+        "cg_direct_max_difference_k": 3.268496584496461e-12,
+        "cg_residual_w": 7.598854029371496e-14,
+        "direct_residual_w": 1.5753439139303504e-14,
+        "energy_error_w": 2.815525590449397e-13,
+        "cg_admission": "passed",
+        "direct_admission": "passed",
+        "seconds": 0.009415082866325974
+      },
+      {
+        "case": "Case1",
+        "nodes": 8280,
+        "rhs_equal": true,
+        "sink_equal": true,
+        "node_equal": true,
+        "matrix_max_relative_difference": 1.2537340664735846e-16,
+        "cg_direct_max_difference_k": 3.6553871041178354e-11,
+        "cg_residual_w": 4.2141559042061746e-12,
+        "direct_residual_w": 7.463573423346776e-13,
+        "energy_error_w": 1.2050804798491299e-11,
+        "cg_admission": "passed",
+        "direct_admission": "passed",
+        "seconds": 0.13006016705185175
+      },
+      {
+        "case": "Case8",
+        "nodes": 17308,
+        "rhs_equal": true,
+        "sink_equal": true,
+        "node_equal": true,
+        "matrix_max_relative_difference": 2.0072226486402308e-16,
+        "cg_direct_max_difference_k": 1.2965628570782428e-11,
+        "cg_residual_w": 1.5334299333167881e-12,
+        "direct_residual_w": 3.767884625837432e-13,
+        "energy_error_w": 2.0889956431346945e-11,
+        "cg_admission": "passed",
+        "direct_admission": "passed",
+        "seconds": 0.686527542071417
+      },
+      {
+        "case": "Case10",
+        "nodes": 41428,
+        "rhs_equal": true,
+        "sink_equal": true,
+        "node_equal": true,
+        "matrix_max_relative_difference": 1.2553127523692427e-16,
+        "cg_direct_max_difference_k": 2.3234747459355276e-11,
+        "cg_residual_w": 6.2637606876585226e-12,
+        "direct_residual_w": 1.1852386876506193e-12,
+        "energy_error_w": 2.7284841053187847e-12,
+        "cg_admission": "passed",
+        "direct_admission": "passed",
+        "seconds": 3.746223040856421
+      }
+    ],
+    "six_method_small_budget_smoke": [
+      {
+        "method": "random",
+        "solves": 6,
+        "layouts": 6,
+        "local_shape": [
+          6,
+          6
+        ],
+        "stop_reason": "budget",
+        "rounds": 3,
+        "record_costs": [
+          1,
+          3,
+          3,
+          5,
+          5,
+          6
+        ],
+        "budget_ok": true,
+        "peaks_match": true,
+        "locals_finite": true,
+        "nonnegative_max_net": true,
+        "seconds": 0.09721008315682411
+      },
+      {
+        "method": "pareto_ls",
+        "solves": 6,
+        "layouts": 11,
+        "local_shape": [
+          11,
+          6
+        ],
+        "stop_reason": "budget",
+        "rounds": 5,
+        "record_costs": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5,
+          6,
+          6
+        ],
+        "budget_ok": true,
+        "peaks_match": true,
+        "locals_finite": true,
+        "nonnegative_max_net": true,
+        "seconds": 0.07024833397008479
+      },
+      {
+        "method": "nsga",
+        "solves": 6,
+        "layouts": 9,
+        "local_shape": [
+          9,
+          6
+        ],
+        "stop_reason": "budget",
+        "rounds": 4,
+        "record_costs": [
+          1,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5,
+          6,
+          6
+        ],
+        "budget_ok": true,
+        "peaks_match": true,
+        "locals_finite": true,
+        "nonnegative_max_net": true,
+        "seconds": 0.07451787497848272
+      },
+      {
+        "method": "annealing",
+        "solves": 6,
+        "layouts": 9,
+        "local_shape": [
+          9,
+          6
+        ],
+        "stop_reason": "budget",
+        "rounds": 8,
+        "record_costs": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          5,
+          5,
+          6
+        ],
+        "budget_ok": true,
+        "peaks_match": true,
+        "locals_finite": true,
+        "nonnegative_max_net": true,
+        "seconds": 0.06988666695542634
+      },
+      {
+        "method": "epsilon",
+        "solves": 6,
+        "layouts": 7,
+        "local_shape": [
+          7,
+          6
+        ],
+        "stop_reason": "budget",
+        "rounds": 3,
+        "record_costs": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          6,
+          6
+        ],
+        "budget_ok": true,
+        "peaks_match": true,
+        "locals_finite": true,
+        "nonnegative_max_net": true,
+        "seconds": 0.2076976248063147
+      },
+      {
+        "method": "topology_lp",
+        "solves": 6,
+        "layouts": 6,
+        "local_shape": [
+          6,
+          6
+        ],
+        "stop_reason": "budget",
+        "rounds": 3,
+        "record_costs": [
+          1,
+          3,
+          3,
+          5,
+          5,
+          6
+        ],
+        "budget_ok": true,
+        "peaks_match": true,
+        "locals_finite": true,
+        "nonnegative_max_net": true,
+        "seconds": 4.9876846668776125
+      }
+    ],
+    "comparison_tool_smoke": {
+      "freeze_execute_report": "passed",
+      "method": "random",
+      "seed": 2,
+      "fv_solves": 4,
+      "per_die_arrays_aligned": true
+    },
+    "frozen_plan_reference_hashes": {
+      "checked": 10,
+      "matched": 10
+    },
+    "dependency_reproduction": {
+      "scipy": "1.11.4",
+      "installation": "isolated target under ignored results; no global dependency changes",
+      "wheel_sha256": "2c6ff6ef9cc27f9b3db93a6f8b38f97387e6e0591600369a297a50a8e96e835d",
+      "source_url": "https://raw.githubusercontent.com/scipy/scipy/v1.11.4/scipy/sparse/linalg/_isolve/iterative.py"
+    }
+  },
+  "limitations": [
+    "Bounded review, not exhaustive correctness proof.",
+    "No full 10-case algorithm campaign was rerun.",
+    "Numerical comparison is not external thermal calibration or actual timing validation."
+  ],
+  "local_artifacts": "results/deep-review-34001c5/",
+  "artifact_sha256": {
+    "unittest-configured.log": "2c1d4022d0865e394607bf47abf305d5404d6e21b40296eaa4ebc2d836f4ee06",
+    "scipy111-reproduction.log": "9751e9b3f19d4f5055beae7e0a1cbcc332dc9f8bc31e85d57439e6621d763b42",
+    "epsilon-round-cap.json": "15ad88d1055b6cd2b37091d5b6aa06110e8f7488ff8c8f9e93a06849d3935cb8",
+    "assembly-solver-comparison.json": "6a95efaf115d0428114aeb90bc777f985ba75a21df53701e05e210586c3410f9",
+    "six-method-smoke.json": "097097d3d5fe6ac1cd9689784b466245e69f15a8cf4ef8a49114cd109aac77d8",
+    "tool-smoke.log": "c62ea5c8240ed16e731850bf50fb78dbda729caf37682eea055f42515275c9cd"
+  }
+}
