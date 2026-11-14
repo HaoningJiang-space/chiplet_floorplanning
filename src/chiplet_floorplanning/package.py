@@ -105,6 +105,15 @@ def assemble_package(case, power):
     return matrix, rhs, sink, nodes, ids, power_z
 
 
+def checked_solution(matrix, rhs, sink, rise):
+    """Reject non-finite, inaccurate or non-conserving solves; returns (residual W, removed W)."""
+    residual = float(np.max(np.abs(matrix @ rise - rhs))) if np.all(np.isfinite(rise)) else np.inf
+    removed = float(sink @ rise) if np.isfinite(residual) else np.nan
+    if not np.isfinite(residual) or residual > 1e-8 or not abs(removed - rhs.sum()) <= max(1e-10, 1e-8 * rhs.sum()):
+        raise ValueError("package failed finite solution, residual or energy check")
+    return residual, removed
+
+
 def solve_package(case, power, *, timings_s=None):
     started = perf_counter()
     matrix, rhs, sink, nodes, ids, power_z = assemble_package(case, power)
@@ -114,10 +123,7 @@ def solve_package(case, power, *, timings_s=None):
     if timings_s is not None:
         timings_s['matrix_assembly_s'] = assembled - started
         timings_s['thermal_linear_solve_s'] = solved - assembled
-    residual = float(np.max(np.abs(matrix @ rise - rhs)))
-    removed = float(sink @ rise)
-    if not np.all(np.isfinite(rise)) or residual > 1e-8 or abs(removed - rhs.sum()) > max(1e-10, 1e-8 * rhs.sum()):
-        raise ValueError("package failed finite solution, residual or energy check")
+    residual, removed = checked_solution(matrix, rhs, sink, rise)
     temperature = np.full((case.ny, case.nx), np.nan)
     source = ids[power_z] >= 0
     temperature[source] = rise[ids[power_z][source]] + case.thermal["ambient_c"]

@@ -8,8 +8,10 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from atplace_import_unittest import BLOCKS, POWER, NETS
 from import_atplace_cases import parse_case as import_case
-from chiplet_floorplanning.placement.search import layout_key, length_target, pareto_search
-from chiplet_floorplanning.placement import (Evaluator, Layout, Problem, Superposition, coolest_within,
+from chiplet_floorplanning.placement.methods import METHODS, Run, ranks_and_crowding
+from chiplet_floorplanning.placement.evaluate import shelf_pack
+from chiplet_floorplanning.placement.search import layout_key, length_target, mutate
+from chiplet_floorplanning.placement import (Evaluator, boxes, Layout, Problem, Superposition, coolest_within,
                                              is_legal, pareto_front, pin_manhattan_um, sample_legal,
                                              shortest_within, solve_peak, thermal_case_data, violations)
 
@@ -135,19 +137,38 @@ class PlacementCoreTest(unittest.TestCase):
                 moved[k] += shift
                 self.assertGreaterEqual(pin_manhattan_um(problem, Layout(moved, layout.rotation_deg)).sum(), best - 1e-6)
 
-    def test_pareto_search_respects_fv_solve_budget_including_start_set(self):
+    def test_every_method_respects_fv_budget_including_duplicated_start_set(self):
         problem = Problem.from_imported(synthetic_case(random.Random(13), chips=3, nets=40))
-        rng = np.random.default_rng(2)
-        start = [sample_legal(problem, 1000, rng) for _ in range(3)]
+        start = [sample_legal(problem, 1000, np.random.default_rng(2)) for _ in range(3)]
+        for name, method in METHODS.items():
+            for budget in (1, 12):
+                with self.subTest(method=name, budget=budget):
+                    with Evaluator(problem, 1000, resolution=16) as evaluator:
+                        run = Run(evaluator, budget)
+                        method(run, start + start, np.random.default_rng(3), batch=4, length_caps_m=(1e9,))
+                    length, peak, cost = run.arrays()
+                    self.assertLessEqual(evaluator.solves, budget)
+                    self.assertEqual(len({layout_key(l) for l in run.layouts}), len(run.layouts))
+                    self.assertTrue(all(is_legal(problem, l, 1000) for l in run.layouts))
+                    self.assertTrue(np.all(np.diff(cost) >= 0) and cost[-1] == evaluator.solves)
+
+    def test_epsilon_search_spends_solves_only_below_the_length_cap(self):
+        problem = Problem.from_imported(synthetic_case(random.Random(17), chips=3, nets=60))
+        rng = np.random.default_rng(5)
+        start = [sample_legal(problem, 1000, rng) for _ in range(4)]
         with Evaluator(problem, 1000, resolution=16) as evaluator:
-            layouts, _, _ = pareto_search(evaluator, start + start, rng, 1, batch=4)
-        self.assertEqual((evaluator.solves, len(layouts)), (1, 1))
-        with Evaluator(problem, 1000, resolution=16) as evaluator:
-            layouts, length, peak = pareto_search(evaluator, start + start, rng, 12, batch=4)
-        self.assertEqual(evaluator.solves, 12)
-        self.assertEqual(len({layout_key(l) for l in layouts}), len(layouts))
-        self.assertTrue(all(is_legal(problem, l, 1000) for l in layouts))
-        self.assertEqual(peak.shape, length.shape)
+            run = Run(evaluator, 16)
+            run.evaluate(start)
+            cap = float(np.median(run.arrays()[0]))
+            METHODS['epsilon'](run, start, rng, batch=4, length_caps_m=(cap,))
+        length = run.arrays()[0]
+        self.assertTrue(np.all(length[len(start):] <= cap + 1e-12))
+
+    def test_ranks_and_crowding(self):
+        length, peak = np.array([1., 2., 3., 2., 3.]), np.array([3., 2., 1., 3., 3.])
+        rank, crowd = ranks_and_crowding(length, peak)
+        self.assertEqual(list(rank), [0, 0, 0, 1, 2])
+        self.assertTrue(np.isinf(crowd[[0, 2]]).all() and np.isfinite(crowd[1]))
 
     def test_length_target_ignores_nets_inside_the_moving_chip(self):
         # Chip a carries one internal net and one net to b; only the latter sets the target.
@@ -171,6 +192,35 @@ class PlacementCoreTest(unittest.TestCase):
                           np.zeros((0, 2), int), np.zeros((0, 2, 2)))
         layout = sample_legal(problem, 1000, np.random.default_rng(0), uniform_tries=1, packed_tries=1)
         self.assertTrue(is_legal(problem, layout, 1000))
+    def test_shelf_fallback_stays_on_grid_so_search_can_move(self):
+        # Half-millimetre die sizes used to give off-grid shelf corners; every move was then illegal.
+        sizes = np.array([[2500., 2500.]]*8 + [[3500., 1500.]]*4)
+        problem = Problem('half_mm', tuple(f'c{i}' for i in range(12)), sizes, np.ones(12), (16000., 16000.),
+                          np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        rng = np.random.default_rng(0)
+        layout = shelf_pack(problem, 1000, rng)
+        corners = boxes(problem, layout)[:, :2]
+        self.assertTrue(np.allclose(corners % 1000, 0))
+        moves = [mutate(problem, layout, rng, 1000) for _ in range(300)]
+        self.assertTrue(any(m is not None for m in moves))
+
+    def test_failed_solutions_and_nan_metrics_are_rejected(self):
+        from scipy import sparse
+        from chiplet_floorplanning.package import checked_solution
+        matrix = sparse.identity(2, format='csr')
+        with self.assertRaises(ValueError):
+            checked_solution(matrix, np.ones(2), np.ones(2), np.array([1., np.nan]))
+        with self.assertRaises(ValueError):
+            coolest_within([1., 1.], [100., np.nan], 2.)
+        with self.assertRaises(ValueError):
+            pareto_front([1., 2.], [np.nan, 1.])
+
+    def test_superposition_refuses_carriers_its_kernel_cannot_cover(self):
+        problem = Problem('wide', ('a',), np.array([[4000., 4000.]]), np.ones(1), (59000., 61000.),
+                          np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        with self.assertRaises(ValueError):
+            Superposition(problem, 1000, resolution=16)
+
 
 if __name__ == '__main__':
     unittest.main()

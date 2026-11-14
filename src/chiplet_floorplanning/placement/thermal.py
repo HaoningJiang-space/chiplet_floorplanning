@@ -9,7 +9,7 @@ import numpy as np
 from scipy.sparse.linalg import spsolve
 
 from ..model import parse_case
-from ..package import assemble_package
+from ..package import assemble_package, checked_solution
 from ..power import rasterize
 from .geometry import boxes, violations
 
@@ -69,12 +69,13 @@ def solve(data):
     power, _ = rasterize(case)
     a, b, g, _, ids, power_z = assemble_package(case, power)
     theta = spsolve(a.tocsc(), b)
-    removed = float(g @ theta)
+    residual, removed = checked_solution(a, b, g, theta)
     layer = ids[power_z]
     rise = np.where(layer >= 0, theta[np.maximum(layer, 0)], np.nan)
     summary = dict(peak_power_layer_c=float(np.nanmax(rise) + case.thermal["ambient_c"]),
                    source_power_w=float(b.sum()), heat_removed_w=removed,
-                   energy_balance_error_w=removed - float(b.sum()), min_rise_k=float(theta.min()),
+                   energy_balance_error_w=removed - float(b.sum()), linear_residual_inf_w=residual,
+                   min_rise_k=float(theta.min()),
                    physical_calibrated=False)
     edges = (np.concatenate(([0], np.cumsum(case.mesh.widths_mm))),
              np.concatenate(([0], np.cumsum(case.mesh.heights_mm))))

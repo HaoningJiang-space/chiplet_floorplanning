@@ -20,10 +20,8 @@ def thermal_key(problem, layout):
 
 def _peak(args):
     problem, layout, gap_um, resolution = args
-    result = solve_peak(thermal_case_data(problem, layout, gap_um, resolution))
-    if abs(result["energy_balance_error_w"]) > 1e-6*result["source_power_w"]:
-        raise ArithmeticError("FV energy balance failed")
-    return result["peak_power_layer_c"]
+    # solve() already rejects non-finite, inaccurate or non-conserving solutions.
+    return solve_peak(thermal_case_data(problem, layout, gap_um, resolution))["peak_power_layer_c"]
 
 
 class Evaluator:
@@ -108,18 +106,21 @@ def sample_legal(problem, gap_um, rng, grid_um=1000, uniform_tries=20, packed_tr
             layout = Layout(centre, rotation)
             assert is_legal(problem, layout, gap_um)
             return layout
-    layout = shelf_pack(problem, gap_um, rng)
+    layout = shelf_pack(problem, gap_um, rng, grid_um)
     if layout is None:
         raise RuntimeError("no legal layout found by sampling or shelf packing")
     return layout
 
 
-def shelf_pack(problem, gap_um, rng, shuffles=50):
-    """Rows of chiplets sorted by height, left to right; deterministic legal fallback.
+def shelf_pack(problem, gap_um, rng, grid_um=1000, shuffles=50):
+    """Rows of chiplets sorted by height, left to right; legal fallback start.
 
-    Tries short-side-up, long-side-up and source orientations, shuffling chiplets
-    of equal height. Returns None if no tried arrangement fits the carrier.
+    Every lower-left corner is rounded up to the search grid, so search moves
+    stay on the same lattice. Tries short-side-up, long-side-up and source
+    orientations, shuffling chiplets of equal height. Returns None if no tried
+    arrangement fits the carrier.
     """
+    up = lambda v: np.ceil(v/grid_um - 1e-9)*grid_um
     width, height = problem.carrier_um
     w, h = problem.size_um[:, 0], problem.size_um[:, 1]
     policies = (np.where(w >= h, 0, 90), np.where(w >= h, 90, 0), np.zeros(problem.count, int))
@@ -132,9 +133,9 @@ def shelf_pack(problem, gap_um, rng, shuffles=50):
             x = y = row = 0.0
             for k in order:
                 if x and x + size[k, 0] > width:
-                    x, y, row = 0.0, y + row + gap_um, 0.0
+                    x, y, row = 0.0, up(y + row + gap_um), 0.0
                 centre[k] = (x + size[k, 0]/2, y + size[k, 1]/2)
-                x += size[k, 0] + gap_um
+                x = up(x + size[k, 0] + gap_um)
                 row = max(row, size[k, 1])
             layout = Layout(centre, rotation)
             if is_legal(problem, layout, gap_um):
@@ -142,8 +143,16 @@ def shelf_pack(problem, gap_um, rng, shuffles=50):
     return None
 
 
+def _finite(*arrays):
+    arrays = [np.asarray(a, dtype=float) for a in arrays]
+    if not all(np.isfinite(a).all() for a in arrays):
+        raise ValueError("non-finite length or peak reached a metric")
+    return arrays
+
+
 def pareto_front(length_m, peak_c):
     """Indices of the non-dominated (length, peak) points, sorted by length."""
+    length_m, peak_c = _finite(length_m, peak_c)
     order = np.lexsort((peak_c, length_m))
     front, best = [], np.inf
     for i in order:
@@ -155,11 +164,13 @@ def pareto_front(length_m, peak_c):
 
 def coolest_within(length_m, peak_c, length_cap_m):
     """Main metric: the single layout with the lowest peak among L <= cap (or None)."""
-    ok = np.flatnonzero(np.asarray(length_m) <= length_cap_m)
-    return None if not ok.size else int(ok[np.argmin(np.asarray(peak_c)[ok])])
+    length_m, peak_c = _finite(length_m, peak_c)
+    ok = np.flatnonzero(length_m <= length_cap_m)
+    return None if not ok.size else int(ok[np.argmin(peak_c[ok])])
 
 
 def shortest_within(length_m, peak_c, peak_cap_c):
     """Reverse metric: the single layout with the shortest length among T <= cap (or None)."""
-    ok = np.flatnonzero(np.asarray(peak_c) <= peak_cap_c)
-    return None if not ok.size else int(ok[np.argmin(np.asarray(length_m)[ok])])
+    length_m, peak_c = _finite(length_m, peak_c)
+    ok = np.flatnonzero(peak_c <= peak_cap_c)
+    return None if not ok.size else int(ok[np.argmin(length_m[ok])])
