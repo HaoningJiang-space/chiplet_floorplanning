@@ -1,0 +1,47 @@
+{
+  "protocol": "method-comparison-v1",
+  "case_path": "results/physical-calibration/atplace-import-v1/Case5.json",
+  "case_sha256": "1d5f01725b72e0c34accf56f0ece93d349d949a4387ee150e4f6d3dc4b0bf7fa",
+  "reference_summary": "results/front-gap0/case5/summary.json",
+  "reference_sha256": "80389973a392e52d6d2cee767b33d526dbbd4550a4c6a635b79bc69e1b6dcd64",
+  "methods": [
+    "random",
+    "pareto_ls",
+    "nsga",
+    "annealing",
+    "epsilon",
+    "topology_lp"
+  ],
+  "seeds": [
+    2026111401,
+    2026111402,
+    2026111403
+  ],
+  "fv_solves": 1000,
+  "batch": 48,
+  "random_starts": 48,
+  "descent_starts": 48,
+  "gap_um": 0.0,
+  "resolution": 64,
+  "budget_unit": "distinct FV solves, shared start set included",
+  "stall_rounds": 20,
+  "max_rounds": 2000,
+  "length_caps_m": [
+    97.41444906939999,
+    111.9850904722,
+    116.50737442459999
+  ],
+  "peak_caps_c": [
+    146.29414655606138,
+    136.24978940339398,
+    128.18014313767634
+  ],
+  "cap_rules": {
+    "length": "shortest front L with T <= Tmin + (2.0, 1.0, 0.5) K",
+    "peak": "coolest front T with L <= (1.1, 1.25, 1.5) x Lmin"
+  },
+  "code": {
+    "commit": "e58532f1520c611258b89be02e6d8dc7598f8e95",
+    "dirty": false
+  }
+}
