@@ -3,7 +3,6 @@
 import numpy as np
 from scipy.sparse import coo_matrix
 from scipy.sparse.csgraph import connected_components
-from scipy.sparse.linalg import spsolve
 from time import perf_counter
 
 
@@ -49,61 +48,104 @@ def material_grids(case):
     return owner, masks, conductivities, contacts
 
 
+def _face_edges(ids_z, kz, owner, chiplet_layer, contacts_z, axis, thickness, dx, dy):
+    """In-plane conductances between neighbouring active cells of one layer, W/K.
+
+    Each face is two half-cells in series plus any explicit sidewall contact
+    resistance. Neighbouring cells owned by different dies in a 'chiplets'
+    layer share no face unless a sidewall contact is declared (adiabatic sides).
+    """
+    if axis == 0:   # x faces: (y, x) -- (y, x+1)
+        near, far = np.s_[:, :-1], np.s_[:, 1:]
+        half_near, half_far = dx[None, :-1]/2, dx[None, 1:]/2
+        face = thickness*dy[:, None]
+    else:           # y faces: (y, x) -- (y+1, x)
+        near, far = np.s_[:-1, :], np.s_[1:, :]
+        half_near, half_far = dy[:-1, None]/2, dy[1:, None]/2
+        face = thickness*dx[None, :]
+    a, b = ids_z[near], ids_z[far]
+    active = (a >= 0) & (b >= 0)
+    contact = np.zeros(a.shape)
+    if chiplet_layer:
+        oa, ob = owner[near], owner[far]
+        across = active & (oa != ob)
+        lookup = np.full(across.sum(), np.nan)
+        for k, (i, j) in enumerate(zip(np.minimum(oa, ob)[across], np.maximum(oa, ob)[across])):
+            lookup[k] = contacts_z.get((int(i), int(j)), np.nan)
+        contact[across] = lookup
+        active &= ~np.isnan(contact)
+    g = face/(half_near/kz[axis][near] + contact + half_far/kz[axis][far])
+    g = np.broadcast_to(g, a.shape)
+    return a[active], b[active], g[active]
+
+
 def assemble_package(case, power):
     cfg = case.thermal
     layers = cfg["layers"]
     dx, dy = case.mesh.widths_mm*1e-3, case.mesh.heights_mm*1e-3
     owner, masks, conductivities, contacts = material_grids(case)
     ids = np.full((len(layers), case.ny, case.nx), -1, dtype=int)
-    nodes = []
-    for z, layer in enumerate(layers):
-        mask = masks[z]
-        for y, x in zip(*np.where(mask)):
-            ids[z, y, x] = len(nodes)
-            nodes.append((z, int(y), int(x)))
-    diagonal = np.zeros(len(nodes))
-    sink = np.zeros(len(nodes))
-    rhs = np.zeros(len(nodes))
-    rows, cols, values = [], [], []
+    count = 0
+    for z in range(len(layers)):
+        active = int(masks[z].sum())
+        ids[z][masks[z]] = np.arange(count, count + active)  # layer-major, then row-major (y, x)
+        count += active
+    nodes = [tuple(map(int, v)) for v in np.argwhere(ids >= 0)]
     power_z = [layer["id"] for layer in layers].index(cfg["power_layer"])
     power = np.asarray(power, dtype=float)
     if power.shape != (case.ny, case.nx) or not np.all(np.isfinite(power)) or np.any(power < 0):
         raise ValueError("invalid power grid")
     if np.any(power[ids[power_z] < 0] != 0):
         raise ValueError("heat source outside active package material")
-    for a, (z, y, x) in enumerate(nodes):
-        kx, ky, kz = conductivities[z][:, y, x]
-        t = layers[z]["thickness_mm"] * 1e-3
-        if z == power_z:
-            rhs[a] = power[y, x]
-        for zz, yy, xx, axis in ((z, y, x + 1, 'x'), (z, y + 1, x, 'y')):
-            if yy < case.ny and xx < case.nx and ids[zz, yy, xx] >= 0:
-                contact = 0.0
-                if layers[z]['footprint'] == 'chiplets' and owner[y, x] != owner[yy, xx]:
-                    pair = tuple(sorted((owner[y, x], owner[yy, xx])))
-                    if pair not in contacts[z]:
-                        continue  # Independent die sidewalls are adiabatic unless specified.
-                    contact = contacts[z][pair]
-                g = (t*dy[y]/(dx[x]/(2*kx)+contact+dx[xx]/(2*conductivities[z][0, yy, xx])) if axis == 'x'
-                     else t*dx[x]/(dy[y]/(2*ky)+contact+dy[yy]/(2*conductivities[z][1, yy, xx])))
-                b = ids[zz, yy, xx]
-                rows.extend((a, b)); cols.extend((b, a)); values.extend((-g, -g))
-                diagonal[a] += g
-                diagonal[b] += g
-        if z + 1 < len(layers) and ids[z + 1, y, x] >= 0:
-            other = layers[z + 1]
-            g = dx[x]*dy[y] / (t/(2*kz) + layers[z].get('contact_resistance_above_m2k_w', 0)
-                              + other['thickness_mm']*1e-3/(2*conductivities[z+1][2, y, x]))
-            b = ids[z + 1, y, x]
-            rows.extend((a, b)); cols.extend((b, a)); values.extend((-g, -g))
-            diagonal[a] += g
-            diagonal[b] += g
-        for boundary, h in ((0, cfg["bottom_h_w_m2k"]), (len(layers) - 1, cfg["top_h_w_m2k"])):
-            if z == boundary and h > 0:
-                sink[a] += dx[x]*dy[y] / (t/(2*kz) + 1/h)
-    rows.extend(range(len(nodes))); cols.extend(range(len(nodes))); values.extend(diagonal + sink)
-    matrix = coo_matrix((values, (rows, cols)), shape=(len(nodes), len(nodes))).tocsr()
+    rhs = np.zeros(count)
+    rhs[ids[power_z][ids[power_z] >= 0]] = power[ids[power_z] >= 0]
+    edges = []
+    for z, layer in enumerate(layers):
+        t = layer["thickness_mm"]*1e-3
+        for axis in (0, 1):
+            edges.append(_face_edges(ids[z], conductivities[z], owner, layer['footprint'] == 'chiplets',
+                                     contacts[z], axis, t, dx, dy))
+        if z + 1 < len(layers):
+            both = (ids[z] >= 0) & (ids[z + 1] >= 0)
+            resistance = (t/(2*conductivities[z][2]) + layer.get('contact_resistance_above_m2k_w', 0)
+                          + layers[z + 1]['thickness_mm']*1e-3/(2*conductivities[z + 1][2]))
+            g = (dx[None, :]*dy[:, None])/resistance
+            edges.append((ids[z][both], ids[z + 1][both], g[both]))
+    sink = np.zeros(count)
+    for boundary, h in ((0, cfg["bottom_h_w_m2k"]), (len(layers) - 1, cfg["top_h_w_m2k"])):
+        if h > 0:
+            t = layers[boundary]["thickness_mm"]*1e-3
+            active = ids[boundary] >= 0
+            g = (dx[None, :]*dy[:, None])/(t/(2*conductivities[boundary][2]) + 1/h)
+            np.add.at(sink, ids[boundary][active], g[active])
+    a = np.concatenate([e[0] for e in edges])
+    b = np.concatenate([e[1] for e in edges])
+    g = np.concatenate([e[2] for e in edges])
+    diagonal = np.bincount(a, g, count) + np.bincount(b, g, count) + sink
+    matrix = coo_matrix((np.concatenate([-g, -g, diagonal]),
+                         (np.concatenate([a, b, np.arange(count)]), np.concatenate([b, a, np.arange(count)]))),
+                        shape=(count, count)).tocsr()
     return matrix, rhs, sink, nodes, ids, power_z
+
+
+def solve_spd(matrix, rhs, x0=None):
+    """Solve the symmetric positive-definite conduction system A theta = b.
+
+    Conjugate gradients with an algebraic-multigrid preconditioner when pyamg is
+    available (Jacobi otherwise); falls back to a sparse direct factorisation if
+    CG does not converge. Callers still apply checked_solution.
+    """
+    from scipy.sparse import diags
+    from scipy.sparse.linalg import cg, splu
+    try:
+        import pyamg
+        preconditioner = pyamg.smoothed_aggregation_solver(matrix.tocsr()).aspreconditioner()
+    except ImportError:
+        preconditioner = diags(1/matrix.diagonal())
+    rise, info = cg(matrix, rhs, x0=x0, rtol=1e-12, atol=0.0, maxiter=10*matrix.shape[0], M=preconditioner)
+    if info != 0:
+        rise = splu(matrix.tocsc(), permc_spec="MMD_AT_PLUS_A").solve(rhs)
+    return rise
 
 
 def require_heat_path(matrix, sink):
@@ -136,7 +178,7 @@ def solve_package(case, power, *, timings_s=None):
     matrix, rhs, sink, nodes, ids, power_z = assemble_package(case, power)
     require_heat_path(matrix, sink)
     assembled = perf_counter()
-    rise = spsolve(matrix, rhs)
+    rise = solve_spd(matrix, rhs)
     solved = perf_counter()
     if timings_s is not None:
         timings_s['matrix_assembly_s'] = assembled - started
