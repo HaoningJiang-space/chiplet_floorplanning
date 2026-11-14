@@ -1,12 +1,12 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "ec6b829e8f7acf51b2a77005fc3f787c403e5daf",
-  "record_count": 307,
+  "parent_commit": "ed21ab131ae56a3bbe859402e0f4b92bae8aa998",
+  "record_count": 311,
   "counts_by_kind": {
-    "json": 127,
-    "md": 154,
+    "json": 129,
+    "md": 155,
     "pdf": 11,
-    "png": 14,
+    "png": 15,
     "svg": 1
   },
   "records": [
@@ -126,6 +126,11 @@
       "kind": "md"
     },
     {
+      "path": "docs/atplace-case1-step-size-results.md",
+      "git_blob_sha1": "0b48476ff0127625cbca391b033944114535409e",
+      "kind": "md"
+    },
+    {
       "path": "docs/atplace-case1-temperature-feedback-protocol.md",
       "git_blob_sha1": "73f8c3e66fb59b40771323486a698dfa7c5682bf",
       "kind": "md"
@@ -157,7 +162,7 @@
     },
     {
       "path": "docs/atplace-first-principles-analysis.md",
-      "git_blob_sha1": "8ac75d35ab4ea3ada0cc85aea9315359bb89d0d1",
+      "git_blob_sha1": "835ba19603aed0d2a67e100a836c9ec31ba5ef8e",
       "kind": "md"
     },
     {
@@ -354,6 +359,21 @@
       "path": "docs/evidence/atplace-case1-step-size-plan-v1.json",
       "git_blob_sha1": "62c008ade1555ae65ca806a80eba6988a754151f",
       "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-step-size-replay-v1.json",
+      "git_blob_sha1": "5397d882a9bdb5dcb5fe321a8bb21f8bc15d08c3",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-step-size-v1.json",
+      "git_blob_sha1": "e319c84d1b10a3bf90614d4fe7a8b3158cb739ca",
+      "kind": "json"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-step-size-v1.png",
+      "git_blob_sha1": "f4714679a57a2dcd52662647d4aec40b027fb6ab",
+      "kind": "png"
     },
     {
       "path": "docs/evidence/atplace-case1-temperature-feedback-plan-v1.json",
@@ -1057,7 +1077,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "942f0b592b0b2b99748327571ccb02a24d4a2a19",
+      "git_blob_sha1": "45db316ba2e3060c7e656ede12a8d9739451a480",
       "kind": "md"
     },
     {

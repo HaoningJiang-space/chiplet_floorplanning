@@ -1,0 +1,11 @@
+{
+  "status": "verified_saved_response_replay",
+  "actual_new_thermal_solves": 0,
+  "result_sha256": "e39af7fc59d575268c5b273c5294e4753e372d45a7870044e68259268dcab315",
+  "plan_sha256": "5296f5757d833c0e2c291cd608ac087ab2381311fd8d4da1e20bef14f1caa8e2",
+  "checked_charged_responses": 32,
+  "steps_um": [
+    2000,
+    1000
+  ]
+}
