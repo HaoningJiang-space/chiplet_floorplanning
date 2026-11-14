@@ -131,18 +131,15 @@ def assemble_package(case, power):
 def solve_spd(matrix, rhs, x0=None):
     """Solve the symmetric positive-definite conduction system A theta = b.
 
-    Conjugate gradients with an algebraic-multigrid preconditioner when pyamg is
-    available (Jacobi otherwise); falls back to a sparse direct factorisation if
-    CG does not converge. Callers still apply checked_solution.
+    Jacobi-preconditioned conjugate gradients: on the ATPlace cases (8k-38k
+    nodes) it beat spsolve, MMD-ordered LU and AMG-preconditioned CG, whose
+    setup cost dominates at this size. Falls back to a sparse direct
+    factorisation if CG does not converge; callers still apply checked_solution.
     """
     from scipy.sparse import diags
     from scipy.sparse.linalg import cg, splu
-    try:
-        import pyamg
-        preconditioner = pyamg.smoothed_aggregation_solver(matrix.tocsr()).aspreconditioner()
-    except ImportError:
-        preconditioner = diags(1/matrix.diagonal())
-    rise, info = cg(matrix, rhs, x0=x0, rtol=1e-12, atol=0.0, maxiter=10*matrix.shape[0], M=preconditioner)
+    rise, info = cg(matrix, rhs, x0=x0, rtol=1e-12, atol=0.0, maxiter=10*matrix.shape[0],
+                    M=diags(1/matrix.diagonal()))
     if info != 0:
         rise = splu(matrix.tocsc(), permc_spec="MMD_AT_PLUS_A").solve(rhs)
     return rise
