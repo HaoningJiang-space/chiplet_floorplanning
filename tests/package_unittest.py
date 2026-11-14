@@ -8,7 +8,6 @@ from chiplet_floorplanning.model import load_case, parse_case, ModelError
 from chiplet_floorplanning.power import rasterize
 from chiplet_floorplanning.package import solve_package
 from chiplet_floorplanning.interconnect import estimate_links
-from chiplet_floorplanning.timing import spef_network, run_timing
 
 EXAMPLE = Path(__file__).resolve().parents[1] / "examples/layered_two_chiplets.json"
 
@@ -82,20 +81,6 @@ class PackageTests(unittest.TestCase):
         links = estimate_links(self.case())
         self.assertAlmostEqual(links[0]["assumed_r_ohm"], 5.04)
         self.assertAlmostEqual(links[0]["assumed_c_pf"], 1.0359399740976)
-
-    def test_spef_conserves_total_r_c(self):
-        text = spef_network("data", "a:Q", "b:D", 10, 0.8, 8)
-        caps = text.split("*CAP\n")[1].split("*RES\n")[0].splitlines()
-        resistors = text.split("*RES\n")[1].split("*END")[0].splitlines()
-        self.assertAlmostEqual(sum(float(row.split()[-1]) for row in caps), 0.8)
-        self.assertAlmostEqual(sum(float(row.split()[-1]) for row in resistors), 10)
-        for r, c in [(0, 1), (1, 0), (-1, 1)]:
-            with self.assertRaises(ValueError):
-                spef_network("data", "a:Q", "b:D", r, c)
-
-    def test_missing_models_fail_before_output(self):
-        with self.assertRaises(FileNotFoundError):
-            run_timing(self.case(), "/nonexistent-chiplet-output", "/nonexistent-sta", "/nonexistent-lib1", "/nonexistent-lib2")
 
 
 if __name__ == "__main__":

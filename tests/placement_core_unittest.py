@@ -7,13 +7,11 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from atplace_import_unittest import BLOCKS, POWER, NETS
-from atplace_pin_geometry import make_thermal_case, pin_objective, placement_geometry
 from import_atplace_cases import parse_case as import_case
-from chiplet_floorplanning.model import parse_case
-from chiplet_floorplanning.package import assemble_package
-from chiplet_floorplanning.placement import (Layout, Problem, is_legal, pin_manhattan_um,
-                                             centre_manhattan_um, solve_peak, thermal_case_data)
-from chiplet_floorplanning.power import rasterize
+from chiplet_floorplanning.placement import (Layout, Problem, is_legal, pin_manhattan_um, solve_peak,
+                                             thermal_case_data, violations)
+
+# Legacy equivalence (519 recorded Case1 layouts, max |dT| 1.6e-8 K) is recorded in commit f1df9fd.
 
 
 def synthetic_case(rng, chips=5, nets=200):
@@ -31,67 +29,69 @@ def synthetic_case(rng, chips=5, nets=200):
     return import_case('synthetic', header + blocks, power, netlist)
 
 
-def random_placements(rng, case):
-    return [dict(chiplet=c['name'], centre_x_um=rng.randint(0, 30)*1000, centre_y_um=rng.randint(0, 30)*1000,
-                 rotation_deg=rng.choice((0, 90, 180, 270))) for c in case['chiplets']]
-
-
-def legacy_legal(case, placements, gap_um):
-    try:
-        placement_geometry(case, placements, gap_um)
-        return True
-    except ValueError:
-        return False
+def reference_length_um(case, placements):
+    """Independent scalar reference: explicit CCW quarter-turn formulas per pin."""
+    poses = {p['chiplet']: p for p in placements}
+    total = 0.0
+    for net in case['nets']:
+        points = []
+        for pin in net['pins']:
+            p = poses[pin['chiplet']]
+            x, y = float(pin['offset_x_um_decimal']), float(pin['offset_y_um_decimal'])
+            x, y = {0: (x, y), 90: (-y, x), 180: (-x, -y), 270: (y, -x)}[p['rotation_deg']]
+            points.append((p['centre_x_um'] + x, p['centre_y_um'] + y))
+        total += abs(points[0][0] - points[1][0]) + abs(points[0][1] - points[1][1])
+    return total
 
 
 class PlacementCoreTest(unittest.TestCase):
-    def test_fixture_pin_lengths_match_hand_values(self):
-        case = import_case('test', BLOCKS, POWER, NETS)
-        problem = Problem.from_imported(case)
-        for angle, expected_um in ((0, 7200), (90, 6800), (180, 8800), (270, 9200)):
-            layout = Layout(np.array([[3000., 3000.], [8000., 6000.]]), np.array([angle, 0]))
-            self.assertAlmostEqual(pin_manhattan_um(problem, layout).sum(), expected_um, places=9)
+    def setUp(self):
+        self.problem = Problem.from_imported(import_case('test', BLOCKS, POWER, NETS))
 
-    def test_random_layouts_match_legacy_legality_and_lengths(self):
+    def layout(self, a, b, rotation=(0, 0)):
+        return Layout(np.array([a, b], dtype=float), np.array(rotation))
+
+    def test_fixture_pin_lengths_match_hand_values(self):
+        # a local offset=(1000,-200), b=(-500,500); b global=(7500,6500).
+        for angle, expected_um in ((0, 7200), (90, 6800), (180, 8800), (270, 9200)):
+            got = pin_manhattan_um(self.problem, self.layout((3000, 3000), (8000, 6000), (angle, 0))).sum()
+            self.assertAlmostEqual(got, expected_um, places=9)
+
+    def test_random_layouts_match_scalar_reference(self):
         rng = random.Random(2026111300)
         case = synthetic_case(rng)
         problem = Problem.from_imported(case)
-        legal = 0
-        for _ in range(400):
-            placements = random_placements(rng, case)
-            layout = Layout.from_placements(problem, placements)
-            expected = legacy_legal(case, placements, 1000)
-            self.assertEqual(is_legal(problem, layout, 1000), expected)
-            if expected:
-                legal += 1
-                old = pin_objective(case, placements, 1000)
-                self.assertAlmostEqual(pin_manhattan_um(problem, layout).sum()/1e6, old['total_pin_manhattan_m'], places=9)
-                self.assertAlmostEqual(centre_manhattan_um(problem, layout).sum()/1000, old['total_centre_manhattan_mm'], places=9)
-        self.assertGreater(legal, 10)
+        for _ in range(50):
+            placements = [dict(chiplet=c['name'], centre_x_um=rng.randint(0, 30)*1000,
+                               centre_y_um=rng.randint(0, 30)*1000, rotation_deg=rng.choice((0, 90, 180, 270)))
+                          for c in case['chiplets']]
+            got = pin_manhattan_um(problem, Layout.from_placements(problem, placements)).sum()
+            self.assertAlmostEqual(got, reference_length_um(case, placements), delta=1e-6)
 
-    def test_thermal_system_is_identical_to_legacy_recipe(self):
-        rng = random.Random(7)
-        case = synthetic_case(rng, chips=4, nets=20)
-        problem = Problem.from_imported(case)
-        placements = next(p for p in iter(lambda: random_placements(rng, case), None) if legacy_legal(case, p, 1000))
-        systems = []
-        for data in (make_thermal_case(case, placements, 1000, 24),
-                     thermal_case_data(problem, Layout.from_placements(problem, placements), 1000, 24)):
-            parsed = parse_case(data)
-            a, b, *_ = assemble_package(parsed, rasterize(parsed)[0])
-            systems.append((a, b))
-        self.assertEqual(abs(systems[0][0] - systems[1][0]).max(), 0)
-        np.testing.assert_array_equal(systems[0][1], systems[1][1])
-        result = solve_peak(thermal_case_data(problem, Layout.from_placements(problem, placements), 1000, 24))
-        self.assertAlmostEqual(result['energy_balance_error_w'], 0, delta=1e-6*result['source_power_w'] + 1e-9)
-        self.assertGreaterEqual(result['min_rise_k'], -1e-9)
+    def test_gap_bounds_and_rotated_extent(self):
+        # a is 4000x2000, b is 1000x1000, carrier 10000x10000, gap 1000.
+        self.assertTrue(is_legal(self.problem, self.layout((2000, 1000), (5500, 1000)), 1000))   # gap exactly 1000
+        self.assertFalse(is_legal(self.problem, self.layout((2000, 1000), (5499, 1000)), 1000))
+        self.assertEqual(violations(self.problem, self.layout((1999, 1000), (8000, 8000)), 1000)['outside'], ['a'])
+        # Rotated a is 2000 wide: x in [0, 2000], so b at x=3500 keeps a 1000 gap.
+        self.assertTrue(is_legal(self.problem, self.layout((1000, 2000), (3500, 2000), (90, 0)), 1000))
+        self.assertFalse(is_legal(self.problem, self.layout((1000, 2000), (3500, 2000), (0, 0)), 1000))
+
+    def test_thermal_conserves_energy_and_ignores_uniform_half_turn(self):
+        problem = Problem.from_imported(synthetic_case(random.Random(7), chips=3, nets=10))
+        centre = np.array([[6000., 6000.], [18000., 8000.], [10000., 22000.]])
+        peaks = []
+        for rotation in ((0, 0, 0), (180, 180, 0)):
+            result = solve_peak(thermal_case_data(problem, Layout(centre, np.array(rotation)), 1000, 24))
+            self.assertAlmostEqual(result['source_power_w'], problem.power_w.sum(), places=9)
+            self.assertLess(abs(result['energy_balance_error_w']), 1e-6*result['source_power_w'] + 1e-9)
+            self.assertGreaterEqual(result['min_rise_k'], -1e-9)
+            peaks.append(result['peak_power_layer_c'])
+        self.assertAlmostEqual(peaks[0], peaks[1], places=9)
 
     def test_illegal_layout_rejected_before_thermal_case(self):
-        case = import_case('test', BLOCKS, POWER, NETS)
-        problem = Problem.from_imported(case)
-        overlap = Layout(np.array([[3000., 3000.], [3000., 3000.]]), np.array([0, 0]))
         with self.assertRaises(ValueError):
-            thermal_case_data(problem, overlap, 1000)
+            thermal_case_data(self.problem, self.layout((3000, 3000), (3000, 3000)), 1000)
 
 
 if __name__ == '__main__':

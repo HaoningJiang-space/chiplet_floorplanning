@@ -4,15 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chiplet-floorplanning"
-version = "0.8.0"
-description = "Evidence-aware fixed-layout chiplet power and thermal evaluation"
+version = "0.9.0"
+description = "Thermal- and interconnect-aware 2.5D chiplet placement research"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.26,<3", "scipy>=1.11,<2"]
-
-[project.optional-dependencies]
-validation = ["PyYAML>=6,<7", "matplotlib>=3.9,<4", "zstandard>=0.23,<1", "pyamg>=5.4,<6"]
-layout = ["klayout==0.30.13"]
 
 [project.scripts]
 chiplet-floorplanning = "chiplet_floorplanning.cli:main"
