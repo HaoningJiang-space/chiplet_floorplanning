@@ -68,18 +68,24 @@ class Evaluator:
         return np.array([self.cache[key] for key in keys])
 
 
-def sample_legal(problem, gap_um, rng, grid_um=1000):
-    """Place chiplets one at a time, uniformly over remaining legal grid corners.
+def sample_legal(problem, gap_um, rng, grid_um=1000, uniform_tries=20, packed_tries=2000):
+    """Place chiplets one at a time on legal grid corners; not uniform over the joint legal set.
 
-    Not uniform over the joint legal set; restarts when a chiplet has no room.
+    First try uniform choices among remaining legal corners. Dense cases dead-end,
+    so then pack largest-first toward a random carrier corner, choosing among the
+    most compact 5% of legal corners.
     """
     width, height = problem.carrier_um
-    while True:
+    area = problem.size_um.prod(axis=1)
+    for attempt in range(uniform_tries + packed_tries):
+        packed = attempt >= uniform_tries
         rotation = rng.choice((0, 90, 180, 270), size=problem.count)
         size = np.where((rotation % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)
+        order = np.lexsort((rng.random(problem.count), -area)) if packed else rng.permutation(problem.count)
+        flip = rng.integers(2, size=2)
         centre = np.zeros((problem.count, 2))
         placed = []
-        for k in rng.permutation(problem.count):
+        for k in order:
             x0, y0 = np.meshgrid(np.arange(0, width - size[k, 0] + 1, grid_um),
                                  np.arange(0, height - size[k, 1] + 1, grid_um), indexing="ij")
             ok = np.ones(x0.shape, bool)
@@ -90,6 +96,11 @@ def sample_legal(problem, gap_um, rng, grid_um=1000):
             choices = np.flatnonzero(ok)
             if not choices.size:
                 break
+            if packed:
+                # Distance from the chosen corner; keep the most compact few percent.
+                dx = np.where(flip[0], width - size[k, 0] - x0.flat[choices], x0.flat[choices])
+                dy = np.where(flip[1], height - size[k, 1] - y0.flat[choices], y0.flat[choices])
+                choices = choices[np.argsort(dx + dy, kind="stable")[:max(1, choices.size//20)]]
             pick = rng.choice(choices)
             centre[k] = (x0.flat[pick] + size[k, 0]/2, y0.flat[pick] + size[k, 1]/2)
             placed.append(k)
@@ -97,6 +108,7 @@ def sample_legal(problem, gap_um, rng, grid_um=1000):
             layout = Layout(centre, rotation)
             assert is_legal(problem, layout, gap_um)
             return layout
+    raise RuntimeError("no legal layout found; the case may be too dense for this sampler")
 
 
 def pareto_front(length_m, peak_c):
