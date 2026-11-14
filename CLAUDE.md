@@ -35,6 +35,9 @@ keep its 256 cores busy (load average about 220), so cap process pools at about 
 and set `OPENBLAS_NUM_THREADS=1`. Never `pkill -f <script>` through ssh; the pattern also matches
 the remote shell's own command line.
 
+HTTPS pushes use the gh OAuth token, which lacks the `workflow` scope. Push commits that touch
+`.github/workflows/` with `git push git@github.com:HaoningJiang-space/chiplet_floorplanning.git main`.
+
 There is no configured linter. CI runs the unit tests and both example CLI evaluations;
 pushes use `[skip ci]`, so run those checks yourself.
 
