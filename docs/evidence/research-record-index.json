@@ -1,10 +1,10 @@
 {
   "scope": "All staged/tracked docs records at this acceptance milestone, excluding this self-index; raw ignored results and restricted dependencies are not indexed.",
-  "parent_commit": "972fba0bdbf30e90d2b8a242cf89e470668cfa80",
-  "record_count": 304,
+  "parent_commit": "ec6b829e8f7acf51b2a77005fc3f787c403e5daf",
+  "record_count": 307,
   "counts_by_kind": {
-    "json": 126,
-    "md": 152,
+    "json": 127,
+    "md": 154,
     "pdf": 11,
     "png": 14,
     "svg": 1
@@ -121,6 +121,11 @@
       "kind": "md"
     },
     {
+      "path": "docs/atplace-case1-step-size-protocol.md",
+      "git_blob_sha1": "6748d7358202eae7268491723a25bf55ba6369c9",
+      "kind": "md"
+    },
+    {
       "path": "docs/atplace-case1-temperature-feedback-protocol.md",
       "git_blob_sha1": "73f8c3e66fb59b40771323486a698dfa7c5682bf",
       "kind": "md"
@@ -143,6 +148,11 @@
     {
       "path": "docs/atplace-case1-tight-budget-results.md",
       "git_blob_sha1": "b3d7fd0187de2292ddbb566f02f9584bf18a486b",
+      "kind": "md"
+    },
+    {
+      "path": "docs/atplace-case1-tight-budget-review.md",
+      "git_blob_sha1": "764692848fc5a268d77eaa13f82b9d3b16eee74e",
       "kind": "md"
     },
     {
@@ -339,6 +349,11 @@
       "path": "docs/evidence/atplace-case1-slack-v1.png",
       "git_blob_sha1": "6d779463957b4c18dac15b51d129034143ace365",
       "kind": "png"
+    },
+    {
+      "path": "docs/evidence/atplace-case1-step-size-plan-v1.json",
+      "git_blob_sha1": "62c008ade1555ae65ca806a80eba6988a754151f",
+      "kind": "json"
     },
     {
       "path": "docs/evidence/atplace-case1-temperature-feedback-plan-v1.json",
@@ -1042,7 +1057,7 @@
     },
     {
       "path": "docs/overall-research-status.md",
-      "git_blob_sha1": "630b8f3176122f95067e9381a9f5f55af803f506",
+      "git_blob_sha1": "942f0b592b0b2b99748327571ccb02a24d4a2a19",
       "kind": "md"
     },
     {
