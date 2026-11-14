@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "analyzed_commit": "a17455b97a606879720507c1433f2bf795cce8ef",
+  "fetch_succeeded": true,
+  "question": "Can aggregate peak temperature and summed pin distance both improve while local die temperature and individual net distances worsen?",
+  "protocol": {
+    "kind": "post_hoc_two_fixed_layout_diagnostic",
+    "gap_um": 1000,
+    "fv_resolution": 64,
+    "new_fv_solves": 2,
+    "new_optimization_runs": 0,
+    "input_path": "results/physical-calibration/atplace-import-v1/Case1.json",
+    "input_sha256": "f2d55207a86fee7e03d14778ac5eea3847d3a101584d451a751d654295a4bb72",
+    "temperature_observation": "maximum and mesh-area-weighted mean over each die rectangle in the power-layer FV field",
+    "net_observation": "individual two-pin source-pin Manhattan lower bound; not a routed channel"
+  },
+  "layout_sources": [
+    {
+      "path": "docs/evidence/atplace-case1-step-size-plan-v1.json",
+      "sha256": "5296f5757d833c0e2c291cd608ac087ab2381311fd8d4da1e20bef14f1caa8e2",
+      "selection": "best_known_reference.temperature_at_length.selected",
+      "placement": [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 6000,
+          "centre_y_um": 17000,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 33000,
+          "centre_y_um": 9000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 21000,
+          "centre_y_um": 33000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 7000,
+          "centre_y_um": 6000,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 37000,
+          "centre_y_um": 26000,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 4000,
+          "centre_y_um": 30000,
+          "rotation_deg": 0
+        }
+      ],
+      "published_peak_c": 103.22137470042746
+    },
+    {
+      "path": "docs/evidence/case1-reference-front-v1.json",
+      "sha256": "f490bc578f86146ed324b2159e0c30d132fb3d47543eecf6faf531eac25d0b5e",
+      "selection": "coolest_within_length_cap[\"35.0147365608\"]",
+      "placement": [
+        {
+          "chiplet": "CPU1_0",
+          "centre_x_um": 6000.0,
+          "centre_y_um": 15000.0,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "GPU_0",
+          "centre_x_um": 33000.0,
+          "centre_y_um": 9000.0,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "GPU_1",
+          "centre_x_um": 18000.0,
+          "centre_y_um": 33000.0,
+          "rotation_deg": 180
+        },
+        {
+          "chiplet": "HBM_0",
+          "centre_x_um": 7000.0,
+          "centre_y_um": 4000.0,
+          "rotation_deg": 90
+        },
+        {
+          "chiplet": "HBM_1",
+          "centre_x_um": 36000.0,
+          "centre_y_um": 23000.0,
+          "rotation_deg": 270
+        },
+        {
+          "chiplet": "HBM_2",
+          "centre_x_um": 4000.0,
+          "centre_y_um": 36000.0,
+          "rotation_deg": 0
+        }
+      ],
+      "published_peak_c": 102.66810572246547
+    }
+  ],
+  "results": {
+    "historical_reference": {
+      "peak_c": 103.22137471317309,
+      "sum_length_m": 31.536030625600002,
+      "longest_net_mm": 20.0810012,
+      "die_temperature": {
+        "CPU1_0": {
+          "peak_c": 92.47343344126847,
+          "area_mean_c": 88.78559355048651
+        },
+        "GPU_0": {
+          "peak_c": 102.21341675567754,
+          "area_mean_c": 96.83281653194182
+        },
+        "GPU_1": {
+          "peak_c": 103.22137471317309,
+          "area_mean_c": 98.23781044569078
+        },
+        "HBM_0": {
+          "peak_c": 80.97397080714362,
+          "area_mean_c": 76.74003721895336
+        },
+        "HBM_1": {
+          "peak_c": 87.59259827650358,
+          "area_mean_c": 83.17308645014222
+        },
+        "HBM_2": {
+          "peak_c": 84.09935019327982,
+          "area_mean_c": 79.36897543289042
+        }
+      }
+    },
+    "reference_front": {
+      "peak_c": 102.66810572246496,
+      "sum_length_m": 26.174833658000004,
+      "longest_net_mm": 21.709002000000005,
+      "die_temperature": {
+        "CPU1_0": {
+          "peak_c": 92.49115436172508,
+          "area_mean_c": 88.6991914468216
+        },
+        "GPU_0": {
+          "peak_c": 101.54320931085041,
+          "area_mean_c": 96.53166154031382
+        },
+        "GPU_1": {
+          "peak_c": 102.66810572246496,
+          "area_mean_c": 97.84756216592211
+        },
+        "HBM_0": {
+          "peak_c": 80.30099905851151,
+          "area_mean_c": 76.25193402411402
+        },
+        "HBM_1": {
+          "peak_c": 89.26354309329233,
+          "area_mean_c": 83.88285546536638
+        },
+        "HBM_2": {
+          "peak_c": 84.26264038929455,
+          "area_mean_c": 78.63648997105092
+        }
+      }
+    },
+    "comparison": {
+      "peak_change_k": -0.5532689907081334,
+      "sum_length_change_fraction": -0.17000227553203662,
+      "nets_lengthened": 528,
+      "nets_shortened": 1936,
+      "nets_unchanged": 704,
+      "most_lengthened_net_index": 2816,
+      "most_lengthened_net_chiplets": [
+        "GPU_1",
+        "GPU_0"
+      ],
+      "most_lengthened_old_mm": 18.527500800000002,
+      "most_lengthened_new_mm": 21.527500800000002,
+      "max_length_increase_mm": 3.0,
+      "die_delta": {
+        "CPU1_0": {
+          "peak_change_k": 0.01772092045661111,
+          "area_mean_change_k": -0.08640210366490919
+        },
+        "GPU_0": {
+          "peak_change_k": -0.6702074448271276,
+          "area_mean_change_k": -0.3011549916279961
+        },
+        "GPU_1": {
+          "peak_change_k": -0.5532689907081334,
+          "area_mean_change_k": -0.39024827976867016
+        },
+        "HBM_0": {
+          "peak_change_k": -0.6729717486321078,
+          "area_mean_change_k": -0.48810319483933995
+        },
+        "HBM_1": {
+          "peak_change_k": 1.6709448167887473,
+          "area_mean_change_k": 0.709769015224154
+        },
+        "HBM_2": {
+          "peak_change_k": 0.16329019601472794,
+          "area_mean_change_k": -0.7324854618395022
+        }
+      }
+    },
+    "input_sha256": "f2d55207a86fee7e03d14778ac5eea3847d3a101584d451a751d654295a4bb72",
+    "scope": "Two fixed published layouts, same source pins and declared FV recipe. Per-die temperatures are numerical field summaries; no transistor pad location or timing model is assigned."
+  },
+  "historical_timing_arithmetic": {
+    "source": "docs/evidence/local-xyce-three-layout-comparison.json",
+    "source_sha256": "b5c78bc8caddf0038ab3310a911376eb613297f80ee8425c2be4a9535e2b996b",
+    "result": {
+      "path_comparisons": 96,
+      "stable": 96,
+      "resolved_interaction": 85,
+      "max_step_sensitivity_ps": 0.3296505836836161,
+      "max_abs_model_interaction_difference_ps": 0.21762391461521702,
+      "max_abs_fine_absolute_pair_model_difference_ps": 45.24469889533478,
+      "max_abs_interaction_across_both_steps_ps": 5.76517696527111
+    },
+    "fresh_spice_or_sta_run": false
+  },
+  "primary_sources": [
+    {
+      "url": "https://arodes.hes-so.ch/record/7690/files/published%20version.pdf",
+      "sha256": "f91a89b0a8bd60b5cfcc6276b3ce08ac62dd5bf4990e4d7873cfddff15c00bca",
+      "inspection": "Accepted manuscript, experimental protocol page 10, visually inspected; 100 C protection cutoff and sensor observation confirmed."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/pulp-platform/cheshire-ihp130-o/560f00f1c14a7f2f22861df6bb4816eacf7f2e7e/target/ihp13/openroad/src/basilisk.sdc",
+      "sha256": "f589a4c9b07a2de5468f4a8eee03872d560041fed802665ae0650ece65dfcf1b",
+      "inspection": "11 ns system, 44 ns incoming serial clock, generated edge lists {1 5 9}/{3 7 11}; configuration is not a universal link protocol."
+    }
+  ],
+  "accepted_scope": "Counterexample to inferring componentwise improvement from the two aggregate metrics within this fixed FV/pin model.",
+  "gaps": [
+    "No target-package measurement calibration.",
+    "Per-die temperature summaries are not mapped to transistor or Pad locations.",
+    "No detailed routed channel or real interface constraints assigned to these Case1 nets.",
+    "Historical available windows exclude independently characterized receiver setup/hold; no physical slack claim.",
+    "Raw historical transistor waves and PDK assets were not replayed in this review."
+  ],
+  "next_bounded_item": "Choose one sourced interface with matching endpoints, library and clock phase; validate per-lane temperature/route/arrival mapping on fixed layouts before interpreting real timing.",
+  "validation": {
+    "source_code_unchanged": true,
+    "prior_same_commit_unit_tests_passed": 64,
+    "prior_same_commit_example_clis": [
+      "two_chiplets",
+      "layered_two_chiplets"
+    ],
+    "prior_evidence": "results/status-check-a17455b/verification.json",
+    "checks": "Published peaks reproduced within 1e-6 K; 3168 net accounting and aggregate arithmetic checked; production FV solve admission retained."
+  }
+}
