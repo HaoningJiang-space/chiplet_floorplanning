@@ -59,17 +59,20 @@ def main():
         solves = evaluator.solves
     layouts = run.layouts
     length, peak, _ = run.arrays()
+    die_peak, max_net = run.local()
     wall = time.perf_counter() - started
     front = pareto_front(length, peak)
 
     def point(i):
-        return None if i is None else dict(index=i, length_m=float(length[i]), peak_c=float(peak[i]))
+        return None if i is None else dict(index=i, length_m=float(length[i]), peak_c=float(peak[i]),
+                                           max_net_mm=float(max_net[i]),
+                                           die_peak_c=dict(zip(problem.names, map(float, die_peak[i]))))
     summary = dict(
         case=problem.name, status='completed', seed=args.seed, budget_unit='distinct FV solves',
         fv_solve_budget=args.fv_solves, distinct_fv_solves=solves, distinct_layouts=len(layouts),
         case_path=str(args.case), case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(),
         random_starts=args.random_starts, descent_starts=args.descent_starts, batch=args.batch,
-        code_dirty=source['dirty'],
+        code_dirty=source['dirty'], stop_reason=run.stop_reason,
         workers=args.workers, wall_seconds=wall, start_descent_seconds=descent_seconds,
         gap_um=args.gap_um, fv_resolution=args.resolution, grid_um=1000,
         code_commit=commit,
@@ -80,7 +83,8 @@ def main():
               'not routed wirelength, timing or calibrated temperature')
     (args.output/'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
     np.savez_compressed(args.output/'layouts.npz', centre_um=np.array([l.centre_um for l in layouts]),
-                        rotation_deg=np.array([l.rotation_deg for l in layouts]), length_m=length, peak_c=peak)
+                        rotation_deg=np.array([l.rotation_deg for l in layouts]), length_m=length, peak_c=peak,
+                        die_peak_c=die_peak, max_net_mm=max_net, die_names=np.array(problem.names))
     print(json.dumps({k: summary[k] for k in ('distinct_fv_solves', 'distinct_layouts', 'wall_seconds', 'coolest_within_length_cap',
                                               'shortest_within_peak_cap')}, indent=2))
     print('front:', [(round(p['length_m'], 3), round(p['peak_c'], 4)) for p in summary['front']])

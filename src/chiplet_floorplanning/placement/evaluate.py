@@ -1,8 +1,9 @@
 """Exact layout evaluation, constructive sampling and physical comparison metrics.
 
-Temperature is the declared FV model's power-layer peak (degC); length is the
-two-pin source-pin Manhattan lower bound (m). Neither is routed wirelength,
-timing or a calibrated junction temperature.
+Temperature is the declared FV model's power-layer peak (degC), with each die's
+own peak kept alongside so local degradation stays visible; length is the
+two-pin source-pin Manhattan lower bound (m), also available per net. None of
+these is routed wirelength, timing or a calibrated junction temperature.
 """
 from concurrent.futures import ProcessPoolExecutor
 
@@ -10,7 +11,7 @@ import numpy as np
 
 from .geometry import boxes, is_legal, pin_manhattan_um
 from .problem import Layout
-from .thermal import solve_peak, thermal_case_data
+from .thermal import die_peaks_c, solve, thermal_case_data
 
 
 def thermal_key(problem, layout):
@@ -18,10 +19,14 @@ def thermal_key(problem, layout):
     return boxes(problem, layout).round(6).tobytes()
 
 
-def _peak(args):
+def _peaks(args):
+    """[global power-layer peak, peak of each die], degC.
+
+    solve() already rejects non-finite, inaccurate or non-conserving solutions.
+    """
     problem, layout, gap_um, resolution = args
-    # solve() already rejects non-finite, inaccurate or non-conserving solutions.
-    return solve_peak(thermal_case_data(problem, layout, gap_um, resolution))["peak_power_layer_c"]
+    summary, rise, edges = solve(thermal_case_data(problem, layout, gap_um, resolution))
+    return np.r_[summary["peak_power_layer_c"], die_peaks_c(problem, layout, rise, edges)]
 
 
 class Evaluator:
@@ -45,6 +50,14 @@ class Evaluator:
     def length_m(self, layout):
         return float(pin_manhattan_um(self.problem, layout).sum()/1e6)
 
+    def max_net_mm(self, layout):
+        return float(pin_manhattan_um(self.problem, layout).max()/1000) if len(self.problem.pin_chip) else 0.0
+
+    def die_peaks_c(self, layouts):
+        """(n_layouts, n_dies) per-die FV peaks; uses the same cache as peaks_c."""
+        self.peaks_c(layouts)
+        return np.array([self.cache[thermal_key(self.problem, layout)][1:] for layout in layouts])
+
     def peaks_c(self, layouts):
         """FV peaks for legal layouts; solves each distinct thermal problem once."""
         keys = [thermal_key(self.problem, layout) for layout in layouts]
@@ -55,15 +68,15 @@ class Evaluator:
         jobs = [(self.problem, layout, self.gap_um, self.resolution) for layout in todo.values()]
         chunk = max(1, len(jobs)//(4*self.workers))
         if self.pool and len(jobs) > 1:
-            peaks = list(self.pool.map(_peak, jobs, chunksize=chunk))
+            peaks = list(self.pool.map(_peaks, jobs, chunksize=chunk))
         elif self.workers > 1 and len(jobs) > 1:
             with ProcessPoolExecutor(self.workers) as pool:
-                peaks = list(pool.map(_peak, jobs, chunksize=chunk))
+                peaks = list(pool.map(_peaks, jobs, chunksize=chunk))
         else:
-            peaks = [_peak(job) for job in jobs]
+            peaks = [_peaks(job) for job in jobs]
         self.cache.update(zip(todo, peaks))
         self.solves += len(jobs)
-        return np.array([self.cache[key] for key in keys])
+        return np.array([self.cache[key][0] for key in keys])
 
 
 def sample_legal(problem, gap_um, rng, grid_um=1000, uniform_tries=20, packed_tries=200):

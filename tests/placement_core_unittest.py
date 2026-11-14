@@ -298,6 +298,22 @@ class PlacementCoreTest(unittest.TestCase):
                     method(run, start, np.random.default_rng(4), batch=8, length_caps_m=(1e9,))
                 self.assertIn(run.stop_reason, ('stalled', 'budget', 'sampler_failed'))
                 self.assertLessEqual(run.rounds, 3 + 5)
+    def test_die_peaks_bound_the_global_peak_and_follow_each_die(self):
+        problem = Problem.from_imported(synthetic_case(random.Random(29), chips=4, nets=30))
+        rng = np.random.default_rng(8)
+        layouts = [sample_legal(problem, 1000, rng) for _ in range(3)]
+        with Evaluator(problem, 1000, resolution=24) as evaluator:
+            run = Run(evaluator, 3)
+            run.evaluate(layouts)
+            die_peak, max_net = run.local()
+            solves = evaluator.solves
+        self.assertEqual(solves, 3)  # per-die peaks come from the same solves
+        self.assertEqual(die_peak.shape, (3, problem.count))
+        # Heat is generated only inside dies, so the hottest cell lies in some die.
+        self.assertTrue(np.allclose(die_peak.max(axis=1), run.arrays()[1], rtol=0, atol=1e-12))
+        lengths = [pin_manhattan_um(problem, l).max()/1000 for l in layouts]
+        self.assertTrue(np.allclose(max_net, lengths))
+
 
 if __name__ == '__main__':
     unittest.main()

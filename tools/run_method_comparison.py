@@ -65,12 +65,15 @@ def freeze(args):
     print(json.dumps(plan, indent=2))
 
 
-def metrics(plan, length, peak, cost):
+def metrics(plan, length, peak, cost, die_peak, max_net, names):
+    """Main/reverse metrics at budget checkpoints; each pick also reports its local view."""
     out = {}
     for fraction in CHECKPOINTS:
-        upto = cost <= fraction*plan['fv_solves']
+        upto = np.flatnonzero(cost <= fraction*plan['fv_solves'])
         l, p = length[upto], peak[upto]
-        pick = lambda i: None if i is None else dict(length_m=float(l[i]), peak_c=float(p[i]))
+        pick = lambda i: None if i is None else dict(
+            length_m=float(l[i]), peak_c=float(p[i]), max_net_mm=float(max_net[upto[i]]),
+            die_peak_c=dict(zip(names, map(float, die_peak[upto[i]]))))
         out[str(fraction)] = dict(
             coolest_within_length_cap={str(c): pick(coolest_within(l, p, c)) for c in plan['length_caps_m']},
             shortest_within_peak_cap={str(c): pick(shortest_within(l, p, c)) for c in plan['peak_caps_c']})
@@ -96,16 +99,19 @@ def execute(args):
                 METHODS[name](run, initial, np.random.default_rng([seed, len(name)] + [ord(c) for c in name]),
                               batch=plan['batch'], length_caps_m=plan['length_caps_m'])
             length, peak, cost = run.arrays()
+            die_peak, max_net = run.local()
             record = dict(method=name, seed=seed, fv_solves=evaluator.solves, layouts=len(run.layouts),
                           stop_reason=run.stop_reason, rounds=run.rounds,
                           wall_seconds=time.perf_counter() - started, workers=args.workers,
                           code_commit=source['commit'], code_dirty=source['dirty'],
-                          plan_sha256=sha256(args.plan), metrics=metrics(plan, length, peak, cost))
+                          plan_sha256=sha256(args.plan),
+                          metrics=metrics(plan, length, peak, cost, die_peak, max_net, problem.names))
             stem = args.output/f'{name}-seed{seed}'
             stem.with_suffix('.json').write_text(json.dumps(record, indent=2) + '\n')
             np.savez_compressed(stem.with_suffix('.npz'), centre_um=np.array([l.centre_um for l in run.layouts]),
                                 rotation_deg=np.array([l.rotation_deg for l in run.layouts]),
-                                length_m=length, peak_c=peak, cost=cost)
+                                length_m=length, peak_c=peak, cost=cost, die_peak_c=die_peak,
+                                max_net_mm=max_net, die_names=np.array(problem.names))
             final = record['metrics']['1.0']
             print(name, seed, f"{record['wall_seconds']:.0f}s",
                   {k: v and round(v['peak_c'], 4) for k, v in final['coolest_within_length_cap'].items()},

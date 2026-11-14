@@ -24,6 +24,7 @@ class Run:
         self.evaluator, self.limit = evaluator, fv_solves
         self.stall_rounds, self.max_rounds = stall_rounds, max_rounds
         self.layouts, self.lengths, self.peaks, self.cost = [], [], [], []
+        self.die_peaks, self.max_nets = [], []  # local view: per-die peaks (degC), longest net (mm)
         self.index = {}
         self.rounds, self.stale, self.stop_reason = 0, 0, None
         self._solves_seen = evaluator.solves
@@ -81,6 +82,8 @@ class Run:
             new.append(layout)
         if new:
             peaks = self.evaluator.peaks_c(new)
+            self.die_peaks += list(self.evaluator.die_peaks_c(new))  # cached: no extra solve
+            self.max_nets += [self.evaluator.max_net_mm(layout) for layout in new]
             for layout, peak in zip(new, peaks):
                 self.index[layout_key(layout)] = len(self.layouts)
                 self.layouts.append(layout)
@@ -91,6 +94,10 @@ class Run:
 
     def arrays(self):
         return np.array(self.lengths), np.array(self.peaks), np.array(self.cost)
+
+    def local(self):
+        """Per-die peaks (n_layouts, n_dies) in degC and the longest single net per layout in mm."""
+        return np.array(self.die_peaks), np.array(self.max_nets)
 
 
 def _children(run, parents, rng, batch, max_moves, accept=None):

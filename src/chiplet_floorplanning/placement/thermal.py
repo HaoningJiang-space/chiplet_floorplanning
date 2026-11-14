@@ -13,6 +13,7 @@ from ..power import rasterize
 from .geometry import boxes, violations
 
 AMBIENT_C = 45.0
+PACKAGE_MM = 200.0
 PROVENANCE = ("ATPlace source geometry/power/pins; declared TAP-family FV materials, "
               "fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration")
 
@@ -28,7 +29,7 @@ def thermal_case_data(problem, layout, gap_um, resolution=64):
     width, height = (s/1000 for s in problem.carrier_um)
     if max(width, height) > 100:
         raise ValueError("source carrier exceeds this declared common spreader")
-    ox, oy = (200 - width)/2, (200 - height)/2
+    ox, oy = (PACKAGE_MM - width)/2, (PACKAGE_MM - height)/2
     b = boxes(problem, layout)
     chips = []
     for k, name in enumerate(problem.names):
@@ -84,3 +85,16 @@ def solve(data):
 
 def solve_peak(data):
     return solve(data)[0]
+
+
+def die_peaks_c(problem, layout, rise, edges):
+    """Hottest power-layer cell inside each die, degC (cell centres strictly inside the die box)."""
+    width, height = (s/1000 for s in problem.carrier_um)
+    offset = np.array([(PACKAGE_MM - width)/2, (PACKAGE_MM - height)/2])
+    b = boxes(problem, layout)/1000 + np.r_[offset, offset]
+    xc, yc = (edges[0][:-1] + edges[0][1:])/2, (edges[1][:-1] + edges[1][1:])/2
+    peaks = []
+    for x0, y0, x1, y1 in b:
+        inside = np.ix_((yc > y0) & (yc < y1), (xc > x0) & (xc < x1))
+        peaks.append(float(np.nanmax(rise[inside]) + AMBIENT_C))
+    return np.array(peaks)
