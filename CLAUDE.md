@@ -55,7 +55,13 @@ Delete unused code instead of keeping it around; do not rebuild per-stage `run_*
   thermal pipeline used by both `placement/thermal.py` and `cli.py`. `model.py` strictly validates
   units and unknown fields (schema in `docs/model.md`, JSON lengths in mm). The CLI writes
   `input.json`, `grid.csv` and `report.json`. Thermal calibration and timing stay explicitly `not_run`.
-- `tools/import_atplace_cases.py` imports ATPlace Case1–10 at pinned source commit `fe3dbfd`.
+- `evaluate.py` has the `Evaluator` (exact FV peak with a thermal-key cache and a persistent process
+  pool when used as a context manager), the constructive legal sampler, and the metric selectors
+  (`coolest_within`, `shortest_within`, `pareto_front`). Each returns one real layout.
+  `search.py` has legal moves, exact length descent and batched Pareto local search.
+  `surrogate.py` (shifted single-chip FV kernels) ranks well but is biased by about 1.8 K, so use it only to screen.
+- `tools/run_reference_front.py` (budget = distinct FV evaluations) and `tools/diagnose_superposition.py`
+  run on eex005. `tools/import_atplace_cases.py` imports ATPlace Case1–10 at pinned source commit `fe3dbfd`.
 
 ## Research records
 

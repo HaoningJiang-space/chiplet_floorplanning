@@ -8,8 +8,10 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from atplace_import_unittest import BLOCKS, POWER, NETS
 from import_atplace_cases import parse_case as import_case
-from chiplet_floorplanning.placement import (Layout, Problem, is_legal, pin_manhattan_um, solve_peak,
-                                             thermal_case_data, violations)
+from chiplet_floorplanning.placement.search import layout_key, length_target, pareto_search
+from chiplet_floorplanning.placement import (Evaluator, Layout, Problem, Superposition, coolest_within,
+                                             is_legal, pareto_front, pin_manhattan_um, sample_legal,
+                                             shortest_within, solve_peak, thermal_case_data, violations)
 
 # Legacy equivalence (519 recorded Case1 layouts, max |dT| 1.6e-8 K) is recorded in commit f1df9fd.
 
@@ -92,6 +94,56 @@ class PlacementCoreTest(unittest.TestCase):
     def test_illegal_layout_rejected_before_thermal_case(self):
         with self.assertRaises(ValueError):
             thermal_case_data(self.problem, self.layout((3000, 3000), (3000, 3000)), 1000)
+
+    def test_metrics_select_single_real_layouts(self):
+        length, peak = np.array([3., 1., 2., 1.]), np.array([90., 95., 92., 94.])
+        self.assertEqual(pareto_front(length, peak), [3, 2, 0])
+        self.assertEqual(coolest_within(length, peak, 2.0), 2)
+        self.assertIsNone(coolest_within(length, peak, 0.5))
+        self.assertEqual(shortest_within(length, peak, 92.0), 2)
+
+    def test_sampler_is_legal_and_evaluator_shares_thermal_problems(self):
+        problem = Problem.from_imported(synthetic_case(random.Random(3), chips=3, nets=10))
+        rng = np.random.default_rng(0)
+        layouts = [sample_legal(problem, 1000, rng) for _ in range(5)]
+        self.assertTrue(all(is_legal(problem, layout, 1000) for layout in layouts))
+        evaluator = Evaluator(problem, 1000, resolution=24)
+        turned = Layout(layouts[0].centre_um, (layouts[0].rotation_deg + 180) % 360)
+        peaks = evaluator.peaks_c([layouts[0], turned])
+        self.assertEqual(evaluator.solves, 1)
+        self.assertEqual(peaks[0], peaks[1])
+
+    def test_superposition_is_exact_for_one_isolated_chip_up_to_sampling(self):
+        problem = Problem.from_imported(synthetic_case(random.Random(5), chips=2, nets=4))
+        problem = Problem(problem.name, problem.names[:1], problem.size_um[:1], problem.power_w[:1],
+                          problem.carrier_um, np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        layout = Layout(np.array([[15000., 15000.]]), np.array([0]))
+        model = Superposition(problem, 1000, resolution=32)
+        exact = solve_peak(thermal_case_data(problem, layout, 1000, 32))['peak_power_layer_c']
+        # Same physics except the enlarged kernel carrier and point sampling of cell values.
+        self.assertLess(abs(model.peak_c(layout) - exact), 0.05*(exact - 45))
+
+    def test_length_target_is_single_chip_optimum(self):
+        problem = Problem.from_imported(synthetic_case(random.Random(11), chips=4, nets=120))
+        layout = sample_legal(problem, 1000, np.random.default_rng(1))
+        for k in range(problem.count):
+            centre = layout.centre_um.copy()
+            centre[k] = length_target(problem, layout, k)
+            best = pin_manhattan_um(problem, Layout(centre, layout.rotation_deg)).sum()
+            for shift in ((137, 0), (-137, 0), (0, 59), (0, -59)):
+                moved = centre.copy()
+                moved[k] += shift
+                self.assertGreaterEqual(pin_manhattan_um(problem, Layout(moved, layout.rotation_deg)).sum(), best - 1e-6)
+
+    def test_pareto_search_returns_distinct_legal_layouts(self):
+        problem = Problem.from_imported(synthetic_case(random.Random(13), chips=3, nets=40))
+        rng = np.random.default_rng(2)
+        with Evaluator(problem, 1000, resolution=16) as evaluator:
+            layouts, length, peak = pareto_search(evaluator, [sample_legal(problem, 1000, rng)], rng, 12, batch=4)
+        self.assertEqual(len(layouts), 12)
+        self.assertEqual(len({layout_key(l) for l in layouts}), 12)
+        self.assertTrue(all(is_legal(problem, l, 1000) for l in layouts))
+        self.assertEqual(peak.shape, length.shape)
 
 
 if __name__ == '__main__':

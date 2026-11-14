@@ -13,6 +13,7 @@ from ..package import assemble_package
 from ..power import rasterize
 from .geometry import boxes, violations
 
+AMBIENT_C = 45.0
 PROVENANCE = ("ATPlace source geometry/power/pins; declared TAP-family FV materials, "
               "fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration")
 
@@ -54,22 +55,31 @@ def thermal_case_data(problem, layout, gap_um, resolution=64):
     return dict(schema_version=1, name="atplace_fv_" + problem.name,
                 package_mm=dict(width=200, height=200),
                 grid=dict(nx=resolution, ny=resolution, mode="geometry_conformal"), chiplets=chips,
-                thermal=dict(model="layered_package_steady", ambient_c=45, top_h_w_m2k=1/(.1*.06**2),
+                thermal=dict(model="layered_package_steady", ambient_c=AMBIENT_C, top_h_w_m2k=1/(.1*.06**2),
                              bottom_h_w_m2k=0, power_layer="dies", provenance=PROVENANCE, layers=layers),
                 interconnect=dict(model="manhattan_lower_bound", r_ohm_per_mm=0, c_pf_per_mm=0,
                                   provenance="unused; source pins are evaluated separately"),
                 links=[])
 
 
-def solve_peak(data):
-    """Steady solve; returns power-layer peak (degC) with energy-balance bookkeeping."""
+def solve(data):
+    """Steady solve; power-layer peak (degC), energy-balance bookkeeping and the
+    power-layer rise field (K) on mesh cells, with cell edges in package mm."""
     case = parse_case(data)
     power, _ = rasterize(case)
     a, b, g, _, ids, power_z = assemble_package(case, power)
     theta = spsolve(a.tocsc(), b)
     removed = float(g @ theta)
-    active = ids[power_z][ids[power_z] >= 0]
-    return dict(peak_power_layer_c=float(theta[active].max() + case.thermal["ambient_c"]),
-                source_power_w=float(b.sum()), heat_removed_w=removed,
-                energy_balance_error_w=removed - float(b.sum()), min_rise_k=float(theta.min()),
-                physical_calibrated=False)
+    layer = ids[power_z]
+    rise = np.where(layer >= 0, theta[np.maximum(layer, 0)], np.nan)
+    summary = dict(peak_power_layer_c=float(np.nanmax(rise) + case.thermal["ambient_c"]),
+                   source_power_w=float(b.sum()), heat_removed_w=removed,
+                   energy_balance_error_w=removed - float(b.sum()), min_rise_k=float(theta.min()),
+                   physical_calibrated=False)
+    edges = (np.concatenate(([0], np.cumsum(case.mesh.widths_mm))),
+             np.concatenate(([0], np.cumsum(case.mesh.heights_mm))))
+    return summary, rise, edges
+
+
+def solve_peak(data):
+    return solve(data)[0]

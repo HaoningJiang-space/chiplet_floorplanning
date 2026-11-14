@@ -1,0 +1,73 @@
+"""Approximate reference (length, FV peak) front for one imported case.
+
+Start set: random legal layouts plus exact-length descents from random layouts
+(no thermal cost). Then batched Pareto local search with exact FV peaks. The
+budget is a count of distinct FV evaluations; wall time and workers are recorded.
+"""
+import argparse
+import json
+from pathlib import Path
+import subprocess
+import time
+
+import numpy as np
+
+from chiplet_floorplanning.placement import (Evaluator, Problem, coolest_within, pareto_front,
+                                             sample_legal, shortest_within)
+from chiplet_floorplanning.placement.search import length_descent, pareto_search
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--case', type=Path, required=True)
+    parser.add_argument('--seed', type=int, default=2026111300)
+    parser.add_argument('--evaluations', type=int, default=20000)
+    parser.add_argument('--random-starts', type=int, default=96)
+    parser.add_argument('--descent-starts', type=int, default=96)
+    parser.add_argument('--batch', type=int, default=96)
+    parser.add_argument('--gap-um', type=float, default=1000)
+    parser.add_argument('--resolution', type=int, default=64)
+    parser.add_argument('--workers', type=int, default=24)
+    parser.add_argument('--length-caps-m', type=float, nargs='*', default=[])
+    parser.add_argument('--peak-caps-c', type=float, nargs='*', default=[])
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    args.output.mkdir(parents=True, exist_ok=False)
+    problem = Problem.from_imported(json.loads(args.case.read_text()))
+    rng = np.random.default_rng(args.seed)
+    started = time.perf_counter()
+    initial = [sample_legal(problem, args.gap_um, rng) for _ in range(args.random_starts)]
+    initial += [length_descent(problem, sample_legal(problem, args.gap_um, rng), rng, args.gap_um)
+                for _ in range(args.descent_starts)]
+    descent_seconds = time.perf_counter() - started
+    progress = open(args.output/'progress.jsonl', 'w')
+    with Evaluator(problem, args.gap_um, args.resolution, args.workers) as evaluator:
+        layouts, length, peak = pareto_search(
+            evaluator, initial, rng, args.evaluations, args.batch,
+            log=lambda row: (progress.write(json.dumps(row) + '\n'), progress.flush()))
+        solves = evaluator.solves
+    wall = time.perf_counter() - started
+    front = pareto_front(length, peak)
+
+    def point(i):
+        return None if i is None else dict(index=i, length_m=float(length[i]), peak_c=float(peak[i]))
+    summary = dict(
+        case=problem.name, seed=args.seed, evaluations=len(layouts), distinct_fv_solves=solves,
+        workers=args.workers, wall_seconds=wall, start_descent_seconds=descent_seconds,
+        gap_um=args.gap_um, fv_resolution=args.resolution, grid_um=1000,
+        code_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+        front=[point(i) for i in front],
+        coolest_within_length_cap={str(c): point(coolest_within(length, peak, c)) for c in args.length_caps_m},
+        shortest_within_peak_cap={str(c): point(shortest_within(length, peak, c)) for c in args.peak_caps_c},
+        scope='approximate reference front of the declared FV model and two-pin length lower bound; '
+              'not routed wirelength, timing or calibrated temperature')
+    (args.output/'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
+    np.savez_compressed(args.output/'layouts.npz', centre_um=np.array([l.centre_um for l in layouts]),
+                        rotation_deg=np.array([l.rotation_deg for l in layouts]), length_m=length, peak_c=peak)
+    print(json.dumps({k: summary[k] for k in ('evaluations', 'wall_seconds', 'coolest_within_length_cap',
+                                              'shortest_within_peak_cap')}, indent=2))
+    print('front:', [(round(p['length_m'], 3), round(p['peak_c'], 4)) for p in summary['front']])
+
+
+if __name__ == '__main__':
+    main()
