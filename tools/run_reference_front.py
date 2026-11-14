@@ -2,7 +2,9 @@
 
 Start set: random legal layouts plus exact-length descents from random layouts
 (no thermal cost). Then batched Pareto local search with exact FV peaks. The
-budget is a count of distinct FV evaluations; wall time and workers are recorded.
+budget unit is distinct FV solves, including the start set; layouts sharing an
+already-solved thermal problem are counted separately. If no legal start can be
+built, a failure summary is written instead of retrying forever.
 """
 import argparse
 import json
@@ -21,7 +23,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--case', type=Path, required=True)
     parser.add_argument('--seed', type=int, default=2026111300)
-    parser.add_argument('--evaluations', type=int, default=20000)
+    parser.add_argument('--fv-solves', type=int, default=12000, help='budget: distinct FV solves')
     parser.add_argument('--random-starts', type=int, default=96)
     parser.add_argument('--descent-starts', type=int, default=96)
     parser.add_argument('--batch', type=int, default=96)
@@ -35,15 +37,22 @@ def main():
     args.output.mkdir(parents=True, exist_ok=False)
     problem = Problem.from_imported(json.loads(args.case.read_text()))
     rng = np.random.default_rng(args.seed)
+    commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
     started = time.perf_counter()
-    initial = [sample_legal(problem, args.gap_um, rng) for _ in range(args.random_starts)]
-    initial += [length_descent(problem, sample_legal(problem, args.gap_um, rng), rng, args.gap_um)
-                for _ in range(args.descent_starts)]
+    try:
+        initial = [sample_legal(problem, args.gap_um, rng) for _ in range(args.random_starts)]
+        initial += [length_descent(problem, sample_legal(problem, args.gap_um, rng), rng, args.gap_um)
+                    for _ in range(args.descent_starts)]
+    except RuntimeError as error:
+        failure = dict(case=problem.name, status='failed_initialization', error=str(error), seed=args.seed,
+                       gap_um=args.gap_um, code_commit=commit)
+        (args.output/'summary.json').write_text(json.dumps(failure, indent=2) + '\n')
+        raise SystemExit(f'{problem.name}: {error}')
     descent_seconds = time.perf_counter() - started
     progress = open(args.output/'progress.jsonl', 'w')
     with Evaluator(problem, args.gap_um, args.resolution, args.workers) as evaluator:
         layouts, length, peak = pareto_search(
-            evaluator, initial, rng, args.evaluations, args.batch,
+            evaluator, initial, rng, args.fv_solves, args.batch,
             log=lambda row: (progress.write(json.dumps(row) + '\n'), progress.flush()))
         solves = evaluator.solves
     wall = time.perf_counter() - started
@@ -52,10 +61,11 @@ def main():
     def point(i):
         return None if i is None else dict(index=i, length_m=float(length[i]), peak_c=float(peak[i]))
     summary = dict(
-        case=problem.name, seed=args.seed, evaluations=len(layouts), distinct_fv_solves=solves,
+        case=problem.name, status='completed', seed=args.seed, budget_unit='distinct FV solves',
+        fv_solve_budget=args.fv_solves, distinct_fv_solves=solves, distinct_layouts=len(layouts),
         workers=args.workers, wall_seconds=wall, start_descent_seconds=descent_seconds,
         gap_um=args.gap_um, fv_resolution=args.resolution, grid_um=1000,
-        code_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+        code_commit=commit,
         front=[point(i) for i in front],
         coolest_within_length_cap={str(c): point(coolest_within(length, peak, c)) for c in args.length_caps_m},
         shortest_within_peak_cap={str(c): point(shortest_within(length, peak, c)) for c in args.peak_caps_c},
@@ -64,7 +74,7 @@ def main():
     (args.output/'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
     np.savez_compressed(args.output/'layouts.npz', centre_um=np.array([l.centre_um for l in layouts]),
                         rotation_deg=np.array([l.rotation_deg for l in layouts]), length_m=length, peak_c=peak)
-    print(json.dumps({k: summary[k] for k in ('evaluations', 'wall_seconds', 'coolest_within_length_cap',
+    print(json.dumps({k: summary[k] for k in ('distinct_fv_solves', 'distinct_layouts', 'wall_seconds', 'coolest_within_length_cap',
                                               'shortest_within_peak_cap')}, indent=2))
     print('front:', [(round(p['length_m'], 3), round(p['peak_c'], 4)) for p in summary['front']])
 

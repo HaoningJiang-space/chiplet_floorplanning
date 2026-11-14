@@ -68,7 +68,7 @@ class Evaluator:
         return np.array([self.cache[key] for key in keys])
 
 
-def sample_legal(problem, gap_um, rng, grid_um=1000, uniform_tries=20, packed_tries=2000):
+def sample_legal(problem, gap_um, rng, grid_um=1000, uniform_tries=20, packed_tries=200):
     """Place chiplets one at a time on legal grid corners; not uniform over the joint legal set.
 
     First try uniform choices among remaining legal corners. Dense cases dead-end,
@@ -108,7 +108,38 @@ def sample_legal(problem, gap_um, rng, grid_um=1000, uniform_tries=20, packed_tr
             layout = Layout(centre, rotation)
             assert is_legal(problem, layout, gap_um)
             return layout
-    raise RuntimeError("no legal layout found; the case may be too dense for this sampler")
+    layout = shelf_pack(problem, gap_um, rng)
+    if layout is None:
+        raise RuntimeError("no legal layout found by sampling or shelf packing")
+    return layout
+
+
+def shelf_pack(problem, gap_um, rng, shuffles=50):
+    """Rows of chiplets sorted by height, left to right; deterministic legal fallback.
+
+    Tries short-side-up, long-side-up and source orientations, shuffling chiplets
+    of equal height. Returns None if no tried arrangement fits the carrier.
+    """
+    width, height = problem.carrier_um
+    w, h = problem.size_um[:, 0], problem.size_um[:, 1]
+    policies = (np.where(w >= h, 0, 90), np.where(w >= h, 90, 0), np.zeros(problem.count, int))
+    for policy in policies:
+        for _ in range(shuffles):
+            rotation = (policy + 180*rng.integers(2, size=problem.count)) % 360
+            size = np.where((rotation % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)
+            order = np.lexsort((rng.random(problem.count), -size[:, 1]))
+            centre = np.zeros((problem.count, 2))
+            x = y = row = 0.0
+            for k in order:
+                if x and x + size[k, 0] > width:
+                    x, y, row = 0.0, y + row + gap_um, 0.0
+                centre[k] = (x + size[k, 0]/2, y + size[k, 1]/2)
+                x += size[k, 0] + gap_um
+                row = max(row, size[k, 1])
+            layout = Layout(centre, rotation)
+            if is_legal(problem, layout, gap_um):
+                return layout
+    return None
 
 
 def pareto_front(length_m, peak_c):

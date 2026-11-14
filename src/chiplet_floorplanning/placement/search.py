@@ -5,7 +5,7 @@ for legality before evaluation; temperatures are exact FV peaks from Evaluator.
 """
 import numpy as np
 
-from .evaluate import pareto_front
+from .evaluate import pareto_front, thermal_key
 from .geometry import is_legal, pin_manhattan_um, rotate
 from .problem import Layout
 
@@ -27,9 +27,14 @@ def layout_key(layout):
 
 
 def length_target(problem, layout, k):
-    """Exact single-chip minimiser of total pin length: per-axis median of partner pins."""
+    """Exact single-chip minimiser of total pin length: per-axis median of partner pins.
+
+    Nets with both ends on chip k are translation invariant and do not enter the target.
+    """
     chip = problem.pin_chip
     rows, side = np.nonzero(chip == k)
+    external = chip[rows, 1 - side] != k
+    rows, side = rows[external], side[external]
     if not rows.size:
         return layout.centre_um[k]
     other = 1 - side
@@ -74,38 +79,63 @@ def length_descent(problem, layout, rng, gap_um, grid_um=1000, patience=400):
     return layout
 
 
-def pareto_search(evaluator, initial, rng, evaluations, batch=96, max_moves=3, grid_um=1000, log=None):
+class _Budget:
+    """Admit distinct layouts while their new thermal problems fit the FV-solve budget."""
+    def __init__(self, evaluator, fv_solves):
+        self.evaluator, self.limit = evaluator, fv_solves
+        self.seen, self.pending = set(), set()
+
+    def admit(self, layout):
+        key = layout_key(layout)
+        if key in self.seen:
+            return False
+        thermal = thermal_key(self.evaluator.problem, layout)
+        new = thermal not in self.evaluator.cache and thermal not in self.pending
+        if new and self.evaluator.solves + len(self.pending) >= self.limit:
+            return False
+        self.seen.add(key)
+        if new:
+            self.pending.add(thermal)
+        return True
+
+    def exhausted(self):
+        return self.evaluator.solves + len(self.pending) >= self.limit
+
+
+def pareto_search(evaluator, initial, rng, fv_solves, batch=96, max_moves=3, grid_um=1000, log=None):
     """Batched Pareto local search on (length, exact FV peak).
 
-    Each generation mutates random archive members with 1..max_moves legal moves,
-    drops already-seen layouts and evaluates the batch in parallel.
+    Budget unit: distinct FV solves, including the initial set. Duplicate layouts
+    are dropped; a layout whose thermal problem is already solved costs no solve.
+    Each generation mutates random archive members with 1..max_moves legal moves
+    and evaluates the admitted batch in parallel.
     """
     problem, gap_um = evaluator.problem, evaluator.gap_um
-    layouts = list(initial)
-    seen = {layout_key(layout) for layout in layouts}
+    budget = _Budget(evaluator, fv_solves)
+    layouts = [layout for layout in initial if budget.admit(layout)]
     peaks = list(evaluator.peaks_c(layouts))
+    budget.pending.clear()
     lengths = [evaluator.length_m(layout) for layout in layouts]
-    while len(layouts) < evaluations:
+    while layouts and not budget.exhausted():
         archive = pareto_front(np.array(lengths), np.array(peaks))
         children = []
         for _ in range(50*batch):
-            if len(children) >= min(batch, evaluations - len(layouts)):
+            if len(children) >= batch or budget.exhausted():
                 break
             child = layouts[archive[rng.integers(len(archive))]]
             for _ in range(int(rng.integers(1, max_moves + 1))):
                 moved = mutate(problem, child, rng, gap_um, grid_um)
                 child = moved if moved is not None else child
-            key = layout_key(child)
-            if key not in seen:
-                seen.add(key)
+            if budget.admit(child):
                 children.append(child)
         if not children:
             break
         peaks += list(evaluator.peaks_c(children))
+        budget.pending.clear()
         lengths += [evaluator.length_m(child) for child in children]
         layouts += children
         if log:
             front = pareto_front(np.array(lengths), np.array(peaks))
-            log(dict(evaluated=len(layouts), front_size=len(front), min_peak_c=float(min(peaks)),
-                     min_length_m=float(min(lengths))))
+            log(dict(layouts=len(layouts), fv_solves=evaluator.solves, front_size=len(front),
+                     min_peak_c=float(min(peaks)), min_length_m=float(min(lengths))))
     return layouts, np.array(lengths), np.array(peaks)

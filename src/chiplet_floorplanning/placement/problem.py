@@ -55,9 +55,11 @@ class Layout:
         poses = {p["chiplet"]: p for p in placements}
         if len(poses) != len(placements) or set(poses) != set(problem.names):
             raise ValueError("placement must contain each source chiplet exactly once")
-        rotation = np.array([poses[n]["rotation_deg"] for n in problem.names], dtype=int)
-        if not np.isin(rotation, ROTATIONS).all():
-            raise ValueError("only quarter turns supported")
+        raw = [poses[n]["rotation_deg"] for n in problem.names]
+        # Validate before any conversion so e.g. 90.9 is rejected, not truncated to 90.
+        if any(type(r) is not int or r not in ROTATIONS for r in raw):
+            raise ValueError("only integer quarter turns supported")
+        rotation = np.array(raw, dtype=int)
         centre = np.array([[poses[n]["centre_x_um"], poses[n]["centre_y_um"]] for n in problem.names], dtype=float)
         if not np.isfinite(centre).all():
             raise ValueError("nonfinite centre")

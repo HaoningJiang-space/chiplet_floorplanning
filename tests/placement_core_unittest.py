@@ -135,16 +135,42 @@ class PlacementCoreTest(unittest.TestCase):
                 moved[k] += shift
                 self.assertGreaterEqual(pin_manhattan_um(problem, Layout(moved, layout.rotation_deg)).sum(), best - 1e-6)
 
-    def test_pareto_search_returns_distinct_legal_layouts(self):
+    def test_pareto_search_respects_fv_solve_budget_including_start_set(self):
         problem = Problem.from_imported(synthetic_case(random.Random(13), chips=3, nets=40))
         rng = np.random.default_rng(2)
+        start = [sample_legal(problem, 1000, rng) for _ in range(3)]
         with Evaluator(problem, 1000, resolution=16) as evaluator:
-            layouts, length, peak = pareto_search(evaluator, [sample_legal(problem, 1000, rng)], rng, 12, batch=4)
-        self.assertEqual(len(layouts), 12)
-        self.assertEqual(len({layout_key(l) for l in layouts}), 12)
+            layouts, _, _ = pareto_search(evaluator, start + start, rng, 1, batch=4)
+        self.assertEqual((evaluator.solves, len(layouts)), (1, 1))
+        with Evaluator(problem, 1000, resolution=16) as evaluator:
+            layouts, length, peak = pareto_search(evaluator, start + start, rng, 12, batch=4)
+        self.assertEqual(evaluator.solves, 12)
+        self.assertEqual(len({layout_key(l) for l in layouts}), len(layouts))
         self.assertTrue(all(is_legal(problem, l, 1000) for l in layouts))
         self.assertEqual(peak.shape, length.shape)
 
+    def test_length_target_ignores_nets_inside_the_moving_chip(self):
+        # Chip a carries one internal net and one net to b; only the latter sets the target.
+        problem = Problem('internal', ('a', 'b'), np.array([[4000., 4000.], [2000., 2000.]]), np.ones(2),
+                          (30000., 30000.), np.array([[0, 0], [0, 1]]),
+                          np.array([[[-1500., 0.], [1500., 0.]], [[0., 0.], [0., 0.]]]))
+        layout = Layout(np.array([[5000., 5000.], [20000., 5000.]]), np.array([0, 0]))
+        self.assertTrue(np.allclose(length_target(problem, layout, 0), [20000., 5000.]))
+
+    def test_non_integer_rotation_is_rejected_not_truncated(self):
+        placements = [dict(chiplet='a', centre_x_um=3000, centre_y_um=3000, rotation_deg=90.9),
+                      dict(chiplet='b', centre_x_um=8000, centre_y_um=6000, rotation_deg=0)]
+        with self.assertRaises(ValueError):
+            Layout.from_placements(self.problem, placements)
+
+    def test_shelf_fallback_finds_zero_slack_case5_packing(self):
+        # Case5 geometry: six 8x9 mm and six 9x9 mm dies in 37x37 mm with 1 mm gaps
+        # fit only as rows of height 9+9+8+8 mm plus three gaps.
+        problem = Problem('case5_like', tuple(f'c{i}' for i in range(12)),
+                          np.array([[8000., 9000.]]*6 + [[9000., 9000.]]*6), np.ones(12), (37000., 37000.),
+                          np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        layout = sample_legal(problem, 1000, np.random.default_rng(0), uniform_tries=1, packed_tries=1)
+        self.assertTrue(is_legal(problem, layout, 1000))
 
 if __name__ == '__main__':
     unittest.main()

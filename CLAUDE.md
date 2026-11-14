@@ -60,7 +60,7 @@ Delete unused code instead of keeping it around; do not rebuild per-stage `run_*
   (`coolest_within`, `shortest_within`, `pareto_front`). Each returns one real layout.
   `search.py` has legal moves, exact length descent and batched Pareto local search.
   `surrogate.py` (shifted single-chip FV kernels) ranks well but is biased by about 1.8 K, so use it only to screen.
-- `tools/run_reference_front.py` (budget = distinct FV evaluations) and `tools/diagnose_superposition.py`
+- `tools/run_reference_front.py` (budget `--fv-solves` = distinct FV solves, start set included) and `tools/diagnose_superposition.py`
   run on eex005. `tools/import_atplace_cases.py` imports ATPlace Case1–10 at pinned source commit `fe3dbfd`.
 
 ## Research records
