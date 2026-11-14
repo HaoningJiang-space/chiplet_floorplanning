@@ -46,8 +46,8 @@ python tools/replay_at_commit.py --anchor docs/evidence/atplace-case1-step-size-
 
 ## 删除范围
 
-CI 工作流文件的同步删除尚未推送：当前 GitHub 令牌缺少 `workflow` 权限。远端 `.github/workflows/ci.yml`
-在此之前仍调用已删除的脚本，若被触发会失败；所有提交均带 `[skip ci]`，这不代表远端工作流可用。
+CI 工作流的同步清理在 `2d2227a` 推送：HTTPS 推送使用的 gh OAuth 令牌没有 `workflow` 权限，
+改动工作流文件需经 SSH 推送。此前远端工作流仍调用已删除脚本；现在只运行单元测试和两个示例 CLI。
 
 删除 281 个文件（约 3.3 万行）：TTC/实测拟合、Pad/SPICE、OpenSTA 时序与温度插值、Xyce Fabric、
 共享路由、TAP/HiTS 在线搜索、ATPlace Case1 逐阶段搜索及其测试和锁文件；CLI 不再提供
