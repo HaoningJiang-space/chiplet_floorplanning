@@ -21,7 +21,7 @@ from workload_leverage import budget_power, is_compute, kind, scenarios
 BOOSTS, PRIMARY_BOOST = (1.0, 1.25, 1.5), 1.5
 LIMIT_LOGIC_C, LIMIT_MEMORY_C = 105.0, 95.0
 SEARCH_CASES = (3, 5, 9)
-SEED, FV_SOLVES, BATCH, STARTS = 2026111401, 1000, 48, 48     # as tools/workload_search.py
+SEED, FV_SOLVES, BATCH, STARTS = 2026111401, 1000, 48, 48     # as the workload search (workload-search-v1.json, 9f56049)
 CAP_FACTOR, MEANINGFUL_K, RESOLUTION_K = 1.25, 1.0, 0.3
 
 
