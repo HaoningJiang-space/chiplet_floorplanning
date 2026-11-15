@@ -312,5 +312,19 @@ def topology_lp(run, initial, rng, batch=96, levels=6, pairs=10, explore=0.5, **
     _loop(run, propose)
 
 
+def lp_then_epsilon(run, initial, rng, lp_share=0.5, **kw):
+    """topology_lp on the first `lp_share` of the budget, then epsilon from every layout found so far."""
+    total = run.limit
+    run.evaluate(initial)  # the shared start set is charged before the split
+    run.limit = max(run.evaluator.solves, int(lp_share*total))
+    topology_lp(run, [], rng, **kw)
+    run.limit = total
+    run.restart()
+    if run.out_of_rounds:
+        run.finish()
+        return
+    epsilon_search(run, [], rng, **kw)
+
+
 METHODS = dict(random=random_search, pareto_ls=pareto_local_search, nsga=nsga_mutation,
-               annealing=annealing, epsilon=epsilon_search, topology_lp=topology_lp)
+               annealing=annealing, epsilon=epsilon_search, topology_lp=topology_lp, lp_epsilon=lp_then_epsilon)

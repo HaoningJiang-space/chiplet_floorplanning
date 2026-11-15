@@ -168,6 +168,18 @@ class PlacementCoreTest(unittest.TestCase):
         length = run.arrays()[0]
         self.assertTrue(np.all(length[len(start):] <= cap + 1e-12))
 
+    def test_lp_epsilon_hands_over_after_its_lp_share(self):
+        problem = Problem.from_imported(synthetic_case(random.Random(19), chips=3, nets=40))
+        rng = np.random.default_rng(6)
+        start = [sample_legal(problem, 1000, rng) for _ in range(4)]
+        with Evaluator(problem, 1000, resolution=16) as evaluator:
+            run = Run(evaluator, 40)
+            cap = 1e9
+            METHODS['lp_epsilon'](run, start, np.random.default_rng(3), batch=4, length_caps_m=(cap,))
+        cost = np.array(run.cost)
+        self.assertLessEqual(evaluator.solves, 40)
+        self.assertTrue((cost <= 20).any() and (cost > 20).any())  # both phases spent solves
+
     def test_round_cap_is_global_across_epsilon_caps(self):
         # Review of 34001c5: each cap phase used to clear the stop state, so three caps ran
         # three rounds under max_rounds=1 and reported 'stalled'.
@@ -176,7 +188,7 @@ class PlacementCoreTest(unittest.TestCase):
         start = [sample_legal(problem, 1000, rng) for _ in range(2)]
         # Review of bbff17f: with budget 7 the first cap's phase budget ran out in the same
         # round, 'budget' masked the cap and epsilon again ran three rounds.
-        for name, budget in itertools.product(('pareto_ls', 'epsilon'), (200, 7)):
+        for name, budget in itertools.product(('pareto_ls', 'epsilon', 'lp_epsilon'), (200, 7)):
             with self.subTest(method=name, budget=budget):
                 with Evaluator(problem, 1000, resolution=12) as evaluator:
                     run = Run(evaluator, budget, max_rounds=1)
