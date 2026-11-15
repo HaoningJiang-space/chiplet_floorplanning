@@ -1,0 +1,94 @@
+{
+ "Case3": {
+  "1.1": {
+   "gain_k": 1.6127136006648755,
+   "joint_air_c": 131.61725892981735,
+   "separate_air_best_c": 133.10685388246696,
+   "joint_minus_separate_air_k": -1.489594952649611
+  },
+  "1.25": {
+   "gain_k": 0.2888383842465032,
+   "joint_air_c": 126.71602686860398,
+   "separate_air_best_c": 126.522892066297,
+   "joint_minus_separate_air_k": 0.19313480230697166
+  },
+  "1.5": {
+   "gain_k": 0.5850625978188191,
+   "joint_air_c": 121.96556855972962,
+   "separate_air_best_c": 122.3809212080809,
+   "joint_minus_separate_air_k": -0.4153526483512877
+  }
+ },
+ "Case5": {
+  "1.0": {
+   "gain_k": 0.2557130364242255,
+   "joint_air_c": 147.98024952534524,
+   "separate_air_best_c": 147.94055912423948,
+   "joint_minus_separate_air_k": 0.03969040110575861
+  },
+  "1.1": {
+   "gain_k": 0.9635328938908003,
+   "joint_air_c": 144.13392225583766,
+   "separate_air_best_c": 144.07326712577964,
+   "joint_minus_separate_air_k": 0.06065513005802359
+  },
+  "1.25": {
+   "gain_k": 1.1744814634575107,
+   "joint_air_c": 136.71739633857555,
+   "separate_air_best_c": 136.24978940339398,
+   "joint_minus_separate_air_k": 0.46760693518157836
+  }
+ },
+ "Case9": {
+  "1.0": {
+   "gain_k": 1.7304230193831813,
+   "joint_air_c": 128.54319442036544,
+   "separate_air_best_c": 128.30645810370441,
+   "joint_minus_separate_air_k": 0.23673631666102324
+  },
+  "1.1": {
+   "gain_k": 2.0051205570962907,
+   "joint_air_c": 128.4383845903389,
+   "separate_air_best_c": 126.0934935571773,
+   "joint_minus_separate_air_k": 2.344891033161602
+  },
+  "1.25": {
+   "gain_k": 2.067905875677752,
+   "joint_air_c": 128.12036599136985,
+   "separate_air_best_c": 121.17919367084522,
+   "joint_minus_separate_air_k": 6.941172320524629
+  },
+  "1.5": {
+   "gain_k": 2.067905875677752,
+   "joint_air_c": 128.12036599136985,
+   "separate_air_best_c": 121.17919367084522,
+   "joint_minus_separate_air_k": 6.941172320524629
+  }
+ },
+ "Case10": {
+  "1.0": {
+   "gain_k": 0.05337130595866313,
+   "joint_air_c": 114.22302296275504,
+   "separate_air_best_c": 113.84397919082723,
+   "joint_minus_separate_air_k": 0.3790437719278117
+  },
+  "1.1": {
+   "gain_k": 1.2621310605686489,
+   "joint_air_c": 112.6423049099796,
+   "separate_air_best_c": 111.52830564923816,
+   "joint_minus_separate_air_k": 1.113999260741437
+  },
+  "1.25": {
+   "gain_k": 0.718310612496694,
+   "joint_air_c": 111.10828828177343,
+   "separate_air_best_c": 108.80799794116473,
+   "joint_minus_separate_air_k": 2.300290340608697
+  },
+  "1.5": {
+   "gain_k": 0.6795514681749069,
+   "joint_air_c": 109.9776777972875,
+   "separate_air_best_c": 105.50793473788129,
+   "joint_minus_separate_air_k": 4.469743059406213
+  }
+ }
+}
