@@ -1,7 +1,7 @@
 {
  "physical_qualified": false,
  "plan": "docs/interface-margin-plan.md",
- "source_sha256": "d82a05b1b684cbfc1078826972cc3e5e847a4b76e55628f8a69a6015c94f4167",
+ "source_sha256": "88fa31c22bd3aba164b900972d40868efe46dc5b2288d8005919e542195007c6",
  "model": "D = (L + d0)(1 + gamma (T - 25 C)), T = mean endpoint temperature, cost = max over nets",
  "gammas_per_k": [
   -0.001,
