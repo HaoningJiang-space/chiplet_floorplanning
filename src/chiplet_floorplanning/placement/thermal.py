@@ -99,8 +99,9 @@ def solve_peak(data):
 
 
 def power_layer_responses(problem, layout, gap_um, powers, resolution=64):
-    """Power-layer rise fields (K, NaN outside dies) for each row of `powers` (W per chiplet) on one layout.
-    The conduction matrix does not depend on power, so it is factorised once; fields superpose linearly."""
+    """Power-layer rise fields (K, NaN outside dies) for each row of `powers` (W per chiplet) on one layout,
+    and the cell edges (package mm). The conduction matrix does not depend on power, so it is factorised
+    once; fields superpose linearly."""
     from scipy.sparse.linalg import splu
     fields = []
     for k, p in enumerate(np.atleast_2d(powers)):
@@ -114,7 +115,9 @@ def power_layer_responses(problem, layout, gap_um, powers, resolution=64):
         checked_solution(a, b, g, theta)
         layer = ids[power_z]
         fields.append(np.where(layer >= 0, theta[np.maximum(layer, 0)], np.nan))
-    return np.array(fields)
+    edges = (np.concatenate(([0], np.cumsum(case.mesh.widths_mm))),
+             np.concatenate(([0], np.cumsum(case.mesh.heights_mm))))
+    return np.array(fields), edges
 
 
 def solve_cold_plate(data, flow_kg_s, direction):

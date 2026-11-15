@@ -17,7 +17,7 @@ class SkuFloorplanTest(unittest.TestCase):
         problem = Problem.from_imported(import_case('fixture', BLOCKS, POWER, NETS))
         layout = Layout(np.array([[2000., 1000.], [5500., 1000.]]), np.array([0, 0]))
         p = problem.power_w
-        fields = power_layer_responses(problem, layout, 0., [[p[0], 0], [0, p[1]]])
+        fields, _ = power_layer_responses(problem, layout, 0., [[p[0], 0], [0, p[1]]])
         full = solve_peak(thermal_case_data(problem, layout, 0.))['peak_power_layer_c']
         self.assertAlmostEqual(np.nanmax(fields.sum(0)) + AMBIENT_C, full, places=9)
 

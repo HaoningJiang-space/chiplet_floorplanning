@@ -56,7 +56,7 @@ def layout_peaks(job):
     rest = problem.power_w.copy()
     rest[members] = 0
     columns = [np.where(np.arange(len(rest)) == i, problem.power_w, 0.) for i in members] + [rest]
-    fields = power_layer_responses(problem, layout, gap_um, columns, resolution)
+    fields, _ = power_layer_responses(problem, layout, gap_um, columns, resolution)
     unit, fixed = fields[:-1].reshape(len(members), -1), fields[-1].ravel()
     out = {}
     for io, label in ((0.0, ''), (IO_SHARE, 'io/')):

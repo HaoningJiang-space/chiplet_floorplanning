@@ -48,12 +48,12 @@ def scenarios(names):
     return {s: m for s, m in raw.items() if (m != 1).any() and ((m[compute] == 1).any() or s == 'compute_half')}
 
 
-def budget_power(nominal, activity, eligible):
-    """Water-fill the freed power onto eligible dies at full activity, each capped at BOOST x nominal."""
+def budget_power(nominal, activity, eligible, boost=BOOST):
+    """Water-fill the freed power onto eligible dies at full activity, each capped at boost x nominal."""
     power = nominal*activity
     free, open_ = nominal.sum() - power.sum(), (activity == 1) & eligible
     while free > 1e-9 and open_.any():
-        room = np.where(open_, BOOST*nominal - power, 0.)
+        room = np.where(open_, boost*nominal - power, 0.)
         share = np.where(open_, nominal, 0.)/nominal[open_].sum()*free
         add = np.minimum(share, room)
         power, free = power + add, free - add.sum()

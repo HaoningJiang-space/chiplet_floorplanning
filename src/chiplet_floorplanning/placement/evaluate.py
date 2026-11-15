@@ -11,7 +11,7 @@ import numpy as np
 
 from .geometry import boxes, is_legal, pin_manhattan_um
 from .problem import Layout
-from .thermal import FLOW_DIRECTIONS, die_peaks_c, solve, solve_cold_plate, thermal_case_data
+from .thermal import FLOW_DIRECTIONS, die_peaks_c, power_layer_responses, solve, solve_cold_plate, thermal_case_data
 
 
 def thermal_key(problem, layout):
@@ -22,9 +22,15 @@ def thermal_key(problem, layout):
 def _peaks(args):
     """[global power-layer peak, peak of each die], degC.
 
-    solve() already rejects non-finite, inaccurate or non-conserving solutions.
+    With modes (power rows, per-die limits): [worst overshoot max_{m,i}(T_i - limit_i) in K, each die's
+    hottest peak over the modes in degC]. The solvers reject non-finite, inaccurate or non-conserving solutions.
     """
-    problem, layout, gap_um, resolution, cold_plate = args
+    problem, layout, gap_um, resolution, cold_plate, modes = args
+    if modes is not None:
+        powers, limits = modes
+        fields, edges = power_layer_responses(problem, layout, gap_um, powers, resolution)
+        die = np.array([die_peaks_c(problem, layout, f, edges) for f in fields])
+        return np.r_[(die - limits).max(), die.max(0)]
     if cold_plate is None:
         summary, rise, edges = solve(thermal_case_data(problem, layout, gap_um, resolution))
     else:
@@ -38,9 +44,13 @@ def _peaks(args):
 
 class Evaluator:
     """Use as a context manager to keep one process pool across many batches."""
-    def __init__(self, problem, gap_um, resolution=64, workers=1, cold_plate=None):
+    def __init__(self, problem, gap_um, resolution=64, workers=1, cold_plate=None, modes=None):
+        if cold_plate is not None and modes is not None:
+            raise ValueError("modes are scored on the air sink only")
         self.problem, self.gap_um, self.resolution, self.workers = problem, gap_um, resolution, workers
         self.cold_plate = cold_plate  # None (air sink) or (h W/m2K, coolant flow kg/s)
+        # None, or (power rows W per die, per-die limits degC): peaks_c then returns the worst overshoot in K.
+        self.modes = modes
         self.cache = {}
         self.solves = 0
         self.pool = None
@@ -73,7 +83,8 @@ class Evaluator:
         for key, layout in zip(keys, layouts):
             if key not in self.cache and key not in todo:
                 todo[key] = layout
-        jobs = [(self.problem, layout, self.gap_um, self.resolution, self.cold_plate) for layout in todo.values()]
+        jobs = [(self.problem, layout, self.gap_um, self.resolution, self.cold_plate, self.modes)
+                for layout in todo.values()]
         chunk = max(1, len(jobs)//(4*self.workers))
         if self.pool and len(jobs) > 1:
             peaks = list(self.pool.map(_peaks, jobs, chunksize=chunk))
