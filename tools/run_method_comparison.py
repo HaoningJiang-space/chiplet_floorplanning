@@ -164,22 +164,25 @@ def report(args):
             gap_t = {c: [r['metrics'][fraction]['coolest_within_length_cap'][c]['peak_c'] - best_t[c]
                          if r['metrics'][fraction]['coolest_within_length_cap'][c] else None for r in rows]
                      for c in best_t}
-            gap_l = {c: [(r['metrics'][fraction]['shortest_within_peak_cap'][c]['length_m'] - best_l[c])/best_l[c]
+            gap_m = {c: [r['metrics'][fraction]['shortest_within_peak_cap'][c]['length_m'] - best_l[c]
                          if r['metrics'][fraction]['shortest_within_peak_cap'][c] else None for r in rows]
                      for c in best_l}
-            out[fraction] = dict(peak_gap_k=gap_t, length_gap_fraction=gap_l)
+            # Relative gap is undefined on a zero best length; those caps keep only the absolute gap.
+            gap_l = {c: [None if g is None else g/best_l[c] for g in gaps] for c, gaps in gap_m.items() if best_l[c] > 0}
+            out[fraction] = dict(peak_gap_k=gap_t, length_gap_m=gap_m, length_gap_fraction=gap_l)
         table[method] = out
     summary = dict(best_known_peak_c=best_t, best_known_length_m=best_l, seed_order=plan['seeds'],
                    plan_sha256=sha256(args.plan), reference_sha256=plan['reference_sha256'],
                    stop_reasons={f"{r['method']}-seed{r['seed']}": r['stop_reason'] for r in records},
-                   note='each gap list follows seed_order (paired by shared start set); None = cap not reached',
+                   note='each gap list follows seed_order (paired by shared start set); None = cap not reached; '
+                        'length_gap_fraction omits caps whose best known length is 0 (relative gap undefined)',
                    methods=table)
     (args.output/'report.json').write_text(json.dumps(summary, indent=2) + '\n')
     for method, out in table.items():
         final = out['1.0']
         med = lambda xs: None if any(x is None for x in xs) else round(float(np.median(xs)), 4)
         print(method, 'peak gap K', {c: med(v) for c, v in final['peak_gap_k'].items()},
-              'length gap', {c: med(v) for c, v in final['length_gap_fraction'].items()})
+              'length gap m', {c: med(v) for c, v in final['length_gap_m'].items()})
 
 
 def main():

@@ -11,7 +11,7 @@ from scipy import sparse
 from chiplet_floorplanning.package import require_heat_path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from run_method_comparison import checked_records, in_seed_order, same_problem
+from run_method_comparison import checked_records, in_seed_order, report, same_problem
 
 
 class ComparisonProtocolTest(unittest.TestCase):
@@ -57,6 +57,24 @@ class ComparisonProtocolTest(unittest.TestCase):
                 with self.assertRaises(SystemExit):
                     checked_records(self.plan_path, self.plan, self.out)
                 self.record(2)
+    def test_zero_best_length_keeps_absolute_gap_only(self):
+        # Review of bbff17f: coincident boundary pins give a 0 m best length and the
+        # relative gap divided by it.
+        (self.dir/'ref.json').write_text(json.dumps(dict(front=[dict(length_m=0., peak_c=50.)])))
+        self.plan.update(reference_sha256=hashlib.sha256((self.dir/'ref.json').read_bytes()).hexdigest(),
+                         length_caps_m=[1.], peak_caps_c=[60.])
+        self.plan_path.write_text(json.dumps(self.plan))
+        point = dict(coolest_within_length_cap={'1.0': dict(peak_c=51.)},
+                     shortest_within_peak_cap={'60.0': dict(length_m=.5)})
+        for seed in (1, 2):
+            self.record(seed, stop_reason='budget', metrics={'0.25': point, '0.5': point, '1.0': point})
+            np.savez(self.out/f'random-seed{seed}.npz', length_m=np.array([.5]), peak_c=np.array([51.]))
+        report(type('Args', (), dict(plan=self.plan_path, output=self.out))())
+        final = json.loads((self.out/'report.json').read_text())['methods']['random']['1.0']
+        self.assertEqual(final['length_gap_m'], {'60.0': [.5, .5]})
+        self.assertEqual(final['length_gap_fraction'], {})
+        self.assertEqual(final['peak_gap_k'], {'1.0': [1., 1.]})
+
     def test_seed_labels_follow_the_plan_not_file_order(self):
         records = [dict(method='random', seed=10, value='b'), dict(method='random', seed=2, value='a')]
         self.assertEqual([r['value'] for r in in_seed_order(records, 'random', [2, 10])], ['a', 'b'])

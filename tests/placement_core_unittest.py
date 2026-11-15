@@ -1,3 +1,4 @@
+import itertools
 from pathlib import Path
 import random
 import sys
@@ -171,10 +172,12 @@ class PlacementCoreTest(unittest.TestCase):
         problem = Problem.from_imported(synthetic_case(random.Random(17), chips=2, nets=20))
         rng = np.random.default_rng(5)
         start = [sample_legal(problem, 1000, rng) for _ in range(2)]
-        for name in ('pareto_ls', 'epsilon'):
-            with self.subTest(method=name):
+        # Review of bbff17f: with budget 7 the first cap's phase budget ran out in the same
+        # round, 'budget' masked the cap and epsilon again ran three rounds.
+        for name, budget in itertools.product(('pareto_ls', 'epsilon'), (200, 7)):
+            with self.subTest(method=name, budget=budget):
                 with Evaluator(problem, 1000, resolution=12) as evaluator:
-                    run = Run(evaluator, 200, max_rounds=1)
+                    run = Run(evaluator, budget, max_rounds=1)
                     METHODS[name](run, start, np.random.default_rng(3), batch=2, length_caps_m=(1e9, 2e9, 3e9))
                 self.assertEqual(run.rounds, 1)
                 self.assertEqual(run.stop_reason, 'round_cap')

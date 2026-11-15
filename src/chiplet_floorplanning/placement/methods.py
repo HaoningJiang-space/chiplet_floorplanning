@@ -57,16 +57,18 @@ class Run:
             self.stop_reason = "round_cap"
         return self.stop_reason is None
 
+    @property
+    def out_of_rounds(self):
+        return self.rounds >= self.max_rounds
+
     def finish(self):
         if self.stop_reason is None:
-            self.stop_reason = "budget" if self.exhausted else "stalled"
+            self.stop_reason = "budget" if self.exhausted else "round_cap" if self.out_of_rounds else "stalled"
 
     def restart(self):
-        """Clear the stall state before a new phase (e.g. the next epsilon cap).
-        The round cap is global: once hit, it stays the stop reason."""
-        self.stale = 0
-        if self.stop_reason != "round_cap":
-            self.stop_reason = None
+        """Clear the phase's stop state before a new phase (e.g. the next epsilon cap).
+        The round cap is global: callers check `out_of_rounds` before starting a phase."""
+        self.stale, self.stop_reason = 0, None
 
     def evaluate(self, candidates):
         """Evaluate within budget; returns each candidate's row index or None if over budget."""
@@ -259,7 +261,7 @@ def epsilon_search(run, initial, rng, batch=96, max_moves=3, length_caps_m=(), p
     for j, cap in enumerate(caps):
         run.limit = run.evaluator.solves + (total - run.evaluator.solves)//(len(caps) - j)
         run.restart()
-        if run.stop_reason:
+        if run.out_of_rounds:
             break
         feasible = lambda layout: run.evaluator.length_m(layout) <= cap
         length, peak, _ = run.arrays()
@@ -277,8 +279,7 @@ def epsilon_search(run, initial, rng, batch=96, max_moves=3, length_caps_m=(), p
             return _children(run, list(best), rng, batch, max_moves, accept=feasible)
         _loop(run, propose)
     run.limit = total
-    if run.stop_reason != "round_cap":
-        run.stop_reason = None  # a per-cap budget is not the run's budget
+    run.stop_reason = None  # a per-cap budget is not the run's budget; finish() judges the whole run
     run.finish()
 
 
