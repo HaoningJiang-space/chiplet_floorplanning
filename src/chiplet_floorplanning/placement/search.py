@@ -69,14 +69,15 @@ def mutate(problem, layout, rng, gap_um, grid_um=1000):
     return candidate if is_legal(problem, candidate, gap_um) else None
 
 
-def length_descent(problem, layout, rng, gap_um, grid_um=1000, patience=400):
-    """Greedy exact-length descent with legal moves; no thermal evaluation."""
-    best = float(pin_manhattan_um(problem, layout).sum())
+def length_descent(problem, layout, rng, gap_um, grid_um=1000, patience=400, cost=None):
+    """Greedy descent of `cost(layout)` (default: exact total pin length) with legal moves; no thermal evaluation."""
+    cost = cost or (lambda l: float(pin_manhattan_um(problem, l).sum()))
+    best = cost(layout)
     stale = 0
     while stale < patience:
         candidate = mutate(problem, layout, rng, gap_um, grid_um)
         if candidate is not None:
-            length = float(pin_manhattan_um(problem, candidate).sum())
+            length = cost(candidate)
             if length < best:
                 layout, best, stale = candidate, length, 0
                 continue

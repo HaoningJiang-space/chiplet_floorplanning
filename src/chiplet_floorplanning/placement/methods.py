@@ -266,7 +266,7 @@ def epsilon_search(run, initial, rng, batch=96, max_moves=3, length_caps_m=(), p
         feasible = lambda layout: run.evaluator.length_m(layout) <= cap
         length, peak, _ = run.arrays()
         if not (length <= cap).any():
-            descended = [length_descent(problem, run.layouts[i], rng, gap_um)
+            descended = [length_descent(problem, run.layouts[i], rng, gap_um, cost=run.evaluator.length_m)
                          for i in np.argsort(length)[:batch]]
             run.evaluate([d for d in descended if feasible(d)])
 

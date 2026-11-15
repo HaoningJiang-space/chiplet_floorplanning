@@ -44,13 +44,15 @@ def _peaks(args):
 
 class Evaluator:
     """Use as a context manager to keep one process pool across many batches."""
-    def __init__(self, problem, gap_um, resolution=64, workers=1, cold_plate=None, modes=None):
+    def __init__(self, problem, gap_um, resolution=64, workers=1, cold_plate=None, modes=None, interconnect=None):
         if cold_plate is not None and modes is not None:
             raise ValueError("modes are scored on the air sink only")
         self.problem, self.gap_um, self.resolution, self.workers = problem, gap_um, resolution, workers
         self.cold_plate = cold_plate  # None (air sink) or (h W/m2K, coolant flow kg/s)
         # None, or (power rows W per die, per-die limits degC): peaks_c then returns the worst overshoot in K.
         self.modes = modes
+        # None (total pin length, m) or a callable layout -> interconnect cost used wherever length_m is.
+        self.interconnect = interconnect
         self.cache = {}
         self.solves = 0
         self.pool = None
@@ -66,6 +68,8 @@ class Evaluator:
             self.pool = None
 
     def length_m(self, layout):
+        if self.interconnect is not None:
+            return float(self.interconnect(layout))
         return float(pin_manhattan_um(self.problem, layout).sum()/1e6)
 
     def max_net_mm(self, layout):
