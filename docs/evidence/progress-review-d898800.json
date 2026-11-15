@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "analyzed_commit": "d89880062c0d784c4abff7ac2476ad8f83464526",
+  "fetch_succeeded": true,
+  "scope": "Review changes since 22ab488, reproduce prior receiver controls, check new pin observation and frozen-input admission, and assess research progress. Production code unchanged.",
+  "prior_findings": [
+    {
+      "id": "81bb3f0-R1",
+      "status": "original_negative_controls_fixed",
+      "evidence": [
+        {
+          "case": "clean",
+          "returned_clock_to_q_ns": 0.09999999999999964,
+          "passes_110_percent_of_0p1ns": true,
+          "all_q_finite": true
+        },
+        {
+          "case": "late_after_glitch",
+          "returned_clock_to_q_ns": 0.9999999999999982,
+          "passes_110_percent_of_0p1ns": false,
+          "all_q_finite": true,
+          "final_stable_crossing_delay_ns": 1.0
+        },
+        {
+          "case": "nan_settled_window",
+          "returned_clock_to_q_ns": null,
+          "passes_110_percent_of_0p1ns": false,
+          "all_q_finite": false
+        }
+      ],
+      "limit": "This checks the updated validator; historical transistor characterization waveforms were not replayed."
+    },
+    {
+      "id": "81bb3f0-R2",
+      "status": "reference_budget_description_corrected",
+      "evidence": "Current comparison report and cumulative status now use 12000/6000/3000 FV for Cases 1-5/6-8/9-10."
+    },
+    {
+      "id": "81bb3f0-R3",
+      "status": "unconditional_no_effect_claim_retracted",
+      "evidence": "IHP contract now states 2.05/0.55 ns port budgets and treats the PVT-derived sensitivity as a conditional assumption."
+    }
+  ],
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "kind": "code_defect",
+      "status": "reproduced_not_fixed",
+      "location": "src/chiplet_floorplanning/placement/thermal.py:107",
+      "problem": "The right-biased grid search assigns right/top die-boundary pins to filler or a neighboring die, whereas left/bottom boundary pins select the owning die. It ignores pin ownership at a material interface.",
+      "reproduction": {
+        "imported_boundary_percentages_accepted": true,
+        "pin_points_package_mm": [
+          [
+            [
+              98.0,
+              100.0
+            ],
+            [
+              102.0,
+              100.0
+            ]
+          ],
+          [
+            [
+              100.0,
+              98.0
+            ],
+            [
+              100.0,
+              102.0
+            ]
+          ]
+        ],
+        "sampled_cell_centres_package_mm": [
+          [
+            [
+              100.0,
+              100.0
+            ],
+            [
+              103.5,
+              100.0
+            ]
+          ],
+          [
+            [
+              100.0,
+              100.0
+            ],
+            [
+              100.0,
+              103.5
+            ]
+          ]
+        ],
+        "die_bounds_package_mm": [
+          98.0,
+          98.0,
+          102.0,
+          102.0
+        ],
+        "symmetric_endpoint_temperatures_c": [
+          [
+            62.18952632424322,
+            49.35163824323711
+          ],
+          [
+            62.18952632424322,
+            49.35163824323712
+          ]
+        ],
+        "left_right_difference_k": 12.837888081006106,
+        "energy_balance_error_w": -2.0605739337042905e-13
+      },
+      "impact": "Importer accepts exactly +/-50 percent offsets. A centred symmetric 4 mm square die gives 62.189526 C at left/bottom pins and 49.351638 C at right/top pins, a 12.837888 K direction-dependent sampling error. The FV energy balance still passes, so conservation alone cannot detect the observation bug.",
+      "published_result_scope": "No exact boundary endpoints in the ten hash-matched imported cases; no demonstrated impact on the published 1340 layouts.",
+      "fix_direction": "Define boundary observation using the owning chiplet and select its one-sided cell (or a documented interface reconstruction), then verify reflection/rotation symmetry for boundary pins."
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "kind": "input_identity_defect",
+      "status": "reproduced_not_fixed",
+      "location": "tools/interface_margin.py:48",
+      "problem": "analyse does not compare case_path to the frozen summary case_sha256. The checks compare old NPZ metadata to old summary values and compare only the freshly solved peak, which is independent of pin offsets.",
+      "reproduction": {
+        "mismatched_case_was_accepted": true,
+        "nominal_case_sha256": "81cedc5103a138d304f8bc22bf916cc840f55f966e3a1c0e1a75043f3c2e2db5",
+        "altered_case_sha256": "fde02261e653f9fa464c1a8ca8b5d9e7cd8e1ae8fee5bc5b6a0c784fa81ec9ee",
+        "nominal_max_net_mm": [
+          5.0
+        ],
+        "altered_max_net_mm": [
+          3.0
+        ],
+        "reported_frozen_total_length_m": [
+          0.005
+        ],
+        "actual_altered_total_length_m": [
+          0.003
+        ],
+        "peak_difference_k": 0.0,
+        "same_summary_sha256": true
+      },
+      "impact": "Changing only valid pin offsets from a 5 mm to a 3 mm net is accepted while the output still reports the old 0.005 m total length. The changed interconnect and pin-temperature result is attributed to the unchanged frozen summary.",
+      "published_result_scope": "All ten current local case hashes match the summaries and the report binds those summaries; this does not establish that historical runs used altered inputs.",
+      "fix_direction": "Enforce the already-frozen case hash before solving; recompute and compare the selected layout length to the frozen value. Reuse the existing same_problem identity pattern instead of adding another protocol layer."
+    }
+  ],
+  "checks": {
+    "unit_tests_passed": 80,
+    "unit_test_command": "PYTHONPATH=src python -m unittest discover -s tests -p '*_unittest.py' -v",
+    "environment": {
+      "python": "3.12.7",
+      "numpy": "1.26.4",
+      "scipy": "1.13.1"
+    },
+    "two_example_cli": "validate two_chiplets and evaluate both two_chiplets/layered_two_chiplets passed; timing and external thermal validation remain not_run",
+    "published_interface_result": {
+      "source_hash_matches": true,
+      "total_front_layouts": 1340,
+      "total_grid_points": 180,
+      "verdict_counts": {
+        "indistinguishable": 90,
+        "unchanged": 90
+      },
+      "maximum_advantage": 0.004033229191468957,
+      "cases": [
+        {
+          "case": "Case1",
+          "front_layouts": 174,
+          "summary_hash_matches": true,
+          "local_case_hash_matches": true,
+          "front_index_matches": true,
+          "max_saved_peak_difference_k": 9.521272659185342e-12,
+          "share_above_signoff_recomputed": 0.0,
+          "share_above_signoff_reported": 0.0,
+          "boundary_endpoints": 0,
+          "total_endpoints": 6336,
+          "gamma_zero_all_unchanged": true,
+          "max_advantage": 0.0003952492586882546
+        },
+        {
+          "case": "Case2",
+          "front_layouts": 234,
+          "summary_hash_matches": true,
+          "local_case_hash_matches": true,
+          "front_index_matches": true,
+          "max_saved_peak_difference_k": 4.988010005035903e-12,
+          "share_above_signoff_recomputed": 0.0,
+          "share_above_signoff_reported": 0.0,
+          "boundary_endpoints": 0,
+          "total_endpoints": 7040,
+          "gamma_zero_all_unchanged": true,
+          "max_advantage": 0.0008527304743183024
+        },
+        {
+          "case": "Case3",
+          "front_layouts": 217,
+          "summary_hash_matches": true,
+          "local_case_hash_matches": true,
+          "front_index_matches": true,
+          "max_saved_peak_difference_k": 1.6569856597925536e-11,
+          "share_above_signoff_recomputed": 0.22580645161290322,
+          "share_above_signoff_reported": 0.22580645161290322,
+          "boundary_endpoints": 0,
+          "total_endpoints": 16896,
+          "gamma_zero_all_unchanged": true,
+          "max_advantage": 0.0005658708755611105
+        },
+        {
+          "case": "Case4",
+          "front_layouts": 124,
+          "summary_hash_matches": true,
+          "local_case_hash_matches": true,
+          "front_index_matches": true,
+          "max_saved_peak_difference_k": 1.3216094885137863e-11,
+          "share_above_signoff_recomputed": 0.0967741935483871,
+          "share_above_signoff_reported": 0.0967741935483871,
+          "boundary_endpoints": 0,
+          "total_endpoints": 14080,
+          "gamma_zero_all_unchanged": true,
+          "max_advantage": 2.7824983044830705e-05
+        },
+        {
+          "case": "Case5",
+          "front_layouts": 120,
+          "summary_hash_matches": true,
+          "local_case_hash_matches": true,
+          "front_index_matches": true,
+          "max_saved_peak_difference_k": 2.2211565919860732e-11,
+          "share_above_signoff_recomputed": 0.9666666666666667,
+          "share_above_signoff_reported": 0.9666666666666667,
+          "boundary_endpoints": 0,
+          "total_endpoints": 14784,
+          "gamma_zero_all_unchanged": true,
+          "max_advantage": 3.7751746634386565e-05
+        },
+        {
+          "case": "Case6",
+          "front_layouts": 82,
+          "summary_hash_matches": true,
+          "local_case_hash_matches": true,
+          "front_index_matches": true,
+          "max_saved_peak_difference_k": 9.36495325731812e-12,
+          "share_above_signoff_recomputed": 0.0,
+          "share_above_signoff_reported": 0.0,
+          "boundary_endpoints": 0,
+          "total_endpoints": 11264,
+          "gamma_zero_all_unchanged": true,
+          "max_advantage": 0.0007228702686586549
+        },
+        {
+          "case": "Case7",
+          "front_layouts": 141,
+          "summary_hash_matches": true,
+          "local_case_hash_matches": true,
+          "front_index_matches": true,
+          "max_saved_peak_difference_k": 4.320099833421409e-12,
+          "share_above_signoff_recomputed": 0.0,
+          "share_above_signoff_reported": 0.0,
+          "boundary_endpoints": 0,
+          "total_endpoints": 5632,
+          "gamma_zero_all_unchanged": true,
+          "max_advantage": 0.0009268933482151294
+        },
+        {
+          "case": "Case8",
+          "front_layouts": 79,
+          "summary_hash_matches": true,
+          "local_case_hash_matches": true,
+          "front_index_matches": true,
+          "max_saved_peak_difference_k": 3.552713678800501e-12,
+          "share_above_signoff_recomputed": 0.0,
+          "share_above_signoff_reported": 0.0,
+          "boundary_endpoints": 0,
+          "total_endpoints": 5896,
+          "gamma_zero_all_unchanged": true,
+          "max_advantage": 0.0005933941955441983
+        },
+        {
+          "case": "Case9",
+          "front_layouts": 83,
+          "summary_hash_matches": true,
+          "local_case_hash_matches": true,
+          "front_index_matches": true,
+          "max_saved_peak_difference_k": 8.995471034722868e-12,
+          "share_above_signoff_recomputed": 0.7710843373493976,
+          "share_above_signoff_reported": 0.7710843373493976,
+          "boundary_endpoints": 0,
+          "total_endpoints": 15312,
+          "gamma_zero_all_unchanged": true,
+          "max_advantage": 0.004033229191468957
+        },
+        {
+          "case": "Case10",
+          "front_layouts": 86,
+          "summary_hash_matches": true,
+          "local_case_hash_matches": true,
+          "front_index_matches": true,
+          "max_saved_peak_difference_k": 1.0956568985420745e-11,
+          "share_above_signoff_recomputed": 0.03488372093023256,
+          "share_above_signoff_reported": 0.03488372093023256,
+          "boundary_endpoints": 0,
+          "total_endpoints": 10560,
+          "gamma_zero_all_unchanged": true,
+          "max_advantage": 0.0
+        }
+      ],
+      "independent_replay_scope": "Recomputed saved-result statistics and checked provenance against current local cases/front summaries; full per-net temperature/distance arrays are not in the compact report and original 1340 layouts are not present locally, so this is not a replay of all cost evaluations."
+    }
+  },
+  "progress_assessment": [
+    {
+      "area": "software and numerical core",
+      "stage": "usable research core, ongoing bounded review",
+      "evidence": "80 tests and two CLI examples pass; two new observation/input defects reproduced outside demonstrated published-result impact."
+    },
+    {
+      "area": "algorithm comparison",
+      "stage": "completed descriptive comparison in the declared model",
+      "evidence": "Case1-10, six methods, three paired seeds, 180 runs. Stronger length results from topology_lp; epsilon and topology_lp temperature medians are close. Stable temperature superiority not established; frozen comparison uses the older LP implementation."
+    },
+    {
+      "area": "thermal physics",
+      "stage": "reduced steady model numerically validated; target package validation incomplete",
+      "evidence": "Conservation, positive heat paths and boundary bookkeeping support the model implementation, not calibration of actual material/contact/convection parameters. Boundary-pin control demonstrates that a valid field can still be observed incorrectly."
+    },
+    {
+      "area": "temperature-aware interface ranking",
+      "stage": "finite candidate/grid sensitivity study completed",
+      "evidence": "Published 1340 candidate layouts and 180 parameter cells summarize to 90 unchanged, 90 indistinguishable, zero changes above 1 percent; maximum advantage 0.4033229 percent. This is not a statement that all optimum indices are identical."
+    },
+    {
+      "area": "real thermal-timing optimization",
+      "stage": "not closed",
+      "evidence": "Normalized max-net cost has no mapped full data/capture-clock path or achieved setup/hold slack. Endpoint-mean path temperature and uniform gamma remain assumptions; physical_qualified is false."
+    }
+  ],
+  "interpretation_limits": [
+    "Saved statistics and provenance were independently checked; all 1340 per-net thermal calculations were not rerun because raw layout arrays are not local and per-net arrays are not in the compact report.",
+    "The front was selected by total pin length and peak temperature; this does not make it a complete candidate set for maximum temperature-weighted net delay. For example net lengths [10,1] and [6,6] can favor the first in total length but the second in maximum length. This is a mathematical scope illustration, not a measured layout result.",
+    "No change above the declared 1 percent resolution in sampled gamma values is a useful conditional negative result, not a proof over every gamma or a real PHY qualification."
+  ],
+  "next_bounded_actions": [
+    "Fix boundary-pin observation and enforce the existing frozen case identity, with focused controls; do not rerun all 1340 layouts unless affected inputs are demonstrated.",
+    "Consolidate the six-method comparison around physical joint metrics and limitations. If implementing a topology_lp/epsilon combination, use one paired development seed before a justified three-seed comparison.",
+    "Keep real timing as a separate incomplete line. Before another timing campaign, define one sourced interface, reference planes, matched data/clock paths and receiver constraints; do not infer feasibility from normalized cost."
+  ],
+  "local_artifacts": "results/progress-review-d898800",
+  "reproduction_command": "PYTHONPATH=src:tools python results/progress-review-d898800/reproduce_new_checks.py",
+  "artifact_sha256": {
+    "reproduce_new_checks.py": "9997b080af9d786079ea62a6bd16b8c20433e4350387d130a97ea2594549a1c6",
+    "new-negative-controls.json": "d8a1a9cb5e623ab906b421b143c70710a1b2e9dfc64ee95b9533619af72364fb",
+    "receiver-negative-controls.json": "595b13ecb71dfd8bad01431e0d367c840455e573125668f31cd52440f9290419",
+    "published-result-check.json": "70dae6459c8f3270c21ce89271772fc68d758e164aacf1fe593003a5e1fe8174",
+    "unittest.log": "aeb5fc6d1a7a693d8a24329a688f9aa5e19dcba4608085bb679838ce1a394ead",
+    "two_chiplets/report.json": "73ee577ba4e8c6d38d7dfb351d50d6931214f2dc3032a1b2a10c5e4035b227da",
+    "layered_two_chiplets/report.json": "fa844802d636ad9d3931d52d2868f4c58052a183702199d049a468d73b9cb2ca"
+  }
+}
