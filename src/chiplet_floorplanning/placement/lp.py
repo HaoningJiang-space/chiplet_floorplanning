@@ -33,6 +33,7 @@ from .problem import Layout
 from .search import snap
 
 GRID_UM = 1.0  # rounding is monotone, so integer-um sizes, gap and carrier keep every fit legal
+REACH_MARGIN_MM = 0.005
 
 
 def topology(problem, layout, gap_um):
@@ -154,6 +155,98 @@ class TopologyLP:
         for target in np.linspace(low, high, levels)[1:]:
             x = self._solve(self.length, (-self.heat, -target))
             if x is not None:
+                out.append(x)
+        layouts = [self._layout(x) for x in out]
+        return [layout for layout in layouts if layout is not None]
+
+
+class ReachLP:
+    """Topology LP for link reach: with the parent's rotations and side relations fixed, the rectangle gap of
+    every linked die pair is exact in the LP (separation along the relation axis plus the excess of the centre
+    offset over the half-sizes across it), so min total over-reach is an LP; zero means every link fits.
+    `sweep` then trades the same linearised hot-pair separation as TopologyLP while keeping over-reach zero."""
+
+    def __init__(self, problem, layout, gap_um, links, reach_mm, pairs=10):
+        self.problem, self.rotation, self.gap = problem, layout.rotation_deg.copy(), gap_um/1000
+        n = problem.count
+        size = np.where((self.rotation % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)/1000
+        width, height = (s/1000 for s in problem.carrier_um)
+        bounds = ([(size[k, 0]/2, width - size[k, 0]/2) for k in range(n)]
+                  + [(size[k, 1]/2, height - size[k, 1]/2) for k in range(n)])
+        relation = {}
+        rows, cols, vals, rhs = [], [], [], []
+
+        def row(entries, value):
+            r = len(rhs)
+            for c, v in entries:
+                rows.append(r)
+                cols.append(c)
+                vals.append(v)
+            rhs.append(value)
+
+        for i, j, axis, sign in topology(problem, layout, gap_um):
+            first, second = (i, j) if sign > 0 else (j, i)
+            relation[(i, j)] = (first, second, axis)
+            row([(axis*n + first, 1.0), (axis*n + second, -1.0)], -(size[first, axis] + size[second, axis])/2 - self.gap)
+        nvar = 2*n
+        self.excess = []
+        for i, j in links:
+            i, j = (int(i), int(j)) if i < j else (int(j), int(i))
+            first, second, axis = relation[(i, j)]
+            across = 1 - axis
+            p, e = nvar, nvar + 1
+            nvar += 2
+            half = (size[i, across] + size[j, across])/2
+            row([(across*n + i, 1.0), (across*n + j, -1.0), (p, -1.0)], half)    # p >= (u_i - u_j) - half
+            row([(across*n + j, 1.0), (across*n + i, -1.0), (p, -1.0)], half)    # p >= (u_j - u_i) - half
+            sep = (size[first, axis] + size[second, axis])/2
+            # e >= (v_second - v_first - sep) + p - reach
+            # REACH_MARGIN_MM keeps the 1 um snap of _layout from pushing a fitted link past the reach
+            row([(axis*n + second, 1.0), (axis*n + first, -1.0), (p, 1.0), (e, -1.0)], sep + reach_mm - REACH_MARGIN_MM)
+            self.excess.append(e)
+        self.nvar = nvar
+        self.A = sparse.csr_matrix((vals, (rows, cols)), shape=(len(rhs), nvar))
+        self.b = np.array(rhs)
+        self.bounds = bounds + [(0, None)]*(nvar - 2*n)
+        self.over = np.zeros(nvar)
+        self.over[self.excess] = 1.0
+        self.heat = np.zeros(nvar)
+        for weight, i, j, direction in hot_pairs(problem, layout, pairs):
+            for axis in (0, 1):
+                self.heat[axis*n + j] += weight*direction[axis]
+                self.heat[axis*n + i] -= weight*direction[axis]
+
+    _layout = TopologyLP._layout
+
+    def _solve(self, objective, *extra):
+        A, b = self.A, self.b
+        if extra:
+            A = sparse.vstack([A] + [sparse.csr_matrix(r[None]) for r, _ in extra])
+            b = np.r_[b, [v for _, v in extra]]
+        result = linprog(objective, A_ub=A, b_ub=b, bounds=self.bounds, method="highs")
+        return result.x if result.status == 0 else None
+
+    def fit(self):
+        """(min total over-reach in mm, its snapped legal layout or None); (inf, None) if the LP fails."""
+        x = self._solve(self.over)
+        if x is None:
+            return np.inf, None
+        return float(self.over @ x), self._layout(x)
+
+    def sweep(self, levels):
+        """Legal snapped layouts with zero over-reach at `levels` separation targets from the least to the most
+        separated; empty if this topology cannot fit every link."""
+        fit = self._solve(self.over)
+        if fit is None or self.over @ fit > 1e-6:
+            return []
+        within = (self.over, 1e-6)
+        low, high = self._solve(self.heat, within), self._solve(-self.heat, within)
+        if low is None or high is None:
+            return []
+        out = [low]
+        for target in np.linspace(self.heat @ low, self.heat @ high, levels)[1:]:
+            x = self._solve(self.over, (-self.heat, -target))
+            if x is not None and self.over @ x <= 1e-6:
                 out.append(x)
         layouts = [self._layout(x) for x in out]
         return [layout for layout in layouts if layout is not None]
