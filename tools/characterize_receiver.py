@@ -2,8 +2,8 @@
 
 One flip-flop at a uniform temperature (ngspice global .temp, which ngspice applies),
 pinned netlist and hash-locked tt models. Times are D 50% to CLK 50%; slews are 20-80%.
-Pass criterion of one trial: Q settles to the expected value and clock-to-Q is at most
-110% of the reference with the data edge 2 ns away from the clock. Setup is the smallest
+Pass criterion of one trial: Q makes one lasting transition to the expected value (its last
+50% crossing is the output time; non-finite waves fail) and clock-to-Q is at most 110% of the reference with the data edge 2 ns away from the clock. Setup is the smallest
 data lead that passes; hold is the smallest delay after the clock edge of a new data
 value that still leaves the old capture intact. These criteria are declared, not Liberty's.
 """
@@ -33,15 +33,35 @@ def pwl(points):
     return ' '.join(f'{t:.6f}n {v}' for t, v in [(0., points[0][1])] + points + [(30., points[-1][1])])
 
 
-def crossing(t, v, level, rising, after):
+def crossing(t, v, level, rising, after, last=False):
+    """First (or last) crossing of `level` in the given direction after `after` (ns)."""
     m = t >= after
     t, v = t[m], v[m]
     above = v >= level if rising else v <= level
     hit = np.flatnonzero(above[1:] & ~above[:-1])
     if not hit.size:
         return None
-    i = hit[0]
+    i = hit[-1] if last else hit[0]
     return float(t[i] + (level - v[i])*(t[i + 1] - t[i])/(v[i + 1] - v[i]))
+
+
+def clock_to_q(t, clk, q, expect_high):
+    """Clock-to-Q (ns) at the second edge, or None unless Q makes one lasting transition to the expected value.
+
+    Non-finite samples reject the trial. The output time is Q's last 50% crossing into the expected
+    value, so a glitch that crosses early and returns delays the reading instead of passing it.
+    """
+    if not (np.isfinite(t).all() and np.isfinite(clk).all() and np.isfinite(q).all()):
+        return None
+    settled = q[(t >= EDGE_NS[1] + 4) & (t <= EDGE_NS[1] + 5)]
+    if not settled.size or abs(settled.mean() - (VDD if expect_high else 0)) > .1*VDD or np.ptp(settled) > .05*VDD:
+        return None
+    start = q[(t >= EDGE_NS[1] - 1.5) & (t <= EDGE_NS[1] - 1)]
+    if not start.size or abs(start.mean() - (0 if expect_high else VDD)) > .1*VDD:
+        return None  # the first edge must have captured the opposite value
+    c = crossing(t, clk, VDD/2, True, EDGE_NS[1] - 1)
+    qc = crossing(t, q, VDD/2, expect_high, EDGE_NS[1] - 1, last=True)
+    return None if c is None or qc is None else qc - c
 
 
 class Simulator:
@@ -84,16 +104,7 @@ quit
             if done.returncode:
                 raise RuntimeError(done.stdout[-2000:] + done.stderr[-2000:])
             w = np.loadtxt(Path(folder)/'wave.txt')
-        t, clk, q = w[:, 0]*1e9, w[:, 1], w[:, 3]  # wr_singlescale: time, clk, d, q
-        settled = q[(t >= EDGE_NS[1] + 4) & (t <= EDGE_NS[1] + 5)]
-        if abs(settled.mean() - (VDD if expect_high else 0)) > .1*VDD or abs(np.ptp(settled)) > .05*VDD:
-            return None
-        start = q[(t >= EDGE_NS[1] - 1.5) & (t <= EDGE_NS[1] - 1)].mean()
-        if abs(start - (0 if expect_high else VDD)) > .1*VDD:
-            return None  # the first edge must have captured the opposite value
-        c = crossing(t, clk, VDD/2, True, EDGE_NS[1] - 1)
-        qc = crossing(t, q, VDD/2, expect_high, EDGE_NS[1] - 1)
-        return None if qc is None else qc - c
+        return clock_to_q(w[:, 0]*1e9, w[:, 1], w[:, 3], expect_high)  # wr_singlescale: time, clk, d, q
 
 
 def setup_trial(sim, edge, lead):

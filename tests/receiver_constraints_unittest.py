@@ -8,7 +8,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from receiver_constraints import Constraint, classify, edge_metrics, receivers  # noqa: E402
-from characterize_receiver import ramp  # noqa: E402
+from characterize_receiver import EDGE_NS, clock_to_q, ramp  # noqa: E402
 
 
 def liberty(offset):
@@ -66,6 +66,20 @@ class ReceiverConstraintTest(unittest.TestCase):
         middle, slew = edge_metrics(t, v, t0, False)
         self.assertAlmostEqual(middle, 15., places=6)
         self.assertAlmostEqual(slew, 0.3, places=6)
+
+    def test_clock_to_q_rejects_invalid_and_glitching_outputs(self):
+        # Review of 81bb3f0: NaN waves passed (NaN comparisons are false) and an early glitch
+        # was read as the output time.
+        t = np.linspace(0, 30, 30001)
+        clk = np.interp(t, [EDGE_NS[1] - .05, EDGE_NS[1] + .05], [0, 1.8])
+        edge = lambda at: np.interp(t, [at - .01, at + .01], [0, 1.8])
+        clean = edge(EDGE_NS[1] + .1)
+        self.assertAlmostEqual(clock_to_q(t, clk, clean, True), .1, places=6)
+        nan = clean.copy()
+        nan[t >= EDGE_NS[1] + 4] = np.nan
+        self.assertIsNone(clock_to_q(t, clk, nan, True))
+        glitch = np.where((t > EDGE_NS[1] + .09) & (t < EDGE_NS[1] + .3), 1.8, edge(EDGE_NS[1] + 1.))
+        self.assertAlmostEqual(clock_to_q(t, clk, glitch, True), 1., places=6)
 
     def test_screen_matches_original_rule(self):
         self.assertEqual(classify([3., 3.1], [2.9, 3.0], True, .01)['ordering'], 'stable')
