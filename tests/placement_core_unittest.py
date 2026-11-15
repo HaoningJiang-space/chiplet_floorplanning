@@ -13,9 +13,7 @@ from chiplet_floorplanning.placement.methods import METHODS, Run, ranks_and_crow
 from chiplet_floorplanning.placement.evaluate import shelf_pack
 from chiplet_floorplanning.placement.lp import TopologyLP, hot_pairs, topology
 from chiplet_floorplanning.placement.search import layout_key, length_target, mutate
-from chiplet_floorplanning.placement import thermal
-from chiplet_floorplanning.placement.geometry import pin_points_um
-from chiplet_floorplanning.placement import (Evaluator, boxes, Layout, Problem, Superposition, coolest_within,
+from chiplet_floorplanning.placement import (Evaluator, boxes, Layout, Problem, coolest_within,
                                              is_legal, pareto_front, pin_manhattan_um, sample_legal,
                                              shortest_within, solve_peak, thermal_case_data, violations)
 
@@ -118,16 +116,6 @@ class PlacementCoreTest(unittest.TestCase):
         peaks = evaluator.peaks_c([layouts[0], turned])
         self.assertEqual(evaluator.solves, 1)
         self.assertEqual(peaks[0], peaks[1])
-
-    def test_superposition_is_exact_for_one_isolated_chip_up_to_sampling(self):
-        problem = Problem.from_imported(synthetic_case(random.Random(5), chips=2, nets=4))
-        problem = Problem(problem.name, problem.names[:1], problem.size_um[:1], problem.power_w[:1],
-                          problem.carrier_um, np.zeros((0, 2), int), np.zeros((0, 2, 2)))
-        layout = Layout(np.array([[15000., 15000.]]), np.array([0]))
-        model = Superposition(problem, 1000, resolution=32)
-        exact = solve_peak(thermal_case_data(problem, layout, 1000, 32))['peak_power_layer_c']
-        # Same physics except the enlarged kernel carrier and point sampling of cell values.
-        self.assertLess(abs(model.peak_c(layout) - exact), 0.05*(exact - 45))
 
     def test_length_target_is_single_chip_optimum(self):
         problem = Problem.from_imported(synthetic_case(random.Random(11), chips=4, nets=120))
@@ -246,12 +234,6 @@ class PlacementCoreTest(unittest.TestCase):
             coolest_within([1., 1.], [100., np.nan], 2.)
         with self.assertRaises(ValueError):
             pareto_front([1., 2.], [np.nan, 1.])
-
-    def test_superposition_refuses_carriers_its_kernel_cannot_cover(self):
-        problem = Problem('wide', ('a',), np.array([[4000., 4000.]]), np.ones(1), (59000., 61000.),
-                          np.zeros((0, 2), int), np.zeros((0, 2, 2)))
-        with self.assertRaises(ValueError):
-            Superposition(problem, 1000, resolution=16)
 
     def test_topology_lp_shortest_layout_is_legal_and_no_longer_than_its_parent(self):
         problem = Problem.from_imported(synthetic_case(random.Random(23), chips=5, nets=150))
@@ -395,29 +377,6 @@ class PlacementCoreTest(unittest.TestCase):
         lengths = [pin_manhattan_um(problem, l).max()/1000 for l in layouts]
         self.assertTrue(np.allclose(max_net, lengths))
 
-    def test_pin_temperatures_lie_inside_their_die_temperature_range(self):
-        problem = Problem.from_imported(synthetic_case(random.Random(31), chips=4, nets=30))
-        layout = sample_legal(problem, 1000, np.random.default_rng(4))
-        _, rise, edges = thermal.solve(thermal_case_data(problem, layout, 1000, 24))
-        pins = thermal.pin_temperatures_c(problem, layout, rise, edges)
-        self.assertEqual(pins.shape, (len(problem.pin_chip), 2))
-        die_peak = thermal.die_peaks_c(problem, layout, rise, edges)
-        self.assertTrue((pins > thermal.AMBIENT_C).all())
-        self.assertTrue((pins <= die_peak[problem.pin_chip] + 1e-12).all())
-        # The lookup returns the power-layer cell that holds the pin.
-        p = pin_points_um(problem, layout)[0, 0]/1000 + (thermal.PACKAGE_MM - np.array(problem.carrier_um)/1000)/2
-        i, j = (np.searchsorted(e, v, 'right') - 1 for e, v in zip(edges, p))
-        self.assertEqual(pins[0, 0], rise[j, i] + thermal.AMBIENT_C)
-
-    def test_edge_pins_read_their_own_die_not_the_filler(self):
-        # Review of d898800: a pin on a die's right edge read the filler cell beyond it.
-        problem = Problem('edges', ('a',), np.array([[4000., 4000.]]), np.array([20.]), (10000., 10000.),
-                          np.array([[0, 0]]), np.array([[[-2000., 0.], [2000., 0.]]]))
-        layout = Layout(np.array([[5000., 5000.]]), np.array([0]))
-        _, rise, edges = thermal.solve(thermal_case_data(problem, layout, 0, 24))
-        (left, right), = thermal.pin_temperatures_c(problem, layout, rise, edges)
-        self.assertAlmostEqual(left, right, delta=1e-6)  # mirror-symmetric input
-        self.assertGreater(left, np.nanmin(rise) + thermal.AMBIENT_C)
 
 
 if __name__ == '__main__':

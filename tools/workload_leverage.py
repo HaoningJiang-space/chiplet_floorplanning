@@ -8,7 +8,6 @@ Per scenario: regret of the nominal-best layout = its peak minus the coolest fro
 """
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import replace
-from hashlib import sha256
 import json
 from pathlib import Path
 import re
@@ -103,7 +102,6 @@ def analyse(case_path, summary_path, layouts_path, workers):
     base_best = regret(length, peaks['nominal'], 0)['best']
     rows = {s: dict(regret(length, p, base_best), power_w=float(powers[s].sum())) for s, p in peaks.items()}
     return dict(case=front.case, front_index=front.index, length_m=length, nominal_best=base_best,
-                summary_sha256=front.summary_sha256,
                 power_w={s: p.tolist() for s, p in powers.items()}, peaks_c={s: p.tolist() for s, p in peaks.items()},
                 scenarios=rows)
 
@@ -120,7 +118,7 @@ def main():
               for f in ('budget', 'activity')}
     args.output.write_text(json.dumps(dict(
         physical_qualified=False, plan='docs/workload-leverage-plan.md',
-        source_sha256=sha256(Path(__file__).read_bytes()).hexdigest(), idle=IDLE, boost=BOOST,
+        idle=IDLE, boost=BOOST,
         cap_factor=CAP_FACTOR, meaningful_k=MEANINGFUL_K, resolution_k=RESOLUTION_K,
         verdict=verdict(family['budget']), activity_verdict=verdict(family['activity']), cases=cases), indent=1) + '\n')
 

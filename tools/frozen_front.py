@@ -18,7 +18,6 @@ from chiplet_floorplanning.placement import Layout, Problem, pin_manhattan_um
 @dataclass(frozen=True)
 class Front:
     summary: dict
-    summary_sha256: str
     problem: Problem
     index: list
     layouts: list
@@ -53,7 +52,7 @@ def load(case_path, summary_path, layouts_path):
     # Review of 56f3af6: the summary's numbers must describe these coordinates, not another layout file.
     if layouts and np.abs([pin_manhattan_um(problem, l).sum()/1e6 for l in layouts] - length).max() > 1e-9:
         raise SystemExit('front lengths do not match the layout coordinates')
-    return Front(summary, sha256(Path(summary_path).read_bytes()).hexdigest(), problem, index, layouts, length,
+    return Front(summary, problem, index, layouts, length,
                  np.array([p['peak_c'] for p in summary['front']]))
 
 

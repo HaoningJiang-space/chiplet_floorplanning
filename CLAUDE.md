@@ -61,10 +61,13 @@ Delete unused code instead of keeping it around; do not rebuild per-stage `run_*
 - `evaluate.py` has the `Evaluator` (exact FV peak with a thermal-key cache and a persistent process
   pool when used as a context manager), the constructive legal sampler, and the metric selectors
   (`coolest_within`, `shortest_within`, `pareto_front`). Each returns one real layout.
-  `search.py` has legal moves, exact length descent and batched Pareto local search.
-  `surrogate.py` (shifted single-chip FV kernels) ranks well but is biased by about 1.8 K, so use it only to screen.
-- `tools/run_reference_front.py` (budget `--fv-solves` = distinct FV solves, start set included) and `tools/diagnose_superposition.py`
-  run on eex005. `tools/import_atplace_cases.py` imports ATPlace Case1–10 at pinned source commit `fe3dbfd`.
+  `search.py` has legal moves, exact length descent and batched Pareto local search; `methods.py` and `lp.py`
+  hold the compared search methods (topology_lp solves the exact length LP per topology).
+  `thermal.solve_cold_plate` replaces the air sink by a liquid cold plate whose coolant warms along the flow.
+- `tools/run_reference_front.py` (budget `--fv-solves` = distinct FV solves, start set included) builds the
+  frozen fronts in `docs/evidence/front-gap0/`; analysis tools load them through `tools/frozen_front.py`, which
+  checks the case hash, `layouts.npz` and the lengths recomputed from coordinates. These run on eex005.
+  `tools/import_atplace_cases.py` imports ATPlace Case1–10 at pinned source commit `fe3dbfd`.
 
 ## Research records
 

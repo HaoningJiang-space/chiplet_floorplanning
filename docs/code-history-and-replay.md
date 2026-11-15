@@ -3,6 +3,23 @@
 2026-11-13 按用户要求重构并删除不再使用的代码。删除前最后一个包含全部代码的提交是
 `f1df9fdd1bf69b714ce83a103cdeaef346d9abfe`（其父提交 `bd1e12b` 为全部 ATPlace Case1 阶段的最后结果）。
 
+## 2026-11-15 第二次精简
+
+按用户要求删除已结束研究线的代码，并去掉只写进输出的源文件/摘要 SHA-256（保留"案例与冻结前沿一致"和"冻结计划未被改动"这两类输入身份核对）。
+删除前最后一个包含这些代码的提交是 `b88d869`，复现时在该提交运行原命令（`tools/replay_at_commit.py` 同样适用）：
+
+| 删除的代码 | 对应结果 |
+| --- | --- |
+| `tools/receiver_constraints.py`、`tools/characterize_receiver.py` | [接收端 setup/hold 扣除](receiver-constraint-plan.md) |
+| `tools/interface_margin.py`、`thermal.pin_temperatures_c` | [按实际温度计时](interface-margin-plan.md) |
+| `tools/package_leverage.py`、`thermal_case_data` 的 TIM/盖厚/h 倍数参数 | [封装杠杆](package-leverage-plan.md) |
+| `tools/throughput_knob.py` | [逐芯粒功耗旋钮](coupling-search-plan.md) |
+| `tools/bound_routing_screen.py` | [布线筛查下界](routing-screen-bounds.md) |
+| `tools/diagnose_superposition.py`、`placement/surrogate.py` | 单芯粒叠加代理（只用于筛查，当前工作不用） |
+| `Layout.to_placements`、`import_atplace_cases.rotate_offset` | 无调用者 |
+
+空气散热器的默认配方未变：固定输入下峰温与删除前逐位相同（单元测试固定值 48.38459530567995 °C）。
+
 ## 为什么改复现方式
 
 旧冻结计划把源文件 SHA-256 写入计划，`check_plan` 又逐级调用上一阶段检查

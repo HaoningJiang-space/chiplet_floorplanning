@@ -9,7 +9,6 @@ regret = T_s(N) - T_s(S); reverse cost = T_nom(S) - T_nom(N).
 """
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import replace
-from hashlib import sha256
 import json
 from pathlib import Path
 import time
@@ -135,7 +134,7 @@ def main():
     cases = [analyse(n, *frozen_front.paths(args, n), args.workers) for n in args.cases]
     args.output.write_text(json.dumps(dict(
         physical_qualified=False, plan='docs/coupling-search-plan.md',
-        source_sha256=sha256(Path(__file__).read_bytes()).hexdigest(), seed=SEED, fv_solves=FV_SOLVES,
+        seed=SEED, fv_solves=FV_SOLVES,
         cap_factor=CAP_FACTOR, meaningful_k=MEANINGFUL_K, llm=LLM,
         verdict={g: verdict(cases, g) for g in ('declared', 'llm')}, cases=cases), indent=1) + '\n')
 

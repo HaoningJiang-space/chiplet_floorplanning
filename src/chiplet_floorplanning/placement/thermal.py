@@ -10,12 +10,10 @@ import numpy as np
 from ..model import parse_case
 from ..package import assemble_package, checked_solution, require_heat_path, solve_spd
 from ..power import rasterize
-from .geometry import boxes, pin_points_um, violations
+from .geometry import boxes, violations
 
 AMBIENT_C = 45.0
 PACKAGE_MM = 200.0
-# Declared package knobs; the defaults are the frozen recipe above.
-PACKAGE_DEFAULT = dict(top_h_factor=1.0, tim_k=4.0, spreader_mm=1.0, cold_plate_h_w_m2k=None)
 WATER_CP_J_KGK = 4186.0
 COLD_PLATE_BASE_MM = 3.0
 PROVENANCE = ("ATPlace source geometry/power/pins; declared TAP-family FV materials, "
@@ -26,10 +24,7 @@ def _mixture(diameter, pitch, background):
     return 400*(diameter/pitch)**2 + background*(1 - (diameter/pitch)**2)
 
 
-def thermal_case_data(problem, layout, gap_um, resolution=64, package=None):
-    package = dict(PACKAGE_DEFAULT, **(package or {}))
-    if package.keys() != PACKAGE_DEFAULT.keys():
-        raise ValueError(f"unknown package knobs: {sorted(package.keys() - PACKAGE_DEFAULT.keys())}")
+def thermal_case_data(problem, layout, gap_um, resolution=64, cold_plate_h_w_m2k=None):
     v = violations(problem, layout, gap_um)
     if v["outside"] or v["pairs"]:
         raise ValueError(f"illegal layout: {v}")
@@ -57,14 +52,14 @@ def thermal_case_data(problem, layout, gap_um, resolution=64, package=None):
     layers = [layer("substrate", .2, 1/3.33), layer("c4", .07, _mixture(250, 600, 1.6)),
               layer("interposer", .11, _mixture(10, 50, 100)),
               layer("microbumps", .01, 1.6, die_k=_mixture(25, 45, 1.6)),
-              layer("dies", .15, 1.6, die_k=100), layer("tim", .02, package["tim_k"]),
-              layer("spreader", package["spreader_mm"], 400, 100, 100), layer("sink", 6.9, 400, 200, 200)]
-    top_h = package["top_h_factor"]/(.1*.06**2)
-    if package["cold_plate_h_w_m2k"] is not None:
+              layer("dies", .15, 1.6, die_k=100), layer("tim", .02, 4),
+              layer("spreader", 1, 400, 100, 100), layer("sink", 6.9, 400, 200, 200)]
+    top_h = 1/(.1*.06**2)
+    if cold_plate_h_w_m2k is not None:
         # Liquid cold plate (copper base on the lid) instead of the air sink; coolant enters at AMBIENT_C,
         # and h is the effective fin-side coefficient referred to the base area.
         layers = layers[:-1] + [layer("cold_plate", COLD_PLATE_BASE_MM, 400, 100, 100)]
-        top_h = package["cold_plate_h_w_m2k"]
+        top_h = cold_plate_h_w_m2k
     return dict(schema_version=1, name="atplace_fv_" + problem.name,
                 package_mm=dict(width=200, height=200),
                 grid=dict(nx=resolution, ny=resolution, mode="geometry_conformal"), chiplets=chips,
@@ -156,31 +151,3 @@ def die_peaks_c(problem, layout, rise, edges):
         inside = np.ix_((yc > y0) & (yc < y1), (xc > x0) & (xc < x1))
         peaks.append(float(np.nanmax(rise[inside]) + AMBIENT_C))
     return np.array(peaks)
-
-
-def pin_temperatures_c(problem, layout, rise, edges):
-    """Power-layer temperature (degC) at each net endpoint, shape (nets, 2).
-
-    The value is that of the mesh cell holding the pin inside its own die: a pin on a die edge
-    lies on a mesh line, and the cell is taken on the die side, never the filler outside it.
-    """
-    width, height = (s/1000 for s in problem.carrier_um)
-    offset = np.array([(PACKAGE_MM - width)/2, (PACKAGE_MM - height)/2])
-    p = pin_points_um(problem, layout)/1000 + offset
-    box = (boxes(problem, layout)/1000 + np.r_[offset, offset])[problem.pin_chip]  # (nets, 2, 4)
-    index = []
-    for axis in (0, 1):
-        e, v = edges[axis], p[..., axis]
-        low, high = box[..., axis], box[..., axis + 2]
-        if ((v < low - 1e-9) | (v > high + 1e-9)).any():
-            raise ValueError('net endpoint outside its die')
-        i = np.clip(np.searchsorted(e, v, 'right') - 1, 0, len(e) - 2)
-        centre = (e[:-1] + e[1:])/2
-        i = np.where(centre[i] > high, i - 1, np.where(centre[i] < low, i + 1, i))
-        if ((centre[i] <= low) | (centre[i] >= high)).any():
-            raise ValueError('no mesh cell inside the die at a net endpoint')
-        index.append(i)
-    t = rise[index[1], index[0]] + AMBIENT_C
-    if np.isnan(t).any():
-        raise ValueError('net endpoint outside the power layer')
-    return t

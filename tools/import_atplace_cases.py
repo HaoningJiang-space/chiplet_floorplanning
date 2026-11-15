@@ -32,16 +32,6 @@ def headers(records, keys):
     return values
 
 
-def rotate_offset(x_um, y_um, degrees):
-    """Exact counterclockwise rotation about chiplet centre, in micrometres."""
-    x, y = Decimal(x_um), Decimal(y_um)
-    if degrees not in (0, 90, 180, 270):
-        raise ValueError('only quarter turns supported')
-    for _ in range(degrees//90):
-        x, y = -y, x
-    return str(x), str(y)
-
-
 def parse_case(name, blocks, power, nets):
     records = lines(blocks)
     h = headers(records, ('NumSoftRectangularBlocks', 'NumHardRectilinearBlocks',

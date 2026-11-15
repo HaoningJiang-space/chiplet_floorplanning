@@ -3,7 +3,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from import_atplace_cases import parse_case, rotate_offset
+from import_atplace_cases import parse_case
 
 BLOCKS = '''NumSoftRectangularBlocks : 0
 NumHardRectilinearBlocks : 2
@@ -23,13 +23,10 @@ b B : %-50 %50
 
 
 class AtplaceImportTest(unittest.TestCase):
-    def test_percent_units_and_quarter_turns(self):
+    def test_percent_units_and_source_offsets(self):
         case = parse_case('test', BLOCKS, POWER, NETS)
         pin = case['nets'][0]['pins'][0]
         self.assertEqual((pin['offset_x_um_decimal'], pin['offset_y_um_decimal']), ('1000', '-200'))
-        self.assertEqual(rotate_offset('1000', '-200', 90), ('200', '1000'))
-        self.assertEqual(rotate_offset('1000', '-200', 180), ('-1000', '200'))
-        self.assertEqual(rotate_offset('1000', '-200', 270), ('-200', '-1000'))
         self.assertIsNone(case['package_model'])
         self.assertIsNone(case['placement_grid_um'])
 

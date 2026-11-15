@@ -64,7 +64,3 @@ class Layout:
         if not np.isfinite(centre).all():
             raise ValueError("nonfinite centre")
         return cls(centre, rotation)
-
-    def to_placements(self, problem):
-        return [dict(chiplet=n, centre_x_um=float(c[0]), centre_y_um=float(c[1]), rotation_deg=int(r))
-                for n, c, r in zip(problem.names, self.centre_um, self.rotation_deg)]

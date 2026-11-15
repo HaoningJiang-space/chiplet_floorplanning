@@ -8,7 +8,6 @@ target is beta/(target - alpha). Pumping power ~ Q**3 (declared). Reported per c
   trade-off:        flow needed to reach the target with layouts within {1.0, 1.1, 1.25, 1.5} x Lmin.
 """
 from concurrent.futures import ProcessPoolExecutor
-from hashlib import sha256
 import itertools
 import json
 from pathlib import Path
@@ -32,7 +31,7 @@ KG_S_PER_LPM = 0.997/60
 def peaks(job):
     case_path, centre, rotation, gap_um, resolution, h = job
     problem = Problem.from_imported(json.loads(Path(case_path).read_text()))
-    data = thermal_case_data(problem, Layout(centre, rotation), gap_um, resolution, dict(cold_plate_h_w_m2k=h))
+    data = thermal_case_data(problem, Layout(centre, rotation), gap_um, resolution, cold_plate_h_w_m2k=h)
     fixed = solve_peak(data)['peak_power_layer_c']
     return fixed, [[solve_cold_plate(data, q*KG_S_PER_LPM, d)['peak_power_layer_c'] for q in FLOWS_LPM]
                    for d in DIRECTIONS]
@@ -111,7 +110,7 @@ def main():
                           for h, v in r['by_h'].items()}, flush=True)
     args.output.write_text(json.dumps(dict(
         physical_qualified=False, plan='docs/cold-plate-tradeoff-plan.md',
-        source_sha256=sha256(Path(__file__).read_bytes()).hexdigest(), h_w_m2k=H_W_M2K, flows_lpm=FLOWS_LPM,
+        h_w_m2k=H_W_M2K, flows_lpm=FLOWS_LPM,
         directions=DIRECTIONS, caps=CAPS, pump_exponent=PUMP_EXPONENT,
         verdict={h: verdict([c['by_h'][str(h)] for c in cases]) for h in map(str, H_W_M2K)}, cases=cases),
         indent=1) + '\n')
