@@ -1,11 +1,14 @@
+from hashlib import sha256
+import json
 from pathlib import Path
 import sys
+import tempfile
 import unittest
 
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from interface_margin import choice, cost  # noqa: E402
+from interface_margin import analyse, choice, cost  # noqa: E402
 
 
 class InterfaceMarginTest(unittest.TestCase):
@@ -26,6 +29,16 @@ class InterfaceMarginTest(unittest.TestCase):
     def test_small_advantage_is_indistinguishable(self):
         length, temp = np.array([[10.], [10.05]]), np.array([[125.], [115.]])
         self.assertEqual(choice(length, temp, 0., 0.001)['verdict'], 'indistinguishable')
+
+    def test_changed_case_is_refused_before_any_solve(self):
+        # Review of d898800: pins do not enter the heat equation, so a case with moved pins
+        # reproduced the frozen peaks and passed.
+        with tempfile.TemporaryDirectory() as folder:
+            case, summary = Path(folder)/'case.json', Path(folder)/'summary.json'
+            case.write_text('{"nets": []}')
+            summary.write_text(json.dumps(dict(case_sha256=sha256(b'frozen').hexdigest(), front=[])))
+            with self.assertRaises(SystemExit):
+                analyse(case, summary, Path(folder)/'missing.npz', 1)
 
 
 if __name__ == '__main__':

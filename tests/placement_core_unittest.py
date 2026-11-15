@@ -397,6 +397,16 @@ class PlacementCoreTest(unittest.TestCase):
         i, j = (np.searchsorted(e, v, 'right') - 1 for e, v in zip(edges, p))
         self.assertEqual(pins[0, 0], rise[j, i] + thermal.AMBIENT_C)
 
+    def test_edge_pins_read_their_own_die_not_the_filler(self):
+        # Review of d898800: a pin on a die's right edge read the filler cell beyond it.
+        problem = Problem('edges', ('a',), np.array([[4000., 4000.]]), np.array([20.]), (10000., 10000.),
+                          np.array([[0, 0]]), np.array([[[-2000., 0.], [2000., 0.]]]))
+        layout = Layout(np.array([[5000., 5000.]]), np.array([0]))
+        _, rise, edges = thermal.solve(thermal_case_data(problem, layout, 0, 24))
+        (left, right), = thermal.pin_temperatures_c(problem, layout, rise, edges)
+        self.assertAlmostEqual(left, right, delta=1e-6)  # mirror-symmetric input
+        self.assertGreater(left, np.nanmin(rise) + thermal.AMBIENT_C)
+
 
 if __name__ == '__main__':
     unittest.main()

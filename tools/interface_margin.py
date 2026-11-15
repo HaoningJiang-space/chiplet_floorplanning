@@ -47,6 +47,9 @@ def choice(length, temp, d0, gamma):
 
 def analyse(case_path, summary_path, layouts_path, workers):
     summary = json.loads(Path(summary_path).read_text())
+    # Pins do not enter the heat equation, so matching peaks cannot prove the interconnect input.
+    if sha256(Path(case_path).read_bytes()).hexdigest() != summary['case_sha256']:
+        raise SystemExit(f'{case_path} is not the case the front was frozen on')
     z = np.load(layouts_path)
     index = [p['index'] for p in summary['front']]
     for p, i in zip(summary['front'], index):
@@ -60,6 +63,8 @@ def analyse(case_path, summary_path, layouts_path, workers):
     pin_max, peak = np.array([s[2] for s in states]), np.array([s[3] for s in states])
     if np.abs(peak - [p['peak_c'] for p in summary['front']]).max() > 1e-6:
         raise SystemExit('re-solved peaks differ from the frozen front')
+    if np.abs(length.sum(axis=1)/1000 - [p['length_m'] for p in summary['front']]).max() > 1e-6:
+        raise SystemExit('re-computed lengths differ from the frozen front')
     grid = []
     for gamma in GAMMAS:
         for d0 in D0_MM:

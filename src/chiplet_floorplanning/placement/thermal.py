@@ -101,12 +101,28 @@ def die_peaks_c(problem, layout, rise, edges):
 
 
 def pin_temperatures_c(problem, layout, rise, edges):
-    """Power-layer temperature (degC) of the mesh cell holding each net endpoint, shape (nets, 2)."""
+    """Power-layer temperature (degC) at each net endpoint, shape (nets, 2).
+
+    The value is that of the mesh cell holding the pin inside its own die: a pin on a die edge
+    lies on a mesh line, and the cell is taken on the die side, never the filler outside it.
+    """
     width, height = (s/1000 for s in problem.carrier_um)
-    p = pin_points_um(problem, layout)/1000 + np.array([(PACKAGE_MM - width)/2, (PACKAGE_MM - height)/2])
-    ix = np.clip(np.searchsorted(edges[0], p[..., 0], 'right') - 1, 0, len(edges[0]) - 2)
-    iy = np.clip(np.searchsorted(edges[1], p[..., 1], 'right') - 1, 0, len(edges[1]) - 2)
-    t = rise[iy, ix] + AMBIENT_C
+    offset = np.array([(PACKAGE_MM - width)/2, (PACKAGE_MM - height)/2])
+    p = pin_points_um(problem, layout)/1000 + offset
+    box = (boxes(problem, layout)/1000 + np.r_[offset, offset])[problem.pin_chip]  # (nets, 2, 4)
+    index = []
+    for axis in (0, 1):
+        e, v = edges[axis], p[..., axis]
+        low, high = box[..., axis], box[..., axis + 2]
+        if ((v < low - 1e-9) | (v > high + 1e-9)).any():
+            raise ValueError('net endpoint outside its die')
+        i = np.clip(np.searchsorted(e, v, 'right') - 1, 0, len(e) - 2)
+        centre = (e[:-1] + e[1:])/2
+        i = np.where(centre[i] > high, i - 1, np.where(centre[i] < low, i + 1, i))
+        if ((centre[i] <= low) | (centre[i] >= high)).any():
+            raise ValueError('no mesh cell inside the die at a net endpoint')
+        index.append(i)
+    t = rise[index[1], index[0]] + AMBIENT_C
     if np.isnan(t).any():
         raise ValueError('net endpoint outside the power layer')
     return t
