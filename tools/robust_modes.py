@@ -46,23 +46,33 @@ def saved_layouts(saved):
     return out
 
 
-def scores(problem, layouts, gap_um, resolution, workers, boost):
-    """J (K) and each die's hottest peak over the modes (degC)."""
+def scores(problem, layouts, gap_um, resolution, workers, boost, nominal_only=False):
+    """J (K) and each die's hottest peak over the modes (degC); nominal_only: the full-load mode alone."""
     _, rows = modes(problem, boost)
+    rows = rows[:1] if nominal_only else rows
     with Evaluator(problem, gap_um, resolution, workers, modes=(rows, limits(problem.names))) as evaluator:
         return evaluator.peaks_c(layouts), evaluator.die_peaks_c(layouts)
 
 
 def compare(length, nominal, j, cap, n):
-    """N (given) against the lowest-J candidate within the cap."""
+    """Baseline N (given, must meet the cap) against the lowest-J candidate within the cap."""
     ok = np.flatnonzero(length <= cap + 1e-12)
+    if n not in ok:
+        raise ValueError(f'baseline {n} exceeds the interconnect cap')
     r = int(ok[np.argmin(j[ok])])
-    return dict(nominal_best=n, robust_best=r, gain_k=float(j[n] - j[r]), j_nominal_best_k=float(j[n]),
-                j_robust_best_k=float(j[r]), feasible_nominal_best=bool(j[n] <= 0), feasible_robust_best=bool(j[r] <= 0),
+    return dict(baseline=n, robust_best=r, gain_k=float(j[n] - j[r]), j_baseline_k=float(j[n]),
+                j_robust_best_k=float(j[r]), feasible_baseline=bool(j[n] <= 0), feasible_robust_best=bool(j[r] <= 0),
                 reverse_cost_k=float(nominal[r] - nominal[n]), robust_length_m=float(length[r]))
 
 
+def within_best(length, value, cap):
+    ok = np.flatnonzero(length <= cap + 1e-12)
+    return int(ok[np.argmin(value[ok])])
+
+
 def verdict(gains):
+    if not gains:
+        return 'no_data'
     hit = sum(g >= MEANINGFUL_K for g in gains)
     return 'worthwhile' if hit >= 2 else 'degenerate' if all(g < RESOLUTION_K for g in gains) else 'uncertain'
 
@@ -81,36 +91,65 @@ def analyse(n, case_path, summary_path, layouts_path, saved, workers):
     if np.abs(nominal[:len(front.layouts)] - front.peak_c).max() > 1e-6 or \
             abs(nominal[len(front.layouts)] - saved['nominal']['best_peak_c']) > 1e-6:
         raise SystemExit(f'{front.case}: nominal peaks differ from the frozen records')
-    n_index = len(front.layouts)                               # the saved nominal-search winner
+    n_index = len(front.layouts)                               # the saved nominal-search winner (absolute peak)
+    # Review of 8d2be3d: the same-limit full-load baseline L minimises max_i(T_i - limit_i) at full load alone,
+    # so the gain against it is due to the extra modes, not to the change from absolute peak to overshoot.
+    j0, _ = scores(problem, layouts, gap, res, workers, PRIMARY_BOOST, nominal_only=True)
     out = dict(case=front.case, cap_m=cap, modes=modes(problem, PRIMARY_BOOST)[0],
                candidates=['front']*len(front.layouts) + list(extra), length_m=length.tolist(),
-               nominal_c=nominal.tolist(), cross={})
+               nominal_c=nominal.tolist(), nominal_overshoot_k=j0.tolist(), cross={})
+    l_index = within_best(length, j0, cap)
     for boost in BOOSTS:
         j, _ = scores(problem, layouts, gap, res, workers, boost)
-        out['cross'][str(boost)] = dict(compare(length, nominal, j, cap, n_index), j_k=j.tolist())
+        out['cross'][str(boost)] = dict(peak_baseline=compare(length, nominal, j, cap, n_index),
+                                        limit_baseline=compare(length, nominal, j, cap, l_index), j_k=j.tolist())
     if n in SEARCH_CASES:
         rng = np.random.default_rng(SEED)
         initial = [sample_legal(problem, gap, rng) for _ in range(STARTS)]
         initial += [length_descent(problem, sample_legal(problem, gap, rng), rng, gap) for _ in range(STARTS)]
         _, rows = modes(problem, PRIMARY_BOOST)
         started = time.perf_counter()
-        with Evaluator(problem, gap, res, workers, modes=(rows, limits(problem.names))) as evaluator:
-            run = Run(evaluator, FV_SOLVES)
-            METHODS['lp_epsilon'](run, initial, np.random.default_rng([SEED, 10]), batch=BATCH, length_caps_m=[cap])
-            s_length, s_j, _ = run.arrays()
-            solves = evaluator.solves
-        with Evaluator(problem, gap, res, workers) as evaluator:
-            s_nominal = evaluator.peaks_c(run.layouts)
-        j_all = np.r_[out['cross'][str(PRIMARY_BOOST)]['j_k'], s_j]
-        row = compare(np.r_[length, s_length], np.r_[nominal, s_nominal], j_all, cap, n_index)
-        best = (layouts + run.layouts)[row['robust_best']]
-        modes_die = scores(problem, [best], gap, res, 1, PRIMARY_BOOST)[1][0]
-        out['search'] = dict(row, solves=solves, stop=run.stop_reason,
-                             robust_from='search' if row['robust_best'] >= len(layouts) else out['candidates'][row['robust_best']],
-                             robust_die_peaks_c=modes_die.tolist(), centre_um=best.centre_um.tolist(),
-                             rotation_deg=best.rotation_deg.tolist(), seconds=time.perf_counter() - started)
-    print(front.case, {b: round(c['gain_k'], 2) for b, c in out['cross'].items()},
-          out.get('search') and round(out['search']['gain_k'], 2), flush=True)
+        found = {}
+        for name, objective in (('limit_baseline', rows[:1]), ('robust', rows)):
+            with Evaluator(problem, gap, res, workers, modes=(objective, limits(problem.names))) as evaluator:
+                run = Run(evaluator, FV_SOLVES)
+                METHODS['lp_epsilon'](run, initial, np.random.default_rng([SEED, 10]), batch=BATCH,
+                                      length_caps_m=[cap])
+                length_, j_, _ = run.arrays()
+                found[name] = (run.layouts, length_, j_, evaluator.solves, run.stop_reason)
+        b_layouts, b_length, b_j0 = found['limit_baseline'][:3]        # its objective is the full-load overshoot
+        # L: lowest full-load overshoot within the cap over the cross candidates and the baseline search.
+        l_all = within_best(np.r_[length, b_length], np.r_[j0, b_j0], cap)
+        baseline = (layouts + b_layouts)[l_all]
+        r_layouts, r_length, r_j = found['robust'][:3]
+        # R may pick any candidate the baselines saw, so the robust search never loses by construction.
+        pool = layouts + [baseline] + r_layouts
+        pool_length = np.r_[length, np.r_[length, b_length][l_all], r_length]
+        pool_j = np.r_[out['cross'][str(PRIMARY_BOOST)]['j_k'],
+                       scores(problem, [baseline], gap, res, 1, PRIMARY_BOOST)[0], r_j]
+        pool_nominal = np.r_[nominal, np.full(1 + len(r_layouts), np.nan)]
+        for i in {len(layouts), within_best(pool_length, pool_j, cap)}:   # only the compared layouts need it
+            if np.isnan(pool_nominal[i]):
+                with Evaluator(problem, gap, res, 1) as evaluator:
+                    pool_nominal[i] = evaluator.peaks_c([pool[i]])[0]
+        rows_out = dict(peak_baseline=compare(pool_length, pool_nominal, pool_j, cap, n_index),
+                        limit_baseline=compare(pool_length, pool_nominal, pool_j, cap, len(layouts)))
+        best = pool[rows_out['limit_baseline']['robust_best']]
+        out['search'] = dict(rows_out, solves={k: v[3] for k, v in found.items()},
+                             stop={k: v[4] for k, v in found.items()},
+                             baseline_from='search' if l_all >= len(layouts) else out['candidates'][l_all],
+                             robust_from=('search' if rows_out['limit_baseline']['robust_best'] > len(layouts)
+                                          else 'limit_baseline' if rows_out['limit_baseline']['robust_best'] == len(layouts)
+                                          else out['candidates'][rows_out['limit_baseline']['robust_best']]),
+                             robust_die_peaks_c=scores(problem, [best], gap, res, 1, PRIMARY_BOOST)[1][0].tolist(),
+                             centre_um=best.centre_um.tolist(), rotation_deg=best.rotation_deg.tolist(),
+                             baseline_centre_um=baseline.centre_um.tolist(),
+                             baseline_rotation_deg=baseline.rotation_deg.tolist(),
+                             seconds=time.perf_counter() - started)
+    print(front.case, {b: (round(c['peak_baseline']['gain_k'], 2), round(c['limit_baseline']['gain_k'], 2))
+                       for b, c in out['cross'].items()},
+          out.get('search') and {k: round(out['search'][k]['gain_k'], 2) for k in ('peak_baseline', 'limit_baseline')},
+          flush=True)
     return out
 
 
@@ -126,7 +165,8 @@ def main():
     args.output.write_text(json.dumps(dict(
         physical_qualified=False, plan='docs/robust-modes-plan.md', boosts=BOOSTS, primary_boost=PRIMARY_BOOST,
         limits_c=dict(logic=LIMIT_LOGIC_C, memory=LIMIT_MEMORY_C), seed=SEED, fv_solves=FV_SOLVES,
-        cap_factor=CAP_FACTOR, verdict=verdict([c['search']['gain_k'] for c in cases if 'search' in c]),
+        cap_factor=CAP_FACTOR, verdict=verdict([c['search']['limit_baseline']['gain_k'] for c in cases if 'search' in c]),
+        peak_baseline_verdict=verdict([c['search']['peak_baseline']['gain_k'] for c in cases if 'search' in c]),
         cases=cases), indent=1) + '\n')
 
 

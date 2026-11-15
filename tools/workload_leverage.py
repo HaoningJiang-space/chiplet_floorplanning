@@ -51,7 +51,8 @@ def scenarios(names):
 def budget_power(nominal, activity, eligible, boost=BOOST):
     """Water-fill the freed power onto eligible dies at full activity, each capped at boost x nominal."""
     power = nominal*activity
-    free, open_ = nominal.sum() - power.sum(), (activity == 1) & eligible
+    # Review of 8d2be3d: freed power is shared in proportion to nominal power, so a zero-power die receives none.
+    free, open_ = nominal.sum() - power.sum(), (activity == 1) & eligible & (nominal > 0)
     while free > 1e-9 and open_.any():
         room = np.where(open_, boost*nominal - power, 0.)
         share = np.where(open_, nominal, 0.)/nominal[open_].sum()*free

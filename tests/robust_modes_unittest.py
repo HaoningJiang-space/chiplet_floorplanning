@@ -11,6 +11,7 @@ from import_atplace_cases import parse_case as import_case  # noqa: E402
 from chiplet_floorplanning.placement import Evaluator, Layout, Problem, solve, thermal_case_data  # noqa: E402
 from chiplet_floorplanning.placement.thermal import die_peaks_c  # noqa: E402
 from robust_modes import compare, limits, modes, verdict  # noqa: E402
+from workload_leverage import budget_power  # noqa: E402
 
 
 class RobustModesTest(unittest.TestCase):
@@ -48,11 +49,18 @@ class RobustModesTest(unittest.TestCase):
         j = np.array([5., 3., -1., -9.])
         r = compare(length, nominal, j, 12.5, 1)
         self.assertEqual(r['robust_best'], 2)
+        with self.assertRaises(ValueError):          # a baseline over the interconnect cap is rejected
+            compare(length, nominal, j, 12.5, 3)
         self.assertAlmostEqual(r['gain_k'], 4.)
         self.assertAlmostEqual(r['reverse_cost_k'], 1.)
-        self.assertEqual((r['feasible_nominal_best'], r['feasible_robust_best']), (False, True))
+        self.assertEqual((r['feasible_baseline'], r['feasible_robust_best']), (False, True))
         self.assertEqual(verdict([1., 1.5, 0.]), 'worthwhile')
         self.assertEqual(verdict([1., 0.5, 0.]), 'uncertain')
+        self.assertEqual(verdict([]), 'no_data')
+
+    def test_zero_power_dies_receive_no_freed_power(self):
+        power = budget_power(np.array([2.5, 0.]), np.array([.2, 1.]), np.array([True, True]))
+        np.testing.assert_allclose(power, [.5, 0.])
 
 
 if __name__ == '__main__':
