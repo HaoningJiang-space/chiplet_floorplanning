@@ -1,0 +1,221 @@
+{
+  "analyzed_commit": "8d2be3da198192fc5023b7ce331cc3db196ee4c7",
+  "fetch_succeeded": true,
+  "initial_commit": "658f8e78565abee743e409c52c75f6f8cbecb0d6",
+  "scope": "Review only. Another writer published 8d2be3d during the session; fetched and reviewed that clean HEAD. No production changes or optimisation runs by this review.",
+  "physical_qualified": false,
+  "thermal_external_validation": "not_run",
+  "timing": "not_run",
+  "findings": [
+    {
+      "id": "baseline_outside_budget",
+      "priority": "P2",
+      "location": "tools/robust_modes.py:78-84,56-62",
+      "result": "analyse accepts a modified saved nominal layout that violates the shared interconnect cap; only the alternative candidates are filtered.",
+      "original_length_m": 0.0027,
+      "changed_length_m": 0.0043,
+      "cap_m": 0.0033750000000000004,
+      "identical_nominal_peak_c": 51.90921580797258,
+      "accepted": true,
+      "fix": "Compare saved candidate lengths to recomputation; reject a designated baseline outside the same cap before reporting gains."
+    },
+    {
+      "id": "empty_verdict",
+      "priority": "P2",
+      "location": "tools/robust_modes.py:65-67,123-129",
+      "command": "PYTHONPATH=src:tools python tools/robust_modes.py --cases 7 --workload-search docs/evidence/workload-search-v1.json --output <new-path>",
+      "result": {
+        "cases": [],
+        "verdict": "degenerate"
+      },
+      "fix": "Report insufficient/no data when the direct-search set is empty; do not silently omit explicitly requested absent cases."
+    },
+    {
+      "id": "zero_power_waterfill",
+      "priority": "P2",
+      "location": "tools/workload_leverage.py:54-57",
+      "reproduction": {
+        "input_nominal_w": [
+          2.5,
+          0.0
+        ],
+        "activity": [
+          0.2,
+          1.0
+        ],
+        "eligible": [
+          true,
+          true
+        ],
+        "expected_power_w": [
+          0.5,
+          0.0
+        ],
+        "finite": false,
+        "actual": [
+          "nan",
+          "nan"
+        ],
+        "warnings": [
+          "invalid value encountered in divide"
+        ],
+        "zero_compute_dies_in_current_cases": {
+          "Case1": 0,
+          "Case2": 0,
+          "Case3": 0,
+          "Case4": 0,
+          "Case5": 0,
+          "Case6": 0,
+          "Case7": 0,
+          "Case8": 0,
+          "Case9": 0,
+          "Case10": 0
+        }
+      },
+      "fix": "Remove zero-headroom or zero-nominal-power receivers before division; discard unused package budget when no receiver can accept it.",
+      "historical_scope": "The water-fill defect predates 8d2be3d; none of the ten current imported cases has a zero-power compute die."
+    },
+    {
+      "id": "baseline_objective_confound",
+      "priority": "P2",
+      "location": "tools/robust_modes.py:20,84,105",
+      "result": "The saved baseline minimises absolute full-load peak, while the candidate minimises overshoot under heterogeneous limits. Positive gain can arise at boost=1 without any mode-shift effect.",
+      "real_case_control": {
+        "case": "Case9",
+        "nominal_coldest": "llm/decode_hbm_full",
+        "result": {
+          "nominal_best": 3,
+          "robust_best": 0,
+          "gain_k": 3.0655261843253356,
+          "j_nominal_best_k": 19.138470889535753,
+          "j_robust_best_k": 16.072944705210418,
+          "feasible_nominal_best": false,
+          "feasible_robust_best": false,
+          "reverse_cost_k": 0.5766797669336512,
+          "robust_length_m": 103.43046013080001
+        },
+        "robust_choice": "nominal_best"
+      },
+      "fix": "Use full-load-only max_i(T_i-limit_i) as the matched-objective baseline, or retain the old absolute-peak baseline separately and add the matched-objective control. Separate candidate-pool/search-quality improvements from mode effects."
+    }
+  ],
+  "full_library_check": {
+    "source_commit": "658f8e78565abee743e409c52c75f6f8cbecb0d6",
+    "source_sha256": "087b17ea616fefe47cde20cd6c279e8c8e26fc819f6826b55357f05f8b4cbe07",
+    "raw_sha256": "e49910ec37406e4fecf1f73fda2a3099d6c19984202b9a2344c41156ee041def",
+    "candidate_scope": "Only published workload-search winners. Full nominal-front NPZ is absent on this machine; no claim of exhaustive or globally optimal robustness.",
+    "base_thermal_implementation": "Immutable 658f8e7 snapshot; real FV solves for all declared scenarios and boosts 1.0, 1.25, 1.5. Current mode evaluator also covered by independent per-mode unit-test solves.",
+    "controls": "Input case hashes, coordinate lengths and original nominal/scenario peaks match; boost=1 never exceeds nominal at any die; power caps and package sums checked.",
+    "comparisons": [
+      {
+        "case": "Case3",
+        "scenario": "budget/even_idle",
+        "nominal_candidate_worst_c": 142.442009499505,
+        "scenario_candidate_worst_c": 144.18846160026092,
+        "gain_k": -1.7464521007559313,
+        "nominal_binding": "1.5/even_idle",
+        "scenario_binding": "1.5/odd_idle"
+      },
+      {
+        "case": "Case5",
+        "scenario": "budget/even_idle",
+        "nominal_candidate_worst_c": 145.53364188187197,
+        "scenario_candidate_worst_c": 155.29195539292095,
+        "gain_k": -9.758313511048982,
+        "nominal_binding": "1.5/even_idle",
+        "scenario_binding": "1.5/odd_idle"
+      },
+      {
+        "case": "Case9",
+        "scenario": "budget/gpu_idle",
+        "nominal_candidate_worst_c": 131.9730565130734,
+        "scenario_candidate_worst_c": 137.47533770754396,
+        "gain_k": -5.502281194470555,
+        "nominal_binding": "1.5/cpu_idle",
+        "scenario_binding": "1.5/cpu_idle"
+      }
+    ],
+    "consequence": "Two-mode positive gains do not lower-bound gains over a larger mode set. The prediction at docs/robust-modes-plan.md:45-46 is unsupported; these saved scenario layouts are worse under the full declared library."
+  },
+  "verification": {
+    "unittest_count": 85,
+    "unittest_result": "passed",
+    "two_chiplet_validate": "passed",
+    "two_chiplet_evaluate": "passed",
+    "cli_report_sha256": "503cd543968a2b45cab58bb2d0f347a9bc6dbdde1382b1510071f54df21ebd49",
+    "cf6182c_unittest_count": 82,
+    "cf6182c_unittest_result": "passed"
+  },
+  "raw_results": "results/code-review-8d2be3d",
+  "cross_check_raw": "results/robust-mode-independent-658f8e7/cross-check.json",
+  "file_sha256": {
+    "tools/robust_modes.py": "aedb2aa06b10629380016fd74b0721c8ff624aaf96e6c016d70541d1b6cf8eb8",
+    "tools/workload_leverage.py": "1177df366d10134938189561cb3d209cf7bd2eef9cf618de2b09853c26727f76",
+    "src/chiplet_floorplanning/placement/evaluate.py": "f318603c4d2667ea9cb362731c27ed91595e1a77c58e75f83fb9390142e03f86",
+    "src/chiplet_floorplanning/placement/thermal.py": "88ef04a3f3be5b5faff657e978a17da85f55de8d4e5944cf1a1cfcde56bd79c4",
+    "docs/robust-modes-plan.md": "418bb84569f8daebc2a30fa89620b61f5bbf6da77a92604d48a3e45a8ea2efa5"
+  },
+  "publication_recheck": {
+    "commit": "cf6182c",
+    "fetch_succeeded": true,
+    "changes": "Deleted concluded workload_search.py and its three tests; robust_modes.py and its plan changed only historical references. Reviewed executable behavior unchanged.",
+    "reviewed_current_file_sha256": {
+      "tools/robust_modes.py": "aedb2aa06b10629380016fd74b0721c8ff624aaf96e6c016d70541d1b6cf8eb8",
+      "tools/workload_leverage.py": "1177df366d10134938189561cb3d209cf7bd2eef9cf618de2b09853c26727f76",
+      "src/chiplet_floorplanning/placement/evaluate.py": "f318603c4d2667ea9cb362731c27ed91595e1a77c58e75f83fb9390142e03f86",
+      "src/chiplet_floorplanning/placement/thermal.py": "88ef04a3f3be5b5faff657e978a17da85f55de8d4e5944cf1a1cfcde56bd79c4",
+      "docs/robust-modes-plan.md": "418bb84569f8daebc2a30fa89620b61f5bbf6da77a92604d48a3e45a8ea2efa5"
+    }
+  },
+  "running_experiment_interpretation": "User reports 8d2be3d runs already active on eex005. Preserve their original protocol and outputs as development evidence. Before acting on the expansion threshold, add the matched-limit full-load-only baseline and separate candidate-pool/search-quality changes. This review did not access, stop, or alter remote jobs.",
+  "current_saved_baselines_checked": [
+    {
+      "case": "Case1",
+      "length_m": 15.099441844800003,
+      "cap_m": 15.347863266000005,
+      "within_cap": true
+    },
+    {
+      "case": "Case2",
+      "length_m": 27.06798789972,
+      "cap_m": 27.13987361475,
+      "within_cap": true
+    },
+    {
+      "case": "Case3",
+      "length_m": 38.988324203200015,
+      "cap_m": 39.01840440750001,
+      "within_cap": true
+    },
+    {
+      "case": "Case4",
+      "length_m": 91.88886651440001,
+      "cap_m": 94.80930768700003,
+      "within_cap": true
+    },
+    {
+      "case": "Case5",
+      "length_m": 73.8052685908,
+      "cap_m": 73.93020311575,
+      "within_cap": true
+    },
+    {
+      "case": "Case6",
+      "length_m": 53.1574703164,
+      "cap_m": 53.795525449749995,
+      "within_cap": true
+    },
+    {
+      "case": "Case9",
+      "length_m": 103.43046013080001,
+      "cap_m": 103.98350025425,
+      "within_cap": true
+    },
+    {
+      "case": "Case10",
+      "length_m": 68.82633011282,
+      "cap_m": 70.26251258025,
+      "within_cap": true
+    }
+  ]
+}
