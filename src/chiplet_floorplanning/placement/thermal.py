@@ -169,14 +169,15 @@ def solve_cold_plate(data, flow_kg_s, direction):
     return summary, field, edges
 
 
-def die_peaks_c(problem, layout, rise, edges):
-    """Hottest power-layer cell inside each die, degC (cell centres strictly inside the die box)."""
+def die_cells(problem, layout, edges):
+    """Per die, the (row, col) index of the power-layer cells whose centres lie strictly inside the die box."""
     width, height = (s/1000 for s in problem.carrier_um)
     offset = np.array([(PACKAGE_MM - width)/2, (PACKAGE_MM - height)/2])
     b = boxes(problem, layout)/1000 + np.r_[offset, offset]
     xc, yc = (edges[0][:-1] + edges[0][1:])/2, (edges[1][:-1] + edges[1][1:])/2
-    peaks = []
-    for x0, y0, x1, y1 in b:
-        inside = np.ix_((yc > y0) & (yc < y1), (xc > x0) & (xc < x1))
-        peaks.append(float(np.nanmax(rise[inside]) + AMBIENT_C))
-    return np.array(peaks)
+    return [np.ix_((yc > y0) & (yc < y1), (xc > x0) & (xc < x1)) for x0, y0, x1, y1 in b]
+
+
+def die_peaks_c(problem, layout, rise, edges):
+    """Hottest power-layer cell inside each die, degC (cell centres strictly inside the die box)."""
+    return np.array([float(np.nanmax(rise[inside]) + AMBIENT_C) for inside in die_cells(problem, layout, edges)])
