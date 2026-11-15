@@ -16,6 +16,7 @@ AMBIENT_C = 45.0
 PACKAGE_MM = 200.0
 WATER_CP_J_KGK = 4186.0
 COLD_PLATE_BASE_MM = 3.0
+FLOW_DIRECTIONS = ('+x', '-x', '+y', '-y')
 PROVENANCE = ("ATPlace source geometry/power/pins; declared TAP-family FV materials, "
               "fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration")
 
@@ -99,7 +100,8 @@ def solve_cold_plate(data, flow_kg_s, direction):
     """Steady solve with the top boundary at the local coolant temperature, which rises along `direction`
     ('+x', '-x', '+y' or '-y'). Coolant line k (one mesh line across the flow) holds c_k, defined at its
     centre: C (c_k - c_{k-1}) = (Q_{k-1} + Q_k)/2 and C c_0 = Q_0/2, with Q_k the heat the line picks up
-    and C = flow * cp. Conduction and coolant are solved together as one sparse linear system."""
+    and C = flow * cp. Conduction and coolant are solved together as one sparse linear system.
+    Returns (summary, power-layer rise field over coolant inlet, cell edges) like solve()."""
     from scipy.sparse import coo_matrix, bmat
     from scipy.sparse.linalg import splu
     case = parse_case(data)
@@ -135,9 +137,12 @@ def solve_cold_plate(data, flow_kg_s, direction):
         raise ValueError("cold plate failed residual or energy check")
     layer = ids[power_z]
     field = np.where(layer >= 0, theta[np.maximum(layer, 0)], np.nan)
-    return dict(peak_power_layer_c=float(np.nanmax(field) + case.thermal["ambient_c"]),
-                outlet_rise_k=float(b.sum()/capacity), heat_removed_w=removed, source_power_w=float(b.sum()),
-                physical_calibrated=False)
+    summary = dict(peak_power_layer_c=float(np.nanmax(field) + case.thermal["ambient_c"]),
+                   outlet_rise_k=float(b.sum()/capacity), heat_removed_w=removed, source_power_w=float(b.sum()),
+                   physical_calibrated=False)
+    edges = (np.concatenate(([0], np.cumsum(case.mesh.widths_mm))),
+             np.concatenate(([0], np.cumsum(case.mesh.heights_mm))))
+    return summary, field, edges
 
 
 def die_peaks_c(problem, layout, rise, edges):

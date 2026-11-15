@@ -32,7 +32,7 @@ class ColdPlateTest(unittest.TestCase):
     def test_fast_flow_reduces_to_the_fixed_coolant_solve(self):
         data = self.data([[2000., 1000.], [5500., 1000.]])
         fast = solve_cold_plate(data, 1e6, '+x')
-        self.assertAlmostEqual(fast['peak_power_layer_c'], solve_peak(data)['peak_power_layer_c'], places=6)
+        self.assertAlmostEqual(fast[0]['peak_power_layer_c'], solve_peak(data)['peak_power_layer_c'], places=6)
 
     def test_slow_flow_heats_downstream_and_mirrors_with_the_direction(self):
         # The fixture carrier is symmetric about x; mirror the layout and reverse the flow.
@@ -41,8 +41,8 @@ class ColdPlateTest(unittest.TestCase):
         mirrored = self.data([[width - 2000., 1000.], [width - 5500., 1000.]])
         flow = 2e-4
         a, b = solve_cold_plate(left, flow, '+x'), solve_cold_plate(mirrored, flow, '-x')
-        self.assertAlmostEqual(a['peak_power_layer_c'], b['peak_power_layer_c'], places=6)
-        self.assertAlmostEqual(a['outlet_rise_k'], a['source_power_w']/(flow*4186.))
-        self.assertGreater(a['peak_power_layer_c'], solve_cold_plate(left, 1e6, '+x')['peak_power_layer_c'])
-        self.assertNotAlmostEqual(a['peak_power_layer_c'], solve_cold_plate(left, flow, '-x')['peak_power_layer_c'],
+        self.assertAlmostEqual(a[0]['peak_power_layer_c'], b[0]['peak_power_layer_c'], places=6)
+        self.assertAlmostEqual(a[0]['outlet_rise_k'], a[0]['source_power_w']/(flow*4186.))
+        self.assertGreater(a[0]['peak_power_layer_c'], solve_cold_plate(left, 1e6, '+x')[0]['peak_power_layer_c'])
+        self.assertNotAlmostEqual(a[0]['peak_power_layer_c'], solve_cold_plate(left, flow, '-x')[0]['peak_power_layer_c'],
                                   places=3)

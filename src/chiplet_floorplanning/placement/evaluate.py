@@ -11,7 +11,7 @@ import numpy as np
 
 from .geometry import boxes, is_legal, pin_manhattan_um
 from .problem import Layout
-from .thermal import die_peaks_c, solve, thermal_case_data
+from .thermal import FLOW_DIRECTIONS, die_peaks_c, solve, solve_cold_plate, thermal_case_data
 
 
 def thermal_key(problem, layout):
@@ -24,15 +24,23 @@ def _peaks(args):
 
     solve() already rejects non-finite, inaccurate or non-conserving solutions.
     """
-    problem, layout, gap_um, resolution = args
-    summary, rise, edges = solve(thermal_case_data(problem, layout, gap_um, resolution))
+    problem, layout, gap_um, resolution, cold_plate = args
+    if cold_plate is None:
+        summary, rise, edges = solve(thermal_case_data(problem, layout, gap_um, resolution))
+    else:
+        # Liquid cold plate (h, flow): the layout is scored with its best flow direction.
+        h, flow_kg_s = cold_plate
+        data = thermal_case_data(problem, layout, gap_um, resolution, cold_plate_h_w_m2k=h)
+        summary, rise, edges = min((solve_cold_plate(data, flow_kg_s, d) for d in FLOW_DIRECTIONS),
+                                   key=lambda r: r[0]["peak_power_layer_c"])
     return np.r_[summary["peak_power_layer_c"], die_peaks_c(problem, layout, rise, edges)]
 
 
 class Evaluator:
     """Use as a context manager to keep one process pool across many batches."""
-    def __init__(self, problem, gap_um, resolution=64, workers=1):
+    def __init__(self, problem, gap_um, resolution=64, workers=1, cold_plate=None):
         self.problem, self.gap_um, self.resolution, self.workers = problem, gap_um, resolution, workers
+        self.cold_plate = cold_plate  # None (air sink) or (h W/m2K, coolant flow kg/s)
         self.cache = {}
         self.solves = 0
         self.pool = None
@@ -65,7 +73,7 @@ class Evaluator:
         for key, layout in zip(keys, layouts):
             if key not in self.cache and key not in todo:
                 todo[key] = layout
-        jobs = [(self.problem, layout, self.gap_um, self.resolution) for layout in todo.values()]
+        jobs = [(self.problem, layout, self.gap_um, self.resolution, self.cold_plate) for layout in todo.values()]
         chunk = max(1, len(jobs)//(4*self.workers))
         if self.pool and len(jobs) > 1:
             peaks = list(self.pool.map(_peaks, jobs, chunksize=chunk))

@@ -17,6 +17,7 @@
 | `tools/bound_routing_screen.py` | [布线筛查下界](routing-screen-bounds.md) |
 | `tools/diagnose_superposition.py`、`placement/surrogate.py` | 单芯粒叠加代理（只用于筛查，当前工作不用） |
 | `Layout.to_placements`、`import_atplace_cases.rotate_offset` | 无调用者 |
+| `tools/cold_plate_tradeoff.py`（在 `4c47cef` 复现） | [冷板取舍](cold-plate-tradeoff-plan.md)；流量拟合函数移入 `tools/cold_plate_joint.py` |
 
 空气散热器的默认配方未变：固定输入下峰温与删除前逐位相同（单元测试固定值 48.38459530567995 °C）。
 
