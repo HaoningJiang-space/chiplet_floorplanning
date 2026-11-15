@@ -13,6 +13,8 @@ from chiplet_floorplanning.placement.methods import METHODS, Run, ranks_and_crow
 from chiplet_floorplanning.placement.evaluate import shelf_pack
 from chiplet_floorplanning.placement.lp import TopologyLP, hot_pairs, topology
 from chiplet_floorplanning.placement.search import layout_key, length_target, mutate
+from chiplet_floorplanning.placement import thermal
+from chiplet_floorplanning.placement.geometry import pin_points_um
 from chiplet_floorplanning.placement import (Evaluator, boxes, Layout, Problem, Superposition, coolest_within,
                                              is_legal, pareto_front, pin_manhattan_um, sample_legal,
                                              shortest_within, solve_peak, thermal_case_data, violations)
@@ -380,6 +382,20 @@ class PlacementCoreTest(unittest.TestCase):
         self.assertTrue(np.allclose(die_peak.max(axis=1), run.arrays()[1], rtol=0, atol=1e-12))
         lengths = [pin_manhattan_um(problem, l).max()/1000 for l in layouts]
         self.assertTrue(np.allclose(max_net, lengths))
+
+    def test_pin_temperatures_lie_inside_their_die_temperature_range(self):
+        problem = Problem.from_imported(synthetic_case(random.Random(31), chips=4, nets=30))
+        layout = sample_legal(problem, 1000, np.random.default_rng(4))
+        _, rise, edges = thermal.solve(thermal_case_data(problem, layout, 1000, 24))
+        pins = thermal.pin_temperatures_c(problem, layout, rise, edges)
+        self.assertEqual(pins.shape, (len(problem.pin_chip), 2))
+        die_peak = thermal.die_peaks_c(problem, layout, rise, edges)
+        self.assertTrue((pins > thermal.AMBIENT_C).all())
+        self.assertTrue((pins <= die_peak[problem.pin_chip] + 1e-12).all())
+        # The lookup returns the power-layer cell that holds the pin.
+        p = pin_points_um(problem, layout)[0, 0]/1000 + (thermal.PACKAGE_MM - np.array(problem.carrier_um)/1000)/2
+        i, j = (np.searchsorted(e, v, 'right') - 1 for e, v in zip(edges, p))
+        self.assertEqual(pins[0, 0], rise[j, i] + thermal.AMBIENT_C)
 
 
 if __name__ == '__main__':

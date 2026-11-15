@@ -10,7 +10,7 @@ import numpy as np
 from ..model import parse_case
 from ..package import assemble_package, checked_solution, require_heat_path, solve_spd
 from ..power import rasterize
-from .geometry import boxes, violations
+from .geometry import boxes, pin_points_um, violations
 
 AMBIENT_C = 45.0
 PACKAGE_MM = 200.0
@@ -98,3 +98,15 @@ def die_peaks_c(problem, layout, rise, edges):
         inside = np.ix_((yc > y0) & (yc < y1), (xc > x0) & (xc < x1))
         peaks.append(float(np.nanmax(rise[inside]) + AMBIENT_C))
     return np.array(peaks)
+
+
+def pin_temperatures_c(problem, layout, rise, edges):
+    """Power-layer temperature (degC) of the mesh cell holding each net endpoint, shape (nets, 2)."""
+    width, height = (s/1000 for s in problem.carrier_um)
+    p = pin_points_um(problem, layout)/1000 + np.array([(PACKAGE_MM - width)/2, (PACKAGE_MM - height)/2])
+    ix = np.clip(np.searchsorted(edges[0], p[..., 0], 'right') - 1, 0, len(edges[0]) - 2)
+    iy = np.clip(np.searchsorted(edges[1], p[..., 1], 'right') - 1, 0, len(edges[1]) - 2)
+    t = rise[iy, ix] + AMBIENT_C
+    if np.isnan(t).any():
+        raise ValueError('net endpoint outside the power layer')
+    return t
