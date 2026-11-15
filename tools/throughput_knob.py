@@ -16,6 +16,7 @@ from pathlib import Path
 
 import numpy as np
 from scipy.optimize import linprog
+from scipy.stats import spearmanr
 
 from chiplet_floorplanning.placement import Layout, Problem
 from chiplet_floorplanning.placement import thermal
@@ -92,10 +93,20 @@ def allocate(fields, owner, nominal, compute, limit_c, uniform=False):
 
 
 def verdict(losses):
-    """losses: per-case throughput loss of the coolest layout (None when not comparable)."""
+    """losses: per-case throughput loss of the coolest layout; 1.0 when only another layout is feasible,
+    None when no layout within the cap is feasible (no evidence either way)."""
     valid = [v for v in losses if v is not None]
+    if not valid:
+        return 'no_data'
     hit = sum(v >= MEANINGFUL for v in valid)
     return 'worthwhile' if hit >= 3 else 'degenerate' if all(v < RESOLUTION for v in valid) else 'uncertain'
+
+
+def rank_correlation(peak, throughput):
+    """Spearman with average ranks between coolness and throughput; None when either is constant."""
+    if len(peak) < 3 or np.ptp(peak) == 0 or np.ptp(throughput) == 0:
+        return None
+    return float(spearmanr(-np.asarray(peak), throughput).statistic)
 
 
 def analyse(case_path, summary_path, layouts_path, workers):
@@ -132,14 +143,11 @@ def analyse(case_path, summary_path, layouts_path, workers):
         tu = np.array([np.nan if r['uniform'] is None else r['uniform'] for r in rows])
         feasible = within[np.isfinite(t[within])]
         best = int(feasible[np.argmax(t[feasible])]) if len(feasible) else None
-        loss = None if best is None or not np.isfinite(t[coolest]) else float(1 - t[coolest]/t[best])
+        # The coolest layout infeasible while another is feasible is the largest possible loss, not missing data.
+        loss = None if best is None else 1. if not np.isfinite(t[coolest]) else float(1 - t[coolest]/t[best])
         knob = None if not (np.isfinite(t[coolest]) and np.isfinite(tu[coolest]) and tu[coolest] > 0) else \
             float(t[coolest]/tu[coolest] - 1)
-        valid = within[np.isfinite(t[within])]
-        rank = None
-        if len(valid) > 2:
-            r1, r2 = np.argsort(np.argsort(-peak[valid])), np.argsort(np.argsort(t[valid]))
-            rank = float(np.corrcoef(r1, r2)[0, 1])
+        rank = rank_correlation(peak[feasible], t[feasible])
         out['limits'][which] = dict(rows=rows, best=best, loss=loss, knob_gain_at_coolest=knob, spearman_cool_vs_throughput=rank,
                                     nominal_throughput=float(nominal[compute] @ np.ones(compute.sum())))
     return out

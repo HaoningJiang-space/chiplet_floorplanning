@@ -17,7 +17,8 @@ import time
 
 import numpy as np
 
-from chiplet_floorplanning.placement import Evaluator, Layout, Problem, sample_legal, solve_peak, thermal_case_data
+from chiplet_floorplanning.placement import (Evaluator, Layout, Problem, pin_manhattan_um, sample_legal, solve_peak,
+                                             thermal_case_data)
 from chiplet_floorplanning.placement.methods import METHODS, Run
 from chiplet_floorplanning.placement.search import length_descent
 from workload_leverage import budget_power, is_compute, kind, scenarios
@@ -83,6 +84,10 @@ def analyse(case, case_path, summary_path, layouts_path, workers):
     front = [Layout(z['centre_um'][i], z['rotation_deg'][i]) for i in index]
     f_length = np.array([p['length_m'] for p in summary['front']])
     f_peak = np.array([p['peak_c'] for p in summary['front']])
+    # Review of 56f3af6: the summary's numbers must describe these coordinates, not another layout file.
+    actual = np.array([pin_manhattan_um(problem, l).sum()/1e6 for l in front])
+    if np.abs(actual - f_length).max() > 1e-9:
+        raise SystemExit('front lengths do not match the layout coordinates')
     cap = CAP_FACTOR*f_length.min()
     rng = np.random.default_rng(SEED)
     initial = [sample_legal(problem, gap, rng) for _ in range(STARTS)]
@@ -94,6 +99,8 @@ def analyse(case, case_path, summary_path, layouts_path, workers):
             return np.array(list(pool.map(peak, jobs, chunksize=4)))
 
     nominal = problem.power_w
+    if np.abs(solve_all(nominal, front) - f_peak).max() > 1e-6:
+        raise SystemExit('front peaks do not match the layout coordinates')
     started = time.perf_counter()
     n_layouts, n_length, n_peak, n_solves, n_stop = search(problem, nominal, cap, initial, gap, res, workers)
     pool_l = front + n_layouts

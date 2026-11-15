@@ -6,7 +6,7 @@ import unittest
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from throughput_knob import X_MAX, X_MIN, allocate, die_cells, verdict  # noqa: E402
+from throughput_knob import X_MAX, X_MIN, allocate, die_cells, rank_correlation, verdict  # noqa: E402
 from atplace_import_unittest import BLOCKS, POWER, NETS  # noqa: E402
 from import_atplace_cases import parse_case as import_case  # noqa: E402
 from chiplet_floorplanning.placement import Layout, Problem, thermal  # noqa: E402
@@ -44,6 +44,15 @@ class ThroughputKnobTest(unittest.TestCase):
         self.assertEqual(verdict([.05, .04, .03, None]), 'worthwhile')
         self.assertEqual(verdict([.05, .04, .005, None]), 'uncertain')
         self.assertEqual(verdict([.005, None]), 'degenerate')
+        # Review of 56f3af6: no comparable case is not evidence of a small loss.
+        self.assertEqual(verdict([None, None]), 'no_data')
+        # Only another layout is feasible: recorded as the full loss and counted.
+        self.assertEqual(verdict([1., 1., 1.]), 'worthwhile')
+
+    def test_rank_correlation_uses_average_ranks_and_rejects_constant_series(self):
+        self.assertIsNone(rank_correlation([75., 65., 55.], [3., 3., 3.]))
+        self.assertAlmostEqual(rank_correlation([75., 65., 55., 45.], [1., 2., 2., 4.]), 0.9486832980505138)
+        self.assertEqual(rank_correlation([75., 65., 55.], [1., 2., 3.]), 1.)
 
 
 if __name__ == '__main__':
