@@ -7,7 +7,6 @@ N = coolest nominal layout within the cap (nominal front and nominal search); S 
 layout within the cap (nominal front, N and scenario search, all under the scenario map).
 regret = T_s(N) - T_s(S); reverse cost = T_nom(S) - T_nom(N).
 """
-import argparse
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import replace
 from hashlib import sha256
@@ -17,10 +16,10 @@ import time
 
 import numpy as np
 
-from chiplet_floorplanning.placement import (Evaluator, Layout, Problem, pin_manhattan_um, sample_legal, solve_peak,
-                                             thermal_case_data)
+from chiplet_floorplanning.placement import Evaluator, Layout, Problem, sample_legal, solve_peak, thermal_case_data
 from chiplet_floorplanning.placement.methods import METHODS, Run
 from chiplet_floorplanning.placement.search import length_descent
+import frozen_front
 from workload_leverage import budget_power, is_compute, kind, scenarios
 
 SEED, FV_SOLVES, BATCH, STARTS = 2026111401, 1000, 48, 48
@@ -74,20 +73,9 @@ def search(problem, power, cap, initial, gap_um, resolution, workers):
 
 
 def analyse(case, case_path, summary_path, layouts_path, workers):
-    summary = json.loads(Path(summary_path).read_text())
-    if sha256(Path(case_path).read_bytes()).hexdigest() != summary['case_sha256']:
-        raise SystemExit(f'{case_path} is not the case the front was frozen on')
-    problem = Problem.from_imported(json.loads(Path(case_path).read_text()))
-    gap, res = summary['gap_um'], summary['fv_resolution']
-    z = np.load(layouts_path)
-    index = [p['index'] for p in summary['front']]
-    front = [Layout(z['centre_um'][i], z['rotation_deg'][i]) for i in index]
-    f_length = np.array([p['length_m'] for p in summary['front']])
-    f_peak = np.array([p['peak_c'] for p in summary['front']])
-    # Review of 56f3af6: the summary's numbers must describe these coordinates, not another layout file.
-    actual = np.array([pin_manhattan_um(problem, l).sum()/1e6 for l in front])
-    if np.abs(actual - f_length).max() > 1e-9:
-        raise SystemExit('front lengths do not match the layout coordinates')
+    frozen = frozen_front.load(case_path, summary_path, layouts_path)
+    problem, gap, res = frozen.problem, frozen.gap_um, frozen.resolution
+    front, f_length, f_peak = frozen.layouts, frozen.length_m, frozen.peak_c
     cap = CAP_FACTOR*f_length.min()
     rng = np.random.default_rng(SEED)
     initial = [sample_legal(problem, gap, rng) for _ in range(STARTS)]
@@ -108,7 +96,7 @@ def analyse(case, case_path, summary_path, layouts_path, workers):
     ok = np.flatnonzero(pool_len <= cap + 1e-12)
     n_best = int(ok[np.argmin(pool_peak[ok])])
     nominal_best = pool_l[n_best]
-    out = dict(case=summary['case'], cap_m=cap, nominal=dict(
+    out = dict(case=frozen.case, cap_m=cap, nominal=dict(
         solves=n_solves, stop=n_stop, best_from='front' if n_best < len(front) else 'search',
         best_length_m=float(pool_len[n_best]), best_peak_c=float(pool_peak[n_best]),
         front_best_peak_c=float(f_peak[f_length <= cap + 1e-12].min())), targets={})
@@ -131,7 +119,7 @@ def analyse(case, case_path, summary_path, layouts_path, workers):
             scenario_best_from='front' if b < len(front) else 'nominal_best' if b == len(front) else 'search',
             scenario_best_length_m=float(cand_len[b]), nominal_best_under_scenario_c=t_s_n,
             scenario_best_c=t_s_s, centre_um=cand[b].centre_um.tolist(), rotation_deg=cand[b].rotation_deg.tolist())
-        print(summary['case'], name, f"regret {t_s_n - t_s_s:.2f} K reverse {out['targets'][name]['reverse_cost_k']:.2f} K",
+        print(frozen.case, name, f"regret {t_s_n - t_s_s:.2f} K reverse {out['targets'][name]['reverse_cost_k']:.2f} K",
               f"{time.perf_counter() - started:.0f}s", flush=True)
     out['nominal'].update(centre_um=nominal_best.centre_um.tolist(), rotation_deg=nominal_best.rotation_deg.tolist())
     return out
@@ -143,18 +131,8 @@ def verdict(cases, group):
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--cases', type=int, nargs='+', default=[1, 2, 3, 4, 5, 6, 9, 10])
-    parser.add_argument('--import-dir', type=Path, default=Path('results/physical-calibration/atplace-import-v1'))
-    parser.add_argument('--front-dir', type=Path, default=Path('results/front-gap0'))
-    parser.add_argument('--summary-dir', type=Path, default=Path('docs/evidence/front-gap0'))
-    parser.add_argument('--workers', type=int, default=24)
-    parser.add_argument('--output', type=Path, required=True)
-    args = parser.parse_args()
-    if args.output.exists():
-        raise SystemExit(f'{args.output} exists')
-    cases = [analyse(n, args.import_dir/f'Case{n}.json', args.summary_dir/f'case{n}-summary.json',
-                     args.front_dir/f'case{n}'/'layouts.npz', args.workers) for n in args.cases]
+    args = frozen_front.arguments(__doc__, cases=(1, 2, 3, 4, 5, 6, 9, 10))
+    cases = [analyse(n, *frozen_front.paths(args, n), args.workers) for n in args.cases]
     args.output.write_text(json.dumps(dict(
         physical_qualified=False, plan='docs/coupling-search-plan.md',
         source_sha256=sha256(Path(__file__).read_bytes()).hexdigest(), seed=SEED, fv_solves=FV_SOLVES,

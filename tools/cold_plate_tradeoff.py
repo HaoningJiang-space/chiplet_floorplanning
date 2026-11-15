@@ -7,7 +7,6 @@ target is beta/(target - alpha). Pumping power ~ Q**3 (declared). Reported per c
                     then its best direction) minus the best (layout, direction) within the same cap;
   trade-off:        flow needed to reach the target with layouts within {1.0, 1.1, 1.25, 1.5} x Lmin.
 """
-import argparse
 from concurrent.futures import ProcessPoolExecutor
 from hashlib import sha256
 import itertools
@@ -16,8 +15,9 @@ from pathlib import Path
 
 import numpy as np
 
-from chiplet_floorplanning.placement import Layout, Problem, pin_manhattan_um, solve_peak, thermal_case_data
+from chiplet_floorplanning.placement import Layout, Problem, solve_peak, thermal_case_data
 from chiplet_floorplanning.placement.thermal import solve_cold_plate
+import frozen_front
 
 H_W_M2K = (1e4, 2e4, 4e4)          # effective microchannel coefficient on the base; 2e4 is primary
 FLOWS_LPM = (0.5, 1., 2.)
@@ -87,43 +87,25 @@ def verdict(cases):
 
 
 def analyse(case_path, summary_path, layouts_path, workers):
-    summary = json.loads(Path(summary_path).read_text())
-    if sha256(Path(case_path).read_bytes()).hexdigest() != summary['case_sha256']:
-        raise SystemExit(f'{case_path} is not the case the front was frozen on')
-    problem = Problem.from_imported(json.loads(Path(case_path).read_text()))
-    z = np.load(layouts_path)
-    index = [p['index'] for p in summary['front']]
-    front = [Layout(z['centre_um'][i], z['rotation_deg'][i]) for i in index]
-    length = np.array([p['length_m'] for p in summary['front']])
-    if np.abs(np.array([pin_manhattan_um(problem, l).sum()/1e6 for l in front]) - length).max() > 1e-9:
-        raise SystemExit('front lengths do not match the layout coordinates')
-    jobs = [(str(case_path), l.centre_um, l.rotation_deg, summary['gap_um'], summary['fv_resolution'], h)
-            for h, l in itertools.product(H_W_M2K, front)]
+    front = frozen_front.load(case_path, summary_path, layouts_path)
+    length = front.length_m
+    jobs = [(str(case_path), l.centre_um, l.rotation_deg, front.gap_um, front.resolution, h)
+            for h, l in itertools.product(H_W_M2K, front.layouts)]
     with ProcessPoolExecutor(workers) as pool:
         solved = list(pool.map(peaks, jobs, chunksize=2))
-    out = dict(case=summary['case'], front_index=index, length_m=length.tolist(), by_h={})
+    out = dict(case=front.case, front_index=front.index, length_m=length.tolist(), by_h={})
     for j, h in enumerate(H_W_M2K):
-        rows = solved[j*len(front):(j + 1)*len(front)]
+        rows = solved[j*len(front.layouts):(j + 1)*len(front.layouts)]
         fixed, plate = np.array([r[0] for r in rows]), np.array([r[1] for r in rows])
         out['by_h'][str(h)] = dict(summarise(length, fixed, plate), fixed_c=fixed.tolist(), plate_c=plate.tolist())
     return out
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--cases', type=int, nargs='+', default=list(range(1, 11)))
-    parser.add_argument('--import-dir', type=Path, default=Path('results/physical-calibration/atplace-import-v1'))
-    parser.add_argument('--front-dir', type=Path, default=Path('results/front-gap0'))
-    parser.add_argument('--summary-dir', type=Path, default=Path('docs/evidence/front-gap0'))
-    parser.add_argument('--workers', type=int, default=24)
-    parser.add_argument('--output', type=Path, required=True)
-    args = parser.parse_args()
-    if args.output.exists():
-        raise SystemExit(f'{args.output} exists')
+    args = frozen_front.arguments(__doc__)
     cases = []
     for n in args.cases:
-        r = analyse(args.import_dir/f'Case{n}.json', args.summary_dir/f'case{n}-summary.json',
-                    args.front_dir/f'case{n}'/'layouts.npz', args.workers)
+        r = analyse(*frozen_front.paths(args, n), args.workers)
         cases.append(r)
         print(r['case'], {h: (v['regret_k'], v['pump_ratio_short_vs_125'], round(v['fit_error_max_k'], 3))
                           for h, v in r['by_h'].items()}, flush=True)
