@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "analyzed_commit": "56f3af64f63e011e0da493ad35211b5cdcca596b",
+  "fetch_succeeded": true,
+  "scope": "Review new workload search, per-die throughput allocation and result interpretation; recheck prior pin sampling/input-identity fixes. Production code unchanged.",
+  "prior_fix_controls": {
+    "boundary_pin_temperatures_c": [
+      [
+        62.18952632424322,
+        62.18952632424322
+      ],
+      [
+        62.18952632424322,
+        62.18952632424322
+      ]
+    ],
+    "mirror_difference_k": 0.0,
+    "modified_case_rejected": "results/progress-review-d898800/altered-pins.json is not the case the front was frozen on"
+  },
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "kind": "frozen_layout_identity_and_constraint_defect",
+      "location": "tools/workload_search.py:81",
+      "related_location": "tools/workload_search.py:100",
+      "status": "reproduced_not_fixed",
+      "problem": "Front coordinates are loaded from NPZ but nominal lengths and peaks are copied from a separate summary without binding or independently checking the actual layout. These stale values determine feasibility and the nominal-best baseline.",
+      "negative_control": {
+        "accepted": true,
+        "cap_m": 0.00625,
+        "reported_length_m": 0.005,
+        "actual_length_m": 0.007,
+        "reported_nominal_peak_c": 63.426329216810274,
+        "actual_nominal_peak_c": 63.200503815357436,
+        "targets": {
+          "llm/prefill": {
+            "reported_length_m": 0.005,
+            "regret_k": 0.0
+          },
+          "llm/decode_hbm_full": {
+            "reported_length_m": 0.005,
+            "regret_k": 0.0
+          },
+          "llm/decode_hbm_half": {
+            "reported_length_m": 0.005,
+            "regret_k": 0.0
+          }
+        },
+        "method": "Real FV and geometry computations; replace expensive stochastic searches with one known layout and execute pools serially. Admission/selection/reporting code unchanged."
+      },
+      "impact": "A valid but replaced layout with actual length 7 mm is admitted under a 6.25 mm cap as 5 mm; reported nominal peak also differs from its actual FV peak. Regret/reverse-cost comparisons can therefore mix different physical layouts and constraints.",
+      "fix_direction": "Before selection, bind the layout artifact to the frozen front and recompute its lengths/nominal peaks against the summary. Case JSON hashing alone does not identify NPZ coordinates."
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "kind": "feasibility_aggregation_defect",
+      "location": "tools/throughput_knob.py:135",
+      "related_location": "tools/throughput_knob.py:98",
+      "status": "reproduced_not_fixed",
+      "problem": "An infeasible coolest baseline and feasible alternative produce loss=None, which is dropped. If every loss is None, all() over the empty list returns True and the tool declares degenerate.",
+      "negative_control": {
+        "nominal_peaks_c": [
+          100.0,
+          101.0
+        ],
+        "coolest": 0,
+        "best": 1,
+        "throughput_by_layout": [
+          null,
+          10.236773812034034
+        ],
+        "reported_loss": null,
+        "aggregate_verdict": "degenerate",
+        "method": "Synthetic passive linear response matrices; production LP, selection, loss and verdict unchanged."
+      },
+      "impact": "The control has a nominally cooler 100 C layout with infeasible fixed-memory heating, while a nominally hotter 101 C alternative supports positive compute. The tool records a feasible best but aggregates the case as degenerate when it is the only comparison. It confuses missing comparisons/feasibility gains with evidence of no benefit.",
+      "fix_direction": "Report baseline-infeasible/alternative-feasible separately from wholly infeasible cases, retain its feasibility gain, and emit insufficient-data when no comparable cases remain rather than degenerate."
+    },
+    {
+      "id": "R3",
+      "priority": "P2",
+      "kind": "rank_correlation_defect",
+      "location": "tools/throughput_knob.py:141",
+      "status": "reproduced_not_fixed",
+      "problem": "Double argsort gives distinct ordinal ranks to ties, so the quantity labeled Spearman is not tie-correct and may depend on row order.",
+      "negative_control": {
+        "nominal_peaks_c": [
+          75.0,
+          65.0,
+          55.0
+        ],
+        "throughput": [
+          11.447142425533318,
+          11.447142425533318,
+          11.447142425533318
+        ],
+        "reported_spearman": 1.0,
+        "expected": "undefined: throughput is constant",
+        "method": "All layouts admit X_MAX; production LP and ranking arithmetic unchanged."
+      },
+      "impact": "Three layouts at 75/65/55 C all saturate X_MAX and have identical throughput 11.4471424255, yet the output reports Spearman=1. Throughput is constant, so correlation is undefined; a saturated region can be misread as a perfect ordering relationship.",
+      "fix_direction": "Use average ranks or scipy.stats.spearmanr, and store an explicit undefined/null result for constant inputs."
+    }
+  ],
+  "checks": {
+    "unit_tests_passed": 94,
+    "unit_test_wall_seconds": 3.825,
+    "unit_test_command": "PYTHONPATH=src python -m unittest discover -s tests -p '*_unittest.py' -v",
+    "environment": {
+      "python": "3.12.7",
+      "numpy": "1.26.4",
+      "scipy": "1.13.1"
+    },
+    "cli_examples": {
+      "two_chiplets": "validate/evaluate passed",
+      "layered_two_chiplets": "evaluate passed"
+    },
+    "saved_results": {
+      "package": {
+        "variant_rows": 60,
+        "changed_above_threshold": 0,
+        "interacting": 0,
+        "absolute_changes_above_0p3k": 28,
+        "verdict": "uncertain",
+        "nominal_heat_transfer_monotonicity": "passed for h and TIM variants"
+      },
+      "workload": {
+        "budget_scenarios": 46,
+        "scenarios_at_least_1k": 3,
+        "cases_at_least_1k": [
+          "Case10",
+          "Case3"
+        ],
+        "verdict": "uncertain",
+        "power_budget_and_activity_monotonicity": "passed"
+      },
+      "provenance": "Both tool source hashes, all 20 summary bindings, all front-index sequences and all ten local case identities match.",
+      "scope": "Independent saved-table arithmetic and invariant checks, not full thermal-field replay; new coupling search and throughput results were not published at analyzed HEAD."
+    }
+  },
+  "limitations": [
+    "Synthetic controls establish implementation failures, not their frequency in real input data.",
+    "The workload-search control replaces the expensive stochastic search with a single known layout; FV and geometry are computed normally. The throughput controls provide known passive linear response matrices; LP, selection, ranking and verdict code are unchanged.",
+    "No coupling-search or throughput-results artifact is published at analyzed HEAD; no claim is made that an already-running external campaign encountered these failures.",
+    "Existing package/workload metrics were checked from saved arrays, not by rerunning all 1340 thermal layouts.",
+    "The reduced package and throughput models remain uncalibrated; passing numerical checks does not qualify actual hardware."
+  ],
+  "local_artifacts": "results/code-review-56f3af6",
+  "reproduction_command": "PYTHONPATH=src:tools python results/code-review-56f3af6/reproduce_controls.py",
+  "artifact_sha256": {
+    "reproduce_controls.py": "3a0013fa87a5e282c146f737c5a6ca5a079966abbb1ca039235db08ae94c22e7",
+    "negative-controls.json": "08b23b16a161b1abb8fc068656cae9c8017d15ec2ab6e0998153c4f24947fd8a",
+    "prior-fixes.json": "5771d4b7d5fedb596f14f565645ca685caf7b733838ffc4d886dc7736553db0f",
+    "check_saved_results.py": "a29eb7be8cd92949057ed20c60ff205bf8d50205014564bbf72f3a9a38811688",
+    "saved-result-checks.json": "abdeb29f31920f200c18478d7ac6fafa1d97ebab5069aea43843750bfc4240b0",
+    "unittest.log": "afe009301caad3e2fb3e4c245bbf55fa76eaec600e18ff36bb9e441d271e2fa0",
+    "two_chiplets/report.json": "78e680eab115c4e91f5dfaacf8cd3f8fb3bf252bb2173493c53fb7af93524748",
+    "layered_two_chiplets/report.json": "4cf7d8d505a089210846b709a47ea2c0c200536556f6d0d90a7d9fac196608ca"
+  }
+}
