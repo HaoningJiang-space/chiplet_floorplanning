@@ -5,6 +5,8 @@ fixed 100 mm spreader, 200 mm sink, top Robin h and adiabatic sides/bottom.
 It is a research adaptation, not ATPlace's native model or a measured package.
 Ports are omitted because they do not enter the mesh, materials or power map.
 """
+from dataclasses import replace
+
 import numpy as np
 
 from ..model import parse_case
@@ -94,6 +96,25 @@ def solve(data):
 
 def solve_peak(data):
     return solve(data)[0]
+
+
+def power_layer_responses(problem, layout, gap_um, powers, resolution=64):
+    """Power-layer rise fields (K, NaN outside dies) for each row of `powers` (W per chiplet) on one layout.
+    The conduction matrix does not depend on power, so it is factorised once; fields superpose linearly."""
+    from scipy.sparse.linalg import splu
+    fields = []
+    for k, p in enumerate(np.atleast_2d(powers)):
+        case = parse_case(thermal_case_data(replace(problem, power_w=np.asarray(p, float)), layout, gap_um, resolution))
+        power, _ = rasterize(case)
+        a, b, g, _, ids, power_z = assemble_package(case, power)
+        if k == 0:
+            require_heat_path(a, g)
+            lu = splu(a.tocsc(), permc_spec="MMD_AT_PLUS_A")
+        theta = lu.solve(b)
+        checked_solution(a, b, g, theta)
+        layer = ids[power_z]
+        fields.append(np.where(layer >= 0, theta[np.maximum(layer, 0)], np.nan))
+    return np.array(fields)
 
 
 def solve_cold_plate(data, flow_kg_s, direction):

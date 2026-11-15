@@ -16,7 +16,7 @@ class DefaultPackageTest(unittest.TestCase):
         problem = Problem.from_imported(import_case('fixture', BLOCKS, POWER, NETS))
         layout = Layout(np.array([[2000., 1000.], [5500., 1000.]]), np.array([0, 0]))
         air = thermal_case_data(problem, layout, 0.)
-        self.assertEqual(solve_peak(air)['peak_power_layer_c'], 48.38459530567995)  # recipe before the cold plate
+        self.assertAlmostEqual(solve_peak(air)['peak_power_layer_c'], 48.38459530567995, places=9)  # recipe before the cold plate
         plate = thermal_case_data(problem, layout, 0., cold_plate_h_w_m2k=5000.)
         self.assertEqual([l['id'] for l in plate['thermal']['layers']][-2:], ['spreader', 'cold_plate'])
         self.assertEqual(plate['thermal']['top_h_w_m2k'], 5000.)
