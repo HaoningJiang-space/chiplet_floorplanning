@@ -1,0 +1,166 @@
+{
+  "assessment_date": "2026-11-15",
+  "analyzed_commit": "ee3c78e23659a1719f2f5a5be730d9b424e779ce",
+  "initial_fetch_succeeded": true,
+  "initial_head_equal_origin_main": true,
+  "physical_qualified": false,
+  "source": "docs/evidence/workload-search-v1.json",
+  "source_sha256": "087b17ea616fefe47cde20cd6c279e8c8e26fc819f6826b55357f05f8b4cbe07",
+  "scope": "Scalar recomputation from published nominal/scenario search summaries; two saved candidates and two sustained modes per row, not a new thermal solve, direct minimax search, or proof for all admissible modes.",
+  "derivation": {
+    "scenario_candidate_nominal_peak_c": "nominal.best_peak_c + target.reverse_cost_k",
+    "two_mode_worst_c": "max(nominal_peak_c, mode_peak_c)",
+    "two_mode_worst_gain_k": "nominal_candidate.two_mode_worst_c - scenario_candidate.two_mode_worst_c"
+  },
+  "checks": [
+    "Both candidate lengths satisfy the saved common interconnect cap.",
+    "Recomputed scenario regret equals the saved regret within 1e-9 K."
+  ],
+  "cases": [
+    {
+      "case": "Case3",
+      "mode": "budget/even_idle",
+      "interconnect_cap_m": 39.01840440750001,
+      "nominal_candidate": {
+        "nominal_peak_c": 126.52200655827396,
+        "mode_peak_c": 142.442009499506,
+        "two_mode_worst_c": 142.442009499506
+      },
+      "scenario_candidate": {
+        "nominal_peak_c": 131.76396528898255,
+        "mode_peak_c": 136.2994449143681,
+        "two_mode_worst_c": 136.2994449143681
+      },
+      "scenario_only_gain_k": 6.1425645851379045,
+      "two_mode_worst_gain_k": 6.1425645851379045
+    },
+    {
+      "case": "Case4",
+      "mode": "budget/even_idle",
+      "interconnect_cap_m": 94.80930768700003,
+      "nominal_candidate": {
+        "nominal_peak_c": 116.11299923618516,
+        "mode_peak_c": 127.74305061312681,
+        "two_mode_worst_c": 127.74305061312681
+      },
+      "scenario_candidate": {
+        "nominal_peak_c": 116.67014559113602,
+        "mode_peak_c": 127.13962728160408,
+        "two_mode_worst_c": 127.13962728160408
+      },
+      "scenario_only_gain_k": 0.603423331522734,
+      "two_mode_worst_gain_k": 0.603423331522734
+    },
+    {
+      "case": "Case5",
+      "mode": "budget/even_idle",
+      "interconnect_cap_m": 73.93020311575,
+      "nominal_candidate": {
+        "nominal_peak_c": 136.24978940339398,
+        "mode_peak_c": 145.53364188188203,
+        "two_mode_worst_c": 145.53364188188203
+      },
+      "scenario_candidate": {
+        "nominal_peak_c": 141.56186059905957,
+        "mode_peak_c": 141.02540321887358,
+        "two_mode_worst_c": 141.56186059905957
+      },
+      "scenario_only_gain_k": 4.508238663008456,
+      "two_mode_worst_gain_k": 3.9717812828224623
+    },
+    {
+      "case": "Case6",
+      "mode": "budget/gpu_idle",
+      "interconnect_cap_m": 53.795525449749995,
+      "nominal_candidate": {
+        "nominal_peak_c": 100.7336373561503,
+        "mode_peak_c": 105.71259968535794,
+        "two_mode_worst_c": 105.71259968535794
+      },
+      "scenario_candidate": {
+        "nominal_peak_c": 110.09159518849182,
+        "mode_peak_c": 102.49816661225384,
+        "two_mode_worst_c": 110.09159518849182
+      },
+      "scenario_only_gain_k": 3.2144330731041038,
+      "two_mode_worst_gain_k": -4.378995503133879
+    },
+    {
+      "case": "Case9",
+      "mode": "budget/gpu_idle",
+      "interconnect_cap_m": 103.98350025425,
+      "nominal_candidate": {
+        "nominal_peak_c": 121.07294470520664,
+        "mode_peak_c": 120.09201710962671,
+        "two_mode_worst_c": 121.07294470520664
+      },
+      "scenario_candidate": {
+        "nominal_peak_c": 125.26779175093479,
+        "mode_peak_c": 111.67674912222208,
+        "two_mode_worst_c": 125.26779175093479
+      },
+      "scenario_only_gain_k": 8.415267987404633,
+      "two_mode_worst_gain_k": -4.194847045728153
+    },
+    {
+      "case": "Case10",
+      "mode": "budget/cpu_idle",
+      "interconnect_cap_m": 70.26251258025,
+      "nominal_candidate": {
+        "nominal_peak_c": 107.95078684202997,
+        "mode_peak_c": 111.04252549985725,
+        "two_mode_worst_c": 111.04252549985725
+      },
+      "scenario_candidate": {
+        "nominal_peak_c": 115.62536181762881,
+        "mode_peak_c": 107.54146779009437,
+        "two_mode_worst_c": 115.62536181762881
+      },
+      "scenario_only_gain_k": 3.5010577097628754,
+      "two_mode_worst_gain_k": -4.582836317771566
+    },
+    {
+      "case": "Case10",
+      "mode": "budget/compute_half",
+      "interconnect_cap_m": 70.26251258025,
+      "nominal_candidate": {
+        "nominal_peak_c": 107.95078684202997,
+        "mode_peak_c": 85.39872016632404,
+        "two_mode_worst_c": 107.95078684202997
+      },
+      "scenario_candidate": {
+        "nominal_peak_c": 108.93521996672906,
+        "mode_peak_c": 83.98603167226389,
+        "two_mode_worst_c": 108.93521996672906
+      },
+      "scenario_only_gain_k": 1.4126884940601485,
+      "two_mode_worst_gain_k": -0.9844331246990947
+    }
+  ],
+  "proposal_assessment": "Proceed to a bounded sustained-mode robustness study after declaring the admissible power envelope. The 8.42 K scenario-specific gain is not demonstrated minimax gain. No new experiment is frozen or launched by this assessment.",
+  "sources": [
+    {
+      "url": "https://www.amd.com/en/gaming/technologies/smart-technologies.html",
+      "supports": "SmartShift Max shares power between supported laptop CPU/GPU; does not specify a universal per-chiplet 1.5 multiplier."
+    },
+    {
+      "url": "https://www.amd.com/en/blogs/2023/how-amd-is-advancing-the-30x25-energy-efficiency-g.html",
+      "supports": "MI300 Smart Shift adaptively shares CPU/GPU power; not a quantitative per-compute-chiplet power envelope."
+    },
+    {
+      "url": "https://docs.nvidia.com/dccpu/grace-perf-tuning-guide/power-thermals.html",
+      "supports": "GPU power cap respects both explicit GPU limit and module budget remaining after consumed Grace power; this stated direction does not establish arbitrary bidirectional per-chiplet redistribution."
+    },
+    {
+      "url": "https://apps.fz-juelich.de/jsc/hps/jupiter/batchsystem.html#cpu-limiting-options",
+      "supports": "JUPITER deployment documents a 680 W per-superchip budget and default 100 W CPU limit, with rebalancing possible; configuration-specific, not universal chiplet limits."
+    }
+  ],
+  "remaining_gaps": [
+    "Admissible sustained power maps and idle residual power are not calibrated for the ATPlace cases.",
+    "Steady-state response does not establish a universal settling time or arbitrary switching safety.",
+    "All reported temperatures remain simplified-model predictions; lower worst temperature does not by itself establish feasibility under a declared per-die limit.",
+    "Performance break-even needs comparable performance gains/losses, not temperature differences.",
+    "Current SKU response reuse retains all die geometries; physical die removal changes the thermal problem."
+  ]
+}
