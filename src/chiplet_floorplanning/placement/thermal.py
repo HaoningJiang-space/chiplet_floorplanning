@@ -17,6 +17,7 @@ PACKAGE_MM = 200.0
 # Declared package knobs; the defaults are the frozen recipe above.
 PACKAGE_DEFAULT = dict(top_h_factor=1.0, tim_k=4.0, spreader_mm=1.0, cold_plate_h_w_m2k=None)
 WATER_CP_J_KGK = 4186.0
+COLD_PLATE_BASE_MM = 3.0
 PROVENANCE = ("ATPlace source geometry/power/pins; declared TAP-family FV materials, "
               "fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration")
 
@@ -60,8 +61,10 @@ def thermal_case_data(problem, layout, gap_um, resolution=64, package=None):
               layer("spreader", package["spreader_mm"], 400, 100, 100), layer("sink", 6.9, 400, 200, 200)]
     top_h = package["top_h_factor"]/(.1*.06**2)
     if package["cold_plate_h_w_m2k"] is not None:
-        # Liquid cold plate on the spreader lid instead of the air sink; coolant enters at AMBIENT_C.
-        layers, top_h = layers[:-1], package["cold_plate_h_w_m2k"]
+        # Liquid cold plate (copper base on the lid) instead of the air sink; coolant enters at AMBIENT_C,
+        # and h is the effective fin-side coefficient referred to the base area.
+        layers = layers[:-1] + [layer("cold_plate", COLD_PLATE_BASE_MM, 400, 100, 100)]
+        top_h = package["cold_plate_h_w_m2k"]
     return dict(schema_version=1, name="atplace_fv_" + problem.name,
                 package_mm=dict(width=200, height=200),
                 grid=dict(nx=resolution, ny=resolution, mode="geometry_conformal"), chiplets=chips,
