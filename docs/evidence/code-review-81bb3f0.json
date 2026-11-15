@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "analyzed_commit": "063585ea86202de1f11d5a4683c2baf571d5ebc1",
+  "fetch_succeeded": true,
+  "scope": "First-principles review of receiver observation/admission, Liberty constraint arithmetic, pair-aggregated LP and published comparison budgets. Production code unchanged. Also reviews the new serial-link no-effect claim in 063585e.",
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "kind": "code_defect",
+      "status": "reproduced_not_fixed",
+      "location": "tools/characterize_receiver.py:88",
+      "problem": "A non-finite Q settling interval is accepted: mean and ptp become NaN, and both greater-than rejection comparisons are false. A finite early crossing is returned and the bisection trial pass predicate accepts it.",
+      "negative_controls": [
+        {
+          "case": "clean",
+          "returned_clock_to_q_ns": 0.09999999999999964,
+          "passes_110_percent_of_0p1ns": true,
+          "all_q_finite": true
+        },
+        {
+          "case": "late_after_glitch",
+          "returned_clock_to_q_ns": 0.09999999999999964,
+          "passes_110_percent_of_0p1ns": true,
+          "all_q_finite": true,
+          "final_stable_crossing_delay_ns": 1.0
+        },
+        {
+          "case": "nan_settled_window",
+          "returned_clock_to_q_ns": 0.09999999999999964,
+          "passes_110_percent_of_0p1ns": true,
+          "all_q_finite": false
+        }
+      ],
+      "reproduction_command": "PYTHONPATH=src:tools python results/first-principles-review-81bb3f0/reproduce_receiver_waveform.py",
+      "method": "Crafted waveforms replace subprocess execution and np.loadtxt only; Simulator.run and its actual measurement checks are unchanged. No transistor simulation was performed in this negative control.",
+      "additional_observation": "A fully finite output with a brief 0.1 ns crossing followed by a return to the old value and a final stable crossing at 1 ns also returns 0.1 ns. The first-crossing criterion does not ensure a stable capture by the claimed delay.",
+      "impact_scope": "Shows that the validator can admit invalid trials. Raw historical SPICE waves were not available locally; this does not establish that the published gate values were affected.",
+      "fix_direction": "Reject non-finite waveform data before statistics/crossings. Define and check sustained valid output transitions so transient recrossings cannot stand in for the capture delay."
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "kind": "research_reporting_error",
+      "status": "confirmed_not_corrected_in_result_document",
+      "location": "docs/method-comparison-v2-results.md:9",
+      "related_location": "docs/method-comparison-v2-results.md:37",
+      "problem": "The report repeatedly describes every reference front as 20000 FV solves. Frozen plan hashes bind it to fronts whose actual and budget counts are 12000 (Case1-5), 6000 (Case6-8), 3000 (Case9-10).",
+      "reference_budgets": [
+        {
+          "case": 1,
+          "actual_reference_solves": 12000,
+          "reference_budget": 12000,
+          "comparison_budget": 1000
+        },
+        {
+          "case": 2,
+          "actual_reference_solves": 12000,
+          "reference_budget": 12000,
+          "comparison_budget": 1000
+        },
+        {
+          "case": 3,
+          "actual_reference_solves": 12000,
+          "reference_budget": 12000,
+          "comparison_budget": 1000
+        },
+        {
+          "case": 4,
+          "actual_reference_solves": 12000,
+          "reference_budget": 12000,
+          "comparison_budget": 1000
+        },
+        {
+          "case": 5,
+          "actual_reference_solves": 12000,
+          "reference_budget": 12000,
+          "comparison_budget": 1000
+        },
+        {
+          "case": 6,
+          "actual_reference_solves": 6000,
+          "reference_budget": 6000,
+          "comparison_budget": 1000
+        },
+        {
+          "case": 7,
+          "actual_reference_solves": 6000,
+          "reference_budget": 6000,
+          "comparison_budget": 1000
+        },
+        {
+          "case": 8,
+          "actual_reference_solves": 6000,
+          "reference_budget": 6000,
+          "comparison_budget": 1000
+        },
+        {
+          "case": 9,
+          "actual_reference_solves": 3000,
+          "reference_budget": 3000,
+          "comparison_budget": 1000
+        },
+        {
+          "case": 10,
+          "actual_reference_solves": 3000,
+          "reference_budget": 3000,
+          "comparison_budget": 1000
+        }
+      ],
+      "all_ten_plan_reference_hashes_match_saved_fronts": true,
+      "impact_scope": "The reported quality medians recompute correctly; the reference search-cost narrative is wrong, particularly the 1000-versus-20000 comparison for Case10.",
+      "fix_direction": "State each reference front budget or the 3000-12000 range, and use the actual per-case costs in efficiency comparisons."
+    },
+    {
+      "id": "R3",
+      "priority": "P2",
+      "kind": "physical_inference_and_constraint_error",
+      "status": "confirmed_not_corrected_in_contract",
+      "location": "docs/ihp-serial-link-contract.md:62",
+      "related_locations": [
+        "docs/ihp-serial-link-contract.md:63",
+        "docs/ihp-serial-link-contract.md:70"
+      ],
+      "problem": "The conclusion that heat cannot change setup/hold uses the 11 ns generated-clock phase as a universal available margin, omitting the referenced input/output delay contract. It also treats a mixed-PVT endpoint-average change as a bound on local temperature sensitivity.",
+      "direct_source_check": {
+        "source_url": "https://raw.githubusercontent.com/pulp-platform/cheshire-ihp130-o/560f00f1c14a7f2f22861df6bb4816eacf7f2e7e/target/ihp13/openroad/src/basilisk.sdc",
+        "source_sha256": "f589a4c9b07a2de5468f4a8eee03872d560041fed802665ae0650ece65dfcf1b",
+        "serial_period_ns": 44.0,
+        "input_min_delay_ns": 0.55,
+        "input_max_delay_ns": 19.95,
+        "port_setup_budget_before_internal_paths_constraints_uncertainty_ns": 2.0500000000000007,
+        "port_hold_budget_before_internal_paths_constraints_uncertainty_ns": 0.55,
+        "note": "These are port-level SDC budgets, not achieved setup/hold slack or a completed STA result.",
+        "endpoint_slope_counterexample": {
+          "curve": "d(T) = 2.16 ns + 1.44 ns * ((T - 25 C) / 100 K)^4, 25 C <= T <= 125 C",
+          "physical_model": false,
+          "d_25c_ns": 2.16,
+          "d_125c_ns": 3.6,
+          "average_fractional_slope_per_k": 0.006666666666666666,
+          "d_125c_minus_d_124c_ns": 0.056741745600000115,
+          "claimed_31ps_bound_ns": 0.031,
+          "interpretation": "Positive smooth monotone endpoints alone do not bound the local slope: this curve has an endpoint-average fractional slope below 0.9 percent/K but a 1 K delay difference above 31 ps. This does not predict IHP delay."
+        }
+      },
+      "impact_scope": "The SDC supplies 2.05 ns setup and 0.55 ns hold port-level budgets before internal data/clock skew, receiver constraints and uncertainty. The claimed 10.8 ns is not established slack for the sourced interface. Missing channel and driver paths and arbitrary pad temperature/load matching further prevent a complete bound. This finding does not establish a timing failure or require restarting characterization.",
+      "fix_direction": "Keep skipping the chain as a research-priority choice if desired, but qualify the no-effect statement as an estimate under explicit assumptions. Derive separate setup/hold budgets from the selected port reference planes and full path contributions; do not label a PVT secant as a proven thermal derivative bound."
+    }
+  ],
+  "checks": {
+    "unit_tests_passed": 75,
+    "unit_test_command": "PYTHONPATH=src python -m unittest discover -s tests -p '*_unittest.py' -v",
+    "environment": {
+      "python": "3.12.7",
+      "numpy": "1.26.4",
+      "scipy": "1.13.1"
+    },
+    "prior_round_cap_and_zero_length_report_regressions": "passed in current suite",
+    "lp_piecewise_objective": {
+      "points": 200,
+      "nets": 120,
+      "internal_nets": 32,
+      "max_abs_objective_error_mm": 1.1368683772161603e-13
+    },
+    "receiver_constraints": {
+      "checked_arithmetic_values": 768,
+      "max_error_ns": 0.0,
+      "liberty_hashes_matched": true
+    },
+    "receiver_published_source_hashes_match_current_tools": true,
+    "liberty_common_header": {
+      "sha256": "f2e44ee9535bca3badb2748c12f7bf90c0cd1a67d01e5ed7659e43d964a791de",
+      "time_unit": "1ns",
+      "index_1": "related_pin_transition (CLK)",
+      "index_2": "constrained_pin_transition (D)",
+      "slew_threshold_percent": [
+        20,
+        80
+      ],
+      "slew_derate": 1.0,
+      "url": "https://raw.githubusercontent.com/google/skywater-pdk-libs-sky130_fd_sc_hd/ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1/timing/sky130_fd_sc_hd__common.lib.json"
+    },
+    "comparison_records": {
+      "runs": 180,
+      "all_plan_hashes_matched": true,
+      "maximum_rounds": 229,
+      "maximum_epsilon_rounds": 139,
+      "global_round_limit": 2000
+    },
+    "comparison_quality_table": [
+      {
+        "method": "random",
+        "median_peak_gap_k": 6.642628174319292,
+        "median_length_gap_fraction": 1.1538880945672556,
+        "missing_temperature_caps": 0,
+        "missing_length_caps": 4
+      },
+      {
+        "method": "pareto_ls",
+        "median_peak_gap_k": 4.159033726022791,
+        "median_length_gap_fraction": 0.4895135667189192,
+        "missing_temperature_caps": 0,
+        "missing_length_caps": 3
+      },
+      {
+        "method": "nsga",
+        "median_peak_gap_k": 4.425568016306066,
+        "median_length_gap_fraction": 0.49195081693838577,
+        "missing_temperature_caps": 0,
+        "missing_length_caps": 4
+      },
+      {
+        "method": "annealing",
+        "median_peak_gap_k": 5.399045072517595,
+        "median_length_gap_fraction": 0.7282784562922189,
+        "missing_temperature_caps": 0,
+        "missing_length_caps": 5
+      },
+      {
+        "method": "epsilon",
+        "median_peak_gap_k": 1.4897704269182697,
+        "median_length_gap_fraction": 0.5115141100386891,
+        "missing_temperature_caps": 0,
+        "missing_length_caps": 2
+      },
+      {
+        "method": "topology_lp",
+        "median_peak_gap_k": 1.5219368452125082,
+        "median_length_gap_fraction": 0.07962108294949222,
+        "missing_temperature_caps": 0,
+        "missing_length_caps": 1
+      }
+    ],
+    "fixed_layout_cli_evidence_reused": "The CLI/thermal modules and examples are unchanged since the previous passing two-example validation; no new CLI behavior is claimed.",
+    "serial_contract_source": {
+      "source_url": "https://raw.githubusercontent.com/pulp-platform/cheshire-ihp130-o/560f00f1c14a7f2f22861df6bb4816eacf7f2e7e/target/ihp13/openroad/src/basilisk.sdc",
+      "source_sha256": "f589a4c9b07a2de5468f4a8eee03872d560041fed802665ae0650ece65dfcf1b",
+      "serial_period_ns": 44.0,
+      "input_min_delay_ns": 0.55,
+      "input_max_delay_ns": 19.95,
+      "port_setup_budget_before_internal_paths_constraints_uncertainty_ns": 2.0500000000000007,
+      "port_hold_budget_before_internal_paths_constraints_uncertainty_ns": 0.55,
+      "note": "These are port-level SDC budgets, not achieved setup/hold slack or a completed STA result.",
+      "endpoint_slope_counterexample": {
+        "curve": "d(T) = 2.16 ns + 1.44 ns * ((T - 25 C) / 100 K)^4, 25 C <= T <= 125 C",
+        "physical_model": false,
+        "d_25c_ns": 2.16,
+        "d_125c_ns": 3.6,
+        "average_fractional_slope_per_k": 0.006666666666666666,
+        "d_125c_minus_d_124c_ns": 0.056741745600000115,
+        "claimed_31ps_bound_ns": 0.031,
+        "interpretation": "Positive smooth monotone endpoints alone do not bound the local slope: this curve has an endpoint-average fractional slope below 0.9 percent/K but a 1 K delay difference above 31 ps. This does not predict IHP delay."
+      }
+    }
+  },
+  "limitations": [
+    "No full algorithm comparison or transistor characterization campaign was rerun.",
+    "Numerical/algorithmic consistency is not target-package calibration or actual interface timing qualification."
+  ],
+  "local_artifacts": "results/first-principles-review-81bb3f0",
+  "artifact_sha256": {
+    "unittest.log": "ead51db9a64bc16da1b7362f53addf186032ac20e4a0e964efb777987467b193",
+    "receiver-waveform-negative-controls.json": "6a6317fdc90a91caffaf14993c5a8eea37afa4609395a92d55ed945e9e1f5e88",
+    "reproduce_receiver_waveform.py": "01b5deab618c59848ffadda97a70e7f9120fc7ae7e461bcb0015309faced2c4c",
+    "receiver-arithmetic-check.json": "a88a83887afcbd2df8f9f426bfd940bf862c6f2d6cefec13cd8683a0c505a95c",
+    "lp-function-check.json": "a7e1ee65a8239a9808c3e842dad5bc5c866a37d9eb8be39a4f8cadb5c2891b76",
+    "comparison-budget-check.json": "176c59bb545e1191341571932a9054bfa783c3d9a3e0d3c7857fd29664c83828",
+    "comparison-table-check.json": "8626b1b46aaf2b3cc3ef82be668045388bcf8cac8321d256ec9b70eec48a946e",
+    "serial-bound-check.json": "b59043922f7d30bef5a8a9719498d841fee02d0240c5e97cb1b2a6f373355f1b",
+    "basilisk.sdc": "f589a4c9b07a2de5468f4a8eee03872d560041fed802665ae0650ece65dfcf1b"
+  },
+  "initial_analyzed_commit": "81bb3f0aa7fa2ee6b8df0ed684c88102a30a4a7a",
+  "freshness": {
+    "initial_fetch_succeeded": true,
+    "closing_fetch_succeeded": true,
+    "head_and_origin_main_at_closing_fetch": "063585ea86202de1f11d5a4683c2baf571d5ebc1",
+    "change_since_initial_review": "Documentation only: IHP serial-link bound and cumulative status. Executable code, tests and example inputs unchanged; latest documentation reviewed separately."
+  }
+}
