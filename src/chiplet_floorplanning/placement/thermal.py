@@ -14,6 +14,8 @@ from .geometry import boxes, pin_points_um, violations
 
 AMBIENT_C = 45.0
 PACKAGE_MM = 200.0
+# Declared package knobs; the defaults are the frozen recipe above.
+PACKAGE_DEFAULT = dict(top_h_factor=1.0, tim_k=4.0, spreader_mm=1.0)
 PROVENANCE = ("ATPlace source geometry/power/pins; declared TAP-family FV materials, "
               "fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration")
 
@@ -22,7 +24,10 @@ def _mixture(diameter, pitch, background):
     return 400*(diameter/pitch)**2 + background*(1 - (diameter/pitch)**2)
 
 
-def thermal_case_data(problem, layout, gap_um, resolution=64):
+def thermal_case_data(problem, layout, gap_um, resolution=64, package=None):
+    package = dict(PACKAGE_DEFAULT, **(package or {}))
+    if package.keys() != PACKAGE_DEFAULT.keys():
+        raise ValueError(f"unknown package knobs: {sorted(package.keys() - PACKAGE_DEFAULT.keys())}")
     v = violations(problem, layout, gap_um)
     if v["outside"] or v["pairs"]:
         raise ValueError(f"illegal layout: {v}")
@@ -50,12 +55,12 @@ def thermal_case_data(problem, layout, gap_um, resolution=64):
     layers = [layer("substrate", .2, 1/3.33), layer("c4", .07, _mixture(250, 600, 1.6)),
               layer("interposer", .11, _mixture(10, 50, 100)),
               layer("microbumps", .01, 1.6, die_k=_mixture(25, 45, 1.6)),
-              layer("dies", .15, 1.6, die_k=100), layer("tim", .02, 4),
-              layer("spreader", 1, 400, 100, 100), layer("sink", 6.9, 400, 200, 200)]
+              layer("dies", .15, 1.6, die_k=100), layer("tim", .02, package["tim_k"]),
+              layer("spreader", package["spreader_mm"], 400, 100, 100), layer("sink", 6.9, 400, 200, 200)]
     return dict(schema_version=1, name="atplace_fv_" + problem.name,
                 package_mm=dict(width=200, height=200),
                 grid=dict(nx=resolution, ny=resolution, mode="geometry_conformal"), chiplets=chips,
-                thermal=dict(model="layered_package_steady", ambient_c=AMBIENT_C, top_h_w_m2k=1/(.1*.06**2),
+                thermal=dict(model="layered_package_steady", ambient_c=AMBIENT_C, top_h_w_m2k=package["top_h_factor"]/(.1*.06**2),
                              bottom_h_w_m2k=0, power_layer="dies", provenance=PROVENANCE, layers=layers),
                 interconnect=dict(model="manhattan_lower_bound", r_ohm_per_mm=0, c_pf_per_mm=0,
                                   provenance="unused; source pins are evaluated separately"),
