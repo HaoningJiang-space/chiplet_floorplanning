@@ -294,6 +294,14 @@ pin 距离没有详细路由，不能据此宣布真实时序恶化，也不否�
 报告新增绝对距离差 `length_gap_m`，最优距离为 0 的阈值不给相对差（已注明未定义），新增零基线报告测试。
 正在运行的比较 v2 冻结在 `bbff17f` worktree，不受影响；其十例前沿最短距离均大于 0。
 
+## 2026-11-15 方法比较 v2 完成（Case1–10）
+
+[结果](method-comparison-v2-results.md)：`bbff17f` 代码，六方法 × 三种子，每次 1000 次 FV，180 次运行全部完成。
+长度方向 topology_lp 在 29 个温度上限中 28 个最短（中位差 8%，其余方法约 50% 以上）；
+温度方向 epsilon 与 topology_lp 中位差 1.49/1.52 K 并列，跨种子差异 0–6 K，三种子无法区分，二者都明显好于其余四种。
+1000 次 FV 的运行在 13/28 个长度上限上比 2 万次 FV 参考前沿更冷，参考前沿对较大案例不是近似最优。
+topology_lp 每种子中位 688 s（旧逐网络 LP），之后改用 `d788b20` 的等价快速写法。
+
 ## 2026-11-15 旧时序链 Linux 复现与接收端 setup/hold 扣除
 
 [计划与结果](receiver-constraint-plan.md)，[证据](evidence/receiver-constraint-three-layout.json)。
