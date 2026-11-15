@@ -34,14 +34,21 @@ def link_gaps_mm(problem, layout, pairs):
     return np.maximum(0, np.maximum(u0 - x1, x0 - u1)) + np.maximum(0, np.maximum(v0 - y1, y0 - v1))
 
 
+def excess_mm(problem, layout, pairs, reach_mm):
+    """Total link length beyond the reach: 0 exactly when every link fits. Unlike the longest gap it falls
+    whenever any over-reach link shortens, so greedy descent can reach feasibility (v1 stalled on the max)."""
+    return float(np.maximum(0, link_gaps_mm(problem, layout, pairs) - reach_mm).sum())
+
+
 def search(problem, initial, reach_mm, gap_um, resolution, workers, pairs):
-    longest = lambda layout: link_gaps_mm(problem, layout, pairs).max()
-    with Evaluator(problem, gap_um, resolution, workers, interconnect=longest) as evaluator:
+    excess = lambda layout: excess_mm(problem, layout, pairs, reach_mm)
+    with Evaluator(problem, gap_um, resolution, workers, interconnect=excess) as evaluator:
         run = Run(evaluator, FV_SOLVES)
-        METHODS['epsilon'](run, initial, np.random.default_rng([SEED, 20]), batch=BATCH, length_caps_m=[reach_mm])
-        gap, peak, _ = run.arrays()
+        METHODS['epsilon'](run, initial, np.random.default_rng([SEED, 20]), batch=BATCH, length_caps_m=[1e-9])
+        over, peak, _ = run.arrays()
         solves = evaluator.solves
-    ok = np.flatnonzero(gap <= reach_mm + 1e-9)
+    gap = np.array([link_gaps_mm(problem, l, pairs).max() for l in run.layouts])
+    ok = np.flatnonzero(over <= 1e-9)
     if not ok.size:
         return dict(feasible=False, solves=solves, stop=run.stop_reason)
     best = int(ok[np.argmin(peak[ok])])
@@ -80,7 +87,7 @@ def main():
     args = frozen_front.arguments(__doc__)
     cases = [analyse(*frozen_front.paths(args, n), args.workers) for n in args.cases]
     args.output.write_text(json.dumps(dict(
-        physical_qualified=False, plan='docs/reach-cost-plan.md', reaches_mm=REACHES_MM, seed=SEED,
+        physical_qualified=False, plan='docs/reach-cost-plan.md', version=2, reaches_mm=REACHES_MM, seed=SEED,
         fv_solves=FV_SOLVES, cases=cases), indent=1) + '\n')
 
 

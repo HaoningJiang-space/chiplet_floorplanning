@@ -9,7 +9,7 @@ from atplace_import_unittest import BLOCKS, POWER, NETS  # noqa: E402
 from import_atplace_cases import parse_case as import_case  # noqa: E402
 from chiplet_floorplanning.placement import Evaluator, Layout, Problem  # noqa: E402
 from chiplet_floorplanning.placement.search import length_descent  # noqa: E402
-from reach_cost import link_gaps_mm, link_pairs  # noqa: E402
+from reach_cost import excess_mm, link_gaps_mm, link_pairs  # noqa: E402
 
 
 class ReachCostTest(unittest.TestCase):
@@ -26,6 +26,8 @@ class ReachCostTest(unittest.TestCase):
         np.testing.assert_allclose(link_gaps_mm(self.problem, apart, self.pairs), [1.5])
         touching = Layout(np.array([[2000., 1000.], [2000. + (w0 + w1)/2, 1000.]]), np.array([0, 0]))
         np.testing.assert_allclose(link_gaps_mm(self.problem, touching, self.pairs), [0.])
+        self.assertAlmostEqual(excess_mm(self.problem, apart, self.pairs, 1.0), .5)
+        self.assertEqual(excess_mm(self.problem, apart, self.pairs, 2.0), 0.)
 
     def test_evaluator_and_descent_use_the_given_interconnect_cost(self):
         longest = lambda l: link_gaps_mm(self.problem, l, self.pairs).max()
