@@ -331,6 +331,7 @@ v1、v2 的贪心下降在多芯粒例子中找不到可行布局。v3 改用精
 
 **新颖性更正**：Coskun、Kahng 等人的 TCAD 2020《Cross-Layer Co-Optimization of Network Design and Chiplet Placement in 2.5D Systems》式 (3) 已对每条链路施加可达长度约束，并与热感知布局、µbump 边缘开销、链路流水线和网络拓扑联合优化。
 "可达距离与温度冲突"不是新问题；分档混合相对该文是扩展。详见[核查更正](link-reach-novelty.md)。
+HBM 温度上限与 GPU 邻近的问题也已有工作（Karfakis、Gupta 等人的 embedded isolators，结论是布局作用有限，主要耦合经均热板）。这条线不再作为主问题，见[分析](reach-tier-analysis.md)第 5–6 节。
 
 ## 2026-11-15 冷板分开对联合设计：值得做（3 例确属耦合），但只有 1–2 K，泵功几乎不省
 
