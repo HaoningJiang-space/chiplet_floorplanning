@@ -27,6 +27,8 @@ def main():
     parser.add_argument('--seed', type=int, default=2026111300)
     parser.add_argument('--fv-solves', type=int, default=12000, help='budget: distinct FV solves')
     parser.add_argument('--method', choices=sorted(METHODS), default='pareto_ls', help='search method (frozen fronts: pareto_ls)')
+    parser.add_argument('--method-option', nargs='*', default=[], metavar='KEY=VALUE',
+                        help='numeric keyword options for the method, e.g. milp_s=300')
     parser.add_argument('--random-starts', type=int, default=96)
     parser.add_argument('--descent-starts', type=int, default=96)
     parser.add_argument('--batch', type=int, default=96)
@@ -56,7 +58,8 @@ def main():
     descent_seconds = time.perf_counter() - started
     with Evaluator(problem, args.gap_um, args.resolution, args.workers) as evaluator:
         run = Run(evaluator, args.fv_solves)
-        METHODS[args.method](run, initial, rng, batch=args.batch)
+        options = {k: float(v) for k, v in (item.split('=', 1) for item in args.method_option)}
+        METHODS[args.method](run, initial, rng, batch=args.batch, **options)
         solves = evaluator.solves
     layouts = run.layouts
     length, peak, _ = run.arrays()
@@ -69,7 +72,7 @@ def main():
                                            max_net_mm=float(max_net[i]),
                                            die_peak_c=dict(zip(problem.names, map(float, die_peak[i]))))
     summary = dict(
-        case=problem.name, status='completed', method=args.method, seed=args.seed, budget_unit='distinct FV solves',
+        case=problem.name, status='completed', method=args.method, method_options=args.method_option, seed=args.seed, budget_unit='distinct FV solves',
         fv_solve_budget=args.fv_solves, distinct_fv_solves=solves, distinct_layouts=len(layouts),
         case_path=str(args.case), case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(),
         random_starts=args.random_starts, descent_starts=args.descent_starts, batch=args.batch,
