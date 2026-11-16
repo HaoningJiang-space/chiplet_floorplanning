@@ -273,19 +273,24 @@ SLP_BAND_K = 20.0                  # dies within this distance of the cap get a 
 
 
 def slp_chain(args):
-    """Trust-region sequential LP from one layout under a die-peak cap (degC), within its topology.
+    """Trust-region sequential LP from one layout, within its topology, in one of two modes.
 
-    Each step solves the exact length LP of the current topology with every near-cap die's peak linearised
-    by `die_peak_sensitivity` (min length below the cap; from a layout above the cap, min the linearised
-    hottest die first), inside a box trust region. The step is kept only if the exact solve of the snapped
-    candidate confirms it (shorter and under the cap, or cooler while still above it); the radius grows
-    after a kept step and halves after a rejected one. One LU factorisation per step serves both the exact
-    check and the next gradients. Returns every exactly solved (layout, die peaks degC) pair.
+    args = (problem, layout, gap_um, resolution, target, steps[, mode]):
+    - mode 'peak' (default), target = die-peak cap (degC): min exact length with every near-cap die's peak
+      linearised by `die_peak_sensitivity` kept under the cap; from a layout above the cap, min the
+      linearised hottest die first.
+    - mode 'length', target = length budget (m): min the linearised hottest die with the exact length LP kept
+      within the budget; from a layout over the budget, min length without heating its hottest die.
+    Steps stay inside a box trust region; a step is kept only if the exact solve of the snapped candidate
+    confirms it, the radius then grows, otherwise it halves. One LU factorisation per step serves both the
+    exact check and the next gradients. Returns every exactly solved (layout, die peaks degC) pair.
     """
     from .geometry import pin_manhattan_um
     from .thermal import die_peak_sensitivity
-    problem, layout, gap_um, resolution, cap_c, steps = args
+    problem, layout, gap_um, resolution, target, steps = args[:6]
+    mode = args[6] if len(args) > 6 else "peak"
     n = problem.count
+    inside = problem.pin_chip[:, 0] == problem.pin_chip[:, 1]
     radius, smallest, largest = SLP_RADIUS_MM
     peaks, grad = die_peak_sensitivity(problem, layout, gap_um, resolution)
     solved = [(layout, peaks)]
@@ -293,23 +298,33 @@ def slp_chain(args):
     for _ in range(steps):
         lp = TopologyLP(problem, current, gap_um, pairs=0)
         x0 = current.centre_um.T.ravel()/1000
-        hot = np.flatnonzero(peaks >= cap_c - SLP_BAND_K)
+        hottest = peaks.max()
+        if mode == "peak":
+            hot = np.flatnonzero(peaks >= target - SLP_BAND_K)
+            minimise_peak = hottest > target          # above the cap: cool first
+        else:
+            hot = np.flatnonzero(peaks >= hottest - SLP_BAND_K)
+            budget = target*1000 - pin_manhattan_um(problem, current)[inside].sum()/1000   # LP covers inter-die nets
+            minimise_peak = length <= target*1000     # within budget: cool; over it: shorten without heating
         g = np.zeros((hot.size, lp.nvar))
         g[:, :2*n] = np.concatenate([grad[hot, :, 0], grad[hot, :, 1]], axis=1)
-        above = peaks.max() > cap_c
-        if above:   # epigraph t >= linearised peak of every near-cap die; then a little length
-            A = sparse.vstack([sparse.hstack([lp.A, sparse.csr_matrix((lp.A.shape[0], 1))]),
-                               sparse.hstack([sparse.csr_matrix(g), -np.ones((hot.size, 1))])])
-            b = np.r_[lp.b, g[:, :2*n] @ x0 - peaks[hot]]
-            objective = np.r_[1e-6*lp.length, 1.0]
-            extra = [(None, None)]
+        rows, rhs, objective, extra = [lp.A], [lp.b], lp.length, []
+        if minimise_peak:   # epigraph t >= linearised peak of every hot die
+            rows = [sparse.hstack([lp.A, sparse.csr_matrix((lp.A.shape[0], 1))]),
+                    sparse.hstack([sparse.csr_matrix(g), -np.ones((hot.size, 1))])]
+            rhs = [lp.b, g[:, :2*n] @ x0 - peaks[hot]]
+            objective, extra = np.r_[1e-6*lp.length, 1.0], [(None, None)]
+            if mode == "length":
+                rows.append(sparse.csr_matrix(np.r_[lp.length, 0.0][None]))
+                rhs.append([budget])
         else:
-            A = sparse.vstack([lp.A, sparse.csr_matrix(g)])
-            b = np.r_[lp.b, cap_c - peaks[hot] + g[:, :2*n] @ x0]
-            objective, extra = lp.length, []
+            limit = target if mode == "peak" else hottest
+            rows.append(sparse.csr_matrix(g))
+            rhs.append(limit - peaks[hot] + g[:, :2*n] @ x0)
         bounds = [(max(lo, x0[k] - radius), min(hi, x0[k] + radius)) if k < 2*n else (lo, hi)
                   for k, (lo, hi) in enumerate(lp.bounds)] + extra
-        result = linprog(objective, A_ub=A, b_ub=b, bounds=bounds, method="highs")
+        result = linprog(objective, A_ub=sparse.vstack(rows), b_ub=np.concatenate(rhs), bounds=bounds,
+                         method="highs")
         candidate = lp._layout(result.x[:lp.nvar]) if result.status == 0 else None
         if candidate is None or np.array_equal(candidate.centre_um, current.centre_um):
             radius /= 2
@@ -317,10 +332,12 @@ def slp_chain(args):
             new_peaks, new_grad = die_peak_sensitivity(problem, candidate, gap_um, resolution)
             solved.append((candidate, new_peaks))
             new_length = pin_manhattan_um(problem, candidate).sum()/1000
-            if above:
-                keep = new_peaks.max() < peaks.max() - 1e-9
+            if mode == "peak":
+                keep = (new_peaks.max() < hottest - 1e-9 if minimise_peak
+                        else new_peaks.max() <= target and new_length < length - 1e-9)
             else:
-                keep = new_peaks.max() <= cap_c and new_length < length - 1e-9
+                keep = (new_peaks.max() < hottest - 1e-9 and new_length <= target*1000 + 1e-9 if minimise_peak
+                        else new_length < length - 1e-9 and new_peaks.max() <= hottest + 1e-9)
             if keep:
                 current, peaks, grad, length = candidate, new_peaks, new_grad, new_length
                 radius = min(1.5*radius, largest)
@@ -497,3 +514,59 @@ def milp_relations(problem, gap_um, time_limit_s=60.0):
         return None
     rotation = turns[np.argmax(x[iz:isd].reshape(n, 4), axis=1)]
     return Layout(np.stack((x[ix:ix + n], x[iy:iy + n]), axis=1)*1000, rotation)
+
+
+def legalize_relations(problem, layout, gap_um):
+    """Nearest legal layout (L1 displacement) that keeps the side relations read from the centres; or None.
+    Unlike the length LP it does not pull dies back together, so a move that spreads hot dies survives."""
+    n = problem.count
+    size = np.where((layout.rotation_deg % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)/1000
+    width, height = (s/1000 for s in problem.carrier_um)
+    x0 = layout.centre_um.T.ravel()/1000
+    rows, cols, vals, rhs = [], [], [], []
+    for r, (i, j, axis, sign) in enumerate(centre_relations(problem, layout, gap_um)):
+        first, second = (i, j) if sign > 0 else (j, i)
+        rows += [r, r]
+        cols += [axis*n + first, axis*n + second]
+        vals += [1.0, -1.0]
+        rhs.append(-(size[first, axis] + size[second, axis])/2 - gap_um/1000)
+    m = len(rhs)
+    # |x - x0| <= u  ->  x - u <= x0, -x - u <= -x0
+    for k in range(2*n):
+        rows += [m + 2*k, m + 2*k, m + 2*k + 1, m + 2*k + 1]
+        cols += [k, 2*n + k, k, 2*n + k]
+        vals += [1.0, -1.0, -1.0, -1.0]
+        rhs += [x0[k], -x0[k]]
+    A = sparse.csr_matrix((vals, (rows, cols)), shape=(m + 4*n, 4*n))
+    bounds = ([(size[k, 0]/2, width - size[k, 0]/2) for k in range(n)]
+              + [(size[k, 1]/2, height - size[k, 1]/2) for k in range(n)] + [(0, None)]*(2*n))
+    result = linprog(np.r_[np.zeros(2*n), np.ones(2*n)], A_ub=A, b_ub=rhs, bounds=bounds, method="highs")
+    if result.status != 0:
+        return None
+    x = result.x
+    centre = snap(problem, np.stack((x[:n], x[n:2*n]), axis=1)*1000, layout.rotation_deg, GRID_UM)
+    legal = Layout(centre, layout.rotation_deg.copy())
+    return legal if is_legal(problem, legal, gap_um) else None
+
+
+def hotspot_move(problem, layout, die_peaks, rng, gap_um):
+    """A discrete change aimed at the hottest die h, then `legalize_relations`: push away the die heating h
+    most (power / squared distance), swap h with a low-power die far from it, or rotate h."""
+    h = int(np.argmax(die_peaks))
+    centre, rotation = layout.centre_um.copy(), layout.rotation_deg.copy()
+    d = centre - centre[h]
+    r2 = (d**2).sum(axis=1)/1e6 + 1.0                       # mm^2, +1 keeps it finite
+    kind = rng.choice(("push", "swap", "rotate"), p=(.5, .3, .2))
+    if kind == "push":
+        heat = problem.power_w/r2
+        heat[h] = 0
+        j = int(rng.choice(problem.count, p=heat/heat.sum()))
+        centre[j] += d[j]/np.sqrt(r2[j]*1e6)*rng.uniform(3, 8)*1000
+    elif kind == "swap":
+        weight = r2/np.maximum(problem.power_w, 1e-6)
+        weight[h] = 0
+        k = int(rng.choice(problem.count, p=weight/weight.sum()))
+        centre[[h, k]] = centre[[k, h]]
+    else:
+        rotation[h] = (rotation[h] + rng.choice((90, 180, 270))) % 360
+    return legalize_relations(problem, Layout(centre, rotation), gap_um)

@@ -15,7 +15,7 @@ Every method stops after `stall_rounds` rounds without progress, or after
 import numpy as np
 
 from .evaluate import pareto_front, sample_legal, thermal_key
-from .lp import TopologyLP, centre_relations, length_anneal, milp_relations, slp_chain
+from .lp import TopologyLP, centre_relations, hotspot_move, length_anneal, milp_relations, slp_chain
 from .search import layout_key, length_descent, mutate
 
 
@@ -328,12 +328,17 @@ def lp_then_epsilon(run, initial, rng, lp_share=0.5, **kw):
     epsilon_search(run, [], rng, **kw)
 
 
-def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, **kw):
+def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, targets='peak', hotspot=0.0,
+                 **kw):
     """topology_lp explores topologies on the first `lp_share` of the budget; then trust-region SLP chains
     (`slp_chain`) polish archive layouts under `caps` die-peak caps spread over the archive's peak range.
 
     Each round starts one chain per cap from the shortest archive layout under the cap and one from the
-    longest layout above it (optionally first moved to a new topology). A chain makes at most steps + 1 LU
+    longest layout above it (optionally first moved to a new topology). With targets 'length' (or 'both') the
+    chains instead (also) hold length budgets spread over the archive's length range and minimise the peak,
+    starting from the coolest layout within the budget and the coolest one over it. With probability
+    `hotspot` a start is first changed by `hotspot_move` (aimed at its hottest die) instead of a random
+    move. A chain makes at most steps + 1 LU
     factorisations (its start plus one per step), so before dispatch the number of chains and their steps are
     cut until that worst case fits the remaining budget; every factorisation a chain made is then charged,
     including its start and any repeat of a cached layout. New results are cached, so `run.evaluate` records
@@ -354,28 +359,40 @@ def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, 
 
     def propose():
         length, peak, _ = run.arrays()
+        die_peaks, _ = run.local()
         archive = np.asarray(pareto_front(length, peak))
-        levels = np.quantile(peak[archive], np.linspace(0, 1, caps + 2)[1:-1])
+        quantiles = np.linspace(0, 1, caps + 2)[1:-1]
+        goals = []
+        if targets in ("peak", "both"):
+            for cap in np.quantile(peak[archive], quantiles):
+                under, over = archive[peak[archive] <= cap], archive[peak[archive] > cap]
+                starts = [under[np.argmin(length[under])]] if under.size else []
+                starts += [over[np.argmax(length[over])]] if over.size else []
+                goals += [(s, float(cap), "peak") for s in starts]
+        if targets in ("length", "both"):
+            for budget in np.quantile(length[archive], quantiles):
+                within, over = archive[length[archive] <= budget], archive[length[archive] > budget]
+                starts = [within[np.argmin(peak[within])]] if within.size else []
+                starts += [over[np.argmin(peak[over])]] if over.size else []
+                goals += [(s, float(budget), "length") for s in starts]
         jobs = []
-        for cap in levels:
-            under, over = archive[peak[archive] <= cap], archive[peak[archive] > cap]
-            starts = [under[np.argmin(length[under])]] if under.size else []
-            starts += [over[np.argmax(length[over])]] if over.size else []
-            for s in starts:
-                start = run.layouts[s]
-                if rng.random() < explore:
-                    start = mutate(problem, start, rng, gap_um) or start
-                done = (thermal_key(problem, start), round(float(cap), 6))   # thermally equivalent starts repeat
-                if done in tried:
-                    continue
-                tried.add(done)
-                jobs.append((problem, start, gap_um, evaluator.resolution, float(cap), steps))
+        for s, goal, mode in goals:
+            start = run.layouts[s]
+            if rng.random() < hotspot:
+                start = hotspot_move(problem, start, die_peaks[s], rng, gap_um) or start
+            elif rng.random() < explore:
+                start = mutate(problem, start, rng, gap_um) or start
+            done = (thermal_key(problem, start), round(goal, 6), mode)   # thermally equivalent starts repeat
+            if done in tried:
+                continue
+            tried.add(done)
+            jobs.append((problem, start, gap_um, evaluator.resolution, goal, steps, mode))
         room = run.limit - evaluator.solves
         if room < 2 or not jobs:    # a chain needs its start and at least one step
             return []
         jobs = jobs[:room//2]
         chain_steps = min(steps, room//len(jobs) - 1)   # worst case len(jobs)*(chain_steps + 1) <= room
-        jobs = [job[:-1] + (chain_steps,) for job in jobs]
+        jobs = [job[:5] + (chain_steps, job[6]) for job in jobs]
         chains = evaluator.pool.map(slp_chain, jobs) if evaluator.pool else map(slp_chain, jobs)
         found = []
         for chain in chains:

@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from placement_core_unittest import synthetic_case  # noqa: E402
 from chiplet_floorplanning.placement import (Evaluator, Layout, Problem, is_legal, pin_manhattan_um,  # noqa: E402
                                              sample_legal)
-from chiplet_floorplanning.placement.lp import slp_chain  # noqa: E402
+from chiplet_floorplanning.placement.lp import hotspot_move, legalize_relations, slp_chain  # noqa: E402
 from chiplet_floorplanning.placement.methods import METHODS, Run  # noqa: E402
 from chiplet_floorplanning.placement.thermal import die_peak_sensitivity  # noqa: E402
 
@@ -87,6 +87,35 @@ class ThermalSlpTest(unittest.TestCase):
                     self.assertEqual(evaluator.solves, len(calls))
         finally:
             evaluate._peaks, thermal.die_peak_sensitivity = peaks, sensitivity
+
+    def test_length_mode_keeps_the_budget_and_never_heats(self):
+        budget = pin_manhattan_um(self.problem, self.layout).sum()/1e6
+        chain = slp_chain((self.problem, self.layout, 1000, 24, budget, 4, 'length'))
+        start_peak = chain[0][1].max()
+        within = [d.max() for l, d in chain if pin_manhattan_um(self.problem, l).sum()/1e6 <= budget + 1e-9]
+        self.assertLessEqual(min(within), start_peak)
+        for layout, die_peaks in chain:
+            self.assertTrue(is_legal(self.problem, layout, 1000))
+            np.testing.assert_allclose(die_peaks, self.exact(layout), atol=1e-8)
+
+    def test_hotspot_move_and_relation_legalisation_return_legal_layouts(self):
+        peaks = self.exact(self.layout)
+        rng = np.random.default_rng(4)
+        for _ in range(20):
+            moved = hotspot_move(self.problem, self.layout, peaks, rng, 1000)
+            self.assertTrue(moved is None or is_legal(self.problem, moved, 1000))
+        overlapping = Layout(self.layout.centre_um*np.array([[0.9, 1.0]]), self.layout.rotation_deg.copy())
+        fixed = legalize_relations(self.problem, overlapping, 1000)
+        self.assertTrue(fixed is not None and is_legal(self.problem, fixed, 1000))
+
+    def test_both_targets_with_hotspot_moves_stay_within_budget(self):
+        rng = np.random.default_rng(6)
+        start = [sample_legal(self.problem, 1000, rng) for _ in range(4)]
+        with Evaluator(self.problem, 1000, resolution=24) as evaluator:
+            run = Run(evaluator, 30)
+            METHODS['topology_slp'](run, start, np.random.default_rng(3), batch=4, caps=2, steps=3,
+                                    targets='both', hotspot=0.5)
+            self.assertLessEqual(evaluator.solves, 30)
 
 
 if __name__ == '__main__':
