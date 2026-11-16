@@ -1,0 +1,193 @@
+{
+  "analyzed_commit": "35512614f709426dcbb8fa0ecfa8c007adab7c9f",
+  "fetch_succeeded": true,
+  "head_equal_origin_main": true,
+  "scope": "Method analysis and bounded local diagnostics; no optimiser changes or new main comparison campaign.",
+  "physical_qualified": false,
+  "thermal_external_validation": "not_run",
+  "timing": "not_run",
+  "budget_probe": [
+    {
+      "budget": 20,
+      "reported": 20,
+      "actual_factorizations_or_solves": 28,
+      "actual_unique_thermal_states": 28,
+      "evaluated_but_not_cached": 8,
+      "counts": {
+        "ordinary": 10,
+        "sensitivity": 18
+      },
+      "recorded_layouts": 20
+    },
+    {
+      "budget": 40,
+      "reported": 40,
+      "actual_factorizations_or_solves": 46,
+      "actual_unique_thermal_states": 44,
+      "evaluated_but_not_cached": 6,
+      "counts": {
+        "ordinary": 20,
+        "sensitivity": 26
+      },
+      "recorded_layouts": 38
+    }
+  ],
+  "budget_probe_protocol": {
+    "fixture": "tests/placement_core_unittest.synthetic_case(random.Random(41), chips=4, nets=60)",
+    "power_w": [
+      40,
+      30,
+      60,
+      50
+    ],
+    "initial_seed": 6,
+    "search_seed": 3,
+    "starts": 4,
+    "batch": 4,
+    "caps": 2,
+    "steps": 8,
+    "gap_um": 1000,
+    "resolution": 24,
+    "workers": 1,
+    "instrumentation": "Wrapped evaluate._peaks and thermal.die_peak_sensitivity to count real calls and thermal_key values. Unmodified topology_slp executed."
+  },
+  "budget_finding": {
+    "priority": "P2",
+    "location": "src/chiplet_floorplanning/placement/methods.py:368-377",
+    "mechanism": "A whole steps+1 chain runs even when less budget remains; returned points are truncated after all solves occurred.",
+    "consequence": "Reported solve budget is insufficient evidence of equal actual thermal work; late evaluated states can be discarded.",
+    "remedy": "Reserve per-chain budget before launch and pass a bounded step count; count actual solves, repeat factorisations and adjoint RHS separately."
+  },
+  "layout_diagnostics": [
+    {
+      "case": "Case3",
+      "dies": 8,
+      "legal_mutations": 559,
+      "attempts": 1000,
+      "exact_length_m": 38.988324203200015,
+      "mean_pin_lower_bound_m": 27.359875375599916,
+      "gap_fraction": 0.29825464585230055
+    },
+    {
+      "case": "Case5",
+      "dies": 12,
+      "legal_mutations": 314,
+      "attempts": 1000,
+      "exact_length_m": 73.8052685908,
+      "mean_pin_lower_bound_m": 72.64353772219975,
+      "gap_fraction": 0.01574048697039844
+    },
+    {
+      "case": "Case9",
+      "dies": 44,
+      "legal_mutations": 333,
+      "attempts": 1000,
+      "exact_length_m": 103.43046013080001,
+      "mean_pin_lower_bound_m": 100.73116047879999,
+      "gap_fraction": 0.026097724486446636
+    },
+    {
+      "case": "Case10",
+      "dies": 61,
+      "legal_mutations": 289,
+      "attempts": 1000,
+      "exact_length_m": 68.82633011282,
+      "mean_pin_lower_bound_m": 68.1221601298,
+      "gap_fraction": 0.010231113323429195
+    }
+  ],
+  "layout_protocol": "One saved nominal winner per Case3/5/9/10 from workload-search-v1.json; 1000 mutate attempts per case with seed 2026111501, gap 0. Jensen mean-pin lower bound evaluated at the same layout. Not a comparison of new algorithms or a certified global optimality gap.",
+  "boundary_gradient_probe": {
+    "data": {
+      "peak_c": 70.32452622368302,
+      "predicted_k_per_mm": -0.0,
+      "central_differences": [
+        {
+          "step_um": 500.0,
+          "minus_peak_c": 70.33247340668541,
+          "plus_peak_c": 70.33640897053698,
+          "finite_difference_k_per_mm": 0.003935563851570123
+        },
+        {
+          "step_um": 1000.0,
+          "minus_peak_c": 70.35676203171074,
+          "plus_peak_c": 70.33559384035738,
+          "finite_difference_k_per_mm": -0.010584095676684058
+        }
+      ],
+      "scope": "Synthetic single-die fixed package, off-centre; not a material-calibration experiment."
+    },
+    "interpretation": "Inconclusive: central differences change sign between step sizes and are small. Does not establish a stable missing boundary gradient or motivate a new calibration campaign."
+  },
+  "recommendations": [
+    {
+      "priority": 0,
+      "change": "Repair actual SLP budget accounting; record relation MILP/annealing/gradient/forward costs and solver status/bounds.",
+      "evidence": "Reproduced overspend under 20 and 40 budgets."
+    },
+    {
+      "priority": 1,
+      "change": "Add min linearised peak subject to exact pin length <= the frozen evaluation cap; keep min length at a frozen thermal cap as the reverse mode.",
+      "evidence": "topology_slp currently selects adaptive thermal quantiles and does not use the passed length_caps_m in SLP chains."
+    },
+    {
+      "priority": 2,
+      "change": "Use active thermal constraints/duals to select a small die group for relation and rotation changes, legalise with the exact LP, and feed accepted results back into SLP.",
+      "evidence": "Current relation_space initialises with length-only moves; SLP topology changes use ordinary legal mutations. Single-layout legality rates 28.9-55.9% are descriptive only."
+    },
+    {
+      "priority": 3,
+      "change": "Adaptively split net clusters with high mean-pin approximation error; warm-start the MIP, retain a small set of different relation/rotation solutions, and refine by exact length.",
+      "evidence": "Same-layout lower-bound gap is 29.8% in Case3, 1.0-2.6% in the other three probes. Not evidence of a 29.8% optimisation loss."
+    },
+    {
+      "priority": 4,
+      "change": "Use model-agreement-aware trust radii and compute adjoints only for active constraints and accepted candidates, reusing a factorisation.",
+      "evidence": "slp_chain uses binary keep/reject radius changes; sensitivity computes all die gradients before rejection is known."
+    }
+  ],
+  "proposed_next_comparison": {
+    "status": "proposal_only_not_frozen_or_run",
+    "cases": [
+      3,
+      9,
+      10
+    ],
+    "seeds": 1,
+    "variants": [
+      "budget-corrected relation_space",
+      "same plus frozen-length-cap SLP",
+      "same plus thermal-guided relation changes"
+    ],
+    "metrics": [
+      "peak temperature at frozen common pin-length caps",
+      "pin length at frozen common temperature caps",
+      "attainment",
+      "actual thermal calls, adjoint RHS and complete runtime"
+    ],
+    "caution": "Use exact paired selected layouts; shortlist final candidates for both FV and ATSim. Ranking correlation does not validate absolute temperature or guarantee near-tie ordering."
+  },
+  "sources": [
+    "https://docs.gurobi.com/projects/optimizer/en/current/features/solutionpool.html",
+    "https://support.gurobi.com/hc/en-us/articles/360043834831-How-do-I-use-MIP-starts",
+    "https://docs.gurobi.com/projects/optimizer/en/current/reference/attributes/model.html"
+  ],
+  "verification": {
+    "unittest_count": 85,
+    "unittest": "passed",
+    "two_chiplet_validate": "passed",
+    "two_chiplet_evaluate": "passed"
+  },
+  "reviewed_file_sha256": {
+    "src/chiplet_floorplanning/placement/methods.py": "849c068c57e751cece2cf3f272adb5ab46dddf7e33686a2901f1ea45a3fb45a0",
+    "src/chiplet_floorplanning/placement/lp.py": "f95a4e70ed4203b9fa59b58e4e065c151481e28e31ff1186aa77ac27c8ad9d64",
+    "src/chiplet_floorplanning/placement/thermal.py": "21105bef8d3a6fefdfa9ffaf32cc6c186f4203eb4ed8e4a618303e64b3f57dcc",
+    "src/chiplet_floorplanning/placement/evaluate.py": "ecf99cb9976fa09c930fc6f2bdf0c7fb3cd10b5a4b86be7acd3752f20bf5c386"
+  },
+  "publication_recheck": {
+    "commit": "af9d051",
+    "fetch_succeeded": true,
+    "reviewed_core_files_unchanged": true,
+    "note": "New run_reference_front CLI method-option pass-through does not change the reviewed optimiser core or diagnostics."
+  }
+}
