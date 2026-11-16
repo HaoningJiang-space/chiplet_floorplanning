@@ -100,6 +100,21 @@ def sweep(case, out, threads, ours, sampling_s=None):
     return timing
 
 
+def score_only(case, ours, threads):
+    """ATSim scores of exported layouts only (no ATPlace runs): <ours>/<case>/kXXX.layout.json -> kXXX.atsim.json."""
+    py = sys.executable
+    path = ours / case / 'atsim.params.json'
+    path.write_text(json.dumps(params(case, 'Thermal-aware', threads), indent=1) + '\n')
+    for layout in sorted((ours / case).glob('*.layout.json')):
+        target = layout.with_name(layout.name.replace('.layout.json', '.atsim.json'))
+        if not target.exists():
+            result, seconds = run([py, 'run_thermal_evaluation.py', '--layout', str(layout), '--param_file', str(path)],
+                                  target.with_suffix('.log'))
+            result['eval_s'] = seconds
+            target.write_text(json.dumps(result, indent=1) + '\n')
+    print(case, 'scored', flush=True)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--cases', nargs='+', default=[f'Case{n}' for n in range(1, 11)])
@@ -108,7 +123,12 @@ def main():
     p.add_argument('--threads', type=int, default=32)
     p.add_argument('--parallel', type=int, default=3)
     p.add_argument('--training-sampling-s', type=float, help='retry only: override the 30 s training sampler limit')
+    p.add_argument('--score-only', action='store_true', help='only ATSim-score the layouts under --ours')
     args = p.parse_args()
+    if args.score_only:
+        with ThreadPoolExecutor(args.parallel) as pool:
+            list(pool.map(lambda c: score_only(c, args.ours.resolve(), args.threads), args.cases))
+        return
     with ThreadPoolExecutor(args.parallel) as pool:
         list(pool.map(lambda c: sweep(c, args.out.resolve(), args.threads, args.ours and args.ours.resolve(),
                                       args.training_sampling_s), args.cases))
