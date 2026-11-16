@@ -5,7 +5,7 @@ exact two-pin lower bound and costs no solve; every method may use it freely.
 Each evaluated layout records the cumulative solves at its evaluation, so
 anytime curves come from the same run. A duplicate layout costs nothing and is
 looked up; a layout sharing an already-solved thermal problem costs no solve.
-A round makes progress only if it adds an FV solve or a layout whose (length,
+A round makes progress only if it adds a new thermal state or a layout whose (length,
 peak) is not weakly dominated by any earlier layout; new layouts that merely
 repeat known objectives (e.g. thermally equivalent orientations) do not count.
 Every method stops after `stall_rounds` rounds without progress, or after
@@ -27,7 +27,7 @@ class Run:
         self.die_peaks, self.max_nets = [], []  # local view: per-die peaks (degC), longest net (mm)
         self.index = {}
         self.rounds, self.stale, self.stop_reason = 0, 0, None
-        self._solves_seen = evaluator.solves
+        self._states_seen = len(evaluator.cache)
 
     @property
     def exhausted(self):
@@ -46,8 +46,10 @@ class Run:
     def keep_going(self, before):
         """Count one proposal round that started at row `before`; False once the run must stop."""
         self.rounds += 1
-        progress = self.evaluator.solves > self._solves_seen or self._improved(before)
-        self._solves_seen = self.evaluator.solves
+        # Progress is a new distinct thermal state or a front improvement; repeated factorisations (charged
+        # to the budget by topology_slp) are spending, not progress.
+        progress = len(self.evaluator.cache) > self._states_seen or self._improved(before)
+        self._states_seen = len(self.evaluator.cache)
         self.stale = 0 if progress else self.stale + 1
         if self.exhausted:
             self.stop_reason = "budget"
@@ -363,9 +365,10 @@ def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, 
                 start = run.layouts[s]
                 if rng.random() < explore:
                     start = mutate(problem, start, rng, gap_um) or start
-                if (layout_key(start), float(cap)) in tried:
+                done = (thermal_key(problem, start), round(float(cap), 6))   # thermally equivalent starts repeat
+                if done in tried:
                     continue
-                tried.add((layout_key(start), float(cap)))
+                tried.add(done)
                 jobs.append((problem, start, gap_um, evaluator.resolution, float(cap), steps))
         room = run.limit - evaluator.solves
         if room < 2 or not jobs:    # a chain needs its start and at least one step
