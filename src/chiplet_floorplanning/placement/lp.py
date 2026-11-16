@@ -436,12 +436,14 @@ def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s):
     return result.x
 
 
-def milp_relations(problem, gap_um, time_limit_s=60.0):
+def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None):
     """Global choice of rotations and side relations for wirelength by MILP (HiGHS), after ATPlace2.5D's
     initialisation: each die has one-hot quarter-turn binaries; each pair has four big-M side binaries; the
     pair's nets are clustered at their mean pin offsets, so the objective is sum K_ij |c_i + R o_i - c_j - R o_j|
     (a lower bound of the exact length by convexity). Returns a Layout whose centres realise the chosen
-    relations (overlap-free up to the solver tolerance), to be finished by the exact relation LP, or None."""
+    relations (overlap-free up to the solver tolerance), to be finished by the exact relation LP, or None.
+    `thermal` = (ThermalTable, cap degC or None) adds the grid-kernel temperature rows of thermal_milp: a hard cap on
+    the kernel peak, or with None the kernel peak itself is minimised (wirelength only breaks ties)."""
     from scipy.optimize import Bounds
     from .geometry import rotate
     n = problem.count
@@ -506,8 +508,15 @@ def milp_relations(problem, gap_um, time_limit_s=60.0):
             cost[t] = k
     integrality = np.zeros(nvar)
     integrality[iz:it] = 1
-    bounds = Bounds(np.r_[np.zeros(2*n), np.zeros(it - iz), np.zeros(nvar - it)],
-                    np.r_[np.full(n, width), np.full(n, height), np.ones(it - iz), np.full(nvar - it, np.inf)])
+    lower = np.r_[np.zeros(2*n), np.zeros(it - iz), np.zeros(nvar - it)]
+    upper = np.r_[np.full(n, width), np.full(n, height), np.ones(it - iz), np.full(nvar - it, np.inf)]
+    if thermal is not None:
+        block = thermal[0].milp_block(add, nvar, ix, iy, iz, thermal[1])
+        cost = np.r_[cost*block['length_weight'], block['cost']]
+        integrality, lower, upper = (np.r_[a, block[k]] for a, k in ((integrality, 'integrality'), (lower, 'lb'),
+                                                                      (upper, 'ub')))
+        nvar += len(block['cost'])
+    bounds = Bounds(lower, upper)
     matrix = sparse.csr_matrix((vv, (rr, cc)), shape=(len(lo), nvar))   # duplicates sum
     x = _solve_milp(cost, matrix, np.array(lo), np.array(hi), integrality, bounds, time_limit_s)
     if x is None:

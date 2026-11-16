@@ -101,7 +101,7 @@ def main():
         fv_solve_budget=args.fv_solves, distinct_fv_solves=solves, distinct_layouts=len(layouts),
         case_path=str(args.case), case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(),
         random_starts=args.random_starts, descent_starts=args.descent_starts, batch=args.batch,
-        code_dirty=source['dirty'], stop_reason=run.stop_reason, start_fallback=start_fallback,
+        code_dirty=source['dirty'], stop_reason=run.stop_reason, start_fallback=start_fallback, method_notes=run.notes,
         workers=args.workers, wall_seconds=wall, start_descent_seconds=descent_seconds,
         gap_um=args.gap_um, fv_resolution=args.resolution, grid_um=1000,
         code_commit=commit,

@@ -15,7 +15,9 @@ Every method stops after `stall_rounds` rounds without progress, or after
 import numpy as np
 
 from .evaluate import pareto_front, sample_legal, thermal_key
-from .lp import TopologyLP, centre_relations, hotspot_move, length_anneal, milp_relations, slp_chain
+from .geometry import pin_manhattan_um
+from .lp import TopologyLP, centre_relations, hotspot_move, legalize_relations, length_anneal, milp_relations, slp_chain
+from .thermal_milp import ThermalTable
 from .search import layout_key, length_descent, mutate
 
 
@@ -28,6 +30,7 @@ class Run:
         self.index = {}
         self.rounds, self.stale, self.stop_reason = 0, 0, None
         self._states_seen = len(evaluator.cache)
+        self.notes = {}   # method diagnostics kept in the run summary
 
     @property
     def exhausted(self):
@@ -416,7 +419,6 @@ def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, 
 def shortest_seeds(problem, gap_um, initial, pool, milp_s=120.0, steps=1000, chains=8, seed=0):
     """Short-end seeds with no FV cost: MILP rotations/relations finished by the exact relation LP, then
     length annealing chains from it and from the shortest start. Returns the distinct legal results."""
-    from .geometry import pin_manhattan_um
     length = lambda l: float(pin_manhattan_um(problem, l).sum())/1e6
     starts = [min(initial, key=length)] if initial else []
     found = milp_relations(problem, gap_um, milp_s)
@@ -443,6 +445,50 @@ def relation_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8,
     topology_slp(run, list(initial) + seeds, rng, **kw)
 
 
+def thermal_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, grid=6, levels=4, cap_milp_s=60.0,
+                  **kw):
+    """relation_space with the grid-kernel temperature in the MILP (plan: docs/thermal-milp-plan.md).
+
+    After the short-end seeds, a ThermalTable is built (its lone-die FV solves are charged to the budget); one MILP
+    minimises the kernel peak, then `levels` caps evenly between that and the shortest seed's kernel peak each give
+    a wirelength-minimal layout under the cap. Each result is legalised with minimal displacement, and all of them
+    join the starts of `topology_slp`.
+    """
+    evaluator = run.evaluator
+    problem, gap_um = evaluator.problem, evaluator.gap_um
+    seeds = shortest_seeds(problem, gap_um, list(initial), evaluator.pool, milp_s, anneal_steps, chains,
+                           int(rng.integers(1 << 30)))
+    starts = list(initial) + seeds
+    if not starts:
+        raise RuntimeError('no legal start: no initial layouts and the MILP found no layout')
+    table = ThermalTable(problem, gap_um, grid, evaluator.resolution)
+    notes = run.notes.setdefault('thermal_milp', dict(kernel_solves=table.solves, grid=grid, results=[]))
+    if table.solves + levels + 1 > run.limit - evaluator.solves:
+        notes['skipped'] = 'kernel solves do not fit the remaining FV budget'
+        topology_slp(run, starts, rng, **kw)
+        return
+    table.build(evaluator.pool)
+    evaluator.solves += table.solves
+    shortest = min(starts, key=lambda l: pin_manhattan_um(problem, l).sum())
+    found = [(None, milp_relations(problem, gap_um, cap_milp_s, thermal=(table, None)))]
+    if found[0][1] is not None:
+        low, high = table.kernel_peak_c(found[0][1]), table.kernel_peak_c(shortest)
+        found += [(cap, milp_relations(problem, gap_um, cap_milp_s, thermal=(table, cap)))
+                  for cap in np.linspace(low, high, levels + 2)[1:-1]]
+    candidates = []
+    for cap, layout in found:
+        legal = legalize_relations(problem, layout, gap_um) if layout is not None else None
+        row = dict(cap_c=cap, solved=layout is not None, legal=legal is not None)
+        if legal is not None:
+            candidates.append(legal)
+            row['kernel_peak_c'] = table.kernel_peak_c(legal)
+            index = run.evaluate([legal])[0]
+            row['fv_peak_c'] = None if index is None else run.peaks[index]
+        notes['results'].append(row)
+    topology_slp(run, starts + candidates, rng, **kw)
+
+
 METHODS = dict(random=random_search, pareto_ls=pareto_local_search, nsga=nsga_mutation,
                annealing=annealing, epsilon=epsilon_search, topology_lp=topology_lp, lp_epsilon=lp_then_epsilon,
-               topology_slp=topology_slp, relation_space=relation_space)
+               topology_slp=topology_slp, relation_space=relation_space,
+               thermal_space=thermal_space)
