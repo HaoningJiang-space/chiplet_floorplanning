@@ -44,3 +44,27 @@
 - [Wikipedia：Blackwell](https://en.wikipedia.org/wiki/Blackwell_(microarchitecture))；[Silicon Analysts：B200 成本拆解](https://siliconanalysts.com/analysis/nvidia-b200-blackwell-cost-breakdown)；[NextPCB：B200 1000 W](https://www.nextpcb.com/blog/nvidia-blackwell-architecture-b200-gb200-pcb-design)
 - [Wccftech：Genoa 尺寸泄露](https://wccftech.com/amd-epyc-genoa-zen-4-server-cpus-and-sp5-lga-6096-server-platform-details-leaked/)；[Wccftech：Genoa 实物与 IOD 实测](https://wccftech.com/amd-epyc-genoa-zen-4-cpu-pictured-in-all-its-glory-12-ccds-featuring-up-to-96-cores-massive-iod/)；[TechPowerUp：EPYC 9654](https://www.techpowerup.com/cpu-specs/epyc-embedded-9654.c3189)；[AMD EPYC 9004 调优指南](https://docs.amd.com/api/khub/documents/NgOfoW49HKdzztTeLBbekA/content)
 - [Wikipedia：HBM](https://en.wikipedia.org/wiki/High_Bandwidth_Memory)；[Vikram Sekar：HBM 制造](https://www.viksnewsletter.com/p/why-is-hbm-so-hard-to-manufacture)；[arXiv 2510.05245](https://arxiv.org/pdf/2510.05245)（HBM3 底片 121 mm²）
+
+## 下一代与同系列产品（同日补充）
+
+| 档位 | 依据 | 可靠程度 |
+| --- | --- | --- |
+| 2 GPU + 8 HBM（B200） | 两颗接近光罩上限的 GPU，每颗配 4 个 HBM3e，用硅桥连接（[AnandTech](https://www.anandtech.com/show/21310)、[TechInsights](https://www.techinsights.com/blog/techinsights-nvidia-hgx-b200-analysis-reveals-hbm3e-supplier-and-advanced-packaging-innovation)）；单颗面积有 400 与 800 mm² 两种说法，后者与"接近光罩"一致 | 结构可靠；中介层尺寸无可靠数字 |
+| 4 GPU + 16 HBM4E + 2 IO（Rubin Ultra，GTC 2025） | 一排 4 颗光罩尺寸 GPU，两侧 2 个 IO 芯粒，16 个 HBM4E，约 1 TB；SemiAnalysis 估计用两块中介层（[SemiAnalysis](https://newsletter.semianalysis.com/p/nvidia-gtc-2025-built-for-reasoning-vera-rubin-kyber-cpo-dynamo-inference-jensen-math-feynman)）；约 3.6 kW 的功率说法未核实 | 探索性 |
+| 同上，后续报道 | 2026 年 7 月报道称 4 芯片设计因封装限制改为 2 芯片加 8 个 HBM4E，NVIDIA 未确认（[TechTimes](https://www.techtimes.com/articles/319410/20260701/nvidia-rubin-ultra-four-die-gpu-cancelled-packaging-limits-cut-2027-performance-half.htm)） | 未确认报道，可作动机，引用时注明 |
+| EPYC Turin（Zen 5） | 最多 16 个 CCD，每个 70.6 mm²；IO 芯片与 Genoa 相同；SP5 封装（[Wikipedia: Zen 5](https://en.wikipedia.org/wiki/Zen_5)、[Thomas-Krenn](https://www.thomas-krenn.com/en/wiki/AMD_EPYC_9005_Turin)、[Wccftech 照片](https://wccftech.com/amd-zen-5-epyc-turin-cpus-pictured-128-core-zen-5-192-core-zen-5c-flavors/)） | 真实产品；CCD 面积来自 Wikipedia |
+| EPYC Turin Dense（Zen 5c） | 12 个 CCD，最高 500 W（[Tom's Hardware](https://www.tomshardware.com/pc-components/cpus/amd-launches-epyc-turin-9005-series-our-benchmarks-of-fifth-gen-zen-5-chips-with-up-to-192-cores-500w-tdp)）；CCD 尺寸未找到 | 部分 |
+| HBM4 | 2048 位接口（JEDEC JESD270-4）；堆叠尺寸未找到；功率说法 18–20 W 与 75 W 不一致（[Wikipedia: HBM](https://en.wikipedia.org/wiki/High_Bandwidth_Memory)） | 尺寸与功率需声明假设 |
+
+### 案例清单（计划）
+
+| 编号 | 案例 | 作用 |
+| --- | --- | --- |
+| G1 | H100：1 GPU + 6 HBM | 验证：能否找回接近真实产品的排法 |
+| G2 | B200 类：2 GPU + 8 HBM | 真实结构，热冲突开始出现 |
+| G3 | Rubin Ultra 类：4 GPU + 16 HBM + 2 IO | 主要检验：排法不显然、热冲突强 |
+| C1 | Genoa：12 CCD + IOD | 验证 |
+| C2 | Turin：16 CCD + IOD（同一封装） | 真实产品，封装更满 |
+| C3 | 24 CCD（推测） | 可扩展性 |
+
+先建 G3，并筛查：在硬约束下，最好的合法布局比人工对称排法好多少。
