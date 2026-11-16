@@ -67,6 +67,27 @@ class ThermalSlpTest(unittest.TestCase):
         for k in range(0, len(run.layouts), max(1, len(run.layouts)//5)):
             self.assertAlmostEqual(peak[k], self.exact(run.layouts[k]).max(), places=8)
 
+    def test_topology_slp_never_computes_more_solves_than_its_budget(self):
+        # Count every FV solve and every SLP factorisation actually performed, independent of the bookkeeping.
+        import chiplet_floorplanning.placement.evaluate as evaluate
+        import chiplet_floorplanning.placement.thermal as thermal
+        calls = []
+        peaks, sensitivity = evaluate._peaks, thermal.die_peak_sensitivity
+        evaluate._peaks = lambda job: calls.append(1) or peaks(job)
+        thermal.die_peak_sensitivity = lambda *a, **k: calls.append(1) or sensitivity(*a, **k)
+        try:
+            rng = np.random.default_rng(6)
+            start = [sample_legal(self.problem, 1000, rng) for _ in range(4)]
+            for budget in (12, 20, 40):
+                calls.clear()
+                with Evaluator(self.problem, 1000, resolution=24) as evaluator:
+                    run = Run(evaluator, budget)
+                    METHODS['topology_slp'](run, start, np.random.default_rng(3), batch=4, caps=3, steps=4)
+                    self.assertLessEqual(len(calls), budget)
+                    self.assertEqual(evaluator.solves, len(calls))
+        finally:
+            evaluate._peaks, thermal.die_peak_sensitivity = peaks, sensitivity
+
 
 if __name__ == '__main__':
     unittest.main()

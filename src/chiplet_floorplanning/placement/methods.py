@@ -331,9 +331,11 @@ def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, 
     (`slp_chain`) polish archive layouts under `caps` die-peak caps spread over the archive's peak range.
 
     Each round starts one chain per cap from the shortest archive layout under the cap and one from the
-    longest layout above it (optionally first moved to a new topology). Chains run in the evaluator's pool;
-    every exact solve they make is charged to the budget once and cached, so `run.evaluate` records the
-    layouts without solving again.
+    longest layout above it (optionally first moved to a new topology). A chain makes at most steps + 1 LU
+    factorisations (its start plus one per step), so before dispatch the number of chains and their steps are
+    cut until that worst case fits the remaining budget; every factorisation a chain made is then charged,
+    including its start and any repeat of a cached layout. New results are cached, so `run.evaluate` records
+    the layouts without solving again.
     """
     problem, gap_um, evaluator = run.evaluator.problem, run.evaluator.gap_um, run.evaluator
     total = run.limit
@@ -366,19 +368,19 @@ def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, 
                 tried.add((layout_key(start), float(cap)))
                 jobs.append((problem, start, gap_um, evaluator.resolution, float(cap), steps))
         room = run.limit - evaluator.solves
-        jobs = jobs[:max(1, room//(steps + 1))]
+        if room < 2 or not jobs:    # a chain needs its start and at least one step
+            return []
+        jobs = jobs[:room//2]
+        chain_steps = min(steps, room//len(jobs) - 1)   # worst case len(jobs)*(chain_steps + 1) <= room
+        jobs = [job[:-1] + (chain_steps,) for job in jobs]
         chains = evaluator.pool.map(slp_chain, jobs) if evaluator.pool else map(slp_chain, jobs)
         found = []
         for chain in chains:
-            for step, (layout, die_peaks) in enumerate(chain):
+            for layout, die_peaks in chain:
+                evaluator.solves += 1   # every factorisation the chain made, cached or not
                 key = thermal_key(problem, layout)
                 if key not in evaluator.cache:
-                    if evaluator.solves >= run.limit:
-                        break
                     evaluator.cache[key] = np.r_[die_peaks.max(), die_peaks]
-                    evaluator.solves += 1
-                elif step == 0:
-                    evaluator.solves += 1   # the start was solved again for its first gradients
                 found.append(layout)
         return [c for c in found if layout_key(c) not in run.index]
     _loop(run, propose)
