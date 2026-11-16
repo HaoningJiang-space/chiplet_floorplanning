@@ -100,16 +100,22 @@ def search(problem, initial, reach_mm, gap_um, resolution, workers, pairs):
                 rotation_deg=layout.rotation_deg.tolist())
 
 
+def shared_starts(front):
+    """Random and length-descended starts plus the frozen front (v3: its topologies also seed every search)."""
+    problem, gap = front.problem, front.gap_um
+    rng = np.random.default_rng(SEED)
+    initial = [sample_legal(problem, gap, rng) for _ in range(STARTS)]
+    initial += [length_descent(problem, sample_legal(problem, gap, rng), rng, gap) for _ in range(STARTS)]
+    return initial + list(front.layouts)
+
+
 def analyse(case_path, summary_path, layouts_path, workers):
     front = frozen_front.load(case_path, summary_path, layouts_path)
     problem, gap, res = front.problem, front.gap_um, front.resolution
     pairs, lanes = link_pairs(problem)
     front_gap = np.array([link_gaps_mm(problem, l, pairs).max() for l in front.layouts])
-    rng = np.random.default_rng(SEED)
-    initial = [sample_legal(problem, gap, rng) for _ in range(STARTS)]
-    initial += [length_descent(problem, sample_legal(problem, gap, rng), rng, gap) for _ in range(STARTS)]
+    initial = shared_starts(front)
     started = time.perf_counter()
-    initial = initial + list(front.layouts)       # v3: the frozen front's topologies also seed every search
     out = dict(case=front.case, links=len(pairs), lanes=lanes.tolist(), pairs=pairs.tolist(),
                front=dict(coolest_c=float(front.peak_c.min()), by_reach={}), search={})
     for r in REACHES_MM:
