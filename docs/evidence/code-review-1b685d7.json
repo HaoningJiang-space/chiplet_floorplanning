@@ -1,0 +1,333 @@
+{
+  "analyzed_commit": "1b685d78e7b262aed7e0f3119db889de42b3da6b",
+  "fetch_succeeded": true,
+  "scope": "Review of the 8dbf545 fixes, current SLP orchestration and ATPlace experiment collection/reporting. No production edits or remote experiment execution.",
+  "source_sha256": {
+    "src/chiplet_floorplanning/placement/methods.py": "705ea95d0faa13610abe34a9095f8135ebaad2accae361fca4a1944e253fc1c3",
+    "src/chiplet_floorplanning/placement/lp.py": "ea2e21fdfa0d7f81882a1fc62070218e20d35f4119c001e3d94b94a086325e91",
+    "src/chiplet_floorplanning/placement/thermal.py": "21105bef8d3a6fefdfa9ffaf32cc6c186f4203eb4ed8e4a618303e64b3f57dcc",
+    "tools/run_reference_front.py": "bcc3ae009de7260ea411daade172ef5844b31665d87d2d22c51e237097d40987",
+    "tools/run_method_comparison.py": "8c5f0d5c49783746afb5c187b1614ccec79a734cedbcf9acbee4e7a57e3e0991",
+    "tools/atplace_compare.py": "f4a73f050d6597a04b396ee1c274ebf5f4b387ad8694cd853e1b120517d45a83",
+    "tools/atplace_sweep.py": "795696f360c3458fa0af2a20a62a6946629b3456a36ce0fb16b7c5de2ff87d89",
+    "tests/slp_dispatch_unittest.py": "589159c87a46fcec98e1bd745f40c85b1eae3663ea2bfc1c9adc9a3fc72d16e7"
+  },
+  "previous_six_findings": {
+    "fix_commit": "8dbf545e8848e32ee14d886551a5b857e19960f4",
+    "regression_tests": 6,
+    "result": "passed",
+    "budget_accounting_tests": "passed"
+  },
+  "findings": [
+    {
+      "id": "stale_atsim_after_rerun",
+      "priority": "P2",
+      "location": "tools/atplace_sweep.py:81-97;103-114",
+      "problem": "A successful rerun overwrites layout.json but treats an existing atsim.json as valid without checking the layout or scoring inputs. A failed rerun leaves earlier label directories available to glob-based collection.",
+      "trigger": "Reuse a sweep/export output directory with changed layouts or evaluation parameters, or rerun a previously successful label that now fails.",
+      "effect": "FV/length can describe the new layout while ATSim still describes the previous layout; failed current points can silently remain visible as older successes.",
+      "evidence": {
+        "protocol": "Real sweep file handling; external training/placement/scoring calls replaced by deterministic stubs.",
+        "initial_score_calls": 6,
+        "rerun_score_calls": 0,
+        "new_layout_first_x_um": 4000.0,
+        "retained_score": {
+          "tmax_c": 90.0,
+          "control_generation": 1,
+          "eval_s": 1.0
+        },
+        "expected_new_score_c": 110.0
+      },
+      "failed_rerun": {
+        "retained_layouts": 6,
+        "timing": {
+          "wl": {
+            "failed": "controlled failed rerun"
+          },
+          "train_s": 1.0,
+          "thermal_x0.01": {
+            "failed": "controlled failed rerun"
+          },
+          "thermal_x0.1": {
+            "failed": "controlled failed rerun"
+          },
+          "thermal_x1": {
+            "failed": "controlled failed rerun"
+          },
+          "thermal_x10": {
+            "failed": "controlled failed rerun"
+          },
+          "thermal_x100": {
+            "failed": "controlled failed rerun"
+          }
+        }
+      },
+      "recommendation": "Use a new directory per attempt or bind scores to layout and evaluation configuration hashes before reuse; collect current-attempt successes explicitly and retain failed attempts separately."
+    },
+    {
+      "id": "missing_points_change_frozen_denominator",
+      "priority": "P2",
+      "location": "tools/atplace_compare.py:53-69;127-133",
+      "problem": "Only surviving legal points enter outcome(), which divides by their count. It does not inspect the six expected sweep labels or the recorded training/placement failures.",
+      "trigger": "A case has fewer than six successful points, including the currently documented thermal-training failures.",
+      "effect": "The frozen six-point dominance fraction is replaced with success-conditioned dominance. Ten cases with only one WL point each can receive the full advantage verdict.",
+      "evidence": {
+        "protocol": "Actual compare() with synthetic metrics, ten cases and only the WL point; five thermal points absent after training failure.",
+        "observed_atplace_points_per_case": 1,
+        "frozen_atplace_points_per_case": 6,
+        "first_case": {
+          "d_ours": 1.0,
+          "d_atp": 0.0,
+          "outcome": "ours",
+          "points": [
+            {
+              "length_m": 12.0,
+              "peak_c": 95.0,
+              "delta_t_k": 5.0,
+              "delta_l_m": 2.0
+            }
+          ]
+        },
+        "verdict": "advantage",
+        "wins": {
+          "fv": 10,
+          "atsim": 10
+        },
+        "frozen_denominator_known_dominated_share": 0.16666666666666666
+      },
+      "recommendation": "Report expected, completed, failed and illegal labels. Keep survivor-only statistics explicitly descriptive; do not issue the frozen full-comparison verdict until its completeness policy is satisfied. Do not silently count missing points as wins or losses."
+    },
+    {
+      "id": "partial_case_set_receives_final_verdict",
+      "priority": "P2",
+      "location": "tools/atplace_compare.py:73-81;137-139",
+      "problem": "The public --cases subset is accepted, but the ten-case absolute verdict thresholds are still applied.",
+      "trigger": "Run compare on a progress subset such as --cases 1.",
+      "effect": "One case won under both models produces no_advantage; this is a global conclusion without the remaining nine cases.",
+      "evidence": {
+        "cases": 1,
+        "atplace_points_in_case": 6,
+        "expected_cases": 10,
+        "verdict": "no_advantage",
+        "wins": {
+          "fv": 1,
+          "atsim": 1
+        },
+        "losses": {
+          "fv": 0,
+          "atsim": 0
+        }
+      },
+      "recommendation": "Require the frozen distinct case set and both model results for a final verdict. For progress subsets report incomplete/provisional with counts and missing cases."
+    }
+  ],
+  "unpromoted_method_diagnostic": {
+    "reason": "The surrogate enforces zero derivative for rigid translation; the finite package need not be translation invariant. This is a declared approximation, not a newly confirmed score or solver bug. The bounded probe is small and grid sensitive (including a sign change in the y direction), so it does not justify a new physics campaign or claims of material optimization loss.",
+    "evidence": {
+      "protocol": "Real FV and sensitivity on the existing four-die test fixture shifted together by -6 mm in both axes. Symmetric whole-layout translations; two step sizes and two resolutions.",
+      "layout_centre_um": [
+        [
+          4000.0,
+          4000.0
+        ],
+        [
+          11000.0,
+          4000.0
+        ],
+        [
+          4000.0,
+          12000.0
+        ],
+        [
+          12000.0,
+          12000.0
+        ]
+      ],
+      "rows": [
+        {
+          "resolution": 24,
+          "axis": 0,
+          "half_step_um": 500,
+          "predicted_derivative_k_per_mm": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "measured_derivative_k_per_mm": [
+            -0.09434450258197558,
+            -0.03393337015609177,
+            -0.12462081053008944,
+            -0.05072234224340377
+          ],
+          "peak_minus_c": 94.92047918355462,
+          "peak_plus_c": 94.88654581339853,
+          "pin_length_change_m": 0.0
+        },
+        {
+          "resolution": 24,
+          "axis": 0,
+          "half_step_um": 1000,
+          "predicted_derivative_k_per_mm": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "measured_derivative_k_per_mm": [
+            -0.1212813710701468,
+            -0.03511495481620841,
+            -0.15538824710364452,
+            -0.052205703255097546
+          ],
+          "peak_minus_c": 94.94436579966971,
+          "peak_plus_c": 94.8741358900373,
+          "pin_length_change_m": 0.0
+        },
+        {
+          "resolution": 24,
+          "axis": 1,
+          "half_step_um": 500,
+          "predicted_derivative_k_per_mm": [
+            -2.7755575615628914e-17,
+            0.0,
+            -7.697835424647081e-18,
+            0.0
+          ],
+          "measured_derivative_k_per_mm": [
+            -0.0473403615833945,
+            -0.035371845157129655,
+            -0.0669143895541282,
+            -0.04597158132146717
+          ],
+          "peak_minus_c": 94.93645872597259,
+          "peak_plus_c": 94.90108688081546,
+          "pin_length_change_m": 0.0
+        },
+        {
+          "resolution": 24,
+          "axis": 1,
+          "half_step_um": 1000,
+          "predicted_derivative_k_per_mm": [
+            -2.7755575615628914e-17,
+            0.0,
+            -7.697835424647081e-18,
+            0.0
+          ],
+          "measured_derivative_k_per_mm": [
+            -0.06862832064210522,
+            -0.055174176722879054,
+            -0.0674357471812499,
+            -0.04633782143972098
+          ],
+          "peak_minus_c": 95.03077907315937,
+          "peak_plus_c": 94.92043071971361,
+          "pin_length_change_m": 0.0
+        },
+        {
+          "resolution": 48,
+          "axis": 0,
+          "half_step_um": 500,
+          "predicted_derivative_k_per_mm": [
+            8.326672684688674e-17,
+            2.7755575615628914e-17,
+            0.0,
+            0.0
+          ],
+          "measured_derivative_k_per_mm": [
+            -0.024619578371968487,
+            -0.013833182138711209,
+            -0.03022506286964699,
+            -0.021951608426377334
+          ],
+          "peak_minus_c": 94.71562229791334,
+          "peak_plus_c": 94.70178911577463,
+          "pin_length_change_m": 0.0
+        },
+        {
+          "resolution": 48,
+          "axis": 0,
+          "half_step_um": 1000,
+          "predicted_derivative_k_per_mm": [
+            8.326672684688674e-17,
+            2.7755575615628914e-17,
+            0.0,
+            0.0
+          ],
+          "measured_derivative_k_per_mm": [
+            -0.03364045949962957,
+            -0.014403450450636512,
+            -0.040433114239064594,
+            -0.022641926199888474
+          ],
+          "peak_minus_c": 94.72683976325278,
+          "peak_plus_c": 94.69803286235151,
+          "pin_length_change_m": 0.0
+        },
+        {
+          "resolution": 48,
+          "axis": 1,
+          "half_step_um": 500,
+          "predicted_derivative_k_per_mm": [
+            2.7755575615628914e-17,
+            0.0,
+            -1.1926223897340549e-17,
+            0.0
+          ],
+          "measured_derivative_k_per_mm": [
+            0.019170129636393085,
+            0.014778368577495371,
+            -0.02902228924565975,
+            -0.018452030956851218
+          ],
+          "peak_minus_c": 94.71338536928997,
+          "peak_plus_c": 94.72816373786746,
+          "pin_length_change_m": 0.0
+        },
+        {
+          "resolution": 48,
+          "axis": 1,
+          "half_step_um": 1000,
+          "predicted_derivative_k_per_mm": [
+            2.7755575615628914e-17,
+            0.0,
+            -1.1926223897340549e-17,
+            0.0
+          ],
+          "measured_derivative_k_per_mm": [
+            0.004647549054524802,
+            -0.0006692654385815899,
+            -0.02932823847473287,
+            -0.018701407666370073
+          ],
+          "peak_minus_c": 94.76560075492411,
+          "peak_plus_c": 94.76426222404694,
+          "pin_length_change_m": 0.0
+        }
+      ]
+    }
+  },
+  "validation": {
+    "unit_tests": 95,
+    "unit_tests_passed": true,
+    "unit_log": "results/code-review-1b685d7/unittest.log",
+    "two_chiplets_validate": "passed",
+    "two_chiplets_evaluate": "passed",
+    "cli_report": "results/code-review-1b685d7/two-chiplets/report.json",
+    "commands": [
+      "PYTHONPATH=src:tools:tests OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m unittest discover -s tests -p '*_unittest.py' -v",
+      "PYTHONPATH=src python -m chiplet_floorplanning validate examples/two_chiplets.json",
+      "PYTHONPATH=src python -m chiplet_floorplanning evaluate examples/two_chiplets.json --output results/code-review-1b685d7/two-chiplets",
+      "PYTHONPATH=src:tools:tests python results/code-review-1b685d7/reproduce.py",
+      "PYTHONPATH=src:tools:tests python results/code-review-1b685d7/translation_probe.py"
+    ]
+  },
+  "interpretation_limits": [
+    "ATPlace subprocesses in the cache control were deterministic stubs; the sweep file operations were real. The 90/110 degC values test result identity, not thermal physics.",
+    "Comparison inputs were synthetic and went through the real compare() implementation. No remote raw-result corruption or reversal of published six-case outcomes has been established.",
+    "No new external thermal calibration or real timing validation; no claim that the repository is bug-free."
+  ],
+  "physical_qualified": false,
+  "timing": "not_run",
+  "thermal_external_validation": "not_run"
+}
