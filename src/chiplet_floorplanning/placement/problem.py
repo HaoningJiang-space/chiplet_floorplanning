@@ -19,6 +19,7 @@ class Problem:
     carrier_um: tuple          # (width, height)
     pin_chip: np.ndarray       # (m, 2) chiplet index of each net endpoint
     pin_offset_um: np.ndarray  # (m, 2, 2) unrotated endpoint offsets
+    top_h_w_m2k: float = None  # sink-top convection of a calibrated case; None keeps the declared default
 
     @classmethod
     def from_imported(cls, case):
@@ -37,7 +38,8 @@ class Problem:
             size_um=np.array([[c["width_um"], c["height_um"]] for c in case["chiplets"]], dtype=float),
             power_w=np.array([float(c["power_w_decimal"]) for c in case["chiplets"]]),
             carrier_um=(float(case["interposer_width_um"]), float(case["interposer_height_um"])),
-            pin_chip=pin_chip.reshape(-1, 2), pin_offset_um=offsets.reshape(-1, 2, 2))
+            pin_chip=pin_chip.reshape(-1, 2), pin_offset_um=offsets.reshape(-1, 2, 2),
+            top_h_w_m2k=case.get("top_h_w_m2k"))
 
     @property
     def count(self):

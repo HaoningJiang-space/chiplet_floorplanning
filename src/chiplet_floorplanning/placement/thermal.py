@@ -1,7 +1,8 @@
 """Declared TAP-family FV package for imported cases, solved with scipy.
 
 This is the same material recipe as tools/atplace_pin_geometry.make_thermal_case:
-fixed 100 mm spreader, 200 mm sink, top Robin h and adiabatic sides/bottom.
+100 mm spreader (carriers over 100 mm: 20 mm longer than the carrier), 200 mm sink, top Robin h
+and adiabatic sides/bottom.
 It is a research adaptation, not ATPlace's native model or a measured package.
 Ports are omitted because they do not enter the mesh, materials or power map.
 """
@@ -17,7 +18,7 @@ from .geometry import boxes, violations
 AMBIENT_C = 45.0
 PACKAGE_MM = 200.0
 PROVENANCE = ("ATPlace source geometry/power/pins; declared TAP-family FV materials, "
-              "fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration")
+              "100 mm (or carrier + 20 mm) spreader, 200 mm sink; not native ATPlace or measured calibration")
 
 
 def _mixture(diameter, pitch, background):
@@ -25,13 +26,15 @@ def _mixture(diameter, pitch, background):
 
 
 def thermal_case_data(problem, layout, gap_um, resolution=64, top_h_w_m2k=None):
-    """Declared TAP-family FV case; top_h_w_m2k overrides the sink-top convection (default 1/(0.1 K/W x 60 mm square))."""
+    """Declared TAP-family FV case; top_h_w_m2k overrides the sink-top convection (else the problem's calibrated
+    value, else 1/(0.1 K/W x 60 mm square)). The spreader is 100 mm square, or 20 mm longer than a larger carrier."""
     v = violations(problem, layout, gap_um)
     if v["outside"] or v["pairs"]:
         raise ValueError(f"illegal layout: {v}")
     width, height = (s/1000 for s in problem.carrier_um)
-    if max(width, height) > 100:
-        raise ValueError("source carrier exceeds this declared common spreader")
+    spreader = max(100.0, max(width, height) + 20)
+    if spreader > PACKAGE_MM:
+        raise ValueError("source carrier exceeds the declared package")
     ox, oy = (PACKAGE_MM - width)/2, (PACKAGE_MM - height)/2
     b = boxes(problem, layout)
     chips = []
@@ -54,8 +57,8 @@ def thermal_case_data(problem, layout, gap_um, resolution=64, top_h_w_m2k=None):
               layer("interposer", .11, _mixture(10, 50, 100)),
               layer("microbumps", .01, 1.6, die_k=_mixture(25, 45, 1.6)),
               layer("dies", .15, 1.6, die_k=100), layer("tim", .02, 4),
-              layer("spreader", 1, 400, 100, 100), layer("sink", 6.9, 400, 200, 200)]
-    top_h = top_h_w_m2k if top_h_w_m2k is not None else 1/(.1*.06**2)
+              layer("spreader", 1, 400, spreader, spreader), layer("sink", 6.9, 400, 200, 200)]
+    top_h = next(h for h in (top_h_w_m2k, problem.top_h_w_m2k, 1/(.1*.06**2)) if h is not None)
     return dict(schema_version=1, name="atplace_fv_" + problem.name,
                 package_mm=dict(width=200, height=200),
                 grid=dict(nx=resolution, ny=resolution, mode="geometry_conformal"), chiplets=chips,
