@@ -557,16 +557,16 @@ def hotspot_move(problem, layout, die_peaks, rng, gap_um):
     d = centre - centre[h]
     r2 = (d**2).sum(axis=1)/1e6 + 1.0                       # mm^2, +1 keeps it finite
     kind = rng.choice(("push", "swap", "rotate"), p=(.5, .3, .2))
-    if kind == "push":
-        heat = problem.power_w/r2
-        heat[h] = 0
+    heat = problem.power_w/r2
+    heat[h] = 0
+    weight = r2/np.maximum(problem.power_w, 1e-6)
+    weight[h] = 0
+    if kind == "push" and heat.sum() > 0:
         j = int(rng.choice(problem.count, p=heat/heat.sum()))
         centre[j] += d[j]/np.sqrt(r2[j]*1e6)*rng.uniform(3, 8)*1000
-    elif kind == "swap":
-        weight = r2/np.maximum(problem.power_w, 1e-6)
-        weight[h] = 0
+    elif kind == "swap" and weight.sum() > 0:
         k = int(rng.choice(problem.count, p=weight/weight.sum()))
         centre[[h, k]] = centre[[k, h]]
-    else:
+    else:   # also when no other die heats h (or there is no other die): rotate h
         rotation[h] = (rotation[h] + rng.choice((90, 180, 270))) % 360
     return legalize_relations(problem, Layout(centre, rotation), gap_um)

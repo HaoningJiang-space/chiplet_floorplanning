@@ -328,6 +328,12 @@ def lp_then_epsilon(run, initial, rng, lp_share=0.5, **kw):
     epsilon_search(run, [], rng, **kw)
 
 
+def slp_job_key(problem, start, goal, mode):
+    """Identity of an SLP chain: the thermal state alone is not enough, because rotations that leave the
+    occupied boxes unchanged (e.g. a half turn) still move the pins and so change the length LP."""
+    return thermal_key(problem, start), start.rotation_deg.astype(np.int16).tobytes(), round(float(goal), 6), mode
+
+
 def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, targets='peak', hotspot=0.0,
                  **kw):
     """topology_lp explores topologies on the first `lp_share` of the budget; then trust-region SLP chains
@@ -345,6 +351,8 @@ def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, 
     the layouts without solving again.
     """
     problem, gap_um, evaluator = run.evaluator.problem, run.evaluator.gap_um, run.evaluator
+    if evaluator.modes is not None:
+        raise ValueError("topology_slp optimises nominal die peaks; multi-mode evaluators are not supported")
     total = run.limit
     run.evaluate(initial)
     run.limit = max(evaluator.solves, int(lp_share*total))
@@ -375,24 +383,23 @@ def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, 
                 starts = [within[np.argmin(peak[within])]] if within.size else []
                 starts += [over[np.argmin(peak[over])]] if over.size else []
                 goals += [(s, float(budget), "length") for s in starts]
-        jobs = []
+        pending = {}
         for s, goal, mode in goals:
             start = run.layouts[s]
             if rng.random() < hotspot:
                 start = hotspot_move(problem, start, die_peaks[s], rng, gap_um) or start
             elif rng.random() < explore:
                 start = mutate(problem, start, rng, gap_um) or start
-            done = (thermal_key(problem, start), round(goal, 6), mode)   # thermally equivalent starts repeat
-            if done in tried:
-                continue
-            tried.add(done)
-            jobs.append((problem, start, gap_um, evaluator.resolution, goal, steps, mode))
+            key = slp_job_key(problem, start, goal, mode)
+            if key not in tried and key not in pending:
+                pending[key] = (problem, start, gap_um, evaluator.resolution, goal, steps, mode)
         room = run.limit - evaluator.solves
-        if room < 2 or not jobs:    # a chain needs its start and at least one step
+        if room < 2 or not pending:    # a chain needs its start and at least one step
             return []
-        jobs = jobs[:room//2]
-        chain_steps = min(steps, room//len(jobs) - 1)   # worst case len(jobs)*(chain_steps + 1) <= room
-        jobs = [job[:5] + (chain_steps, job[6]) for job in jobs]
+        keys = list(pending)[:room//2]
+        tried.update(keys)             # only dispatched chains count as tried; the rest stay eligible
+        chain_steps = min(steps, room//len(keys) - 1)   # worst case len(keys)*(chain_steps + 1) <= room
+        jobs = [pending[k][:5] + (chain_steps, pending[k][6]) for k in keys]
         chains = evaluator.pool.map(slp_chain, jobs) if evaluator.pool else map(slp_chain, jobs)
         found = []
         for chain in chains:

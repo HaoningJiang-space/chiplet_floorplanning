@@ -21,6 +21,18 @@ from chiplet_floorplanning.placement.methods import METHODS, Run
 from chiplet_floorplanning.placement.search import length_descent
 
 
+def parse_options(items):
+    """KEY=VALUE method options with their natural types: int, then float, else string."""
+    def value(text):
+        for kind in (int, float):
+            try:
+                return kind(text)
+            except ValueError:
+                pass
+        return text
+    return {k: value(v) for k, v in (item.split('=', 1) for item in items)}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--case', type=Path, required=True)
@@ -28,7 +40,7 @@ def main():
     parser.add_argument('--fv-solves', type=int, default=12000, help='budget: distinct FV solves')
     parser.add_argument('--method', choices=sorted(METHODS), default='pareto_ls', help='search method (frozen fronts: pareto_ls)')
     parser.add_argument('--method-option', nargs='*', default=[], metavar='KEY=VALUE',
-                        help='numeric keyword options for the method, e.g. milp_s=300')
+                        help='keyword options for the method, e.g. milp_s=300 targets=both')
     parser.add_argument('--random-starts', type=int, default=96)
     parser.add_argument('--descent-starts', type=int, default=96)
     parser.add_argument('--batch', type=int, default=96)
@@ -58,8 +70,8 @@ def main():
     descent_seconds = time.perf_counter() - started
     with Evaluator(problem, args.gap_um, args.resolution, args.workers) as evaluator:
         run = Run(evaluator, args.fv_solves)
-        options = {k: float(v) for k, v in (item.split('=', 1) for item in args.method_option)}
-        METHODS[args.method](run, initial, rng, batch=args.batch, **options)
+        METHODS[args.method](run, initial, rng, batch=args.batch, length_caps_m=tuple(args.length_caps_m),
+                             **parse_options(args.method_option))
         solves = evaluator.solves
     layouts = run.layouts
     length, peak, _ = run.arrays()
