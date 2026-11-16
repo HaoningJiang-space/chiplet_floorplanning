@@ -15,7 +15,7 @@ Every method stops after `stall_rounds` rounds without progress, or after
 import numpy as np
 
 from .evaluate import pareto_front, sample_legal, thermal_key
-from .lp import TopologyLP, slp_chain
+from .lp import TopologyLP, centre_relations, length_anneal, milp_relations, slp_chain
 from .search import layout_key, length_descent, mutate
 
 
@@ -384,6 +384,34 @@ def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, 
     _loop(run, propose)
 
 
+def shortest_seeds(problem, gap_um, initial, pool, milp_s=120.0, steps=1000, chains=8, seed=0):
+    """Short-end seeds with no FV cost: MILP rotations/relations finished by the exact relation LP, then
+    length annealing chains from it and from the shortest start. Returns the distinct legal results."""
+    from .geometry import pin_manhattan_um
+    length = lambda l: float(pin_manhattan_um(problem, l).sum())/1e6
+    starts = [min(initial, key=length)] if initial else []
+    found = milp_relations(problem, gap_um, milp_s)
+    if found is not None:
+        lp = TopologyLP(problem, found, gap_um, pairs=0, relations=centre_relations(problem, found, gap_um))
+        x = lp._solve(lp.length)
+        exact = lp._layout(x) if x is not None else None
+        starts += [exact] if exact is not None else []
+    if not starts:
+        return []
+    jobs = [(problem, starts[k % len(starts)], gap_um, seed*1000 + k, steps, 0.02*length(starts[k % len(starts)]),
+             0.0002*length(starts[k % len(starts)])) for k in range(chains)]
+    results = pool.map(length_anneal, jobs) if pool else map(length_anneal, jobs)
+    return starts + [layout for layout, _ in results]
+
+
+def relation_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, **kw):
+    """The full method: short-end seeds (`shortest_seeds`, no FV), then `topology_slp` from all starts."""
+    evaluator = run.evaluator
+    seeds = shortest_seeds(evaluator.problem, evaluator.gap_um, list(initial), evaluator.pool, milp_s, anneal_steps,
+                           chains, int(rng.integers(1 << 30)))
+    topology_slp(run, list(initial) + seeds, rng, **kw)
+
+
 METHODS = dict(random=random_search, pareto_ls=pareto_local_search, nsga=nsga_mutation,
                annealing=annealing, epsilon=epsilon_search, topology_lp=topology_lp, lp_epsilon=lp_then_epsilon,
-               topology_slp=topology_slp)
+               topology_slp=topology_slp, relation_space=relation_space)

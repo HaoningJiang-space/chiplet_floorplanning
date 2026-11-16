@@ -374,6 +374,8 @@ def length_anneal(args):
     length = lambda l: float(pin_manhattan_um(problem, l).sum())/1e6
     current = best = layout
     now = top = length(layout)
+    if t_start <= 0 or top <= 0:   # no inter-die nets: nothing to shorten
+        return best, top
     for step in range(steps):
         temperature = t_start*(t_end/t_start)**(step/max(steps - 1, 1))
         moved = _free_move(problem, current, rng)
@@ -418,13 +420,13 @@ def milp_relations(problem, gap_um, time_limit_s=60.0):
     isd = iz + 4*n
     it = isd + 4*len(pairs)
     nvar = it + 2*len(clusters)
-    rows, lo, hi = [], [], []
+    rr, cc, vv, lo, hi = [], [], [], [], []
 
     def add(entries, low, high):
-        r = np.zeros(nvar)
         for col, val in entries:
-            r[col] += val
-        rows.append(r)
+            rr.append(len(lo))
+            cc.append(col)
+            vv.append(val)
         lo.append(low)
         hi.append(high)
 
@@ -462,7 +464,8 @@ def milp_relations(problem, gap_um, time_limit_s=60.0):
     integrality[iz:it] = 1
     bounds = Bounds(np.r_[np.zeros(2*n), np.zeros(it - iz), np.zeros(nvar - it)],
                     np.r_[np.full(n, width), np.full(n, height), np.ones(it - iz), np.full(nvar - it, np.inf)])
-    result = milp(cost, constraints=LinearConstraint(np.array(rows), lo, hi), integrality=integrality,
+    matrix = sparse.csr_matrix((vv, (rr, cc)), shape=(len(lo), nvar))   # duplicates sum
+    result = milp(cost, constraints=LinearConstraint(matrix, lo, hi), integrality=integrality,
                   bounds=bounds, options=dict(time_limit=time_limit_s, disp=False))
     if result.x is None:
         return None
