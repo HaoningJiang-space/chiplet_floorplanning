@@ -59,10 +59,19 @@ def sweep(case, out, threads, ours, sampling_s=None):
         path = root / f'{label}.params.json'
         path.write_text(json.dumps(params(case, mode, threads, mult, sampling_s), indent=1) + '\n')
         files[label] = path
-    _, timing['train_s'] = run([py, 'run_thermal_training.py', '--case', case, '--param_file', str(files['thermal_x1'])],
-                               root / 'train.log')
+    trained = True
     for label, path in files.items():
         mode = 'wl' if label == 'wl' else 'thermal'
+        if mode == 'thermal' and 'train_s' not in timing and trained:
+            # Wirelength mode needs no thermal model, so it runs (and is scored) even if training fails.
+            try:
+                _, timing['train_s'] = run([py, 'run_thermal_training.py', '--case', case, '--param_file',
+                                            str(files['thermal_x1'])], root / 'train.log')
+            except (RuntimeError, ValueError) as error:
+                timing['train_failed'] = str(error)
+                trained = False
+        if mode == 'thermal' and not trained:
+            continue
         try:
             summary, seconds = run([py, 'run_placement_opt.py', '--case', case, '--mode', mode, '--param_file', str(path)],
                                    root / f'{label}.log')
