@@ -37,17 +37,19 @@ def run(cmd, log):
     return last_json(done.stdout), time.time() - started
 
 
-def params(case, mode, threads, multiplier=None):
+def params(case, mode, threads, multiplier=None, sampling_s=None):
     """The case's own override file with thread counts (and a scaled thermal weight) set."""
     data = json.loads(Path(f'cases/{case}/{mode}.json').read_text())
     data.setdefault('opt', {})['num_threads'] = threads
     data.setdefault('thermal', {})['num_threads'] = threads
+    if sampling_s is not None:   # only for the documented retry: ATPlace's default is 30 s
+        data['thermal']['training_sampling_time_limit_s'] = sampling_s
     if multiplier is not None:
         data['thermal']['temp_weight_init'] = data['thermal']['temp_weight_init'] * multiplier
     return data
 
 
-def sweep(case, out, threads, ours):
+def sweep(case, out, threads, ours, sampling_s=None):
     py = sys.executable
     root = out / case
     root.mkdir(parents=True, exist_ok=True)
@@ -55,7 +57,7 @@ def sweep(case, out, threads, ours):
     files = {}
     for label, mode, mult in [('wl', 'WL-driven', None)] + [(f'thermal_x{m:g}', 'Thermal-aware', m) for m in MULTIPLIERS]:
         path = root / f'{label}.params.json'
-        path.write_text(json.dumps(params(case, mode, threads, mult), indent=1) + '\n')
+        path.write_text(json.dumps(params(case, mode, threads, mult, sampling_s), indent=1) + '\n')
         files[label] = path
     _, timing['train_s'] = run([py, 'run_thermal_training.py', '--case', case, '--param_file', str(files['thermal_x1'])],
                                root / 'train.log')
@@ -96,9 +98,11 @@ def main():
     p.add_argument('--ours', type=Path, help='exported layouts to score with ATSim: <ours>/<case>/kXXX.layout.json')
     p.add_argument('--threads', type=int, default=32)
     p.add_argument('--parallel', type=int, default=3)
+    p.add_argument('--training-sampling-s', type=float, help='retry only: override the 30 s training sampler limit')
     args = p.parse_args()
     with ThreadPoolExecutor(args.parallel) as pool:
-        list(pool.map(lambda c: sweep(c, args.out.resolve(), args.threads, args.ours and args.ours.resolve()), args.cases))
+        list(pool.map(lambda c: sweep(c, args.out.resolve(), args.threads, args.ours and args.ours.resolve(),
+                                      args.training_sampling_s), args.cases))
 
 
 if __name__ == '__main__':
