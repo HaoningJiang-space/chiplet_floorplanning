@@ -35,6 +35,11 @@ keep its 256 cores busy (load average about 220), so cap process pools at about 
 and set `OPENBLAS_NUM_THREADS=1`. Never `pkill -f <script>` through ssh; the pattern also matches
 the remote shell's own command line.
 
+The ATPlace2.5D baseline runs on `moe-server` (hpclab03; reach it with `ssh poweric-jump 'ssh moe-server "..."'`),
+where the host-locked Gurobi academic license lives: code in `/data/ziheng/haoning/ATPlace_pub` (commit `fe3dbfd`,
+ATSim checked), conda env `~/miniconda3/envs/atplace` (Python 3.9). Put experiments under `/data/ziheng`; the home disk is nearly full.
+See `docs/atplace-baseline.md`.
+
 HTTPS pushes use the gh OAuth token, which lacks the `workflow` scope. Push commits that touch
 `.github/workflows/` with `git push git@github.com:HaoningJiang-space/chiplet_floorplanning.git main`.
 
