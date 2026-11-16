@@ -23,3 +23,19 @@
    - 我们在热这一侧多次测到耦合偏弱：负载模式、鲁棒模式、b_max 的增益都 ≤ 0.025，冷板只有 1–2 K。映射主要通过"热任务放到哪颗芯粒"影响温度，这与已测的闲置模式实验在物理上相近，所以热这一侧的增益可能仍然小；
    - 通信这一侧（数据量 × 距离、可达距离）的耦合强，但 Floorplet 已在真实几何上用负载流量加权，Coskun TCAD'20 已做了可达长度；
    - 所以"把两类接上"更可能是一篇扎实的方法或评估论文，而不是全新的问题。可以检验的论点是：**网格抽象选出的映射和布局，换成真实几何与热模型后，排序会变吗？**
+
+## 更正（同日）：空白已被覆盖
+
+Sharma、Doppa、Ogras、Pande 的 **"Designing High-Performance and Thermally Feasible Multi-Chiplet Architectures enabled by Non-bendable Glass Interposer"**（arXiv 2507.18040，ACM 2025；已读相关章节）：
+- 外层用贝叶斯优化选择异构芯粒组成；
+- 内层联合优化芯粒在中介层上的布局与 DNN 层到芯粒的映射，同时满足温度与翘曲约束，目标是 EDP；
+- 用 BookSim2 模拟互连层（NoI），对象是 PIM 芯粒。
+同组还有：
+- Floret（TECS 2023）：用空间填充曲线排布芯粒，按数据流做映射；
+- 缺陷感知的互连层（TCAD 2024）；
+- THERMOS（arXiv 2508.10691）：热感知调度；
+- CHIPSIM（arXiv 2510.25958）：开源协同仿真器，输出每颗芯粒微秒级的功率与温度，流量用 BookSim 模拟。
+
+所以"异构芯粒 + 布局 + 映射 + 温度"已经有人做了，上面第 2 条结论不成立。剩下的差别只在细节上：他们的布局是否为自由几何、链路是否按长度计价、热模型的精度。按"不能增量"的标准，这些都不够。
+
+可用的开源仿真器（如果仍做负载相关的工作）：CHIPSIM、Gemini（github.com/SET-Scheduling-Project/GEMINI-HPCA2024）、MOHaM（github.com/Haimrich/moham）、HISIM（github.com/mec-UMN/HISIM，含热与 NoP）、RapidChiplet（github.com/spcl/rapidchiplet）。
