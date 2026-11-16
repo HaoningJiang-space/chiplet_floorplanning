@@ -15,7 +15,7 @@ Every method stops after `stall_rounds` rounds without progress, or after
 import numpy as np
 
 from .evaluate import pareto_front, sample_legal, thermal_key
-from .lp import TopologyLP
+from .lp import TopologyLP, slp_chain
 from .search import layout_key, length_descent, mutate
 
 
@@ -326,5 +326,64 @@ def lp_then_epsilon(run, initial, rng, lp_share=0.5, **kw):
     epsilon_search(run, [], rng, **kw)
 
 
+def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, **kw):
+    """topology_lp explores topologies on the first `lp_share` of the budget; then trust-region SLP chains
+    (`slp_chain`) polish archive layouts under `caps` die-peak caps spread over the archive's peak range.
+
+    Each round starts one chain per cap from the shortest archive layout under the cap and one from the
+    longest layout above it (optionally first moved to a new topology). Chains run in the evaluator's pool;
+    every exact solve they make is charged to the budget once and cached, so `run.evaluate` records the
+    layouts without solving again.
+    """
+    problem, gap_um, evaluator = run.evaluator.problem, run.evaluator.gap_um, run.evaluator
+    total = run.limit
+    run.evaluate(initial)
+    run.limit = max(evaluator.solves, int(lp_share*total))
+    topology_lp(run, [], rng, explore=explore, **kw)
+    run.limit = total
+    run.restart()
+    if run.out_of_rounds:
+        run.finish()
+        return
+
+    tried = set()   # (start, cap) pairs already polished: re-running one would only re-spend its solves
+
+    def propose():
+        length, peak, _ = run.arrays()
+        archive = np.asarray(pareto_front(length, peak))
+        levels = np.quantile(peak[archive], np.linspace(0, 1, caps + 2)[1:-1])
+        jobs = []
+        for cap in levels:
+            under, over = archive[peak[archive] <= cap], archive[peak[archive] > cap]
+            starts = [under[np.argmin(length[under])]] if under.size else []
+            starts += [over[np.argmax(length[over])]] if over.size else []
+            for s in starts:
+                start = run.layouts[s]
+                if rng.random() < explore:
+                    start = mutate(problem, start, rng, gap_um) or start
+                if (layout_key(start), float(cap)) in tried:
+                    continue
+                tried.add((layout_key(start), float(cap)))
+                jobs.append((problem, start, gap_um, evaluator.resolution, float(cap), steps))
+        room = run.limit - evaluator.solves
+        jobs = jobs[:max(1, room//(steps + 1))]
+        chains = evaluator.pool.map(slp_chain, jobs) if evaluator.pool else map(slp_chain, jobs)
+        found = []
+        for chain in chains:
+            for step, (layout, die_peaks) in enumerate(chain):
+                key = thermal_key(problem, layout)
+                if key not in evaluator.cache:
+                    if evaluator.solves >= run.limit:
+                        break
+                    evaluator.cache[key] = np.r_[die_peaks.max(), die_peaks]
+                    evaluator.solves += 1
+                elif step == 0:
+                    evaluator.solves += 1   # the start was solved again for its first gradients
+                found.append(layout)
+        return [c for c in found if layout_key(c) not in run.index]
+    _loop(run, propose)
+
+
 METHODS = dict(random=random_search, pareto_ls=pareto_local_search, nsga=nsga_mutation,
-               annealing=annealing, epsilon=epsilon_search, topology_lp=topology_lp, lp_epsilon=lp_then_epsilon)
+               annealing=annealing, epsilon=epsilon_search, topology_lp=topology_lp, lp_epsilon=lp_then_epsilon,
+               topology_slp=topology_slp)

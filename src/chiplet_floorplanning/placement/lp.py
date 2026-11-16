@@ -250,3 +250,66 @@ class ReachLP:
                 out.append(x)
         layouts = [self._layout(x) for x in out]
         return [layout for layout in layouts if layout is not None]
+
+
+SLP_RADIUS_MM = (2.0, 0.05, 10.0)  # initial, smallest and largest trust-region half-width
+SLP_BAND_K = 20.0                  # dies within this distance of the cap get a linearised peak constraint
+
+
+def slp_chain(args):
+    """Trust-region sequential LP from one layout under a die-peak cap (degC), within its topology.
+
+    Each step solves the exact length LP of the current topology with every near-cap die's peak linearised
+    by `die_peak_sensitivity` (min length below the cap; from a layout above the cap, min the linearised
+    hottest die first), inside a box trust region. The step is kept only if the exact solve of the snapped
+    candidate confirms it (shorter and under the cap, or cooler while still above it); the radius grows
+    after a kept step and halves after a rejected one. One LU factorisation per step serves both the exact
+    check and the next gradients. Returns every exactly solved (layout, die peaks degC) pair.
+    """
+    from .geometry import pin_manhattan_um
+    from .thermal import die_peak_sensitivity
+    problem, layout, gap_um, resolution, cap_c, steps = args
+    n = problem.count
+    radius, smallest, largest = SLP_RADIUS_MM
+    peaks, grad = die_peak_sensitivity(problem, layout, gap_um, resolution)
+    solved = [(layout, peaks)]
+    current, length = layout, pin_manhattan_um(problem, layout).sum()/1000
+    for _ in range(steps):
+        lp = TopologyLP(problem, current, gap_um, pairs=0)
+        x0 = current.centre_um.T.ravel()/1000
+        hot = np.flatnonzero(peaks >= cap_c - SLP_BAND_K)
+        g = np.zeros((hot.size, lp.nvar))
+        g[:, :2*n] = np.concatenate([grad[hot, :, 0], grad[hot, :, 1]], axis=1)
+        above = peaks.max() > cap_c
+        if above:   # epigraph t >= linearised peak of every near-cap die; then a little length
+            A = sparse.vstack([sparse.hstack([lp.A, sparse.csr_matrix((lp.A.shape[0], 1))]),
+                               sparse.hstack([sparse.csr_matrix(g), -np.ones((hot.size, 1))])])
+            b = np.r_[lp.b, g[:, :2*n] @ x0 - peaks[hot]]
+            objective = np.r_[1e-6*lp.length, 1.0]
+            extra = [(None, None)]
+        else:
+            A = sparse.vstack([lp.A, sparse.csr_matrix(g)])
+            b = np.r_[lp.b, cap_c - peaks[hot] + g[:, :2*n] @ x0]
+            objective, extra = lp.length, []
+        bounds = [(max(lo, x0[k] - radius), min(hi, x0[k] + radius)) if k < 2*n else (lo, hi)
+                  for k, (lo, hi) in enumerate(lp.bounds)] + extra
+        result = linprog(objective, A_ub=A, b_ub=b, bounds=bounds, method="highs")
+        candidate = lp._layout(result.x[:lp.nvar]) if result.status == 0 else None
+        if candidate is None or np.array_equal(candidate.centre_um, current.centre_um):
+            radius /= 2
+        else:
+            new_peaks, new_grad = die_peak_sensitivity(problem, candidate, gap_um, resolution)
+            solved.append((candidate, new_peaks))
+            new_length = pin_manhattan_um(problem, candidate).sum()/1000
+            if above:
+                keep = new_peaks.max() < peaks.max() - 1e-9
+            else:
+                keep = new_peaks.max() <= cap_c and new_length < length - 1e-9
+            if keep:
+                current, peaks, grad, length = candidate, new_peaks, new_grad, new_length
+                radius = min(1.5*radius, largest)
+            else:
+                radius /= 2
+        if radius < smallest:
+            break
+    return solved

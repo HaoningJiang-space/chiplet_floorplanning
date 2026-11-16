@@ -112,6 +112,69 @@ def power_layer_responses(problem, layout, gap_um, powers, resolution=64):
     return np.array(fields), edges
 
 
+def die_peak_sensitivity(problem, layout, gap_um, resolution=64):
+    """Exact solve plus first-order die-peak sensitivities from one LU factorisation.
+
+    Returns (die peaks degC (n,), gradient K/mm (n, n, 2)): grad[i, j] = d(peak of die i)/d(centre of die j).
+    By reciprocity, one adjoint solve psi_i = A^-1 e_(hottest cell of die i) gives the rise at that cell per
+    watt at every node; shifting die j's uniform source by dx changes it by q_j * dx * (integral of
+    d psi_i/dx over die j). The mean slope comes from die j's first and last cell centres scaled to its full
+    width, or, for a die only one cell wide, from the microbump-layer cells just outside it. The hottest cell
+    moves with its own die, so the self term is minus the sum of the others (translation invariance). The
+    conduction change of the moving die is neglected, so callers must confirm every step with an exact solve.
+    """
+    from scipy.sparse.linalg import splu
+    case = parse_case(thermal_case_data(problem, layout, gap_um, resolution))
+    power, _ = rasterize(case)
+    a, b, g, _, ids, power_z = assemble_package(case, power)
+    require_heat_path(a, g)
+    lu = splu(a.tocsc(), permc_spec="MMD_AT_PLUS_A")
+    theta = lu.solve(b)
+    checked_solution(a, b, g, theta)
+    layer = ids[power_z]
+    field = np.where(layer >= 0, theta[np.maximum(layer, 0)], np.nan)
+    edges = (np.concatenate(([0], np.cumsum(case.mesh.widths_mm))),
+             np.concatenate(([0], np.cumsum(case.mesh.heights_mm))))
+    centres = [(e[:-1] + e[1:])/2 for e in edges]   # mm: x, y cell centres
+    cells = [(r.ravel(), c.ravel()) for r, c in die_cells(problem, layout, edges)]
+    dy, dx = case.mesh.heights_mm, case.mesh.widths_mm
+    n = problem.count
+    q = problem.power_w/np.array([dy[r].sum()*dx[c].sum() for r, c in cells])  # W/mm^2
+    below = ids[power_z - 1]
+
+    def slopes(values, under, rows, cols, axis):
+        """Mean d psi/d(axis) per strip across die (rows, cols), K/W per mm."""
+        idx, strips, length = (cols, rows, dx[cols].sum()) if axis == 0 else (rows, cols, dy[rows].sum())
+        c = centres[axis]
+        if idx.size > 1:
+            take = (lambda k: values[strips, k]) if axis == 0 else (lambda k: values[k, strips])
+            return (take(idx[-1]) - take(idx[0]))/(c[idx[-1]] - c[idx[0]]), length
+        take = (lambda k: under[strips, k]) if axis == 0 else (lambda k: under[k, strips])
+        lo, hi = max(idx[0] - 1, 0), min(idx[0] + 1, len(c) - 1)
+        lo = lo if np.isfinite(take(lo)).all() else idx[0]    # no layer outside the carrier: one-sided
+        hi = hi if np.isfinite(take(hi)).all() else idx[0]
+        return ((take(hi) - take(lo))/(c[hi] - c[lo]) if hi != lo else np.zeros(strips.size)), length
+
+    peaks, grad = np.zeros(n), np.zeros((n, n, 2))
+    for i, (rows, cols) in enumerate(cells):
+        sub = field[np.ix_(rows, cols)]
+        r, c = np.unravel_index(np.nanargmax(sub), sub.shape)
+        peaks[i] = sub[r, c]
+        unit = np.zeros(a.shape[0])
+        unit[layer[rows[r], cols[c]]] = 1.0
+        adjoint = lu.solve(unit)
+        psi = np.where(layer >= 0, adjoint[np.maximum(layer, 0)], np.nan)
+        under = np.where(below >= 0, adjoint[np.maximum(below, 0)], np.nan)
+        for j, (rj, cj) in enumerate(cells):
+            sx, wx = slopes(psi, under, rj, cj, 0)
+            sy, wy = slopes(psi, under, rj, cj, 1)
+            grad[i, j, 0] = q[j]*wx*(sx*dy[rj]).sum()
+            grad[i, j, 1] = q[j]*wy*(sy*dx[cj]).sum()
+        grad[i, i] = 0.0
+        grad[i, i] = -grad[i].sum(axis=0)
+    return peaks + case.thermal["ambient_c"], grad
+
+
 def die_cells(problem, layout, edges):
     """Per die, the (row, col) index of the power-layer cells whose centres lie strictly inside the die box."""
     width, height = (s/1000 for s in problem.carrier_um)
