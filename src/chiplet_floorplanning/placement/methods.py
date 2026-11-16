@@ -446,13 +446,15 @@ def relation_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8,
 
 
 def thermal_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, grid=6, levels=4, cap_milp_s=60.0,
-                  **kw):
+                  refine=0, **kw):
     """relation_space with the grid-kernel temperature in the MILP (plan: docs/thermal-milp-plan.md).
 
     After the short-end seeds, a ThermalTable is built (its lone-die FV solves are charged to the budget); one MILP
     minimises the kernel peak, then `levels` caps evenly between that and the shortest seed's kernel peak each give
-    a wirelength-minimal layout under the cap. Each result is legalised with minimal displacement, and all of them
-    join the starts of `topology_slp`.
+    a wirelength-minimal layout under the cap. With `refine` > 0 each of these solves is repeated up to `refine`
+    times after splitting the cells around its result (adaptive grid), while the new kernel solves fit the budget.
+    Each result is legalised with minimal displacement, FV-confirmed, and all of them join the starts of
+    `topology_slp`.
     """
     evaluator = run.evaluator
     problem, gap_um = evaluator.problem, evaluator.gap_um
@@ -462,19 +464,38 @@ def thermal_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, 
     if not starts:
         raise RuntimeError('no legal start: no initial layouts and the MILP found no layout')
     table = ThermalTable(problem, gap_um, grid, evaluator.resolution)
-    notes = run.notes.setdefault('thermal_milp', dict(kernel_solves=table.solves, grid=grid, results=[]))
-    if table.solves + levels + 1 > run.limit - evaluator.solves:
+    notes = run.notes.setdefault('thermal_milp', dict(grid=grid, refine=refine, kernel_solves=0, results=[]))
+    reserve = levels + 1                       # FV confirmations of the MILP results
+
+    def fits(pending):
+        return pending + reserve <= run.limit - evaluator.solves
+
+    def charge():
+        notes['kernel_solves'] += table.solves
+        evaluator.solves += table.solves
+        table.build(evaluator.pool)
+
+    if not fits(table.solves):
         notes['skipped'] = 'kernel solves do not fit the remaining FV budget'
         topology_slp(run, starts, rng, **kw)
         return
-    table.build(evaluator.pool)
-    evaluator.solves += table.solves
+    charge()
+
+    def solve(cap):
+        layout = milp_relations(problem, gap_um, cap_milp_s, thermal=(table, cap))
+        for _ in range(refine):
+            if layout is None or not fits(table.refine(layout)):
+                break
+            charge()
+            layout = milp_relations(problem, gap_um, cap_milp_s, thermal=(table, cap)) or layout
+        return layout
+
     shortest = min(starts, key=lambda l: pin_manhattan_um(problem, l).sum())
-    found = [(None, milp_relations(problem, gap_um, cap_milp_s, thermal=(table, None)))]
+    found = [(None, solve(None))]
     if found[0][1] is not None:
         low, high = table.kernel_peak_c(found[0][1]), table.kernel_peak_c(shortest)
-        found += [(cap, milp_relations(problem, gap_um, cap_milp_s, thermal=(table, cap)))
-                  for cap in np.linspace(low, high, levels + 2)[1:-1]]
+        found += [(cap, solve(cap)) for cap in np.linspace(low, high, levels + 2)[1:-1]]
+    notes['cells'] = {str(o): len(c) for o, c in table.cells.items()}
     candidates = []
     for cap, layout in found:
         legal = legalize_relations(problem, layout, gap_um) if layout is not None else None

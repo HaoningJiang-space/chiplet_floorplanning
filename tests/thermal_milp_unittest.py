@@ -19,17 +19,18 @@ class ThermalMilpTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.problem = small_problem()
-        cls.table = ThermalTable(cls.problem, 500, grid=3, resolution=16).build()
+        cls.table = ThermalTable(cls.problem, 500, grid=3, resolution=16)
+        cls.initial_solves = cls.table.solves
+        cls.table.build()
 
     def test_table_types_cells_and_self_heating(self):
         t = self.table
         self.assertEqual(sorted(t.types), [(4000., 8000.), (6000., 6000.), (8000., 4000.)])
-        self.assertEqual(t.solves, sum(t.allowed[o].sum() for o in t.types))
+        self.assertEqual((self.initial_solves, t.solves), (sum(len(t.cells[o]) for o in t.types), 0))
         for o in t.types:
             k = t.K[o][o]
-            ok = np.flatnonzero(t.allowed[o])
             self.assertTrue((k >= 0).all())
-            self.assertTrue(all(k[c, c] >= k[c, ok].max() - 1e-9 for c in ok))   # a die heats itself most
+            self.assertTrue(all(k[c, c] >= k[c].max() - 1e-9 for c in range(len(k))))   # a die heats itself most
 
     def test_cap_bounds_the_kernel_peak_and_min_peak_is_coolest(self):
         p, t = self.problem, self.table
@@ -50,7 +51,7 @@ class ThermalMilpTest(unittest.TestCase):
             thermal_space(run, [], np.random.default_rng(0), milp_s=10, anneal_steps=10, chains=2, grid=3, levels=2,
                           cap_milp_s=10, batch=4)
             notes = run.notes['thermal_milp']
-            self.assertEqual(notes['kernel_solves'], self.table.solves)
+            self.assertEqual(notes['kernel_solves'], self.initial_solves)
             self.assertGreaterEqual(evaluator.solves, notes['kernel_solves'])
             self.assertEqual(len(notes['results']), 3)
             self.assertTrue(all(r['fv_peak_c'] is not None for r in notes['results'] if r['legal']))
@@ -61,6 +62,33 @@ class ThermalMilpTest(unittest.TestCase):
             self.assertIn('skipped', run.notes['thermal_milp'])
             self.assertLessEqual(evaluator.solves, 10)
             self.assertTrue(run.layouts and all(is_legal(p, l, 500) for l in run.layouts))
+
+    def test_adaptive_refinement_splits_around_the_solution_and_keeps_the_cap(self):
+        p = self.problem
+        t = ThermalTable(p, 500, grid=3, resolution=16).build()
+        coarse = milp_relations(p, 500, 20, thermal=(t, None))
+        before = {o: len(c) for o, c in t.cells.items()}
+        pending = t.refine(coarse)
+        self.assertGreater(pending, 0)
+        self.assertTrue(any(len(t.cells[o]) > before[o] for o in t.types))
+        for o in t.types:      # the cells still tile the feasible centre range exactly
+            c = t.cells[o]
+            w, h = o
+            area = ((c[:, 1] - c[:, 0])*(c[:, 3] - c[:, 2])).sum()
+            self.assertAlmostEqual(area, (30000 - w)*(30000 - h), delta=1e-3)
+        t.build()
+        self.assertEqual(t.solves, 0)
+        fine = milp_relations(p, 500, 20, thermal=(t, None))
+        cap = t.kernel_peak_c(fine) + 1.0
+        capped = milp_relations(p, 500, 20, thermal=(t, cap))
+        self.assertLessEqual(t.kernel_peak_c(capped), cap + 1e-6)
+        with Evaluator(p, 500, resolution=16) as evaluator:
+            run = Run(evaluator, 200)
+            thermal_space(run, [], np.random.default_rng(0), milp_s=10, anneal_steps=10, chains=2, grid=3, levels=1,
+                          cap_milp_s=10, refine=1, batch=4)
+            notes = run.notes['thermal_milp']
+            self.assertGreater(notes['kernel_solves'], self.initial_solves)
+            self.assertLessEqual(evaluator.solves, 200)
 
 
 if __name__ == '__main__':
