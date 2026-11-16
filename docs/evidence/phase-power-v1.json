@@ -1,0 +1,362 @@
+{
+ "plan": "docs/phase-power-plan.md",
+ "physical_qualified": false,
+ "calibrations": {
+  "85": {
+   "top_h_w_m2k": 7280.435855771514,
+   "temps_c": {
+    "prefill": {
+     "GPU": 85.0,
+     "HBM_L0": 69.28461759583766,
+     "HBM_L1": 70.51217720474985,
+     "HBM_L2": 69.33628429143069,
+     "HBM_R0": 68.92619445370235,
+     "HBM_R1": 69.8355106260432,
+     "HBM_DUMMY": 65.78765846424093
+    },
+    "decode": {
+     "GPU": 63.51107467951673,
+     "HBM_L0": 57.56463747688865,
+     "HBM_L1": 58.18455595334564,
+     "HBM_L2": 57.602213255502384,
+     "HBM_R0": 57.3039661007906,
+     "HBM_R1": 57.69243480519528,
+     "HBM_DUMMY": 55.021394472091025
+    },
+    "idle": {
+     "GPU": 50.72269619559249,
+     "HBM_L0": 50.703470122397995,
+     "HBM_L1": 50.96597207494421,
+     "HBM_L2": 50.734000442522586,
+     "HBM_R0": 50.491674629318,
+     "HBM_R1": 50.5755282542022,
+     "HBM_DUMMY": 48.63708518100055
+    }
+   },
+   "limits": {
+    "gpu95_hbm85": {
+     "prefill": {
+      "binding": "GPU",
+      "overshoot_k": -10.0,
+      "gpu_overshoot_k": -10.0,
+      "hbm_overshoot_k": -14.487822795250153
+     },
+     "decode": {
+      "binding": "HBM_L1",
+      "overshoot_k": -26.815444046654363,
+      "gpu_overshoot_k": -31.48892532048327,
+      "hbm_overshoot_k": -26.815444046654363
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -34.03402792505579,
+      "gpu_overshoot_k": -44.27730380440751,
+      "hbm_overshoot_k": -34.03402792505579
+     },
+     "switch": true
+    },
+    "gpu95_hbm95": {
+     "prefill": {
+      "binding": "GPU",
+      "overshoot_k": -10.0,
+      "gpu_overshoot_k": -10.0,
+      "hbm_overshoot_k": -24.487822795250153
+     },
+     "decode": {
+      "binding": "GPU",
+      "overshoot_k": -31.48892532048327,
+      "gpu_overshoot_k": -31.48892532048327,
+      "hbm_overshoot_k": -36.81544404665436
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -44.03402792505579,
+      "gpu_overshoot_k": -44.27730380440751,
+      "hbm_overshoot_k": -44.03402792505579
+     },
+     "switch": false
+    },
+    "gpu105_hbm85": {
+     "prefill": {
+      "binding": "HBM_L1",
+      "overshoot_k": -14.487822795250153,
+      "gpu_overshoot_k": -20.0,
+      "hbm_overshoot_k": -14.487822795250153
+     },
+     "decode": {
+      "binding": "HBM_L1",
+      "overshoot_k": -26.815444046654363,
+      "gpu_overshoot_k": -41.48892532048327,
+      "hbm_overshoot_k": -26.815444046654363
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -34.03402792505579,
+      "gpu_overshoot_k": -54.27730380440751,
+      "hbm_overshoot_k": -34.03402792505579
+     },
+     "switch": false
+    },
+    "gpu105_hbm95": {
+     "prefill": {
+      "binding": "GPU",
+      "overshoot_k": -20.0,
+      "gpu_overshoot_k": -20.0,
+      "hbm_overshoot_k": -24.487822795250153
+     },
+     "decode": {
+      "binding": "HBM_L1",
+      "overshoot_k": -36.81544404665436,
+      "gpu_overshoot_k": -41.48892532048327,
+      "hbm_overshoot_k": -36.81544404665436
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -44.03402792505579,
+      "gpu_overshoot_k": -54.27730380440751,
+      "hbm_overshoot_k": -44.03402792505579
+     },
+     "switch": true
+    }
+   }
+  },
+  "75": {
+   "top_h_w_m2k": 19011.85722747138,
+   "temps_c": {
+    "prefill": {
+     "GPU": 75.0,
+     "HBM_L0": 61.17851244443184,
+     "HBM_L1": 62.07355317116534,
+     "HBM_L2": 61.20423153343487,
+     "HBM_R0": 60.946919419671175,
+     "HBM_R1": 61.59509692629558,
+     "HBM_DUMMY": 57.94124912357
+    },
+    "decode": {
+     "GPU": 58.710295794765244,
+     "HBM_L0": 53.58921917315598,
+     "HBM_L1": 54.04244750494638,
+     "HBM_L2": 53.607923965160154,
+     "HBM_R0": 53.420787882421784,
+     "HBM_R1": 53.69447932686174,
+     "HBM_DUMMY": 51.23484584889687
+    },
+    "idle": {
+     "GPU": 49.02418423271864,
+     "HBM_L0": 49.17052452589917,
+     "HBM_L1": 49.364010692998534,
+     "HBM_L2": 49.18572216940448,
+     "HBM_R0": 49.033674102177606,
+     "HBM_R1": 49.09315573583098,
+     "HBM_DUMMY": 47.25759619993973
+    }
+   },
+   "limits": {
+    "gpu95_hbm85": {
+     "prefill": {
+      "binding": "GPU",
+      "overshoot_k": -20.0,
+      "gpu_overshoot_k": -20.0,
+      "hbm_overshoot_k": -22.926446828834663
+     },
+     "decode": {
+      "binding": "HBM_L1",
+      "overshoot_k": -30.95755249505362,
+      "gpu_overshoot_k": -36.289704205234756,
+      "hbm_overshoot_k": -30.95755249505362
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -35.635989307001466,
+      "gpu_overshoot_k": -45.97581576728136,
+      "hbm_overshoot_k": -35.635989307001466
+     },
+     "switch": true
+    },
+    "gpu95_hbm95": {
+     "prefill": {
+      "binding": "GPU",
+      "overshoot_k": -20.0,
+      "gpu_overshoot_k": -20.0,
+      "hbm_overshoot_k": -32.92644682883466
+     },
+     "decode": {
+      "binding": "GPU",
+      "overshoot_k": -36.289704205234756,
+      "gpu_overshoot_k": -36.289704205234756,
+      "hbm_overshoot_k": -40.95755249505362
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -45.635989307001466,
+      "gpu_overshoot_k": -45.97581576728136,
+      "hbm_overshoot_k": -45.635989307001466
+     },
+     "switch": false
+    },
+    "gpu105_hbm85": {
+     "prefill": {
+      "binding": "HBM_L1",
+      "overshoot_k": -22.926446828834663,
+      "gpu_overshoot_k": -30.0,
+      "hbm_overshoot_k": -22.926446828834663
+     },
+     "decode": {
+      "binding": "HBM_L1",
+      "overshoot_k": -30.95755249505362,
+      "gpu_overshoot_k": -46.289704205234756,
+      "hbm_overshoot_k": -30.95755249505362
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -35.635989307001466,
+      "gpu_overshoot_k": -55.97581576728136,
+      "hbm_overshoot_k": -35.635989307001466
+     },
+     "switch": false
+    },
+    "gpu105_hbm95": {
+     "prefill": {
+      "binding": "GPU",
+      "overshoot_k": -30.0,
+      "gpu_overshoot_k": -30.0,
+      "hbm_overshoot_k": -32.92644682883466
+     },
+     "decode": {
+      "binding": "HBM_L1",
+      "overshoot_k": -40.95755249505362,
+      "gpu_overshoot_k": -46.289704205234756,
+      "hbm_overshoot_k": -40.95755249505362
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -45.635989307001466,
+      "gpu_overshoot_k": -55.97581576728136,
+      "hbm_overshoot_k": -45.635989307001466
+     },
+     "switch": true
+    }
+   }
+  },
+  "95": {
+   "top_h_w_m2k": 3377.223084715749,
+   "temps_c": {
+    "prefill": {
+     "GPU": 95.00000000000006,
+     "HBM_L0": 78.05684942044772,
+     "HBM_L1": 79.51223318997049,
+     "HBM_L2": 78.13221775301506,
+     "HBM_R0": 77.60272413873537,
+     "HBM_R1": 78.69179118974887,
+     "HBM_DUMMY": 74.38557324950563
+    },
+    "decode": {
+     "GPU": 68.35950861015553,
+     "HBM_L0": 61.866394049932666,
+     "HBM_L1": 62.60132172861992,
+     "HBM_L2": 61.921207382709234,
+     "HBM_R0": 61.536121117777924,
+     "HBM_R1": 62.00463663754934,
+     "HBM_DUMMY": 59.19637501652079
+    },
+    "idle": {
+     "GPU": 52.51830547270342,
+     "HBM_L0": 52.36180099298957,
+     "HBM_L1": 52.67294945321258,
+     "HBM_L2": 52.406336825871044,
+     "HBM_R0": 52.09345423561439,
+     "HBM_R1": 52.19466502530015,
+     "HBM_DUMMY": 50.1924105283437
+    }
+   },
+   "limits": {
+    "gpu95_hbm85": {
+     "prefill": {
+      "binding": "GPU",
+      "overshoot_k": 5.684341886080802e-14,
+      "gpu_overshoot_k": 5.684341886080802e-14,
+      "hbm_overshoot_k": -5.4877668100295125
+     },
+     "decode": {
+      "binding": "HBM_L1",
+      "overshoot_k": -22.398678271380078,
+      "gpu_overshoot_k": -26.64049138984447,
+      "hbm_overshoot_k": -22.398678271380078
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -32.32705054678742,
+      "gpu_overshoot_k": -42.48169452729658,
+      "hbm_overshoot_k": -32.32705054678742
+     },
+     "switch": true
+    },
+    "gpu95_hbm95": {
+     "prefill": {
+      "binding": "GPU",
+      "overshoot_k": 5.684341886080802e-14,
+      "gpu_overshoot_k": 5.684341886080802e-14,
+      "hbm_overshoot_k": -15.487766810029512
+     },
+     "decode": {
+      "binding": "GPU",
+      "overshoot_k": -26.64049138984447,
+      "gpu_overshoot_k": -26.64049138984447,
+      "hbm_overshoot_k": -32.39867827138008
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -42.32705054678742,
+      "gpu_overshoot_k": -42.48169452729658,
+      "hbm_overshoot_k": -42.32705054678742
+     },
+     "switch": false
+    },
+    "gpu105_hbm85": {
+     "prefill": {
+      "binding": "HBM_L1",
+      "overshoot_k": -5.4877668100295125,
+      "gpu_overshoot_k": -9.999999999999943,
+      "hbm_overshoot_k": -5.4877668100295125
+     },
+     "decode": {
+      "binding": "HBM_L1",
+      "overshoot_k": -22.398678271380078,
+      "gpu_overshoot_k": -36.64049138984447,
+      "hbm_overshoot_k": -22.398678271380078
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -32.32705054678742,
+      "gpu_overshoot_k": -52.48169452729658,
+      "hbm_overshoot_k": -32.32705054678742
+     },
+     "switch": false
+    },
+    "gpu105_hbm95": {
+     "prefill": {
+      "binding": "GPU",
+      "overshoot_k": -9.999999999999943,
+      "gpu_overshoot_k": -9.999999999999943,
+      "hbm_overshoot_k": -15.487766810029512
+     },
+     "decode": {
+      "binding": "HBM_L1",
+      "overshoot_k": -32.39867827138008,
+      "gpu_overshoot_k": -36.64049138984447,
+      "hbm_overshoot_k": -32.39867827138008
+     },
+     "idle": {
+      "binding": "HBM_L1",
+      "overshoot_k": -42.32705054678742,
+      "gpu_overshoot_k": -52.48169452729658,
+      "hbm_overshoot_k": -42.32705054678742
+     },
+     "switch": true
+    }
+   }
+  }
+ },
+ "verdict": "switch",
+ "switching_settings": 6
+}
