@@ -147,6 +147,11 @@ def assess(args):
     for path in sorted(args.cases.glob('*.json')):
         case = json.loads(path.read_text())
         run = args.runs/case['name']
+        status = json.loads((run/'summary.json').read_text())
+        if status.get('status') != 'completed':
+            out[case['name']] = dict(status=status.get('status'), error=status.get('error'))
+            print(case['name'], status.get('status'), status.get('error'), flush=True)
+            continue
         front = frozen_front.load(path, run/'summary.json', run/'layouts.npz')
         problem, hand = front.problem, hand_layout(case)
         with Evaluator(problem, GAP_UM, RESOLUTION) as evaluator:
@@ -154,7 +159,7 @@ def assess(args):
             die_h = dict(zip(problem.names, map(float, evaluator.die_peaks_c([hand])[0])))
         length_h = float(pin_manhattan_um(problem, hand).sum()/1e6)
         points = list(zip(front.length_m, front.peak_c))
-        row = dict(hand=dict(length_m=length_h, peak_c=peak_h, hbm_link_mm=hbm_link_mm(problem, hand),
+        row = dict(status='completed', start_fallback=front.summary.get('start_fallback'), hand=dict(length_m=length_h, peak_c=peak_h, hbm_link_mm=hbm_link_mm(problem, hand),
                              gpu_peak_c=max(t for n, t in die_h.items() if n.startswith('GPU')),
                              hbm_peak_c=max(t for n, t in die_h.items() if n.startswith('HBM'))),
                    top_h_w_m2k=case['top_h_w_m2k'], front_size=len(points),

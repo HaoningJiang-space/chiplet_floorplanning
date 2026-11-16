@@ -77,13 +77,18 @@ class IndustrialCasesTest(unittest.TestCase):
             length = float(pin_manhattan_um(problem, hand).sum()/1e6)
             run = d/'runs'/'G1_test'
             run.mkdir(parents=True)
-            summary = dict(case='G1_test', case_sha256=hashlib.sha256((d/'cases'/'G1_test.json').read_bytes()).hexdigest(),
+            summary = dict(case='G1_test', status='completed', case_sha256=hashlib.sha256((d/'cases'/'G1_test.json').read_bytes()).hexdigest(),
                            front=[dict(index=0, length_m=length, peak_c=peak, die_peak_c=dict(zip(problem.names, map(float, die))))])
             (run/'summary.json').write_text(json.dumps(summary))
             np.savez(run/'layouts.npz', centre_um=hand.centre_um[None], rotation_deg=hand.rotation_deg[None],
                      length_m=np.array([length]), peak_c=np.array([peak]))
+            (d/'cases'/'G1_failed.json').write_text(json.dumps(dict(case, name='G1_failed')))
+            (d/'runs'/'G1_failed').mkdir()
+            (d/'runs'/'G1_failed'/'summary.json').write_text(json.dumps(dict(status='failed_initialization', error='x')))
             assess(SimpleNamespace(cases=d/'cases', runs=d/'runs', output=d/'out.json'))
-            row = json.loads((d/'out.json').read_text())['cases']['G1_test']
+            out = json.loads((d/'out.json').read_text())['cases']
+            row = out['G1_test']
+        self.assertEqual(out['G1_failed'], dict(status='failed_initialization', error='x'))
         self.assertEqual((row['outcome'], row['d_t_k'], row['d_l']), ('recovered', 0.0, 0.0))
         self.assertAlmostEqual(row['hand']['gpu_peak_c'], row['coolest_within_1x']['gpu_peak_c'])
         self.assertAlmostEqual(row['hand']['hbm_link_mm'], 0.2)
