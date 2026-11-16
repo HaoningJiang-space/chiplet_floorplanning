@@ -392,13 +392,40 @@ def length_anneal(args):
     return best, top
 
 
+def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s):
+    """Gurobi when gurobipy and a licence are available (ATPlace2.5D's own solver), else HiGHS."""
+    try:
+        import gurobipy as gp
+        model = gp.Model()
+        model.Params.OutputFlag, model.Params.TimeLimit, model.Params.Threads = 0, time_limit_s, 1
+        v = model.addMVar(len(cost), lb=bounds.lb, ub=bounds.ub,
+                          vtype=np.where(integrality > 0, gp.GRB.BINARY, gp.GRB.CONTINUOUS))
+        finite_hi, finite_lo = np.isfinite(hi), np.isfinite(lo)
+        if finite_hi.any():
+            model.addMConstr(matrix[finite_hi], v, '<', hi[finite_hi])
+        if finite_lo.any():
+            model.addMConstr(matrix[finite_lo], v, '>', lo[finite_lo])
+        model.setObjective(cost @ v)
+        model.optimize()
+        return v.X if model.SolCount else None
+    except ImportError:
+        pass
+    except Exception as error:   # no licence: fall back rather than fail
+        if 'icense' not in str(error):
+            raise
+    from scipy.optimize import LinearConstraint, milp
+    result = milp(cost, constraints=LinearConstraint(matrix, lo, hi), integrality=integrality, bounds=bounds,
+                  options=dict(time_limit=time_limit_s, disp=False))
+    return result.x
+
+
 def milp_relations(problem, gap_um, time_limit_s=60.0):
     """Global choice of rotations and side relations for wirelength by MILP (HiGHS), after ATPlace2.5D's
     initialisation: each die has one-hot quarter-turn binaries; each pair has four big-M side binaries; the
     pair's nets are clustered at their mean pin offsets, so the objective is sum K_ij |c_i + R o_i - c_j - R o_j|
     (a lower bound of the exact length by convexity). Returns a Layout whose centres realise the chosen
     relations (overlap-free up to the solver tolerance), to be finished by the exact relation LP, or None."""
-    from scipy.optimize import Bounds, LinearConstraint, milp
+    from scipy.optimize import Bounds
     from .geometry import rotate
     n = problem.count
     width, height = (s/1000 for s in problem.carrier_um)
@@ -465,10 +492,8 @@ def milp_relations(problem, gap_um, time_limit_s=60.0):
     bounds = Bounds(np.r_[np.zeros(2*n), np.zeros(it - iz), np.zeros(nvar - it)],
                     np.r_[np.full(n, width), np.full(n, height), np.ones(it - iz), np.full(nvar - it, np.inf)])
     matrix = sparse.csr_matrix((vv, (rr, cc)), shape=(len(lo), nvar))   # duplicates sum
-    result = milp(cost, constraints=LinearConstraint(matrix, lo, hi), integrality=integrality,
-                  bounds=bounds, options=dict(time_limit=time_limit_s, disp=False))
-    if result.x is None:
+    x = _solve_milp(cost, matrix, np.array(lo), np.array(hi), integrality, bounds, time_limit_s)
+    if x is None:
         return None
-    x = result.x
     rotation = turns[np.argmax(x[iz:isd].reshape(n, 4), axis=1)]
     return Layout(np.stack((x[ix:ix + n], x[iy:iy + n]), axis=1)*1000, rotation)
