@@ -52,6 +52,22 @@ def topology(problem, layout, gap_um):
     return relations
 
 
+def centre_relations(problem, layout, gap_um):
+    """Per pair (i, j, axis, sign) read from the centres even if the boxes overlap: the axis on which the centres
+    are farther apart relative to the pair's half-sizes, and its order. The LP then enforces the separation, so
+    a relation set from any arrangement (e.g. after a rotation that makes two dies overlap) is a legalisation."""
+    size = np.where((layout.rotation_deg % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)
+    c = layout.centre_um
+    relations = []
+    for i in range(problem.count):
+        for j in range(i + 1, problem.count):
+            d = c[j] - c[i]
+            reach = (size[i] + size[j])/2 + gap_um
+            axis = int(np.argmax(np.abs(d)/reach))
+            relations.append((i, j, axis, 1 if d[axis] >= 0 else -1))
+    return relations
+
+
 def hot_pairs(problem, layout, count):
     """Largest weights P_i P_j / r^2 (r in mm) with the unit direction d / r at the parent."""
     c = layout.centre_um/1000
@@ -68,7 +84,7 @@ def hot_pairs(problem, layout, count):
 
 
 class TopologyLP:
-    def __init__(self, problem, layout, gap_um, pairs=10):
+    def __init__(self, problem, layout, gap_um, pairs=10, relations=None):
         self.problem, self.rotation, self.gap = problem, layout.rotation_deg.copy(), gap_um/1000
         n = problem.count
         size = np.where((self.rotation % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)/1000
@@ -104,7 +120,7 @@ class TopologyLP:
                     t += 1
         r = len(rhs)
         rhs = [np.array(rhs)]
-        for i, j, axis, sign in topology(problem, layout, gap_um):
+        for i, j, axis, sign in relations if relations is not None else topology(problem, layout, gap_um):
             first, second = (i, j) if sign > 0 else (j, i)
             # v_first + size_first/2 + gap <= v_second - size_second/2
             rows += [np.array([r]), np.array([r])]
@@ -313,3 +329,49 @@ def slp_chain(args):
         if radius < smallest:
             break
     return solved
+
+
+def _free_move(problem, layout, rng):
+    """One unconstrained move (overlap allowed): the relation LP legalises it."""
+    centre, rotation = layout.centre_um.copy(), layout.rotation_deg.copy()
+    k = int(rng.integers(problem.count))
+    kind = rng.choice(("rotate", "swap", "relocate", "shift"), p=(.3, .3, .2, .2))
+    if kind == "rotate":
+        rotation[k] = (rotation[k] + rng.choice((90, 180, 270))) % 360
+    elif kind == "swap":
+        j = int(rng.integers(problem.count - 1))
+        j += j >= k
+        centre[[k, j]] = centre[[j, k]]
+    elif kind == "relocate":
+        centre[k] = rng.uniform(0, 1, 2)*np.array(problem.carrier_um)
+    else:
+        centre[k, rng.integers(2)] += rng.normal(0, 3000)
+    return Layout(centre, rotation)
+
+
+def length_anneal(args):
+    """Simulated annealing over relation sets and rotations for the exact two-pin length (no FV).
+
+    Each step moves one die freely, reads every pair's relation from the centres (`centre_relations`) and
+    solves the length LP of that relation set, which both legalises and optimises the positions; infeasible
+    or illegal results are rejected. Returns (best layout, its length in m)."""
+    from .geometry import pin_manhattan_um
+    problem, layout, gap_um, seed, steps, t_start, t_end = args
+    rng = np.random.default_rng(seed)
+    length = lambda l: float(pin_manhattan_um(problem, l).sum())/1e6
+    current = best = layout
+    now = top = length(layout)
+    for step in range(steps):
+        temperature = t_start*(t_end/t_start)**(step/max(steps - 1, 1))
+        moved = _free_move(problem, current, rng)
+        lp = TopologyLP(problem, moved, gap_um, pairs=0, relations=centre_relations(problem, moved, gap_um))
+        x = lp._solve(lp.length)
+        candidate = lp._layout(x) if x is not None else None
+        if candidate is None:
+            continue
+        new = length(candidate)
+        if new <= now or rng.random() < np.exp(-(new - now)/temperature):
+            current, now = candidate, new
+            if new < top:
+                best, top = candidate, new
+    return best, top
