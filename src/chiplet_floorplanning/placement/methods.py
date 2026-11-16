@@ -446,13 +446,16 @@ def relation_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8,
 
 
 def thermal_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, grid=6, levels=4, cap_milp_s=60.0,
-                  refine=0, **kw):
+                  refine=0, calibrate=0, **kw):
     """relation_space with the grid-kernel temperature in the MILP (plan: docs/thermal-milp-plan.md).
 
     After the short-end seeds, a ThermalTable is built (its lone-die FV solves are charged to the budget); one MILP
     minimises the kernel peak, then `levels` caps evenly between that and the shortest seed's kernel peak each give
     a wirelength-minimal layout under the cap. With `refine` > 0 each of these solves is repeated up to `refine`
     times after splitting the cells around its result (adaptive grid), while the new kernel solves fit the budget.
+    With `calibrate` > 0 the caps are FV targets instead: evenly between the FV peaks of the coolest MILP result
+    and the shortest seed, each first mapped to a kernel cap with the kernel's overestimate on the coolest result,
+    then corrected `calibrate` times by the FV miss of the previous solve (cap += target - FV peak).
     Each result is legalised with minimal displacement, FV-confirmed, and all of them join the starts of
     `topology_slp`.
     """
@@ -465,7 +468,7 @@ def thermal_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, 
         raise RuntimeError('no legal start: no initial layouts and the MILP found no layout')
     table = ThermalTable(problem, gap_um, grid, evaluator.resolution)
     notes = run.notes.setdefault('thermal_milp', dict(grid=grid, refine=refine, kernel_solves=0, results=[]))
-    reserve = levels + 1                       # FV confirmations of the MILP results
+    reserve = levels*(calibrate + 1) + 2       # FV confirmations of the MILP results and of the shortest seed
 
     def fits(pending):
         return pending + reserve <= run.limit - evaluator.solves
@@ -490,22 +493,39 @@ def thermal_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, 
             layout = milp_relations(problem, gap_um, cap_milp_s, thermal=(table, cap)) or layout
         return layout
 
-    shortest = min(starts, key=lambda l: pin_manhattan_um(problem, l).sum())
-    found = [(None, solve(None))]
-    if found[0][1] is not None:
-        low, high = table.kernel_peak_c(found[0][1]), table.kernel_peak_c(shortest)
-        found += [(cap, solve(cap)) for cap in np.linspace(low, high, levels + 2)[1:-1]]
-    notes['cells'] = {str(o): len(c) for o, c in table.cells.items()}
     candidates = []
-    for cap, layout in found:
+
+    def confirm(cap, layout, target=None):
+        """Legalise, record and FV-confirm one MILP result; returns (legal layout or None, FV peak or None)."""
         legal = legalize_relations(problem, layout, gap_um) if layout is not None else None
-        row = dict(cap_c=cap, solved=layout is not None, legal=legal is not None)
+        row = dict(cap_c=cap, target_c=target, solved=layout is not None, legal=legal is not None)
+        fv = None
         if legal is not None:
             candidates.append(legal)
             row['kernel_peak_c'] = table.kernel_peak_c(legal)
             index = run.evaluate([legal])[0]
-            row['fv_peak_c'] = None if index is None else run.peaks[index]
+            fv = row['fv_peak_c'] = None if index is None else run.peaks[index]
         notes['results'].append(row)
+        return legal, fv
+
+    shortest = min(starts, key=lambda l: pin_manhattan_um(problem, l).sum())
+    coolest, fv_low = confirm(None, solve(None))
+    if coolest is not None and not calibrate:
+        low, high = table.kernel_peak_c(coolest), table.kernel_peak_c(shortest)
+        for cap in np.linspace(low, high, levels + 2)[1:-1]:
+            confirm(cap, solve(cap))
+    elif coolest is not None and fv_low is not None:
+        index = run.evaluate([shortest])[0]
+        if index is not None:
+            bias = table.kernel_peak_c(coolest) - fv_low
+            for target in np.linspace(fv_low, run.peaks[index], levels + 2)[1:-1]:
+                cap = target + bias
+                for _ in range(calibrate + 1):
+                    _, fv = confirm(cap, solve(cap), target)
+                    if fv is None:
+                        break
+                    cap += target - fv
+    notes['cells'] = {str(o): len(c) for o, c in table.cells.items()}
     topology_slp(run, starts + candidates, rng, **kw)
 
 

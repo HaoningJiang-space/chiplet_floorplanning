@@ -90,6 +90,21 @@ class ThermalMilpTest(unittest.TestCase):
             self.assertGreater(notes['kernel_solves'], self.initial_solves)
             self.assertLessEqual(evaluator.solves, 200)
 
+    def test_calibrated_caps_follow_fv_targets(self):
+        p = self.problem
+        with Evaluator(p, 500, resolution=16) as evaluator:
+            run = Run(evaluator, 200)
+            thermal_space(run, [], np.random.default_rng(0), milp_s=10, anneal_steps=10, chains=2, grid=3, levels=2,
+                          cap_milp_s=10, calibrate=1, batch=4)
+            rows = run.notes['thermal_milp']['results']
+            targets = [r for r in rows if r['target_c'] is not None]
+            self.assertEqual(len(targets), 2*2)                    # two targets, one correction each
+            self.assertEqual(len({r['target_c'] for r in targets}), 2)
+            for first, second in zip(targets[::2], targets[1::2]):
+                if first['fv_peak_c'] is not None:             # the second cap moves by the first FV miss
+                    self.assertAlmostEqual(second['cap_c'], first['cap_c'] + first['target_c'] - first['fv_peak_c'])
+            self.assertLessEqual(evaluator.solves, 200)
+
 
 if __name__ == '__main__':
     unittest.main()
