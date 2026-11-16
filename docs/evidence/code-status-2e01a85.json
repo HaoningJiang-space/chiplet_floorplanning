@@ -1,0 +1,324 @@
+{
+  "analyzed_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+  "fetch_succeeded": true,
+  "head_equal_origin_main": true,
+  "scope": "Status follow-up: prior three issues and published comparison completeness; no remote run monitoring or source edits.",
+  "prior_review": "72fb2ab",
+  "reviewed_files_unchanged_since_previous_review": {
+    "tools/atplace_sweep.py": true,
+    "tools/atplace_compare.py": true,
+    "tests/atplace_compare_unittest.py": true
+  },
+  "reports": [
+    {
+      "path": "docs/evidence/atplace-compare-frozen-v1.json",
+      "sha256": "d24a7aa5f4237624ed4a2408f5f7a4a36e4484ccc3964ebed3ae141d950bafc8",
+      "stored_verdict": "no_advantage",
+      "stored_wins": {
+        "fv": 3,
+        "atsim": 3
+      },
+      "complete_cases": 7,
+      "tally": {
+        "fv": {
+          "complete_case_wins": [
+            "Case1",
+            "Case3",
+            "Case5"
+          ],
+          "incomplete_case_wins": []
+        },
+        "atsim": {
+          "complete_case_wins": [
+            "Case1",
+            "Case3",
+            "Case5"
+          ],
+          "incomplete_case_wins": []
+        }
+      },
+      "cases": [
+        {
+          "case": "Case1",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "ours",
+            "atsim": "ours"
+          }
+        },
+        {
+          "case": "Case2",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "tie",
+            "atsim": "tie"
+          }
+        },
+        {
+          "case": "Case3",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "ours",
+            "atsim": "ours"
+          }
+        },
+        {
+          "case": "Case4",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "tie",
+            "atsim": "tie"
+          }
+        },
+        {
+          "case": "Case5",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "ours",
+            "atsim": "ours"
+          }
+        },
+        {
+          "case": "Case6",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "tie",
+            "atsim": "tie"
+          }
+        },
+        {
+          "case": "Case7",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "tie",
+            "atsim": "tie"
+          }
+        },
+        {
+          "case": "Case8",
+          "atplace_points": 1,
+          "six_point_complete": false,
+          "missing_labels": [
+            "thermal_x0.01",
+            "thermal_x0.1",
+            "thermal_x1",
+            "thermal_x10",
+            "thermal_x100"
+          ],
+          "outcome": {
+            "fv": "tie",
+            "atsim": "tie"
+          }
+        },
+        {
+          "case": "Case9",
+          "atplace_points": 1,
+          "six_point_complete": false,
+          "missing_labels": [
+            "thermal_x0.01",
+            "thermal_x0.1",
+            "thermal_x1",
+            "thermal_x10",
+            "thermal_x100"
+          ],
+          "outcome": {
+            "fv": "tie",
+            "atsim": "tie"
+          }
+        },
+        {
+          "case": "Case10",
+          "atplace_points": 1,
+          "six_point_complete": false,
+          "missing_labels": [
+            "thermal_x0.01",
+            "thermal_x0.1",
+            "thermal_x1",
+            "thermal_x10",
+            "thermal_x100"
+          ],
+          "outcome": {
+            "fv": "tie",
+            "atsim": "tie"
+          }
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/atplace-compare-rsg3-v1.json",
+      "sha256": "a2a7ff2dec70fd20ec25084dd650b6132c64836f8d6e349ef2095e0df4577c4a",
+      "stored_verdict": "advantage",
+      "stored_wins": {
+        "fv": 7,
+        "atsim": 7
+      },
+      "complete_cases": 7,
+      "tally": {
+        "fv": {
+          "complete_case_wins": [
+            "Case1",
+            "Case4",
+            "Case5",
+            "Case6",
+            "Case7"
+          ],
+          "incomplete_case_wins": [
+            "Case9",
+            "Case10"
+          ]
+        },
+        "atsim": {
+          "complete_case_wins": [
+            "Case1",
+            "Case4",
+            "Case5",
+            "Case6",
+            "Case7"
+          ],
+          "incomplete_case_wins": [
+            "Case9",
+            "Case10"
+          ]
+        }
+      },
+      "cases": [
+        {
+          "case": "Case1",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "ours",
+            "atsim": "ours"
+          }
+        },
+        {
+          "case": "Case2",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "tie",
+            "atsim": "tie"
+          }
+        },
+        {
+          "case": "Case3",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "tie",
+            "atsim": "tie"
+          }
+        },
+        {
+          "case": "Case4",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "ours",
+            "atsim": "ours"
+          }
+        },
+        {
+          "case": "Case5",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "ours",
+            "atsim": "ours"
+          }
+        },
+        {
+          "case": "Case6",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "ours",
+            "atsim": "ours"
+          }
+        },
+        {
+          "case": "Case7",
+          "atplace_points": 6,
+          "six_point_complete": true,
+          "missing_labels": [],
+          "outcome": {
+            "fv": "ours",
+            "atsim": "ours"
+          }
+        },
+        {
+          "case": "Case8",
+          "atplace_points": 1,
+          "six_point_complete": false,
+          "missing_labels": [
+            "thermal_x0.01",
+            "thermal_x0.1",
+            "thermal_x1",
+            "thermal_x10",
+            "thermal_x100"
+          ],
+          "outcome": {
+            "fv": "tie",
+            "atsim": "tie"
+          }
+        },
+        {
+          "case": "Case9",
+          "atplace_points": 1,
+          "six_point_complete": false,
+          "missing_labels": [
+            "thermal_x0.01",
+            "thermal_x0.1",
+            "thermal_x1",
+            "thermal_x10",
+            "thermal_x100"
+          ],
+          "outcome": {
+            "fv": "ours",
+            "atsim": "ours"
+          }
+        },
+        {
+          "case": "Case10",
+          "atplace_points": 1,
+          "six_point_complete": false,
+          "missing_labels": [
+            "thermal_x0.01",
+            "thermal_x0.1",
+            "thermal_x1",
+            "thermal_x10",
+            "thermal_x100"
+          ],
+          "outcome": {
+            "fv": "ours",
+            "atsim": "ours"
+          }
+        }
+      ]
+    }
+  ],
+  "verification": "Independently recomputed margin dominance from all saved point arrays; every stored per-case outcome matches the surviving-point rule. This verifies arithmetic, not six-point completeness or score-layout identity.",
+  "interpretation": "Both reports contain seven cases with six ATPlace points and three with only WL. relation_space wins five of the complete cases, plus Case9 and Case10 against WL only. No final ten-case verdict under the original six-point protocol is certified.",
+  "timing": "not_run",
+  "physical_qualified": false
+}
