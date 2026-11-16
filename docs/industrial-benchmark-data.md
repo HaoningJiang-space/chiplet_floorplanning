@@ -88,3 +88,44 @@
 
 **机会**：一个"功耗由负载驱动、可追溯，并带温度评估"的开源 2.5D 基准目前空缺，最相关的两个组都把温度列为未来工作。
 **建议的最小验证**：用 CHIPSIM 在一个开源多芯粒 DNN 案例上得到逐芯粒功耗，接入我们的布局与热流程，看布局结论与"人工写的功耗"相比是否明显不同。
+
+## 开源仓库核查（2026-11-16，四个子代理只读核查，另核查 thermal_stco）
+
+**热布局工具**
+- ATPlace2.5D（`PKU-IDEA/ATPlace_pub`，MIT）：核心在 `b342fe2`–`8185e15`（2026-06 至 10）用 Pyarmor 加密；从 `fdf11e5`（2026-11-07）起改为明文 Python。我们使用的 `fe3dbfd` 是开源版本。ATSim 只提供可执行文件，没有许可证。
+  - 开源版默认对流热阻 0.01 K/W，论文是 0.1 K/W，热仿真器也从 HotSpot 换成 ATSim，所以结果本来就与论文不同（作者在 README 中说明）。
+  - 10 个例子都没有给出数据来源；Case1 疑似由 TAP 的 multiGPU 例子改出。
+- TAP-2.5D（Apache-2.0）：源码开源；线长需要 CPLEX，没有免费替代；HotSpot 6.0 可以重新编译；只有 3 个手写的 6–8 颗芯粒的例子。
+- STAMP-2.5D（Apache-2.0）：TAP 的分支，需要 ANSYS 加 CPLEX，没有纯开源的有限元路径，每种结构约 60 小时，只能引用论文数字。
+- 三者的功耗都是每颗芯粒一个固定值，不随负载变化。
+
+**基准与设计空间探索工具**
+- ChipletPart（`ABKGroup/ChipletPart`，BSD-3）：模块的面积和功耗写死在生成脚本中，WS 系列乘以 1600；EPYC 与 GA100 是整数取值的人工数字；没有热模型。
+- CATCH（`nanocad-lab/CATCH`，Apache-2.0）：成本模型，功耗手写，没有热模型和布局。
+- UCLA 3D-IC 用例集：Dryad 下载需要令牌；对应的 GitHub 仓库是 3Dblox 格式，芯粒来自 CATCH 虚拟模板，热字段只是占位，坐标是构造的而不是优化得到的。
+- RapidChiplet（`spcl/rapidchiplet`，无许可证）：功耗 = 20 W + 0.125 W × PHY 数，没有热模型，布局是规则网格。
+- CHIPSIM（无许可证，作者称"功能正确性尚不能保证"）：
+  - 数字芯粒按每 MAC 50 fJ 的手写系数计算；存内计算芯粒的数据来自 CiMLoop Docker；
+  - 没有漏电和校准，芯粒没有尺寸，每颗只有约 0.2–2 W；
+  - 输出 CSV 的单位疑似有误（140 W 与 2000 W 对不上）；
+  - 只能借用它的逐层 DNN 定义和映射思路，生成相对负载占比。
+
+**中介层布线**
+- OpenROAD：能读写 3Dblox，`check_3dblox` 只做声明级检查，`rdl_route` 每次只布一层；没有多层中介层全局布线和拥塞分析。
+- IHP Open-ADK（Apache-2.0，v0.3.0 预览）：只有装配几何 DRC，布线器 `interposer-pnr` 尚未公开。
+- 公开设计规则：
+  - 芯粒间最小间距 ASM.b = **200 µm**（v0.2 为 50 µm），见 `IHP-Open-ADK/config/rule_params.json`；
+  - 铜柱 pitch 75/80/95 µm，焊料凸点 pitch 130 µm；
+  - 中介层 4 层铝布线。
+- GT Interposer-PnR-tutorial：全部步骤依赖 Cadence。
+
+**thermal_stco（`nanocad-lab/thermal_stco`，Apache-2.0，UCLA Gupta 组，对应 ECTC 论文）**
+- 用 LLM 负载仿真（Rapid-LLM/DeepFlow）得到功耗，再用热仿真评估降频与运行时间；
+- 系统为 1 GPU + 6 HBM，比较 2.5D 与 3D、HBM 8 层与 16 层、TIM、infill、underfill 导热率，水冷散热；
+- 热仿真器是商业软件 Anemoi，需要订阅令牌；布局固定，不做布局优化，也不是基准集。
+
+**修正后的空白判断**
+- "负载驱动功耗 + 热评估"已有先例（thermal_stco），但只针对单一固定结构，且依赖商业热仿真器。
+- 仍然空缺的是：一个开源、可复现的，"负载驱动功耗 + 开源热评估 + 布局优化"、并覆盖多种规模的 2.5D 基准。
+- UCLA Gupta 组在这一方向非常活跃（ChipletPart、CATCH、3D-IC 用例集、thermal_stco、嵌入式隔热体），竞争风险高。
+- 对我们的直接影响：工业场景的芯粒间距应改为 200 µm（IHP 公开规则），与 Intel 专利的 100–200 µm 一致；现有 gap0 前沿不满足这一规则。
