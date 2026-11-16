@@ -1,3 +1,4 @@
+from dataclasses import replace
 import itertools
 from pathlib import Path
 import random
@@ -15,7 +16,8 @@ from chiplet_floorplanning.placement.lp import TopologyLP, hot_pairs, topology
 from chiplet_floorplanning.placement.search import layout_key, length_target, mutate
 from chiplet_floorplanning.placement import (Evaluator, boxes, Layout, Problem, coolest_within,
                                              is_legal, pareto_front, pin_manhattan_um, sample_legal,
-                                             shortest_within, solve_peak, thermal_case_data, violations)
+                                             shortest_within, solve, solve_peak, thermal_case_data, violations)
+from chiplet_floorplanning.placement.thermal import die_peaks_c
 
 # Legacy equivalence (519 recorded Case1 layouts, max |dT| 1.6e-8 K) is recorded in commit f1df9fd.
 
@@ -377,6 +379,22 @@ class PlacementCoreTest(unittest.TestCase):
         lengths = [pin_manhattan_um(problem, l).max()/1000 for l in layouts]
         self.assertTrue(np.allclose(max_net, lengths))
 
+
+    def test_evaluator_scores_the_worst_overshoot_over_modes_and_dies(self):
+        layout = self.layout([2000., 1000.], [5500., 1000.])
+        rows = np.array([self.problem.power_w, self.problem.power_w*[2., .5]])
+        limit = np.array([50., 47.])
+        expected = []
+        for p in rows:
+            q = replace(self.problem, power_w=p)
+            _, rise, edges = solve(thermal_case_data(q, layout, 0.))
+            expected.append(die_peaks_c(q, layout, rise, edges))
+        expected = np.array(expected)
+        with Evaluator(self.problem, 0., modes=(rows, limit)) as evaluator:
+            j = evaluator.peaks_c([layout])[0]
+            die = evaluator.die_peaks_c([layout])[0]
+        self.assertAlmostEqual(j, (expected - limit).max(), places=9)
+        np.testing.assert_allclose(die, expected.max(0), atol=1e-9)
 
 
 if __name__ == '__main__':

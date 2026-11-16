@@ -19,8 +19,12 @@
 | `Layout.to_placements`、`import_atplace_cases.rotate_offset` | 无调用者 |
 | `tools/cold_plate_tradeoff.py`（在 `4c47cef` 复现） | [冷板取舍](cold-plate-tradeoff-plan.md)；流量拟合函数移入 `tools/cold_plate_joint.py` |
 | `tools/workload_search.py`（在 `9f56049` 复现） | [负载直接搜索](coupling-search-plan.md)；其保存的布局由 `tools/robust_modes.py` 读入 |
+| `tools/sku_floorplan.py`（以下均在 `46ecef8` 复现） | [多 SKU 布局](sku-floorplan-plan.md) |
+| `tools/workload_leverage.py`、`tools/robust_modes.py` | [负载杠杆](coupling-search-plan.md)、[鲁棒模式](robust-modes-plan.md) |
+| `tools/boost_headroom.py`、`tools/self_mutual_split.py` | [b_max](boost-headroom-plan.md)、[自热/互热分解](overall-research-status.md) |
+| `tools/cold_plate_joint.py`、`tools/cold_plate_air_control.py`、`thermal.solve_cold_plate`、`thermal_case_data` 的冷板参数、`Evaluator` 的 `cold_plate` 参数 | [冷板联合设计](cold-plate-joint-plan.md) |
 
-空气散热器的默认配方未变：固定输入下峰温与删除前逐位相同（单元测试固定值 48.38459530567995 °C）。
+空气散热器的默认配方未变：加入冷板时固定输入下峰温与之前逐位相同（固定值 48.38459530567995 °C）；删除冷板时再次核对，`placement_core_unittest` 的合成例峰温删除前后同为 116.01412369595657 °C。
 
 ## 为什么改复现方式
 

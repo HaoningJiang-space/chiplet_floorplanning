@@ -16,9 +16,6 @@ from .geometry import boxes, violations
 
 AMBIENT_C = 45.0
 PACKAGE_MM = 200.0
-WATER_CP_J_KGK = 4186.0
-COLD_PLATE_BASE_MM = 3.0
-FLOW_DIRECTIONS = ('+x', '-x', '+y', '-y')
 PROVENANCE = ("ATPlace source geometry/power/pins; declared TAP-family FV materials, "
               "fixed 100/200 mm spreader/sink; not native ATPlace or measured calibration")
 
@@ -27,7 +24,7 @@ def _mixture(diameter, pitch, background):
     return 400*(diameter/pitch)**2 + background*(1 - (diameter/pitch)**2)
 
 
-def thermal_case_data(problem, layout, gap_um, resolution=64, cold_plate_h_w_m2k=None):
+def thermal_case_data(problem, layout, gap_um, resolution=64):
     v = violations(problem, layout, gap_um)
     if v["outside"] or v["pairs"]:
         raise ValueError(f"illegal layout: {v}")
@@ -58,11 +55,6 @@ def thermal_case_data(problem, layout, gap_um, resolution=64, cold_plate_h_w_m2k
               layer("dies", .15, 1.6, die_k=100), layer("tim", .02, 4),
               layer("spreader", 1, 400, 100, 100), layer("sink", 6.9, 400, 200, 200)]
     top_h = 1/(.1*.06**2)
-    if cold_plate_h_w_m2k is not None:
-        # Liquid cold plate (copper base on the lid) instead of the air sink; coolant enters at AMBIENT_C,
-        # and h is the effective fin-side coefficient referred to the base area.
-        layers = layers[:-1] + [layer("cold_plate", COLD_PLATE_BASE_MM, 400, 100, 100)]
-        top_h = cold_plate_h_w_m2k
     return dict(schema_version=1, name="atplace_fv_" + problem.name,
                 package_mm=dict(width=200, height=200),
                 grid=dict(nx=resolution, ny=resolution, mode="geometry_conformal"), chiplets=chips,
@@ -118,55 +110,6 @@ def power_layer_responses(problem, layout, gap_um, powers, resolution=64):
     edges = (np.concatenate(([0], np.cumsum(case.mesh.widths_mm))),
              np.concatenate(([0], np.cumsum(case.mesh.heights_mm))))
     return np.array(fields), edges
-
-
-def solve_cold_plate(data, flow_kg_s, direction):
-    """Steady solve with the top boundary at the local coolant temperature, which rises along `direction`
-    ('+x', '-x', '+y' or '-y'). Coolant line k (one mesh line across the flow) holds c_k, defined at its
-    centre: C (c_k - c_{k-1}) = (Q_{k-1} + Q_k)/2 and C c_0 = Q_0/2, with Q_k the heat the line picks up
-    and C = flow * cp. Conduction and coolant are solved together as one sparse linear system.
-    Returns (summary, power-layer rise field over coolant inlet, cell edges) like solve()."""
-    from scipy.sparse import coo_matrix, bmat
-    from scipy.sparse.linalg import splu
-    case = parse_case(data)
-    power, _ = rasterize(case)
-    a, b, g, _, ids, power_z = assemble_package(case, power)
-    require_heat_path(a, g)
-    top = ids[-1]
-    rows, cols = np.nonzero(top >= 0)
-    node = top[rows, cols]
-    line = (cols if direction[1] == 'x' else rows)
-    order = np.unique(line)[::-1 if direction[0] == '-' else 1]
-    position = np.empty(line.max() + 1, int)
-    position[order] = np.arange(len(order))
-    line, k, n = position[line], len(order), len(b)
-    capacity = flow_kg_s*WATER_CP_J_KGK
-    gn = g[node]
-    line_g = np.bincount(line, gn, k)
-    # conduction rows: A theta - sum_n g_n c_line(n) e_n = b
-    couple = coo_matrix((-gn, (node, line)), shape=(n, k))
-    # Q_k = sum_{n in k} g_n theta_n - G_k c_k ; coolant row k: C(c_k - c_{k-1}) - (Q_{k-1} + Q_k)/2 = 0
-    pick = coo_matrix((gn, (line, node)), shape=(k, n)).tocsr()
-    shift = coo_matrix((np.ones(k - 1), (np.arange(1, k), np.arange(k - 1))), shape=(k, k)).tocsr()
-    eye = coo_matrix((np.ones(k), (np.arange(k), np.arange(k))), shape=(k, k)).tocsr()
-    q_theta = pick + shift @ pick
-    q_c = -(eye.multiply(line_g[None, :]) + shift.multiply(line_g[None, :]))
-    coolant_c = capacity*(eye - shift) - .5*q_c
-    system = bmat([[a, couple], [-.5*q_theta, coolant_c]]).tocsc()
-    x = splu(system).solve(np.r_[b, np.zeros(k)])
-    theta, c = x[:n], x[n:]
-    residual = float(np.max(np.abs(system @ x - np.r_[b, np.zeros(k)])))
-    removed = float(gn @ (theta[node] - c[line]))
-    if residual > 1e-8 or abs(removed - b.sum()) > max(1e-10, 1e-8*b.sum()):
-        raise ValueError("cold plate failed residual or energy check")
-    layer = ids[power_z]
-    field = np.where(layer >= 0, theta[np.maximum(layer, 0)], np.nan)
-    summary = dict(peak_power_layer_c=float(np.nanmax(field) + case.thermal["ambient_c"]),
-                   outlet_rise_k=float(b.sum()/capacity), heat_removed_w=removed, source_power_w=float(b.sum()),
-                   physical_calibrated=False)
-    edges = (np.concatenate(([0], np.cumsum(case.mesh.widths_mm))),
-             np.concatenate(([0], np.cumsum(case.mesh.heights_mm))))
-    return summary, field, edges
 
 
 def die_cells(problem, layout, edges):
