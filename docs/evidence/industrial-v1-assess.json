@@ -1,0 +1,158 @@
+{
+ "plan": "docs/industrial-cases-plan.md",
+ "physical_qualified": false,
+ "cases": {
+  "G1_h100_slack": {
+   "status": "completed",
+   "start_fallback": null,
+   "hand": {
+    "length_m": 0.034,
+    "peak_c": 85.00000000001697,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.00000000001697,
+    "hbm_peak_c": 70.50686722493165
+   },
+   "top_h_w_m2k": 7275.526480644187,
+   "front_size": 91,
+   "shortest_over_hand": 1.0,
+   "d_t_k": -0.0303199320983083,
+   "d_l": -4.249,
+   "outcome": "recovered",
+   "coolest_within_1x": {
+    "length_m": 0.034,
+    "peak_c": 85.03031993211528,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.03031993211528,
+    "hbm_peak_c": 70.52203415857684
+   },
+   "coolest_within_1.1x": {
+    "length_m": 0.034,
+    "peak_c": 85.03031993211528,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.03031993211528,
+    "hbm_peak_c": 70.52203415857684
+   },
+   "coolest_within_1.25x": {
+    "length_m": 0.034,
+    "peak_c": 85.03031993211528,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.03031993211528,
+    "hbm_peak_c": 70.52203415857684
+   }
+  },
+  "G1_h100_tight": {
+   "status": "completed",
+   "start_fallback": null,
+   "hand": {
+    "length_m": 0.034,
+    "peak_c": 84.9999999999953,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 84.9999999999953,
+    "hbm_peak_c": 70.51217720474577
+   },
+   "top_h_w_m2k": 7280.435855774361,
+   "front_size": 163,
+   "shortest_over_hand": 1.0,
+   "d_t_k": -0.004416123920023551,
+   "d_l": -2.581,
+   "outcome": "recovered",
+   "coolest_within_1x": {
+    "length_m": 0.034,
+    "peak_c": 85.00441612391532,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.00441612391532,
+    "hbm_peak_c": 70.51102802819807
+   },
+   "coolest_within_1.1x": {
+    "length_m": 0.034,
+    "peak_c": 85.00441612391532,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.00441612391532,
+    "hbm_peak_c": 70.51102802819807
+   },
+   "coolest_within_1.25x": {
+    "length_m": 0.034,
+    "peak_c": 85.00441612391532,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.00441612391532,
+    "hbm_peak_c": 70.51102802819807
+   }
+  },
+  "G2_4gpu16hbm_slack": {
+   "status": "completed",
+   "start_fallback": null,
+   "hand": {
+    "length_m": 6.362,
+    "peak_c": 85.00000000000442,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.00000000000442,
+    "hbm_peak_c": 65.87485380044475
+   },
+   "top_h_w_m2k": 34098.65136283482,
+   "front_size": 112,
+   "shortest_over_hand": 1.0,
+   "d_t_k": -0.004271350836020815,
+   "d_l": -0.21469820811065699,
+   "outcome": "recovered",
+   "coolest_within_1x": {
+    "length_m": 6.362,
+    "peak_c": 85.00427135084044,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.00427135084044,
+    "hbm_peak_c": 65.88791025043516
+   },
+   "coolest_within_1.1x": {
+    "length_m": 6.362,
+    "peak_c": 85.00427135084044,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.00427135084044,
+    "hbm_peak_c": 65.88791025043516
+   },
+   "coolest_within_1.25x": {
+    "length_m": 7.77675,
+    "peak_c": 84.49009250703388,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 84.49009250703388,
+    "hbm_peak_c": 65.50570135911408
+   }
+  },
+  "G2_4gpu16hbm_tight": {
+   "status": "completed",
+   "start_fallback": "sampler failed (no legal layout found by sampling or shelf packing); MILP seeds only",
+   "hand": {
+    "length_m": 6.362,
+    "peak_c": 84.9999999999705,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 84.9999999999705,
+    "hbm_peak_c": 65.87912880468545
+   },
+   "top_h_w_m2k": 34105.802033691056,
+   "front_size": 137,
+   "shortest_over_hand": 1.0,
+   "d_t_k": -0.0005566756496762082,
+   "d_l": -0.008902860735617635,
+   "outcome": "recovered",
+   "coolest_within_1x": {
+    "length_m": 6.362,
+    "peak_c": 85.00055667562017,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 85.00055667562017,
+    "hbm_peak_c": 65.8840821821939
+   },
+   "coolest_within_1.1x": {
+    "length_m": 6.992,
+    "peak_c": 84.72377171247207,
+    "hbm_link_mm": 0.2,
+    "gpu_peak_c": 84.72377171247207,
+    "hbm_peak_c": 65.67855671830274
+   },
+   "coolest_within_1.25x": {
+    "length_m": 7.78021,
+    "peak_c": 84.6542484358059,
+    "hbm_link_mm": 0.95,
+    "gpu_peak_c": 84.6542484358059,
+    "hbm_peak_c": 65.54388430136963
+   }
+  }
+ }
+}
