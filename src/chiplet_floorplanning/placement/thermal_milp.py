@@ -102,23 +102,29 @@ class ThermalTable:
         return AMBIENT_C + max(sum(self.problem.power_w[j]*self.K[o][s][c, c_j] for j, (s, c_j) in where.items())
                                for o, c in where.values())
 
-    def refine(self, layout, split=2):
-        """Adaptive grid: split each powered die's cell and the cells touching it into split x split; returns the
-        number of new lone-die solves this needs (kernels are recomputed by the next `build`)."""
-        marked = {o: set() for o in self.types}
-        for o, c in self._where(layout).values():
-            box, cells = self.cells[o][c], self.cells[o]
-            near = (cells[:, 0] <= box[1]) & (cells[:, 1] >= box[0]) & (cells[:, 2] <= box[3]) & (cells[:, 3] >= box[2])
-            marked[o] |= set(np.flatnonzero(near))
-        for o, chosen in marked.items():
+    def refine(self, layout, split=2, apply=True):
+        """Adaptive grid: split each powered die's cell and the cells touching it into split x split. Returns the
+        number of lone-die solves the split cells need; with apply=False nothing changes (a budget check), else the
+        cells are replaced and the kernels must be rebuilt by `build`."""
+        cells = {}
+        for o in self.types:
+            chosen = set()
+            for o2, c in self._where(layout).values():
+                if o2 == o:
+                    box, all_ = self.cells[o][c], self.cells[o]
+                    near = ((all_[:, 0] <= box[1]) & (all_[:, 1] >= box[0])
+                            & (all_[:, 2] <= box[3]) & (all_[:, 3] >= box[2]))
+                    chosen |= set(np.flatnonzero(near))
             kept = [tuple(b) for i, b in enumerate(self.cells[o]) if i not in chosen]
             for i in sorted(chosen):
                 x0, x1, y0, y1 = self.cells[o][i]
                 xs, ys = np.linspace(x0, x1, split + 1), np.linspace(y0, y1, split + 1)
                 kept += [(a, b, c, d) for c, d in zip(ys[:-1], ys[1:]) for a, b in zip(xs[:-1], xs[1:])]
-            self.cells[o] = np.array(kept, float).reshape(-1, 4)
-        self.K = None
-        return self.solves
+            cells[o] = np.array(kept, float).reshape(-1, 4)
+        pending = sum((o, ((c[0] + c[1])/2, (c[2] + c[3])/2)) not in self.fields for o in self.types for c in cells[o])
+        if apply:
+            self.cells, self.K = cells, None
+        return pending
 
     def milp_block(self, add, base, ix, iy, iz, cap_c=None):
         """Variables and rows appended to the relation MILP after column `base` (x, y in mm; z one-hot turns).

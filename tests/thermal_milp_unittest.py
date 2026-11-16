@@ -68,7 +68,11 @@ class ThermalMilpTest(unittest.TestCase):
         t = ThermalTable(p, 500, grid=3, resolution=16).build()
         coarse = milp_relations(p, 500, 20, thermal=(t, None))
         before = {o: len(c) for o, c in t.cells.items()}
+        dry = t.refine(coarse, apply=False)
+        self.assertEqual({o: len(c) for o, c in t.cells.items()}, before)     # a budget check changes nothing
+        self.assertIsNotNone(t.K)
         pending = t.refine(coarse)
+        self.assertEqual(pending, dry)
         self.assertGreater(pending, 0)
         self.assertTrue(any(len(t.cells[o]) > before[o] for o in t.types))
         for o in t.types:      # the cells still tile the feasible centre range exactly
@@ -89,6 +93,12 @@ class ThermalMilpTest(unittest.TestCase):
             notes = run.notes['thermal_milp']
             self.assertGreater(notes['kernel_solves'], self.initial_solves)
             self.assertLessEqual(evaluator.solves, 200)
+        with Evaluator(p, 500, resolution=16) as evaluator:     # the budget allows the table but no refinement
+            run = Run(evaluator, self.initial_solves + 8)
+            thermal_space(run, [], np.random.default_rng(0), milp_s=10, anneal_steps=10, chains=2, grid=3, levels=1,
+                          cap_milp_s=10, refine=2, batch=4)
+            self.assertEqual(run.notes['thermal_milp']['kernel_solves'], self.initial_solves)
+            self.assertTrue(run.notes['thermal_milp']['results'])
 
     def test_calibrated_caps_follow_fv_targets(self):
         p = self.problem

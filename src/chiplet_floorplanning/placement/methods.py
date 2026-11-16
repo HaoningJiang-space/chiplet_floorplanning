@@ -487,8 +487,9 @@ def thermal_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, 
     def solve(cap):
         layout = milp_relations(problem, gap_um, cap_milp_s, thermal=(table, cap))
         for _ in range(refine):
-            if layout is None or not fits(table.refine(layout)):
+            if layout is None or not fits(table.refine(layout, apply=False)):
                 break
+            table.refine(layout)
             charge()
             layout = milp_relations(problem, gap_um, cap_milp_s, thermal=(table, cap)) or layout
         return layout
