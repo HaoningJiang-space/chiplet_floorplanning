@@ -24,7 +24,8 @@ def _mixture(diameter, pitch, background):
     return 400*(diameter/pitch)**2 + background*(1 - (diameter/pitch)**2)
 
 
-def thermal_case_data(problem, layout, gap_um, resolution=64):
+def thermal_case_data(problem, layout, gap_um, resolution=64, top_h_w_m2k=None):
+    """Declared TAP-family FV case; top_h_w_m2k overrides the sink-top convection (default 1/(0.1 K/W x 60 mm square))."""
     v = violations(problem, layout, gap_um)
     if v["outside"] or v["pairs"]:
         raise ValueError(f"illegal layout: {v}")
@@ -54,7 +55,7 @@ def thermal_case_data(problem, layout, gap_um, resolution=64):
               layer("microbumps", .01, 1.6, die_k=_mixture(25, 45, 1.6)),
               layer("dies", .15, 1.6, die_k=100), layer("tim", .02, 4),
               layer("spreader", 1, 400, 100, 100), layer("sink", 6.9, 400, 200, 200)]
-    top_h = 1/(.1*.06**2)
+    top_h = top_h_w_m2k if top_h_w_m2k is not None else 1/(.1*.06**2)
     return dict(schema_version=1, name="atplace_fv_" + problem.name,
                 package_mm=dict(width=200, height=200),
                 grid=dict(nx=resolution, ny=resolution, mode="geometry_conformal"), chiplets=chips,
