@@ -39,7 +39,7 @@ detached worktree，只共享 `results/physical-calibration` 中的导入输入�
 
 ## 已验证
 
-2026-11-13 在 eex005（conda 环境 `chiplet-fp`）上，四个带 `--verify` 的阶段均在各自提交通过：
+2026-11-13 在 eex005（conda 环境 `chiplet-fp`，2026-11-16 改名为 `sizing_algorithm`）上，四个带 `--verify` 的阶段均在各自提交通过：
 
 | 阶段 | 提交 | 结果 |
 | --- | --- | --- |

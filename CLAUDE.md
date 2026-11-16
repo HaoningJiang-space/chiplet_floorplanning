@@ -30,7 +30,7 @@ Heavier experiments run on the shared server `eex005`. Reach it from this Mac wi
 `ssh poweric-jump 'ssh wangziheng@eex005 "..."'`; the second hop's key lives on the jump host,
 so `-J` does not work. Workspace: `~/haoning/chiplet_floorplanning`, which already has
 `results/physical-calibration/atplace-import-v1/Case1..10.json` imported from `~/haoning/ATPlace_pub`.
-Conda env: `~/miniconda3/envs/chiplet-fp` (Python 3.12, editable install). Other users
+Conda env: `~/miniconda3/envs/sizing_algorithm` (Python 3.12, editable install; renamed from `chiplet-fp` on 2026-11-16). Other users
 keep its 256 cores busy (load average about 220), so cap process pools at about 24 workers
 and set `OPENBLAS_NUM_THREADS=1`. Never `pkill -f <script>` through ssh; the pattern also matches
 the remote shell's own command line.
