@@ -19,7 +19,7 @@ from chiplet_floorplanning.placement.thermal import AMBIENT_C, PROVENANCE
 import frozen_front
 
 COMPUTE = ('CPU1', 'CPU2', 'GPU')
-SHARES = (0.8, 0.65)          # the verdict uses 0.8
+SHARES = (0.8, 0.65)          # the v1 verdict uses 0.8; --shares adds the asymmetry sweep
 LAYOUTS = 8
 
 
@@ -91,7 +91,7 @@ def spearman(a, b):
     return float(np.corrcoef(ra, rb)[0, 1]) if len(a) > 2 else None
 
 
-def analyse(case_path, summary_path, layouts_path):
+def analyse(case_path, summary_path, layouts_path, shares=SHARES):
     front = frozen_front.load(case_path, summary_path, layouts_path)
     problem, gap, res = front.problem, front.gap_um, front.resolution
     started = time.perf_counter()
@@ -102,7 +102,7 @@ def analyse(case_path, summary_path, layouts_path):
         responses = half_responses(problem, front.layouts[i], gap, res)
         row = dict(front_index=i, length_m=float(front.length_m[i]), frozen_peak_c=float(front.peak_c[i]),
                    uniform_c=peak_c(responses, half_powers(problem, 0.5, np.zeros(problem.count, bool))))
-        for share in SHARES:
+        for share in shares:
             low, flips = orient(problem, responses, share, +1)
             high, _ = orient(problem, responses, share, -1)
             row[str(share)] = dict(original_c=peak_c(responses, half_powers(problem, share, np.zeros(problem.count, bool))),
@@ -110,7 +110,7 @@ def analyse(case_path, summary_path, layouts_path):
         rows.append(row)
     out = dict(case=front.case, compute_dies=int(is_compute(problem.names).sum()), layouts=rows, by_share={})
     uniform = np.array([r['uniform_c'] for r in rows])
-    for share in SHARES:
+    for share in shares:
         s = str(share)
         best = np.array([r[s]['best_c'] for r in rows])
         out['by_share'][s] = dict(
@@ -121,6 +121,14 @@ def analyse(case_path, summary_path, layouts_path):
     print(front.case, {s: {k: v if v is None else round(v, 2) for k, v in d.items()} for s, d in out['by_share'].items()},
           f'{time.perf_counter() - started:.0f}s', flush=True)
     return out
+
+
+def threshold(cases, shares):
+    """Smallest share at which at least 3 cases gain >= 3 K by orientation (the v1 'calibrate' bar), or None."""
+    for share in sorted(shares):
+        if sum(c['by_share'][str(share)]['orientation_gain_k'] >= 3 for c in cases) >= 3:
+            return share
+    return None
 
 
 def verdict(cases, share='0.8'):
@@ -139,12 +147,19 @@ def _job(args):
 
 def main():
     from concurrent.futures import ProcessPoolExecutor
-    args = frozen_front.arguments(__doc__)
+    p = frozen_front.parser(__doc__)
+    p.add_argument('--shares', type=float, nargs='+', default=list(SHARES))
+    args = p.parse_args()
+    if args.output.exists():
+        raise SystemExit(f'{args.output} exists')
+    shares = tuple(args.shares)
     with ProcessPoolExecutor(min(args.workers, len(args.cases))) as pool:
-        cases = list(pool.map(_job, [frozen_front.paths(args, n) for n in args.cases]))
-    args.output.write_text(json.dumps(dict(
-        physical_qualified=False, plan='docs/intra-die-orientation-plan.md', shares=SHARES, layouts_per_case=LAYOUTS,
-        verdict=verdict(cases), cases=cases), indent=1) + '\n')
+        cases = list(pool.map(_job, [(*frozen_front.paths(args, n), shares) for n in args.cases]))
+    out = dict(physical_qualified=False, plan='docs/intra-die-orientation-plan.md', shares=shares, layouts_per_case=LAYOUTS,
+               threshold_share=threshold(cases, shares), cases=cases)
+    if 0.8 in shares:
+        out['verdict'] = verdict(cases)
+    args.output.write_text(json.dumps(out, indent=1) + '\n')
 
 
 if __name__ == '__main__':

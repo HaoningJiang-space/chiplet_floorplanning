@@ -9,7 +9,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from placement_core_unittest import synthetic_case  # noqa: E402
 from chiplet_floorplanning.placement import Problem, sample_legal, solve  # noqa: E402
-from intra_die_orientation import half_powers, half_responses, orient, peak_c, split_case, verdict  # noqa: E402
+from intra_die_orientation import half_powers, half_responses, orient, peak_c, split_case, threshold, verdict  # noqa: E402
 
 
 class IntraDieOrientationTest(unittest.TestCase):
@@ -40,6 +40,12 @@ class IntraDieOrientationTest(unittest.TestCase):
         self.assertEqual(verdict([row(3, 0)]*2 + [row(0, 2)] + [row(0, 0)]*7), 'calibrate')
         self.assertEqual(verdict([row(.9, .9)]*10), 'stop')
         self.assertEqual(verdict([row(3, 0)]*2 + [row(0, 0)]*8), 'uncertain')
+
+    def test_threshold_is_the_smallest_share_meeting_the_bar(self):
+        case = lambda gains: dict(by_share={str(f): dict(orientation_gain_k=g) for f, g in gains.items()})
+        cases = [case({.55: 1, .6: 3, .8: 9})]*3 + [case({.55: 0, .6: 0, .8: 1})]
+        self.assertEqual(threshold(cases, (.8, .55, .6)), .6)
+        self.assertIsNone(threshold(cases[3:], (.55, .6, .8)))
 
 
 if __name__ == '__main__':
