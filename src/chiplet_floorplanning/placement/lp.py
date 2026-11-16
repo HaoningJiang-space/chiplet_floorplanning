@@ -335,8 +335,21 @@ def _free_move(problem, layout, rng):
     """One unconstrained move (overlap allowed): the relation LP legalises it."""
     centre, rotation = layout.centre_um.copy(), layout.rotation_deg.copy()
     k = int(rng.integers(problem.count))
-    kind = rng.choice(("rotate", "swap", "relocate", "shift"), p=(.3, .3, .2, .2))
-    if kind == "rotate":
+    kind = rng.choice(("attach", "rotate", "swap", "relocate", "shift"), p=(.35, .2, .2, .1, .15))
+    if kind == "attach":
+        # Put k against one side of a partner drawn by shared net count, with a random rotation: the moves
+        # that make heavy pairs adjacent with facing pins, which random shifts rarely hit.
+        a, b = problem.pin_chip[:, 0], problem.pin_chip[:, 1]
+        partners = np.bincount(np.r_[b[a == k], a[b == k]], minlength=problem.count).astype(float)
+        if partners.sum() > 0:
+            j = int(rng.choice(problem.count, p=partners/partners.sum()))
+            rotation[k] = rng.choice((0, 90, 180, 270))
+            size = np.where((rotation % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)
+            axis, sign = int(rng.integers(2)), rng.choice((-1, 1))
+            centre[k] = centre[j]
+            centre[k, axis] += sign*(size[j, axis] + size[k, axis])/2
+            centre[k, 1 - axis] += rng.uniform(-.5, .5)*size[j, 1 - axis]
+    elif kind == "rotate":
         rotation[k] = (rotation[k] + rng.choice((90, 180, 270))) % 360
     elif kind == "swap":
         j = int(rng.integers(problem.count - 1))
