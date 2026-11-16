@@ -1,0 +1,343 @@
+{
+  "analyzed_commit": "cb2d2808db820af6ed8c880acbaa7e76c7817e3b",
+  "fetch_succeeded": true,
+  "initial_head_equal_origin_main": true,
+  "scope": "Continuation review of the cd4336e comparison fixes and the phase-power model. All authoritative checks rerun from a git archive of cb2d280 after concurrent industrial-case edits were detected. Those concurrent edits are excluded.",
+  "source_sha256": {
+    "tools/atplace_compare.py": "c076b5c86217715e3335fe8cef6a3413bdb0cc7944e0fe1fb4e2387e440632b0",
+    "tools/atplace_sweep.py": "8a1d6824746a588f5f86c66b325d9d6a47cc7c1c438dd08f620595dfa65ec314",
+    "tools/phase_power.py": "c26444262ad720c300fb296bd46a9ebfc8ad7426e96675e06e7be8aa88c75abb",
+    "src/chiplet_floorplanning/placement/thermal.py": "49c6aa524e19b3bb667d10dc8b395d83f7b68ce2bcdb6c1c746bacb978886eed",
+    "src/chiplet_floorplanning/package.py": "0b2ffff0b0acb0f21e6155ab5a304bb4532065240392f720e3564bd8b3ce8119"
+  },
+  "accepted_progress": "Ordinary missing-point and case-subset paths now report incomplete. Published complete cases have six rows and no failure flags. The v2 result is incomplete, six of seven complete-case wins in each model.",
+  "published_reports": [
+    {
+      "file": "atplace-compare-frozen-v1.json",
+      "sha256": "e912259eb46759be47f27b45abb39a4d8dfd5301f18942bfafd2e2c572b0c53f",
+      "verdict": "incomplete",
+      "wins": {
+        "fv": 3,
+        "atsim": 3
+      },
+      "complete_cases": [
+        "Case1",
+        "Case2",
+        "Case3",
+        "Case4",
+        "Case5",
+        "Case6",
+        "Case7"
+      ]
+    },
+    {
+      "file": "atplace-compare-rsg3-v1.json",
+      "sha256": "5a24c130480b953b7ef3c3dfec6c643190a9026af67de03f580b502f30ede221",
+      "verdict": "incomplete",
+      "wins": {
+        "fv": 5,
+        "atsim": 5
+      },
+      "complete_cases": [
+        "Case1",
+        "Case2",
+        "Case3",
+        "Case4",
+        "Case5",
+        "Case6",
+        "Case7"
+      ]
+    },
+    {
+      "file": "atplace-compare-rsg4-v2.json",
+      "sha256": "b68d639170556b3ead2bbf05ebb61d98d53eef8179fe2ed495a4251cf413e3c6",
+      "verdict": "incomplete",
+      "wins": {
+        "fv": 6,
+        "atsim": 6
+      },
+      "complete_cases": [
+        "Case1",
+        "Case2",
+        "Case3",
+        "Case4",
+        "Case5",
+        "Case6",
+        "Case7"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "failure_flags_do_not_override_old_legal_rows",
+      "priority": "P2",
+      "location": "tools/atplace_compare.py:75-83;148-154",
+      "problem": "completeness() derives complete from the old legal FV rows without subtracting failed labels, while compare() filters explicit failed labels for scoring. These two sets can disagree. train_failed is also not applied to the scoring filter.",
+      "trigger": "Retry placements after exporting FV results, then combine the newer timing.json with the previous FV JSON.",
+      "evidence": {
+        "protocol": "Actual compare(), ten cases. Old FV JSON has six legal rows; newer timing marks five labels failed; only the surviving WL score exists.",
+        "first_case_retained_points": 1,
+        "first_case_completeness": {
+          "expected": 6,
+          "scored": 6,
+          "failed": [
+            "thermal_x0.01",
+            "thermal_x0.1",
+            "thermal_x1",
+            "thermal_x10",
+            "thermal_x100"
+          ],
+          "illegal": [],
+          "missing": [],
+          "complete": true
+        },
+        "verdict": "advantage",
+        "wins": {
+          "fv": 10,
+          "atsim": 10
+        }
+      },
+      "recommendation": "Resolve one authoritative current successful-label set, with explicit and training failures taking precedence, and use it for scoring, completeness and counts. Reject contradictory stale inputs or report them incomplete."
+    },
+    {
+      "id": "empty_baseline_crashes_report",
+      "priority": "P2",
+      "location": "tools/atplace_compare.py:55-59;154",
+      "problem": "A valid failed or wholly illegal case can have zero scored ATPlace points; outcome() divides by zero before the new incomplete verdict can be emitted.",
+      "evidence": {
+        "error": "ZeroDivisionError",
+        "message": "division by zero",
+        "protocol": "Actual compare() with no legal ATPlace point and all six labels marked failed."
+      },
+      "recommendation": "Represent zero-score outcomes as unavailable with null ratios, retain failure counts and emit an incomplete report without treating failure as either win or loss."
+    },
+    {
+      "id": "score_cache_identity_is_only_mtime",
+      "priority": "P2",
+      "location": "tools/atplace_sweep.py:32-34;110-121",
+      "problem": "The timestamp fix covers a locally rewritten layout but not changed scoring configuration or changed content copied with a preserved timestamp. A score newer than a file does not prove it scores that content/configuration.",
+      "evidence": {
+        "protocol": "Actual score_only file handling; scoring subprocess stub returns a number identifying the supplied configuration. Layout unchanged, params changed between invocations.",
+        "scoring_calls": 1,
+        "new_parameter_file": {
+          "thermal": {
+            "fixture_parameter": 2
+          }
+        },
+        "retained_result": {
+          "tmax_c": 81.0,
+          "control_configuration": {
+            "thermal": {
+              "fixture_parameter": 1
+            }
+          },
+          "eval_s": 0.0
+        }
+      },
+      "preserved_mtime_control": {
+        "cache_reused": true,
+        "protocol": "Changed layout bytes with original mtime preserved (copy2/rsync -t behavior)."
+      },
+      "recommendation": "Bind cached scores to layout bytes and relevant resolved evaluation configuration/version, or always rescore in a fresh immutable run directory. Do not certify historical score-layout identity solely from mtimes."
+    }
+  ],
+  "method_analysis": {
+    "question": "Can the current three phase powers create a different worst-mode robust placement problem?",
+    "derivation": "For fixed L and phase-invariant thermal system, theta(L,p)=G(L)^(-1) B(L) p. Nonnegative conductances with heat paths give inverse-positive G, and B is nonnegative. Since p_prefill >= p_decode >= p_idle componentwise, every node and per-die peak follows that order. With common per-die limits, J_robust(L)=J_prefill(L) for every supported L.",
+    "consequence": "Multi-mode worst-overshoot search cannot add a tradeoff over prefill alone for these powers. A change in the identity of the die with the least margin does not change this result. Prune componentwise-dominated powers before costly robust search; incomparable powers are necessary but not sufficient for a useful multi-mode layout tradeoff.",
+    "distinction": "This does not prove that optimizing each phase separately yields the same layouts. It proves equality of the joint worst-mode objective and the prefill-only objective under the stated model.",
+    "evidence": {
+      "protocol": "Three legal layouts, fixed saved h=7280.435855771514 W/m2K, resolution64, real FV for each of three phases. No fit repeated.",
+      "powers_w": {
+        "prefill": [
+          540.0,
+          22.0,
+          22.0,
+          22.0,
+          22.0,
+          22.0,
+          0.0
+        ],
+        "decode": [
+          240.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          16.0,
+          0.0
+        ],
+        "idle": [
+          60.0,
+          13.0,
+          13.0,
+          13.0,
+          13.0,
+          13.0,
+          0.0
+        ]
+      },
+      "componentwise_order": true,
+      "conditions": [
+        "same layout-dependent conductance matrix and source map in every phase",
+        "nonnegative conductances with ambient heat path, thus inverse-positive thermal operator",
+        "fixed ambient, cooling and per-die limits across phases; no temperature-dependent power"
+      ],
+      "conclusion": "For every supported layout L, J_robust(L)=J_prefill(L). The numerical examples illustrate the analytic monotonicity result, not an exhaustive empirical proof.",
+      "rows": [
+        {
+          "layout": "hand",
+          "centre_um": [
+            [
+              25000.0,
+              24000.0
+            ],
+            [
+              6300.0,
+              12800.0
+            ],
+            [
+              6300.0,
+              24000.0
+            ],
+            [
+              6300.0,
+              35200.0
+            ],
+            [
+              43700.0,
+              35200.0
+            ],
+            [
+              43700.0,
+              24000.0
+            ],
+            [
+              43700.0,
+              12800.0
+            ]
+          ],
+          "minimum_die_temperature_difference_k": {
+            "prefill_minus_decode": 10.766263992149916,
+            "decode_minus_idle": 6.38430929109046
+          },
+          "worst_overshoot_k": {
+            "prefill": -10.000000000000014,
+            "decode": -26.81544404665437,
+            "idle": -34.03402792505578
+          },
+          "robust_worst_overshoot_k": -10.000000000000014,
+          "robust_minus_prefill_k": 0.0
+        },
+        {
+          "layout": "translated_0.5mm",
+          "centre_um": [
+            [
+              25500.0,
+              24000.0
+            ],
+            [
+              6800.0,
+              12800.0
+            ],
+            [
+              6800.0,
+              24000.0
+            ],
+            [
+              6800.0,
+              35200.0
+            ],
+            [
+              44200.0,
+              35200.0
+            ],
+            [
+              44200.0,
+              24000.0
+            ],
+            [
+              44200.0,
+              12800.0
+            ]
+          ],
+          "minimum_die_temperature_difference_k": {
+            "prefill_minus_decode": 10.767472083262554,
+            "decode_minus_idle": 6.385015784522935
+          },
+          "worst_overshoot_k": {
+            "prefill": -9.999875480207635,
+            "decode": -26.81695627706842,
+            "idle": -34.034875543559686
+          },
+          "robust_worst_overshoot_k": -9.999875480207635,
+          "robust_minus_prefill_k": 0.0
+        },
+        {
+          "layout": "hbm_columns_outward_0.5mm",
+          "centre_um": [
+            [
+              25000.0,
+              24000.0
+            ],
+            [
+              5800.0,
+              12800.0
+            ],
+            [
+              5800.0,
+              24000.0
+            ],
+            [
+              5800.0,
+              35200.0
+            ],
+            [
+              44200.0,
+              35200.0
+            ],
+            [
+              44200.0,
+              24000.0
+            ],
+            [
+              44200.0,
+              12800.0
+            ]
+          ],
+          "minimum_die_temperature_difference_k": {
+            "prefill_minus_decode": 10.318834763212124,
+            "decode_minus_idle": 6.116726861504212
+          },
+          "worst_overshoot_k": {
+            "prefill": -10.077408893987823,
+            "decode": -27.198915589909703,
+            "idle": -34.13963297982188
+          },
+          "robust_worst_overshoot_k": -10.077408893987823,
+          "robust_minus_prefill_k": 0.0
+        }
+      ]
+    }
+  },
+  "validation": {
+    "unit_tests": 102,
+    "result": "passed",
+    "test_log": "results/code-review-cb2d280/snapshot-unittest.log",
+    "two_chiplets_validate": "passed",
+    "two_chiplets_evaluate": "passed",
+    "cli_report": "results/code-review-cb2d280/snapshot-two-chiplets/report.json",
+    "scripts": {
+      "reproduce.py": "3852f3c8909e131d4a9e2ca718192fe08357f61eb5caf2ba13dd1dd4b1bba7b9",
+      "phase_dominance.py": "755d953340f919fe639ee902a876a5ffa37beb95ad08cd4913a5cd1eb60d0df6"
+    }
+  },
+  "limits": [
+    "Comparison controls use synthetic scores and deterministic external-process stubs; no real ATSim invocation or remote job was performed.",
+    "Published complete-case counts do not exhibit the contradictory-failure control. No published six-of-seven result is shown wrong by these controls.",
+    "The phase diagnostic uses three real FV layouts with an existing saved h; it is not a new cooling calibration. The all-layout result comes from monotonicity under the explicit assumptions.",
+    "No external thermal validation or real timing validation was performed; currently edited industrial-case files are outside this snapshot review."
+  ],
+  "physical_qualified": false,
+  "timing": "not_run"
+}
