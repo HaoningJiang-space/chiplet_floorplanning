@@ -15,6 +15,7 @@ import sys
 import time
 
 MULTIPLIERS = (0.01, 0.1, 1, 10, 100)
+LABELS = ('wl',) + tuple(f'thermal_x{m:g}' for m in MULTIPLIERS)
 
 
 def last_json(text):
@@ -26,6 +27,11 @@ def last_json(text):
         except ValueError:
             continue
     raise ValueError('no JSON summary in output')
+
+
+def scored(target, layout):
+    """An ATSim score is reused only if it was written after the layout it scores (a rerun rewrites the layout)."""
+    return target.exists() and target.stat().st_mtime >= layout.stat().st_mtime
 
 
 def run(cmd, log):
@@ -62,6 +68,7 @@ def sweep(case, out, threads, ours, sampling_s=None):
     trained = True
     for label, path in files.items():
         mode = 'wl' if label == 'wl' else 'thermal'
+        shutil.rmtree(root / label, ignore_errors=True)   # a failed rerun must not leave the previous run's layout
         if mode == 'thermal' and 'train_s' not in timing and trained:
             # Wirelength mode needs no thermal model, so it runs (and is scored) even if training fails.
             try:
@@ -89,7 +96,7 @@ def sweep(case, out, threads, ours, sampling_s=None):
     for layout in layouts:
         target = layout.parent / 'atsim.json' if layout.name == 'layout.json' else layout.with_name(
             layout.name.replace('.layout.json', '.atsim.json'))
-        if target.exists():
+        if scored(target, layout):
             continue
         result, seconds = run([py, 'run_thermal_evaluation.py', '--layout', str(layout), '--param_file',
                                str(files['thermal_x1'])], target.with_suffix('.log'))
@@ -107,7 +114,7 @@ def score_only(case, ours, threads):
     path.write_text(json.dumps(params(case, 'Thermal-aware', threads), indent=1) + '\n')
     for layout in sorted((ours / case).glob('*.layout.json')):
         target = layout.with_name(layout.name.replace('.layout.json', '.atsim.json'))
-        if not target.exists():
+        if not scored(target, layout):
             result, seconds = run([py, 'run_thermal_evaluation.py', '--layout', str(layout), '--param_file', str(path)],
                                   target.with_suffix('.log'))
             result['eval_s'] = seconds

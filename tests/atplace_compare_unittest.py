@@ -1,15 +1,20 @@
+import json
+import os
 from pathlib import Path
 import random
 import sys
+import tempfile
 import unittest
+from unittest import mock
 
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from placement_core_unittest import synthetic_case  # noqa: E402
 from chiplet_floorplanning.placement import Problem, pin_manhattan_um, sample_legal  # noqa: E402
-from atplace_compare import dominates, from_atplace, outcome, pick, to_atplace, verdict  # noqa: E402
-from atplace_sweep import last_json  # noqa: E402
+from atplace_compare import completeness, dominates, from_atplace, outcome, pick, to_atplace, verdict  # noqa: E402
+import atplace_sweep  # noqa: E402
+from atplace_sweep import LABELS, last_json, scored  # noqa: E402
 
 
 class AtplaceCompareTest(unittest.TestCase):
@@ -48,6 +53,55 @@ class AtplaceCompareTest(unittest.TestCase):
     def test_pick_and_summary_parsing(self):
         self.assertEqual(pick(np.array([3., 1., 2., 5., 4.]), 3), [0, 1, 3])   # shortest, median, longest
         self.assertEqual(last_json('progress {not json}\n{\n "a": 1\n}\nnoise\n{"b": {"c": 2}}\n'), {'b': {'c': 2}})
+
+    def test_failed_points_make_a_case_incomplete_instead_of_shrinking_the_denominator(self):
+        rows = [dict(label='wl', legal=True)]
+        info = completeness({'train_failed': 'sampler'}, rows)
+        self.assertEqual((info['scored'], info['complete'], info['missing']), (1, False, []))
+        self.assertEqual(info['failed'], sorted(LABELS[1:]))
+        info = completeness({'thermal_x10': dict(failed='x')}, [dict(label=l, legal=l != 'wl') for l in LABELS
+                                                                if l != 'thermal_x10'])
+        self.assertEqual((info['failed'], info['illegal'], info['complete']), (['thermal_x10'], ['wl'], False))
+        self.assertTrue(completeness({}, [dict(label=l, legal=True) for l in LABELS])['complete'])
+
+    def test_verdict_is_incomplete_for_missing_points_or_a_case_subset(self):
+        c = lambda r: dict(outcome=r)
+        wins = {'fv': [c('ours')]*10, 'atsim': [c('ours')]*10}
+        self.assertEqual(verdict(wins, [True]*7 + [False]*3), ('incomplete', {'fv': 7, 'atsim': 7}, {'fv': 0, 'atsim': 0}))
+        self.assertEqual(verdict({'fv': [c('ours')], 'atsim': [c('ours')]}, [True])[0], 'incomplete')
+        self.assertEqual(verdict({'fv': [c('tie')], 'atsim': [c('tie')]}, [True])[0], 'incomplete')   # not no_advantage
+        self.assertEqual(verdict(wins, [True]*10)[0], 'advantage')
+
+    def test_atsim_score_is_reused_only_when_newer_than_its_layout(self):
+        with tempfile.TemporaryDirectory() as d:
+            layout, score = Path(d)/'layout.json', Path(d)/'atsim.json'
+            layout.write_text('{}')
+            self.assertFalse(scored(score, layout))
+            score.write_text('{}')
+            os.utime(layout, (1e9, 1e9)); os.utime(score, (2e9, 2e9))
+            self.assertTrue(scored(score, layout))
+            os.utime(layout, (3e9, 3e9))    # a rerun rewrote the layout after it was scored
+            self.assertFalse(scored(score, layout))
+
+    def test_failed_rerun_removes_the_previous_runs_layouts(self):
+        with tempfile.TemporaryDirectory() as d:
+            out, new = Path(d)/'out', Path(d)/'new_layout.json'
+            new.write_text('{}')
+            for label in LABELS:
+                (out/'CaseX'/label).mkdir(parents=True)
+                (out/'CaseX'/label/'layout.json').write_text('{"old": 1}')
+
+            def run(cmd, log):
+                if 'run_thermal_training.py' in cmd:
+                    raise RuntimeError('sampler')
+                if 'run_placement_opt.py' in cmd:
+                    return dict(layout_json=str(new)), 1.0
+                return dict(tmax_c=80.0), 1.0
+            with mock.patch.object(atplace_sweep, 'run', run), mock.patch.object(atplace_sweep, 'params', lambda *a: {}):
+                timing = atplace_sweep.sweep('CaseX', out, 1, None)
+            self.assertIn('train_failed', timing)
+            self.assertEqual(sorted(p.parent.name for p in (out/'CaseX').glob('*/layout.json')), ['wl'])
+            self.assertEqual(json.loads((out/'CaseX'/'wl'/'layout.json').read_text()), {})
 
 
 if __name__ == '__main__':

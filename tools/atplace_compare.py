@@ -2,7 +2,8 @@
 
 export:  16 frozen-front layouts per case (evenly by length) as ATPlace layout.json files, for ATSim on moe-server.
 fv:      ATPlace layout.json files from the sweep, scored with our FV model and pin length (run on eex005).
-compare: margin dominance of each side in both thermal models -> per-case outcome and the frozen verdict.
+compare: margin dominance of each side in both thermal models -> per-case outcome and the frozen verdict. The verdict
+         needs all ten cases with all six ATPlace points; otherwise it is 'incomplete' and only counts are reported.
 """
 import argparse
 import json
@@ -12,6 +13,7 @@ import numpy as np
 
 from chiplet_floorplanning.placement import Evaluator, Layout, Problem, is_legal, pin_manhattan_um
 import frozen_front
+from atplace_sweep import LABELS
 
 PER_FRONT = 16
 CASES = tuple(range(1, 11))
@@ -70,10 +72,28 @@ def outcome(ours, atp):
     return dict(d_ours=d_ours, d_atp=d_atp, outcome=result, points=points)
 
 
-def verdict(by_model):
-    """by_model: {model: [per-case outcome dicts]} for the FV and ATSim models."""
-    wins = {m: sum(c['outcome'] == 'ours' for c in cases) for m, cases in by_model.items()}
-    losses = {m: sum(c['outcome'] == 'atplace' for c in cases) for m, cases in by_model.items()}
+def completeness(timing, rows):
+    """ATPlace points of one case against the six frozen labels: which were scored, failed, illegal or missing."""
+    legal = {r['label'] for r in rows if r['legal']}
+    failed = sorted(l for l in LABELS if (isinstance(timing.get(l), dict) and 'failed' in timing[l])
+                    or (l != 'wl' and 'train_failed' in timing))
+    illegal = sorted({r['label'] for r in rows} - legal)
+    missing = sorted(set(LABELS) - legal - set(failed) - set(illegal))
+    return dict(expected=len(LABELS), scored=len(legal & set(LABELS)), failed=failed, illegal=illegal, missing=missing,
+                complete=set(LABELS) <= legal)
+
+
+def verdict(by_model, complete=None, expected=len(CASES)):
+    """by_model: {model: [per-case outcome dicts]} for the FV and ATSim models; complete: per-case completeness flags.
+
+    The frozen thresholds hold only for all `expected` cases with all six ATPlace points. Otherwise the verdict is
+    'incomplete' and the counts cover the complete cases only; failed points count neither as wins nor as losses.
+    """
+    complete = [True] * len(next(iter(by_model.values()))) if complete is None else list(complete)
+    wins = {m: sum(c['outcome'] == 'ours' for c, ok in zip(cases, complete) if ok) for m, cases in by_model.items()}
+    losses = {m: sum(c['outcome'] == 'atplace' for c, ok in zip(cases, complete) if ok) for m, cases in by_model.items()}
+    if len(complete) != expected or not all(complete):
+        return 'incomplete', wins, losses
     if all(w >= 7 for w in wins.values()):
         return 'advantage', wins, losses
     if any(n >= 5 for n in losses.values()) or all(w <= 3 for w in wins.values()):
@@ -124,20 +144,28 @@ def compare(args):
         mine = json.loads((args.ours / case / 'manifest.json').read_text())
         for r in mine:
             r['atsim_peak_c'] = json.loads((args.ours / case / f"{r['name']}.atsim.json").read_text())['tmax_c']
-        theirs = [r for r in fvs[case] if r['legal']]
+        timing = json.loads((args.sweep / case / 'timing.json').read_text())
+        theirs = [r for r in fvs[case] if r['legal'] and r['label'] in LABELS
+                  and not (isinstance(timing.get(r['label']), dict) and 'failed' in timing[r['label']])]
         for r in theirs:
             r['atsim_peak_c'] = json.loads((args.sweep / case / r['label'] / 'atsim.json').read_text())['tmax_c']
-        row = dict(case=case, ours=mine, atplace=theirs)
+        row = dict(case=case, ours=mine, atplace=theirs, completeness=completeness(timing, fvs[case]))
         for model, key in (('fv', 'fv_peak_c'), ('atsim', 'atsim_peak_c')):
             row[model] = outcome([(r['length_m'], r[key]) for r in mine], [(r['length_m'], r[key]) for r in theirs])
             by_model[model].append(row[model])
         cases.append(row)
         print(case, {m: (row[m]['outcome'], round(row[m]['d_ours'], 2), round(row[m]['d_atp'], 2)) for m in by_model},
-              flush=True)
-    result, wins, losses = verdict(by_model)
+              f"ATPlace points {row['completeness']['scored']}/{row['completeness']['expected']}", flush=True)
+    complete = [c['completeness']['complete'] for c in cases]
+    result, wins, losses = verdict(by_model, complete)
+    descriptive = {m: dict(wins=[c['case'] for c in cases if not c['completeness']['complete'] and c[m]['outcome'] == 'ours'],
+                           losses=[c['case'] for c in cases if not c['completeness']['complete']
+                                   and c[m]['outcome'] == 'atplace']) for m in by_model}
     args.output.write_text(json.dumps(dict(physical_qualified=False, plan='docs/atplace-comparison-plan.md',
-                                           verdict=result, wins=wins, losses=losses, cases=cases), indent=1) + '\n')
-    print(result, wins, losses)
+                                           verdict=result, complete_cases=[c['case'] for c in cases if c['completeness']['complete']],
+                                           wins=wins, losses=losses, incomplete_cases_descriptive=descriptive,
+                                           cases=cases), indent=1) + '\n')
+    print(result, 'complete cases', sum(complete), 'of', len(CASES), wins, losses, 'incomplete (descriptive)', descriptive)
 
 
 def main():

@@ -254,16 +254,19 @@ class PlacementCoreTest(unittest.TestCase):
     def test_every_method_stops_when_rounds_add_no_new_layout(self):
         # Two 1x1 mm dies in a 3x1 mm carrier with touching allowed: only a few states
         # exist, so the FV budget can never be spent and the stall rule must end each run.
+        # The SLP methods move dies continuously (16-18 states here) and charge repeated
+        # factorisations, so the budget is well above what they can spend: at 50 the
+        # HiGHS-seeded run reached the budget exactly while the Gurobi-seeded one stalled at 48.
         problem = Problem('tiny', ('a', 'b'), np.array([[1000., 1000.]]*2), np.array([5., 1.]), (3000., 1000.),
                           np.zeros((0, 2), int), np.zeros((0, 2, 2)))
         start = [sample_legal(problem, 0, np.random.default_rng(1))]
         for name, method in METHODS.items():
             with self.subTest(method=name):
                 with Evaluator(problem, 0, resolution=12) as evaluator:
-                    run = Run(evaluator, 50, stall_rounds=5)
+                    run = Run(evaluator, 500, stall_rounds=5)
                     method(run, start, np.random.default_rng(2), batch=4, length_caps_m=(1e9,))
                 self.assertEqual(run.stop_reason, 'stalled')
-                self.assertLess(evaluator.solves, 50)
+                self.assertLess(evaluator.solves, 500)
 
     def test_pair_aggregated_lp_matches_one_variable_per_net(self):
         # Reference: t_k >= |v_a - v_b + c_k| per net and axis, under the same topology rows.
