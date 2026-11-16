@@ -1,14 +1,39 @@
 {
  "physical_qualified": false,
  "plan": "docs/atplace-comparison-plan.md",
- "verdict": "advantage",
+ "verdict": "incomplete",
+ "complete_cases": [
+  "Case1",
+  "Case2",
+  "Case3",
+  "Case4",
+  "Case5",
+  "Case6",
+  "Case7"
+ ],
  "wins": {
-  "fv": 7,
-  "atsim": 7
+  "fv": 5,
+  "atsim": 5
  },
  "losses": {
   "fv": 0,
   "atsim": 0
+ },
+ "incomplete_cases_descriptive": {
+  "fv": {
+   "wins": [
+    "Case9",
+    "Case10"
+   ],
+   "losses": []
+  },
+  "atsim": {
+   "wins": [
+    "Case9",
+    "Case10"
+   ],
+   "losses": []
+  }
  },
  "cases": [
   {
@@ -171,6 +196,14 @@
      "atsim_peak_c": 106.52480631977187
     }
    ],
+   "completeness": {
+    "expected": 6,
+    "scored": 6,
+    "failed": [],
+    "illegal": [],
+    "missing": [],
+    "complete": true
+   },
    "fv": {
     "d_ours": 1.0,
     "d_atp": 0.0,
@@ -418,6 +451,14 @@
      "atsim_peak_c": 81.19996226005702
     }
    ],
+   "completeness": {
+    "expected": 6,
+    "scored": 6,
+    "failed": [],
+    "illegal": [],
+    "missing": [],
+    "complete": true
+   },
    "fv": {
     "d_ours": 0.0,
     "d_atp": 0.0,
@@ -665,6 +706,14 @@
      "atsim_peak_c": 124.80480857127526
     }
    ],
+   "completeness": {
+    "expected": 6,
+    "scored": 6,
+    "failed": [],
+    "illegal": [],
+    "missing": [],
+    "complete": true
+   },
    "fv": {
     "d_ours": 0.16666666666666666,
     "d_atp": 0.0,
@@ -912,6 +961,14 @@
      "atsim_peak_c": 149.40746250824333
     }
    ],
+   "completeness": {
+    "expected": 6,
+    "scored": 6,
+    "failed": [],
+    "illegal": [],
+    "missing": [],
+    "complete": true
+   },
    "fv": {
     "d_ours": 0.8333333333333334,
     "d_atp": 0.0,
@@ -1159,6 +1216,14 @@
      "atsim_peak_c": 142.15013599848288
     }
    ],
+   "completeness": {
+    "expected": 6,
+    "scored": 6,
+    "failed": [],
+    "illegal": [],
+    "missing": [],
+    "complete": true
+   },
    "fv": {
     "d_ours": 0.8333333333333334,
     "d_atp": 0.0625,
@@ -1406,6 +1471,14 @@
      "atsim_peak_c": 118.84483950360368
     }
    ],
+   "completeness": {
+    "expected": 6,
+    "scored": 6,
+    "failed": [],
+    "illegal": [],
+    "missing": [],
+    "complete": true
+   },
    "fv": {
     "d_ours": 1.0,
     "d_atp": 0.0,
@@ -1653,6 +1726,14 @@
      "atsim_peak_c": 80.26045512739853
     }
    ],
+   "completeness": {
+    "expected": 6,
+    "scored": 6,
+    "failed": [],
+    "illegal": [],
+    "missing": [],
+    "complete": true
+   },
    "fv": {
     "d_ours": 0.8333333333333334,
     "d_atp": 0.0,
@@ -1865,6 +1946,20 @@
      "atsim_peak_c": 76.23908255422162
     }
    ],
+   "completeness": {
+    "expected": 6,
+    "scored": 1,
+    "failed": [
+     "thermal_x0.01",
+     "thermal_x0.1",
+     "thermal_x1",
+     "thermal_x10",
+     "thermal_x100"
+    ],
+    "illegal": [],
+    "missing": [],
+    "complete": false
+   },
    "fv": {
     "d_ours": 0.0,
     "d_atp": 0.0,
@@ -2017,6 +2112,20 @@
      "atsim_peak_c": 158.28168808421952
     }
    ],
+   "completeness": {
+    "expected": 6,
+    "scored": 1,
+    "failed": [
+     "thermal_x0.01",
+     "thermal_x0.1",
+     "thermal_x1",
+     "thermal_x10",
+     "thermal_x100"
+    ],
+    "illegal": [],
+    "missing": [],
+    "complete": false
+   },
    "fv": {
     "d_ours": 1.0,
     "d_atp": 0.0,
@@ -2169,6 +2278,20 @@
      "atsim_peak_c": 128.65645816037846
     }
    ],
+   "completeness": {
+    "expected": 6,
+    "scored": 1,
+    "failed": [
+     "thermal_x0.01",
+     "thermal_x0.1",
+     "thermal_x1",
+     "thermal_x10",
+     "thermal_x100"
+    ],
+    "illegal": [],
+    "missing": [],
+    "complete": false
+   },
    "fv": {
     "d_ours": 1.0,
     "d_atp": 0.0,
