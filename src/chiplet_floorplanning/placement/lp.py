@@ -388,3 +388,84 @@ def length_anneal(args):
             if new < top:
                 best, top = candidate, new
     return best, top
+
+
+def milp_relations(problem, gap_um, time_limit_s=60.0):
+    """Global choice of rotations and side relations for wirelength by MILP (HiGHS), after ATPlace2.5D's
+    initialisation: each die has one-hot quarter-turn binaries; each pair has four big-M side binaries; the
+    pair's nets are clustered at their mean pin offsets, so the objective is sum K_ij |c_i + R o_i - c_j - R o_j|
+    (a lower bound of the exact length by convexity). Returns a Layout whose centres realise the chosen
+    relations (overlap-free up to the solver tolerance), to be finished by the exact relation LP, or None."""
+    from scipy.optimize import Bounds, LinearConstraint, milp
+    from .geometry import rotate
+    n = problem.count
+    width, height = (s/1000 for s in problem.carrier_um)
+    gap = gap_um/1000
+    turns = np.array([0, 90, 180, 270])
+    a, b = problem.pin_chip[:, 0], problem.pin_chip[:, 1]
+    clusters = []   # (i, j, nets, mean offset on i, mean offset on j) in mm, die frames
+    for i in range(n):
+        for j in range(i + 1, n):
+            fwd, bwd = (a == i) & (b == j), (a == j) & (b == i)
+            k = int(fwd.sum() + bwd.sum())
+            if k:
+                oi = np.r_[problem.pin_offset_um[fwd, 0], problem.pin_offset_um[bwd, 1]].mean(axis=0)/1000
+                oj = np.r_[problem.pin_offset_um[fwd, 1], problem.pin_offset_um[bwd, 0]].mean(axis=0)/1000
+                clusters.append((i, j, k, oi, oj))
+    pairs = [(i, j) for i in range(n) for j in range(i + 1, n)]
+    # variable layout: x(n) y(n) z(n*4) s(4*pairs) t(2*clusters)
+    ix, iy, iz = 0, n, 2*n
+    isd = iz + 4*n
+    it = isd + 4*len(pairs)
+    nvar = it + 2*len(clusters)
+    rows, lo, hi = [], [], []
+
+    def add(entries, low, high):
+        r = np.zeros(nvar)
+        for col, val in entries:
+            r[col] += val
+        rows.append(r)
+        lo.append(low)
+        hi.append(high)
+
+    size = problem.size_um/1000
+    w = lambda i: [(iz + 4*i + r, (size[i, 1] if turns[r] % 180 else size[i, 0])) for r in range(4)]
+    h = lambda i: [(iz + 4*i + r, (size[i, 0] if turns[r] % 180 else size[i, 1])) for r in range(4)]
+    for i in range(n):
+        add([(iz + 4*i + r, 1.0) for r in range(4)], 1, 1)
+        add([(ix + i, 1.0)] + [(c, -v/2) for c, v in w(i)], 0, np.inf)              # x - w/2 >= 0
+        add([(ix + i, 1.0)] + [(c, v/2) for c, v in w(i)], -np.inf, width)          # x + w/2 <= W
+        add([(iy + i, 1.0)] + [(c, -v/2) for c, v in h(i)], 0, np.inf)
+        add([(iy + i, 1.0)] + [(c, v/2) for c, v in h(i)], -np.inf, height)
+    big = 2*max(width, height)
+    for p, (i, j) in enumerate(pairs):
+        s = isd + 4*p
+        for q, (axis, first, second) in enumerate(((0, i, j), (0, j, i), (1, i, j), (1, j, i))):
+            ext = w if axis == 0 else h
+            base = ix if axis == 0 else iy
+            # v_first + (ext_first + ext_second)/2 + gap <= v_second + big*(1 - s_q)
+            add([(base + first, 1.0), (base + second, -1.0), (s + q, big)]
+                + [(c, v/2) for c, v in ext(first)] + [(c, v/2) for c, v in ext(second)], -np.inf, big - gap)
+        add([(s + q, 1.0) for q in range(4)], 1, np.inf)
+    cost = np.zeros(nvar)
+    for c, (i, j, k, oi, oj) in enumerate(clusters):
+        ri, rj = rotate(np.tile(oi, (4, 1)), turns), rotate(np.tile(oj, (4, 1)), turns)
+        for axis in (0, 1):
+            t = it + 2*c + axis
+            base = ix if axis == 0 else iy
+            d = ([(base + i, 1.0), (base + j, -1.0)] + [(iz + 4*i + r, ri[r, axis]) for r in range(4)]
+                 + [(iz + 4*j + r, -rj[r, axis]) for r in range(4)])
+            add(d + [(t, -1.0)], -np.inf, 0)                    # d <= t
+            add([(col, -v) for col, v in d] + [(t, -1.0)], -np.inf, 0)   # -d <= t
+            cost[t] = k
+    integrality = np.zeros(nvar)
+    integrality[iz:it] = 1
+    bounds = Bounds(np.r_[np.zeros(2*n), np.zeros(it - iz), np.zeros(nvar - it)],
+                    np.r_[np.full(n, width), np.full(n, height), np.ones(it - iz), np.full(nvar - it, np.inf)])
+    result = milp(cost, constraints=LinearConstraint(np.array(rows), lo, hi), integrality=integrality,
+                  bounds=bounds, options=dict(time_limit=time_limit_s, disp=False))
+    if result.x is None:
+        return None
+    x = result.x
+    rotation = turns[np.argmax(x[iz:isd].reshape(n, 4), axis=1)]
+    return Layout(np.stack((x[ix:ix + n], x[iy:iy + n]), axis=1)*1000, rotation)
