@@ -29,9 +29,20 @@ def last_json(text):
     raise ValueError('no JSON summary in output')
 
 
-def scored(target, layout):
-    """An ATSim score is reused only if it was written after the layout it scores (a rerun rewrites the layout)."""
-    return target.exists() and target.stat().st_mtime >= layout.stat().st_mtime
+def scored(target, layout, params):
+    """An ATSim score is reused only if it records exactly the layout and evaluation parameters now on disk."""
+    if not target.exists():
+        return False
+    done = json.loads(target.read_text())
+    return done.get('layout') == json.loads(layout.read_text()) and done.get('params') == json.loads(params.read_text())
+
+
+def score(py, layout, target, params):
+    """ATSim peak of one layout; the inputs are stored with the result so that a cache hit can be checked."""
+    result, seconds = run([py, 'run_thermal_evaluation.py', '--layout', str(layout), '--param_file', str(params)],
+                          target.with_suffix('.log'))
+    result.update(eval_s=seconds, layout=json.loads(layout.read_text()), params=json.loads(params.read_text()))
+    target.write_text(json.dumps(result, indent=1) + '\n')
 
 
 def run(cmd, log):
@@ -96,12 +107,8 @@ def sweep(case, out, threads, ours, sampling_s=None):
     for layout in layouts:
         target = layout.parent / 'atsim.json' if layout.name == 'layout.json' else layout.with_name(
             layout.name.replace('.layout.json', '.atsim.json'))
-        if scored(target, layout):
-            continue
-        result, seconds = run([py, 'run_thermal_evaluation.py', '--layout', str(layout), '--param_file',
-                               str(files['thermal_x1'])], target.with_suffix('.log'))
-        result['eval_s'] = seconds
-        target.write_text(json.dumps(result, indent=1) + '\n')
+        if not scored(target, layout, files['thermal_x1']):
+            score(py, layout, target, files['thermal_x1'])
     (root / 'timing.json').write_text(json.dumps(timing, indent=1) + '\n')
     print(case, {k: v if not isinstance(v, dict) else v.get('twl_m') for k, v in timing.items()}, flush=True)
     return timing
@@ -114,11 +121,8 @@ def score_only(case, ours, threads):
     path.write_text(json.dumps(params(case, 'Thermal-aware', threads), indent=1) + '\n')
     for layout in sorted((ours / case).glob('*.layout.json')):
         target = layout.with_name(layout.name.replace('.layout.json', '.atsim.json'))
-        if not scored(target, layout):
-            result, seconds = run([py, 'run_thermal_evaluation.py', '--layout', str(layout), '--param_file', str(path)],
-                                  target.with_suffix('.log'))
-            result['eval_s'] = seconds
-            target.write_text(json.dumps(result, indent=1) + '\n')
+        if not scored(target, layout, path):
+            score(py, layout, target, path)
     print(case, 'scored', flush=True)
 
 

@@ -55,6 +55,8 @@ def dominates(a, b):
 def outcome(ours, atp):
     """Per case and thermal model: shares dominated by the other side, per-point gaps and the frozen outcome."""
     ours, atp = [tuple(p) for p in ours], [tuple(p) for p in atp]
+    if not atp:   # every baseline point failed: nothing to compare, the failures are reported by completeness()
+        return dict(d_ours=None, d_atp=None, outcome='unavailable', points=[])
     d_ours = sum(any(dominates(o, a) for o in ours) for a in atp) / len(atp)
     d_atp = sum(any(dominates(a, o) for a in atp) for o in ours) / len(ours)
     points = []
@@ -73,14 +75,17 @@ def outcome(ours, atp):
 
 
 def completeness(timing, rows):
-    """ATPlace points of one case against the six frozen labels: which were scored, failed, illegal or missing."""
-    legal = {r['label'] for r in rows if r['legal']}
-    failed = sorted(l for l in LABELS if (isinstance(timing.get(l), dict) and 'failed' in timing[l])
-                    or (l != 'wl' and 'train_failed' in timing))
-    illegal = sorted({r['label'] for r in rows} - legal)
-    missing = sorted(set(LABELS) - legal - set(failed) - set(illegal))
-    return dict(expected=len(LABELS), scored=len(legal & set(LABELS)), failed=failed, illegal=illegal, missing=missing,
-                complete=set(LABELS) <= legal)
+    """ATPlace points of one case against the six frozen labels: which were scored, failed, illegal or missing.
+
+    A label whose current run failed counts as failed even if an older FV row for it is still legal; `valid` is the
+    one set of labels both the completeness flag and the comparison use."""
+    failed = {l for l in LABELS if (isinstance(timing.get(l), dict) and 'failed' in timing[l])
+              or (l != 'wl' and 'train_failed' in timing)}
+    valid = ({r['label'] for r in rows if r['legal']} & set(LABELS)) - failed
+    illegal = {r['label'] for r in rows if not r['legal']} - failed
+    missing = set(LABELS) - valid - failed - illegal
+    return dict(expected=len(LABELS), scored=len(valid), valid=sorted(valid), failed=sorted(failed),
+                illegal=sorted(illegal), missing=sorted(missing), complete=valid == set(LABELS))
 
 
 def verdict(by_model, complete=None, expected=len(CASES)):
@@ -145,16 +150,16 @@ def compare(args):
         for r in mine:
             r['atsim_peak_c'] = json.loads((args.ours / case / f"{r['name']}.atsim.json").read_text())['tmax_c']
         timing = json.loads((args.sweep / case / 'timing.json').read_text())
-        theirs = [r for r in fvs[case] if r['legal'] and r['label'] in LABELS
-                  and not (isinstance(timing.get(r['label']), dict) and 'failed' in timing[r['label']])]
+        info = completeness(timing, fvs[case])
+        theirs = [r for r in fvs[case] if r['label'] in info['valid']]
         for r in theirs:
             r['atsim_peak_c'] = json.loads((args.sweep / case / r['label'] / 'atsim.json').read_text())['tmax_c']
-        row = dict(case=case, ours=mine, atplace=theirs, completeness=completeness(timing, fvs[case]))
+        row = dict(case=case, ours=mine, atplace=theirs, completeness=info)
         for model, key in (('fv', 'fv_peak_c'), ('atsim', 'atsim_peak_c')):
             row[model] = outcome([(r['length_m'], r[key]) for r in mine], [(r['length_m'], r[key]) for r in theirs])
             by_model[model].append(row[model])
         cases.append(row)
-        print(case, {m: (row[m]['outcome'], round(row[m]['d_ours'], 2), round(row[m]['d_atp'], 2)) for m in by_model},
+        print(case, {m: (row[m]['outcome'], *(None if row[m][k] is None else round(row[m][k], 2) for k in ('d_ours', 'd_atp'))) for m in by_model},
               f"ATPlace points {row['completeness']['scored']}/{row['completeness']['expected']}", flush=True)
     complete = [c['completeness']['complete'] for c in cases]
     result, wins, losses = verdict(by_model, complete)

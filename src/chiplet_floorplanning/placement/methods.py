@@ -438,6 +438,8 @@ def relation_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8,
     evaluator = run.evaluator
     seeds = shortest_seeds(evaluator.problem, evaluator.gap_um, list(initial), evaluator.pool, milp_s, anneal_steps,
                            chains, int(rng.integers(1 << 30)))
+    if not initial and not seeds:
+        raise RuntimeError('no legal start: no initial layouts and the MILP found no layout')
     topology_slp(run, list(initial) + seeds, rng, **kw)
 
 

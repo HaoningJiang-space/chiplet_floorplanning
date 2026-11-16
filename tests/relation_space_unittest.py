@@ -10,6 +10,8 @@ from placement_core_unittest import synthetic_case  # noqa: E402
 from chiplet_floorplanning.placement import Problem, is_legal, pin_manhattan_um, sample_legal  # noqa: E402
 from chiplet_floorplanning.placement.lp import TopologyLP, centre_relations, length_anneal, milp_relations  # noqa: E402
 from chiplet_floorplanning.placement.search import length_descent  # noqa: E402
+from chiplet_floorplanning.placement import Evaluator  # noqa: E402
+from chiplet_floorplanning.placement.methods import Run, relation_space  # noqa: E402
 
 
 class RelationSpaceTest(unittest.TestCase):
@@ -34,6 +36,20 @@ class RelationSpaceTest(unittest.TestCase):
         self.assertTrue(is_legal(self.problem, best, 1000))
         self.assertAlmostEqual(length, self.length(best))
         self.assertLessEqual(length, self.length(start))
+
+    def test_relation_space_starts_from_milp_seeds_alone_and_fails_clearly_without_any(self):
+        # Two 1x1 mm dies in a 2.2x1 mm carrier with a 0.2 mm gap: one legal arrangement up to mirroring.
+        tight = Problem('tight', ('a', 'b'), np.array([[1000., 1000.]]*2), np.array([5., 1.]), (2200., 1000.),
+                        np.array([[0, 1]]), np.zeros((1, 2, 2)))
+        with Evaluator(tight, 200, resolution=12) as evaluator:
+            run = Run(evaluator, 20)
+            relation_space(run, [], np.random.default_rng(0), milp_s=10, anneal_steps=10, chains=2, batch=4)
+            self.assertTrue(run.layouts and all(is_legal(tight, l, 200) for l in run.layouts))
+        impossible = Problem('impossible', ('a',), np.array([[3000., 1000.]]), np.array([1.]), (2000., 1000.),
+                             np.zeros((0, 2), int), np.zeros((0, 2, 2)))
+        with Evaluator(impossible, 200, resolution=12) as evaluator:
+            with self.assertRaises(RuntimeError):
+                relation_space(Run(evaluator, 20), [], np.random.default_rng(0), milp_s=10, anneal_steps=10, chains=2)
 
 
 if __name__ == '__main__':

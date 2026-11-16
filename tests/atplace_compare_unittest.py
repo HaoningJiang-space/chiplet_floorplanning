@@ -72,16 +72,34 @@ class AtplaceCompareTest(unittest.TestCase):
         self.assertEqual(verdict({'fv': [c('tie')], 'atsim': [c('tie')]}, [True])[0], 'incomplete')   # not no_advantage
         self.assertEqual(verdict(wins, [True]*10)[0], 'advantage')
 
-    def test_atsim_score_is_reused_only_when_newer_than_its_layout(self):
+    def test_atsim_score_is_reused_only_for_the_same_layout_and_parameters(self):
         with tempfile.TemporaryDirectory() as d:
-            layout, score = Path(d)/'layout.json', Path(d)/'atsim.json'
-            layout.write_text('{}')
-            self.assertFalse(scored(score, layout))
-            score.write_text('{}')
-            os.utime(layout, (1e9, 1e9)); os.utime(score, (2e9, 2e9))
-            self.assertTrue(scored(score, layout))
-            os.utime(layout, (3e9, 3e9))    # a rerun rewrote the layout after it was scored
-            self.assertFalse(scored(score, layout))
+            layout, params, target = Path(d)/'layout.json', Path(d)/'params.json', Path(d)/'atsim.json'
+            layout.write_text('{"x": 1}')
+            params.write_text('{"grid": 64}')
+            self.assertFalse(scored(target, layout, params))
+            with mock.patch.object(atplace_sweep, 'run', lambda cmd, log: (dict(tmax_c=80.0), 1.0)):
+                atplace_sweep.score('python', layout, target, params)
+            os.utime(target, (1e9, 1e9))     # an old file time does not matter, the recorded inputs do
+            self.assertTrue(scored(target, layout, params))
+            params.write_text('{"grid": 128}')
+            self.assertFalse(scored(target, layout, params))
+            params.write_text('{"grid": 64}')
+            layout.write_text('{"x": 2}')
+            os.utime(layout, (1e8, 1e8))     # a copy that kept an older time stamp
+            self.assertFalse(scored(target, layout, params))
+
+    def test_stale_legal_rows_of_failed_labels_do_not_make_a_case_complete(self):
+        rows = [dict(label=l, legal=True) for l in LABELS]           # FV file from an earlier, successful run
+        info = completeness({l: dict(failed='x') for l in LABELS[1:]}, rows)
+        self.assertEqual((info['valid'], info['complete'], info['failed']), (['wl'], False, sorted(LABELS[1:])))
+        info = completeness({'train_failed': 'sampler'}, rows)
+        self.assertEqual((info['valid'], info['complete']), (['wl'], False))
+
+    def test_a_case_whose_baseline_points_all_failed_is_unavailable_not_a_crash(self):
+        self.assertEqual(outcome([(10, 90)], []), dict(d_ours=None, d_atp=None, outcome='unavailable', points=[]))
+        self.assertEqual(verdict({'fv': [dict(outcome='unavailable')]*10, 'atsim': [dict(outcome='unavailable')]*10},
+                                 [False]*10)[0], 'incomplete')
 
     def test_failed_rerun_removes_the_previous_runs_layouts(self):
         with tempfile.TemporaryDirectory() as d:

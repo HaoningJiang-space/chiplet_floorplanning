@@ -57,21 +57,34 @@ def main():
     source = source_revision()
     commit = source['commit']
     started = time.perf_counter()
-    try:
-        initial = [sample_legal(problem, args.gap_um, rng) for _ in range(args.random_starts)]
-        initial += [length_descent(problem, sample_legal(problem, args.gap_um, rng), rng, args.gap_um)
-                    for _ in range(args.descent_starts)]
-    except RuntimeError as error:
+
+    def fail(error):
         failure = dict(case=problem.name, status='failed_initialization', error=str(error), seed=args.seed,
                        gap_um=args.gap_um, case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(),
                        code_commit=commit, code_dirty=source['dirty'])
         (args.output/'summary.json').write_text(json.dumps(failure, indent=2) + '\n')
         raise SystemExit(f'{problem.name}: {error}')
+    start_fallback = None
+    try:
+        initial = [sample_legal(problem, args.gap_um, rng) for _ in range(args.random_starts)]
+        initial += [length_descent(problem, sample_legal(problem, args.gap_um, rng), rng, args.gap_um)
+                    for _ in range(args.descent_starts)]
+    except RuntimeError as error:
+        if args.method != 'relation_space':
+            fail(error)
+        # relation_space builds its own legal starts (MILP, relation LP, annealing); a carrier too tight for the
+        # sampler then starts from those alone. Recorded so the run is not mistaken for the normal start set.
+        initial, start_fallback = [], f'sampler failed ({error}); MILP seeds only'
     descent_seconds = time.perf_counter() - started
     with Evaluator(problem, args.gap_um, args.resolution, args.workers) as evaluator:
         run = Run(evaluator, args.fv_solves)
-        METHODS[args.method](run, initial, rng, batch=args.batch, length_caps_m=tuple(args.length_caps_m),
-                             **parse_options(args.method_option))
+        try:
+            METHODS[args.method](run, initial, rng, batch=args.batch, length_caps_m=tuple(args.length_caps_m),
+                                 **parse_options(args.method_option))
+        except RuntimeError as error:
+            if start_fallback is None:
+                raise
+            fail(f'{start_fallback}; {error}')
         solves = evaluator.solves
     layouts = run.layouts
     length, peak, _ = run.arrays()
@@ -88,7 +101,7 @@ def main():
         fv_solve_budget=args.fv_solves, distinct_fv_solves=solves, distinct_layouts=len(layouts),
         case_path=str(args.case), case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(),
         random_starts=args.random_starts, descent_starts=args.descent_starts, batch=args.batch,
-        code_dirty=source['dirty'], stop_reason=run.stop_reason,
+        code_dirty=source['dirty'], stop_reason=run.stop_reason, start_fallback=start_fallback,
         workers=args.workers, wall_seconds=wall, start_descent_seconds=descent_seconds,
         gap_um=args.gap_um, fv_resolution=args.resolution, grid_um=1000,
         code_commit=commit,
