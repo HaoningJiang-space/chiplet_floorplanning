@@ -1,0 +1,300 @@
+{
+  "analyzed_commit": "0ef1f4760329193e434ba9548d2f084bcf421b0e",
+  "fetch_succeeded": true,
+  "head_equal_origin_main": true,
+  "scope": "Review of latest SLP orchestration, objective/cache semantics, hotspot moves and reference-front CLI. Read-only implementation review plus bounded local controls; no production edits or remote experiments.",
+  "physical_qualified": false,
+  "thermal_external_validation": "not_run",
+  "timing": "not_run",
+  "previous_budget_fix": [
+    {
+      "limit": 20,
+      "actual": 20,
+      "reported": 20,
+      "stop": "budget"
+    },
+    {
+      "limit": 40,
+      "actual": 40,
+      "reported": 40,
+      "stop": "budget"
+    }
+  ],
+  "findings": [
+    {
+      "id": "mixed_mode_objectives",
+      "priority": "P2",
+      "location": "src/chiplet_floorplanning/placement/methods.py:396-403",
+      "problem": "SLP computes nominal absolute die peaks and injects them into an Evaluator cache whose modes contract is worst overshoot in K; initial and new rows then use different objectives.",
+      "evidence": {
+        "layouts": 16,
+        "wrong_rows": 6,
+        "max_difference_k": 50.0,
+        "examples": [
+          {
+            "index": 10,
+            "cached_score": 90.75797362330007,
+            "fresh_score_k": 40.757973623300074
+          },
+          {
+            "index": 11,
+            "cached_score": 93.61464224128147,
+            "fresh_score_k": 43.61464224128147
+          },
+          {
+            "index": 12,
+            "cached_score": 94.13071045794163,
+            "fresh_score_k": 44.13071045794163
+          }
+        ]
+      },
+      "reproduction": "Four-die synthetic_case(Random(41), chips=4, nets=60); powers [40,30,60,50] W; nominal and half-power modes, uniform 50 C limits, resolution 24, gap 1000 um; 4 starts from RNG 6; topology_slp budget 20, seed 3, batch 4, caps 2, steps 3. Re-evaluate all saved layouts using a fresh modes evaluator.",
+      "remedy": "Until mode-aware gradients/objectives are implemented, explicitly reject modes in topology_slp/relation_space; never write nominal Celsius values into a mode-overshoot cache.",
+      "affected_scope": "Combination with Evaluator(modes=...). Ordinary single-mode nominal runs do not trigger this reproduction."
+    },
+    {
+      "id": "premature_tried_mark",
+      "priority": "P2",
+      "location": "src/chiplet_floorplanning/placement/methods.py:385-395",
+      "problem": "Marks all candidate jobs tried before budget slicing, permanently dropping jobs that were never dispatched.",
+      "evidence": {
+        "limit": 20,
+        "reported": 15,
+        "stop": "stalled",
+        "eligible_unique_jobs": 32,
+        "executed_jobs": 5,
+        "executed_modes": [
+          "peak",
+          "peak",
+          "peak",
+          "peak",
+          "peak"
+        ],
+        "unexecuted_jobs": 27,
+        "rounds": 22,
+        "scope": "Scheduler control: only slp_chain is replaced by a chain doing one real sensitivity factorisation and returning its unchanged start; ordinary exploration and dispatch are unchanged."
+      },
+      "remedy": "Allocate dispatch slots first, and mark only dispatched jobs tried; retain unexecuted peak/length goals for later rounds."
+    },
+    {
+      "id": "thermal_key_is_not_slp_task_identity",
+      "priority": "P2",
+      "location": "src/chiplet_floorplanning/placement/methods.py:385",
+      "problem": "Thermally identical 180-degree rotations have different pin offsets and different SLP length objectives/constraints, but collide in the tried key.",
+      "evidence": {
+        "same_thermal_key": true,
+        "chains": [
+          {
+            "rotation_deg": [
+              0,
+              0
+            ],
+            "initial_length_m": 0.0027,
+            "best_length_m": 0.001,
+            "lengths_m": [
+              0.0027,
+              0.001
+            ]
+          },
+          {
+            "rotation_deg": [
+              180,
+              0
+            ],
+            "initial_length_m": 0.0043,
+            "best_length_m": 0.003,
+            "lengths_m": [
+              0.0043,
+              0.003,
+              0.003,
+              0.003
+            ]
+          }
+        ]
+      },
+      "reproduction": "Two-die import fixture from tests/atplace_import_unittest; centres [[2000,1000],[5500,1000]] um, rotations [0,0] versus [180,0]; cap 100 C, resolution 24, four SLP steps.",
+      "remedy": "Use full layout/pin-orientation identity for SLP tasks; keep thermal_key only for reusable thermal evaluations."
+    },
+    {
+      "id": "cli_option_types",
+      "priority": "P2",
+      "location": "tools/run_reference_front.py:61",
+      "problem": "Every method option is parsed as float, making string targets unusable and integer caps/chains incompatible with their consumers.",
+      "evidence": [
+        {
+          "label": "targets",
+          "arguments": [
+            "/opt/anaconda3/bin/python",
+            "tools/run_reference_front.py",
+            "--case",
+            "results/code-review-0ef1f47/fixture.json",
+            "--fv-solves",
+            "12",
+            "--random-starts",
+            "4",
+            "--descent-starts",
+            "0",
+            "--batch",
+            "4",
+            "--gap-um",
+            "1000",
+            "--resolution",
+            "24",
+            "--workers",
+            "1",
+            "--seed",
+            "7",
+            "--method",
+            "topology_slp",
+            "--method-option",
+            "targets=length",
+            "--output",
+            "results/code-review-0ef1f47/cli-targets"
+          ],
+          "returncode": 1,
+          "error_tail": [
+            "                  ^^^^^^^^",
+            "ValueError: could not convert string to float: 'length'"
+          ]
+        },
+        {
+          "label": "caps",
+          "arguments": [
+            "/opt/anaconda3/bin/python",
+            "tools/run_reference_front.py",
+            "--case",
+            "results/code-review-0ef1f47/fixture.json",
+            "--fv-solves",
+            "12",
+            "--random-starts",
+            "4",
+            "--descent-starts",
+            "0",
+            "--batch",
+            "4",
+            "--gap-um",
+            "1000",
+            "--resolution",
+            "24",
+            "--workers",
+            "1",
+            "--seed",
+            "7",
+            "--method",
+            "topology_slp",
+            "--method-option",
+            "caps=2",
+            "--output",
+            "results/code-review-0ef1f47/cli-caps"
+          ],
+          "returncode": 1,
+          "error_tail": [
+            "          ^^^^^^^^^^^^^^^^^^^",
+            "TypeError: 'float' object cannot be interpreted as an integer"
+          ]
+        }
+      ],
+      "remedy": "Parse integer, real and string options according to the method signature or an explicit supported-option schema."
+    },
+    {
+      "id": "epsilon_caps_not_forwarded",
+      "priority": "P2",
+      "location": "tools/run_reference_front.py:62",
+      "problem": "--length-caps-m is used only in output metrics and is not passed to epsilon_search, whose empty cap list performs no search beyond initialization.",
+      "evidence": {
+        "cli": {
+          "label": "epsilon",
+          "arguments": [
+            "/opt/anaconda3/bin/python",
+            "tools/run_reference_front.py",
+            "--case",
+            "results/code-review-0ef1f47/fixture.json",
+            "--fv-solves",
+            "12",
+            "--random-starts",
+            "4",
+            "--descent-starts",
+            "0",
+            "--batch",
+            "4",
+            "--gap-um",
+            "1000",
+            "--resolution",
+            "24",
+            "--workers",
+            "1",
+            "--seed",
+            "7",
+            "--method",
+            "epsilon",
+            "--length-caps-m",
+            "1000",
+            "--output",
+            "results/code-review-0ef1f47/cli-epsilon"
+          ],
+          "returncode": 0,
+          "error_tail": [],
+          "summary": {
+            "method": "epsilon",
+            "fv_solve_budget": 12,
+            "distinct_fv_solves": 4,
+            "distinct_layouts": 4,
+            "stop_reason": "stalled"
+          }
+        },
+        "same_input_with_cap_forwarded": {
+          "budget": 12,
+          "reported": 12,
+          "layouts": 12,
+          "stop": "budget",
+          "scope": "Same fixture and seed as the CLI epsilon run, with the CLI length cap actually forwarded to the method."
+        }
+      },
+      "remedy": "Pass the requested search constraints explicitly to applicable methods; distinguish reporting-only thresholds where intended."
+    },
+    {
+      "id": "zero_power_hotspot",
+      "priority": "P2",
+      "location": "src/chiplet_floorplanning/placement/lp.py:560-563",
+      "problem": "When only the hottest die has nonzero power, deleting its self-weight leaves no eligible push target and probability normalization produces NaN.",
+      "evidence": {
+        "exception": "ValueError",
+        "message": "probabilities contain NaN",
+        "power_w": [
+          40.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "die_peaks_c": [
+          75.03276551324126,
+          48.83639279330929,
+          50.324161094783655,
+          48.039296892589675
+        ],
+        "warnings": [
+          "invalid value encountered in divide"
+        ]
+      },
+      "reproduction": "The same four-die geometry with powers [40,0,0,0] W, hotspot_move RNG 2.",
+      "remedy": "When the non-self heat weight sum is zero, choose a supported alternate move or return no candidate; single-die cases also need this boundary.",
+      "affected_scope": "Hotspot moves on valid sparse/zero-power layouts; the tested all-positive imported cases do not exhibit this condition."
+    }
+  ],
+  "validations": {
+    "unittest_count": 89,
+    "unittest": "passed",
+    "two_chiplet_validate": "passed",
+    "two_chiplet_evaluate": "passed",
+    "layered_two_chiplet_evaluate": "passed"
+  },
+  "raw_results": "results/code-review-0ef1f47",
+  "reviewed_file_sha256": {
+    "src/chiplet_floorplanning/placement/methods.py": "2c6c9671ac508153bab5d5930d5ea25f35752618a037618654cdc4cd14e367a1",
+    "src/chiplet_floorplanning/placement/lp.py": "73e77dbeb3c59f57543e29eb870b3606964a146dabdb2dec436c31b14dcd0a36",
+    "src/chiplet_floorplanning/placement/evaluate.py": "ecf99cb9976fa09c930fc6f2bdf0c7fb3cd10b5a4b86be7acd3752f20bf5c386",
+    "src/chiplet_floorplanning/placement/thermal.py": "21105bef8d3a6fefdfa9ffaf32cc6c186f4203eb4ed8e4a618303e64b3f57dcc",
+    "tools/run_reference_front.py": "96c9e39f51d451f270ac7ad9ed906134ae222c228b3f888d3e4a5a45e4d50055"
+  },
+  "recommendation": "Repair task identity/dispatch and CLI before interpreting length/both/hotspot comparisons. Preserve the corrected solve budget. These controls do not establish that previously published nominal-only temperatures are wrong."
+}
