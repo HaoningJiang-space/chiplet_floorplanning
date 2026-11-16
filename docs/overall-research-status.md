@@ -333,6 +333,14 @@ v1、v2 的贪心下降在多芯粒例子中找不到可行布局。v3 改用精
 "可达距离与温度冲突"不是新问题；分档混合相对该文是扩展。详见[核查更正](link-reach-novelty.md)。
 HBM 温度上限与 GPU 邻近的问题也已有工作（Karfakis、Gupta 等人的 embedded isolators，结论是布局作用有限，主要耦合经均热板）。这条线不再作为主问题，见[分析](reach-tier-analysis.md)第 5–6 节。
 
+## 2026-11-16 与 ATPlace2.5D 的 10 例正式对比
+
+[计划与结果](atplace-comparison-plan.md)，两种热模型（我们的 FV 与 ATPlace 的 ATSim）双向评估：
+- **正式判定（冻结前沿）：无优势**。两种模型下各胜 3 例（Case1、3、5），ATPlace 胜 0 例。
+- **补充（新方法 relation_space，计划外，单种子，1000 FV）**：两种模型下各胜 7 例（Case1、4、5、6、7、9、10），ATPlace 胜 0 例；同线长下最大降温 1.8–14.0 K。
+- ATPlace 默认参数下 5 例训练失败；放宽采样时限后 Case5、6 成功，Case8–10 在 600 s 下仍失败。
+- 新方法每例 42–1,017 s；ATPlace 每例 646–6,859 s。
+
 ## 2026-11-16 方法论文（路线 A）：新方法、与 ATPlace 的对比进展、两轮评审修正
 
 **方法**：`relation_space` = 整数规划选朝向与相对位置关系（有 Gurobi 时用 Gurobi，否则 HiGHS）+ 精确线长 LP + 线长退火 → `topology_slp`（拓扑探索 + 伴随梯度序列 LP，每步精确 FV 确认）。
