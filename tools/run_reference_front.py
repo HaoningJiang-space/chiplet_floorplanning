@@ -17,7 +17,7 @@ import numpy as np
 from chiplet_floorplanning.cli import source_revision
 from chiplet_floorplanning.placement import (Evaluator, Problem, coolest_within, pareto_front,
                                              sample_legal, shortest_within)
-from chiplet_floorplanning.placement.methods import Run, pareto_local_search
+from chiplet_floorplanning.placement.methods import METHODS, Run
 from chiplet_floorplanning.placement.search import length_descent
 
 
@@ -26,6 +26,7 @@ def main():
     parser.add_argument('--case', type=Path, required=True)
     parser.add_argument('--seed', type=int, default=2026111300)
     parser.add_argument('--fv-solves', type=int, default=12000, help='budget: distinct FV solves')
+    parser.add_argument('--method', choices=sorted(METHODS), default='pareto_ls', help='search method (frozen fronts: pareto_ls)')
     parser.add_argument('--random-starts', type=int, default=96)
     parser.add_argument('--descent-starts', type=int, default=96)
     parser.add_argument('--batch', type=int, default=96)
@@ -55,7 +56,7 @@ def main():
     descent_seconds = time.perf_counter() - started
     with Evaluator(problem, args.gap_um, args.resolution, args.workers) as evaluator:
         run = Run(evaluator, args.fv_solves)
-        pareto_local_search(run, initial, rng, args.batch)
+        METHODS[args.method](run, initial, rng, batch=args.batch)
         solves = evaluator.solves
     layouts = run.layouts
     length, peak, _ = run.arrays()
@@ -68,7 +69,7 @@ def main():
                                            max_net_mm=float(max_net[i]),
                                            die_peak_c=dict(zip(problem.names, map(float, die_peak[i]))))
     summary = dict(
-        case=problem.name, status='completed', seed=args.seed, budget_unit='distinct FV solves',
+        case=problem.name, status='completed', method=args.method, seed=args.seed, budget_unit='distinct FV solves',
         fv_solve_budget=args.fv_solves, distinct_fv_solves=solves, distinct_layouts=len(layouts),
         case_path=str(args.case), case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(),
         random_starts=args.random_starts, descent_starts=args.descent_starts, batch=args.batch,
