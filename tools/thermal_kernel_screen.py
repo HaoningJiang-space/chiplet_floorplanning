@@ -62,24 +62,24 @@ def sample_points_um(problem, layout):
     return layout.centre_um[:, None] + grid[None]*size[:, None]
 
 
-def anchor_axes(problem, size_um, turn):
+def anchor_axes(problem, size_um, turn, anchors=ANCHORS):
     """Anchor centre coordinates (x, y) spanning the feasible centre range of a die of this size and turn."""
     w, h = size_um[::-1] if turn % 180 else size_um
     width, height = problem.carrier_um
-    return np.linspace(w/2, width - w/2, ANCHORS), np.linspace(h/2, height - h/2, ANCHORS)
+    return np.linspace(w/2, width - w/2, anchors), np.linspace(h/2, height - h/2, anchors)
 
 
-def anchor_table(problem, gap_um, pool):
+def anchor_table(problem, gap_um, pool, anchors=ANCHORS):
     """{(size, parity): (x anchors, y anchors, fields[iy][ix])} for every distinct powered die size."""
     keys = sorted({(tuple(problem.size_um[k]), t) for k in range(problem.count) if problem.power_w[k] for t in (0, 90)})
     jobs, slots = [], []
     for size, turn in keys:
-        ax, ay = anchor_axes(problem, size, turn)
+        ax, ay = anchor_axes(problem, size, turn, anchors)
         for iy, y in enumerate(ay):
             for ix, x in enumerate(ax):
                 jobs.append((problem, size, (x, y), turn, gap_um))
                 slots.append((size, turn, iy, ix))
-    table = {key: (*anchor_axes(problem, *key), [[None]*ANCHORS for _ in range(ANCHORS)]) for key in keys}
+    table = {key: (*anchor_axes(problem, *key, anchors), [[None]*anchors for _ in range(anchors)]) for key in keys}
     for (size, turn, iy, ix), result in zip(slots, pool.map(lone_field, jobs)):
         table[(size, turn)][2][iy][ix] = Field(*result)
     return table
@@ -131,18 +131,20 @@ def errors(pred, fv, n_front):
                 spearman_all=float(spearmanr(pred, fv)[0]), spearman_front=float(spearmanr(pred[:n_front], fv[:n_front])[0]))
 
 
-def screen_case(name, problem, front, gap_um, rng, pool):
+def screen_case(name, problem, front, gap_um, rng, pool, anchors=ANCHORS):
     layouts = [front[i] for i in sorted(set(np.linspace(0, len(front) - 1, PER_FRONT).round().astype(int)))]
     n_front = len(layouts)
     layouts += [sample_legal(problem, gap_um, rng) for _ in range(RANDOM)]
-    table = anchor_table(problem, gap_um, pool)
+    table = anchor_table(problem, gap_um, pool, anchors)
     fv = np.array(list(pool.map(fv_peak_c, [(problem, l, gap_um) for l in layouts])))
     anchor = np.array([anchor_peak_c(problem, l, table) for l in layouts])
     floor = np.array([floor_peak_c(problem, l, gap_um, pool) for l in layouts])
     row = dict(layouts=len(layouts), front_layouts=n_front, fv_range_front_k=float(np.ptp(fv[:n_front])),
-               anchor=errors(anchor, fv, n_front), floor=errors(floor, fv, n_front))
+               anchor=errors(anchor, fv, n_front), floor=errors(floor, fv, n_front),
+               fv_c=fv.tolist(), anchor_c=anchor.tolist(), floor_c=floor.tolist())
     row['usable'] = row['anchor']['spearman_all'] >= 0.9 and row['anchor']['p90_debiased_k'] <= 2.0
-    print(name, row['usable'], {k: {m: round(v, 3) for m, v in row[k].items()} for k in ('anchor', 'floor')},
+    print(name, row['usable'], 'anchor overestimates', int((anchor >= fv).sum()), 'of', len(fv),
+          {k: {m: round(v, 3) for m, v in row[k].items()} for k in ('anchor', 'floor')},
           'front range K', round(row['fv_range_front_k'], 2), flush=True)
     return row
 
@@ -165,6 +167,7 @@ def main():
     p.add_argument('--case', nargs=3, action='append', metavar=('NAME', 'CASE_JSON', 'RUN_DIR'), required=True)
     p.add_argument('--seed', type=int, default=1)
     p.add_argument('--workers', type=int, default=16)
+    p.add_argument('--anchors', type=int, default=ANCHORS, help='anchors per axis (the frozen v2 screen uses 5)')
     p.add_argument('--output', type=Path, required=True)
     args = p.parse_args()
     if args.output.exists():
@@ -174,8 +177,8 @@ def main():
     with ProcessPoolExecutor(args.workers) as pool:
         for name, case, run in args.case:
             problem, front, gap = load_front(case, Path(run))
-            rows[name] = screen_case(name, problem, front, gap, rng, pool)
-    out = dict(plan='docs/thermal-kernel-screen-plan.md#v2', verdict=verdict(rows), cases=rows)
+            rows[name] = screen_case(name, problem, front, gap, rng, pool, args.anchors)
+    out = dict(plan='docs/thermal-kernel-screen-plan.md#v2', anchors=args.anchors, verdict=verdict(rows), cases=rows)
     args.output.write_text(json.dumps(out, indent=1) + '\n')
     print(out['verdict'])
 
