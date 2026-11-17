@@ -1,0 +1,498 @@
+{
+ "case1": {
+  "proxy": {
+   "calibration_solves": 12,
+   "results": [
+    {
+     "cap_c": null,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 101.1485946775785,
+     "fv_peak_c": 102.66390682438106
+    },
+    {
+     "cap_c": 102.54540210371792,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 102.36912490302484,
+     "fv_peak_c": 103.82443390389633
+    },
+    {
+     "cap_c": 103.94220952985734,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 101.8365469256543,
+     "fv_peak_c": 103.57018433576275
+    },
+    {
+     "cap_c": 105.33901695599675,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 104.48528390409174,
+     "fv_peak_c": 106.2076982393241
+    },
+    {
+     "cap_c": 106.73582438213617,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 105.73483677485157,
+     "fv_peak_c": 107.80541996614662
+    }
+   ],
+   "lambda_mm": 37.66136937440928,
+   "c": -1.150610391500088
+  },
+  "code_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "code_dirty": false,
+  "seed": 2,
+  "distinct_fv_solves": 1000,
+  "stop_reason": "budget",
+  "wall_seconds": 59.29919515689835,
+  "baseline_wall_seconds": 46.7247550021857,
+  "coolest_c": 102.06505195374197,
+  "baseline_coolest_c": 99.60111789488315
+ },
+ "case2": {
+  "proxy": {
+   "calibration_solves": 12,
+   "results": [
+    {
+     "cap_c": null,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 75.7528391999681,
+     "fv_peak_c": 75.87757366273142
+    },
+    {
+     "cap_c": 76.78065755941743,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 76.76318145203956,
+     "fv_peak_c": 76.776211666781
+    },
+    {
+     "cap_c": 77.80847817814609,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 77.76941121239315,
+     "fv_peak_c": 77.67995447563317
+    },
+    {
+     "cap_c": 78.83629879687473,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 78.77135492075743,
+     "fv_peak_c": 78.63247170008427
+    },
+    {
+     "cap_c": 79.86411941560338,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 79.86422093093493,
+     "fv_peak_c": 79.64641840983617
+    }
+   ],
+   "lambda_mm": 37.66136937440928,
+   "c": -1.150610391500088
+  },
+  "code_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "code_dirty": false,
+  "seed": 2,
+  "distinct_fv_solves": 1000,
+  "stop_reason": "budget",
+  "wall_seconds": 69.11030324082822,
+  "baseline_wall_seconds": 56.03057913482189,
+  "coolest_c": 75.77470356401085,
+  "baseline_coolest_c": 75.82125506704264
+ },
+ "case3": {
+  "proxy": {
+   "calibration_solves": 11,
+   "results": [
+    {
+     "cap_c": null,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 104.83737708328155,
+     "fv_peak_c": 104.86948749321502
+    },
+    {
+     "cap_c": 110.42269120230662,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 109.78669858615916,
+     "fv_peak_c": 109.55314821841046
+    },
+    {
+     "cap_c": 116.00800569222213,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 114.44067585590777,
+     "fv_peak_c": 113.92212354567191
+    },
+    {
+     "cap_c": 121.59332018213763,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 120.45890760037364,
+     "fv_peak_c": 119.68201075299585
+    },
+    {
+     "cap_c": 127.17863467205314,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 125.48606339832203,
+     "fv_peak_c": 125.85873413396246
+    }
+   ],
+   "lambda_mm": 37.66136937440928,
+   "c": -1.150610391500088
+  },
+  "code_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "code_dirty": false,
+  "seed": 2,
+  "distinct_fv_solves": 1000,
+  "stop_reason": "budget",
+  "wall_seconds": 237.49735997291282,
+  "baseline_wall_seconds": 96.55890740687028,
+  "coolest_c": 104.86948749321502,
+  "baseline_coolest_c": 105.42273115397413
+ },
+ "case4": {
+  "proxy": {
+   "calibration_solves": 12,
+   "results": [
+    {
+     "cap_c": null,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 108.46331018475293,
+     "fv_peak_c": 110.77004169109509
+    },
+    {
+     "cap_c": 113.97305683147778,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 111.91991126556258,
+     "fv_peak_c": 115.09392526931906
+    },
+    {
+     "cap_c": 119.48275550659918,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 115.99578583881309,
+     "fv_peak_c": 118.47563236180973
+    },
+    {
+     "cap_c": 124.99245418172059,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 119.92163289872704,
+     "fv_peak_c": 122.19109877902397
+    },
+    {
+     "cap_c": 130.502152856842,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 124.40001392293097,
+     "fv_peak_c": 124.97476827994457
+    }
+   ],
+   "lambda_mm": 37.66136937440928,
+   "c": -1.150610391500088
+  },
+  "code_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "code_dirty": false,
+  "seed": 2,
+  "distinct_fv_solves": 1000,
+  "stop_reason": "budget",
+  "wall_seconds": 487.3593996139243,
+  "baseline_wall_seconds": 182.1181874498725,
+  "coolest_c": 110.77004169109509,
+  "baseline_coolest_c": 116.07300522960917
+ },
+ "case5": {
+  "proxy": {
+   "calibration_solves": 11,
+   "results": [
+    {
+     "cap_c": null,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 125.50466878013131,
+     "fv_peak_c": 124.78194100624363
+    },
+    {
+     "cap_c": 131.93664308832467,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 129.95221335081976,
+     "fv_peak_c": 130.21266701231218
+    },
+    {
+     "cap_c": 138.3686184639335,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 133.5202722776348,
+     "fv_peak_c": 133.8543010013271
+    },
+    {
+     "cap_c": 144.80059383954236,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 142.40342860983972,
+     "fv_peak_c": 140.6027543398952
+    },
+    {
+     "cap_c": 151.2325692151512,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 143.20202923280425,
+     "fv_peak_c": 144.01269099899372
+    }
+   ],
+   "lambda_mm": 37.66136937440928,
+   "c": -1.150610391500088
+  },
+  "code_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "code_dirty": false,
+  "seed": 2,
+  "distinct_fv_solves": 1000,
+  "stop_reason": "budget",
+  "wall_seconds": 736.9545674212277,
+  "baseline_wall_seconds": 434.14391813380644,
+  "coolest_c": 124.78194100624363,
+  "baseline_coolest_c": 127.03183440552378
+ },
+ "case6": {
+  "proxy": {
+   "calibration_solves": 12,
+   "results": [
+    {
+     "cap_c": null,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 95.17578700915519,
+     "fv_peak_c": 94.87151122246502
+    },
+    {
+     "cap_c": 100.33910752427902,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 98.0088821176294,
+     "fv_peak_c": 98.0799457482496
+    },
+    {
+     "cap_c": 105.50244605147753,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 102.6048858697965,
+     "fv_peak_c": 103.40956083594227
+    },
+    {
+     "cap_c": 110.66578457867605,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 105.64608633390036,
+     "fv_peak_c": 106.77861306661
+    },
+    {
+     "cap_c": 115.82912310587457,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 111.47308068376728,
+     "fv_peak_c": 111.23656815079589
+    }
+   ],
+   "lambda_mm": 37.66136937440928,
+   "c": -1.150610391500088
+  },
+  "code_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "code_dirty": false,
+  "seed": 2,
+  "distinct_fv_solves": 999,
+  "stop_reason": "stalled",
+  "wall_seconds": 770.852950445842,
+  "baseline_wall_seconds": 466.3594827558845,
+  "coolest_c": 94.87151122246502,
+  "baseline_coolest_c": 96.86942098788134
+ },
+ "case7": {
+  "proxy": {
+   "calibration_solves": 14,
+   "results": [
+    {
+     "cap_c": null,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 75.8400657403412,
+     "fv_peak_c": 76.56123724889332
+    },
+    {
+     "cap_c": 78.37532563547661,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 77.28748827300245,
+     "fv_peak_c": 77.8792561156398
+    },
+    {
+     "cap_c": 80.9105898359098,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 79.77625529620725,
+     "fv_peak_c": 80.02589488668801
+    },
+    {
+     "cap_c": 83.44585403634301,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 80.05589284484796,
+     "fv_peak_c": 79.90194066436645
+    },
+    {
+     "cap_c": 85.9811182367762,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 84.1785113275512,
+     "fv_peak_c": 84.81177254852823
+    }
+   ],
+   "lambda_mm": 37.66136937440928,
+   "c": -1.150610391500088
+  },
+  "code_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "code_dirty": false,
+  "seed": 2,
+  "distinct_fv_solves": 1000,
+  "stop_reason": "budget",
+  "wall_seconds": 786.4681677930057,
+  "baseline_wall_seconds": 468.87612693803385,
+  "coolest_c": 76.56123724889332,
+  "baseline_coolest_c": 77.51674159989591
+ },
+ "case8": {
+  "proxy": {
+   "calibration_solves": 11,
+   "results": [
+    {
+     "cap_c": null,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 77.09298614129894,
+     "fv_peak_c": 77.5227933709541
+    },
+    {
+     "cap_c": 78.81117992733479,
+     "solved": false,
+     "legal": false
+    },
+    {
+     "cap_c": 80.52943225430862,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 77.8927451364928,
+     "fv_peak_c": 78.34917981383491
+    },
+    {
+     "cap_c": 82.24768458128246,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 80.07020465291721,
+     "fv_peak_c": 79.84181910976662
+    },
+    {
+     "cap_c": 83.96593690825628,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 80.25072308326067,
+     "fv_peak_c": 81.47556601844613
+    }
+   ],
+   "lambda_mm": 37.66136937440928,
+   "c": -1.150610391500088
+  },
+  "code_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "code_dirty": false,
+  "seed": 2,
+  "distinct_fv_solves": 999,
+  "stop_reason": "stalled",
+  "wall_seconds": 839.8050438850187,
+  "baseline_wall_seconds": 536.6515076709911,
+  "coolest_c": 75.49484229376642,
+  "baseline_coolest_c": 76.16979356102449
+ },
+ "case9": {
+  "proxy": {
+   "calibration_solves": 14,
+   "results": [
+    {
+     "cap_c": null,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 134.57958141814248,
+     "fv_peak_c": 134.88122321788106
+    },
+    {
+     "cap_c": 136.87741477827032,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 127.50774566228444,
+     "fv_peak_c": 126.25477133441379
+    },
+    {
+     "cap_c": 139.17525842779133,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 127.45100357723499,
+     "fv_peak_c": 126.71975648849434
+    },
+    {
+     "cap_c": 141.47310207731238,
+     "solved": false,
+     "legal": false
+    },
+    {
+     "cap_c": 143.7709457268334,
+     "solved": true,
+     "legal": true,
+     "proxy_peak_c": 129.31533118915615,
+     "fv_peak_c": 128.17249982568595
+    }
+   ],
+   "lambda_mm": 37.66136937440928,
+   "c": -1.150610391500088
+  },
+  "code_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "code_dirty": false,
+  "seed": 2,
+  "distinct_fv_solves": 1000,
+  "stop_reason": "budget",
+  "wall_seconds": 1132.9007940008305,
+  "baseline_wall_seconds": 785.558488945011,
+  "coolest_c": 118.70780191877812,
+  "baseline_coolest_c": 118.59976620976433
+ },
+ "case10": {
+  "proxy": {
+   "calibration_solves": 14,
+   "results": [
+    {
+     "cap_c": null,
+     "solved": false,
+     "legal": false
+    }
+   ],
+   "lambda_mm": 37.66136937440928,
+   "c": -1.150610391500088
+  },
+  "code_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "code_dirty": false,
+  "seed": 2,
+  "distinct_fv_solves": 999,
+  "stop_reason": "stalled",
+  "wall_seconds": 1126.372226270847,
+  "baseline_wall_seconds": 1022.2427396429703,
+  "coolest_c": 109.4031512174465,
+  "baseline_coolest_c": 109.11828435468952
+ }
+}
