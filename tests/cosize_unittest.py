@@ -8,7 +8,8 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from sizing_unittest import small_problem  # noqa: E402
 from chiplet_floorplanning.placement import Evaluator, is_legal, pin_manhattan_um  # noqa: E402
-from chiplet_floorplanning.placement.cosize import anchored, cosize  # noqa: E402
+from chiplet_floorplanning.placement import cosize as cosize_module  # noqa: E402
+from chiplet_floorplanning.placement.cosize import anchored, cosize, family  # noqa: E402
 from chiplet_floorplanning.placement.cost import interposer_cost, max_height  # noqa: E402
 from chiplet_floorplanning.placement import Layout, Problem  # noqa: E402
 from chiplet_floorplanning.placement.lp import legalize_relations, milp_relations, pin_length_cut  # noqa: E402
@@ -127,9 +128,9 @@ class AnchoredTest(unittest.TestCase):
 
     def test_designs_meet_the_anchor_limits_and_never_cost_more(self):
         limited = replace(self.p, limit_c=np.full(4, self.peak))
-        for inner in ('proxy', 'axial', 'blind'):
-            out = anchored(limited, self.anchor, 500, self.length, 200, inner=inner, aspects=(1.0, 2.0), steps=3,
-                           milp_s=10, threads=1, workers=1, resolution=16, chain_steps=3)
+        for inner in ('proxy', 'axial', 'blind', 'relation_space'):
+            out = anchored(limited, self.anchor, 500, self.length, 200, inner=inner, aspects=(1.0, 2.0),
+                           size_s=10, threads=1, workers=1, resolution=16, chain_steps=3)
             self.assertLessEqual(abs(out['anchor']['j_k']), 1e-6)
             self.assertLessEqual(out['fv_solves'], 200)
             best = out['best']
@@ -148,6 +149,39 @@ class AnchoredTest(unittest.TestCase):
         out = anchored(limited, self.anchor, 500, self.length, 200, workers=1, resolution=16)
         self.assertIsNone(out['best'])
         self.assertEqual(out['history'][0]['stop'], 'reproduction_mismatch')
+        self.assertAlmostEqual(out['anchor']['j_k'], 0.5, places=6)    # measured, not assumed
+        from run_cosize import fixed_aspect                            # the baseline uses the same check
+        base = fixed_aspect(limited, 500, self.length, 100, 2, 5, 1, self.anchor, resolution=16)
+        self.assertIsNone(base['best'])
+        self.assertEqual(base['history'][0]['stop'], 'reproduction_mismatch')
+        self.assertEqual(base['fv_solves'], 1)
+
+    def test_zero_budget_spends_no_solve(self):
+        limited = replace(self.p, limit_c=np.full(4, self.peak))
+        for inner in ('blind', 'proxy'):
+            out = anchored(limited, self.anchor, 500, self.length, 0, inner=inner, workers=1, resolution=16)
+            self.assertEqual(out['fv_solves'], 0)
+        out = anchored(limited, self.anchor, 500, self.length, 3, inner='proxy', workers=1, resolution=16)
+        self.assertEqual(out['fv_solves'], 1)                          # anchor checked, calibration unaffordable
+        self.assertEqual(out['history'][-1]['stop'], 'fv budget before calibration')
+
+    def test_a_solver_timeout_keeps_the_mapped_start_and_the_family_goes_on(self):
+        limited = replace(self.p, limit_c=np.full(4, self.peak))
+        original = cosize_module.milp_relations
+
+        def timeout(*args, **kwargs):
+            cosize_module.MILP_STATUS['status'] = 'time_limit'
+            return None
+        cosize_module.milp_relations = timeout
+        try:
+            records, used = family((limited, self.anchor, 500, self.length, None, 1.0, 159.0, 1500.0, 100, 1.0, 1,
+                                    None, 16, 3, cosize_module.CostParams(), 2, 1))
+        finally:
+            cosize_module.milp_relations = original
+        trials = [r for r in records if 'status' in r]
+        self.assertGreater(len(trials), 1)                             # a failure does not end the family
+        self.assertTrue(any(r['certified'] and r['stages'][0]['stage'] == 'start' for r in trials))
+        self.assertGreater(used, 0)
 
 
 if __name__ == '__main__':

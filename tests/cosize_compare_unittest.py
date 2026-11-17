@@ -31,7 +31,8 @@ class CosizeCompareTest(unittest.TestCase):
         self.assertEqual(len(combos()), 17)
         result, coverage = verdict({'a': 'win'}, 17)
         self.assertEqual(coverage['missing'], 16)
-        self.assertEqual(result, 'ineffective')
+        self.assertEqual(result, 'incomplete')
+        self.assertEqual(verdict({str(i): 'win' for i in range(7)}, 17)[0], 'incomplete')
 
     def test_compare_reads_files_and_counts(self):
         with tempfile.TemporaryDirectory() as d:
@@ -43,6 +44,15 @@ class CosizeCompareTest(unittest.TestCase):
             self.assertEqual(row['outcome'], 'win')
             self.assertEqual(report['cosize_vs_fixed_aspect']['verdict'], 'effective')
             self.assertIn('case1-atp_wl', report['cosize_savings_vs_original'])
+
+    def test_runs_from_different_protocols_are_not_paired(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d/'case1-atp_wl-cosize.json').write_text(json.dumps(dict(run((26., 30.)), protocol_revision='cosize-v3.1')))
+            (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(dict(run((40., 40.)), protocol_revision='cosize-v2')))
+            report = compare(d, [(1, 'atp_wl')])
+            self.assertEqual(report['cosize_vs_fixed_aspect']['rows']['case1-atp_wl']['outcome'], 'unpaired')
+            self.assertEqual(report['cosize_vs_fixed_aspect']['verdict'], 'incomplete')
 
 
 if __name__ == '__main__':

@@ -53,11 +53,21 @@ def verdict(outcomes, expected):
     coverage = dict(expected=expected, found=len(outcomes), wins=wins, losses=losses,
                     ties=sum(o == 'tie' for o in outcomes.values()),
                     unavailable=sum(o == 'unavailable' for o in outcomes.values()), missing=expected - len(outcomes))
+    if coverage['missing']:
+        return 'incomplete', coverage                   # no verdict while runs are missing or unpaired
     if wins >= 0.40*expected and losses <= 0.10*expected:
         return 'effective', coverage
     if losses >= 0.25*expected or wins < 0.15*expected:
         return 'ineffective', coverage
     return 'partial', coverage
+
+
+IDENTITY = ('protocol_revision', 'case_sha256', 'anchor_sha256', 't_ref_c', 'l_ref_m')
+
+
+def mismatch(a, b):
+    """Identity fields on which two runs of one combination differ (they must not be paired)."""
+    return [k for k in IDENTITY if a.get(k) != b.get(k)]
 
 
 def compare(runs, combos_list):
@@ -70,6 +80,9 @@ def compare(runs, combos_list):
         for n, ref in combos_list:
             a, b = load(n, ref, ours), load(n, ref, theirs)
             if a is None or b is None:
+                continue
+            if mismatch(a, b):
+                rows[f'case{n}-{ref}'] = dict(outcome='unpaired', mismatch=mismatch(a, b))
                 continue
             sa, sb = certified(a), certified(b)
             ca, cb = cheapest(sa), cheapest(sb)
