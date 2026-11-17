@@ -1,0 +1,81 @@
+{
+ "check": "area",
+ "plan": "docs/sizing-plan-revisions.md section 6",
+ "verdict": "fails",
+ "spearman": 0.2380952380952381,
+ "within_3x": 2.0,
+ "cases_ranked": 8,
+ "lambda_mm": 37.66136937440928,
+ "rows": {
+  "Case1": {
+   "linear_scale": 0.85,
+   "area_factor": 0.7224999999999999,
+   "predicted_k": 4.065904201954397,
+   "measured_k": null,
+   "unknown": true
+  },
+  "Case2": {
+   "linear_scale": 0.85,
+   "area_factor": 0.7224999999999999,
+   "predicted_k": 1.7139372961111974,
+   "measured_k": 0.6385013392987133,
+   "unknown": false
+  },
+  "Case3": {
+   "linear_scale": 0.85,
+   "area_factor": 0.7224999999999999,
+   "predicted_k": 2.9310471042201143,
+   "measured_k": 1.7725518120930417,
+   "unknown": false
+  },
+  "Case4": {
+   "linear_scale": 0.85,
+   "area_factor": 0.7224999999999999,
+   "predicted_k": 4.324910573357369,
+   "measured_k": 19.857882703743584,
+   "unknown": false
+  },
+  "Case5": {
+   "linear_scale": 0.85,
+   "area_factor": 0.7224999999999999,
+   "predicted_k": 3.2672563201727876,
+   "measured_k": null,
+   "unknown": true
+  },
+  "Case6": {
+   "linear_scale": 0.85,
+   "area_factor": 0.7224999999999999,
+   "predicted_k": 1.593600751452592,
+   "measured_k": 6.610541717033044,
+   "unknown": false
+  },
+  "Case7": {
+   "linear_scale": 0.85,
+   "area_factor": 0.7224999999999999,
+   "predicted_k": 0.482926843528886,
+   "measured_k": 2.113045917832622,
+   "unknown": false
+  },
+  "Case8": {
+   "linear_scale": 0.85,
+   "area_factor": 0.7224999999999999,
+   "predicted_k": 0.38413062598413744,
+   "measured_k": 1.2615228475272033,
+   "unknown": false
+  },
+  "Case9": {
+   "linear_scale": 0.85,
+   "area_factor": 0.7224999999999999,
+   "predicted_k": 1.4492482204500505,
+   "measured_k": 14.559975609474478,
+   "unknown": false
+  },
+  "Case10": {
+   "linear_scale": 0.85,
+   "area_factor": 0.7224999999999999,
+   "predicted_k": 0.8048083432416183,
+   "measured_k": 8.09179992890651,
+   "unknown": false
+  }
+ }
+}
