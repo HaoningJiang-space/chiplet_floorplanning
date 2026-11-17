@@ -1,0 +1,329 @@
+{
+  "date": "2026-11-17",
+  "baseline_commit": "5aa50a99ee9b285ee35468d932bcac2f7a6c3f3a",
+  "fetch_succeeded_at_start": true,
+  "main_equal_origin_at_start": true,
+  "source_sha256": {
+    "src/chiplet_floorplanning/placement/proxy.py": "273faa05701b7bca2dc0f12a3223f87d8dc9863ddf8c448adeb0c6c238071e6b",
+    "src/chiplet_floorplanning/placement/lp.py": "dad623301e9e62d00cb4f3ac83174b0ccd4e6711a44765048f674a2c0a875c1e",
+    "src/chiplet_floorplanning/placement/methods.py": "30f26b1dbd1e061a881cb5a6147e01dfc7868dd6e4ccc020ea3a512f725a9fea",
+    "tools/sizing_compare.py": "881dd715298521b70f1a649eca9dd7c6f0428a1eec21e0c34f34ea2f51df27b5",
+    "tests/proxy_unittest.py": "9c5c7863de527bcbb0c921054b31c716737333272253522eeab983c4298cca22",
+    "tests/sizing_compare_unittest.py": "940d803ed0921c27ab0f76a4986704139f6a481ae43c00aae6d220418b20a0a6"
+  },
+  "scope": "Repair objective/cap consistency and sizing decision semantics; no new algorithm comparison or physical calibration.",
+  "dense_control": {
+    "definition": "Four 6x6 mm square dies, 50 W each, 13x13 mm carrier, gap 0, ring nets; seed 0, 60 FV budget, 5 s MILP limit, four cap levels.",
+    "before_evidence": "docs/evidence/first-principles-proxy-3e9238b.json",
+    "before_public_method": {
+      "notes": {
+        "proxy": {
+          "calibration_solves": 10,
+          "results": [
+            {
+              "cap_c": null,
+              "solved": true,
+              "legal": true,
+              "proxy_peak_c": 81.2666691048016,
+              "fv_peak_c": 83.4464245202453
+            },
+            {
+              "cap_c": 81.5774711076843,
+              "solved": false,
+              "legal": false
+            },
+            {
+              "cap_c": 81.88827311056697,
+              "solved": false,
+              "legal": false
+            },
+            {
+              "cap_c": 82.19907511344965,
+              "solved": false,
+              "legal": false
+            },
+            {
+              "cap_c": 82.50987711633232,
+              "solved": true,
+              "legal": true,
+              "proxy_peak_c": 81.48726425919546,
+              "fv_peak_c": 83.82513513347855
+            }
+          ],
+          "lambda_mm": 37.66136937440933,
+          "c": -1.1506103915000894
+        }
+      },
+      "solves": 59,
+      "layouts": 27
+    },
+    "before_cap_schedule": {
+      "carrier_um": [
+        13000,
+        13000
+      ],
+      "die_size_um": [
+        6000,
+        6000
+      ],
+      "power_w": [
+        50,
+        50,
+        50,
+        50
+      ],
+      "low_euclidean_c": 81.26666910480162,
+      "high_euclidean_c": 82.82067911921463,
+      "axis_lower_bound_c": 82.349039273601,
+      "caps": [
+        {
+          "cap_c": 81.57747110768422,
+          "below_proved_lower_bound": true,
+          "solution_found": false
+        },
+        {
+          "cap_c": 81.88827311056683,
+          "below_proved_lower_bound": true,
+          "solution_found": false
+        },
+        {
+          "cap_c": 82.19907511344942,
+          "below_proved_lower_bound": true,
+          "solution_found": false
+        },
+        {
+          "cap_c": 82.50987711633204,
+          "below_proved_lower_bound": false,
+          "solution_found": true
+        }
+      ],
+      "short_centre_um": [
+        [
+          9000.0,
+          9000.000000000005
+        ],
+        [
+          9000.0,
+          3000.0000000000055
+        ],
+        [
+          3000.0,
+          2999.999999999932
+        ],
+        [
+          2999.999999999198,
+          9000.00000000061
+        ]
+      ],
+      "cool_centre_um": [
+        [
+          10000.000000000002,
+          9999.999999999884
+        ],
+        [
+          10000.0,
+          3000.0
+        ],
+        [
+          2999.9999999999254,
+          2999.9999999998836
+        ],
+        [
+          2999.9999999999145,
+          9999.999999999874
+        ]
+      ]
+    },
+    "before_infeasibility_proof": "All four 6 mm dies have centre coordinates in [3,10] mm in the 13 mm square carrier. Therefore rho<=7 mm. The tangent envelope E(r)=max(0,max_k(a_k+b_k*r)) is nonincreasing. Each of the four equal-power temperature rows is at least 45 + 50*s + 150*E(7) = 82.349039273601 C. The first three scheduled caps are below this bound, hence infeasible independently of solver termination status.",
+    "after": {
+      "notes": {
+        "schema_version": 2,
+        "calibration_solves": 10,
+        "results": [
+          {
+            "cap": null,
+            "cap_c": null,
+            "solved": true,
+            "legal": true,
+            "proxy_peak_c": 81.2666691048016,
+            "radial_value": 81.2666691048016,
+            "envelope_value": 82.349039273601,
+            "fv_value": 83.4464245202453,
+            "fv_peak_c": 83.4464245202453,
+            "envelope_cap_met": null,
+            "fv_cap_met": null
+          },
+          {
+            "cap": 82.67779519876214,
+            "cap_c": 82.67779519876214,
+            "solved": true,
+            "legal": true,
+            "proxy_peak_c": 81.72804525147971,
+            "radial_value": 81.72804525147971,
+            "envelope_value": 82.67804048224934,
+            "fv_value": 84.28401152117243,
+            "fv_peak_c": 84.28401152117243,
+            "envelope_cap_met": false,
+            "fv_cap_met": false
+          },
+          {
+            "cap": 83.0065511239233,
+            "cap_c": 83.0065511239233,
+            "solved": true,
+            "legal": true,
+            "proxy_peak_c": 82.1013940433942,
+            "radial_value": 82.1013940433942,
+            "envelope_value": 83.00688353988122,
+            "fv_value": 85.0550473558248,
+            "fv_peak_c": 85.0550473558248,
+            "envelope_cap_met": false,
+            "fv_cap_met": false
+          },
+          {
+            "cap": 83.33530704908445,
+            "cap_c": 83.33530704908445,
+            "solved": true,
+            "legal": true,
+            "proxy_peak_c": 82.34166748183185,
+            "radial_value": 82.34166748183185,
+            "envelope_value": 83.33489598518503,
+            "fv_value": 85.49406991013343,
+            "fv_peak_c": 85.49406991013343,
+            "envelope_cap_met": true,
+            "fv_cap_met": false
+          },
+          {
+            "cap": 83.66406297424561,
+            "cap_c": 83.66406297424561,
+            "solved": true,
+            "legal": true,
+            "proxy_peak_c": 82.59022444906726,
+            "radial_value": 82.59022444906726,
+            "envelope_value": 83.66355699165976,
+            "fv_value": 85.9964227057281,
+            "fv_peak_c": 85.9964227057281,
+            "envelope_cap_met": true,
+            "fv_cap_met": false
+          }
+        ],
+        "thermal_kind": "peak_c",
+        "lambda_mm": 37.66136937440933,
+        "c": -1.1506103915000894,
+        "envelope_low": 82.349039273601,
+        "envelope_high": 83.99281889940676
+      },
+      "fv_solves": 60,
+      "layouts": 32
+    },
+    "after_solved_cap_count": 4,
+    "after_max_positive_post_legalization_envelope_excess_k": 0.0003324159579136676,
+    "interpretation": "All four caps produce legal candidates. Two post-snap envelope checks fail by less than 0.00034 K; all four FV cap checks fail. These flags are retained, not treated as physical thermal guarantees."
+  },
+  "sizing_control": {
+    "before": {
+      "status": "unsupported",
+      "t_cap": 80.0,
+      "l_cap_m": 1.1
+    },
+    "after": {
+      "status": "ok",
+      "t_cap": 100.0,
+      "l_cap_m": 1.1,
+      "baseline_reference": {
+        "index": 0,
+        "length_m": 1.0,
+        "thermal": 100.0
+      }
+    },
+    "overall_verdict": "incomplete",
+    "reticle_verdict": "incomplete"
+  },
+  "limit_control": {
+    "test": "ProxyTest.test_limits_include_unpowered_observers_and_allow_negative_margin",
+    "die_sizes_mm": [
+      [
+        6,
+        6
+      ],
+      [
+        6,
+        6
+      ]
+    ],
+    "power_w": [
+      10,
+      0
+    ],
+    "limit_c": [
+      100,
+      45.5
+    ],
+    "carrier_mm": [
+      30,
+      30
+    ],
+    "declared_synthetic_proxy": {
+      "self_k_w": [
+        1,
+        1
+      ],
+      "lambda_mm": 20,
+      "c": -1
+    },
+    "cap_overshoot_k": -0.1,
+    "checks": [
+      "Negative overshoot cap has a feasible solution.",
+      "Tight unpowered observer requires over 1000 um additional interconnect span versus relaxed 100 C limit.",
+      "Adding 10 K to every limit subtracts 10 K from both objective evaluators."
+    ],
+    "physical_calibration": false
+  },
+  "validation": {
+    "focused": {
+      "tests": 13,
+      "passed": true,
+      "seconds": 3.59,
+      "log_local": "results/proxy-consistency-fix/focused.log"
+    },
+    "full": {
+      "tests": 150,
+      "passed": true,
+      "seconds": 104.94,
+      "command": "PYTHONPATH=src:tools:tests OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m unittest discover -s tests -p '*_unittest.py' -v",
+      "log_local": "results/proxy-consistency-fix/unittest.log"
+    },
+    "two_chiplets": {
+      "validate_passed": true,
+      "evaluate_passed": true,
+      "reference_peak_c": 34.1886,
+      "thermal_model": "uncalibrated",
+      "timing": "not_run"
+    },
+    "before_regression": {
+      "baseline_commit": "5aa50a9",
+      "proxy_behavior_failures": 2,
+      "sizing_test_import_error": "reticle_verdict did not exist; not counted as behavioral evidence",
+      "sizing_behavior": "Direct reticle_decision control separately reproduced unsupported at 1.1 m / 80 C."
+    },
+    "sizing_cli": {
+      "passed": true,
+      "expected_area_factors": 6,
+      "missing_area_factors": 5,
+      "overall_verdict": "incomplete",
+      "reticle_verdict": "incomplete"
+    },
+    "environment": {
+      "python": "3.12.7",
+      "numpy": "1.26.4",
+      "scipy": "1.13.1"
+    },
+    "reproduce_focused": "PYTHONPATH=src:tools:tests OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m unittest proxy_unittest sizing_compare_unittest -v"
+  },
+  "preserved_result": "px-v1 remains the frozen 3e9238b comparison: 0 wins, 0 losses. Correctness fixes do not establish improved layout quality.",
+  "remaining_scope": [
+    "Axial envelope is not an FV upper bound.",
+    "No new solver optimality or termination classification.",
+    "No external thermal calibration or real timing validation.",
+    "Orientation/near-field approximation remains; analyze existing layouts before adding projection directions."
+  ]
+}

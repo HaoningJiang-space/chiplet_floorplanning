@@ -50,3 +50,16 @@
 明确报告 `threshold_unattained`，不要通过放宽硬温限强行保证可行。
 总体光罩判定也应区分未完成、缺候选、工艺不支持和有效负结果，不能全部落为 degenerate。
 详见[本轮控制证据](evidence/first-principles-proxy-3e9238b.json)。
+
+## 2026-11-17 相对门槛与判定状态已修复
+
+`sizing_compare` 现在从原尺寸基线中、共同互连预算 L_cap 内选择最凉的实际点作为相对 T_cap，
+并记录 `baseline_reference` 的行号、线长和热目标。同一 40 × 40 mm 控制现在选择
+(1 m,100 °C)，门槛为 1.1 m / 100 °C，状态为 `ok`，不再组合两个不同布局的极值。
+这修订的是“匹配基线”规则，没有更改独立的芯粒硬温限。
+
+在共同互连预算内，无有限成本候选时为 `unsupported`；有有限成本候选但热门槛未达时为
+`threshold_unattained`。总体对比不完整，或任一光罩决策未获得 `ok`，光罩总体判定为
+`incomplete`，不计作有效负结果。CLI 控制只提供一个面积档，明确报告缺失 5 档，两个总体判定
+均为 `incomplete`。[证据](evidence/proxy-consistency-fix-20261117.json)含旧版与修正版控制，
+此修复不追溯改写已有冻结实验的判定。

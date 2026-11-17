@@ -3,7 +3,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from sizing_compare import SWEEP, compare_budget, front_points, reticle_decision, verdict  # noqa: E402
+from sizing_compare import SWEEP, compare_budget, front_points, reticle_decision, reticle_verdict, verdict  # noqa: E402
 
 
 def rows(points):
@@ -60,6 +60,24 @@ class SizingCompareTest(unittest.TestCase):
     def test_only_unsupported_sizes_give_unsupported(self):
         huge = [record(1.0, [((60., 60.), [(1., 80.)])], ((60., 60.), [(1., 80.)]))]   # beyond 3.3 reticles
         self.assertEqual(reticle_decision(huge)['status'], 'unsupported')
+
+    def test_relative_threshold_uses_a_jointly_attainable_baseline_point(self):
+        data = [record(1.0, [], ((40., 40.), [(1., 100.), (10., 80.)]))]
+        out = reticle_decision(data)
+        self.assertEqual(out['status'], 'ok')
+        self.assertEqual(out['t_cap'], 100.)
+        self.assertEqual(out['baseline_reference'], dict(index=0, length_m=1., thermal=100.))
+        self.assertTrue(all(p['with_threshold'] is not None for p in out['pairs']))
+
+    def test_unattained_supported_candidates_are_not_unsupported_or_a_negative_verdict(self):
+        data = [record(1.0, [((40., 40.), [(1., 90.)])], ((60., 60.), [(1., 80.)]))]
+        out = reticle_decision(data)
+        self.assertEqual(out['status'], 'threshold_unattained')
+        self.assertTrue(all(p['without_threshold'] is not None and p['with_threshold'] is None for p in out['pairs']))
+        self.assertEqual(reticle_verdict({'case1': dict(reticle=out)}, 'partial'), 'incomplete')
+        ok = {'case1': dict(reticle=dict(status='ok', thermally_driven_sets=0))}
+        self.assertEqual(reticle_verdict(ok, 'incomplete'), 'incomplete')
+        self.assertEqual(reticle_verdict(ok, 'partial'), 'degenerate')
 
 
 if __name__ == '__main__':

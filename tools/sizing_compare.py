@@ -88,8 +88,10 @@ def reticle_decision(records):
     if not original or not original[0]['baseline']['rows']:
         return dict(status='no original-size baseline')
     base_rows = original[0]['baseline']['rows']
-    t_cap = min(thermal(r) for r in base_rows)
     l_cap = WIRE_SLACK*min(r['length_m'] for r in base_rows)
+    reference_index, reference = min(((i, r) for i, r in enumerate(base_rows) if r['length_m'] <= l_cap + 1e-12),
+                                     key=lambda item: thermal(item[1]))
+    t_cap = thermal(reference)
     pool = [c for c in candidates(records) if c[3] <= l_cap + 1e-12]
     pairs, driven = [], 0
     for params in SWEEP:
@@ -100,9 +102,20 @@ def reticle_decision(records):
                      and (free['option'], free['fields']) != (capped['option'], capped['fields']))
         driven += thermally
         pairs.append(dict(params=params, without_threshold=free, with_threshold=capped, thermally_driven=thermally))
-    status = 'unsupported' if all(x['with_threshold'] is None for x in pairs) else 'ok'
-    return dict(status=status, t_cap=t_cap, threshold_kind='baseline coolest at original size (relative)',
+    status = ('unsupported' if all(x['without_threshold'] is None for x in pairs) else
+              'threshold_unattained' if all(x['with_threshold'] is None for x in pairs) else 'ok')
+    return dict(status=status, t_cap=t_cap,
+                threshold_kind='baseline coolest within wire budget at original size (relative)',
+                baseline_reference=dict(index=reference_index, length_m=reference['length_m'], thermal=t_cap),
                 l_cap_m=l_cap, pairs=pairs, thermally_driven_sets=driven)
+
+
+def reticle_verdict(cases, comparison_verdict):
+    """A missing or unattained decision is not a negative result for the frozen reticle comparison."""
+    if comparison_verdict == 'incomplete' or any(c['reticle'].get('status') != 'ok' for c in cases.values()):
+        return 'incomplete'
+    driven = sum(c['reticle']['thermally_driven_sets'] > 0 for c in cases.values())
+    return 'non_degenerate' if driven >= 3 else 'degenerate'
 
 
 def main():
@@ -124,7 +137,7 @@ def main():
     driven_cases = sum((c['reticle'].get('thermally_driven_sets') or 0) > 0 for c in cases.values())
     args.output.write_text(json.dumps(dict(plan='docs/sizing-plan-revisions.md', verdict=result, coverage=coverage,
                                            reticle_thermally_driven_cases=driven_cases,
-                                           reticle_verdict='non_degenerate' if driven_cases >= 3 else 'degenerate',
+                                           reticle_verdict=reticle_verdict(cases, result),
                                            cases=cases), indent=1, default=float) + '\n')
     print(result, coverage, 'thermally driven reticle decisions in', driven_cases, 'cases')
 

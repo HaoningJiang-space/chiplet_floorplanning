@@ -81,7 +81,48 @@ class ThermalProxy:
         return problem.power_w*self.self_k_w + mutual.sum(axis=1)
 
     def peak_c(self, problem, layout):
+        """Absolute peak of the Euclidean proxy, even when the search uses per-die limits."""
         return AMBIENT_C + float(self.die_rise_c(problem, layout).max())
+
+    def objective(self, problem, rise):
+        """Peak in degC, or worst per-die overshoot in K when absolute limits are supplied."""
+        value = AMBIENT_C + rise
+        if problem.limit_c is not None:
+            value = value - problem.limit_c
+        return float(value.max())
+
+    def value(self, problem, layout):
+        """Euclidean proxy in the search objective's units; not the MILP envelope."""
+        return self.objective(problem, self.die_rise_c(problem, layout))
+
+    def pair_tangents(self, problem, i, j, gap_um):
+        """Shared pair coefficients for the MILP and its fixed-layout evaluation."""
+        low = (problem.size_um[i].min() + problem.size_um[j].min())/2000 + gap_um/1000
+        return self.tangents(low, np.hypot(*problem.carrier_um)/1000)
+
+    def envelope_value(self, problem, layout, gap_um):
+        """Minimum MILP envelope at a fixed legal layout, in the search objective's units.
+
+        Each pair chooses its largest admissible separating-axis distance. Since every pair contribution has a
+        nonnegative power coefficient and the tangent envelope decreases, those independent choices attain the
+        smallest feasible envelope. This is not a bound on FV temperature.
+        """
+        size = np.where((layout.rotation_deg % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)
+        rise = problem.power_w*self.self_k_w
+        for i in range(problem.count):
+            for j in range(i + 1, problem.count):
+                if problem.power_w[i] == problem.power_w[j] == 0:
+                    continue
+                delta = np.abs(layout.centre_um[i] - layout.centre_um[j])
+                separated = delta >= (size[i] + size[j])/2 + gap_um - 1e-4  # solver roundoff, um
+                if not separated.any():
+                    raise ValueError('proxy envelope requires separated chiplets')
+                rho = delta[separated].max()/1000
+                a, b = self.pair_tangents(problem, i, j, gap_um)
+                tau = max(0.0, float((a + b*rho).max()))
+                rise[i] += problem.power_w[j]*tau
+                rise[j] += problem.power_w[i]*tau
+        return self.objective(problem, rise)
 
     def tangents(self, low_mm, high_mm, count=12):
         """(intercept, slope) of tangents to g at count points spaced geometrically on [low, high]; g is convex and

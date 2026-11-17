@@ -449,10 +449,10 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
     problem.carrier_um: one-hot over the width levels W_l, a continuous height H <= min(envelope height, cap / W_l),
     and every die inside [0, W_l] x [0, H]; exact for the given width levels. It then returns (layout, (width_mm,
     height_mm), chosen level index) with the carrier shrunk to the dies' extent, or None.
-    `proxy` = (ThermalProxy, cap degC or None) adds the one-dimensional thermal proxy: per pair of powered dies a
-    distance rho <= the centre separation along the chosen side relation (a lower bound of the true distance, so the
-    proxy is conservative), tau >= tangents of the convex decreasing mutual-heating g(rho), and the proxy peak
-    t >= P_i s_i + sum_j P_j tau_ij; with a cap t is bounded, with None t is minimised (wire length breaks ties)."""
+    `proxy` = (ThermalProxy, cap or None) adds the axial tangent envelope: rho <= separation along the chosen side
+    relation, tau >= tangents of g(rho), and t >= P_i s_i + sum_j P_j tau_ij - limit_i for every observer (including
+    unpowered dies). Omit limit_i when no limits are given. The cap is in degC, or overshoot K with Problem.limit_c;
+    with None the envelope is minimised (wire length breaks ties). This envelope is not an FV upper bound."""
     from scipy.optimize import Bounds
     from .geometry import rotate
     n = problem.count
@@ -481,7 +481,7 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         nvar = ih + 1
     if proxy is not None:
         powered = set(np.flatnonzero(problem.power_w > 0))
-        hot_pairs = [(p, i, j) for p, (i, j) in enumerate(pairs) if i in powered and j in powered]
+        hot_pairs = [(p, i, j) for p, (i, j) in enumerate(pairs) if i in powered or j in powered]
         irho, itau = nvar, nvar + len(hot_pairs)
         ipk = itau + len(hot_pairs)
         nvar = ipk + 1
@@ -524,7 +524,6 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         add([(s + q, 1.0) for q in range(4)], 1, np.inf)
     if proxy is not None:
         model, cap = proxy
-        diagonal = float(np.hypot(width, height))
         tau_of = {}
         for k, (p, i, j) in enumerate(hot_pairs):
             s = isd + 4*p
@@ -532,13 +531,13 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
                 base = ix if axis == 0 else iy
                 # rho <= v_second - v_first + big (1 - s_q)
                 add([(irho + k, 1.0), (base + second, -1.0), (base + first, 1.0), (s + q, big)], -np.inf, big)
-            low = (size[i].min() + size[j].min())/2 + gap
-            for a, b in zip(*model.tangents(low, diagonal)):
+            for a, b in zip(*model.pair_tangents(problem, i, j, gap_um)):
                 add([(itau + k, 1.0), (irho + k, -b)], a, np.inf)              # tau >= a + b rho
             tau_of[(i, j)] = tau_of[(j, i)] = itau + k
-        for i in sorted(powered):
+        for i in range(n):
+            limit = 0.0 if problem.limit_c is None else problem.limit_c[i]
             add([(ipk, 1.0)] + [(tau_of[(i, j)], -problem.power_w[j]) for j in sorted(powered) if j != i],
-                problem.power_w[i]*model.self_k_w[i], np.inf)               # t >= P_i s_i + sum_j P_j tau_ij
+                problem.power_w[i]*model.self_k_w[i] - limit, np.inf)
     cost = np.zeros(nvar)
     for c, (i, j, k, oi, oj) in enumerate(clusters):
         ri, rj = rotate(np.tile(oi, (4, 1)), turns), rotate(np.tile(oj, (4, 1)), turns)
@@ -561,6 +560,8 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
     if proxy is not None:
         lower[irho:itau] = [(size[i].min() + size[j].min())/2 + gap for _, i, j in hot_pairs]
         upper[irho:itau] = np.hypot(width, height)
+        if problem.limit_c is not None:
+            lower[ipk] = -np.inf          # a safe layout has negative overshoot; t is objective - ambient
         if proxy[1] is None:
             cost = cost*1e-6
             cost[ipk] = 1.0

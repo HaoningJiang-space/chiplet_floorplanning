@@ -536,9 +536,9 @@ def proxy_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, le
     (plan: docs/proxy-space-plan.md).
 
     After the short-end seeds the proxy is calibrated (its FV solves are charged); one MILP minimises the proxy
-    peak, then `levels` caps evenly between that and the shortest seed's proxy peak each give a wirelength-minimal
-    layout under the cap. The results are legalised with minimal displacement, FV-confirmed, and join the starts
-    of `topology_slp`.
+    envelope, then `levels` caps between that and the shortest seed's envelope give wirelength-minimal candidates.
+    All endpoints and caps use the same envelope and per-die limits as the MILP. Legalised candidates are evaluated
+    separately by the envelope, Euclidean proxy and FV, and join the starts of `topology_slp`.
     """
     evaluator = run.evaluator
     problem, gap_um = evaluator.problem, evaluator.gap_um
@@ -548,7 +548,8 @@ def proxy_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, le
     if not starts:
         raise RuntimeError('no legal start: no initial layouts and the MILP found no layout')
     cost = len(R_MM) + len({tuple(size) for size in problem.size_um})
-    notes = run.notes.setdefault('proxy', dict(calibration_solves=cost, results=[]))
+    notes = run.notes.setdefault('proxy', dict(schema_version=2, calibration_solves=cost, results=[],
+                                              thermal_kind='peak_c' if problem.limit_c is None else 'overshoot_k'))
     if cost + levels + 1 > run.limit - evaluator.solves:
         notes['skipped'] = 'calibration does not fit the remaining FV budget'
         topology_slp(run, starts, rng, **kw)
@@ -557,20 +558,33 @@ def proxy_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, le
     evaluator.solves += model.solves
     notes.update(lambda_mm=model.lam_mm, c=model.c)
     shortest = min(starts, key=lambda l: pin_manhattan_um(problem, l).sum())
-    found = [(None, milp_relations(problem, gap_um, cap_milp_s, proxy=(model, None)))]
-    if found[0][1] is not None:
-        low, high = model.peak_c(problem, found[0][1]), model.peak_c(problem, shortest)
-        found += [(cap, milp_relations(problem, gap_um, cap_milp_s, proxy=(model, cap)))
-                  for cap in np.linspace(low, high, levels + 2)[1:-1]]
+
+    def solve_candidate(cap):
+        raw = milp_relations(problem, gap_um, cap_milp_s, proxy=(model, cap))
+        legal = legalize_relations(problem, raw, gap_um) if raw is not None else None
+        return cap, raw is not None, legal
+
+    found = [solve_candidate(None)]
+    if found[0][2] is not None:
+        high = model.envelope_value(problem, shortest, gap_um)
+        # A time-limited incumbent need not beat a known legal seed. Either endpoint supplies a feasible witness.
+        low = min(high, model.envelope_value(problem, found[0][2], gap_um))
+        notes.update(envelope_low=low, envelope_high=high)
+        found += [solve_candidate(float(cap)) for cap in np.unique(np.linspace(low, high, levels + 2)[1:-1])]
     candidates = []
-    for cap, layout in found:
-        legal = legalize_relations(problem, layout, gap_um) if layout is not None else None
-        row = dict(cap_c=cap, solved=layout is not None, legal=legal is not None)
+    for cap, solved, legal in found:
+        row = dict(cap=cap, cap_c=cap if problem.limit_c is None else None, solved=solved, legal=legal is not None)
         if legal is not None:
             candidates.append(legal)
             row['proxy_peak_c'] = model.peak_c(problem, legal)
+            row['radial_value'] = model.value(problem, legal)
+            row['envelope_value'] = model.envelope_value(problem, legal, gap_um)
             index = run.evaluate([legal])[0]
-            row['fv_peak_c'] = None if index is None else run.peaks[index]
+            fv = row['fv_value'] = None if index is None else run.peaks[index]
+            row['fv_peak_c'] = (fv if problem.limit_c is None or index is None
+                                else float((run.die_peaks[index] + problem.limit_c).max()))
+            row['envelope_cap_met'] = None if cap is None else row['envelope_value'] <= cap + 1e-6
+            row['fv_cap_met'] = None if cap is None or fv is None else fv <= cap + 1e-6
         notes['results'].append(row)
     topology_slp(run, starts + candidates, rng, **kw)
 
