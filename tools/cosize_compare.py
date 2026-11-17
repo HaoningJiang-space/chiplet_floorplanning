@@ -25,8 +25,11 @@ def combos(with_case8_cool=False):
 
 
 def certified(record):
-    """(width, height) of every design the run certified (history records), plus the reported best."""
+    """(width, height) of every design the run certified (history records), plus the reported best and, when the
+    shared anchor check passed, the original carrier itself: under re-priced costs it may be the cheapest."""
     sizes = {(h['width_mm'], h['height_mm']) for h in record.get('history', []) if h.get('certified')}
+    if (record.get('anchor') or {}).get('ok'):
+        sizes.add(tuple(record['anchor']['carrier_mm']))
     if record.get('best'):
         sizes.add((record['best']['width_mm'], record['best']['height_mm']))
     return sizes
@@ -62,12 +65,12 @@ def verdict(outcomes, expected):
     return 'partial', coverage
 
 
-IDENTITY = ('protocol_revision', 'case_sha256', 'anchor_sha256', 't_ref_c', 'l_ref_m')
+IDENTITY = ('protocol_revision', 'case_sha256', 'anchor_sha256', 't_ref_c', 'l_ref_m', 'seed', 'fv_budget')
 
 
 def mismatch(a, b):
-    """Identity fields on which two runs of one combination differ (they must not be paired)."""
-    return [k for k in IDENTITY if a.get(k) != b.get(k)]
+    """Identity fields missing from either run or differing between them (such runs must not be paired)."""
+    return [k for k in IDENTITY if a.get(k) is None or b.get(k) is None or a[k] != b[k]]
 
 
 def compare(runs, combos_list):

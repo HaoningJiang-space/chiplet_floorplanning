@@ -97,6 +97,15 @@ class AnchoredTest(unittest.TestCase):
         self.assertEqual(base['history'][0]['stop'], 'reproduction_mismatch')
         self.assertEqual(base['fv_solves'], 1)
 
+    def test_the_baseline_accepts_an_anchor_within_the_reproduction_tolerance(self):
+        from unittest.mock import patch
+        from run_cosize import fixed_aspect
+        limited = replace(self.p, limit_c=np.full(4, self.peak - 1e-9))          # J = +1e-9 K, inside 1e-6 K
+        with patch('run_cosize.BISECTION_STEPS', 0):
+            out = fixed_aspect(limited, 500, self.length, 10, 2, 5, 1, self.anchor, resolution=16)
+        self.assertTrue(out['history'][0]['certified'])
+        self.assertEqual(out['best']['width_mm'], 40.0)
+
     def test_zero_budget_spends_no_solve(self):
         limited = replace(self.p, limit_c=np.full(4, self.peak))
         for inner in ('blind', 'proxy'):

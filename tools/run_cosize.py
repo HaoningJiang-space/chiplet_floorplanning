@@ -86,6 +86,8 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
                                           dict(milp_s=milp_s, workers=workers))
             used += int(archive['solves'])
             ok = [i for i, r in enumerate(rows) if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]
+            if record.get('anchor'):
+                ok = [0]                    # verify_anchor accepted it: |J| <= REPRODUCE_K, length within budget
             record.update(fv_solves=int(archive['solves']), certified=bool(ok),
                           best_j_k=min((r['thermal'] for r in rows if r['length_m'] <= length_m + 1e-9), default=None))
         except RuntimeError as error:
@@ -151,7 +153,7 @@ def main():
                        size_s=args.size_s, threads=args.threads, workers=args.workers, directions=args.directions,
                        seed=args.seed)
     w0, h0 = (s/1000 for s in problem.carrier_um)
-    record = dict(protocol_revision='cosize-v3.1', case=args.case.stem, method=args.method,
+    record = dict(protocol_revision='cosize-v3.2', case=args.case.stem, method=args.method,
                   reference=args.reference, reference_label=label,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
                       k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),

@@ -120,11 +120,12 @@ def fixed_carrier(problem, gap_um, length_m, model, start, time_s, threads, dire
 
 
 def try_carrier(sized, base, base_um, gap_um, length_m, model, budget, size_s, threads, directions, resolution,
-                chain_steps, seed, workers):
+                chain_steps, seed, workers, rs_share=None):
     """One trial carrier. Candidates in order, each FV-certified within `budget`: (1) the last certified layout
     mapped into this carrier (keeps its topology; the SLP chain is the local thermal/length repair), (2) a new
     topology - the MILP (model given or 'blind'), or relation_space seeded with (1) (model == 'relation_space').
-    Returns (record fields, certified (layout, J, length) or None, FV solves)."""
+    relation_space spends at most `rs_share` FV solves per trial (it would otherwise use the whole family budget on
+    the first trial). Returns (record fields, certified (layout, J, length) or None, FV solves)."""
     start = fit_into(sized, base, base_um, gap_um)
     rec, used, ok = dict(started=start is not None, stages=[]), 0, None
     if start is not None and budget - used > 1:
@@ -136,8 +137,11 @@ def try_carrier(sized, base, base_um, gap_um, length_m, model, budget, size_s, t
             from run_sizing import run_front              # tools/: the size-then-place baseline's inner search
             import time
             began = time.perf_counter()
-            rows, archive = run_front(sized, gap_um, budget - used, seed, [start],
-                                      dict(milp_s=size_s, workers=workers))
+            try:
+                rows, archive = run_front(sized, gap_um, min(budget - used, rs_share or budget), seed, [start],
+                                          dict(milp_s=size_s, workers=workers))
+            except RuntimeError:                  # no legal start (raised before any FV solve)
+                rows, archive = [], dict(solves=0)
             n = int(archive['solves'])
             good = [i for i, r in enumerate(rows) if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]
             if good:
@@ -168,18 +172,20 @@ def family(args):
     """One aspect family: the trial areas from the largest down, each trial seeded with the smallest certified
     layout so far (continuation); a failure is recorded and the search goes on - only a proof of infeasibility ends
     it (smaller carriers of this aspect fit inside, so they are infeasible too). Then up to REFINE bisections
-    between the smallest certified area and the next failed one. Returns the records and FV solves."""
+    between the smallest certified area and the next failed one (or the dies' total area if none failed). Returns the records and FV solves."""
     (problem, anchor, gap_um, length_m, model, aspect, low, high, budget, size_s, threads, directions, resolution,
      chain_steps, params, seed, workers) = args
     base, base_um, used, records = anchor, problem.carrier_um, 0, []
     good = None                                         # smallest certified area
+    areas = trial_areas(aspect, low, high, params)
+    rs_share = max(2, budget//(len(areas) + REFINE))     # relation_space: an equal share per planned trial
 
     def trial(area, step):
         nonlocal base, base_um, used, good
         w, h = box(area, aspect)
         sized = replace(problem, carrier_um=(w*1000, h*1000))
         rec, ok, n = try_carrier(sized, base, base_um, gap_um, length_m, model, budget - used, size_s, threads,
-                                 directions, resolution, chain_steps, seed, workers)
+                                 directions, resolution, chain_steps, seed, workers, rs_share)
         used += n
         rec.update(aspect=aspect, step=step, area_mm2=area, width_mm=w, height_mm=h, fv_solves=n,
                    cost_usd=interposer_cost(w, h, params)['total_usd'], certified=ok is not None)
@@ -193,7 +199,7 @@ def family(args):
         return rec
 
     step = 0
-    for area in trial_areas(aspect, low, high, params):
+    for area in areas:
         if budget - used <= 1:
             records.append(dict(aspect=aspect, step=step, stop='fv budget'))
             return records, used
@@ -204,7 +210,7 @@ def family(args):
             break
     failed = [r['area_mm2'] for r in records if r.get('status') in ('not_found', 'proven_infeasible') and good is not None
               and r['area_mm2'] < good]
-    hi_ok, lo_bad = good, max(failed) if failed else None
+    hi_ok, lo_bad = good, max(failed) if failed else low     # all certified: refine toward the dies' total area
     for _ in range(REFINE):
         if hi_ok is None or lo_bad is None or budget - used <= 1:
             break

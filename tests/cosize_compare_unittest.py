@@ -8,10 +8,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from cosize_compare import certified, combos, compare, outcome, verdict  # noqa: E402
 
 
-def run(best=None, history=()):
+IDENTITY = dict(protocol_revision='cosize-v3.2', case_sha256='c', anchor_sha256='a', t_ref_c=100.0, l_ref_m=1.0,
+                seed=2, fv_budget=1000)
+
+
+def run(best=None, history=(), **identity):
     return dict(best=best and dict(width_mm=best[0], height_mm=best[1], cost_usd=0.0), history=[
         dict(width_mm=w, height_mm=h, certified=c) for w, h, c in history],
-        original=dict(width_mm=42.0, height_mm=42.0, total_usd=253.9), fv_solves=10, wall_s=1.0)
+        original=dict(width_mm=42.0, height_mm=42.0, total_usd=253.9), fv_solves=10, wall_s=1.0,
+        **{**IDENTITY, **identity})
 
 
 class CosizeCompareTest(unittest.TestCase):
@@ -48,11 +53,19 @@ class CosizeCompareTest(unittest.TestCase):
     def test_runs_from_different_protocols_are_not_paired(self):
         with tempfile.TemporaryDirectory() as d:
             d = Path(d)
-            (d/'case1-atp_wl-cosize.json').write_text(json.dumps(dict(run((26., 30.)), protocol_revision='cosize-v3.1')))
-            (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(dict(run((40., 40.)), protocol_revision='cosize-v2')))
-            report = compare(d, [(1, 'atp_wl')])
-            self.assertEqual(report['cosize_vs_fixed_aspect']['rows']['case1-atp_wl']['outcome'], 'unpaired')
-            self.assertEqual(report['cosize_vs_fixed_aspect']['verdict'], 'incomplete')
+            (d/'case1-atp_wl-cosize.json').write_text(json.dumps(run((26., 30.))))
+            for bad in (dict(protocol_revision='cosize-v2'), dict(seed=3), dict(fv_budget=100), dict(seed=None)):
+                (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(run((40., 40.), **bad)))
+                report = compare(d, [(1, 'atp_wl')])
+                self.assertEqual(report['cosize_vs_fixed_aspect']['rows']['case1-atp_wl']['outcome'], 'unpaired')
+                self.assertEqual(report['cosize_vs_fixed_aspect']['verdict'], 'incomplete')
+
+    def test_the_checked_anchor_stays_in_the_repriced_pool(self):
+        r = run((26., 30.), [(26., 30., True)])
+        r['anchor'] = dict(ok=True, carrier_mm=[42.0, 42.0])
+        self.assertIn((42.0, 42.0), certified(r))
+        r['anchor']['ok'] = False
+        self.assertNotIn((42.0, 42.0), certified(r))
 
 
 if __name__ == '__main__':
