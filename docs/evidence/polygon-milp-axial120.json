@@ -1,0 +1,52 @@
+{
+ "Case1": {
+  "status": "optimal",
+  "seconds": 0.719456868711859,
+  "value": 101.2336687228862
+ },
+ "Case2": {
+  "status": "optimal",
+  "seconds": 0.5423684790730476,
+  "value": 75.82953018717627
+ },
+ "Case3": {
+  "status": "optimal",
+  "seconds": 108.97222695313394,
+  "value": 104.84307551233945
+ },
+ "Case4": {
+  "status": "time_limit",
+  "seconds": 120.04926323890686,
+  "value": 108.85343853710567
+ },
+ "Case5": {
+  "status": "time_limit",
+  "seconds": 120.05098480079323,
+  "value": 126.03861313083259
+ },
+ "Case6": {
+  "status": "time_limit",
+  "seconds": 120.05743297794834,
+  "value": 91.9636260582848
+ },
+ "Case7": {
+  "status": "time_limit",
+  "seconds": 120.12468055030331,
+  "value": 74.65739258929497
+ },
+ "Case8": {
+  "status": "time_limit",
+  "seconds": 120.1525044250302,
+  "value": 75.70526727160741
+ },
+ "Case9": {
+  "status": "time_limit",
+  "seconds": 120.27237939974293,
+  "value": 114.68174887624762
+ },
+ "Case10": {
+  "status": "time_limit",
+  "seconds": 120.52793006878346,
+  "value": 109.0668345766436
+ }
+}

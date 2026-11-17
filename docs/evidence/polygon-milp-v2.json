@@ -1,0 +1,148 @@
+{
+ "check": "polygon_milp",
+ "verdict": "adopt",
+ "not_worse": 10,
+ "both": 10,
+ "cases": {
+  "Case1": {
+   "axial": {
+    "found": true,
+    "status": "optimal",
+    "seconds": 0.9320013392716646,
+    "value": 101.2336687228862
+   },
+   "polygon8": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 61.0145968971774,
+    "value": 98.49419952067714
+   }
+  },
+  "Case2": {
+   "axial": {
+    "found": true,
+    "status": "optimal",
+    "seconds": 0.7538533299230039,
+    "value": 75.82953018717627
+   },
+   "polygon8": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 60.9346769079566,
+    "value": 75.63016055265655
+   }
+  },
+  "Case3": {
+   "axial": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 60.062474101781845,
+    "value": 104.8431091997634
+   },
+   "polygon8": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 120.13177902251482,
+    "value": 104.84302475102518
+   }
+  },
+  "Case4": {
+   "axial": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 60.042672138195485,
+    "value": 108.85339166159591
+   },
+   "polygon8": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 120.10507931234315,
+    "value": 108.75438594194785
+   }
+  },
+  "Case5": {
+   "axial": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 60.03945666691288,
+    "value": 126.03861286188831
+   },
+   "polygon8": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 120.07724009593949,
+    "value": 126.02266802365978
+   }
+  },
+  "Case6": {
+   "axial": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 60.06232659006491,
+    "value": 93.24490939022539
+   },
+   "polygon8": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 120.14051211997867,
+    "value": 91.94981541859869
+   }
+  },
+  "Case7": {
+   "axial": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 60.130365984048694,
+    "value": 74.67346447228202
+   },
+   "polygon8": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 120.26899376930669,
+    "value": 74.05478652085219
+   }
+  },
+  "Case8": {
+   "axial": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 60.16403729375452,
+    "value": 76.58463131252677
+   },
+   "polygon8": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 120.36011376930401,
+    "value": 75.88672594440735
+   }
+  },
+  "Case9": {
+   "axial": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 60.25379358883947,
+    "value": 114.875436816221
+   },
+   "polygon8": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 120.58769479067996,
+    "value": 113.72680672883207
+   }
+  },
+  "Case10": {
+   "axial": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 63.42639463301748,
+    "value": 112.89344768337368
+   },
+   "polygon8": {
+    "found": true,
+    "status": "time_limit",
+    "seconds": 124.11158027173951,
+    "value": 104.0278082296638
+   }
+  }
+ }
+}

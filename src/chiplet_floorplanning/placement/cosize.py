@@ -58,12 +58,15 @@ def carrier_of(extent_mm):
 
 
 def sized_milp(problem, envelope_problem, levels, h_max, gap_um, milp_s, params, area_cap, wire_mm, proxy, threads,
-               cuts, max_cuts=6):
+               cuts, max_cuts=6, directions=None):
     """Per reticle option k: the MILP's design under the cap (min area with a proxy, else min wire). The clustered
     wire row is only a relaxation of the exact per-pin length, so a result over the exact budget adds a pin-length
     cut (lp.pin_length_cut, valid for every layout) to the shared list `cuts` and is solved again, at most max_cuts
     times. Returns [(cost, width, height, k, layout)] for the options that gave a finite-cost carrier within budget;
-    the blind baseline retains the chosen width level and full allowed height, not the compact min-wire extent."""
+    the blind baseline retains the chosen width level and full allowed height, not the compact min-wire extent.
+    With `directions` the proxy distance is K-directional: the axial MILP is solved first and its layout warm-starts
+    the K-direction MILP (feasible for it, since an axial separation is one of the directions; docs/polygon-distance-
+    plan.md), so the K-direction result is never worse than the axial one in the K-direction metric."""
     found, statuses = [], {}
     for k in FIELD_OPTIONS:
         caps = np.array([min(max_height(w, k, h_max, params), ASPECT*w) for w in levels])
@@ -77,10 +80,15 @@ def sized_milp(problem, envelope_problem, levels, h_max, gap_um, milp_s, params,
         if len(excluded) == len(levels):
             continue
         for _ in range(max_cuts + 1):
-            out = milp_relations(envelope_problem, gap_um, milp_s,
-                                 sizing=(levels, area_cap, excluded, caps, proxy is not None, levels/ASPECT),
-                                 proxy=proxy, wire_mm=wire_mm, threads=threads, focus=1, wire_cuts=cuts)
+            sizing = (levels, area_cap, excluded, caps, proxy is not None, levels/ASPECT)
+            out = milp_relations(envelope_problem, gap_um, milp_s, sizing=sizing, proxy=proxy, wire_mm=wire_mm,
+                                 threads=threads, focus=1, wire_cuts=cuts)
             statuses[k] = MILP_STATUS['status']
+            if proxy is not None and directions and out is not None:
+                polygon = milp_relations(envelope_problem, gap_um, milp_s, sizing=sizing, proxy=proxy, wire_mm=wire_mm,
+                                         threads=threads, focus=1, wire_cuts=cuts, directions=directions, start=out[0])
+                statuses[k] = (statuses[k], MILP_STATUS['status'])
+                out = polygon or out
             if out is None or pin_manhattan_um(problem, out[0]).sum()/1000 <= wire_mm + 1e-6:
                 break
             cuts.append(out[0])
@@ -95,8 +103,15 @@ def sized_milp(problem, envelope_problem, levels, h_max, gap_um, milp_s, params,
     return found, statuses
 
 
+def proxy_value(model, problem, layout, gap_um, directions):
+    """The proxy in the metric the MILP constrains: K-direction, or axial without directions."""
+    if directions:
+        return model.polygon_value(problem, layout, gap_um, directions)
+    return model.envelope_value(problem, layout, gap_um)
+
+
 def cosize(problem, gap_um, length_m, fv_budget, thermal=True, envelope=1.25, rounds=24, milp_s=120.0, steps=12,
-           resolution=64, params=CostParams(), shrink=0.02, margin_step=0.25, loosen=3, threads=8):
+           resolution=64, params=CostParams(), shrink=0.02, margin_step=0.25, loosen=3, threads=8, directions=None):
     """problem.limit_c must be set; its carrier times `envelope` bounds the search. Returns a dict with the best
     certified design (or None), every round's record and the FV solves spent (calibration included).
 
@@ -128,7 +143,7 @@ def cosize(problem, gap_um, length_m, fv_budget, thermal=True, envelope=1.25, ro
         if start is not None:
             (layout0, peaks0), = slp_chain((problem, start, gap_um, resolution, length_m, 0, 'length'))
             solves += 1
-            offset = model.envelope_value(problem, layout0, gap_um) - float(peaks0.max())
+            offset = proxy_value(model, problem, layout0, gap_um, directions) - float(peaks0.max())
             margin = -offset
     area_cap = None if thermal else w_max*h_max
     low = 0.0                                   # blind bisection: largest failed area
@@ -140,7 +155,7 @@ def cosize(problem, gap_um, length_m, fv_budget, thermal=True, envelope=1.25, ro
             history.append(dict(round=r, stop='fv budget'))
             break
         found, statuses = sized_milp(problem, envelope_problem, levels, h_max, gap_um, milp_s, params, area_cap, wire_mm,
-                           (model, -margin) if thermal else None, threads, cuts)
+                           (model, -margin) if thermal else None, threads, cuts, directions=directions)
         if not found:
             history.append(dict(round=r, stop='milp found nothing', solver=statuses, margin_k=margin,
                                 area_cap_mm2=area_cap))
@@ -166,7 +181,7 @@ def cosize(problem, gap_um, length_m, fv_budget, thermal=True, envelope=1.25, ro
             ok, j_seen, l_seen = None, None, None
             if record['legal']:
                 if thermal:
-                    record['envelope_j_k'] = model.envelope_value(sized, legal, gap_um)
+                    record['envelope_j_k'] = proxy_value(model, sized, legal, gap_um, directions)
                 chain_steps = min(steps, fv_budget - solves - 1)
                 ok, (j_seen, l_seen), used = certify(sized, legal, gap_um, length_m, chain_steps, resolution)
                 solves += used

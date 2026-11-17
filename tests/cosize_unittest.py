@@ -109,6 +109,10 @@ class CosizeTest(unittest.TestCase):
         layout = Layout(np.array(best['centre_um']), np.array(best['rotation_deg']))
         self.assertTrue(is_legal(sized, layout, 500))
         self.assertLess(best['cost_usd'], interposer_cost(40., 40.)['total_usd'])
+        polygon = cosize(limited, 500, budget, 120, rounds=4, milp_s=10, steps=3, resolution=16, directions=8)
+        self.assertIsNotNone(polygon['best'])
+        self.assertLessEqual(polygon['best']['j_k'], 0)
+        self.assertLessEqual(polygon['fv_solves'], 120)
         blind = cosize(limited, 500, budget, 120, thermal=False, rounds=4, milp_s=10, steps=3, resolution=16)
         self.assertEqual(blind['calibration_solves'], 0)
 

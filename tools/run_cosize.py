@@ -98,6 +98,7 @@ def main():
     p.add_argument('--gap-um', type=float, default=0)
     p.add_argument('--milp-s', type=float, default=60)
     p.add_argument('--rounds', type=int, default=12)
+    p.add_argument('--directions', type=int, default=None, help='K-direction proxy distance (cosize only; v2: 8)')
     p.add_argument('--workers', type=int, default=16)
     p.add_argument('--seed', type=int, default=2)
     p.add_argument('--output', type=Path, required=True)
@@ -116,7 +117,7 @@ def main():
         out = fixed_aspect(limited, args.gap_um, l_ref, args.fv_solves, args.seed, args.milp_s, args.workers)
     else:
         out = cosize(limited, args.gap_um, l_ref, args.fv_solves, thermal=args.method == 'cosize', envelope=ENVELOPE,
-                     rounds=args.rounds, milp_s=args.milp_s)
+                     rounds=args.rounds, milp_s=args.milp_s, directions=args.directions)
     w0, h0 = (s/1000 for s in problem.carrier_um)
     record = dict(protocol_revision='cosize-v2', case=args.case.stem, method=args.method,
                   reference=args.reference, reference_label=label,

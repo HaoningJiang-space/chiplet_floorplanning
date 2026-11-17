@@ -132,3 +132,18 @@
   - 固定长宽比基线没有保存所选布局，结果无法复算。
 - v1 的 cosize 结果作为"旧算法（轴向代理、每轮只认证最便宜候选）"的记录保留，**不作为正式比较的一方**。
 - 正式比较改为 cosize-v2：三种方法全部用修正后的同一代码重跑。其热表示（轴向或 8 方向）取决于 [8 方向 MILP 门槛](polygon-distance-plan.md) 的结论，在 v2 运行前写定。
+
+## cosize-v2 正式运行（运行前冻结，2026-11-17）
+
+代码为本节提交，包含复核修正 `c8ae6ee` 与 8 方向表示。四种方法用同一份代码，种子 2，1000 次 FV，MILP 每次 60 s，轮数 12，moe-server：
+- **cosize**：8 方向距离（`--directions 8`），每次先解轴向 MILP 并以其解热启动 8 方向 MILP；裕量的测量与约束都用 8 方向值。
+- **cosize_axial**（表示消融）：同一方法，用轴向距离。
+- **fixed_aspect**（主比较对手）与 **cosize_blind**（热信息消融）：使用复核修正后的实现。
+
+组合：
+- atp_wl：Case1–10；
+- atp_cool：Case1–7；Case8 在 ATPlace v3 产出热感知布局并完成 FV 评分后，以同一协议追加；Case9、10 无此参照。
+
+判定规则不变（见"判定"节）：
+- 主比较：cosize vs fixed_aspect；
+- 消融：cosize vs cosize_blind，cosize vs cosize_axial，同一规则。
