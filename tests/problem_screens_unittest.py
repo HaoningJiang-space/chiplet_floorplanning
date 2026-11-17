@@ -8,7 +8,8 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from placement_core_unittest import synthetic_case  # noqa: E402
 from chiplet_floorplanning.placement import Layout, Problem, pin_manhattan_um, sample_legal  # noqa: E402
-from problem_screens import box_gap_um, saving  # noqa: E402
+from problem_screens import SCALES, box_gap_um, saving, scaled_case  # noqa: E402
+from chiplet_floorplanning.placement import thermal_case_data  # noqa: E402
 
 
 class ProblemScreensTest(unittest.TestCase):
@@ -29,6 +30,16 @@ class ProblemScreensTest(unittest.TestCase):
             layout = sample_legal(problem, 500, rng)
             self.assertTrue((box_gap_um(problem, layout) <= pin_manhattan_um(problem, layout) + 1e-6).all())
             self.assertGreaterEqual(saving(problem, layout), 0)
+
+    def test_scaled_cases_have_valid_names_and_scaled_carriers(self):
+        # The first area screen died on names like Case1_s0.92: the thermal model's IDs allow no '.'.
+        case = synthetic_case(random.Random(5), chips=3, nets=10)
+        for s in SCALES:
+            scaled = scaled_case(case, s)
+            problem = Problem.from_imported(scaled)
+            self.assertAlmostEqual(problem.carrier_um[0], round(case['interposer_width_um']*s, -1))
+            if s >= 1:
+                thermal_case_data(problem, sample_legal(problem, 0, np.random.default_rng(0)), 0, 8)
 
 
 if __name__ == '__main__':

@@ -54,16 +54,25 @@ def phy(args):
     print(verdict)
 
 
+def tag(s):
+    """Scale label usable in case names (the thermal model's IDs allow no '.'): 0.92 -> s0p92."""
+    return f's{s:g}'.replace('.', 'p')
+
+
+def scaled_case(case, s):
+    return dict(case, name=f"{case['name']}_{tag(s)}",
+                interposer_width_um=round(case['interposer_width_um']*s, -1),
+                interposer_height_um=round(case['interposer_height_um']*s, -1))
+
+
 def scale(args):
     args.output.mkdir(parents=True, exist_ok=False)
     for n in args.cases:
         case = json.loads((args.import_dir/f'Case{n}.json').read_text())
         for s in SCALES:
-            scaled = dict(case, name=f"{case['name']}_s{s:g}",
-                          interposer_width_um=round(case['interposer_width_um']*s, -1),
-                          interposer_height_um=round(case['interposer_height_um']*s, -1))
+            scaled = scaled_case(case, s)
             Problem.from_imported(scaled)
-            (args.output/f'Case{n}_s{s:g}.json').write_text(json.dumps(scaled) + '\n')
+            (args.output/f'Case{n}_{tag(s)}.json').write_text(json.dumps(scaled) + '\n')
     print('written', len(args.cases)*len(SCALES))
 
 
