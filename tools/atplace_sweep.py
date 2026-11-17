@@ -66,7 +66,7 @@ def params(case, mode, threads, multiplier=None, sampling_s=None):
     return data
 
 
-def sweep(case, out, threads, ours, sampling_s=None):
+def sweep(case, out, threads, ours, sampling_s=None, attempts=None):
     py = sys.executable
     root = out / case
     root.mkdir(parents=True, exist_ok=True)
@@ -83,8 +83,11 @@ def sweep(case, out, threads, ours, sampling_s=None):
         if mode == 'thermal' and 'train_s' not in timing and trained:
             # Wirelength mode needs no thermal model, so it runs (and is scored) even if training fails.
             try:
-                _, timing['train_s'] = run([py, 'run_thermal_training.py', '--case', case, '--param_file',
-                                            str(files['thermal_x1'])], root / 'train.log')
+                train = [py, 'run_thermal_training.py', '--case', case, '--param_file', str(files['thermal_x1'])]
+                if attempts is not None:   # v3 adaptation: redraw failed training samples
+                    train = [py, str(Path(__file__).resolve().with_name('atplace_train_retry.py')), str(attempts)] + train[1:]
+                    timing['training_sample_attempts'] = attempts
+                _, timing['train_s'] = run(train, root / 'train.log')
             except (RuntimeError, ValueError) as error:
                 timing['train_failed'] = str(error)
                 trained = False
@@ -134,6 +137,8 @@ def main():
     p.add_argument('--threads', type=int, default=32)
     p.add_argument('--parallel', type=int, default=3)
     p.add_argument('--training-sampling-s', type=float, help='retry only: override the 30 s training sampler limit')
+    p.add_argument('--sampling-attempts', type=int,
+                   help='v3 only: redraw a failed training sample up to this many times (tools/atplace_train_retry.py)')
     p.add_argument('--score-only', action='store_true', help='only ATSim-score the layouts under --ours')
     args = p.parse_args()
     if args.score_only:
@@ -142,7 +147,7 @@ def main():
         return
     with ThreadPoolExecutor(args.parallel) as pool:
         list(pool.map(lambda c: sweep(c, args.out.resolve(), args.threads, args.ours and args.ours.resolve(),
-                                      args.training_sampling_s), args.cases))
+                                      args.training_sampling_s, args.sampling_attempts), args.cases))
 
 
 if __name__ == '__main__':
