@@ -26,7 +26,8 @@ class CostTest(unittest.TestCase):
         self.assertTrue(all(a < b for a, b in zip(costs, costs[1:])))
         below, above = interposer_cost(50, 32.99, p), interposer_cost(50, 33.01, p)    # height crosses one field
         self.assertEqual((below['fields'], above['fields']), (2, 4))
-        self.assertAlmostEqual(above['yield_']/below['yield_'], p.seam_yield**2, places=3)
+        for side, row in ((32.99, below), (33.01, above)):     # defect yield times one seam factor per extra field
+            self.assertAlmostEqual(row['yield_'], defect_yield(50*side, p.d0_per_cm2, p.cluster)*p.seam_yield**(row['fields'] - 1))
         self.assertGreater(above['total_usd'], below['total_usd'])
         self.assertTrue(math.isinf(interposer_cost(50, 152, p)['total_usd']))
 
