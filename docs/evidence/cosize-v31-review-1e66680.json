@@ -1,0 +1,74 @@
+{
+  "analyzed_commit": "1e66680b6a72be32fd8f5eb9fdc85a56e17fa29a",
+  "packing_failure": {
+    "raised": true,
+    "message": "no legal start: no initial layouts and the MILP found no layout",
+    "die_size_mm": [
+      6,
+      6
+    ],
+    "die_count": 2,
+    "trial_carrier_mm": [
+      10,
+      10
+    ]
+  },
+  "anchor_missing_from_repricing": {
+    "constructed_archive": true,
+    "original_mm": [
+      52,
+      33
+    ],
+    "proposal_mm": [
+      41.1,
+      41.1
+    ],
+    "default_anchor_usd": 235.8877708005268,
+    "default_proposal_usd": 232.47432090680155,
+    "sweep_seam_yield": 0.95,
+    "sweep_anchor_usd": 244.3748348342332,
+    "sweep_reported_usd": 258.6435971433138,
+    "reported_outcome": "loss",
+    "with_anchor_outcome": "tie"
+  },
+  "pairing": {
+    "ours": {
+      "seed": 2,
+      "fv_budget": 1000
+    },
+    "theirs": {
+      "seed": 3,
+      "fv_budget": 100
+    },
+    "mismatch": [],
+    "missing_identity_mismatch": []
+  },
+  "anchor_tolerance": {
+    "verified": true,
+    "j_k": 9.989733484871977e-10,
+    "certified": false,
+    "returned_best": false
+  },
+  "one_solve_budget": {
+    "verified": true,
+    "baseline_returned_best": false,
+    "main_returned_best": true
+  },
+  "fetch_succeeded": true,
+  "validation": {
+    "command": "PYTHONPATH=src:tests:tools python -m unittest discover -s tests -p 'cosize*_unittest.py' -v",
+    "snapshot": "git archive 1e66680b6a72be32fd8f5eb9fdc85a56e17fa29a",
+    "tests": 11,
+    "passed": true,
+    "seconds": 100.044,
+    "scope": "Related existing tests plus bounded controls; no full-suite or remote experiment rerun."
+  },
+  "reproduction": {
+    "local_script": "results/review-1e66680/controls.py",
+    "packing": "Problem with two 6x6 mm dies, 1 W each, original carrier 12x12 mm, centres (3,3)/(9,3) mm, zero rotations and centre pins, limit 100 C. try_carrier on 10x10 mm, gap 0, length budget 0.02 m, relation_space, budget 10, size_s 1, threads/workers 1, resolution 16, chain_steps 1, seed 2.",
+    "cost": "Construct anchor.ok=true, anchor.carrier_mm=[52,33], history and best containing only certified [41.1,41.1]. Reprice with default CostParams except seam_yield=0.95. Compare against the same anchor; include anchor to correct candidate pool.",
+    "tolerance": "tests/sizing_unittest.small_problem, grid centres (10,10)/(30,10)/(10,30)/(30,30) mm, rotation 0, gap 500 um, FV resolution 16. Limit is measured anchor peak minus 1e-9 K; use exact anchor pin length. fixed_aspect with BISECTION_STEPS patched to 0 and budget 10.",
+    "small_budget": "Same four-die control, restore limit to measured peak, budget 1, compare fixed_aspect against anchored(inner=blind, workers=1, resolution=16)."
+  },
+  "concurrent_work": "During review, uncommitted edits appeared in cosize.py, run_cosize.py and cosize_unittest.py. They address anchor tolerance, relation_space per-trial budget, and refinement when all trials succeed. They were preserved; controls and the 11-test run refer to the published snapshot."
+}
