@@ -68,11 +68,12 @@ class ShrinkChainTest(unittest.TestCase):
             peak = evaluator.peaks_c([anchor])[0]
         limited = replace(p, limit_c=np.full(4, peak))
         length = pin_manhattan_um(p, anchor).sum()/1e6
-        out, used, (final, final_um), errors = shrink_chain(limited, anchor, 500, length, 12, 16, 60)
+        out, used, (final, final_um, final_j), errors = shrink_chain(limited, anchor, 500, length, 12, 16, 60)
         self.assertTrue(out)
         self.assertLessEqual(used, 60)
         self.assertTrue(errors)
         self.assertEqual(final_um, (out[-1][1][0]*1000, out[-1][1][1]*1000))
+        self.assertLessEqual(final_j, 0)
         for budget in (0, 1, 3):                                       # the budget covers every FV solve
             self.assertLessEqual(shrink_chain(limited, anchor, 500, length, 12, 16, budget)[1], budget)
         area = 40.0*40.0
@@ -85,6 +86,17 @@ class ShrinkChainTest(unittest.TestCase):
                 self.assertAlmostEqual(evaluator.peaks_c([layout])[0], j, places=9)
             self.assertLessEqual(j, 0)
             self.assertLessEqual(pin_manhattan_um(sized, layout).sum()/1e6, length + 1e-9)
+
+
+class GeneratorOrderTest(unittest.TestCase):
+    def test_the_binding_constraint_picks_the_first_generator(self):
+        from chiplet_floorplanning.placement.cosize import generator_order
+        p = small_problem()
+        layout = Layout(np.array([[10., 10.], [30., 10.], [10., 30.], [30., 30.]])*1000, np.zeros(4, int))
+        length = pin_manhattan_um(p, layout).sum()/1e6
+        self.assertEqual(generator_order(p, layout, length, -2.0, 'proxy'), ['blind', 'proxy'])       # wire-bound
+        self.assertEqual(generator_order(p, layout, length*1.5, -0.1, 'proxy'), ['proxy', 'blind'])   # thermal
+        self.assertEqual(generator_order(p, layout, length*1.5, -2.0, 'proxy'), ['blind', 'proxy'])   # geometry
 
 
 class AnchoredTest(unittest.TestCase):
