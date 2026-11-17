@@ -370,7 +370,7 @@ def family(args):
     return records, used
 
 
-SHRINK_STEPS, MOVES, MOVE_AREA = 12, 2, 0.97
+SHRINK_STEPS, MOVE_AREA, MOVE_FAILS = 12, 0.97, 2
 WIRE_TIGHT, THERMAL_TIGHT_K = 0.02, 0.5
 
 
@@ -385,12 +385,12 @@ def generator_order(problem, layout, length_m, j_k, model):
 
 
 def family_shrink(args):
-    """cosize v4.1, one aspect family: the largest carrier cheaper than the anchor's is tried as in v3 (the mapped
-    anchor first, then MILP topologies), then shrink_chain compresses it continuously; when it stalls, a topology
-    move tries the carrier MOVE_AREA times smaller (mapped final state, then MILP topologies) and shrinking resumes,
-    at most MOVES times. The MILP generators are ordered by the constraint that stopped shrinking
-    (generator_order); at the entry the min-wire MILP goes first, since the anchor has no slack of either kind.
-    Same arguments and records as `family`."""
+    """cosize v4.2, one aspect family. Entry: the family's trial areas from the largest down (as `family`), each
+    tried with the mapped anchor and then MILP topologies; a failure goes on to the next area, and only a proof of
+    infeasibility ends the family. From the first certified carrier, shrink_chain compresses continuously; when it
+    stalls, a topology move tries the carrier MOVE_AREA times smaller (mapped final state, then MILP topologies
+    ordered by the constraint that stopped shrinking, generator_order) and shrinking resumes. Moves go on while the
+    budget lasts, until MOVE_FAILS failures in a row or a proof. Same arguments and records as `family`."""
     (problem, anchor, gap_um, length_m, model, aspect, low, high, budget, size_s, threads, directions, resolution,
      chain_steps, params, seed, workers) = args
     used, records, step = 0, [], 0
@@ -403,24 +403,36 @@ def family_shrink(args):
                        rotation_deg=ok[0].rotation_deg.tolist())
         records.append(rec)
 
-    base, base_um, area = anchor, problem.carrier_um, high
-    generators = ['blind', model]                       # the anchor has neither thermal nor wire slack
-    for move in range(MOVES + 1):
-        if budget - used <= 2:
-            records.append(dict(aspect=aspect, step=step, stop='fv budget'))
-            break
+    def attempt(area, base, base_um, generators, stage):
+        nonlocal used, step
         w, h = box(area, aspect)
         sized = replace(problem, carrier_um=(w*1000, h*1000))
         rec, ok, n = try_carrier(sized, base, base_um, gap_um, length_m, generators, budget - used, size_s, threads,
                                  directions, resolution, chain_steps, seed, workers)
         used += n
-        rec['stage'] = 'entry' if move == 0 else 'topology move'
+        rec['stage'] = stage
         record(rec, w, h, ok, area, n)
         step += 1
-        if ok is None:
-            records.append(dict(aspect=aspect, step=step, stop='no certified layout at the trial carrier'))
+        return sized, ok, rec['status']
+
+    entry = None
+    for area in trial_areas(aspect, low, high, params):   # the anchor has no slack of either kind: wire first
+        if budget - used <= 2:
+            records.append(dict(aspect=aspect, step=step, stop='fv budget'))
+            return records, used
+        sized, ok, status = attempt(area, anchor, problem.carrier_um, ['blind', model], 'entry')
+        if ok is not None:
+            entry = (sized, ok)
             break
-        base, base_um = ok[0], sized.carrier_um
+        if status == 'proven_infeasible':
+            records.append(dict(aspect=aspect, step=step, stop='proven infeasible below'))
+            return records, used
+    if entry is None:
+        records.append(dict(aspect=aspect, step=step, stop='no certified entry carrier'))
+        return records, used
+    sized, ok = entry
+    fails = 0
+    while budget - used > 2:
         chain, n, (base, base_um, final_j), errors = shrink_chain(sized, ok[0], gap_um, length_m, SHRINK_STEPS,
                                                                    resolution, budget - used)
         used += n
@@ -432,8 +444,19 @@ def family_shrink(args):
         records.append(dict(aspect=aspect, step=step, shrink_fv=n, model_errors=errors, next_generators=[
             'wire' if g == 'blind' else 'proxy' for g in generators]))
         area = MOVE_AREA*base_um[0]*base_um[1]/1e6
-        if area <= low:
+        while area > low and budget - used > 2:
+            sized, ok, status = attempt(area, base, base_um, generators, 'topology move')
+            if ok is not None or status == 'proven_infeasible':
+                break
+            fails += 1
+            if fails >= MOVE_FAILS:
+                break
+            area *= MOVE_AREA
+        if ok is None or status == 'proven_infeasible' or area <= low:
+            records.append(dict(aspect=aspect, step=step, stop='proven infeasible below' if status ==
+                                'proven_infeasible' else 'topology moves failed' if ok is None else 'die area'))
             break
+        fails = 0
     return records, used
 
 

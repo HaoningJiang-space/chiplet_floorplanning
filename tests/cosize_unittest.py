@@ -208,6 +208,26 @@ class AnchoredTest(unittest.TestCase):
             methods.relation_front(self.p, 500, 20, 2, [self.anchor], dict(milp_s=5, workers=1))
         self.assertLessEqual(seen['starts'], 1 + 2*(20//6))      # the anchor plus 3 random and 3 descent starts
 
+    def test_a_failed_entry_carrier_does_not_end_the_family(self):
+        from chiplet_floorplanning.placement.cosize import family_shrink
+        limited = replace(self.p, limit_c=np.full(4, self.peak))
+        original, calls = cosize_module.try_carrier, []
+
+        def first_fails(*args, **kwargs):
+            calls.append(1)
+            if len(calls) == 1:
+                return dict(stages=[], status='not_found'), None, 0
+            return original(*args, **kwargs)
+        cosize_module.try_carrier = first_fails
+        try:
+            records, used = family_shrink((limited, self.anchor, 500, self.length, 'blind', 1.0, 159.0, 1500.0, 150,
+                                           5.0, 1, None, 16, 3, cosize_module.CostParams(), 2, 1))
+        finally:
+            cosize_module.try_carrier = original
+        self.assertGreater(len(calls), 1)
+        self.assertTrue(any(r.get('certified') for r in records))
+        self.assertLessEqual(used, 150)
+
     def test_zero_budget_spends_no_solve(self):
         limited = replace(self.p, limit_c=np.full(4, self.peak))
         for inner in ('blind', 'proxy'):

@@ -178,7 +178,7 @@ def main():
                        size_s=args.size_s, threads=args.threads, workers=args.workers, directions=args.directions,
                        seed=args.seed, expected_j_k=expected)
     w0, h0 = (s/1000 for s in problem.carrier_um)
-    record = dict(protocol_revision='cosize-v4.1', case=args.case.stem, method=args.method,
+    record = dict(protocol_revision='cosize-v4.2', case=args.case.stem, method=args.method,
                   reference=args.reference, reference_label=label, delta_k=args.delta_k if args.front_dir else None,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
                       k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),
