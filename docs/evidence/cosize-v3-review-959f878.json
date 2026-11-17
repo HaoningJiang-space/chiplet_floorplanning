@@ -1,0 +1,57 @@
+{
+  "analyzed_commit": "959f8785db4b24513933b2e539ecfbb272b166c8",
+  "fetch_succeeded": true,
+  "scope": "Local bounded controls; no formal case-comparison result and no production-code changes.",
+  "environment": {
+    "python": "/opt/anaconda3/bin/python",
+    "PYTHONPATH": "src:tests:tools",
+    "numpy": "1.26.4",
+    "scipy": "1.13.1"
+  },
+  "input": {
+    "factory": "tests/sizing_unittest.py:small_problem at analyzed_commit",
+    "anchor_centre_mm": [[10, 10], [30, 10], [10, 30], [30, 30]],
+    "rotation_deg": [0, 0, 0, 0],
+    "gap_um": 500,
+    "fv_resolution": 16,
+    "length_budget": "pin_manhattan_um(problem, anchor).sum()/1e6 m"
+  },
+  "invalid_anchor": {
+    "recipe": "FV-evaluate the anchor, replace every limit_c by peak-0.5; run fixed_aspect with BISECTION_STEPS patched to 0, budget 100 and this anchor; run anchored with budget 100, workers 1 and resolution 16.",
+    "actual_peak_c": 59.18885863111382,
+    "declared_limit_c": 58.68885863111382,
+    "actual_overshoot_k": 0.5,
+    "fixed_aspect_certified": true,
+    "fixed_aspect_reported_j_k": 0.0,
+    "fixed_aspect_fv_solves": 0,
+    "anchored_stop": "reproduction_mismatch"
+  },
+  "zero_budget": {
+    "recipe": "Restore every limit_c to the measured anchor peak; anchored with fv_budget 0, inner blind, workers 1 and resolution 16.",
+    "requested": 0,
+    "actual_solves": 1
+  },
+  "failure_injection": {
+    "note": "Mocked solver timeout to test control flow; no claim of a natural timeout on this small input. The start is geometry- and wire-feasible; this control does not certify its thermal feasibility under the deliberately lowered limit.",
+    "fixed_carrier_recipe": "Patch milp_relations to return None and MILP_STATUS.status to time_limit; call fixed_carrier on the original carrier with the anchor, no proxy, milp_s 1, threads 1 and directions None.",
+    "same_carrier_start_discarded": true,
+    "solver_statuses": ["time_limit"],
+    "family_recipe": "Patch fixed_carrier to return (None, [time_limit]); family with original problem/anchor, aspect 1, area bounds 159/1500 mm2, steps 5, budget 100, milp_s 1, threads 1, directions None, resolution 16, chain_steps 3, default CostParams.",
+    "family_trials": 1,
+    "family_fv_solves": 0,
+    "family_stop": "largest cheaper carrier not certified"
+  },
+  "partial_comparison": {
+    "recipe": "tools.cosize_compare.verdict({str(i): 'win' for i in range(7)}, 17)",
+    "verdict": "effective",
+    "coverage": {
+      "expected": 17,
+      "found": 7,
+      "wins": 7,
+      "losses": 0,
+      "ties": 0,
+      "unavailable": 0,
+      "missing": 10
+    }
+  }
+}
