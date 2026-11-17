@@ -8,7 +8,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from sizing_unittest import small_problem  # noqa: E402
 from chiplet_floorplanning.placement import Evaluator, Layout, Problem, is_legal, pin_manhattan_um  # noqa: E402
-from chiplet_floorplanning.placement.lp import milp_relations  # noqa: E402
+from chiplet_floorplanning.placement.lp import cluster_length_mm, milp_relations  # noqa: E402
 from chiplet_floorplanning.placement.methods import Run, proxy_space  # noqa: E402
 from chiplet_floorplanning.placement.proxy import R_MM, ThermalProxy  # noqa: E402
 
@@ -80,6 +80,36 @@ class ProxyTest(unittest.TestCase):
             self.assertLess(capped['fv_value'], 0)
             self.assertGreater(capped['fv_peak_c'], 45)
             self.assertLessEqual(evaluator.solves, 30)
+
+    def test_wire_budget_bounds_the_clustered_length_in_the_milp_units(self):
+        p = small_problem()
+        short = milp_relations(p, 500, 20)
+        cool = milp_relations(p, 500, 20, proxy=(MODEL, None))
+        low, high = cluster_length_mm(p, short), cluster_length_mm(p, cool)
+        self.assertLessEqual(low, pin_manhattan_um(p, short).sum()/1000 + 1e-6)     # clustered: a lower bound
+        self.assertLess(low, high)
+        budget = (low + high)/2
+        mid = milp_relations(p, 500, 20, proxy=(MODEL, None, budget))
+        self.assertLessEqual(cluster_length_mm(p, mid), budget + 1e-3)
+        # The shortest layout is a witness of the budget, so the minimised envelope cannot be worse than its own.
+        self.assertLessEqual(MODEL.envelope_value(p, mid, 500), MODEL.envelope_value(p, short, 500) + 1e-6)
+        self.assertGreaterEqual(MODEL.envelope_value(p, mid, 500), MODEL.envelope_value(p, cool, 500) - 1e-6)
+
+    def test_length_sweep_records_budgets_and_archive_indices(self):
+        p = small_problem()
+        with Evaluator(p, 500, resolution=16) as evaluator:
+            run = Run(evaluator, 60)
+            proxy_space(run, [], np.random.default_rng(0), milp_s=10, anneal_steps=10, chains=2, levels=2,
+                        cap_milp_s=10, batch=4, sweep='length')
+            notes = run.notes['proxy']
+            self.assertEqual(notes['sweep'], 'length')
+            rows = notes['results']
+            self.assertIsNone(rows[0]['budget_mm'])
+            self.assertTrue(all(r['budget_mm'] is not None and r['solved'] for r in rows[1:]))
+            for r in rows:
+                if r['legal'] and r['layout_index'] is not None:
+                    self.assertEqual(run.peaks[r['layout_index']], r['fv_value'])
+            self.assertLessEqual(evaluator.solves, 60)
 
     def test_calibration_cost_and_the_method_budget(self):
         p = small_problem()

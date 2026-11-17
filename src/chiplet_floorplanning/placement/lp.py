@@ -437,6 +437,33 @@ def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s):
     return result.x
 
 
+def wire_clusters(problem):
+    """(i, j, nets, mean pin offset on i, mean pin offset on j) per connected pair, mm in the die frames."""
+    a, b = problem.pin_chip[:, 0], problem.pin_chip[:, 1]
+    clusters = []
+    for i in range(problem.count):
+        for j in range(i + 1, problem.count):
+            fwd, bwd = (a == i) & (b == j), (a == j) & (b == i)
+            k = int(fwd.sum() + bwd.sum())
+            if k:
+                oi = np.r_[problem.pin_offset_um[fwd, 0], problem.pin_offset_um[bwd, 1]].mean(axis=0)/1000
+                oj = np.r_[problem.pin_offset_um[fwd, 1], problem.pin_offset_um[bwd, 0]].mean(axis=0)/1000
+                clusters.append((i, j, k, oi, oj))
+    return clusters
+
+
+def cluster_length_mm(problem, layout):
+    """The MILP's clustered wirelength (sum K_ij |c_i + R o_i - c_j - R o_j|_1, mm) at a fixed layout; a lower bound
+    of the exact pin length, used so that wire budgets and the MILP row measure the same quantity."""
+    from .geometry import rotate
+    total = 0.0
+    for i, j, k, oi, oj in wire_clusters(problem):
+        pi = layout.centre_um[i]/1000 + rotate(oi[None], layout.rotation_deg[i:i + 1])[0]
+        pj = layout.centre_um[j]/1000 + rotate(oj[None], layout.rotation_deg[j:j + 1])[0]
+        total += k*float(np.abs(pi - pj).sum())
+    return total
+
+
 def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None, proxy=None):
     """Global choice of rotations and side relations for wirelength by MILP (HiGHS), after ATPlace2.5D's
     initialisation: each die has one-hot quarter-turn binaries; each pair has four big-M side binaries; the
@@ -449,26 +476,18 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
     problem.carrier_um: one-hot over the width levels W_l, a continuous height H <= min(envelope height, cap / W_l),
     and every die inside [0, W_l] x [0, H]; exact for the given width levels. It then returns (layout, (width_mm,
     height_mm), chosen level index) with the carrier shrunk to the dies' extent, or None.
-    `proxy` = (ThermalProxy, cap or None) adds the axial tangent envelope: rho <= separation along the chosen side
+    `proxy` = (ThermalProxy, cap or None[, wire budget mm]) adds the axial tangent envelope: rho <= separation along the chosen side
     relation, tau >= tangents of g(rho), and t >= P_i s_i + sum_j P_j tau_ij - limit_i for every observer (including
     unpowered dies). Omit limit_i when no limits are given. The cap is in degC, or overshoot K with Problem.limit_c;
-    with None the envelope is minimised (wire length breaks ties). This envelope is not an FV upper bound."""
+    with None the envelope is minimised (wire length breaks ties). A wire budget bounds the clustered wirelength
+    (cluster_length_mm). This envelope is not an FV upper bound."""
     from scipy.optimize import Bounds
     from .geometry import rotate
     n = problem.count
     width, height = (s/1000 for s in problem.carrier_um)
     gap = gap_um/1000
     turns = np.array([0, 90, 180, 270])
-    a, b = problem.pin_chip[:, 0], problem.pin_chip[:, 1]
-    clusters = []   # (i, j, nets, mean offset on i, mean offset on j) in mm, die frames
-    for i in range(n):
-        for j in range(i + 1, n):
-            fwd, bwd = (a == i) & (b == j), (a == j) & (b == i)
-            k = int(fwd.sum() + bwd.sum())
-            if k:
-                oi = np.r_[problem.pin_offset_um[fwd, 0], problem.pin_offset_um[bwd, 1]].mean(axis=0)/1000
-                oj = np.r_[problem.pin_offset_um[fwd, 1], problem.pin_offset_um[bwd, 0]].mean(axis=0)/1000
-                clusters.append((i, j, k, oi, oj))
+    clusters = wire_clusters(problem)
     pairs = [(i, j) for i in range(n) for j in range(i + 1, n)]
     # variable layout: x(n) y(n) z(n*4) s(4*pairs) t(2*clusters) [sizing: u(levels) H]
     ix, iy, iz = 0, n, 2*n
@@ -523,7 +542,7 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
                 + [(c, v/2) for c, v in ext(first)] + [(c, v/2) for c, v in ext(second)], -np.inf, big - gap)
         add([(s + q, 1.0) for q in range(4)], 1, np.inf)
     if proxy is not None:
-        model, cap = proxy
+        model, cap = proxy[:2]
         tau_of = {}
         for k, (p, i, j) in enumerate(hot_pairs):
             s = isd + 4*p
@@ -567,6 +586,9 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
             cost[ipk] = 1.0
         else:
             upper[ipk] = proxy[1] - AMBIENT_C
+        if len(proxy) > 2 and proxy[2] is not None:      # clustered wire <= budget (mm), cluster_length_mm units
+            add([(it + 2*c + axis, k) for c, (_, _, k, _, _) in enumerate(clusters) for axis in (0, 1)],
+                -np.inf, proxy[2])
     if thermal is not None:
         block = thermal[0].milp_block(add, nvar, ix, iy, iz, thermal[1])
         cost = np.r_[cost*block['length_weight'], block['cost']]

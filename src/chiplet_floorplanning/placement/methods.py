@@ -16,7 +16,8 @@ import numpy as np
 
 from .evaluate import pareto_front, sample_legal, thermal_key
 from .geometry import pin_manhattan_um
-from .lp import TopologyLP, centre_relations, hotspot_move, legalize_relations, length_anneal, milp_relations, slp_chain
+from .lp import (TopologyLP, centre_relations, cluster_length_mm, hotspot_move, legalize_relations, length_anneal,
+                 milp_relations, slp_chain)
 from .proxy import R_MM, ThermalProxy
 from .thermal_milp import ThermalTable
 from .search import layout_key, length_descent, mutate
@@ -531,7 +532,8 @@ def thermal_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, 
     topology_slp(run, starts + candidates, rng, **kw)
 
 
-def proxy_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, levels=4, cap_milp_s=60.0, **kw):
+def proxy_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, levels=4, cap_milp_s=60.0, sweep='peak',
+                **kw):
     """relation_space whose global stage also sees heat through the one-dimensional proxy
     (plan: docs/proxy-space-plan.md).
 
@@ -539,6 +541,10 @@ def proxy_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, le
     envelope, then `levels` caps between that and the shortest seed's envelope give wirelength-minimal candidates.
     All endpoints and caps use the same envelope and per-die limits as the MILP. Legalised candidates are evaluated
     separately by the envelope, Euclidean proxy and FV, and join the starts of `topology_slp`.
+    With sweep='length' the levels are instead wire budgets (the MILP's clustered length, `cluster_length_mm`)
+    evenly between the shortest seed and the coolest candidate, each minimising the envelope: the same
+    "coolest under a shared wire budget" question as the main metric, and the shortest seed is a feasible witness
+    of every budget. Each row records the candidate's archive index so its fate on the final front can be traced.
     """
     evaluator = run.evaluator
     problem, gap_um = evaluator.problem, evaluator.gap_um
@@ -559,27 +565,35 @@ def proxy_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, le
     notes.update(lambda_mm=model.lam_mm, c=model.c)
     shortest = min(starts, key=lambda l: pin_manhattan_um(problem, l).sum())
 
-    def solve_candidate(cap):
-        raw = milp_relations(problem, gap_um, cap_milp_s, proxy=(model, cap))
+    def solve_candidate(cap, budget=None):
+        raw = milp_relations(problem, gap_um, cap_milp_s, proxy=(model, cap, budget))
         legal = legalize_relations(problem, raw, gap_um) if raw is not None else None
-        return cap, raw is not None, legal
+        return cap, budget, raw is not None, legal
 
+    notes['sweep'] = sweep
     found = [solve_candidate(None)]
-    if found[0][2] is not None:
+    if found[0][3] is not None and sweep == 'length':
+        short, cool = cluster_length_mm(problem, shortest), cluster_length_mm(problem, found[0][3])
+        notes.update(cluster_length_low_mm=short, cluster_length_high_mm=cool)
+        found += [solve_candidate(None, float(b)) for b in np.unique(np.linspace(short, cool, levels + 2)[1:-1])
+                  if cool > short]
+    elif found[0][3] is not None:
         high = model.envelope_value(problem, shortest, gap_um)
         # A time-limited incumbent need not beat a known legal seed. Either endpoint supplies a feasible witness.
-        low = min(high, model.envelope_value(problem, found[0][2], gap_um))
+        low = min(high, model.envelope_value(problem, found[0][3], gap_um))
         notes.update(envelope_low=low, envelope_high=high)
         found += [solve_candidate(float(cap)) for cap in np.unique(np.linspace(low, high, levels + 2)[1:-1])]
     candidates = []
-    for cap, solved, legal in found:
-        row = dict(cap=cap, cap_c=cap if problem.limit_c is None else None, solved=solved, legal=legal is not None)
+    for cap, budget, solved, legal in found:
+        row = dict(cap=cap, cap_c=cap if problem.limit_c is None else None, budget_mm=budget, solved=solved,
+                   legal=legal is not None)
         if legal is not None:
             candidates.append(legal)
             row['proxy_peak_c'] = model.peak_c(problem, legal)
             row['radial_value'] = model.value(problem, legal)
             row['envelope_value'] = model.envelope_value(problem, legal, gap_um)
-            index = run.evaluate([legal])[0]
+            row['cluster_length_mm'] = cluster_length_mm(problem, legal)
+            index = row['layout_index'] = run.evaluate([legal])[0]
             fv = row['fv_value'] = None if index is None else run.peaks[index]
             row['fv_peak_c'] = (fv if problem.limit_c is None or index is None
                                 else float((run.die_peaks[index] + problem.limit_c).max()))
