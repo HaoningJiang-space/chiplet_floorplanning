@@ -20,6 +20,17 @@ from chiplet_floorplanning.placement.superpose import SuperposedModel
 from thermal_kernel_screen import PER_FRONT, RANDOM, load_front
 
 ROTATION_FV = (76.52653, 78.15577)
+FROZEN_CASES = ('Case1', 'Case3', 'Case5', 'Case7', 'Case9', 'G1_slack', 'G2_slack')
+
+
+def validation_status(rows):
+    """The frozen seven-case gate requires complete, successfully reconstructed samples."""
+    if set(rows) != set(FROZEN_CASES):
+        return 'incomplete'
+    if any(not np.isfinite(r.get('euclid_reproduction_max_diff_k', np.inf))
+           or r['euclid_reproduction_max_diff_k'] > 1e-6 for r in rows.values()):
+        return 'reproduction_mismatch'
+    return None
 
 
 def prefix_regret(pred, fv):
@@ -49,6 +60,9 @@ def rotation_fixture():
 
 
 def verdict(rows, rotation):
+    status = validation_status(rows)
+    if status is not None:
+        return status
     ok = all(r['superposed']['front_budget_regret_k'] <= 0.5 and r['superposed']['debiased_max_k'] <= 1.0
              and r['superposed']['spearman_front'] >= 0.98 for r in rows.values()) \
         and abs(rotation['difference_error_k']) <= 0.3

@@ -9,13 +9,16 @@ import numpy as np
 
 from chiplet_floorplanning.placement import sample_legal
 from chiplet_floorplanning.placement.proxy import ThermalProxy
-from superpose_check import scores
+from superpose_check import scores, validation_status
 from thermal_kernel_screen import PER_FRONT, RANDOM, load_front
 
 DIRECTIONS = (8, 16)
 
 
 def verdict(rows):
+    status = validation_status(rows)
+    if status is not None:
+        return status, []
     passing = [k for k in DIRECTIONS
                if all(r[f'polygon{k}']['front_budget_regret_k'] <= 0.6 and r[f'polygon{k}']['spearman_front'] >= 0.98
                       for r in rows.values())]

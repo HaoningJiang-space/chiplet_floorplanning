@@ -50,6 +50,8 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers):
     die_area = (problem.size_um.prod(axis=1)).sum()/1e6
     low, high = die_area/(w0*h0), ENVELOPE**2          # area factors: certainly infeasible / search ceiling
     share, best, history, used = fv_budget//(BISECTION_STEPS + 1), None, [], 0
+    if share < 1:
+        return dict(best=None, history=[dict(stop='fv budget')], fv_solves=0)
     trial = 1.0
     for step in range(BISECTION_STEPS + 1):
         scale = math.sqrt(trial)
@@ -60,7 +62,7 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers):
         try:
             rows, archive = run_front(sized, gap_um, share, seed, [], dict(milp_s=milp_s, workers=workers))
             used += int(archive['solves'])
-            ok = [(r['thermal'], r['length_m']) for r in rows if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]
+            ok = [i for i, r in enumerate(rows) if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]
             record.update(fv_solves=int(archive['solves']), certified=bool(ok),
                           best_j_k=min((r['thermal'] for r in rows if r['length_m'] <= length_m + 1e-9), default=None))
         except RuntimeError as error:
@@ -68,8 +70,13 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers):
         history.append(record)
         if ok:
             if math.isfinite(record['cost_usd']) and (best is None or record['cost_usd'] < best['cost_usd']):
+                chosen = min(ok, key=lambda i: (rows[i]['thermal'], rows[i]['length_m'], i))
                 best = dict(width_mm=w, height_mm=h, cost_usd=record['cost_usd'], area_factor=trial,
-                            j_k=min(o[0] for o in ok), option=interposer_cost(w, h)['option'],
+                            j_k=rows[chosen]['thermal'], length_m=rows[chosen]['length_m'],
+                            centre_um=archive['centre_um'][chosen].tolist(),
+                            rotation_deg=archive['rotation_deg'][chosen].tolist(),
+                            die_overshoot_k=archive['die_thermal'][chosen].tolist(),
+                            step=step, layout_index=chosen, option=interposer_cost(w, h)['option'],
                             fields=interposer_cost(w, h)['fields'])
             high = trial
         else:
@@ -111,10 +118,12 @@ def main():
         out = cosize(limited, args.gap_um, l_ref, args.fv_solves, thermal=args.method == 'cosize', envelope=ENVELOPE,
                      rounds=args.rounds, milp_s=args.milp_s)
     w0, h0 = (s/1000 for s in problem.carrier_um)
-    record = dict(case=args.case.stem, method=args.method, reference=args.reference, reference_label=label,
+    record = dict(protocol_revision='cosize-v2', case=args.case.stem, method=args.method,
+                  reference=args.reference, reference_label=label,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
                       k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),
                   seed=args.seed, fv_budget=args.fv_solves, milp_s=args.milp_s, wall_s=time.perf_counter() - started,
+                  limit_c=limited.limit_c.tolist(), names=list(limited.names), thermal_kind='overshoot_k',
                   case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(), code=source_revision(),
                   plan='docs/cosize-plan.md', **out)
     args.output.parent.mkdir(parents=True, exist_ok=True)
