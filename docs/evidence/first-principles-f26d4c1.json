@@ -1,0 +1,143 @@
+{
+  "analyzed_commit": "f26d4c14b7af7701e94715e23b03e0bb56beb1c6",
+  "date": "2026-11-16",
+  "fetch_succeeded": true,
+  "head_equal_origin_main_at_analysis": true,
+  "scope": "Local first-principles review and bounded numerical controls; no new remote campaign, no production algorithm changes.",
+  "code_sha256": {
+    "src/chiplet_floorplanning/placement/thermal_milp.py": "a5dfe56b0bd98966ef6e388e7c31c4070a0c7c581f6bae3d59ad39e38be81ab6",
+    "src/chiplet_floorplanning/placement/thermal.py": "a3732699b2113ff6131245a2d6ea315fac288b6b6f4a44324d0fc0c65a01bbae",
+    "src/chiplet_floorplanning/placement/lp.py": "54790d23030dde6b46484017859e0165a4e3d25662184e22026cbd102d93994b",
+    "tools/problem_screens.py": "2a3ae9708f5865e442490b82ddb02377d846deb0d91f185d5d6631e29b139362",
+    "tools/industrial_cases.py": "3534eaf16be5af114914c3bcbd39887930aa0b2697f89cc4d0fb3fca3ec27ee4"
+  },
+  "kernel_upper_bound_control": {
+    "problem": {
+      "die_size_um": [
+        6000,
+        6000
+      ],
+      "power_w": 100,
+      "carrier_um": [
+        30000,
+        30000
+      ],
+      "gap_um": 0,
+      "kernel_grid": 2,
+      "lower_left_anchor_um": [
+        9000,
+        9000
+      ],
+      "top_h_w_m2k": null,
+      "thermal_defaults": "placement.thermal at analyzed commit"
+    },
+    "counterexamples": [
+      {
+        "resolution": 24,
+        "centre_um": [
+          [
+            3000.0,
+            3000.0
+          ]
+        ],
+        "kernel_c": 96.2977431070012,
+        "fv_c": 97.71590637415596,
+        "fv_minus_kernel_k": 1.4181632671547675
+      },
+      {
+        "resolution": 64,
+        "centre_um": [
+          [
+            3000.0,
+            3000.0
+          ]
+        ],
+        "kernel_c": 90.57793983566248,
+        "fv_c": 91.83154984142331,
+        "fv_minus_kernel_k": 1.2536100057608337
+      }
+    ],
+    "surrogate_cap_c": 91.0,
+    "inference": "A legal point admitted by the 91 C surrogate cap exceeds 91 C in FV; this disproves a universal FV upper bound.",
+    "actual_milp_control": {
+      "cap_c": 91.0,
+      "kernel_c": 90.57793983566265,
+      "fv_c": 90.55935393673676,
+      "centre_um": [
+        [
+          15000.0,
+          15000.0
+        ]
+      ],
+      "rotation_deg": [
+        0
+      ]
+    },
+    "actual_milp_control_status": "passed: actual optimizer return meets FV cap; not evidence of an unsafe returned MILP solution",
+    "reproduction_environment": "Python 3.10+, repository dependencies, PYTHONPATH=src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1",
+    "reproduction_python": "import numpy as np\nfrom chiplet_floorplanning.placement import Problem, Layout, Evaluator, is_legal\nfrom chiplet_floorplanning.placement.thermal_milp import ThermalTable\np = Problem('bound_probe', ('hot',), np.array([[6000., 6000.]]), np.array([100.]), (30000., 30000.), np.zeros((0, 2), int), np.zeros((0, 2, 2)))\nl = Layout(np.array([[3000., 3000.]]), np.zeros(1, int))\nt = ThermalTable(p, 0, grid=2, resolution=64).build()\nwith Evaluator(p, 0, resolution=64) as ev:\n    print(is_legal(p, l, 0), t.kernel_peak_c(l), ev.peaks_c([l])[0])\n",
+    "limitations": [
+      "Not an external physical calibration.",
+      "Does not invalidate previously FV-evaluated frontier temperatures.",
+      "Cell anchors are point samples, not interval maxima; superposition across different conductance matrices has no established upper-bound guarantee."
+    ]
+  },
+  "g1_known_lower_bound": {
+    "nets": 170,
+    "gap_um": 200.0,
+    "lower_bound_m": 0.034,
+    "hand_length_m": 0.034
+  },
+  "reference_plane_example": {
+    "pin_distance_mm": 11.0,
+    "free_external_mm": 1.0,
+    "optimistic_saving_fraction": 0.9090909090909091,
+    "internal_access_mm": 10.0,
+    "total_with_internal_mm": 11.0,
+    "total_saving_fraction": 0.0,
+    "scope": "Illustrative geometry if the original pins are fixed internal logical anchors; not a claim about the provenance of ATPlace pins or real routed length/energy."
+  },
+  "interpretation_changes": {
+    "free_phy": "Large relaxation saving is an upper bound on realizable saving only when costs/reference planes match. It does not establish useful gain with finite compatible resources.",
+    "g1": "Hand layout attains a geometric lower bound in this constructed input; recovery is a correctness control, not general industrial superiority.",
+    "area": "MILP None conflates proven infeasibility and no incumbent at time limit. Unresolved search failures remain unknown; do not count them as positive physical evidence.",
+    "novelty": "Temperature plus finite pin-clump allocation already appears in TCAD 2020; adding interfaces alone is not established novelty."
+  },
+  "primary_sources_read": [
+    {
+      "url": "https://www.bu.edu/peaclab/files/2021/01/tcad-journal-cross-layer.pdf",
+      "sections": [
+        "IV-B",
+        "IV-C5"
+      ],
+      "use": "Microbump overhead, finite pin-clump allocation/capacity within thermal-aware placement and network co-optimization."
+    },
+    {
+      "url": "https://arxiv.org/html/2607.15005v1",
+      "sections": [
+        "3.2",
+        "3.3",
+        "5"
+      ],
+      "use": "Finite candidate-pad constraints, joint placement/assignment, plus-assignment baselines, RDL route validation."
+    },
+    {
+      "url": "https://www.uciexpress.org/post/introduction-to-ucie-webinar-q-a-recap",
+      "use": "Physical module grouping and control/clock overhead; not a calibrated module-width or bandwidth assignment for ATPlace."
+    }
+  ],
+  "validation": {
+    "unittest_command": "PYTHONPATH=src:tools:tests OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m unittest discover -s tests -p '*_unittest.py' -v",
+    "tests_passed": 124,
+    "duration_s": 67.708,
+    "two_chiplet_commands": [
+      "PYTHONPATH=src python -m chiplet_floorplanning validate examples/two_chiplets.json",
+      "PYTHONPATH=src python -m chiplet_floorplanning evaluate examples/two_chiplets.json --output results/first-principles-f26d4c1/two-chiplets"
+    ],
+    "two_chiplet_reference_peak_c": 34.1886,
+    "thermal_status": "uncalibrated",
+    "timing_status": "not_run",
+    "local_artifacts": "results/first-principles-f26d4c1"
+  },
+  "next_stage_status": "Recommended bounded finite-interface experiment; thresholds/resource data must be frozen before new search. No results claimed."
+}
