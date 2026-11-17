@@ -124,6 +124,24 @@ class ThermalProxy:
                 rise[j] += problem.power_w[i]*tau
         return self.objective(problem, rise)
 
+    def polygon_value(self, problem, layout, gap_um, directions):
+        """Minimum of the K-direction MILP representation at a fixed layout, in the search objective's units:
+        rho_ij = max_k u_k . (c_j - c_i) (a lower bound of the centre distance, within cos(pi/K) of it) through the
+        tangent envelope of g. Not a bound on FV temperature (docs/polygon-distance-plan.md)."""
+        angles = 2*np.pi*np.arange(directions)/directions
+        u = np.stack((np.cos(angles), np.sin(angles)), axis=1)
+        rise = problem.power_w*self.self_k_w
+        for i in range(problem.count):
+            for j in range(i + 1, problem.count):
+                if problem.power_w[i] == problem.power_w[j] == 0:
+                    continue
+                rho = float((u @ (layout.centre_um[j] - layout.centre_um[i])).max())/1000
+                a, b = self.pair_tangents(problem, i, j, gap_um)
+                tau = max(0.0, float((a + b*rho).max()))
+                rise[i] += problem.power_w[j]*tau
+                rise[j] += problem.power_w[i]*tau
+        return self.objective(problem, rise)
+
     def tangents(self, low_mm, high_mm, count=12):
         """(intercept, slope) of tangents to g at count points spaced geometrically on [low, high]; g is convex and
         decreasing there (low >= 3 mm), so their maximum is an outer approximation of its epigraph."""
