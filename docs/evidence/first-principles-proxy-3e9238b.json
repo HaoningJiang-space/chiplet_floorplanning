@@ -1,0 +1,415 @@
+{
+  "date": "2026-11-16",
+  "analyzed_commit": "3e9238bb0bf04bcd82e64e4e4600ccc3c8803a22",
+  "fetch_succeeded": true,
+  "head_equal_origin_main_at_start": true,
+  "scope": "Bounded first-principles review of proxy_space and remaining sizing analysis semantics. No production changes or remote experiment operations.",
+  "source_sha256": {
+    "src/chiplet_floorplanning/placement/proxy.py": "99692fdd0f19f69b0c2480e9194d41fb49a73331f6796df8796d342a9789176a",
+    "src/chiplet_floorplanning/placement/lp.py": "1c7da88ae9361137d0946458fcdce86f9d140ba535ee08ee9a4fc59578ce59a1",
+    "src/chiplet_floorplanning/placement/methods.py": "f84f9d9d5197e10405fe6c4ca8fb593ff20d370b94fddb2ff7510225a28d08a8",
+    "src/chiplet_floorplanning/placement/evaluate.py": "9a52f030dabee7cd6b30b1684a8609d94e3fd1e685d2268bba6b6281397030a6",
+    "tools/sizing_compare.py": "f52a35f20a8ce072d5a003f88d93b3e478d5eeeb07b1ace894b4eb31813a27bb"
+  },
+  "controls": {
+    "actual_cap_schedule": {
+      "carrier_um": [
+        13000,
+        13000
+      ],
+      "die_size_um": [
+        6000,
+        6000
+      ],
+      "power_w": [
+        50,
+        50,
+        50,
+        50
+      ],
+      "low_euclidean_c": 81.26666910480162,
+      "high_euclidean_c": 82.82067911921463,
+      "axis_lower_bound_c": 82.349039273601,
+      "caps": [
+        {
+          "cap_c": 81.57747110768422,
+          "below_proved_lower_bound": true,
+          "solution_found": false
+        },
+        {
+          "cap_c": 81.88827311056683,
+          "below_proved_lower_bound": true,
+          "solution_found": false
+        },
+        {
+          "cap_c": 82.19907511344942,
+          "below_proved_lower_bound": true,
+          "solution_found": false
+        },
+        {
+          "cap_c": 82.50987711633204,
+          "below_proved_lower_bound": false,
+          "solution_found": true
+        }
+      ],
+      "short_centre_um": [
+        [
+          9000.0,
+          9000.000000000005
+        ],
+        [
+          9000.0,
+          3000.0000000000055
+        ],
+        [
+          3000.0,
+          2999.999999999932
+        ],
+        [
+          2999.999999999198,
+          9000.00000000061
+        ]
+      ],
+      "cool_centre_um": [
+        [
+          10000.000000000002,
+          9999.999999999884
+        ],
+        [
+          10000.0,
+          3000.0
+        ],
+        [
+          2999.9999999999254,
+          2999.9999999998836
+        ],
+        [
+          2999.9999999999145,
+          9999.999999999874
+        ]
+      ]
+    },
+    "public_proxy_space": {
+      "notes": {
+        "proxy": {
+          "calibration_solves": 10,
+          "results": [
+            {
+              "cap_c": null,
+              "solved": true,
+              "legal": true,
+              "proxy_peak_c": 81.2666691048016,
+              "fv_peak_c": 83.4464245202453
+            },
+            {
+              "cap_c": 81.5774711076843,
+              "solved": false,
+              "legal": false
+            },
+            {
+              "cap_c": 81.88827311056697,
+              "solved": false,
+              "legal": false
+            },
+            {
+              "cap_c": 82.19907511344965,
+              "solved": false,
+              "legal": false
+            },
+            {
+              "cap_c": 82.50987711633232,
+              "solved": true,
+              "legal": true,
+              "proxy_peak_c": 81.48726425919546,
+              "fv_peak_c": 83.82513513347855
+            }
+          ],
+          "lambda_mm": 37.66136937440933,
+          "c": -1.1506103915000894
+        }
+      },
+      "solves": 59,
+      "layouts": 27
+    },
+    "metric_reversal": [
+      {
+        "name": "axis_aligned",
+        "centre_um": [
+          [
+            14000.0,
+            20000.0
+          ],
+          [
+            26000.0,
+            20000.0
+          ]
+        ],
+        "legal": true,
+        "euclidean_proxy_c": 97.08556306644415,
+        "tight_axis_envelope_c": 97.058666160684,
+        "fv_c": 97.45941092683985
+      },
+      {
+        "name": "diagonal",
+        "centre_um": [
+          [
+            15500.0,
+            15500.0
+          ],
+          [
+            24500.0,
+            24500.0
+          ]
+        ],
+        "legal": true,
+        "euclidean_proxy_c": 96.76936022150807,
+        "tight_axis_envelope_c": 98.74908910505756,
+        "fv_c": 97.45342661283573
+      }
+    ],
+    "rotation_blindness": [
+      {
+        "rotation_deg": [
+          90,
+          90
+        ],
+        "legal": true,
+        "proxy_c": 76.87355706410457,
+        "fv_c": 76.52652752670706
+      },
+      {
+        "rotation_deg": [
+          0,
+          90
+        ],
+        "legal": true,
+        "proxy_c": 76.87355706410457,
+        "fv_c": 78.15577412973687
+      }
+    ],
+    "limits_95_85_control": [
+      {
+        "centre_um": [
+          [
+            6000.0,
+            6000.0
+          ],
+          [
+            30000.0,
+            30000.0
+          ],
+          [
+            23000.0,
+            30000.0
+          ]
+        ],
+        "power_w": [
+          100.0,
+          80.0,
+          20.0
+        ],
+        "limit_c": [
+          95.0,
+          85.0,
+          95.0
+        ],
+        "proxy_c": 92.74212853424379,
+        "overshoot_k": 0.8301815029217039,
+        "actual_die_c": [
+          93.05517553317026,
+          85.8301815029217,
+          65.87504963747782
+        ]
+      },
+      {
+        "centre_um": [
+          [
+            23000.0,
+            30000.0
+          ],
+          [
+            6000.0,
+            6000.0
+          ],
+          [
+            30000.0,
+            30000.0
+          ]
+        ],
+        "power_w": [
+          100.0,
+          80.0,
+          20.0
+        ],
+        "limit_c": [
+          95.0,
+          85.0,
+          95.0
+        ],
+        "proxy_c": 94.56734470127185,
+        "overshoot_k": -0.16628609095216973,
+        "actual_die_c": [
+          94.63728338178134,
+          84.83371390904783,
+          67.37799766257481
+        ]
+      }
+    ],
+    "reticle_empty_intersection": {
+      "input": {
+        "factor": 1.0,
+        "baseline": {
+          "width_mm": 40.0,
+          "height_mm": 40.0,
+          "rows": [
+            {
+              "length_m": 1.0,
+              "thermal": 100.0
+            },
+            {
+              "length_m": 10.0,
+              "thermal": 80.0
+            }
+          ]
+        },
+        "joint": []
+      },
+      "status": "unsupported",
+      "l_cap_m": 1.1,
+      "t_cap": 80.0,
+      "cost": {
+        "option": "stitched",
+        "fields": 4,
+        "yield_": 0.3982517092615391,
+        "dies_per_wafer": 27.517835673012602,
+        "interposer_usd": 176.74929875120674,
+        "substrate_usd": 32.0,
+        "total_usd": 208.74929875120674
+      },
+      "without_threshold": {
+        "width_mm": 40.0,
+        "height_mm": 40.0,
+        "option": "stitched",
+        "fields": 4,
+        "cost_usd": 76.26940315668486
+      },
+      "with_threshold": null
+    }
+  },
+  "rotation_fixture": {
+    "die_size_um": [
+      [
+        20000,
+        4000
+      ],
+      [
+        20000,
+        4000
+      ]
+    ],
+    "power_w": [
+      100,
+      100
+    ],
+    "carrier_um": [
+      50000,
+      40000
+    ],
+    "centre_um": [
+      [
+        15000,
+        20000
+      ],
+      [
+        28000,
+        20000
+      ]
+    ],
+    "gap_um": 0,
+    "fv_resolution": 64
+  },
+  "cap_infeasibility_proof": "All four 6 mm dies have centre coordinates in [3,10] mm in the 13 mm square carrier. Therefore rho<=7 mm. The tangent envelope E(r)=max(0,max_k(a_k+b_k*r)) is nonincreasing. Each of the four equal-power temperature rows is at least 45 + 50*s + 150*E(7) = 82.349039273601 C. The first three scheduled caps are below this bound, hence infeasible independently of solver termination status.",
+  "existing_sample_reassessment": {
+    "source": "docs/evidence/physics-v2-proxy.json",
+    "source_sha256": "ae84e3a3662de4ce47ffb254f6150adcfe9ec3db7c61b680a3b13c9bbab7bcbc",
+    "random_indices": "20:40",
+    "cases": {
+      "Case1": {
+        "samples": 40,
+        "chosen_index": 19,
+        "chosen_regret_k": 0.0,
+        "spearman_random": 0.9218045112781955,
+        "max_absolute_error_k": 3.2799906525895324
+      },
+      "Case3": {
+        "samples": 40,
+        "chosen_index": 19,
+        "chosen_regret_k": 0.0,
+        "spearman_random": 0.9624060150375938,
+        "max_absolute_error_k": 3.90307303087792
+      },
+      "Case5": {
+        "samples": 40,
+        "chosen_index": 19,
+        "chosen_regret_k": 0.0,
+        "spearman_random": 0.9774436090225563,
+        "max_absolute_error_k": 2.774620068271588
+      },
+      "Case7": {
+        "samples": 40,
+        "chosen_index": 19,
+        "chosen_regret_k": 0.0,
+        "spearman_random": 0.932330827067669,
+        "max_absolute_error_k": 1.4389605291688952
+      },
+      "Case9": {
+        "samples": 40,
+        "chosen_index": 19,
+        "chosen_regret_k": 0.0,
+        "spearman_random": 0.9849624060150375,
+        "max_absolute_error_k": 1.621875350646917
+      },
+      "G1_slack": {
+        "samples": 40,
+        "chosen_index": 19,
+        "chosen_regret_k": 0.0,
+        "spearman_random": 0.9924812030075187,
+        "max_absolute_error_k": 0.15002028148433055
+      },
+      "G2_slack": {
+        "samples": 40,
+        "chosen_index": 19,
+        "chosen_regret_k": 0.0,
+        "spearman_random": 0.9684210526315788,
+        "max_absolute_error_k": 3.4675582683200474
+      }
+    }
+  },
+  "interpretation": [
+    "The observed radial-vs-axis ordering reversal does not establish a material FV improvement: the two FV values differ by only about 0.006 K.",
+    "The 95/85 C synthetic mechanism fixture demonstrates opposite absolute-peak and per-die-overshoot preferences. Current frozen ATPlace experiments have no heterogeneous limits, so this does not invalidate those results.",
+    "The public proxy_space still FV-evaluates candidates; this review does not claim that its archived FV values are replaced by proxy values.",
+    "Rotation blindness is a numerical counterexample in the declared FV model, not a physical calibration measurement.",
+    "Existing sample selection regret is zero for all seven cases, supporting candidate-generation value within that sample set.",
+    "A finite supported package with no candidate in the combined thermal/interconnect threshold set is not an unsupported package technology."
+  ],
+  "validation": {
+    "command": "PYTHONPATH=src:tools:tests OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m unittest discover -s tests -p '*_unittest.py' -v",
+    "tests_passed": 145,
+    "duration_s": 83.311,
+    "two_chiplets_validate": "passed",
+    "two_chiplets_evaluate": "passed",
+    "two_chiplets_reference_peak_c": 34.1886,
+    "thermal_status": "uncalibrated",
+    "timing_status": "not_run",
+    "local_artifacts": "results/first-principles-3e9238b"
+  },
+  "reproduction_environment": "Use analyzed commit, repository dependencies, PYTHONPATH=src:tools:tests OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1. Scripts below use ../probe.json for local intermediate output when run in a snapshot subdirectory.",
+  "reproduction_python": {
+    "geometry_and_initial_controls": "import json\nfrom pathlib import Path\nfrom dataclasses import replace\nimport numpy as np\nfrom chiplet_floorplanning.placement import Problem, Layout, Evaluator, is_legal\nfrom chiplet_floorplanning.placement.proxy import ThermalProxy\nfrom chiplet_floorplanning.placement.lp import milp_relations\n\nout={}\ndef problem(name,size,power,carrier,nets=()):\n    return Problem(name,tuple('d'+str(i) for i in range(len(size))),np.array(size,float),np.array(power,float),carrier,np.array(nets,int).reshape(-1,2),np.zeros((len(nets),2,2)))\ndef layout(xy,rot=None):\n    return Layout(np.array(xy,float),np.array(rot if rot is not None else [0]*len(xy),int))\ndef axis_score(p,l,m,gap=0):\n    size=np.where((l.rotation_deg%180!=0)[:,None],p.size_um[:,::-1],p.size_um)/1000\n    rise=p.power_w*m.self_k_w\n    for i in range(p.count):\n        for j in range(i+1,p.count):\n            d=np.abs(l.centre_um[j]-l.centre_um[i])/1000\n            allowed=d+1e-8 >= (size[i]+size[j])/2+gap/1000\n            rho=float(d[allowed].max())\n            low=(p.size_um[i].min()+p.size_um[j].min())/2000+gap/1000\n            a,b=m.tangents(low,np.hypot(*p.carrier_um)/1000)\n            tau=max(0.,float((a+b*rho).max()))\n            rise[i]+=p.power_w[j]*tau\n            rise[j]+=p.power_w[i]*tau\n    return 45+float(rise.max())\n# Same radial model; change only the embedding in the MILP.\np=problem('axis_probe',[[6000,6000]]*2,[100,100],(40000,40000),[(0,1)])\nm=ThermalProxy.calibrate(p,0)\na=layout([[14000,20000],[26000,20000]])\nb=layout([[15500,15500],[24500,24500]])\nwith Evaluator(p,0,64) as ev:\n    out['metric_reversal']=[dict(name=name,centre_um=l.centre_um.tolist(),legal=is_legal(p,l,0),euclidean_proxy_c=m.peak_c(p,l),tight_axis_envelope_c=axis_score(p,l,m),fv_c=float(ev.peaks_c([l])[0])) for name,l in [('axis_aligned',a),('diagonal',b)]]\n# Exactly equal proxy scores with different die footprints.\np2=problem('rotation_probe',[[20000,4000]]*2,[100,100],(50000,40000))\nm2=ThermalProxy.calibrate(p2,0)\nla=layout([[15000,20000],[28000,20000]],[90,90]); lb=layout(la.centre_um,[0,90])\nwith Evaluator(p2,0,64) as ev:\n    out['rotation_blindness']=[dict(rotation_deg=l.rotation_deg.tolist(),legal=is_legal(p2,l,0),proxy_c=m2.peak_c(p2,l),fv_c=float(ev.peaks_c([l])[0])) for l in (la,lb)]\n# Limits change the real objective, while the new proxy ignores them.\np3=problem('limit_probe',[[6000,6000]]*3,[80,20,20],(40000,40000))\nq3=replace(p3,limit_c=np.array([105,55,105.]))\nm3=ThermalProxy.calibrate(p3,0)\nla=layout([[6000,6000],[30000,30000],[23000,30000]])\nlb=layout([[23000,30000],[6000,6000],[30000,30000]])\nwith Evaluator(p3,0,64) as plain, Evaluator(q3,0,64) as limited:\n    out['limit_objective_reversal']=[dict(name=name,centre_um=l.centre_um.tolist(),legal=is_legal(p3,l,0),proxy_c=m3.peak_c(q3,l),fv_peak_c=float(plain.peaks_c([l])[0]),fv_overshoot_k=float(limited.peaks_c([l])[0]),actual_die_c=plain.die_peaks_c([l])[0].tolist()) for name,l in [('hot_isolated',la),('low_limit_isolated',lb)]]\n# Compare a solver's internal envelope objective and the reported Euclidean endpoint.\np4=problem('cap_probe',[[6000,6000]]*4,[50]*4,(20000,20000),[(0,1),(1,2),(2,3),(3,0)])\nm4=ThermalProxy.calibrate(p4,0)\ncool=milp_relations(p4,0,10,proxy=(m4,None))\nlow=m4.peak_c(p4,cool)\naxis=axis_score(p4,cool,m4)\ncapped=milp_relations(p4,0,10,proxy=(m4,low+0.001))\nout['cap_endpoint_mismatch']=dict(centre_um=cool.centre_um.tolist(),euclidean_endpoint_c=low,axis_envelope_c=axis,cap_c=low+0.001,capped_solution_found=capped is not None)\nPath('../probe.json').write_text(json.dumps(out,indent=2)+'\\n')\nfor key,value in out.items():print(key,json.dumps(value))\n",
+    "dense_cap_schedule": "import json\nfrom pathlib import Path\nimport numpy as np\nfrom dataclasses import replace\nfrom chiplet_floorplanning.placement import Problem, Layout, Evaluator\nfrom chiplet_floorplanning.placement.proxy import ThermalProxy\nfrom chiplet_floorplanning.placement.lp import milp_relations\np=Problem('dense_cap',tuple('abcd'),np.array([[6000.,6000.]]*4),np.array([50.]*4),(13000.,13000.),np.array([[0,1],[1,2],[2,3],[3,0]]),np.zeros((4,2,2)))\nm=ThermalProxy.calibrate(p,0)\nshort=milp_relations(p,0,10)\ncool=milp_relations(p,0,10,proxy=(m,None))\nlow,high=m.peak_c(p,cool),m.peak_c(p,short)\na,b=m.tangents(6,np.hypot(13,13))\nlower=45+50*m.self_k_w[0]+150*max(0.,(a+7*b).max())\nrows=[]\nfor cap in np.linspace(low,high,6)[1:-1]:\n    found=milp_relations(p,0,10,proxy=(m,float(cap)))\n    rows.append(dict(cap_c=float(cap),below_proved_lower_bound=bool(cap<lower),solution_found=found is not None))\nout=json.loads(Path('../probe.json').read_text())\nout['actual_cap_schedule']=dict(carrier_um=[13000,13000],die_size_um=[6000,6000],power_w=[50]*4,low_euclidean_c=low,high_euclidean_c=high,axis_lower_bound_c=float(lower),caps=rows,short_centre_um=short.centre_um.tolist(),cool_centre_um=cool.centre_um.tolist())\np3=Problem('limit_probe',tuple('abc'),np.array([[6000.,6000.]]*3),np.array([80.,20.,20.]),(40000.,40000.),np.zeros((0,2),int),np.zeros((0,2,2)),limit_c=np.array([105.,57.,105.]))\nwith Evaluator(p3,0,64) as ev:\n    for r in out['limit_objective_reversal']:\n        l=Layout(np.array(r['centre_um']),np.zeros(3,int))\n        r['limit_c']=p3.limit_c.tolist();r['fv_overshoot_k']=float(ev.peaks_c([l])[0])\nPath('../probe.json').write_text(json.dumps(out,indent=2)+'\\n')\nprint('actual_cap_schedule',json.dumps(out['actual_cap_schedule']))\nprint('limit_reversal',json.dumps(out['limit_objective_reversal']))\n",
+    "public_method_and_reticle": "import json\nfrom pathlib import Path\nimport numpy as np\nfrom chiplet_floorplanning.placement import Problem, Layout, Evaluator\nfrom chiplet_floorplanning.placement.methods import Run, proxy_space\nfrom chiplet_floorplanning.placement.cost import interposer_cost\nfrom sizing_compare import reticle_decision\np=Problem('dense_cap',tuple('abcd'),np.array([[6000.,6000.]]*4),np.array([50.]*4),(13000.,13000.),np.array([[0,1],[1,2],[2,3],[3,0]]),np.zeros((4,2,2)))\ninitial=Layout(np.array([[9000,9000],[9000,3000],[3000,3000],[3000,9000.]]),np.zeros(4,int))\nwith Evaluator(p,0,64) as ev:\n    run=Run(ev,60)\n    proxy_space(run,[initial],np.random.default_rng(0),milp_s=5,anneal_steps=10,chains=2,levels=4,cap_milp_s=5,batch=4,steps=2,caps=2)\n    actual=dict(notes=run.notes,solves=ev.solves,layouts=len(run.layouts))\nshape=dict(width_mm=40.,height_mm=40.,rows=[dict(length_m=1.,thermal=100.),dict(length_m=10.,thermal=80.)])\nr=reticle_decision([dict(factor=1.,joint=[],baseline=shape)])\nout=json.loads(Path('../probe.json').read_text())\nout['public_proxy_space']=actual\nout['reticle_empty_intersection']=dict(input=dict(factor=1.,baseline=shape,joint=[]),status=r['status'],l_cap_m=r['l_cap_m'],t_cap=r['t_cap'],cost=interposer_cost(40,40),without_threshold=r['pairs'][0]['without_threshold'],with_threshold=r['pairs'][0]['with_threshold'])\nPath('../probe.json').write_text(json.dumps(out,indent=2,default=float)+'\\n')\nprint('proxy_space',json.dumps(actual))\nprint('reticle_empty_intersection',json.dumps(out['reticle_empty_intersection']))\n",
+    "limits_95_85": "import numpy as np\nfrom chiplet_floorplanning.placement import Problem, Layout, Evaluator\nfrom chiplet_floorplanning.placement.proxy import ThermalProxy\np=Problem('limits_realistic',tuple('abc'),np.array([[6000.,6000.]]*3),np.array([100.,80.,20.]),(40000.,40000.),np.zeros((0,2),int),np.zeros((0,2,2)),limit_c=np.array([95.,85.,95.]))\nm=ThermalProxy.calibrate(p,0)\nlayouts=[Layout(np.array(xy,float),np.zeros(3,int)) for xy in ([[6000,6000],[30000,30000],[23000,30000]],[[23000,30000],[6000,6000],[30000,30000]])]\nwith Evaluator(p,0,64) as ev:\n    for l in layouts:\n        print(m.peak_c(p,l),ev.peaks_c([l])[0],ev.die_peaks_c([l])[0]+p.limit_c)\n"
+  },
+  "next_change": "Align caps and endpoints to the actual MILP envelope; align all global thermal objectives to the requested peak/overshoot objective before extending supported inputs; evaluate the embedded score on existing layouts before more FV calibration."
+}
