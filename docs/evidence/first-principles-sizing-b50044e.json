@@ -1,0 +1,307 @@
+{
+  "date": "2026-11-16",
+  "initial_analyzed_commit": "fcffd7f09b61b05c79ac0112b149e6387dfae3dc",
+  "additional_analyzed_commit": "b50044e1dae0597bc1e254cb47f193969679deba",
+  "fetch_succeeded": true,
+  "head_equal_origin_main_at_start": true,
+  "scope": "Review and local numerical controls only. No production code changed, no remote experiment launched or stopped. Findings remain open unless fixed separately.",
+  "snapshot_code_sha256": {
+    "src/chiplet_floorplanning/placement/problem.py": "88c9321e57ff966d4b169d3af769b6f91eef57117fcd65c48989c6ffd2e5eacf",
+    "src/chiplet_floorplanning/placement/evaluate.py": "14683b3957a72eadb985330d15dbf0132117371e74f80cb60d5a72dfb2802406",
+    "src/chiplet_floorplanning/placement/thermal.py": "ecc093d4f9e99c67fb1faee8c2be8ed53d540a906a988006444de89bec2de761",
+    "src/chiplet_floorplanning/placement/cost.py": "d7d7487ced3683d1db8ab613fcbd6059d1ec61619e4b08508ec787fe6a7ee166",
+    "tools/run_sizing.py": "36e14e972d8d26c0f660e5206e48d2672cdc439fe2000b351460887e084f1d10",
+    "tools/sizing_compare.py": "ec6bedb34cad424dece8b0244a675d36d4bc307f1c1213a0eee94b0b2c3efe86",
+    "tools/problem_screens.py": "2a3ae9708f5865e442490b82ddb02377d846deb0d91f185d5d6631e29b139362"
+  },
+  "additional_files_sha256": {
+    "physics_checks.py": "b0ec31042be75bffe96f3826c40c4c89ea2b739c313b4d26b0cae8318677b6b3",
+    "physics_checks_unittest.py": "8d73b82a4e94f12fc007191a7e95fdb5d772604756a96fcb724b1dde314dde38"
+  },
+  "additional_files_provenance": "Initially uncommitted files were copied for analysis, then verified identical to the b50044e publication. Later serialization edits were not included in these checks.",
+  "controls": {
+    "cost_threshold": [
+      {
+        "area_mm2": 2800.0,
+        "width_mm": 50.0,
+        "height_mm": 56.0,
+        "option": "stitched",
+        "fields": 4,
+        "yield_": 0.2206204499088926,
+        "dies_per_wafer": 12.6505516536262,
+        "interposer_usd": 694.023842671884,
+        "substrate_usd": 56.0,
+        "total_usd": 750.023842671884
+      },
+      {
+        "area_mm2": 2831.4,
+        "width_mm": 50.0,
+        "height_mm": 56.628,
+        "option": "rdl_bridge",
+        "fields": 1,
+        "yield_": 0.31359207883269385,
+        "dies_per_wafer": 12.440617357755578,
+        "interposer_usd": 307.5914288100221,
+        "substrate_usd": 56.628,
+        "total_usd": 364.21942881002207
+      },
+      {
+        "area_mm2": 2831.5,
+        "width_mm": 50.0,
+        "height_mm": 56.63,
+        "option": "rdl_bridge",
+        "fields": 1,
+        "yield_": 0.313581426445398,
+        "dies_per_wafer": 12.439956833592392,
+        "interposer_usd": 307.61821044793936,
+        "substrate_usd": 56.63,
+        "total_usd": 364.24821044793936
+      },
+      {
+        "area_mm2": 2850.0,
+        "width_mm": 50.0,
+        "height_mm": 57.0,
+        "option": "rdl_bridge",
+        "fields": 1,
+        "yield_": 0.31161900681179666,
+        "dies_per_wafer": 12.318623897990037,
+        "interposer_usd": 312.6044176596969,
+        "substrate_usd": 57.0,
+        "total_usd": 369.6044176596969
+      }
+    ],
+    "reticle_no_thermal_effect": {
+      "t_cap_c": 80.0,
+      "distinct": [
+        "('rdl_bridge', 1)",
+        "('stitched', 4)"
+      ],
+      "changes": true,
+      "parameter_sets": 18,
+      "representative_choices": [
+        {
+          "params": {
+            "d0_per_cm2": 0.06,
+            "seam_yield": 1.0,
+            "wafer_usd": 500.0
+          },
+          "width_mm": 50.0,
+          "height_mm": 56.0,
+          "option": "stitched",
+          "fields": 4,
+          "cost_usd": 229.8282500053398
+        },
+        {
+          "params": {
+            "d0_per_cm2": 0.06,
+            "seam_yield": 1.0,
+            "wafer_usd": 1937.0
+          },
+          "width_mm": 50.0,
+          "height_mm": 57.0,
+          "option": "rdl_bridge",
+          "fields": 1,
+          "cost_usd": 369.6044176596969
+        }
+      ]
+    },
+    "reticle_no_supported_technology": {
+      "t_cap_c": 80.0,
+      "distinct": [
+        "(None, 0)"
+      ],
+      "changes": false,
+      "parameter_sets": 18,
+      "representative_choices": [
+        {
+          "params": {
+            "d0_per_cm2": 0.06,
+            "seam_yield": 1.0,
+            "wafer_usd": 500.0
+          },
+          "width_mm": 120.0,
+          "height_mm": 100.0,
+          "option": null,
+          "fields": 0,
+          "cost_usd": "inf"
+        }
+      ]
+    },
+    "all_unavailable": [
+      "ineffective",
+      0.0,
+      0.0
+    ],
+    "limits": {
+      "absolute_die_peak_c": [
+        91.29435267333645,
+        57.60439786808098
+      ],
+      "reported_die_peak_c": [
+        81.29435267333645,
+        57.60439786808098
+      ],
+      "stored_peak_c": 81.29435267333645,
+      "limits_c": [
+        95.0,
+        85.0
+      ],
+      "true_overshoot_k": -3.705647326663552,
+      "offsets_for_95_85": [
+        10.0,
+        0.0
+      ],
+      "offsets_for_105_95": [
+        10.0,
+        0.0
+      ],
+      "lower_limits_c": [
+        85.0,
+        75.0
+      ],
+      "lower_limits_true_overshoot_k": 6.294352673336448,
+      "lower_limits_offsets_k": [
+        10.0,
+        0.0
+      ]
+    },
+    "exact_k0_fit_control": {
+      "rows": [
+        {
+          "h": 1500.0,
+          "lambda_theory_mm": 45.89843860815601,
+          "lambda_fit_mm": 57.755882113889044,
+          "relative_error": 0.25834089056846476
+        },
+        {
+          "h": 2777.777777777778,
+          "lambda_theory_mm": 33.72832637413247,
+          "lambda_fit_mm": 38.74873144697646,
+          "relative_error": 0.14884833054433222
+        },
+        {
+          "h": 5000.0,
+          "lambda_theory_mm": 25.13961017995307,
+          "lambda_fit_mm": 27.397473039778987,
+          "relative_error": 0.08981296224021773
+        },
+        {
+          "h": 15000.0,
+          "lambda_theory_mm": 14.51436070471816,
+          "lambda_fit_mm": 15.143134384962293,
+          "relative_error": 0.043320797452673254
+        },
+        {
+          "h": 50000.0,
+          "lambda_theory_mm": 7.949842765740716,
+          "lambda_fit_mm": 8.144495630304897,
+          "relative_error": 0.02448512131623848
+        }
+      ],
+      "verdict": [
+        "holds",
+        5.0,
+        -0.5544182138735241
+      ]
+    },
+    "decay_spreader_mm": {
+      "x": 45.0,
+      "y": 45.0,
+      "width": 110.0,
+      "height": 110.0
+    },
+    "spreader_control": {
+      "actual_110mm_peak_c": 45.59138400536669,
+      "fixed_100mm_peak_c": 45.59186691315518,
+      "power_w": 1.0
+    },
+    "area_factor": {
+      "screen_length_scale": 0.85,
+      "screen_area_factor": 0.7224999999999999,
+      "draft_prediction_area_factor": 0.85,
+      "predicted_for_area085_k": 14.86027989513194,
+      "predicted_for_area07225_k": 30.340011661343958,
+      "actual_scaled_dimensions_um": [
+        34000.0,
+        42500.0
+      ],
+      "actual_base_dimensions_um": [
+        40000,
+        50000
+      ]
+    },
+    "one_win_with_failures": {
+      "result": [
+        "effective",
+        1.0,
+        0.0
+      ],
+      "counts": {
+        "ours": 1,
+        "unavailable": 59
+      }
+    },
+    "cost_boundary_adjacent": [
+      {
+        "area_mm2": 2831.399,
+        "option": "stitched",
+        "fields": 4,
+        "yield_": 0.21740099368209687,
+        "dies_per_wafer": 12.440623963252552,
+        "interposer_usd": 716.1861742666074,
+        "substrate_usd": 56.62798,
+        "total_usd": 772.8141542666074
+      },
+      {
+        "area_mm2": 2831.4010000000003,
+        "option": "rdl_bridge",
+        "fields": 1,
+        "yield_": 0.3135919723064326,
+        "dies_per_wafer": 12.440610752263657,
+        "interposer_usd": 307.59169661734103,
+        "substrate_usd": 56.62802000000001,
+        "total_usd": 364.219716617341
+      }
+    ]
+  },
+  "accepted_scope": [
+    "The shifted temperature score preserves ordering for a fixed set of limits; absolute feasibility and physical-temperature reporting are not preserved without the reference value.",
+    "Cost figures are outputs of the declared cost model, not manufacturer quotes or calibrated prices.",
+    "The identical-temperature reticle control proves that changes=True is insufficient evidence for a thermally driven technology decision.",
+    "The exact K0 control still passes the frozen decay verdict; the observed fit bias is not evidence that the frozen verdict fails.",
+    "The 100 vs 110 mm spreader control has a small effect and is not claimed to explain experimental trends.",
+    "The tests below pass despite the identified semantics/protocol failures."
+  ],
+  "primary_math_source": {
+    "url": "https://dlmf.nist.gov/10.40",
+    "section": "10.40.2",
+    "use": "K_nu asymptotic expansion is for large arguments."
+  },
+  "validation": {
+    "published_snapshot_unittest_count": 135,
+    "duration_s": 73.408,
+    "status": "passed",
+    "command": "PYTHONPATH=src:tools:tests OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m unittest discover -s tests -p '*_unittest.py' -v",
+    "additional_b50044e_tests": 3,
+    "additional_tests_status": "passed separately; unchanged production source",
+    "two_chiplets_validate": "passed",
+    "two_chiplets_evaluate": "passed",
+    "reference_peak_c": 34.1886,
+    "thermal_status": "uncalibrated",
+    "timing_status": "not_run",
+    "local_artifacts": "results/first-principles-fcffd7f",
+    "latest_increment_focused_tests": 4,
+    "latest_increment_focused_status": "passed"
+  },
+  "reproduction_environment": "Check out analyzed commits; Python 3.10+ and repository dependencies; PYTHONPATH=src:tools with OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1. The main probe uses physics_checks.py from b50044e.",
+  "reproduction_python": "import copy\nimport json\nfrom dataclasses import replace\nfrom pathlib import Path\nimport numpy as np\nfrom scipy.special import k0\nfrom chiplet_floorplanning.placement import Problem, Layout, Evaluator\nfrom chiplet_floorplanning.placement.cost import interposer_cost\nfrom chiplet_floorplanning.placement.thermal import thermal_case_data, solve\nfrom sizing_compare import reticle_decision, verdict\nfrom physics_checks import R_MM, H_SWEEP, lambda_theory_mm, fit_lambda, decay_verdict, predicted_area_rise\n\nout = {}\nout['cost_threshold'] = [dict(area_mm2=a, width_mm=50., height_mm=a/50., **interposer_cost(50., a/50.)) for a in (2800., 2831.4, 2831.5, 2850.)]\ndef record(f, w, h):\n    shape = dict(width_mm=w, height_mm=h, rows=[dict(length_m=1., peak_c=80.)])\n    return dict(factor=f, joint=[shape], baseline=shape)\nout['reticle_no_thermal_effect'] = reticle_decision([record(1., 50., 56.), record(2850./2800., 50., 57.)])\nout['reticle_no_supported_technology'] = reticle_decision([record(1., 120., 100.)])\nout['all_unavailable'] = verdict(['unavailable']*12)\np = Problem('limits_probe', ('hot', 'warm'), np.array([[6000., 6000.]]*2), np.array([100., 20.]), (30000., 30000.), np.zeros((0,2),int), np.zeros((0,2,2)))\nl = Layout(np.array([[6000., 6000.], [24000., 24000.]]), np.zeros(2,int))\nq = replace(p, limit_offset_k=np.array([10., 0.]))\nwith Evaluator(p, 0, resolution=64) as raw, Evaluator(q, 0, resolution=64) as relative:\n    actual = raw.die_peaks_c([l])[0]\n    out['limits'] = dict(absolute_die_peak_c=actual.tolist(), reported_die_peak_c=relative.die_peaks_c([l])[0].tolist(), stored_peak_c=float(relative.peaks_c([l])[0]), limits_c=[95.,85.], true_overshoot_k=float((actual-np.array([95.,85.])).max()))\nbase = dict(name='limits_import',interposer_width_um=30000,interposer_height_um=30000,nets=[],chiplets=[dict(name=n,width_um=6000,height_um=6000,power_w_decimal=pw,limit_c=lim) for n,pw,lim in zip(('hot','warm'),(100,20),(95,85))])\na = Problem.from_imported(base)\nother=copy.deepcopy(base)\nfor c in other['chiplets']: c['limit_c'] += 10\nb = Problem.from_imported(other)\nout['limits']['offsets_for_95_85'] = a.limit_offset_k.tolist()\nout['limits']['offsets_for_105_95'] = b.limit_offset_k.tolist()\nrows=[]\nfor h in H_SWEEP:\n    lam=lambda_theory_mm(h)\n    fit,c=fit_lambda(R_MM,k0(R_MM/lam))\n    rows.append(dict(h=h,lambda_theory_mm=lam,lambda_fit_mm=fit,relative_error=fit/lam-1))\nout['exact_k0_fit_control'] = dict(rows=rows,verdict=decay_verdict(rows))\np90=replace(p,names=('src','obs'),size_um=np.array([[5000.,5000.],[1000.,1000.]]),power_w=np.array([1.,0.]),carrier_um=(90000.,30000.))\nl90=Layout(np.array([[10000.,15000.],[50000.,15000.]]),np.zeros(2,int))\ndata=thermal_case_data(p90,l90,0,64)\nspreader=next(x for x in data['thermal']['layers'] if x['id']=='spreader')\nout['decay_spreader_mm']=spreader['rect_mm']\nfixed=copy.deepcopy(data)\nnext(x for x in fixed['thermal']['layers'] if x['id']=='spreader')['rect_mm']=dict(x=50.,y=50.,width=100.,height=100.)\nout['spreader_control'] = dict(actual_110mm_peak_c=solve(data)[0]['peak_power_layer_c'],fixed_100mm_peak_c=solve(fixed)[0]['peak_power_layer_c'],power_w=1.)\nlam,c=fit_lambda(R_MM,k0(R_MM/lambda_theory_mm(H_SWEEP[1])))\nout['area_factor'] = dict(screen_length_scale=.85,screen_area_factor=.85**2,draft_prediction_area_factor=.85,predicted_for_area085_k=predicted_area_rise(p,lam,c,.85),predicted_for_area07225_k=predicted_area_rise(p,lam,c,.85**2))\nPath('../probe.json').write_text(json.dumps(out,indent=2,default=float)+'\\n')\nfor key,value in out.items():\n    if key.startswith('reticle'):\n        print(key, {k:v for k,v in value.items() if k!='choices'})\n    else: print(key,value)\n",
+  "additional_reproduction_calls": [
+    "verdict(['ours'] + ['unavailable'] * 59)",
+    "a = CostParams().stitch_limit * 26 * 33; [interposer_cost(50, (a + delta)/50) for delta in (-0.001, 0.001)]",
+    "scaled_case(dict(name='scale_probe', interposer_width_um=40000, interposer_height_um=50000), 0.85)",
+    "[95,85] and [85,75] both produce offsets [10,0], but max(actual_temperature - limits) differs by 10 K."
+  ],
+  "latest_increment_reviewed": "130481548988dccf423c0b9912ee9274cf51b074",
+  "latest_increment_scope": "Only JSON serialization default and its regression test changed since b50044e; numerical controls and findings remain applicable.",
+  "end_of_review_worktree_note": "An uncommitted absolute-limit fix appeared in problem/evaluate/thermal and sizing tests during wrap-up. It was preserved, not committed or accepted as validated by this review. Findings are tied to the published analyzed SHAs."
+}
