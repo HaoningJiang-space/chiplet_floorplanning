@@ -139,6 +139,8 @@ def main():
     p.add_argument('--seed', type=int, default=2)
     p.add_argument('--output', type=Path, required=True)
     args = p.parse_args()
+    if not (math.isfinite(args.delta_k) and args.delta_k >= 0):
+        raise SystemExit('--delta-k must be finite and >= 0 (a limit below the anchor peak would admit an overshooting anchor)')
     if args.output.exists():
         raise SystemExit(f'{args.output} exists')
     case = json.loads(args.case.read_text())

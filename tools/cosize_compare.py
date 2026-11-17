@@ -16,7 +16,8 @@ from pathlib import Path
 from chiplet_floorplanning.placement.cost import CostParams, interposer_cost
 from sizing_compare import SWEEP
 
-COMPARISONS = (('cosize', 'fixed_aspect'), ('cosize', 'cosize_blind'), ('cosize', 'cosize_axial'))
+COMPARISONS = (('cosize', 'fixed_aspect'), ('cosize', 'cosize_blind'), ('cosize', 'cosize_axial'),
+               ('cosize_shrink', 'fixed_aspect'))   # v4 (docs/cosize-v4-plan.md); missing runs make it incomplete
 
 
 def combos(with_case8_cool=False):

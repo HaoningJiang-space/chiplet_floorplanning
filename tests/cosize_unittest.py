@@ -68,9 +68,13 @@ class ShrinkChainTest(unittest.TestCase):
             peak = evaluator.peaks_c([anchor])[0]
         limited = replace(p, limit_c=np.full(4, peak))
         length = pin_manhattan_um(p, anchor).sum()/1e6
-        out, used = shrink_chain(limited, anchor, 500, length, 12, 16, 60)
+        out, used, (final, final_um), errors = shrink_chain(limited, anchor, 500, length, 12, 16, 60)
         self.assertTrue(out)
         self.assertLessEqual(used, 60)
+        self.assertTrue(errors)
+        self.assertEqual(final_um, (out[-1][1][0]*1000, out[-1][1][1]*1000))
+        for budget in (0, 1, 3):                                       # the budget covers every FV solve
+            self.assertLessEqual(shrink_chain(limited, anchor, 500, length, 12, 16, budget)[1], budget)
         area = 40.0*40.0
         for layout, (w, h), j, l in out:
             self.assertLess(w*h, area)
@@ -137,6 +141,10 @@ class AnchoredTest(unittest.TestCase):
         self.assertTrue(out['anchor']['ok'])
         self.assertAlmostEqual(out['anchor']['j_k'], -1.0, places=6)
         out = anchored(limited, self.anchor, 500, self.length, 1, inner='blind', workers=1, resolution=16)
+        self.assertEqual(out['history'][0]['stop'], 'reproduction_mismatch')
+        hot = replace(self.p, limit_c=np.full(4, self.peak - 1.0))      # reproduces J = +1 but overshoots
+        out = anchored(hot, self.anchor, 500, self.length, 1, inner='blind', workers=1, resolution=16,
+                       expected_j_k=1.0)
         self.assertEqual(out['history'][0]['stop'], 'reproduction_mismatch')
 
     def test_zero_budget_spends_no_solve(self):

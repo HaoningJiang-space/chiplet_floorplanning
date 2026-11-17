@@ -181,10 +181,12 @@ def peak_sensitivity(problem, layout, gap_um, resolution=64):
         if dies and not factor:
             factor.append(splu(a.tocsc(), permc_spec="MMD_AT_PLUS_A", diag_pivot_thresh=0.0,
                                options=dict(SymmetricMode=True)))
-        for i in dies:
-            unit = np.zeros(a.shape[0])
-            unit[hottest[i]] = 1.0
-            adjoint = factor[0].solve(unit)
+        dies = list(dies)
+        units = np.zeros((a.shape[0], len(dies)))
+        units[[hottest[i] for i in dies], np.arange(len(dies))] = 1.0
+        adjoints = factor[0].solve(units) if dies else units     # all right-hand sides in one call
+        for k, i in enumerate(dies):
+            adjoint = adjoints[:, k]
             psi = np.where(layer >= 0, adjoint[np.maximum(layer, 0)], np.nan)
             under = np.where(below >= 0, adjoint[np.maximum(below, 0)], np.nan)
             for j, (rj, cj) in enumerate(cells):

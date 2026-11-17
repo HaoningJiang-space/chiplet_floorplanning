@@ -88,25 +88,40 @@ SHRINK_BUFFER_K = 0.05  # linearised overshoot target -buffer: the FV peak jumps
 def shrink_chain(problem, layout, gap_um, length_m, steps, resolution, budget, cool_steps=6, rounds=4):
     """Trust-region SLP on the carrier scale, from a certified layout on problem's carrier (cosize v4 plan).
 
-    The topology and rotations of `layout` are kept; the carrier keeps its width/height ratio, W = kx s, H = ky s.
-    Each step solves the LP: min s over centres and s with the topology's separation rows, every die inside
-    [0, kx s] x [0, ky s], the exact inter-die pin length within the budget, and every near-peak die's FV overshoot
-    linearised, J_i + grad_i . (c - c0) + h_i (s - s0) <= -SHRINK_BUFFER_K. grad comes from the deferred adjoints;
-    h is not in them (the moving boundary changes the conduction matrix), so it is a forward difference: one FV
-    solve on the carrier grown by SHRINK_DELTA with the dies in place. The candidate carrier is rounded up to the
-    grid and kept only if an exact FV solve there gives J <= 0 with the exact length within the budget: every kept
-    step is a certified design. A reference layout has no thermal slack (the limits are its own peaks), so when
-    shrinking stalls a cooling SLP (slp_chain, length mode, `cool_steps`) on the current carrier buys slack and
-    shrinking resumes, for at most `rounds` rounds. Returns (certified [(layout, (w, h), J, length m)], FV solves)."""
+    The topology and rotations of `layout` are kept. At each accepted state (W, H) the carrier is parameterised
+    afresh as W = kx s, H = ky s with s0 = sqrt(W H), so the model is centred on the carrier actually solved (grid
+    rounding drifts the ratio slightly; the drift is recorded in the returned carriers). Each step solves the LP:
+    min s over centres and s with the topology's separation rows, every die inside [0, kx s] x [0, ky s], the exact
+    inter-die pin length within the budget, and every near-peak die's FV overshoot linearised,
+    J_i + grad_i . (c - c0) + h_i (s - s0) <= -buffer. grad comes from the deferred adjoints (rows cached per state);
+    h is a forward difference: one FV solve on the carrier grown by SHRINK_DELTA with the dies kept at their
+    physical package positions (the carrier is centred in the package, so local centres shift by half the growth;
+    with the adjoint's translation-invariant gradient the centre shift adds nothing to the model). The buffer is
+    min(SHRINK_BUFFER_K, half the current slack), so a state with no slack is not asked for 0.05 K out of nothing.
+    A candidate carrier is rounded up to the grid; its exact pin length is checked first, then an exact FV solve
+    must give J <= 0: every kept step is a certified design. An infeasible LP is not retried with a smaller trust
+    region (a smaller region is a subset); it ends the round, and a cooling SLP (slp_chain, length mode) on the
+    current carrier buys slack, for at most `rounds` rounds.
+    Returns (certified [(layout, (w, h), J, length m)], FV solves, final state (layout, carrier um) - the coolest
+    certified state reached, cooled or shrunk, for continuation - and the model errors of the FV-checked
+    candidates, [(predicted max J, actual max J)])."""
     from .thermal import peak_sensitivity
+    if budget < 1:
+        return [], 0, (layout, problem.carrier_um), []
     n = problem.count
-    w0, h0 = (v/1000 for v in problem.carrier_um)
-    kx, ky = math.sqrt(w0/h0), math.sqrt(h0/w0)          # W = kx s, H = ky s with s = sqrt(W H)
     inside = problem.pin_chip[:, 0] == problem.pin_chip[:, 1]
     size = np.where((layout.rotation_deg % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)/1000
     sized, current = problem, layout
     peaks, gradient = peak_sensitivity(sized, current, gap_um, resolution)
-    used, out, slope = 1, [], None
+    used, out, slope, known, errors = 1, [], None, {}, []
+
+    def rows_of(dies):
+        missing = [i for i in dies if i not in known]
+        if missing:
+            g = gradient(missing)
+            known.update((i, g[i]) for i in missing)
+        return np.array([known[i] for i in dies]).reshape(len(dies), n, 2)
+
     _, smallest, largest = SLP_RADIUS_MM
     for _ in range(rounds):
         radius = SLP_RADIUS_MM[0]
@@ -115,13 +130,16 @@ def shrink_chain(problem, layout, gap_um, length_m, steps, resolution, budget, c
                 break
             w, h = (v/1000 for v in sized.carrier_um)
             s0 = math.sqrt(w*h)
-            if slope is None:                              # forward difference on the scale, dies in place
+            kx, ky = w/s0, h/s0
+            if slope is None:                              # forward difference, dies fixed in the package
                 grown = replace(sized, carrier_um=(w*(1 + SHRINK_DELTA)*1000, h*(1 + SHRINK_DELTA)*1000))
-                up, _ = peak_sensitivity(grown, current, gap_um, resolution)
+                moved = replace(current, centre_um=current.centre_um + np.array([w, h])*SHRINK_DELTA*500)
+                up, _ = peak_sensitivity(grown, moved, gap_um, resolution)
                 used += 1
                 slope = (up - peaks)/(s0*SHRINK_DELTA)
+            buffer = min(SHRINK_BUFFER_K, 0.5*max(0.0, -float(peaks.max())))
             hot = np.flatnonzero(peaks >= peaks.max() - SLP_BAND_K)
-            grad = gradient(hot.tolist())[hot]
+            grad = rows_of(hot.tolist())
             lp = TopologyLP(sized, current, gap_um, pairs=0)
             nv = lp.nvar + 1                               # LP variables, then s
             x0 = current.centre_um.T.ravel()/1000
@@ -132,14 +150,16 @@ def shrink_chain(problem, layout, gap_um, length_m, steps, resolution, budget, c
             heat = np.zeros((hot.size, nv))
             heat[:, :2*n] = np.concatenate([grad[:, :, 0], grad[:, :, 1]], axis=1)
             heat[:, nv - 1] = slope[hot]
+            offset = heat[:, :2*n] @ x0 + slope[hot]*s0 - peaks[hot]
             budget_mm = length_m*1000 - pin_manhattan_um(problem, current)[inside].sum()/1000
             rows = sparse.vstack([sparse.hstack([lp.A, sparse.csr_matrix((lp.A.shape[0], 1))]), box.tocsr(),
                                   sparse.csr_matrix(heat), sparse.csr_matrix(np.r_[lp.length, 0.0][None])])
-            rhs = np.r_[lp.b, -np.r_[size[:, 0], size[:, 1]]/2,
-                        heat[:, :2*n] @ x0 + slope[hot]*s0 - peaks[hot] - SHRINK_BUFFER_K, budget_mm]
+            rhs = np.r_[lp.b, -np.r_[size[:, 0], size[:, 1]]/2, offset - buffer, budget_mm]
             bounds = ([(max(lo, x0[k] - radius), x0[k] + radius) for k, (lo, _) in enumerate(lp.bounds[:2*n])]
                       + lp.bounds[2*n:] + [(max(s0 - radius, 0.0), s0)])
             result = linprog(np.r_[np.zeros(lp.nvar), 1.0], A_ub=rows, b_ub=rhs, bounds=bounds, method='highs')
+            if result.status == 2:                         # infeasible: a smaller region cannot help; go cool
+                break
             if result.status != 0:
                 radius /= 2
                 continue
@@ -148,14 +168,17 @@ def shrink_chain(problem, layout, gap_um, length_m, steps, resolution, budget, c
             trial = replace(problem, carrier_um=(cw*1000, ch*1000))
             centre = snap(trial, np.stack((result.x[:n], result.x[n:2*n]), axis=1)*1000, current.rotation_deg, GRID_UM)
             candidate = Layout(centre, current.rotation_deg.copy())
-            if (cw, ch) == (w, h) or not is_legal(trial, candidate, gap_um):
+            length = pin_manhattan_um(problem, candidate).sum()/1e6
+            if (cw, ch) == (w, h) or length > length_m + 1e-9 or not is_legal(trial, candidate, gap_um):
                 radius /= 2
                 continue
             new_peaks, new_gradient = peak_sensitivity(trial, candidate, gap_um, resolution)
             used += 1
-            length = pin_manhattan_um(problem, candidate).sum()/1e6
-            if new_peaks.max() <= 0 and length <= length_m + 1e-9:
+            z = np.r_[candidate.centre_um.T.ravel()/1000, math.sqrt(cw*ch)]
+            errors.append((float((heat[:, :2*n] @ z[:-1] + slope[hot]*z[-1] - offset).max()), float(new_peaks.max())))
+            if new_peaks.max() <= 0:
                 sized, current, peaks, gradient, slope = trial, candidate, new_peaks, new_gradient, None
+                known.clear()
                 out.append((candidate, (cw, ch), float(new_peaks.max()), length))
                 radius = min(1.5*radius, largest)
             else:
@@ -170,8 +193,9 @@ def shrink_chain(problem, layout, gap_um, length_m, steps, resolution, budget, c
             break                                          # no slack to buy: shrinking has stalled
         current, slope = cooler[0], None
         peaks, gradient = peak_sensitivity(sized, current, gap_um, resolution)
+        known.clear()
         used += 1
-    return out, used
+    return out, used, (current, sized.carrier_um), errors
 
 
 def verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k=0.0):
@@ -183,7 +207,8 @@ def verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k=0.
     check = dict(j_k=j, die_j_k=np.asarray(peaks, float).tolist(), length_m=length,
                  legal=bool(is_legal(problem, anchor, gap_um)), carrier_mm=[s/1000 for s in problem.carrier_um])
     check.update(expected_j_k=expected_j_k)
-    check['ok'] = check['legal'] and abs(j - expected_j_k) <= REPRODUCE_K and length <= length_m + REPRODUCE_M
+    check['ok'] = (check['legal'] and abs(j - expected_j_k) <= REPRODUCE_K and j <= REPRODUCE_K
+                   and length <= length_m + REPRODUCE_M)            # reproduces, and is itself within the limits
     return check
 
 
@@ -199,7 +224,8 @@ def fixed_carrier(problem, gap_um, length_m, model, start, time_s, threads, dire
         if left() < 1:
             break
         proxy = None if model is None else (model, None, wire_mm)
-        found = milp_relations(problem, gap_um, left(), proxy=proxy, wire_mm=wire_mm, threads=threads, focus=1,
+        share = left()/2 if model is not None and directions else left()   # leave the K-direction stage its half
+        found = milp_relations(problem, gap_um, share, proxy=proxy, wire_mm=wire_mm, threads=threads, focus=1,
                                wire_cuts=cuts, start=start)
         statuses.append(MILP_STATUS['status'])
         # Gurobi's INF_OR_UNBD ('4') is infeasible here: the objective (proxy or wire) is bounded below.
@@ -361,15 +387,14 @@ def family_shrink(args):
             records.append(dict(aspect=aspect, step=step, stop='no certified layout at the trial carrier'))
             break
         base, base_um = ok[0], sized.carrier_um
-        chain, n = shrink_chain(sized, ok[0], gap_um, length_m, SHRINK_STEPS, resolution, budget - used)
+        chain, n, (base, base_um), errors = shrink_chain(sized, ok[0], gap_um, length_m, SHRINK_STEPS, resolution,
+                                                          budget - used)
         used += n
         for k, (layout, (cw, ch), j, length) in enumerate(chain):
             record(dict(status='certified', stage='shrink'), cw, ch, (layout, j, length), cw*ch,
                    n if k == len(chain) - 1 else 0)
             step += 1
-        if chain:
-            base, (cw, ch) = chain[-1][0], chain[-1][1]
-            base_um = (cw*1000, ch*1000)
+        records.append(dict(aspect=aspect, step=step, shrink_fv=n, model_errors=errors))
         area = MOVE_AREA*base_um[0]*base_um[1]/1e6
         if area <= low:
             break
