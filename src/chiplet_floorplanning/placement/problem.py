@@ -20,6 +20,9 @@ class Problem:
     pin_chip: np.ndarray       # (m, 2) chiplet index of each net endpoint
     pin_offset_um: np.ndarray  # (m, 2, 2) unrotated endpoint offsets
     top_h_w_m2k: float = None  # sink-top convection of a calibrated case; None keeps the declared default
+    # Per-die temperature limits as offsets above the most restrictive one (K); thermal objectives then use
+    # max_i (T_i - offset_i), i.e. the hottest die relative to its own limit. None: one common limit.
+    limit_offset_k: np.ndarray = None
 
     @classmethod
     def from_imported(cls, case):
@@ -33,13 +36,17 @@ class Problem:
         pin_chip = np.array([[index[p["chiplet"]] for p in net["pins"]] for net in case["nets"]], dtype=int)
         offsets = np.array([[[float(p["offset_x_um_decimal"]), float(p["offset_y_um_decimal"])]
                              for p in net["pins"]] for net in case["nets"]], dtype=float)
+        limits = [c.get("limit_c") for c in case["chiplets"]]
+        if any(v is not None for v in limits) and any(v is None for v in limits):
+            raise ValueError("give limit_c for every chiplet or for none")
+        limit_offsets = None if limits[0] is None else np.array(limits, float) - min(limits)
         return cls(
             name=case["name"], names=names,
             size_um=np.array([[c["width_um"], c["height_um"]] for c in case["chiplets"]], dtype=float),
             power_w=np.array([float(c["power_w_decimal"]) for c in case["chiplets"]]),
             carrier_um=(float(case["interposer_width_um"]), float(case["interposer_height_um"])),
             pin_chip=pin_chip.reshape(-1, 2), pin_offset_um=offsets.reshape(-1, 2, 2),
-            top_h_w_m2k=case.get("top_h_w_m2k"))
+            top_h_w_m2k=case.get("top_h_w_m2k"), limit_offset_k=limit_offsets)
 
     @property
     def count(self):

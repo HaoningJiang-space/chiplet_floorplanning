@@ -176,6 +176,8 @@ def die_peak_sensitivity(problem, layout, gap_um, resolution=64):
             grad[i, j, 1] = q[j]*wy*(sy*dx[cj]).sum()
         grad[i, i] = 0.0
         grad[i, i] = -grad[i].sum(axis=0)
+    if problem.limit_offset_k is not None:       # each die relative to its own limit (Problem.limit_offset_k)
+        peaks = peaks - problem.limit_offset_k
     return peaks + case.thermal["ambient_c"], grad
 
 

@@ -3,8 +3,9 @@ import unittest
 
 import numpy as np
 
-from chiplet_floorplanning.placement import Problem, is_legal, pin_manhattan_um
+from chiplet_floorplanning.placement import Evaluator, Layout, Problem, is_legal, pin_manhattan_um
 from chiplet_floorplanning.placement.lp import legalize_relations, milp_relations
+from chiplet_floorplanning.placement.thermal import die_peak_sensitivity
 
 
 def small_problem():
@@ -41,6 +42,25 @@ class SizingMilpTest(unittest.TestCase):
         self.assertNotEqual(first, second)
         self.assertLessEqual(width, levels[second] + 1e-6)
         self.assertIsNone(milp_relations(p, 500, 30, sizing=(levels, 100., [])))   # the dies alone need ~200 mm^2
+
+    def test_per_die_limits_shift_every_thermal_objective(self):
+        p = small_problem()
+        layout = Layout(np.array([[6000., 6000.], [20000., 6000.], [8000., 25000.], [30000., 30000.]]), np.zeros(4, int))
+        offsets = np.array([10., 0., 0., 5.])          # a tolerates 10 K more than the strictest die
+        q = replace(p, limit_offset_k=offsets)
+        with Evaluator(p, 500, resolution=24) as plain, Evaluator(q, 500, resolution=24) as limited:
+            raw, rel = plain.die_peaks_c([layout])[0], limited.die_peaks_c([layout])[0]
+            np.testing.assert_allclose(rel, raw - offsets)
+            self.assertAlmostEqual(limited.peaks_c([layout])[0], (raw - offsets).max())
+        peaks, _ = die_peak_sensitivity(q, layout, 500, 24)
+        np.testing.assert_allclose(peaks, die_peak_sensitivity(p, layout, 500, 24)[0] - offsets)
+        case = dict(name='c', interposer_width_um=40000., interposer_height_um=40000., nets=[],
+                    chiplets=[dict(name=n, width_um=w, height_um=h, power_w_decimal=1., limit_c=l)
+                              for n, (w, h), l in zip('ab', p.size_um[:2], (95., 85.))])
+        np.testing.assert_allclose(Problem.from_imported(case).limit_offset_k, [10., 0.])
+        case['chiplets'][1].pop('limit_c')
+        with self.assertRaises(ValueError):
+            Problem.from_imported(case)
 
 
 if __name__ == '__main__':

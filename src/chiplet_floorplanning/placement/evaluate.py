@@ -20,7 +20,8 @@ def thermal_key(problem, layout):
 
 
 def _peaks(args):
-    """[global power-layer peak, peak of each die], degC.
+    """[global power-layer peak, peak of each die], degC; with Problem.limit_offset_k the dies are shifted by their
+    offsets and the first entry is their maximum, so every objective follows the die closest to its own limit.
 
     With modes (power rows, per-die limits): [worst overshoot max_{m,i}(T_i - limit_i) in K, each die's
     hottest peak over the modes in degC]. The solvers reject non-finite, inaccurate or non-conserving solutions.
@@ -32,7 +33,11 @@ def _peaks(args):
         die = np.array([die_peaks_c(problem, layout, f, edges) for f in fields])
         return np.r_[(die - limits).max(), die.max(0)]
     summary, rise, edges = solve(thermal_case_data(problem, layout, gap_um, resolution))
-    return np.r_[summary["peak_power_layer_c"], die_peaks_c(problem, layout, rise, edges)]
+    die = die_peaks_c(problem, layout, rise, edges)
+    if problem.limit_offset_k is not None:       # per-die limits: the hottest die relative to its own limit
+        die = die - problem.limit_offset_k
+        return np.r_[die.max(), die]
+    return np.r_[summary["peak_power_layer_c"], die]
 
 
 class Evaluator:
