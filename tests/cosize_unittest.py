@@ -130,6 +130,15 @@ class AnchoredTest(unittest.TestCase):
         self.assertTrue(out['history'][0]['certified'])
         self.assertEqual(out['best']['width_mm'], 40.0)
 
+    def test_an_anchor_below_a_relaxed_limit_reproduces_with_the_expected_slack(self):
+        limited = replace(self.p, limit_c=np.full(4, self.peak + 1.0))
+        out = anchored(limited, self.anchor, 500, self.length, 0 + 1, inner='blind', workers=1, resolution=16,
+                       expected_j_k=-1.0)
+        self.assertTrue(out['anchor']['ok'])
+        self.assertAlmostEqual(out['anchor']['j_k'], -1.0, places=6)
+        out = anchored(limited, self.anchor, 500, self.length, 1, inner='blind', workers=1, resolution=16)
+        self.assertEqual(out['history'][0]['stop'], 'reproduction_mismatch')
+
     def test_zero_budget_spends_no_solve(self):
         limited = replace(self.p, limit_c=np.full(4, self.peak))
         for inner in ('blind', 'proxy'):

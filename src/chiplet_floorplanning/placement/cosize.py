@@ -174,14 +174,16 @@ def shrink_chain(problem, layout, gap_um, length_m, steps, resolution, budget, c
     return out, used
 
 
-def verify_anchor(problem, anchor, gap_um, length_m, resolution):
+def verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k=0.0):
     """One FV solve of the reference layout on its own carrier: legality, exact pin length and every die's
-    overshoot J against problem.limit_c. Shared by every method; ok only if the declared limits reproduce."""
+    overshoot J against problem.limit_c. Shared by every method; ok only if the declared limits reproduce, i.e. the
+    peak overshoot is expected_j_k (0 when the limit is the anchor's own peak; -delta when it is delta above it)."""
     (_, peaks), = slp_chain((problem, anchor, gap_um, resolution, length_m, 0, 'length'))
     j, length = float(peaks.max()), pin_manhattan_um(problem, anchor).sum()/1e6
     check = dict(j_k=j, die_j_k=np.asarray(peaks, float).tolist(), length_m=length,
                  legal=bool(is_legal(problem, anchor, gap_um)), carrier_mm=[s/1000 for s in problem.carrier_um])
-    check['ok'] = check['legal'] and abs(j) <= REPRODUCE_K and length <= length_m + REPRODUCE_M
+    check.update(expected_j_k=expected_j_k)
+    check['ok'] = check['legal'] and abs(j - expected_j_k) <= REPRODUCE_K and length <= length_m + REPRODUCE_M
     return check
 
 
@@ -376,7 +378,7 @@ def family_shrink(args):
 
 def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', directions=8, aspects=ASPECTS,
              envelope=1.25, size_s=120.0, threads=2, workers=8, resolution=64, chain_steps=12, params=CostParams(),
-             seed=2):
+             seed=2, expected_j_k=0.0):
     """cosize v3.1 (docs/cosize-v3-plan.md). `anchor` is the reference layout on problem's own carrier, expected to
     meet both limits (problem.limit_c = its FV peak, length_m = its pin length); verify_anchor re-checks it (1 FV).
     Per aspect family (ASPECTS plus the original) the trial carriers cheaper than the anchor's (or manufacturable,
@@ -393,7 +395,7 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
     if fv_budget < 1:
         out['history'].append(dict(stop='fv budget before the anchor check'))
         return out
-    check = verify_anchor(problem, anchor, gap_um, length_m, resolution)
+    check = verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k)
     out.update(anchor=check, fv_solves=1)
     if not check['ok']:
         out['history'].append(dict(stop='reproduction_mismatch'))

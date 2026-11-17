@@ -47,7 +47,8 @@ def references(evidence, case):
     return out
 
 
-def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, anchor=None, resolution=64):
+def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, anchor=None, resolution=64,
+                 expected_j_k=0.0):
     """Bisection on the area factor at the original aspect ratio; relation_space per size. With `anchor` (v3.1) the
     reference layout is checked by the shared verify_anchor (1 FV, counted), certifies the original carrier itself
     (step 0, not grid-rounded) with its measured J, and every later size is seeded with the smallest certified
@@ -60,7 +61,7 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
     if anchor is not None:
         if fv_budget < 1:
             return dict(best=None, history=[dict(stop='fv budget before the anchor check')], fv_solves=0, anchor=None)
-        check = verify_anchor(problem, anchor, gap_um, length_m, resolution)
+        check = verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k)
         used = 1
         if not check['ok']:
             return dict(best=None, history=[dict(stop='reproduction_mismatch')], fv_solves=used, anchor=check)
@@ -124,6 +125,10 @@ def main():
     p.add_argument('--method', choices=('cosize', 'cosize_axial', 'cosize_blind', 'cosize_rs', 'cosize_shrink', 'fixed_aspect'), required=True)
     p.add_argument('--anchor-dir', type=Path, required=True,
                    help='ATPlace layouts CaseN/<label>/layout.json; the reference layout anchors every method')
+    p.add_argument('--front-dir', type=Path, default=None,
+                   help='reference family B: our exported front CaseN/{manifest.json,kXXX.layout.json}; the anchor is '
+                        'the coolest front point within the ATPlace reference length, the limit its FV peak + delta')
+    p.add_argument('--delta-k', type=float, default=0.0, help='family B: limit above the front point peak (K)')
     p.add_argument('--fv-solves', type=int, default=1000)
     p.add_argument('--gap-um', type=float, default=0)
     p.add_argument('--milp-s', type=float, default=60)
@@ -142,21 +147,30 @@ def main():
     if args.reference not in refs:
         raise SystemExit(f'no {args.reference} reference for {args.case.stem}')
     t_ref, l_ref, label = refs[args.reference]
+    anchor_file, expected = args.anchor_dir/args.case.stem/label/'layout.json', 0.0
+    if args.front_dir is not None:              # family B (docs/cosize-binding-analysis.md section 5)
+        front = [r for r in json.loads((args.front_dir/args.case.stem/'manifest.json').read_text())
+                 if r['length_m'] <= l_ref + 1e-9]
+        if not front:
+            raise SystemExit(f'no front point within {l_ref} m for {args.case.stem}')
+        point = min(front, key=lambda r: (r['fv_peak_c'], r['length_m']))
+        anchor_file, label = args.front_dir/args.case.stem/f"{point['name']}.layout.json", f"front:{point['name']}"
+        t_ref, expected = point['fv_peak_c'] + args.delta_k, -args.delta_k
     limited = replace(problem, limit_c=np.full(problem.count, t_ref))
-    anchor_file = args.anchor_dir/args.case.stem/label/'layout.json'
     anchor = from_atplace(problem, json.loads(anchor_file.read_text()))
     started = time.perf_counter()
     if args.method == 'fixed_aspect':
-        out = fixed_aspect(limited, args.gap_um, l_ref, args.fv_solves, args.seed, args.milp_s, args.workers, anchor)
+        out = fixed_aspect(limited, args.gap_um, l_ref, args.fv_solves, args.seed, args.milp_s, args.workers, anchor,
+                           expected_j_k=expected)
     else:
         inner = dict(cosize='proxy', cosize_axial='axial', cosize_blind='blind', cosize_rs='relation_space',
                      cosize_shrink='shrink')[args.method]
         out = anchored(limited, anchor, args.gap_um, l_ref, args.fv_solves, inner=inner, envelope=ENVELOPE,
                        size_s=args.size_s, threads=args.threads, workers=args.workers, directions=args.directions,
-                       seed=args.seed)
+                       seed=args.seed, expected_j_k=expected)
     w0, h0 = (s/1000 for s in problem.carrier_um)
     record = dict(protocol_revision='cosize-v4', case=args.case.stem, method=args.method,
-                  reference=args.reference, reference_label=label,
+                  reference=args.reference, reference_label=label, delta_k=args.delta_k if args.front_dir else None,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
                       k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),
                   seed=args.seed, fv_budget=args.fv_solves, milp_s=args.milp_s, wall_s=time.perf_counter() - started,
