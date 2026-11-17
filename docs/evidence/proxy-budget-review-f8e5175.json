@@ -1,0 +1,554 @@
+{
+  "analyzed_commit": "f8e51755040bc62db9e101d6a34457182161bca0",
+  "date": "2026-11-17",
+  "fetch_succeeded": true,
+  "new_fv_solves": 0,
+  "source_sha256": {
+    "docs/evidence/envelope-check-v1.json": "722a496595e547163b0ecbf0c9da51bb236bf3e604c4bdb116f8e9008ad50424",
+    "docs/evidence/physics-v2-proxy.json": "ae84e3a3662de4ce47ffb254f6150adcfe9ec3db7c61b680a3b13c9bbab7bcbc"
+  },
+  "prefix_analysis": {
+    "Case1": {
+      "front_count": 20,
+      "source_front_spearman": 0.9958631768569884,
+      "envelope_worst_prefix": {
+        "prefix_count": 8,
+        "picked_index": 5,
+        "best_index": 7,
+        "picked_fv_c": 104.92666560628327,
+        "best_fv_c": 103.44611378495267,
+        "picked_proxy_c": 104.41423313274584,
+        "best_proxy_c": 104.41423313274584,
+        "regret_k": 1.480551821330593,
+        "optimistic_tie_regret_k": 0.0,
+        "tied_indices": [
+          5,
+          7
+        ]
+      },
+      "radial_worst_prefix": {
+        "prefix_count": 10,
+        "picked_index": 8,
+        "best_index": 9,
+        "picked_fv_c": 102.37965953467604,
+        "best_fv_c": 102.33865342182378,
+        "picked_proxy_c": 100.90476202959633,
+        "best_proxy_c": 100.9123960566716,
+        "regret_k": 0.041006112852258525,
+        "optimistic_tie_regret_k": 0.041006112852258525,
+        "tied_indices": [
+          8
+        ]
+      },
+      "envelope_minus_radial_k": {
+        "min": 0.43609415963513243,
+        "max": 3.9178392536056776,
+        "front_mean": 2.536116556441533,
+        "random_mean": 1.4164405673570777
+      },
+      "envelope_minus_fv_k": {
+        "min": -2.105219137565072,
+        "max": 2.573934978414485,
+        "maximum_absolute_after_mean_offset": 2.4552763137754754
+      }
+    },
+    "Case3": {
+      "front_count": 20,
+      "source_front_spearman": 0.9834586466165413,
+      "envelope_worst_prefix": {
+        "prefix_count": 14,
+        "picked_index": 11,
+        "best_index": 13,
+        "picked_fv_c": 118.83125731574981,
+        "best_fv_c": 116.22116217309197,
+        "picked_proxy_c": 120.79617851056724,
+        "best_proxy_c": 122.07583606909759,
+        "regret_k": 2.6100951426578405,
+        "optimistic_tie_regret_k": 2.6100951426578405,
+        "tied_indices": [
+          11
+        ]
+      },
+      "radial_worst_prefix": {
+        "prefix_count": 1,
+        "picked_index": 0,
+        "best_index": 0,
+        "picked_fv_c": 136.66702219284656,
+        "best_fv_c": 136.66702219284656,
+        "picked_proxy_c": 132.76394916196864,
+        "best_proxy_c": 132.76394916196864,
+        "regret_k": 0.0,
+        "optimistic_tie_regret_k": 0.0,
+        "tied_indices": [
+          0
+        ]
+      },
+      "envelope_minus_radial_k": {
+        "min": 0.9670479427934424,
+        "max": 6.5832678100314865,
+        "front_mean": 2.5945432959285726,
+        "random_mean": 2.9578289125465203
+      },
+      "envelope_minus_fv_k": {
+        "min": 0.12814056075978897,
+        "max": 8.088953534014095,
+        "maximum_absolute_after_mean_offset": 4.774987358517441
+      }
+    },
+    "Case5": {
+      "front_count": 20,
+      "source_front_spearman": 0.9984962406015038,
+      "envelope_worst_prefix": {
+        "prefix_count": 18,
+        "picked_index": 16,
+        "best_index": 17,
+        "picked_fv_c": 131.09574824700996,
+        "best_fv_c": 130.70224026473042,
+        "picked_proxy_c": 136.06421492814633,
+        "best_proxy_c": 136.14569810979506,
+        "regret_k": 0.3935079822795444,
+        "optimistic_tie_regret_k": 0.3935079822795444,
+        "tied_indices": [
+          16
+        ]
+      },
+      "radial_worst_prefix": {
+        "prefix_count": 6,
+        "picked_index": 4,
+        "best_index": 5,
+        "picked_fv_c": 147.90407128518723,
+        "best_fv_c": 147.39118625829434,
+        "picked_proxy_c": 149.10630125861962,
+        "best_proxy_c": 149.12639725779468,
+        "regret_k": 0.5128850268928886,
+        "optimistic_tie_regret_k": 0.5128850268928886,
+        "tied_indices": [
+          4
+        ]
+      },
+      "envelope_minus_radial_k": {
+        "min": 2.4555172461128336,
+        "max": 7.721779400971855,
+        "front_mean": 4.990591192893847,
+        "random_mean": 4.969147839141828
+      },
+      "envelope_minus_fv_k": {
+        "min": 3.1271461671287,
+        "max": 9.011169122592605,
+        "maximum_absolute_after_mean_offset": 3.005333595554551
+      }
+    },
+    "Case7": {
+      "front_count": 20,
+      "source_front_spearman": 0.9984962406015038,
+      "envelope_worst_prefix": {
+        "prefix_count": 14,
+        "picked_index": 12,
+        "best_index": 13,
+        "picked_fv_c": 83.22156510571281,
+        "best_fv_c": 82.80404956228892,
+        "picked_proxy_c": 85.03432152651021,
+        "best_proxy_c": 85.05986201539497,
+        "regret_k": 0.41751554342388886,
+        "optimistic_tie_regret_k": 0.41751554342388886,
+        "tied_indices": [
+          12
+        ]
+      },
+      "radial_worst_prefix": {
+        "prefix_count": 1,
+        "picked_index": 0,
+        "best_index": 0,
+        "picked_fv_c": 89.95534296637828,
+        "best_fv_c": 89.95534296637828,
+        "picked_proxy_c": 88.51638243720939,
+        "best_proxy_c": 88.51638243720939,
+        "regret_k": 0.0,
+        "optimistic_tie_regret_k": 0.0,
+        "tied_indices": [
+          0
+        ]
+      },
+      "envelope_minus_radial_k": {
+        "min": 1.0066343127482327,
+        "max": 2.7850374912204927,
+        "front_mean": 2.2324598680392804,
+        "random_mean": 1.555092014435192
+      },
+      "envelope_minus_fv_k": {
+        "min": 0.02237646771854429,
+        "max": 3.421327888708632,
+        "maximum_absolute_after_mean_offset": 1.699899461374832
+      }
+    },
+    "Case9": {
+      "front_count": 20,
+      "source_front_spearman": 0.9969924812030074,
+      "envelope_worst_prefix": {
+        "prefix_count": 9,
+        "picked_index": 7,
+        "best_index": 8,
+        "picked_fv_c": 138.8053172360917,
+        "best_fv_c": 136.70422684893052,
+        "picked_proxy_c": 146.81582846039726,
+        "best_proxy_c": 146.88166712604038,
+        "regret_k": 2.101090387161179,
+        "optimistic_tie_regret_k": 2.101090387161179,
+        "tied_indices": [
+          7
+        ]
+      },
+      "radial_worst_prefix": {
+        "prefix_count": 1,
+        "picked_index": 0,
+        "best_index": 0,
+        "picked_fv_c": 146.57408475609193,
+        "best_fv_c": 146.57408475609193,
+        "picked_proxy_c": 146.99994051446845,
+        "best_proxy_c": 146.99994051446845,
+        "regret_k": 0.0,
+        "optimistic_tie_regret_k": 0.0,
+        "tied_indices": [
+          0
+        ]
+      },
+      "envelope_minus_radial_k": {
+        "min": 4.835750078300578,
+        "max": 9.804570290856361,
+        "front_mean": 8.437383725828179,
+        "random_mean": 7.1238708309132175
+      },
+      "envelope_minus_fv_k": {
+        "min": 6.155007733598893,
+        "max": 10.638066694999864,
+        "maximum_absolute_after_mean_offset": 2.3635228976853515
+      }
+    },
+    "G1_slack": {
+      "front_count": 20,
+      "source_front_spearman": 0.9774436090225563,
+      "envelope_worst_prefix": {
+        "prefix_count": 11,
+        "picked_index": 8,
+        "best_index": 10,
+        "picked_fv_c": 84.27949912177486,
+        "best_fv_c": 84.1181439636884,
+        "picked_proxy_c": 84.59940031620064,
+        "best_proxy_c": 84.6581797469214,
+        "regret_k": 0.16135515808646517,
+        "optimistic_tie_regret_k": 0.16135515808646517,
+        "tied_indices": [
+          8
+        ]
+      },
+      "radial_worst_prefix": {
+        "prefix_count": 10,
+        "picked_index": 8,
+        "best_index": 9,
+        "picked_fv_c": 84.27949912177486,
+        "best_fv_c": 84.23261715479126,
+        "picked_proxy_c": 84.35561333180651,
+        "best_proxy_c": 84.3708806821632,
+        "regret_k": 0.04688196698360514,
+        "optimistic_tie_regret_k": 0.04688196698360514,
+        "tied_indices": [
+          8
+        ]
+      },
+      "envelope_minus_radial_k": {
+        "min": 0.16690299380327644,
+        "max": 0.5359533991656633,
+        "front_mean": 0.2805387921511205,
+        "random_mean": 0.3005521314829842
+      },
+      "envelope_minus_fv_k": {
+        "min": 0.19174737324252078,
+        "max": 0.5963130916436938,
+        "maximum_absolute_after_mean_offset": 0.24880154381597563
+      }
+    },
+    "G2_slack": {
+      "front_count": 20,
+      "source_front_spearman": 0.7383458646616541,
+      "envelope_worst_prefix": {
+        "prefix_count": 19,
+        "picked_index": 12,
+        "best_index": 18,
+        "picked_fv_c": 81.30204528041989,
+        "best_fv_c": 80.84357084178922,
+        "picked_proxy_c": 81.60206224520799,
+        "best_proxy_c": 81.9084160021373,
+        "regret_k": 0.45847443863067383,
+        "optimistic_tie_regret_k": 0.45847443863067383,
+        "tied_indices": [
+          12
+        ]
+      },
+      "radial_worst_prefix": {
+        "prefix_count": 1,
+        "picked_index": 0,
+        "best_index": 0,
+        "picked_fv_c": 85.00427135084044,
+        "best_fv_c": 85.00427135084044,
+        "picked_proxy_c": 83.78946021075907,
+        "best_proxy_c": 83.78946021075907,
+        "regret_k": 0.0,
+        "optimistic_tie_regret_k": 0.0,
+        "tied_indices": [
+          0
+        ]
+      },
+      "envelope_minus_radial_k": {
+        "min": 0.1831204236696351,
+        "max": 2.510313394066017,
+        "front_mean": 0.7170662879250912,
+        "random_mean": 0.6753667986805425
+      },
+      "envelope_minus_fv_k": {
+        "min": -1.8656146740783015,
+        "max": 2.232540190588722,
+        "maximum_absolute_after_mean_offset": 2.4536701337633966
+      }
+    }
+  },
+  "prefix_scope": "Post-hoc diagnostic over the 20 stored front points in increasing length order. Each prefix corresponds to the ceiling at its last point. Numeric ceilings and coordinates are not in these two evidence files; do not infer whole-search regret.",
+  "order_evidence": [
+    "placement.evaluate.pareto_front sorts by length",
+    "run_reference_front preserves that order in summary.front",
+    "thermal_kernel_screen.load_front and envelope_check preserve sampled order"
+  ],
+  "tie_policy": "First minimum, hence shorter sampled-front point. Optimistic regret among ties within 1e-9 K also reported.",
+  "wire_control": {
+    "budget_mm": 28.0,
+    "clustered_mm": 27.999999999999993,
+    "exact_pin_manhattan_mm": 37.99999999999999,
+    "legal": true,
+    "centre_um": [
+      [
+        3000.0,
+        9999.999999999998
+      ],
+      [
+        3000.0,
+        3000.0
+      ]
+    ],
+    "rotation_deg": [
+      0,
+      0
+    ],
+    "source_pin_offsets_um": [
+      [
+        [
+          0.0,
+          2500.0
+        ],
+        [
+          0.0,
+          -2500.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          -2500.0
+        ],
+        [
+          0.0,
+          2500.0
+        ]
+      ],
+      [
+        [
+          2500.0,
+          0.0
+        ],
+        [
+          -2500.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          -2500.0,
+          0.0
+        ],
+        [
+          2500.0,
+          0.0
+        ]
+      ]
+    ],
+    "power_w": [
+      10.0,
+      10.0
+    ],
+    "sizes_um": [
+      [
+        6000.0,
+        6000.0
+      ],
+      [
+        6000.0,
+        6000.0
+      ]
+    ],
+    "carrier_um": [
+      20000.0,
+      20000.0
+    ],
+    "gap_um": 0,
+    "synthetic_proxy": {
+      "self_k_w": [
+        1.0,
+        1.0
+      ],
+      "lambda_mm": 20.0,
+      "c": -1.0
+    }
+  },
+  "historical_geometry": {
+    "Case1": {
+      "case_path": "results/physical-calibration/atplace-import-v1/Case1.json",
+      "case_sha256": "f2d55207a86fee7e03d14778ac5eea3847d3a101584d451a751d654295a4bb72",
+      "layout_path": "results/front-gap0/case1/layouts.npz",
+      "layout_sha256": "d8a2f1e62808f97946d9dc949eb6892d2ded6067d4fca65d3317630094ddf16d",
+      "scope": "Historical front-gap0 layouts; geometry-only, not px-v2 outcomes.",
+      "sample_count": 20,
+      "shortest_point": {
+        "index": 4664,
+        "exact_pin_manhattan_m": 12.278290612800003,
+        "clustered_m": 10.29363338359992,
+        "excess_m": 1.9846572292000833,
+        "excess_percent_of_cluster": 19.280434373756595
+      },
+      "largest_relative_gap": {
+        "index": 4664,
+        "exact_pin_manhattan_m": 12.278290612800003,
+        "clustered_m": 10.29363338359992,
+        "excess_m": 1.9846572292000833,
+        "excess_percent_of_cluster": 19.280434373756595
+      }
+    },
+    "Case3": {
+      "case_path": "results/physical-calibration/atplace-import-v1/Case3.json",
+      "case_sha256": "34def31b4c3b64f86c46e690367108718888b391c123ac7274cbb75ad81c49dd",
+      "layout_path": "results/front-gap0/case3/layouts.npz",
+      "layout_sha256": "2a7813864e104afc0aa58252de3343f093d60d0c6751a42d5625beeb172bcf73",
+      "scope": "Historical front-gap0 layouts; geometry-only, not px-v2 outcomes.",
+      "sample_count": 20,
+      "shortest_point": {
+        "index": 7927,
+        "exact_pin_manhattan_m": 31.214723526000007,
+        "clustered_m": 14.688387400799925,
+        "excess_m": 16.526336125200082,
+        "excess_percent_of_cluster": 112.51293742633766
+      },
+      "largest_relative_gap": {
+        "index": 7927,
+        "exact_pin_manhattan_m": 31.214723526000007,
+        "clustered_m": 14.688387400799925,
+        "excess_m": 16.526336125200082,
+        "excess_percent_of_cluster": 112.51293742633766
+      }
+    },
+    "Case4": {
+      "case_path": "results/physical-calibration/atplace-import-v1/Case4.json",
+      "case_sha256": "15a3323c1ba38e9cd6521471f452c90c58964ab3efadcd27f91167fde8cb47ec",
+      "layout_path": "results/front-gap0/case4/layouts.npz",
+      "layout_sha256": "97fa12fdb0e06c59f73057bf7b7838aa24510ba6e7d57c5042020de307b4d329",
+      "scope": "Historical front-gap0 layouts; geometry-only, not px-v2 outcomes.",
+      "sample_count": 20,
+      "shortest_point": {
+        "index": 15667,
+        "exact_pin_manhattan_m": 75.84744614960002,
+        "clustered_m": 71.55636970679963,
+        "excess_m": 4.291076442800389,
+        "excess_percent_of_cluster": 5.996777729757619
+      },
+      "largest_relative_gap": {
+        "index": 15667,
+        "exact_pin_manhattan_m": 75.84744614960002,
+        "clustered_m": 71.55636970679963,
+        "excess_m": 4.291076442800389,
+        "excess_percent_of_cluster": 5.996777729757619
+      }
+    }
+  },
+  "carrier_dependence_control": {
+    "scope": "Declared FV only: one 6x6 mm die, 1 W at carrier centre, same default cooling and 100 mm spreader; not a hardware calibration.",
+    "rows": [
+      {
+        "carrier_side_mm": 10.0,
+        "self_k_w": 0.45286246454104173,
+        "solves": 1
+      },
+      {
+        "carrier_side_mm": 30.0,
+        "self_k_w": 0.4555935393673707,
+        "solves": 1
+      },
+      {
+        "carrier_side_mm": 60.0,
+        "self_k_w": 0.4554720968074335,
+        "solves": 1
+      }
+    ],
+    "total_fv_solves": 3,
+    "draft_sha256": {
+      "docs/cosize-plan.md": "2ca2e46cbb5c30356a22045f968bda4493b9615cdd9d484e27e97ff81ac47850",
+      "src/chiplet_floorplanning/placement/cosize.py": "099a4b849a3ed3fb2939152538c2d5fa0940d6dcccee097bac14dab2db59d246"
+    }
+  },
+  "total_new_analysis_fv_solves": 3,
+  "new_fv_solves_scope": "Budget/prefix analysis uses 0 new FV; separate carrier dependence control uses 3.",
+  "validation": {
+    "focused": {
+      "tests": 10,
+      "passed": true,
+      "seconds": 5.605
+    },
+    "full": {
+      "tests": 154,
+      "passed": true,
+      "seconds": 86.516
+    },
+    "two_chiplets": {
+      "validate_passed": true,
+      "evaluate_passed": true,
+      "reference_peak_c": 34.1886,
+      "thermal_model": "uncalibrated",
+      "timing": "not_run"
+    },
+    "scope": "Published f8e5175 archive, excludes pre-existing uncommitted cosize work."
+  },
+  "analyzed_source_sha256": {
+    "src/chiplet_floorplanning/placement/lp.py": "dc024244aa587d6bd03e3e213adc617696b689764922131ae5dbe802c14b7799",
+    "src/chiplet_floorplanning/placement/methods.py": "ed47b04f0c26dc36b3c3f01e6bf57f4350b207a2fce998190cfa6a78fe61860b",
+    "src/chiplet_floorplanning/placement/proxy.py": "273faa05701b7bca2dc0f12a3223f87d8dc9863ddf8c448adeb0c6c238071e6b",
+    "src/chiplet_floorplanning/placement/evaluate.py": "9a52f030dabee7cd6b30b1684a8609d94e3fd1e685d2268bba6b6281397030a6",
+    "src/chiplet_floorplanning/placement/geometry.py": "74f5648a9b108b57e6e005f9d314f763352851e83e37f036e18fae8d8f8ec05f",
+    "tools/envelope_check.py": "698d9b48cca791474c7c3daa84d8be1eeb0db6b89c04bf3ec5424be297fd4e1b",
+    "tools/run_reference_front.py": "4ab6ad2e6c63eea98e8f1d9c2d868ea1316ed5d9de133d1d72d9c084d1c19728",
+    "tools/thermal_kernel_screen.py": "65ff8f74474a49d42a9ac35c4a1c126e6aff29ecf28726aa11c45e4d0488be7e"
+  },
+  "reproduction": {
+    "environment": {
+      "python": "3.12.7",
+      "numpy": "1.26.4",
+      "scipy": "1.13.1"
+    },
+    "command": "PYTHONPATH=results/review-f8e5175/snapshot/src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python results/review-f8e5175/audit.py",
+    "python": "\"\"\"Bounded audit of published f8e5175; stored FV only, no new thermal solves.\"\"\"\nimport hashlib\nimport json\nfrom pathlib import Path\n\nimport numpy as np\n\nfrom chiplet_floorplanning.placement import Layout, Problem, is_legal, pareto_front, pin_manhattan_um\nfrom chiplet_floorplanning.placement.lp import cluster_length_mm, milp_relations\nfrom chiplet_floorplanning.placement.proxy import ThermalProxy\n\n\ndef sha(path):\n    return hashlib.sha256(Path(path).read_bytes()).hexdigest()\n\n\ndef prefix_choices(pred, fv):\n    rows = []\n    for count in range(1, len(fv) + 1):\n        pick = int(np.argmin(pred[:count]))\n        best = int(np.argmin(fv[:count]))\n        ties = np.flatnonzero(pred[:count] <= pred[:count].min() + 1e-9)\n        rows.append(dict(prefix_count=count, picked_index=pick, best_index=best,\n                         picked_fv_c=float(fv[pick]), best_fv_c=float(fv[best]),\n                         picked_proxy_c=float(pred[pick]), best_proxy_c=float(pred[best]),\n                         regret_k=float(fv[pick] - fv[best]),\n                         optimistic_tie_regret_k=float(fv[ties].min() - fv[best]),\n                         tied_indices=ties.tolist()))\n    return rows\n\n\ndef main():\n    root = Path('results/review-f8e5175')\n    paths = ['docs/evidence/envelope-check-v1.json', 'docs/evidence/physics-v2-proxy.json']\n    axial, old = [json.loads(Path(p).read_text())['cases'] for p in paths]\n    cases = {}\n    for name, r in axial.items():\n        fv, radial = (np.array(old[name][k]) for k in ('fv_c', 'proxy_c'))\n        envelope, n = np.array(r['envelope_c']), r['front_layouts']\n        assert n == 20 and np.all(np.diff(fv[:n]) < 0)\n        assert r['euclid_reproduction_max_diff_k'] == 0\n        a, b = prefix_choices(envelope[:n], fv[:n]), prefix_choices(radial[:n], fv[:n])\n        err, delta = envelope - fv, envelope - radial\n        cases[name] = dict(\n            front_count=n, source_front_spearman=r['envelope_front']['spearman'],\n            envelope_worst_prefix=max(a, key=lambda row: row['regret_k']),\n            radial_worst_prefix=max(b, key=lambda row: row['regret_k']),\n            envelope_prefixes=a,\n            envelope_minus_radial_k=dict(min=float(delta.min()), max=float(delta.max()),\n                                        front_mean=float(delta[:n].mean()), random_mean=float(delta[n:].mean())),\n            envelope_minus_fv_k=dict(min=float(err.min()), max=float(err.max()),\n                                    maximum_absolute_after_mean_offset=float(np.abs(err-err.mean()).max())))\n\n    p = Problem('opposed_pins', ('a', 'b'), np.array([[6000., 6000.]]*2), np.array([10., 10.]),\n                (20000., 20000.), np.array([[0, 1]]*4),\n                np.array([[[0, 2500], [0, -2500]], [[0, -2500], [0, 2500]],\n                          [[2500, 0], [-2500, 0]], [[-2500, 0], [2500, 0]]], float))\n    model = ThermalProxy(np.array([1., 1.]), 20., -1., 0)\n    layout = milp_relations(p, 0, 5, proxy=(model, None, 28.))\n    assert layout is not None and is_legal(p, layout, 0)\n    clustered = cluster_length_mm(p, layout)\n    exact = float(pin_manhattan_um(p, layout).sum()/1000)\n    assert clustered <= 28 + 1e-6 and exact > 28 + 1\n    wire_control = dict(budget_mm=28., clustered_mm=clustered, exact_pin_manhattan_mm=exact,\n                        legal=True, centre_um=layout.centre_um.tolist(), rotation_deg=layout.rotation_deg.tolist(),\n                        source_pin_offsets_um=p.pin_offset_um.tolist(), power_w=p.power_w.tolist(),\n                        sizes_um=p.size_um.tolist(), carrier_um=list(p.carrier_um), gap_um=0,\n                        synthetic_proxy=dict(self_k_w=[1., 1.], lambda_mm=20., c=-1.))\n\n    archives = {}\n    for n in (1, 3, 4):\n        case_path = Path(f'results/physical-calibration/atplace-import-v1/Case{n}.json')\n        layout_path = Path(f'results/front-gap0/case{n}/layouts.npz')\n        p = Problem.from_imported(json.loads(case_path.read_text()))\n        z = np.load(layout_path)\n        front = np.array(pareto_front(z['length_m'], z['peak_c']))\n        indices = front[np.unique(np.linspace(0, len(front)-1, 20).round().astype(int))]\n        rows = []\n        for i in indices:\n            layout = Layout(z['centre_um'][i], z['rotation_deg'][i])\n            assert is_legal(p, layout, 0)\n            exact = float(pin_manhattan_um(p, layout).sum()/1e6)\n            clustered = cluster_length_mm(p, layout)/1000\n            assert abs(exact - z['length_m'][i]) < 1e-8\n            rows.append(dict(index=int(i), exact_pin_manhattan_m=exact, clustered_m=clustered,\n                             excess_m=exact-clustered, excess_percent_of_cluster=100*(exact/clustered-1)))\n        archives[f'Case{n}'] = dict(case_path=str(case_path), case_sha256=sha(case_path),\n                                    layout_path=str(layout_path), layout_sha256=sha(layout_path),\n                                    scope='Historical front-gap0 layouts; geometry-only, not px-v2 outcomes.',\n                                    selected_front_points=rows)\n\n    result = dict(analyzed_commit='f8e51755040bc62db9e101d6a34457182161bca0',\n                  date='2026-11-17', fetch_succeeded=True, new_fv_solves=0,\n                  source_sha256={p: sha(p) for p in paths}, prefix_analysis=cases,\n                  prefix_scope='Post-hoc diagnostic over the 20 stored front points in increasing length order. '\n                               'Each prefix corresponds to the ceiling at its last point. Numeric ceilings and '\n                               'coordinates are not in these two evidence files; do not infer whole-search regret.',\n                  order_evidence=['placement.evaluate.pareto_front sorts by length',\n                                  'run_reference_front preserves that order in summary.front',\n                                  'thermal_kernel_screen.load_front and envelope_check preserve sampled order'],\n                  tie_policy='First minimum, hence shorter sampled-front point. Optimistic regret among ties within 1e-9 K also reported.',\n                  wire_control=wire_control, historical_geometry=archives)\n    (root/'audit.json').write_text(json.dumps(result, indent=2) + '\\n')\n    print(json.dumps(dict(prefix_max_regret_k={k:r['envelope_worst_prefix']['regret_k'] for k,r in cases.items()},\n                         wire_control=wire_control,\n                         historical_shortest={k:r['selected_front_points'][0] for k,r in archives.items()}), indent=2))\n\n\nif __name__ == '__main__':\n    main()\n",
+    "carrier_command": "For each carrier side in (10,30,60) mm: build a one-die Problem (6x6 mm, 1 W, no nets, default cooling), and call placement.proxy.self_heating(problem, gap_um=0, resolution=64).",
+    "local_artifacts": "results/review-f8e5175"
+  },
+  "interpretation": [
+    "High global correlation and zero unconstrained regret do not certify conditional selection quality.",
+    "Mean-offset correction does not change within-budget ordering.",
+    "Clustered wirelength is a lower bound; final Evaluator/SLP still use exact pin Manhattan sum.",
+    "Historical geometry samples are not px-v2 results.",
+    "Carrier transfer is an approximation; the three controls do not demand a new calibration campaign.",
+    "No production code edits or remote experiment changes in this review."
+  ]
+}
