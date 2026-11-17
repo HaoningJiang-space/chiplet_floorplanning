@@ -513,10 +513,8 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
     `sizing` = (widths mm, area cap mm^2, excluded width indices) makes the carrier a variable inside the envelope
     problem.carrier_um: one-hot over the width levels W_l, a continuous height H <= min(envelope height, cap / W_l),
     and every die inside [0, W_l] x [0, H]; exact for the given width levels. It then returns (layout, (width_mm,
-    height_mm), chosen level index) with the carrier shrunk to the dies' extent, or None. Optional further entries:
-    per-level height caps (e.g. what k exposure fields allow at that width), minimise_area (the objective becomes the
-    carrier area sum_l W_l H_l with per-level heights H_l <= cap_l u_l, exact; wire only breaks ties) and per-level
-    height floors of the box (H >= floor_l when W_l is chosen, e.g. an aspect-ratio limit). `wire_mm` (or a third proxy entry) bounds the clustered wirelength
+    height_mm), chosen level index) with the carrier shrunk to the dies' extent, or None. `wire_mm` (or a third proxy
+    entry) bounds the clustered wirelength
     (cluster_length_mm units), with or without the proxy. With `directions` = K the proxy's pair distance is the
     K-direction polygonal lower bound of the centre distance (rho <= u_k . (c_j - c_i) for one chosen k; within
     cos(pi/K) of it) instead of the separation along the side relation (docs/polygon-distance-plan.md). `start`
@@ -546,12 +544,7 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         levels = np.asarray(sizing[0], float)
         iu, ih = nvar, nvar + len(levels)
         nvar = ih + 1
-        caps = np.minimum(np.minimum(height, (np.inf if sizing[1] is None else sizing[1])/levels),
-                          np.inf if len(sizing) < 4 or sizing[3] is None else np.asarray(sizing[3], float))
-        by_area = len(sizing) > 4 and bool(sizing[4])
-        height_floor = None if len(sizing) < 6 or sizing[5] is None else np.asarray(sizing[5], float)
-        if by_area:
-            ihl, nvar = nvar, nvar + len(levels)
+        caps = np.minimum(height, (np.inf if sizing[1] is None else sizing[1])/levels)
     if proxy is not None:
         powered = set(np.flatnonzero(problem.power_w > 0))
         hot_pairs = [(p, i, j) for p, (i, j) in enumerate(pairs) if i in powered or j in powered]
@@ -586,14 +579,8 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         add([(iy + i, 1.0)] + [(c, v/2) for c, v in h(i)] + top, -np.inf, limit_h)
     if sizing is not None:
         add([(iu + l, 1.0) for l in range(len(levels))], 1, 1)
-        # H <= sum_l u_l min(envelope height, area cap / W_l, height cap_l)
+        # H <= sum_l u_l min(envelope height, area cap / W_l)
         add([(ih, 1.0)] + [(iu + l, -caps[l]) for l in range(len(levels))], -np.inf, 0)
-        if by_area:     # H = sum_l H_l, H_l <= cap_l u_l: the area sum_l W_l H_l is linear and exact
-            for l in range(len(levels)):
-                add([(ihl + l, 1.0), (iu + l, -caps[l])], -np.inf, 0)
-            add([(ihl + l, 1.0) for l in range(len(levels))] + [(ih, -1.0)], 0, 0)
-        if height_floor is not None:
-            add([(ih, 1.0)] + [(iu + l, -height_floor[l]) for l in range(len(levels))], 0, np.inf)
     big = 2*max(width, height)
     for p, (i, j) in enumerate(pairs):
         s = isd + 4*p
@@ -668,9 +655,6 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         for cut in wire_cuts:
             entries, constant = pin_length_cut(problem, cut, ix, iy, iz)
             add(entries, -np.inf, wire_mm - constant)
-    if sizing is not None and by_area:
-        cost = cost*1e-6
-        cost[ihl:ihl + len(levels)] = levels
     if thermal is not None:
         block = thermal[0].milp_block(add, nvar, ix, iy, iz, thermal[1])
         cost = np.r_[cost*block['length_weight'], block['cost']]

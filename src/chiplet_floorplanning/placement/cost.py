@@ -76,15 +76,3 @@ def interposer_cost(width_mm, height_mm, params=CostParams()):
     substrate = params.substrate_usd_mm2*substrate_factor(math.sqrt(sub_area))*sub_area
     return dict(option=kind, fields=k, yield_=y, dies_per_wafer=dpw, interposer_usd=interposer,
                 substrate_usd=substrate, total_usd=interposer + substrate)
-
-
-def max_height(width_mm, fields, height_mm, params=CostParams(), step_mm=0.1):
-    """Largest height <= height_mm (on the step grid) at which a width_mm interposer has a finite-cost option
-    using at most `fields` exposure fields; 0 if none. Fields grow with height, so the grid is scanned downward."""
-    h = math.floor(height_mm/step_mm + 1e-9)*step_mm
-    while h > 0:
-        kind, k = option(width_mm, h, params)
-        if kind is not None and k <= fields:
-            return round(h, 6)
-        h = round(h - step_mm, 6)
-    return 0.0

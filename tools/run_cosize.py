@@ -1,17 +1,14 @@
-"""Interposer co-optimisation against a reference quality point (plan: docs/cosize-plan.md).
+"""Interposer co-optimisation against a reference quality point (plan: docs/cosize-v3-plan.md, protocol v3.1).
 
-For one case and one reference point (T*, L*) - by default a layout ATPlace2.5D produced on the original carrier,
-scored with our FV and exact pin length - every die gets the absolute limit T* and the exact pin length budget is
-L*. Three methods search for the cheapest interposer (cost.interposer_cost, silicon only) carrying a layout that
-meets both, each with the same FV budget:
-- cosize:       joint size/reticle/placement MILP with the proxy, FV-certified (placement/cosize.py);
-- cosize_blind: the same without the proxy (min-wire MILP under a bisected area cap), FV-certified;
+For one case and one reference point (T*, L*) - a layout ATPlace2.5D produced on the original carrier, scored with
+our FV and exact pin length - every die gets the absolute limit T* and the exact pin length budget is L*. The
+reference layout anchors every method after the shared FV check (cosize.verify_anchor). Methods, each with the same
+FV budget, search for the cheapest interposer (cost.interposer_cost, silicon only) carrying a layout that meets both:
+- cosize / cosize_axial / cosize_blind / cosize_rs: cosize.anchored with the K-direction proxy MILP, the axial one,
+  the min-wire MILP or relation_space (control) as the new-topology step;
 - fixed_aspect: size-then-place - the original aspect ratio, bisection on the area factor, relation_space at each
-                size with an equal share of the budget; a size passes if any evaluated layout meets both.
-v3.1 (--anchor-dir, docs/cosize-v3-plan.md): the reference layout anchors every method after the shared FV check
-(cosize.verify_anchor); cosize / cosize_axial / cosize_blind / cosize_rs are cosize.anchored with the K-direction
-proxy MILP, the axial one, the min-wire MILP or relation_space as the new-topology step; fixed_aspect certifies the
-original carrier with the checked anchor and seeds each later size with its smallest certified layout.
+  size with an equal share of the budget, seeded with the smallest certified layout; the original carrier is
+  certified by the checked anchor.
 """
 import argparse
 from dataclasses import replace
@@ -25,7 +22,7 @@ import numpy as np
 
 from chiplet_floorplanning.cli import source_revision
 from chiplet_floorplanning.placement import Layout, Problem
-from chiplet_floorplanning.placement.cosize import anchored, ceil_grid, cosize, fit_into, verify_anchor
+from chiplet_floorplanning.placement.cosize import anchored, ceil_grid, fit_into, verify_anchor
 from chiplet_floorplanning.placement.cost import interposer_cost
 from atplace_compare import from_atplace
 from run_sizing import run_front
@@ -122,15 +119,14 @@ def main():
     p.add_argument('--evidence', type=Path, default=Path('docs/evidence/atplace-compare-rsg4-v2.json'))
     p.add_argument('--reference', choices=('atp_cool', 'atp_wl'), required=True)
     p.add_argument('--method', choices=('cosize', 'cosize_axial', 'cosize_blind', 'cosize_rs', 'fixed_aspect'), required=True)
-    p.add_argument('--anchor-dir', type=Path, default=None,
-                   help='v3: ATPlace layouts CaseN/<label>/layout.json; the reference layout anchors every method')
+    p.add_argument('--anchor-dir', type=Path, required=True,
+                   help='ATPlace layouts CaseN/<label>/layout.json; the reference layout anchors every method')
     p.add_argument('--fv-solves', type=int, default=1000)
     p.add_argument('--gap-um', type=float, default=0)
     p.add_argument('--milp-s', type=float, default=60)
     p.add_argument('--size-s', type=float, default=120, help='v3.1: MILP seconds per trial carrier, all calls shared')
     p.add_argument('--threads', type=int, default=2, help='v3.1: Gurobi threads per aspect-family process')
-    p.add_argument('--rounds', type=int, default=12)
-    p.add_argument('--directions', type=int, default=None, help='K-direction proxy distance (cosize only; v2: 8)')
+    p.add_argument('--directions', type=int, default=8, help='K-direction proxy distance (cosize only)')
     p.add_argument('--workers', type=int, default=16)
     p.add_argument('--seed', type=int, default=2)
     p.add_argument('--output', type=Path, required=True)
@@ -144,26 +140,18 @@ def main():
         raise SystemExit(f'no {args.reference} reference for {args.case.stem}')
     t_ref, l_ref, label = refs[args.reference]
     limited = replace(problem, limit_c=np.full(problem.count, t_ref))
-    anchor, anchor_file = None, None
-    if args.anchor_dir is not None:
-        anchor_file = args.anchor_dir/args.case.stem/label/'layout.json'
-        anchor = from_atplace(problem, json.loads(anchor_file.read_text()))
+    anchor_file = args.anchor_dir/args.case.stem/label/'layout.json'
+    anchor = from_atplace(problem, json.loads(anchor_file.read_text()))
     started = time.perf_counter()
     if args.method == 'fixed_aspect':
         out = fixed_aspect(limited, args.gap_um, l_ref, args.fv_solves, args.seed, args.milp_s, args.workers, anchor)
-    elif anchor is not None:
+    else:
         inner = dict(cosize='proxy', cosize_axial='axial', cosize_blind='blind', cosize_rs='relation_space')[args.method]
         out = anchored(limited, anchor, args.gap_um, l_ref, args.fv_solves, inner=inner, envelope=ENVELOPE,
-                       size_s=args.size_s, threads=args.threads, workers=args.workers,
-                       directions=args.directions or 8, seed=args.seed)
-    elif args.method in ('cosize_axial', 'cosize_rs'):
-        raise SystemExit(f'{args.method} needs --anchor-dir (v3.1)')
-    else:
-        out = cosize(limited, args.gap_um, l_ref, args.fv_solves, thermal=args.method == 'cosize', envelope=ENVELOPE,
-                     rounds=args.rounds, milp_s=args.milp_s, directions=args.directions)
+                       size_s=args.size_s, threads=args.threads, workers=args.workers, directions=args.directions,
+                       seed=args.seed)
     w0, h0 = (s/1000 for s in problem.carrier_um)
-    v3 = anchor is not None
-    record = dict(protocol_revision='cosize-v3.1' if v3 else 'cosize-v2', case=args.case.stem, method=args.method,
+    record = dict(protocol_revision='cosize-v3.1', case=args.case.stem, method=args.method,
                   reference=args.reference, reference_label=label,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
                       k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),
@@ -171,9 +159,8 @@ def main():
                   resources=dict(workers=args.workers, threads=args.threads, size_s=args.size_s),
                   limit_c=limited.limit_c.tolist(), names=list(limited.names), thermal_kind='overshoot_k',
                   case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(), code=source_revision(),
-                  plan='docs/cosize-v3-plan.md' if v3 else 'docs/cosize-plan.md',
-                  anchor_file=None if anchor_file is None else str(anchor_file),
-                  anchor_sha256=None if anchor_file is None else hashlib.sha256(anchor_file.read_bytes()).hexdigest(),
+                  plan='docs/cosize-v3-plan.md', anchor_file=str(anchor_file),
+                  anchor_sha256=hashlib.sha256(anchor_file.read_bytes()).hexdigest(),
                   **out)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(record, indent=1, default=float) + '\n')

@@ -1,4 +1,4 @@
-"""Frozen comparison of cosize-v2 runs (plan: docs/cosize-plan.md, sections "判定" and "cosize-v2").
+"""Frozen comparison of cosize runs (plans: docs/cosize-plan.md "判定", docs/cosize-v3-plan.md; protocol v3.1).
 
 Per (case, reference) combination and pair of methods: the cheapest FV-certified interposer each found; a win is a
 cost <= 0.95x the opponent's, a loss >= 1.05x, only one side certified -> that side wins, neither -> unavailable.
@@ -114,7 +114,7 @@ def main():
     p.add_argument('--output', type=Path, required=True)
     args = p.parse_args()
     report = compare(args.runs, combos(args.with_case8_cool))
-    args.output.write_text(json.dumps(dict(plan='docs/cosize-plan.md', **report), indent=1, default=float) + '\n')
+    args.output.write_text(json.dumps(dict(plan='docs/cosize-v3-plan.md', **report), indent=1, default=float) + '\n')
 
 
 if __name__ == '__main__':

@@ -26,6 +26,19 @@
 
 空气散热器的默认配方未变：加入冷板时固定输入下峰温与之前逐位相同（固定值 48.38459530567995 °C）；删除冷板时再次核对，`placement_core_unittest` 的合成例峰温删除前后同为 116.01412369595657 °C。
 
+## 2026-11-17 第三次精简
+
+按用户要求（"后续不用的代码可以删掉"）删除已被取代或已出结论的代码。删除前最后一个包含它们的提交是 `33ad191`，复现时在该提交运行原命令：
+
+| 删除的代码 | 对应结果 |
+| --- | --- |
+| `placement/cosize.py` 的联合尺寸 MILP（`cosize`、`sized_milp` 等）、`cost.max_height`、`lp.milp_relations` sizing 的高度上限/最小面积/高度下限三项 | [cosize v1/v2](cosize-plan.md)，由 [v3.1](cosize-v3-plan.md) 取代 |
+| `placement/superpose.py`、`tools/superpose_check.py`、`thermal_case_data` 的 `spreader_mm` | [单芯粒场叠加](superposition-model-plan.md)（判定不采用） |
+| `tools/envelope_check.py`、`tools/polygon_check.py`、`tools/polygon_milp_check.py` | [多方向投影](polygon-distance-plan.md)（判定采用 K=8，已并入 cosize） |
+| 上述代码的单元测试，及 `research_regressions` 中针对它们的控制 | [复核证据](evidence/research-fixes-af855d2.json) |
+
+`lp.milp_relations` 的 sizing 基本形式（宽度档、面积上限、排除档）仍由 `tools/run_sizing.py` 使用，保留。
+
 ## 为什么改复现方式
 
 旧冻结计划把源文件 SHA-256 写入计划，`check_plan` 又逐级调用上一阶段检查

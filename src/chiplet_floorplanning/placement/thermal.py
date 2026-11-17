@@ -25,15 +25,14 @@ def _mixture(diameter, pitch, background):
     return 400*(diameter/pitch)**2 + background*(1 - (diameter/pitch)**2)
 
 
-def thermal_case_data(problem, layout, gap_um, resolution=64, top_h_w_m2k=None, spreader_mm=None):
+def thermal_case_data(problem, layout, gap_um, resolution=64, top_h_w_m2k=None):
     """Declared TAP-family FV case; top_h_w_m2k overrides the sink-top convection (else the problem's calibrated
-    value, else 1/(0.1 K/W x 60 mm square)). The spreader is 100 mm square, or 20 mm longer than a larger carrier;
-    spreader_mm overrides it (single-die field calibration on an enlarged carrier keeps the real package)."""
+    value, else 1/(0.1 K/W x 60 mm square)). The spreader is 100 mm square, or 20 mm longer than a larger carrier."""
     v = violations(problem, layout, gap_um)
     if v["outside"] or v["pairs"]:
         raise ValueError(f"illegal layout: {v}")
     width, height = (s/1000 for s in problem.carrier_um)
-    spreader = spreader_mm or max(100.0, max(width, height) + 20)
+    spreader = max(100.0, max(width, height) + 20)
     if spreader > PACKAGE_MM:
         raise ValueError("source carrier exceeds the declared package")
     ox, oy = (PACKAGE_MM - width)/2, (PACKAGE_MM - height)/2
