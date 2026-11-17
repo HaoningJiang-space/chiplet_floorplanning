@@ -436,14 +436,18 @@ def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s):
     return result.x
 
 
-def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None):
+def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None):
     """Global choice of rotations and side relations for wirelength by MILP (HiGHS), after ATPlace2.5D's
     initialisation: each die has one-hot quarter-turn binaries; each pair has four big-M side binaries; the
     pair's nets are clustered at their mean pin offsets, so the objective is sum K_ij |c_i + R o_i - c_j - R o_j|
     (a lower bound of the exact length by convexity). Returns a Layout whose centres realise the chosen
     relations (overlap-free up to the solver tolerance), to be finished by the exact relation LP, or None.
     `thermal` = (ThermalTable, cap degC or None) adds the grid-kernel temperature rows of thermal_milp: a hard cap on
-    the kernel peak, or with None the kernel peak itself is minimised (wirelength only breaks ties)."""
+    the kernel peak, or with None the kernel peak itself is minimised (wirelength only breaks ties).
+    `sizing` = (widths mm, area cap mm^2, excluded width indices) makes the carrier a variable inside the envelope
+    problem.carrier_um: one-hot over the width levels W_l, a continuous height H <= min(envelope height, cap / W_l),
+    and every die inside [0, W_l] x [0, H]; exact for the given width levels. It then returns (layout, (width_mm,
+    height_mm), chosen level index) with the carrier shrunk to the dies' extent, or None."""
     from scipy.optimize import Bounds
     from .geometry import rotate
     n = problem.count
@@ -461,11 +465,15 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None):
                 oj = np.r_[problem.pin_offset_um[fwd, 1], problem.pin_offset_um[bwd, 0]].mean(axis=0)/1000
                 clusters.append((i, j, k, oi, oj))
     pairs = [(i, j) for i in range(n) for j in range(i + 1, n)]
-    # variable layout: x(n) y(n) z(n*4) s(4*pairs) t(2*clusters)
+    # variable layout: x(n) y(n) z(n*4) s(4*pairs) t(2*clusters) [sizing: u(levels) H]
     ix, iy, iz = 0, n, 2*n
     isd = iz + 4*n
     it = isd + 4*len(pairs)
     nvar = it + 2*len(clusters)
+    if sizing is not None:
+        levels = np.asarray(sizing[0], float)
+        iu, ih = nvar, nvar + len(levels)
+        nvar = ih + 1
     rr, cc, vv, lo, hi = [], [], [], [], []
 
     def add(entries, low, high):
@@ -479,12 +487,20 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None):
     size = problem.size_um/1000
     w = lambda i: [(iz + 4*i + r, (size[i, 1] if turns[r] % 180 else size[i, 0])) for r in range(4)]
     h = lambda i: [(iz + 4*i + r, (size[i, 0] if turns[r] % 180 else size[i, 1])) for r in range(4)]
+    # Carrier edges: constants, or with sizing the chosen width level and the height variable.
+    right = [] if sizing is None else [(iu + l, -v) for l, v in enumerate(levels)]
+    top = [] if sizing is None else [(ih, -1.0)]
+    limit_w, limit_h = (width, height) if sizing is None else (0.0, 0.0)
     for i in range(n):
         add([(iz + 4*i + r, 1.0) for r in range(4)], 1, 1)
         add([(ix + i, 1.0)] + [(c, -v/2) for c, v in w(i)], 0, np.inf)              # x - w/2 >= 0
-        add([(ix + i, 1.0)] + [(c, v/2) for c, v in w(i)], -np.inf, width)          # x + w/2 <= W
+        add([(ix + i, 1.0)] + [(c, v/2) for c, v in w(i)] + right, -np.inf, limit_w)   # x + w/2 <= W
         add([(iy + i, 1.0)] + [(c, -v/2) for c, v in h(i)], 0, np.inf)
-        add([(iy + i, 1.0)] + [(c, v/2) for c, v in h(i)], -np.inf, height)
+        add([(iy + i, 1.0)] + [(c, v/2) for c, v in h(i)] + top, -np.inf, limit_h)
+    if sizing is not None:
+        add([(iu + l, 1.0) for l in range(len(levels))], 1, 1)
+        # H <= sum_l u_l min(envelope height, cap / W_l)
+        add([(ih, 1.0)] + [(iu + l, -min(height, sizing[1]/v)) for l, v in enumerate(levels)], -np.inf, 0)
     big = 2*max(width, height)
     for p, (i, j) in enumerate(pairs):
         s = isd + 4*p
@@ -510,6 +526,10 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None):
     integrality[iz:it] = 1
     lower = np.r_[np.zeros(2*n), np.zeros(it - iz), np.zeros(nvar - it)]
     upper = np.r_[np.full(n, width), np.full(n, height), np.ones(it - iz), np.full(nvar - it, np.inf)]
+    if sizing is not None:
+        integrality[iu:ih] = 1
+        upper[iu:ih] = [0.0 if l in set(sizing[2]) or v > width + 1e-9 else 1.0 for l, v in enumerate(levels)]
+        upper[ih] = height
     if thermal is not None:
         block = thermal[0].milp_block(add, nvar, ix, iy, iz, thermal[1])
         cost = np.r_[cost*block['length_weight'], block['cost']]
@@ -522,7 +542,11 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None):
     if x is None:
         return None
     rotation = turns[np.argmax(x[iz:isd].reshape(n, 4), axis=1)]
-    return Layout(np.stack((x[ix:ix + n], x[iy:iy + n]), axis=1)*1000, rotation)
+    layout = Layout(np.stack((x[ix:ix + n], x[iy:iy + n]), axis=1)*1000, rotation)
+    if sizing is None:
+        return layout
+    extent = np.round(boxes(problem, layout)[:, 2:].max(axis=0), 3)    # um; dies start at the origin
+    return layout, (float(extent[0])/1000, float(extent[1])/1000), int(np.argmax(x[iu:ih]))
 
 
 def legalize_relations(problem, layout, gap_um):
