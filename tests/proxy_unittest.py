@@ -81,6 +81,24 @@ class ProxyTest(unittest.TestCase):
             self.assertGreater(capped['fv_peak_c'], 45)
             self.assertLessEqual(evaluator.solves, 30)
 
+    def test_polygonal_distance_milp_is_conservative_to_the_euclidean_proxy(self):
+        p = small_problem()
+        cool = milp_relations(p, 500, 20, proxy=(MODEL, None), directions=8)
+        axial = milp_relations(p, 500, 20, proxy=(MODEL, None))
+        # The polygonal rho is a lower bound of the centre distance, so the value at the layout is at least the
+        # Euclidean proxy (up to the tangent slack), and the MILP optimum is no worse in its own metric.
+        r = np.linspace(3.0, np.hypot(40, 40), 2000)
+        a, b = MODEL.tangents(min(np.add.outer(p.size_um.min(1), p.size_um.min(1)).ravel())/2000 + 0.5, np.hypot(40, 40))
+        slack = np.max(MODEL.g(r) - (a[None] + b[None]*r[:, None]).max(axis=1))*p.power_w.sum()
+        self.assertGreaterEqual(MODEL.polygon_value(p, cool, 500, 8) + slack, MODEL.value(p, cool) - 1e-6)
+        self.assertLessEqual(MODEL.polygon_value(p, cool, 500, 8), MODEL.polygon_value(p, axial, 500, 8) + 1e-6)
+        warm = milp_relations(p, 500, 20, proxy=(MODEL, None), directions=8, start=axial)   # Gurobi only uses it
+        self.assertLessEqual(MODEL.polygon_value(p, warm, 500, 8), MODEL.polygon_value(p, axial, 500, 8) + 1e-6)
+        d = np.array([3.0, 4.0])
+        angles = 2*np.pi*np.arange(8)/8
+        support = (np.stack((np.cos(angles), np.sin(angles)), axis=1) @ d).max()
+        self.assertTrue(5*np.cos(np.pi/8) - 1e-9 <= support <= 5 + 1e-9)
+
     def test_wire_budget_bounds_the_clustered_length_in_the_milp_units(self):
         p = small_problem()
         short = milp_relations(p, 500, 20)

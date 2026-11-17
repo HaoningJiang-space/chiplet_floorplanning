@@ -413,9 +413,10 @@ def length_anneal(args):
 MILP_STATUS = dict(status=None)   # outcome of the last _solve_milp call, for callers that must tell timeout from proof
 
 
-def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s, threads=1, focus=0):
+def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s, threads=1, focus=0, start=None):
     """Gurobi when gurobipy and a licence are available (ATPlace2.5D's own solver), else HiGHS. `threads` and
-    `focus` (Gurobi MIPFocus; 1 = find feasible solutions first) only apply to Gurobi."""
+    `focus` (Gurobi MIPFocus; 1 = find feasible solutions first) only apply to Gurobi, as does `start` (a partial
+    MIP start: NaN entries are left for the solver to complete)."""
     try:
         import gurobipy as gp
         model = gp.Model()
@@ -429,6 +430,8 @@ def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s, threads
         if finite_lo.any():
             model.addMConstr(matrix[finite_lo], v, '>', lo[finite_lo])
         model.setObjective(cost @ v)
+        if start is not None:
+            v.Start = np.where(np.isfinite(start), start, gp.GRB.UNDEFINED)
         model.optimize()
         MILP_STATUS['status'] = {gp.GRB.OPTIMAL: 'optimal', gp.GRB.INFEASIBLE: 'infeasible',
                                  gp.GRB.TIME_LIMIT: 'time_limit'}.get(model.Status, str(model.Status))
@@ -499,7 +502,7 @@ def cluster_length_mm(problem, layout):
 
 
 def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None, proxy=None, wire_mm=None,
-                   threads=1, focus=0, wire_cuts=()):
+                   threads=1, focus=0, wire_cuts=(), directions=None, start=None):
     """Global choice of rotations and side relations for wirelength by MILP (HiGHS), after ATPlace2.5D's
     initialisation: each die has one-hot quarter-turn binaries; each pair has four big-M side binaries; the
     pair's nets are clustered at their mean pin offsets, so the objective is sum K_ij |c_i + R o_i - c_j - R o_j|
@@ -514,7 +517,11 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
     per-level height caps (e.g. what k exposure fields allow at that width), minimise_area (the objective becomes the
     carrier area sum_l W_l H_l with per-level heights H_l <= cap_l u_l, exact; wire only breaks ties) and per-level
     height floors of the box (H >= floor_l when W_l is chosen, e.g. an aspect-ratio limit). `wire_mm` (or a third proxy entry) bounds the clustered wirelength
-    (cluster_length_mm units), with or without the proxy. Since that is only a relaxation of the exact per-pin length,
+    (cluster_length_mm units), with or without the proxy. With `directions` = K the proxy's pair distance is the
+    K-direction polygonal lower bound of the centre distance (rho <= u_k . (c_j - c_i) for one chosen k; within
+    cos(pi/K) of it) instead of the separation along the side relation (docs/polygon-distance-plan.md). `start`
+    (a layout inside the carrier) is a partial MIP start: its centres, rotations, side relations and, with
+    directions, the best direction of every pair; the solver completes the rest. Since that is only a relaxation of the exact per-pin length,
     `wire_cuts` (layouts that broke the exact budget) add pin_length_cut rows: valid for every layout, tight at the
     cut layout, so each excludes it (docs/proxy-budget-review.md section 3); they need `wire_mm`.
     `proxy` = (ThermalProxy, cap or None[, wire budget mm]) adds the axial tangent envelope: rho <= separation along the chosen side
@@ -551,6 +558,9 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         irho, itau = nvar, nvar + len(hot_pairs)
         ipk = itau + len(hot_pairs)
         nvar = ipk + 1
+        if directions:
+            iw = nvar
+            nvar += directions*len(hot_pairs)
     rr, cc, vv, lo, hi = [], [], [], [], []
 
     def add(entries, low, high):
@@ -599,10 +609,19 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         tau_of = {}
         for k, (p, i, j) in enumerate(hot_pairs):
             s = isd + 4*p
-            for q, (axis, first, second) in enumerate(((0, i, j), (0, j, i), (1, i, j), (1, j, i))):
-                base = ix if axis == 0 else iy
-                # rho <= v_second - v_first + big (1 - s_q)
-                add([(irho + k, 1.0), (base + second, -1.0), (base + first, 1.0), (s + q, big)], -np.inf, big)
+            if directions:
+                far = 2*np.hypot(width, height)
+                for d in range(directions):
+                    ux, uy = np.cos(2*np.pi*d/directions), np.sin(2*np.pi*d/directions)
+                    # rho <= u_d . (c_j - c_i) + far (1 - w_d)
+                    add([(irho + k, 1.0), (ix + j, -ux), (ix + i, ux), (iy + j, -uy), (iy + i, uy),
+                         (iw + directions*k + d, far)], -np.inf, far)
+                add([(iw + directions*k + d, 1.0) for d in range(directions)], 1, 1)
+            else:
+                for q, (axis, first, second) in enumerate(((0, i, j), (0, j, i), (1, i, j), (1, j, i))):
+                    base = ix if axis == 0 else iy
+                    # rho <= v_second - v_first + big (1 - s_q)
+                    add([(irho + k, 1.0), (base + second, -1.0), (base + first, 1.0), (s + q, big)], -np.inf, big)
             for a, b in zip(*model.pair_tangents(problem, i, j, gap_um)):
                 add([(itau + k, 1.0), (irho + k, -b)], a, np.inf)              # tau >= a + b rho
             tau_of[(i, j)] = tau_of[(j, i)] = itau + k
@@ -632,6 +651,9 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
     if proxy is not None:
         lower[irho:itau] = [(size[i].min() + size[j].min())/2 + gap for _, i, j in hot_pairs]
         upper[irho:itau] = np.hypot(width, height)
+        if directions:
+            integrality[iw:iw + directions*len(hot_pairs)] = 1
+            upper[iw:iw + directions*len(hot_pairs)] = 1
         if problem.limit_c is not None:
             lower[ipk] = -np.inf          # a safe layout has negative overshoot; t is objective - ambient
         if proxy[1] is None:
@@ -657,7 +679,22 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         nvar += len(block['cost'])
     bounds = Bounds(lower, upper)
     matrix = sparse.csr_matrix((vv, (rr, cc)), shape=(len(lo), nvar))   # duplicates sum
-    x = _solve_milp(cost, matrix, np.array(lo), np.array(hi), integrality, bounds, time_limit_s, threads, focus)
+    guess = None
+    if start is not None:
+        guess = np.full(nvar, np.nan)
+        guess[ix:ix + n], guess[iy:iy + n] = start.centre_um[:, 0]/1000, start.centre_um[:, 1]/1000
+        guess[iz:isd] = 0
+        guess[iz + 4*np.arange(n) + (start.rotation_deg//90) % 4] = 1
+        guess[isd:it] = 0
+        for p, (i, j, axis, sign) in enumerate(centre_relations(problem, start, gap_um)):
+            guess[isd + 4*p + 2*axis + (0 if sign > 0 else 1)] = 1
+        if proxy is not None and directions:
+            angles = 2*np.pi*np.arange(directions)/directions
+            u = np.stack((np.cos(angles), np.sin(angles)), axis=1)
+            guess[iw:iw + directions*len(hot_pairs)] = 0
+            for k, (_, i, j) in enumerate(hot_pairs):
+                guess[iw + directions*k + int(np.argmax(u @ (start.centre_um[j] - start.centre_um[i])))] = 1
+    x = _solve_milp(cost, matrix, np.array(lo), np.array(hi), integrality, bounds, time_limit_s, threads, focus, guess)
     if x is None:
         return None
     rotation = turns[np.argmax(x[iz:isd].reshape(n, 4), axis=1)]
