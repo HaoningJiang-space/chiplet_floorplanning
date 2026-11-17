@@ -1,0 +1,77 @@
+{
+ "plan": "docs/problem-screens-plan.md",
+ "screen": "phy",
+ "verdict": "not_degenerate",
+ "cases": {
+  "Case1": {
+   "front_median": 0.7157472620108429,
+   "front_max": 0.9684751540828782,
+   "shortest": 0.9684751540828782,
+   "coolest": 0.5149982250594618,
+   "random_median": 0.7602876846981714
+  },
+  "Case2": {
+   "front_median": 0.32458394761971343,
+   "front_max": 1.0,
+   "shortest": 1.0,
+   "coolest": 0.4409457763251532,
+   "random_median": 0.744238178267525
+  },
+  "Case3": {
+   "front_median": 0.6077647705172824,
+   "front_max": 0.9962499131452845,
+   "shortest": 0.9962499131452845,
+   "coolest": 0.5786585864204833,
+   "random_median": 0.6006161307540966
+  },
+  "Case4": {
+   "front_median": 0.7210187607440761,
+   "front_max": 0.8498086784935344,
+   "shortest": 0.8498086784935344,
+   "coolest": 0.6076942159213155,
+   "random_median": 0.6094566647607951
+  },
+  "Case5": {
+   "front_median": 0.656360763878304,
+   "front_max": 0.7725401710920055,
+   "shortest": 0.7725401710920055,
+   "coolest": 0.5474718774337419,
+   "random_median": 0.6132187573990309
+  },
+  "Case6": {
+   "front_median": 0.9314420357755315,
+   "front_max": 1.0,
+   "shortest": 1.0,
+   "coolest": 0.6796054581166844,
+   "random_median": 0.38420037516411093
+  },
+  "Case7": {
+   "front_median": 0.7079514331980871,
+   "front_max": 0.8190082145381493,
+   "shortest": 0.8190082145381493,
+   "coolest": 0.49356804718622904,
+   "random_median": 0.3962749932098892
+  },
+  "Case8": {
+   "front_median": 0.7509090490044559,
+   "front_max": 0.8259729797690688,
+   "shortest": 0.8192976125997857,
+   "coolest": 0.5624028857462804,
+   "random_median": 0.32532005092434146
+  },
+  "Case9": {
+   "front_median": 0.8206442908138134,
+   "front_max": 0.8879150022357557,
+   "shortest": 0.8879150022357557,
+   "coolest": 0.3360483578196961,
+   "random_median": 0.327694738117564
+  },
+  "Case10": {
+   "front_median": 0.6796112924357733,
+   "front_max": 0.7683111337241465,
+   "shortest": 0.7683111337241465,
+   "coolest": 0.26035966815419376,
+   "random_median": 0.2727606835898201
+  }
+ }
+}
