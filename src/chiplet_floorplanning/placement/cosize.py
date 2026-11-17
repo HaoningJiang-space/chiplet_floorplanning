@@ -81,7 +81,8 @@ def fit_into(problem, layout, source_um, gap_um):
     return legalize_relations(problem, scaled, gap_um)
 
 
-SHRINK_DELTA = 0.01    # relative carrier growth of the finite difference d(peaks)/d(scale)
+SHRINK_DELTA = 0.03    # relative carrier growth of the scale secant: near the step size; a 1% difference amplifies
+                       # the ~0.01 K mesh jumps (it overstated the 3-6% response twice on Case6)
 SHRINK_BUFFER_K = 0.05  # linearised overshoot target -buffer: the FV peak jumps ~0.01 K as the mesh follows the carrier
 
 
@@ -175,12 +176,14 @@ def shrink_chain(problem, layout, gap_um, length_m, steps, resolution, budget, c
             new_peaks, new_gradient = peak_sensitivity(trial, candidate, gap_um, resolution)
             used += 1
             z = np.r_[candidate.centre_um.T.ravel()/1000, math.sqrt(cw*ch)]
-            errors.append((float((heat[:, :2*n] @ z[:-1] + slope[hot]*z[-1] - offset).max()), float(new_peaks.max())))
+            predicted = float((heat[:, :2*n] @ z[:-1] + slope[hot]*z[-1] - offset).max())
+            errors.append((predicted, float(new_peaks.max())))
+            accurate = new_peaks.max() - predicted <= max(SHRINK_BUFFER_K, 0.25*abs(predicted - peaks.max()))
             if new_peaks.max() <= 0:
                 sized, current, peaks, gradient, slope = trial, candidate, new_peaks, new_gradient, None
                 known.clear()
                 out.append((candidate, (cw, ch), float(new_peaks.max()), length))
-                radius = min(1.5*radius, largest)
+                radius = min(1.5*radius, largest) if accurate else radius    # grow only on a model that held
             else:
                 radius /= 2
         if used + 2 > budget:
