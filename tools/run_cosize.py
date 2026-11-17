@@ -1,0 +1,129 @@
+"""Interposer co-optimisation against a reference quality point (plan: docs/cosize-plan.md).
+
+For one case and one reference point (T*, L*) - by default a layout ATPlace2.5D produced on the original carrier,
+scored with our FV and exact pin length - every die gets the absolute limit T* and the exact pin length budget is
+L*. Three methods search for the cheapest interposer (cost.interposer_cost, silicon only) carrying a layout that
+meets both, each with the same FV budget:
+- cosize:       joint size/reticle/placement MILP with the proxy, FV-certified (placement/cosize.py);
+- cosize_blind: the same without the proxy (min-wire MILP under a bisected area cap), FV-certified;
+- fixed_aspect: size-then-place - the original aspect ratio, bisection on the area factor, relation_space at each
+                size with an equal share of the budget; a size passes if any evaluated layout meets both.
+"""
+import argparse
+from dataclasses import replace
+import hashlib
+import json
+import math
+from pathlib import Path
+import time
+
+import numpy as np
+
+from chiplet_floorplanning.cli import source_revision
+from chiplet_floorplanning.placement import Problem
+from chiplet_floorplanning.placement.cosize import ceil_grid, cosize
+from chiplet_floorplanning.placement.cost import interposer_cost
+from run_sizing import run_front
+
+ENVELOPE = 1.25
+BISECTION_STEPS = 5
+
+
+def references(evidence, case):
+    """{'atp_cool': (T*, L*), 'atp_wl': (T, L)} from an atplace_compare JSON (legal ATPlace points with FV)."""
+    entry = next(c for c in json.loads(Path(evidence).read_text())['cases'] if c['case'] == case)
+    points = [p for p in entry['atplace'] if p.get('legal') and p.get('fv_peak_c') is not None]
+    out = {}
+    thermal = [p for p in points if p['label'] != 'wl']
+    if thermal:
+        best = min(thermal, key=lambda p: (p['fv_peak_c'], p['length_m']))
+        out['atp_cool'] = (best['fv_peak_c'], best['length_m'], best['label'])
+    wl = [p for p in points if p['label'] == 'wl']
+    if wl:
+        out['atp_wl'] = (wl[0]['fv_peak_c'], wl[0]['length_m'], 'wl')
+    return out
+
+
+def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers):
+    """Bisection on the area factor at the original aspect ratio; relation_space per size."""
+    w0, h0 = (s/1000 for s in problem.carrier_um)
+    die_area = (problem.size_um.prod(axis=1)).sum()/1e6
+    low, high = die_area/(w0*h0), ENVELOPE**2          # area factors: certainly infeasible / search ceiling
+    share, best, history, used = fv_budget//(BISECTION_STEPS + 1), None, [], 0
+    trial = 1.0
+    for step in range(BISECTION_STEPS + 1):
+        scale = math.sqrt(trial)
+        w, h = ceil_grid(w0*scale), ceil_grid(h0*scale)
+        sized = replace(problem, carrier_um=(w*1000, h*1000))
+        record = dict(step=step, area_factor=trial, width_mm=w, height_mm=h,
+                      cost_usd=interposer_cost(w, h)['total_usd'])
+        try:
+            rows, archive = run_front(sized, gap_um, share, seed, [], dict(milp_s=milp_s, workers=workers))
+            used += int(archive['solves'])
+            ok = [(r['thermal'], r['length_m']) for r in rows if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]
+            record.update(fv_solves=int(archive['solves']), certified=bool(ok),
+                          best_j_k=min((r['thermal'] for r in rows if r['length_m'] <= length_m + 1e-9), default=None))
+        except RuntimeError as error:
+            ok, record['error'], record['certified'] = [], str(error), False
+        history.append(record)
+        if ok:
+            if math.isfinite(record['cost_usd']) and (best is None or record['cost_usd'] < best['cost_usd']):
+                best = dict(width_mm=w, height_mm=h, cost_usd=record['cost_usd'], area_factor=trial,
+                            j_k=min(o[0] for o in ok), option=interposer_cost(w, h)['option'],
+                            fields=interposer_cost(w, h)['fields'])
+            high = trial
+        else:
+            low = trial
+        if step == 0 and not ok:
+            trial = high                                    # the original size failed: try the ceiling once
+            continue
+        trial = (low + high)/2
+    return dict(best=best, history=history, fv_solves=used)
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--case', type=Path, required=True)
+    p.add_argument('--evidence', type=Path, default=Path('docs/evidence/atplace-compare-rsg4-v2.json'))
+    p.add_argument('--reference', choices=('atp_cool', 'atp_wl'), required=True)
+    p.add_argument('--method', choices=('cosize', 'cosize_blind', 'fixed_aspect'), required=True)
+    p.add_argument('--fv-solves', type=int, default=1000)
+    p.add_argument('--gap-um', type=float, default=0)
+    p.add_argument('--milp-s', type=float, default=60)
+    p.add_argument('--rounds', type=int, default=12)
+    p.add_argument('--workers', type=int, default=16)
+    p.add_argument('--seed', type=int, default=2)
+    p.add_argument('--output', type=Path, required=True)
+    args = p.parse_args()
+    if args.output.exists():
+        raise SystemExit(f'{args.output} exists')
+    case = json.loads(args.case.read_text())
+    problem = Problem.from_imported(case)
+    refs = references(args.evidence, problem.name if problem.name.startswith('Case') else args.case.stem)
+    if args.reference not in refs:
+        raise SystemExit(f'no {args.reference} reference for {args.case.stem}')
+    t_ref, l_ref, label = refs[args.reference]
+    limited = replace(problem, limit_c=np.full(problem.count, t_ref))
+    started = time.perf_counter()
+    if args.method == 'fixed_aspect':
+        out = fixed_aspect(limited, args.gap_um, l_ref, args.fv_solves, args.seed, args.milp_s, args.workers)
+    else:
+        out = cosize(limited, args.gap_um, l_ref, args.fv_solves, thermal=args.method == 'cosize', envelope=ENVELOPE,
+                     rounds=args.rounds, milp_s=args.milp_s)
+    w0, h0 = (s/1000 for s in problem.carrier_um)
+    record = dict(case=args.case.stem, method=args.method, reference=args.reference, reference_label=label,
+                  t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
+                      k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),
+                  seed=args.seed, fv_budget=args.fv_solves, milp_s=args.milp_s, wall_s=time.perf_counter() - started,
+                  case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(), code=source_revision(),
+                  plan='docs/cosize-plan.md', **out)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(record, indent=1, default=float) + '\n')
+    b = out['best']
+    print(args.case.stem, args.reference, args.method, 'best', b and (b['width_mm'], b['height_mm'], round(b['cost_usd'], 2)),
+          'original', (w0, h0, round(record['original']['total_usd'], 2)), 'fv', out['fv_solves'],
+          round(record['wall_s']), 's', flush=True)
+
+
+if __name__ == '__main__':
+    main()

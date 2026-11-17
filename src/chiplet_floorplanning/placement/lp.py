@@ -410,12 +410,17 @@ def length_anneal(args):
     return best, top
 
 
-def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s):
-    """Gurobi when gurobipy and a licence are available (ATPlace2.5D's own solver), else HiGHS."""
+MILP_STATUS = dict(status=None)   # outcome of the last _solve_milp call, for callers that must tell timeout from proof
+
+
+def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s, threads=1, focus=0):
+    """Gurobi when gurobipy and a licence are available (ATPlace2.5D's own solver), else HiGHS. `threads` and
+    `focus` (Gurobi MIPFocus; 1 = find feasible solutions first) only apply to Gurobi."""
     try:
         import gurobipy as gp
         model = gp.Model()
-        model.Params.OutputFlag, model.Params.TimeLimit, model.Params.Threads = 0, time_limit_s, 1
+        model.Params.OutputFlag, model.Params.TimeLimit, model.Params.Threads = 0, time_limit_s, threads
+        model.Params.MIPFocus = focus
         v = model.addMVar(len(cost), lb=bounds.lb, ub=bounds.ub,
                           vtype=np.where(integrality > 0, gp.GRB.BINARY, gp.GRB.CONTINUOUS))
         finite_hi, finite_lo = np.isfinite(hi), np.isfinite(lo)
@@ -425,6 +430,8 @@ def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s):
             model.addMConstr(matrix[finite_lo], v, '>', lo[finite_lo])
         model.setObjective(cost @ v)
         model.optimize()
+        MILP_STATUS['status'] = {gp.GRB.OPTIMAL: 'optimal', gp.GRB.INFEASIBLE: 'infeasible',
+                                 gp.GRB.TIME_LIMIT: 'time_limit'}.get(model.Status, str(model.Status))
         return v.X if model.SolCount else None
     except ImportError:
         pass
@@ -434,7 +441,34 @@ def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s):
     from scipy.optimize import LinearConstraint, milp
     result = milp(cost, constraints=LinearConstraint(matrix, lo, hi), integrality=integrality, bounds=bounds,
                   options=dict(time_limit=time_limit_s, disp=False))
+    MILP_STATUS['status'] = {0: 'optimal', 1: 'time_limit', 2: 'infeasible'}.get(result.status, str(result.status))
     return result.x
+
+
+def pin_length_cut(problem, layout, ix, iy, iz):
+    """Linear minorant of the exact per-pin Manhattan length (mm), tight at `layout`: sum_e,a sigma_ea d_ea with
+    sigma = sign(d) at the layout and d_ea = c_i + R_i o_e - c_j - R_j o'_e linear in the centres and the rotation
+    one-hots. Returns (MILP row entries, constant mm of nets inside one die, whose length no rotation changes)."""
+    from .geometry import pin_points_um, rotate
+    a, b = problem.pin_chip[:, 0], problem.pin_chip[:, 1]
+    inside = a == b
+    points = pin_points_um(problem, layout)
+    sigma = np.sign(points[:, 0] - points[:, 1])            # (m, 2)
+    turns = np.array([0, 90, 180, 270])
+    coef = {}
+    for e in np.flatnonzero(~inside):
+        for axis, base in ((0, ix), (1, iy)):
+            s = sigma[e, axis]
+            if s == 0:
+                continue
+            coef[base + a[e]] = coef.get(base + a[e], 0.0) + s
+            coef[base + b[e]] = coef.get(base + b[e], 0.0) - s
+            for die, offset, sign in ((a[e], problem.pin_offset_um[e, 0], 1.0), (b[e], problem.pin_offset_um[e, 1], -1.0)):
+                turned = rotate(np.tile(offset/1000, (4, 1)), turns)[:, axis]
+                for r in range(4):
+                    coef[iz + 4*die + r] = coef.get(iz + 4*die + r, 0.0) + sign*s*turned[r]
+    constant = float(np.abs(problem.pin_offset_um[inside, 0] - problem.pin_offset_um[inside, 1]).sum())/1000
+    return [(k, v) for k, v in coef.items() if v != 0.0], constant
 
 
 def wire_clusters(problem):
@@ -464,7 +498,8 @@ def cluster_length_mm(problem, layout):
     return total
 
 
-def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None, proxy=None):
+def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None, proxy=None, wire_mm=None,
+                   threads=1, focus=0, wire_cuts=()):
     """Global choice of rotations and side relations for wirelength by MILP (HiGHS), after ATPlace2.5D's
     initialisation: each die has one-hot quarter-turn binaries; each pair has four big-M side binaries; the
     pair's nets are clustered at their mean pin offsets, so the objective is sum K_ij |c_i + R o_i - c_j - R o_j|
@@ -475,7 +510,13 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
     `sizing` = (widths mm, area cap mm^2, excluded width indices) makes the carrier a variable inside the envelope
     problem.carrier_um: one-hot over the width levels W_l, a continuous height H <= min(envelope height, cap / W_l),
     and every die inside [0, W_l] x [0, H]; exact for the given width levels. It then returns (layout, (width_mm,
-    height_mm), chosen level index) with the carrier shrunk to the dies' extent, or None.
+    height_mm), chosen level index) with the carrier shrunk to the dies' extent, or None. Optional further entries:
+    per-level height caps (e.g. what k exposure fields allow at that width), minimise_area (the objective becomes the
+    carrier area sum_l W_l H_l with per-level heights H_l <= cap_l u_l, exact; wire only breaks ties) and per-level
+    height floors of the box (H >= floor_l when W_l is chosen, e.g. an aspect-ratio limit). `wire_mm` (or a third proxy entry) bounds the clustered wirelength
+    (cluster_length_mm units), with or without the proxy. Since that is only a relaxation of the exact per-pin length,
+    `wire_cuts` (layouts that broke the exact budget) add pin_length_cut rows: valid for every layout, tight at the
+    cut layout, so each excludes it (docs/proxy-budget-review.md section 3); they need `wire_mm`.
     `proxy` = (ThermalProxy, cap or None[, wire budget mm]) adds the axial tangent envelope: rho <= separation along the chosen side
     relation, tau >= tangents of g(rho), and t >= P_i s_i + sum_j P_j tau_ij - limit_i for every observer (including
     unpowered dies). Omit limit_i when no limits are given. The cap is in degC, or overshoot K with Problem.limit_c;
@@ -498,6 +539,12 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         levels = np.asarray(sizing[0], float)
         iu, ih = nvar, nvar + len(levels)
         nvar = ih + 1
+        caps = np.minimum(np.minimum(height, (np.inf if sizing[1] is None else sizing[1])/levels),
+                          np.inf if len(sizing) < 4 or sizing[3] is None else np.asarray(sizing[3], float))
+        by_area = len(sizing) > 4 and bool(sizing[4])
+        height_floor = None if len(sizing) < 6 or sizing[5] is None else np.asarray(sizing[5], float)
+        if by_area:
+            ihl, nvar = nvar, nvar + len(levels)
     if proxy is not None:
         powered = set(np.flatnonzero(problem.power_w > 0))
         hot_pairs = [(p, i, j) for p, (i, j) in enumerate(pairs) if i in powered or j in powered]
@@ -529,8 +576,14 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         add([(iy + i, 1.0)] + [(c, v/2) for c, v in h(i)] + top, -np.inf, limit_h)
     if sizing is not None:
         add([(iu + l, 1.0) for l in range(len(levels))], 1, 1)
-        # H <= sum_l u_l min(envelope height, cap / W_l)
-        add([(ih, 1.0)] + [(iu + l, -min(height, sizing[1]/v)) for l, v in enumerate(levels)], -np.inf, 0)
+        # H <= sum_l u_l min(envelope height, area cap / W_l, height cap_l)
+        add([(ih, 1.0)] + [(iu + l, -caps[l]) for l in range(len(levels))], -np.inf, 0)
+        if by_area:     # H = sum_l H_l, H_l <= cap_l u_l: the area sum_l W_l H_l is linear and exact
+            for l in range(len(levels)):
+                add([(ihl + l, 1.0), (iu + l, -caps[l])], -np.inf, 0)
+            add([(ihl + l, 1.0) for l in range(len(levels))] + [(ih, -1.0)], 0, 0)
+        if height_floor is not None:
+            add([(ih, 1.0)] + [(iu + l, -height_floor[l]) for l in range(len(levels))], 0, np.inf)
     big = 2*max(width, height)
     for p, (i, j) in enumerate(pairs):
         s = isd + 4*p
@@ -586,9 +639,16 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
             cost[ipk] = 1.0
         else:
             upper[ipk] = proxy[1] - AMBIENT_C
-        if len(proxy) > 2 and proxy[2] is not None:      # clustered wire <= budget (mm), cluster_length_mm units
-            add([(it + 2*c + axis, k) for c, (_, _, k, _, _) in enumerate(clusters) for axis in (0, 1)],
-                -np.inf, proxy[2])
+    if wire_mm is None and proxy is not None and len(proxy) > 2:
+        wire_mm = proxy[2]
+    if wire_mm is not None:                              # clustered wire <= budget (mm), cluster_length_mm units
+        add([(it + 2*c + axis, k) for c, (_, _, k, _, _) in enumerate(clusters) for axis in (0, 1)], -np.inf, wire_mm)
+        for cut in wire_cuts:
+            entries, constant = pin_length_cut(problem, cut, ix, iy, iz)
+            add(entries, -np.inf, wire_mm - constant)
+    if sizing is not None and by_area:
+        cost = cost*1e-6
+        cost[ihl:ihl + len(levels)] = levels
     if thermal is not None:
         block = thermal[0].milp_block(add, nvar, ix, iy, iz, thermal[1])
         cost = np.r_[cost*block['length_weight'], block['cost']]
@@ -597,7 +657,7 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         nvar += len(block['cost'])
     bounds = Bounds(lower, upper)
     matrix = sparse.csr_matrix((vv, (rr, cc)), shape=(len(lo), nvar))   # duplicates sum
-    x = _solve_milp(cost, matrix, np.array(lo), np.array(hi), integrality, bounds, time_limit_s)
+    x = _solve_milp(cost, matrix, np.array(lo), np.array(hi), integrality, bounds, time_limit_s, threads, focus)
     if x is None:
         return None
     rotation = turns[np.argmax(x[iz:isd].reshape(n, 4), axis=1)]
