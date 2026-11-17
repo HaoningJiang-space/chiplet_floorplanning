@@ -147,3 +147,11 @@
 判定规则不变（见"判定"节）：
 - 主比较：cosize vs fixed_aspect；
 - 消融：cosize vs cosize_blind，cosize vs cosize_axial，同一规则。
+
+## 2026-11-17 cosize-v2 停止与转入 v3
+
+- 用户决定停止 v2 中剩余的消融任务：cosize_blind 0/17、cosize_axial 7/17 已完成，正在跑的 6 个 axial 任务已按 PID 停止。
+  已完成 40 个任务，没有异常退出。保留主比较的最后一个任务（Case3 atp_wl cosize）跑完，作为旧搜索的完整记录。
+- 停止原因：已完成的 16 个 cosize 任务中只有 6 个得到设计。其余任务的联合 MILP 每轮 4 个选项全部 60 s 超时，没有可行解，时间几乎全部浪费在这些 MILP 上。
+  用同一搜索继续跑消融，提供的信息很少。
+- v2 不作为正式判定。诊断与新方法见 [cosize-v3 计划](cosize-v3-plan.md)：以参照布局为锚点，外层按长宽比二分，内层在固定载板上求解。

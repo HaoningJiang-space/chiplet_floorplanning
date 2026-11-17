@@ -8,7 +8,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from sizing_unittest import small_problem  # noqa: E402
 from chiplet_floorplanning.placement import Evaluator, is_legal, pin_manhattan_um  # noqa: E402
-from chiplet_floorplanning.placement.cosize import cosize  # noqa: E402
+from chiplet_floorplanning.placement.cosize import anchored, cosize  # noqa: E402
 from chiplet_floorplanning.placement.cost import interposer_cost, max_height  # noqa: E402
 from chiplet_floorplanning.placement import Layout, Problem  # noqa: E402
 from chiplet_floorplanning.placement.lp import legalize_relations, milp_relations, pin_length_cut  # noqa: E402
@@ -115,6 +115,39 @@ class CosizeTest(unittest.TestCase):
         self.assertLessEqual(polygon['fv_solves'], 120)
         blind = cosize(limited, 500, budget, 120, thermal=False, rounds=4, milp_s=10, steps=3, resolution=16)
         self.assertEqual(blind['calibration_solves'], 0)
+
+
+class AnchoredTest(unittest.TestCase):
+    def setUp(self):
+        self.p = small_problem()
+        self.anchor = Layout(np.array([[10., 10.], [30., 10.], [10., 30.], [30., 30.]])*1000, np.zeros(4, int))
+        with Evaluator(self.p, 500, resolution=16) as evaluator:
+            self.peak = evaluator.peaks_c([self.anchor])[0]
+        self.length = pin_manhattan_um(self.p, self.anchor).sum()/1e6
+
+    def test_designs_meet_the_anchor_limits_and_never_cost_more(self):
+        limited = replace(self.p, limit_c=np.full(4, self.peak))
+        for inner in ('proxy', 'axial', 'blind'):
+            out = anchored(limited, self.anchor, 500, self.length, 200, inner=inner, aspects=(1.0, 2.0), steps=3,
+                           milp_s=10, threads=1, workers=1, resolution=16, chain_steps=3)
+            self.assertLessEqual(abs(out['anchor']['j_k']), 1e-6)
+            self.assertLessEqual(out['fv_solves'], 200)
+            best = out['best']
+            self.assertLessEqual(best['cost_usd'], interposer_cost(40., 40.)['total_usd'])
+            sized = replace(limited, carrier_um=(best['width_mm']*1000, best['height_mm']*1000))
+            layout = Layout(np.array(best['centre_um']), np.array(best['rotation_deg']))
+            self.assertTrue(is_legal(sized, layout, 500))
+            with Evaluator(sized, 500, resolution=16) as evaluator:     # independent FV re-check
+                self.assertLessEqual(evaluator.peaks_c([layout])[0], self.peak + 1e-6)
+            self.assertLessEqual(pin_manhattan_um(sized, layout).sum()/1e6, self.length + 1e-9)
+            if inner == 'proxy':
+                self.assertFalse(best['anchor'])        # the spread anchor leaves room to shrink
+
+    def test_a_reference_that_does_not_reproduce_stops(self):
+        limited = replace(self.p, limit_c=np.full(4, self.peak - 0.5))
+        out = anchored(limited, self.anchor, 500, self.length, 200, workers=1, resolution=16)
+        self.assertIsNone(out['best'])
+        self.assertEqual(out['history'][0]['stop'], 'reproduction_mismatch')
 
 
 if __name__ == '__main__':

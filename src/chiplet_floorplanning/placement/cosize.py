@@ -222,3 +222,148 @@ def cosize(problem, gap_um, length_m, fv_budget, thermal=True, envelope=1.25, ro
                 break
     return dict(best=best, history=history, fv_solves=solves, calibration_solves=0 if model is None else model.solves,
                 envelope_offset_k=offset, wire_cuts=len(cuts), thermal=thermal)
+
+
+ASPECTS = (1/3, 1/2, 2/3, 1.0, 3/2, 2.0, 3.0)
+REPRODUCE_K, REPRODUCE_M = 1e-6, 1e-9
+
+
+def box(area_mm2, aspect):
+    """Grid-rounded carrier of about this area with width/height = aspect."""
+    return ceil_grid(math.sqrt(area_mm2*aspect)), ceil_grid(math.sqrt(area_mm2/aspect))
+
+
+def area_ceiling(aspect, low, high, cap_usd, params, points=400):
+    """Largest area on a fine grid in [low, high] below which every carrier of this aspect costs < cap_usd
+    (finite when cap_usd is inf); None if even the smallest does not."""
+    best = None
+    for a in np.linspace(low, high, points):
+        if not interposer_cost(*box(a, aspect), params)['total_usd'] < cap_usd:
+            break
+        best = float(a)
+    return best
+
+
+def fit_into(problem, layout, source_um, gap_um):
+    """The layout's centres mapped proportionally from its carrier (source_um) into problem's, legalised keeping the
+    side relations; None if they do not fit."""
+    scaled = replace(layout, centre_um=layout.centre_um*np.asarray(problem.carrier_um)/np.asarray(source_um))
+    return legalize_relations(problem, scaled, gap_um)
+
+
+def fixed_carrier(problem, gap_um, length_m, model, start, milp_s, threads, directions, max_cuts=3):
+    """Inner problem on one carrier: min the proxy (model; wire-only without it) with the clustered wire within
+    the budget, pin-length cuts on overshoot; axial first, then K directions warm-started by it. Returns (layout or
+    None, solver statuses)."""
+    wire_mm, cuts, statuses, out = length_m*1000, [], [], None
+    for _ in range(max_cuts + 1):
+        proxy = None if model is None else (model, None, wire_mm)
+        out = milp_relations(problem, gap_um, milp_s, proxy=proxy, wire_mm=wire_mm, threads=threads, focus=1,
+                             wire_cuts=cuts, start=start)
+        statuses.append(MILP_STATUS['status'])
+        if model is not None and directions and out is not None:
+            polygon = milp_relations(problem, gap_um, milp_s, proxy=proxy, wire_mm=wire_mm, threads=threads, focus=1,
+                                     wire_cuts=cuts, directions=directions, start=out)
+            statuses.append(MILP_STATUS['status'])
+            out = polygon or out
+        if out is None or pin_manhattan_um(problem, out).sum()/1000 <= wire_mm + 1e-6:
+            break
+        cuts.append(out)
+    return out, statuses
+
+
+def family(args):
+    """Bisection on the area of one aspect family. Returns the family's records and its FV solves."""
+    (problem, anchor, gap_um, length_m, model, aspect, low, high, steps, budget, milp_s, threads, directions,
+     resolution, chain_steps, params) = args
+    base, base_um = anchor, problem.carrier_um
+    used, records = 0, []
+    for step in range(steps):
+        if used >= budget:
+            records.append(dict(aspect=aspect, step=step, stop='fv budget'))
+            break
+        area = (low + high)/2 if step else high
+        w, h = box(area, aspect)
+        sized = replace(problem, carrier_um=(w*1000, h*1000))
+        start = fit_into(sized, base, base_um, gap_um)
+        layout, statuses = fixed_carrier(sized, gap_um, length_m, model, start, milp_s, threads, directions)
+        record = dict(aspect=aspect, step=step, area_mm2=area, width_mm=w, height_mm=h,
+                      cost_usd=interposer_cost(w, h, params)['total_usd'], solver=statuses, started=start is not None)
+        legal = None if layout is None else legalize_relations(sized, layout, gap_um)
+        ok = None
+        if legal is not None and is_legal(sized, legal, gap_um):
+            ok, (j, l), n = certify(sized, legal, gap_um, length_m, min(chain_steps, budget - used - 1), resolution)
+            used += n
+            record.update(fv_solves=n, best_j_k=j, best_length_m=l)
+        record['certified'] = ok is not None
+        if ok is not None:
+            record.update(j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
+                          rotation_deg=ok[0].rotation_deg.tolist())
+            base, base_um, high = ok[0], sized.carrier_um, area
+        records.append(record)
+        if ok is None and step == 0:
+            records.append(dict(aspect=aspect, step=step, stop='largest cheaper carrier not certified'))
+            break
+        if ok is None:
+            low = area
+    return records, used
+
+
+def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', directions=8, aspects=ASPECTS, steps=5,
+             envelope=1.25, milp_s=60.0, threads=2, workers=8, resolution=64, chain_steps=12, params=CostParams()):
+    """cosize v3 (docs/cosize-v3-plan.md). `anchor` is the reference layout on problem's own carrier, known to meet
+    both limits (problem.limit_c = its FV peak, length_m = its pin length); one FV solve re-checks it. Per aspect
+    family (ASPECTS plus the original), bisection on the area between the dies' total area and the largest area
+    still cheaper than the anchor's carrier (or manufacturable, if that is not), each trial carrier solved by
+    fixed_carrier and certified by an FV SLP chain. inner: 'proxy' (K directions), 'axial', or 'blind' (min wire).
+    Returns the cheapest certified design (the anchor if nothing beats it), every record and the FV solves."""
+    from concurrent.futures import ProcessPoolExecutor
+    import multiprocessing
+    if problem.limit_c is None:
+        raise ValueError('anchored needs absolute per-die limits (Problem.limit_c)')
+    w0, h0 = (s/1000 for s in problem.carrier_um)
+    (_, peaks), = slp_chain((problem, anchor, gap_um, resolution, length_m, 0, 'length'))
+    solves = 1
+    j0, l0 = float(peaks.max()), pin_manhattan_um(problem, anchor).sum()/1e6
+    check = dict(j_k=j0, length_m=l0, legal=bool(is_legal(problem, anchor, gap_um)))
+    if not (check['legal'] and abs(j0) <= REPRODUCE_K and l0 <= length_m + REPRODUCE_M):
+        return dict(best=None, history=[dict(stop='reproduction_mismatch', **check)], fv_solves=solves,
+                    calibration_solves=0, anchor=check)
+    c0 = interposer_cost(w0, h0, params)
+    best = None if not math.isfinite(c0['total_usd']) else dict(
+        width_mm=w0, height_mm=h0, cost_usd=c0['total_usd'], option=c0['option'], fields=c0['fields'], j_k=j0,
+        length_m=l0, centre_um=anchor.centre_um.tolist(), rotation_deg=anchor.rotation_deg.tolist(), anchor=True)
+    model = None
+    if inner != 'blind':
+        model = ThermalProxy.calibrate(problem, gap_um, resolution)
+        solves += model.solves
+    k_dirs = directions if inner == 'proxy' else None
+    die_area = float(problem.size_um.prod(axis=1).sum())/1e6
+    a_max = w0*h0*envelope**2
+    cap = c0['total_usd']
+    fams = sorted(set(aspects) | {w0/h0})
+    jobs, history = [], []
+    share = (fv_budget - solves)//len(fams)
+    for aspect in fams:
+        high = area_ceiling(aspect, die_area, a_max, cap, params)
+        if high is None or share < 1:
+            history.append(dict(aspect=aspect, stop='no carrier cheaper than the anchor' if high is None else 'fv budget'))
+            continue
+        jobs.append((problem, anchor, gap_um, length_m, model, aspect, die_area, high, steps, share, milp_s, threads,
+                     k_dirs, resolution, chain_steps, params))
+    if workers > 1 and len(jobs) > 1:
+        with ProcessPoolExecutor(min(workers, len(jobs)), mp_context=multiprocessing.get_context('spawn')) as pool:
+            results = list(pool.map(family, jobs))
+    else:
+        results = [family(j) for j in jobs]
+    for records, used in results:
+        history += records
+        solves += used
+        for r in records:
+            if r.get('certified') and math.isfinite(r['cost_usd']) and (best is None or r['cost_usd'] < best['cost_usd']):
+                c = interposer_cost(r['width_mm'], r['height_mm'], params)
+                best = dict(width_mm=r['width_mm'], height_mm=r['height_mm'], cost_usd=r['cost_usd'], option=c['option'],
+                            fields=c['fields'], j_k=r['j_k'], length_m=r['length_m'], centre_um=r['centre_um'],
+                            rotation_deg=r['rotation_deg'], aspect=r['aspect'], step=r['step'], anchor=False)
+    return dict(best=best, history=history, fv_solves=solves, calibration_solves=0 if model is None else model.solves,
+                anchor=check, inner=inner)
