@@ -1,0 +1,1546 @@
+{
+ "plan": "docs/cosize-v3-plan.md",
+ "cosize_vs_fixed_aspect": {
+  "verdict": "ineffective",
+  "coverage": {
+   "expected": 18,
+   "found": 18,
+   "wins": 8,
+   "losses": 6,
+   "ties": 2,
+   "unavailable": 2,
+   "missing": 0
+  },
+  "rows": {
+   "case1-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 175.02497012312168,
+    "theirs_usd": 171.62859959422897,
+    "sweep_same": 18,
+    "ours_fv": 123,
+    "theirs_fv": 831,
+    "ours_wall_s": 71.6766432467848,
+    "theirs_wall_s": 142.7291310778819,
+    "ours_best": {
+     "width_mm": 38.2,
+     "height_mm": 38.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 38.0,
+     "height_mm": 38.0,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 42.0,
+     "height_mm": 42.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 253.88941260193212
+    }
+   },
+   "case2-atp_wl": {
+    "outcome": "win",
+    "ours_usd": 391.2916437123985,
+    "theirs_usd": 714.1613614400227,
+    "sweep_same": 18,
+    "ours_fv": 355,
+    "theirs_fv": 829,
+    "ours_wall_s": 362.43929531192407,
+    "theirs_wall_s": 193.2027404322289,
+    "ours_best": {
+     "width_mm": 46.400000000000006,
+     "height_mm": 46.400000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 53.900000000000006,
+     "height_mm": 51.0,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 55.0,
+     "height_mm": 52.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case3-atp_wl": {
+    "outcome": "loss",
+    "ours_usd": 121.6273257533739,
+    "theirs_usd": 100.1007912908921,
+    "sweep_same": 18,
+    "ours_fv": 329,
+    "theirs_fv": 830,
+    "ours_wall_s": 494.83263798896223,
+    "theirs_wall_s": 381.57317690597847,
+    "ours_best": {
+     "width_mm": 34.5,
+     "height_mm": 34.5,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 32.7,
+     "height_mm": 32.7,
+     "option": "stitched",
+     "fields": 2
+    },
+    "original": {
+     "width_mm": 39.0,
+     "height_mm": 39.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 189.28772092369348
+    }
+   },
+   "case4-atp_wl": {
+    "outcome": "unavailable",
+    "ours_usd": null,
+    "theirs_usd": null,
+    "sweep_same": 18,
+    "ours_fv": 31,
+    "theirs_fv": 831,
+    "ours_wall_s": 606.9262441820465,
+    "theirs_wall_s": 621.7621396239847,
+    "ours_best": null,
+    "theirs_best": null,
+    "original": {
+     "width_mm": 57.0,
+     "height_mm": 59.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case5-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 143.8328322907649,
+    "theirs_usd": 148.13859357975778,
+    "sweep_same": 12,
+    "ours_fv": 37,
+    "theirs_fv": 664,
+    "ours_wall_s": 607.3107060780749,
+    "theirs_wall_s": 682.2894095377997,
+    "ours_best": {
+     "width_mm": 36.2,
+     "height_mm": 36.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 36.5,
+     "height_mm": 36.5,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 37.0,
+     "height_mm": 37.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 155.59550346876702
+    }
+   },
+   "case6-atp_wl": {
+    "outcome": "loss",
+    "ours_usd": 363.89517553032,
+    "theirs_usd": 249.39075911634188,
+    "sweep_same": 18,
+    "ours_fv": 197,
+    "theirs_fv": 831,
+    "ours_wall_s": 627.4120682701468,
+    "theirs_wall_s": 964.2865199591033,
+    "ours_best": {
+     "width_mm": 43.900000000000006,
+     "height_mm": 47.5,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 40.2,
+     "height_mm": 43.5,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 49.0,
+     "height_mm": 53.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 616.03165145825
+    }
+   },
+   "case7-atp_wl": {
+    "outcome": "win",
+    "ours_usd": 42.13617980966747,
+    "theirs_usd": 53.938785550165264,
+    "sweep_same": 18,
+    "ours_fv": 79,
+    "theirs_fv": 831,
+    "ours_wall_s": 744.2726673623547,
+    "theirs_wall_s": 848.0714174173772,
+    "ours_best": {
+     "width_mm": 29.900000000000002,
+     "height_mm": 20.0,
+     "option": "single",
+     "fields": 1
+    },
+    "theirs_best": {
+     "width_mm": 29.3,
+     "height_mm": 24.400000000000002,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 30.0,
+     "height_mm": 25.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 57.758434860550636
+    }
+   },
+   "case8-atp_wl": {
+    "outcome": "win",
+    "ours_usd": 30.278580763958693,
+    "theirs_usd": 35.22036388309155,
+    "sweep_same": 18,
+    "ours_fv": 152,
+    "theirs_fv": 831,
+    "ours_wall_s": 761.7910069329664,
+    "theirs_wall_s": 1110.6458329940215,
+    "ours_best": {
+     "width_mm": 17.6,
+     "height_mm": 26.400000000000002,
+     "option": "single",
+     "fields": 1
+    },
+    "theirs_best": {
+     "width_mm": 24.3,
+     "height_mm": 21.5,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 26.0,
+     "height_mm": 23.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 42.13617980966747
+    }
+   },
+   "case9-atp_wl": {
+    "outcome": "unavailable",
+    "ours_usd": null,
+    "theirs_usd": null,
+    "sweep_same": 18,
+    "ours_fv": 15,
+    "theirs_fv": 831,
+    "ours_wall_s": 608.6294809370302,
+    "theirs_wall_s": 1976.5213714488782,
+    "ours_best": null,
+    "theirs_best": null,
+    "original": {
+     "width_mm": 59.0,
+     "height_mm": 61.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case10-atp_wl": {
+    "outcome": "loss",
+    "ours_usd": 330.91806185089,
+    "theirs_usd": 193.02985156533762,
+    "sweep_same": 18,
+    "ours_fv": 45,
+    "theirs_fv": 830,
+    "ours_wall_s": 613.2136162859388,
+    "theirs_wall_s": 2228.452274081763,
+    "ours_best": {
+     "width_mm": 44.7,
+     "height_mm": 44.7,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 39.2,
+     "height_mm": 39.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 47.0,
+     "height_mm": 47.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 415.20784018936854
+    }
+   },
+   "case1-atp_cool": {
+    "outcome": "win",
+    "ours_usd": 123.45194957667286,
+    "theirs_usd": 171.62859959422897,
+    "sweep_same": 18,
+    "ours_fv": 184,
+    "theirs_fv": 830,
+    "ours_wall_s": 246.14196355408058,
+    "theirs_wall_s": 116.2727488130331,
+    "ours_best": {
+     "width_mm": 20.1,
+     "height_mm": 60.300000000000004,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 38.0,
+     "height_mm": 38.0,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 42.0,
+     "height_mm": 42.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 253.88941260193212
+    }
+   },
+   "case2-atp_cool": {
+    "outcome": "win",
+    "ours_usd": 202.56482674291726,
+    "theirs_usd": null,
+    "sweep_same": 18,
+    "ours_fv": 444,
+    "theirs_fv": 829,
+    "ours_wall_s": 732.87955026282,
+    "theirs_wall_s": 157.70168609917164,
+    "ours_best": {
+     "width_mm": 23.0,
+     "height_mm": 68.8,
+     "option": "stitched",
+     "fields": 3
+    },
+    "theirs_best": null,
+    "original": {
+     "width_mm": 55.0,
+     "height_mm": 52.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case3-atp_cool": {
+    "outcome": "win",
+    "ours_usd": 109.18325661717704,
+    "theirs_usd": 169.954866183491,
+    "sweep_same": 18,
+    "ours_fv": 381,
+    "theirs_fv": 830,
+    "ours_wall_s": 492.3332244060002,
+    "theirs_wall_s": 334.88116815174,
+    "ours_best": {
+     "width_mm": 19.400000000000002,
+     "height_mm": 58.1,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 37.9,
+     "height_mm": 37.9,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 39.0,
+     "height_mm": 39.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 189.28772092369348
+    }
+   },
+   "case4-atp_cool": {
+    "outcome": "loss",
+    "ours_usd": null,
+    "theirs_usd": 640.1272139991413,
+    "sweep_same": 18,
+    "ours_fv": 38,
+    "theirs_fv": 831,
+    "ours_wall_s": 604.7827932531945,
+    "theirs_wall_s": 558.418169260025,
+    "ours_best": null,
+    "theirs_best": {
+     "width_mm": 50.5,
+     "height_mm": 52.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 57.0,
+     "height_mm": 59.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case5-atp_cool": {
+    "outcome": "win",
+    "ours_usd": 86.92711311098913,
+    "theirs_usd": 154.07538449235653,
+    "sweep_same": 18,
+    "ours_fv": 277,
+    "theirs_fv": 664,
+    "ours_wall_s": 731.9369027470239,
+    "theirs_wall_s": 629.7238501231186,
+    "ours_best": {
+     "width_mm": 18.1,
+     "height_mm": 54.1,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 36.9,
+     "height_mm": 36.9,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 37.0,
+     "height_mm": 37.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 155.59550346876702
+    }
+   },
+   "case6-atp_cool": {
+    "outcome": "loss",
+    "ours_usd": 431.98355671202444,
+    "theirs_usd": 318.63801273950446,
+    "sweep_same": 18,
+    "ours_fv": 163,
+    "theirs_fv": 831,
+    "ours_wall_s": 613.7495536645874,
+    "theirs_wall_s": 817.2978311609477,
+    "ours_best": {
+     "width_mm": 47.400000000000006,
+     "height_mm": 47.400000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 42.6,
+     "height_mm": 46.1,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 49.0,
+     "height_mm": 53.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 616.03165145825
+    }
+   },
+   "case7-atp_cool": {
+    "outcome": "win",
+    "ours_usd": 42.290602209482245,
+    "theirs_usd": 57.758434860550636,
+    "sweep_same": 18,
+    "ours_fv": 836,
+    "theirs_fv": 831,
+    "ours_wall_s": 901.6494970060885,
+    "theirs_wall_s": 812.645744622685,
+    "ours_best": {
+     "width_mm": 14.100000000000001,
+     "height_mm": 42.300000000000004,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 30.0,
+     "height_mm": 25.0,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 30.0,
+     "height_mm": 25.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 57.758434860550636
+    }
+   },
+   "case8-atp_cool": {
+    "outcome": "loss",
+    "ours_usd": 33.03338579323382,
+    "theirs_usd": 18.783855238719916,
+    "sweep_same": 18,
+    "ours_fv": 72,
+    "theirs_fv": 829,
+    "ours_wall_s": 725.6985365571454,
+    "theirs_wall_s": 1222.4338174127042,
+    "ours_best": {
+     "width_mm": 22.3,
+     "height_mm": 22.3,
+     "option": "single",
+     "fields": 1
+    },
+    "theirs_best": {
+     "width_mm": 19.200000000000003,
+     "height_mm": 17.0,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 26.0,
+     "height_mm": 23.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 42.13617980966747
+    }
+   }
+  }
+ },
+ "cosize_vs_cosize_blind": {
+  "verdict": "ineffective",
+  "coverage": {
+   "expected": 18,
+   "found": 18,
+   "wins": 3,
+   "losses": 7,
+   "ties": 7,
+   "unavailable": 1,
+   "missing": 0
+  },
+  "rows": {
+   "case1-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 175.02497012312168,
+    "theirs_usd": 175.02497012312168,
+    "sweep_same": 18,
+    "ours_fv": 123,
+    "theirs_fv": 97,
+    "ours_wall_s": 71.6766432467848,
+    "theirs_wall_s": 18.655521432869136,
+    "ours_best": {
+     "width_mm": 38.2,
+     "height_mm": 38.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 38.2,
+     "height_mm": 38.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 42.0,
+     "height_mm": 42.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 253.88941260193212
+    }
+   },
+   "case2-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 391.2916437123985,
+    "theirs_usd": 391.2916437123985,
+    "sweep_same": 18,
+    "ours_fv": 355,
+    "theirs_fv": 332,
+    "ours_wall_s": 362.43929531192407,
+    "theirs_wall_s": 36.59148191520944,
+    "ours_best": {
+     "width_mm": 46.400000000000006,
+     "height_mm": 46.400000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 46.400000000000006,
+     "height_mm": 46.400000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 55.0,
+     "height_mm": 52.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case3-atp_wl": {
+    "outcome": "loss",
+    "ours_usd": 121.6273257533739,
+    "theirs_usd": 91.87953886954516,
+    "sweep_same": 18,
+    "ours_fv": 329,
+    "theirs_fv": 372,
+    "ours_wall_s": 494.83263798896223,
+    "theirs_wall_s": 312.9954372840002,
+    "ours_best": {
+     "width_mm": 34.5,
+     "height_mm": 34.5,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 26.0,
+     "height_mm": 39.0,
+     "option": "stitched",
+     "fields": 2
+    },
+    "original": {
+     "width_mm": 39.0,
+     "height_mm": 39.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 189.28772092369348
+    }
+   },
+   "case4-atp_wl": {
+    "outcome": "unavailable",
+    "ours_usd": null,
+    "theirs_usd": null,
+    "sweep_same": 18,
+    "ours_fv": 31,
+    "theirs_fv": 36,
+    "ours_wall_s": 606.9262441820465,
+    "theirs_wall_s": 606.5562058212236,
+    "ours_best": null,
+    "theirs_best": null,
+    "original": {
+     "width_mm": 57.0,
+     "height_mm": 59.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case5-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 143.8328322907649,
+    "theirs_usd": 143.8328322907649,
+    "sweep_same": 18,
+    "ours_fv": 37,
+    "theirs_fv": 26,
+    "ours_wall_s": 607.3107060780749,
+    "theirs_wall_s": 606.811533303,
+    "ours_best": {
+     "width_mm": 36.2,
+     "height_mm": 36.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 36.2,
+     "height_mm": 36.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 37.0,
+     "height_mm": 37.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 155.59550346876702
+    }
+   },
+   "case6-atp_wl": {
+    "outcome": "loss",
+    "ours_usd": 363.89517553032,
+    "theirs_usd": 246.95859864768045,
+    "sweep_same": 18,
+    "ours_fv": 197,
+    "theirs_fv": 211,
+    "ours_wall_s": 627.4120682701468,
+    "theirs_wall_s": 617.1463669887744,
+    "ours_best": {
+     "width_mm": 43.900000000000006,
+     "height_mm": 47.5,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 40.1,
+     "height_mm": 43.400000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 49.0,
+     "height_mm": 53.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 616.03165145825
+    }
+   },
+   "case7-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 42.13617980966747,
+    "theirs_usd": 42.13617980966747,
+    "sweep_same": 18,
+    "ours_fv": 79,
+    "theirs_fv": 89,
+    "ours_wall_s": 744.2726673623547,
+    "theirs_wall_s": 747.972561147064,
+    "ours_best": {
+     "width_mm": 29.900000000000002,
+     "height_mm": 20.0,
+     "option": "single",
+     "fields": 1
+    },
+    "theirs_best": {
+     "width_mm": 29.900000000000002,
+     "height_mm": 20.0,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 30.0,
+     "height_mm": 25.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 57.758434860550636
+    }
+   },
+   "case8-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 30.278580763958693,
+    "theirs_usd": 30.278580763958693,
+    "sweep_same": 18,
+    "ours_fv": 152,
+    "theirs_fv": 127,
+    "ours_wall_s": 761.7910069329664,
+    "theirs_wall_s": 762.5453783646226,
+    "ours_best": {
+     "width_mm": 17.6,
+     "height_mm": 26.400000000000002,
+     "option": "single",
+     "fields": 1
+    },
+    "theirs_best": {
+     "width_mm": 17.6,
+     "height_mm": 26.400000000000002,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 26.0,
+     "height_mm": 23.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 42.13617980966747
+    }
+   },
+   "case9-atp_wl": {
+    "outcome": "loss",
+    "ours_usd": null,
+    "theirs_usd": 649.2810360263123,
+    "sweep_same": 18,
+    "ours_fv": 15,
+    "theirs_fv": 14,
+    "ours_wall_s": 608.6294809370302,
+    "theirs_wall_s": 873.1806116187945,
+    "ours_best": null,
+    "theirs_best": {
+     "width_mm": 36.300000000000004,
+     "height_mm": 72.5,
+     "option": "stitched",
+     "fields": 6
+    },
+    "original": {
+     "width_mm": 59.0,
+     "height_mm": 61.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case10-atp_wl": {
+    "outcome": "loss",
+    "ours_usd": 330.91806185089,
+    "theirs_usd": 206.71659344697736,
+    "sweep_same": 18,
+    "ours_fv": 45,
+    "theirs_fv": 91,
+    "ours_wall_s": 613.2136162859388,
+    "theirs_wall_s": 893.2391891377047,
+    "ours_best": {
+     "width_mm": 44.7,
+     "height_mm": 44.7,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 39.900000000000006,
+     "height_mm": 39.900000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 47.0,
+     "height_mm": 47.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 415.20784018936854
+    }
+   },
+   "case1-atp_cool": {
+    "outcome": "tie",
+    "ours_usd": 123.45194957667286,
+    "theirs_usd": 123.45194957667286,
+    "sweep_same": 18,
+    "ours_fv": 184,
+    "theirs_fv": 295,
+    "ours_wall_s": 246.14196355408058,
+    "theirs_wall_s": 9.11861826479435,
+    "ours_best": {
+     "width_mm": 20.1,
+     "height_mm": 60.300000000000004,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 20.1,
+     "height_mm": 60.300000000000004,
+     "option": "stitched",
+     "fields": 2
+    },
+    "original": {
+     "width_mm": 42.0,
+     "height_mm": 42.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 253.88941260193212
+    }
+   },
+   "case2-atp_cool": {
+    "outcome": "win",
+    "ours_usd": 202.56482674291726,
+    "theirs_usd": 490.063344170633,
+    "sweep_same": 18,
+    "ours_fv": 444,
+    "theirs_fv": 641,
+    "ours_wall_s": 732.87955026282,
+    "theirs_wall_s": 29.033733563032,
+    "ours_best": {
+     "width_mm": 23.0,
+     "height_mm": 68.8,
+     "option": "stitched",
+     "fields": 3
+    },
+    "theirs_best": {
+     "width_mm": 28.1,
+     "height_mm": 84.30000000000001,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 55.0,
+     "height_mm": 52.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case3-atp_cool": {
+    "outcome": "tie",
+    "ours_usd": 109.18325661717704,
+    "theirs_usd": 110.13162483110158,
+    "sweep_same": 18,
+    "ours_fv": 381,
+    "theirs_fv": 466,
+    "ours_wall_s": 492.3332244060002,
+    "theirs_wall_s": 178.20651912223548,
+    "ours_best": {
+     "width_mm": 19.400000000000002,
+     "height_mm": 58.1,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 27.5,
+     "height_mm": 41.2,
+     "option": "stitched",
+     "fields": 2
+    },
+    "original": {
+     "width_mm": 39.0,
+     "height_mm": 39.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 189.28772092369348
+    }
+   },
+   "case4-atp_cool": {
+    "outcome": "loss",
+    "ours_usd": null,
+    "theirs_usd": 643.296553589952,
+    "sweep_same": 18,
+    "ours_fv": 38,
+    "theirs_fv": 53,
+    "ours_wall_s": 604.7827932531945,
+    "theirs_wall_s": 610.5251803053543,
+    "ours_best": null,
+    "theirs_best": {
+     "width_mm": 50.5,
+     "height_mm": 52.300000000000004,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 57.0,
+     "height_mm": 59.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case5-atp_cool": {
+    "outcome": "win",
+    "ours_usd": 86.92711311098913,
+    "theirs_usd": 98.73708278608007,
+    "sweep_same": 18,
+    "ours_fv": 277,
+    "theirs_fv": 507,
+    "ours_wall_s": 731.9369027470239,
+    "theirs_wall_s": 612.1076575927436,
+    "ours_best": {
+     "width_mm": 18.1,
+     "height_mm": 54.1,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 56.400000000000006,
+     "height_mm": 18.8,
+     "option": "stitched",
+     "fields": 2
+    },
+    "original": {
+     "width_mm": 37.0,
+     "height_mm": 37.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 155.59550346876702
+    }
+   },
+   "case6-atp_cool": {
+    "outcome": "loss",
+    "ours_usd": 431.98355671202444,
+    "theirs_usd": 213.75763556709097,
+    "sweep_same": 18,
+    "ours_fv": 163,
+    "theirs_fv": 340,
+    "ours_wall_s": 613.7495536645874,
+    "theirs_wall_s": 745.9910239824094,
+    "ours_best": {
+     "width_mm": 47.400000000000006,
+     "height_mm": 47.400000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 33.0,
+     "height_mm": 49.5,
+     "option": "stitched",
+     "fields": 2
+    },
+    "original": {
+     "width_mm": 49.0,
+     "height_mm": 53.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 616.03165145825
+    }
+   },
+   "case7-atp_cool": {
+    "outcome": "win",
+    "ours_usd": 42.290602209482245,
+    "theirs_usd": 46.941901370857806,
+    "sweep_same": 18,
+    "ours_fv": 836,
+    "theirs_fv": 612,
+    "ours_wall_s": 901.6494970060885,
+    "theirs_wall_s": 751.1262425151654,
+    "ours_best": {
+     "width_mm": 14.100000000000001,
+     "height_mm": 42.300000000000004,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 27.900000000000002,
+     "height_mm": 23.200000000000003,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 30.0,
+     "height_mm": 25.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 57.758434860550636
+    }
+   },
+   "case8-atp_cool": {
+    "outcome": "loss",
+    "ours_usd": 33.03338579323382,
+    "theirs_usd": 21.370312415584756,
+    "sweep_same": 18,
+    "ours_fv": 72,
+    "theirs_fv": 288,
+    "ours_wall_s": 725.6985365571454,
+    "theirs_wall_s": 982.0626974152401,
+    "ours_best": {
+     "width_mm": 22.3,
+     "height_mm": 22.3,
+     "option": "single",
+     "fields": 1
+    },
+    "theirs_best": {
+     "width_mm": 11.0,
+     "height_mm": 33.0,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 26.0,
+     "height_mm": 23.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 42.13617980966747
+    }
+   }
+  }
+ },
+ "cosize_vs_cosize_axial": {
+  "verdict": "ineffective",
+  "coverage": {
+   "expected": 18,
+   "found": 18,
+   "wins": 0,
+   "losses": 1,
+   "ties": 14,
+   "unavailable": 3,
+   "missing": 0
+  },
+  "rows": {
+   "case1-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 175.02497012312168,
+    "theirs_usd": 175.02497012312168,
+    "sweep_same": 18,
+    "ours_fv": 123,
+    "theirs_fv": 121,
+    "ours_wall_s": 71.6766432467848,
+    "theirs_wall_s": 24.785502900835127,
+    "ours_best": {
+     "width_mm": 38.2,
+     "height_mm": 38.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 38.2,
+     "height_mm": 38.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 42.0,
+     "height_mm": 42.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 253.88941260193212
+    }
+   },
+   "case2-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 391.2916437123985,
+    "theirs_usd": 391.2916437123985,
+    "sweep_same": 18,
+    "ours_fv": 355,
+    "theirs_fv": 342,
+    "ours_wall_s": 362.43929531192407,
+    "theirs_wall_s": 42.48617268586531,
+    "ours_best": {
+     "width_mm": 46.400000000000006,
+     "height_mm": 46.400000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 46.400000000000006,
+     "height_mm": 46.400000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 55.0,
+     "height_mm": 52.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case3-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 121.6273257533739,
+    "theirs_usd": 121.6273257533739,
+    "sweep_same": 18,
+    "ours_fv": 329,
+    "theirs_fv": 322,
+    "ours_wall_s": 494.83263798896223,
+    "theirs_wall_s": 495.36718287691474,
+    "ours_best": {
+     "width_mm": 34.5,
+     "height_mm": 34.5,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 34.5,
+     "height_mm": 34.5,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 39.0,
+     "height_mm": 39.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 189.28772092369348
+    }
+   },
+   "case4-atp_wl": {
+    "outcome": "unavailable",
+    "ours_usd": null,
+    "theirs_usd": null,
+    "sweep_same": 18,
+    "ours_fv": 31,
+    "theirs_fv": 31,
+    "ours_wall_s": 606.9262441820465,
+    "theirs_wall_s": 605.7065983987413,
+    "ours_best": null,
+    "theirs_best": null,
+    "original": {
+     "width_mm": 57.0,
+     "height_mm": 59.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case5-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 143.8328322907649,
+    "theirs_usd": 143.8328322907649,
+    "sweep_same": 18,
+    "ours_fv": 37,
+    "theirs_fv": 37,
+    "ours_wall_s": 607.3107060780749,
+    "theirs_wall_s": 607.35822224617,
+    "ours_best": {
+     "width_mm": 36.2,
+     "height_mm": 36.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 36.2,
+     "height_mm": 36.2,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 37.0,
+     "height_mm": 37.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 155.59550346876702
+    }
+   },
+   "case6-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 363.89517553032,
+    "theirs_usd": 363.89517553032,
+    "sweep_same": 18,
+    "ours_fv": 197,
+    "theirs_fv": 197,
+    "ours_wall_s": 627.4120682701468,
+    "theirs_wall_s": 637.2486274288967,
+    "ours_best": {
+     "width_mm": 43.900000000000006,
+     "height_mm": 47.5,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 43.900000000000006,
+     "height_mm": 47.5,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 49.0,
+     "height_mm": 53.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 616.03165145825
+    }
+   },
+   "case7-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 42.13617980966747,
+    "theirs_usd": 42.13617980966747,
+    "sweep_same": 18,
+    "ours_fv": 79,
+    "theirs_fv": 79,
+    "ours_wall_s": 744.2726673623547,
+    "theirs_wall_s": 740.7017616406083,
+    "ours_best": {
+     "width_mm": 29.900000000000002,
+     "height_mm": 20.0,
+     "option": "single",
+     "fields": 1
+    },
+    "theirs_best": {
+     "width_mm": 29.900000000000002,
+     "height_mm": 20.0,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 30.0,
+     "height_mm": 25.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 57.758434860550636
+    }
+   },
+   "case8-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 30.278580763958693,
+    "theirs_usd": 30.278580763958693,
+    "sweep_same": 18,
+    "ours_fv": 152,
+    "theirs_fv": 152,
+    "ours_wall_s": 761.7910069329664,
+    "theirs_wall_s": 775.6313400277868,
+    "ours_best": {
+     "width_mm": 17.6,
+     "height_mm": 26.400000000000002,
+     "option": "single",
+     "fields": 1
+    },
+    "theirs_best": {
+     "width_mm": 17.6,
+     "height_mm": 26.400000000000002,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 26.0,
+     "height_mm": 23.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 42.13617980966747
+    }
+   },
+   "case9-atp_wl": {
+    "outcome": "unavailable",
+    "ours_usd": null,
+    "theirs_usd": null,
+    "sweep_same": 18,
+    "ours_fv": 15,
+    "theirs_fv": 15,
+    "ours_wall_s": 608.6294809370302,
+    "theirs_wall_s": 608.3394022672437,
+    "ours_best": null,
+    "theirs_best": null,
+    "original": {
+     "width_mm": 59.0,
+     "height_mm": 61.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case10-atp_wl": {
+    "outcome": "tie",
+    "ours_usd": 330.91806185089,
+    "theirs_usd": 330.91806185089,
+    "sweep_same": 18,
+    "ours_fv": 45,
+    "theirs_fv": 45,
+    "ours_wall_s": 613.2136162859388,
+    "theirs_wall_s": 609.8632356771268,
+    "ours_best": {
+     "width_mm": 44.7,
+     "height_mm": 44.7,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 44.7,
+     "height_mm": 44.7,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 47.0,
+     "height_mm": 47.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 415.20784018936854
+    }
+   },
+   "case1-atp_cool": {
+    "outcome": "tie",
+    "ours_usd": 123.45194957667286,
+    "theirs_usd": 123.45194957667286,
+    "sweep_same": 18,
+    "ours_fv": 184,
+    "theirs_fv": 284,
+    "ours_wall_s": 246.14196355408058,
+    "theirs_wall_s": 20.22050295723602,
+    "ours_best": {
+     "width_mm": 20.1,
+     "height_mm": 60.300000000000004,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 20.1,
+     "height_mm": 60.300000000000004,
+     "option": "stitched",
+     "fields": 2
+    },
+    "original": {
+     "width_mm": 42.0,
+     "height_mm": 42.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 253.88941260193212
+    }
+   },
+   "case2-atp_cool": {
+    "outcome": "tie",
+    "ours_usd": 202.56482674291726,
+    "theirs_usd": 202.56482674291726,
+    "sweep_same": 18,
+    "ours_fv": 444,
+    "theirs_fv": 516,
+    "ours_wall_s": 732.87955026282,
+    "theirs_wall_s": 59.12322224024683,
+    "ours_best": {
+     "width_mm": 23.0,
+     "height_mm": 68.8,
+     "option": "stitched",
+     "fields": 3
+    },
+    "theirs_best": {
+     "width_mm": 23.0,
+     "height_mm": 68.8,
+     "option": "stitched",
+     "fields": 3
+    },
+    "original": {
+     "width_mm": 55.0,
+     "height_mm": 52.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case3-atp_cool": {
+    "outcome": "tie",
+    "ours_usd": 109.18325661717704,
+    "theirs_usd": 109.18325661717704,
+    "sweep_same": 18,
+    "ours_fv": 381,
+    "theirs_fv": 387,
+    "ours_wall_s": 492.3332244060002,
+    "theirs_wall_s": 492.25378696713597,
+    "ours_best": {
+     "width_mm": 19.400000000000002,
+     "height_mm": 58.1,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 19.400000000000002,
+     "height_mm": 58.1,
+     "option": "stitched",
+     "fields": 2
+    },
+    "original": {
+     "width_mm": 39.0,
+     "height_mm": 39.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 189.28772092369348
+    }
+   },
+   "case4-atp_cool": {
+    "outcome": "unavailable",
+    "ours_usd": null,
+    "theirs_usd": null,
+    "sweep_same": 18,
+    "ours_fv": 38,
+    "theirs_fv": 38,
+    "ours_wall_s": 604.7827932531945,
+    "theirs_wall_s": 604.7741704778746,
+    "ours_best": null,
+    "theirs_best": null,
+    "original": {
+     "width_mm": 57.0,
+     "height_mm": 59.0,
+     "option": null,
+     "fields": 0,
+     "total_usd": Infinity
+    }
+   },
+   "case5-atp_cool": {
+    "outcome": "tie",
+    "ours_usd": 86.92711311098913,
+    "theirs_usd": 86.92711311098913,
+    "sweep_same": 18,
+    "ours_fv": 277,
+    "theirs_fv": 258,
+    "ours_wall_s": 731.9369027470239,
+    "theirs_wall_s": 727.8104491601698,
+    "ours_best": {
+     "width_mm": 18.1,
+     "height_mm": 54.1,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 18.1,
+     "height_mm": 54.1,
+     "option": "stitched",
+     "fields": 2
+    },
+    "original": {
+     "width_mm": 37.0,
+     "height_mm": 37.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 155.59550346876702
+    }
+   },
+   "case6-atp_cool": {
+    "outcome": "tie",
+    "ours_usd": 431.98355671202444,
+    "theirs_usd": 431.98355671202444,
+    "sweep_same": 18,
+    "ours_fv": 163,
+    "theirs_fv": 163,
+    "ours_wall_s": 613.7495536645874,
+    "theirs_wall_s": 614.9046712340787,
+    "ours_best": {
+     "width_mm": 47.400000000000006,
+     "height_mm": 47.400000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "theirs_best": {
+     "width_mm": 47.400000000000006,
+     "height_mm": 47.400000000000006,
+     "option": "stitched",
+     "fields": 4
+    },
+    "original": {
+     "width_mm": 49.0,
+     "height_mm": 53.0,
+     "option": "stitched",
+     "fields": 4,
+     "total_usd": 616.03165145825
+    }
+   },
+   "case7-atp_cool": {
+    "outcome": "loss",
+    "ours_usd": 42.290602209482245,
+    "theirs_usd": 39.91774603281076,
+    "sweep_same": 18,
+    "ours_fv": 836,
+    "theirs_fv": 816,
+    "ours_wall_s": 901.6494970060885,
+    "theirs_wall_s": 899.52235241374,
+    "ours_best": {
+     "width_mm": 14.100000000000001,
+     "height_mm": 42.300000000000004,
+     "option": "stitched",
+     "fields": 2
+    },
+    "theirs_best": {
+     "width_mm": 13.8,
+     "height_mm": 41.400000000000006,
+     "option": "stitched",
+     "fields": 2
+    },
+    "original": {
+     "width_mm": 30.0,
+     "height_mm": 25.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 57.758434860550636
+    }
+   },
+   "case8-atp_cool": {
+    "outcome": "tie",
+    "ours_usd": 33.03338579323382,
+    "theirs_usd": 33.03338579323382,
+    "sweep_same": 18,
+    "ours_fv": 72,
+    "theirs_fv": 72,
+    "ours_wall_s": 725.6985365571454,
+    "theirs_wall_s": 725.2630090070888,
+    "ours_best": {
+     "width_mm": 22.3,
+     "height_mm": 22.3,
+     "option": "single",
+     "fields": 1
+    },
+    "theirs_best": {
+     "width_mm": 22.3,
+     "height_mm": 22.3,
+     "option": "single",
+     "fields": 1
+    },
+    "original": {
+     "width_mm": 26.0,
+     "height_mm": 23.0,
+     "option": "single",
+     "fields": 1,
+     "total_usd": 42.13617980966747
+    }
+   }
+  }
+ },
+ "cosize_savings_vs_original": {
+  "case1-atp_wl": 0.3106251720801779,
+  "case3-atp_wl": 0.35744735495861957,
+  "case5-atp_wl": 0.07559775774859234,
+  "case6-atp_wl": 0.40929143061250317,
+  "case7-atp_wl": 0.2704757337798511,
+  "case8-atp_wl": 0.2814113452921102,
+  "case10-atp_wl": 0.20300623008475838,
+  "case1-atp_cool": 0.51375700029591,
+  "case3-atp_cool": 0.4231889100656905,
+  "case5-atp_cool": 0.44132631616544005,
+  "case6-atp_cool": 0.29876402342404484,
+  "case7-atp_cool": 0.26780214333046304,
+  "case8-atp_cool": 0.21603273143298007
+ }
+}
