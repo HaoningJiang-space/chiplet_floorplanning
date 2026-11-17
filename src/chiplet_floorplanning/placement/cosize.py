@@ -12,11 +12,16 @@ from dataclasses import replace
 import math
 
 import numpy as np
+from scipy import sparse
+from scipy.optimize import linprog
 
 from .cost import CostParams, interposer_cost
 from .geometry import is_legal, pin_manhattan_um
-from .lp import MILP_STATUS, legalize_relations, milp_relations, slp_chain
+from .lp import (GRID_UM, MILP_STATUS, SLP_BAND_K, SLP_RADIUS_MM, TopologyLP, legalize_relations, milp_relations,
+                 slp_chain)
+from .problem import Layout
 from .proxy import R_MM, ThermalProxy
+from .search import snap
 
 GRID_MM = 0.1          # carrier dimensions are rounded up to this grid
 
@@ -74,6 +79,99 @@ def fit_into(problem, layout, source_um, gap_um):
     side relations; None if they do not fit."""
     scaled = replace(layout, centre_um=layout.centre_um*np.asarray(problem.carrier_um)/np.asarray(source_um))
     return legalize_relations(problem, scaled, gap_um)
+
+
+SHRINK_DELTA = 0.01    # relative carrier growth of the finite difference d(peaks)/d(scale)
+SHRINK_BUFFER_K = 0.05  # linearised overshoot target -buffer: the FV peak jumps ~0.01 K as the mesh follows the carrier
+
+
+def shrink_chain(problem, layout, gap_um, length_m, steps, resolution, budget, cool_steps=6, rounds=4):
+    """Trust-region SLP on the carrier scale, from a certified layout on problem's carrier (cosize v4 plan).
+
+    The topology and rotations of `layout` are kept; the carrier keeps its width/height ratio, W = kx s, H = ky s.
+    Each step solves the LP: min s over centres and s with the topology's separation rows, every die inside
+    [0, kx s] x [0, ky s], the exact inter-die pin length within the budget, and every near-peak die's FV overshoot
+    linearised, J_i + grad_i . (c - c0) + h_i (s - s0) <= -SHRINK_BUFFER_K. grad comes from the deferred adjoints;
+    h is not in them (the moving boundary changes the conduction matrix), so it is a forward difference: one FV
+    solve on the carrier grown by SHRINK_DELTA with the dies in place. The candidate carrier is rounded up to the
+    grid and kept only if an exact FV solve there gives J <= 0 with the exact length within the budget: every kept
+    step is a certified design. A reference layout has no thermal slack (the limits are its own peaks), so when
+    shrinking stalls a cooling SLP (slp_chain, length mode, `cool_steps`) on the current carrier buys slack and
+    shrinking resumes, for at most `rounds` rounds. Returns (certified [(layout, (w, h), J, length m)], FV solves)."""
+    from .thermal import peak_sensitivity
+    n = problem.count
+    w0, h0 = (v/1000 for v in problem.carrier_um)
+    kx, ky = math.sqrt(w0/h0), math.sqrt(h0/w0)          # W = kx s, H = ky s with s = sqrt(W H)
+    inside = problem.pin_chip[:, 0] == problem.pin_chip[:, 1]
+    size = np.where((layout.rotation_deg % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)/1000
+    sized, current = problem, layout
+    peaks, gradient = peak_sensitivity(sized, current, gap_um, resolution)
+    used, out, slope = 1, [], None
+    _, smallest, largest = SLP_RADIUS_MM
+    for _ in range(rounds):
+        radius = SLP_RADIUS_MM[0]
+        for _ in range(steps):
+            if used + 2 > budget or radius < smallest:
+                break
+            w, h = (v/1000 for v in sized.carrier_um)
+            s0 = math.sqrt(w*h)
+            if slope is None:                              # forward difference on the scale, dies in place
+                grown = replace(sized, carrier_um=(w*(1 + SHRINK_DELTA)*1000, h*(1 + SHRINK_DELTA)*1000))
+                up, _ = peak_sensitivity(grown, current, gap_um, resolution)
+                used += 1
+                slope = (up - peaks)/(s0*SHRINK_DELTA)
+            hot = np.flatnonzero(peaks >= peaks.max() - SLP_BAND_K)
+            grad = gradient(hot.tolist())[hot]
+            lp = TopologyLP(sized, current, gap_um, pairs=0)
+            nv = lp.nvar + 1                               # LP variables, then s
+            x0 = current.centre_um.T.ravel()/1000
+            box = sparse.lil_matrix((2*n, nv))             # c_i + size_i/2 <= k s
+            for axis, k in ((0, kx), (1, ky)):
+                for i in range(n):
+                    box[axis*n + i, axis*n + i], box[axis*n + i, nv - 1] = 1.0, -k
+            heat = np.zeros((hot.size, nv))
+            heat[:, :2*n] = np.concatenate([grad[:, :, 0], grad[:, :, 1]], axis=1)
+            heat[:, nv - 1] = slope[hot]
+            budget_mm = length_m*1000 - pin_manhattan_um(problem, current)[inside].sum()/1000
+            rows = sparse.vstack([sparse.hstack([lp.A, sparse.csr_matrix((lp.A.shape[0], 1))]), box.tocsr(),
+                                  sparse.csr_matrix(heat), sparse.csr_matrix(np.r_[lp.length, 0.0][None])])
+            rhs = np.r_[lp.b, -np.r_[size[:, 0], size[:, 1]]/2,
+                        heat[:, :2*n] @ x0 + slope[hot]*s0 - peaks[hot] - SHRINK_BUFFER_K, budget_mm]
+            bounds = ([(max(lo, x0[k] - radius), x0[k] + radius) for k, (lo, _) in enumerate(lp.bounds[:2*n])]
+                      + lp.bounds[2*n:] + [(max(s0 - radius, 0.0), s0)])
+            result = linprog(np.r_[np.zeros(lp.nvar), 1.0], A_ub=rows, b_ub=rhs, bounds=bounds, method='highs')
+            if result.status != 0:
+                radius /= 2
+                continue
+            s = result.x[-1]
+            cw, ch = min(ceil_grid(kx*s), w), min(ceil_grid(ky*s), h)
+            trial = replace(problem, carrier_um=(cw*1000, ch*1000))
+            centre = snap(trial, np.stack((result.x[:n], result.x[n:2*n]), axis=1)*1000, current.rotation_deg, GRID_UM)
+            candidate = Layout(centre, current.rotation_deg.copy())
+            if (cw, ch) == (w, h) or not is_legal(trial, candidate, gap_um):
+                radius /= 2
+                continue
+            new_peaks, new_gradient = peak_sensitivity(trial, candidate, gap_um, resolution)
+            used += 1
+            length = pin_manhattan_um(problem, candidate).sum()/1e6
+            if new_peaks.max() <= 0 and length <= length_m + 1e-9:
+                sized, current, peaks, gradient, slope = trial, candidate, new_peaks, new_gradient, None
+                out.append((candidate, (cw, ch), float(new_peaks.max()), length))
+                radius = min(1.5*radius, largest)
+            else:
+                radius /= 2
+        if used + 2 > budget:
+            break
+        chain = slp_chain((sized, current, gap_um, resolution, length_m, min(cool_steps, budget - used - 2), 'length'))
+        used += len(chain)
+        within = [(l, p) for l, p in chain[1:] if pin_manhattan_um(problem, l).sum()/1e6 <= length_m + 1e-9]
+        cooler = min(within, key=lambda pair: pair[1].max(), default=None)
+        if cooler is None or cooler[1].max() > peaks.max() - SHRINK_BUFFER_K:
+            break                                          # no slack to buy: shrinking has stalled
+        current, slope = cooler[0], None
+        peaks, gradient = peak_sensitivity(sized, current, gap_um, resolution)
+        used += 1
+    return out, used
 
 
 def verify_anchor(problem, anchor, gap_um, length_m, resolution):
@@ -224,6 +322,58 @@ def family(args):
     return records, used
 
 
+SHRINK_STEPS, MOVES, MOVE_AREA = 12, 2, 0.97
+
+
+def family_shrink(args):
+    """cosize v4, one aspect family: the largest carrier cheaper than the anchor's is tried as in v3 (the mapped
+    anchor first, then a K-direction MILP topology), then shrink_chain compresses it continuously; when it stalls, a
+    topology move tries the carrier MOVE_AREA times smaller (mapped smallest certified layout, then the MILP) and
+    shrinking resumes, at most MOVES times. Same arguments and records as `family`."""
+    (problem, anchor, gap_um, length_m, model, aspect, low, high, budget, size_s, threads, directions, resolution,
+     chain_steps, params, seed, workers) = args
+    used, records, step = 0, [], 0
+
+    def record(rec, w, h, ok, area, n):
+        rec.update(aspect=aspect, step=step, area_mm2=area, width_mm=w, height_mm=h, fv_solves=n,
+                   cost_usd=interposer_cost(w, h, params)['total_usd'], certified=ok is not None)
+        if ok is not None:
+            rec.update(j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
+                       rotation_deg=ok[0].rotation_deg.tolist())
+        records.append(rec)
+
+    base, base_um, area = anchor, problem.carrier_um, high
+    for move in range(MOVES + 1):
+        if budget - used <= 2:
+            records.append(dict(aspect=aspect, step=step, stop='fv budget'))
+            break
+        w, h = box(area, aspect)
+        sized = replace(problem, carrier_um=(w*1000, h*1000))
+        rec, ok, n = try_carrier(sized, base, base_um, gap_um, length_m, model, budget - used, size_s, threads,
+                                 directions, resolution, chain_steps, seed, workers)
+        used += n
+        rec['stage'] = 'entry' if move == 0 else 'topology move'
+        record(rec, w, h, ok, area, n)
+        step += 1
+        if ok is None:
+            records.append(dict(aspect=aspect, step=step, stop='no certified layout at the trial carrier'))
+            break
+        base, base_um = ok[0], sized.carrier_um
+        chain, n = shrink_chain(sized, ok[0], gap_um, length_m, SHRINK_STEPS, resolution, budget - used)
+        used += n
+        for k, (layout, (cw, ch), j, length) in enumerate(chain):
+            record(dict(status='certified', stage='shrink'), cw, ch, (layout, j, length), cw*ch,
+                   n if k == len(chain) - 1 else 0)
+            step += 1
+        if chain:
+            base, (cw, ch) = chain[-1][0], chain[-1][1]
+            base_um = (cw*1000, ch*1000)
+        area = MOVE_AREA*base_um[0]*base_um[1]/1e6
+        if area <= low:
+            break
+    return records, used
+
+
 def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', directions=8, aspects=ASPECTS,
              envelope=1.25, size_s=120.0, threads=2, workers=8, resolution=64, chain_steps=12, params=CostParams(),
              seed=2):
@@ -232,7 +382,8 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
     Per aspect family (ASPECTS plus the original) the trial carriers cheaper than the anchor's (or manufacturable,
     if that is not) are searched by `family`; every trial is FV-certified. inner: 'proxy' (K-direction MILP),
     'axial', 'blind' (min-wire MILP) or 'relation_space' (control: the baseline's inner search on the same trials;
-    families then run one after another, the FV evaluator using `workers`). The FV budget covers the anchor check
+    families then run one after another, the FV evaluator using `workers`); 'shrink' is cosize v4 (`family_shrink`:
+    continuous carrier-scale SLP with K-direction MILP topology moves, docs/cosize-v4-plan.md). The FV budget covers the anchor check
     and the calibration. Returns the cheapest certified design (the anchor if nothing beats it) and every record."""
     from concurrent.futures import ProcessPoolExecutor
     import multiprocessing
@@ -254,7 +405,7 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
                            fields=c0['fields'], j_k=check['j_k'], length_m=check['length_m'],
                            centre_um=anchor.centre_um.tolist(), rotation_deg=anchor.rotation_deg.tolist(), anchor=True)
     model = inner
-    if inner in ('proxy', 'axial'):
+    if inner in ('proxy', 'axial', 'shrink'):
         if fv_budget - out['fv_solves'] < len(R_MM) + len({tuple(s) for s in problem.size_um}):
             out['history'].append(dict(stop='fv budget before calibration'))
             return out
@@ -272,12 +423,14 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
                                        else 'fv budget'))
             continue
         jobs.append((problem, anchor, gap_um, length_m, model, aspect, die_area, high, share, size_s, threads,
-                     directions if inner == 'proxy' else None, resolution, chain_steps, params, seed, workers))
+                     directions if inner in ('proxy', 'shrink') else None, resolution, chain_steps, params, seed,
+                     workers))
+    search = family_shrink if inner == 'shrink' else family
     if workers > 1 and len(jobs) > 1 and inner != 'relation_space':
         with ProcessPoolExecutor(min(workers, len(jobs)), mp_context=multiprocessing.get_context('spawn')) as pool:
-            results = list(pool.map(family, jobs))
+            results = list(pool.map(search, jobs))
     else:
-        results = [family(j) for j in jobs]
+        results = [search(j) for j in jobs]
     best = out['best']
     for records, used in results:
         out['history'] += records

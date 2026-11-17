@@ -59,6 +59,30 @@ class PinCutTest(unittest.TestCase):
         self.assertLessEqual(pin_manhattan_um(p, out).sum()/1000, budget + 1e-6)
 
 
+class ShrinkChainTest(unittest.TestCase):
+    def test_every_kept_step_is_a_smaller_certified_carrier(self):
+        from chiplet_floorplanning.placement.cosize import shrink_chain
+        p = small_problem()
+        anchor = Layout(np.array([[10., 10.], [30., 10.], [10., 30.], [30., 30.]])*1000, np.zeros(4, int))
+        with Evaluator(p, 500, resolution=16) as evaluator:
+            peak = evaluator.peaks_c([anchor])[0]
+        limited = replace(p, limit_c=np.full(4, peak))
+        length = pin_manhattan_um(p, anchor).sum()/1e6
+        out, used = shrink_chain(limited, anchor, 500, length, 12, 16, 60)
+        self.assertTrue(out)
+        self.assertLessEqual(used, 60)
+        area = 40.0*40.0
+        for layout, (w, h), j, l in out:
+            self.assertLess(w*h, area)
+            area = w*h
+            sized = replace(limited, carrier_um=(w*1000, h*1000))
+            self.assertTrue(is_legal(sized, layout, 500))
+            with Evaluator(sized, 500, resolution=16) as evaluator:        # independent FV re-check
+                self.assertAlmostEqual(evaluator.peaks_c([layout])[0], j, places=9)
+            self.assertLessEqual(j, 0)
+            self.assertLessEqual(pin_manhattan_um(sized, layout).sum()/1e6, length + 1e-9)
+
+
 class AnchoredTest(unittest.TestCase):
     def setUp(self):
         self.p = small_problem()
@@ -69,7 +93,7 @@ class AnchoredTest(unittest.TestCase):
 
     def test_designs_meet_the_anchor_limits_and_never_cost_more(self):
         limited = replace(self.p, limit_c=np.full(4, self.peak))
-        for inner in ('proxy', 'axial', 'blind', 'relation_space'):
+        for inner in ('proxy', 'axial', 'blind', 'relation_space', 'shrink'):
             out = anchored(limited, self.anchor, 500, self.length, 200, inner=inner, aspects=(1.0, 2.0),
                            size_s=10, threads=1, workers=1, resolution=16, chain_steps=3)
             self.assertLessEqual(abs(out['anchor']['j_k']), 1e-6)
@@ -82,7 +106,7 @@ class AnchoredTest(unittest.TestCase):
             with Evaluator(sized, 500, resolution=16) as evaluator:     # independent FV re-check
                 self.assertLessEqual(evaluator.peaks_c([layout])[0], self.peak + 1e-6)
             self.assertLessEqual(pin_manhattan_um(sized, layout).sum()/1e6, self.length + 1e-9)
-            if inner == 'proxy':
+            if inner in ('proxy', 'shrink'):
                 self.assertFalse(best['anchor'])        # the spread anchor leaves room to shrink
 
     def test_a_reference_that_does_not_reproduce_stops(self):
