@@ -31,6 +31,7 @@ from scipy.optimize import linprog
 from .geometry import boxes, is_legal, rotate
 from .problem import Layout
 from .search import snap
+from .thermal import AMBIENT_C
 
 GRID_UM = 1.0  # rounding is monotone, so integer-um sizes, gap and carrier keep every fit legal
 REACH_MARGIN_MM = 0.005
@@ -436,7 +437,7 @@ def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s):
     return result.x
 
 
-def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None):
+def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None, proxy=None):
     """Global choice of rotations and side relations for wirelength by MILP (HiGHS), after ATPlace2.5D's
     initialisation: each die has one-hot quarter-turn binaries; each pair has four big-M side binaries; the
     pair's nets are clustered at their mean pin offsets, so the objective is sum K_ij |c_i + R o_i - c_j - R o_j|
@@ -447,7 +448,11 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
     `sizing` = (widths mm, area cap mm^2, excluded width indices) makes the carrier a variable inside the envelope
     problem.carrier_um: one-hot over the width levels W_l, a continuous height H <= min(envelope height, cap / W_l),
     and every die inside [0, W_l] x [0, H]; exact for the given width levels. It then returns (layout, (width_mm,
-    height_mm), chosen level index) with the carrier shrunk to the dies' extent, or None."""
+    height_mm), chosen level index) with the carrier shrunk to the dies' extent, or None.
+    `proxy` = (ThermalProxy, cap degC or None) adds the one-dimensional thermal proxy: per pair of powered dies a
+    distance rho <= the centre separation along the chosen side relation (a lower bound of the true distance, so the
+    proxy is conservative), tau >= tangents of the convex decreasing mutual-heating g(rho), and the proxy peak
+    t >= P_i s_i + sum_j P_j tau_ij; with a cap t is bounded, with None t is minimised (wire length breaks ties)."""
     from scipy.optimize import Bounds
     from .geometry import rotate
     n = problem.count
@@ -474,6 +479,12 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         levels = np.asarray(sizing[0], float)
         iu, ih = nvar, nvar + len(levels)
         nvar = ih + 1
+    if proxy is not None:
+        powered = set(np.flatnonzero(problem.power_w > 0))
+        hot_pairs = [(p, i, j) for p, (i, j) in enumerate(pairs) if i in powered and j in powered]
+        irho, itau = nvar, nvar + len(hot_pairs)
+        ipk = itau + len(hot_pairs)
+        nvar = ipk + 1
     rr, cc, vv, lo, hi = [], [], [], [], []
 
     def add(entries, low, high):
@@ -511,6 +522,23 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
             add([(base + first, 1.0), (base + second, -1.0), (s + q, big)]
                 + [(c, v/2) for c, v in ext(first)] + [(c, v/2) for c, v in ext(second)], -np.inf, big - gap)
         add([(s + q, 1.0) for q in range(4)], 1, np.inf)
+    if proxy is not None:
+        model, cap = proxy
+        diagonal = float(np.hypot(width, height))
+        tau_of = {}
+        for k, (p, i, j) in enumerate(hot_pairs):
+            s = isd + 4*p
+            for q, (axis, first, second) in enumerate(((0, i, j), (0, j, i), (1, i, j), (1, j, i))):
+                base = ix if axis == 0 else iy
+                # rho <= v_second - v_first + big (1 - s_q)
+                add([(irho + k, 1.0), (base + second, -1.0), (base + first, 1.0), (s + q, big)], -np.inf, big)
+            low = (size[i].min() + size[j].min())/2 + gap
+            for a, b in zip(*model.tangents(low, diagonal)):
+                add([(itau + k, 1.0), (irho + k, -b)], a, np.inf)              # tau >= a + b rho
+            tau_of[(i, j)] = tau_of[(j, i)] = itau + k
+        for i in sorted(powered):
+            add([(ipk, 1.0)] + [(tau_of[(i, j)], -problem.power_w[j]) for j in sorted(powered) if j != i],
+                problem.power_w[i]*model.self_k_w[i], np.inf)               # t >= P_i s_i + sum_j P_j tau_ij
     cost = np.zeros(nvar)
     for c, (i, j, k, oi, oj) in enumerate(clusters):
         ri, rj = rotate(np.tile(oi, (4, 1)), turns), rotate(np.tile(oj, (4, 1)), turns)
@@ -530,6 +558,14 @@ def milp_relations(problem, gap_um, time_limit_s=60.0, thermal=None, sizing=None
         integrality[iu:ih] = 1
         upper[iu:ih] = [0.0 if l in set(sizing[2]) or v > width + 1e-9 else 1.0 for l, v in enumerate(levels)]
         upper[ih] = height
+    if proxy is not None:
+        lower[irho:itau] = [(size[i].min() + size[j].min())/2 + gap for _, i, j in hot_pairs]
+        upper[irho:itau] = np.hypot(width, height)
+        if proxy[1] is None:
+            cost = cost*1e-6
+            cost[ipk] = 1.0
+        else:
+            upper[ipk] = proxy[1] - AMBIENT_C
     if thermal is not None:
         block = thermal[0].milp_block(add, nvar, ix, iy, iz, thermal[1])
         cost = np.r_[cost*block['length_weight'], block['cost']]

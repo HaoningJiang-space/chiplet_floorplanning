@@ -7,7 +7,6 @@ area:  predicted rise of mutual heating when the carrier shrinks to 0.85x agains
 """
 import argparse
 from concurrent.futures import ProcessPoolExecutor
-from dataclasses import replace
 import json
 import math
 from pathlib import Path
@@ -17,38 +16,17 @@ from scipy.optimize import curve_fit
 from scipy.special import k0
 from scipy.stats import spearmanr
 
-from chiplet_floorplanning.placement import Layout, Problem, sample_legal, solve, thermal_case_data
-from chiplet_floorplanning.placement.thermal import AMBIENT_C, die_peaks_c
+from chiplet_floorplanning.placement import Problem, sample_legal
+from chiplet_floorplanning.placement.proxy import R_MM, decay, fit_lambda, g_model, self_heating
+from chiplet_floorplanning.placement.thermal import AMBIENT_C
 from thermal_kernel_screen import PER_FRONT, RANDOM, fv_peak_c, load_front
 
-R_MM = np.array([6., 8., 12., 16., 24., 32., 40., 50., 60.])
 H_SWEEP = (1500.0, 1/(.1*.06**2), 5000.0, 15000.0, 50000.0)
 KT_W_K = 400*0.001 + 400*0.0069           # spreader (1 mm Cu) + sink (6.9 mm Cu)
-RESOLUTION = 64
 
 
 def lambda_theory_mm(h):
     return math.sqrt(KT_W_K/h)*1000
-
-
-def rise_c(problem, layout, gap_um=0.0):
-    _, rise, edges = solve(thermal_case_data(problem, layout, gap_um, RESOLUTION))
-    return die_peaks_c(problem, layout, rise, edges) - AMBIENT_C
-
-
-def decay(h):
-    """Mutual heating g(r) (K/W) at R_MM in a 90 x 30 mm carrier with sink-top h."""
-    problem = Problem('decay', ('src', 'obs'), np.array([[5000., 5000.], [1000., 1000.]]), np.array([1., 0.]),
-                      (90000., 30000.), np.zeros((0, 2), int), np.zeros((0, 2, 2)), top_h_w_m2k=h)
-    return np.array([rise_c(problem, Layout(np.array([[10000., 15000.], [10000. + r*1000, 15000.]]),
-                                            np.zeros(2, int)))[1] for r in R_MM])
-
-
-def fit_lambda(r_mm, g):
-    """(lambda mm, c) of ln g + 0.5 ln r = c - r / lambda over the points above 1% of the nearest one."""
-    keep = g > 0.01*g[0]
-    slope, c = np.polyfit(r_mm[keep], np.log(g[keep]) + 0.5*np.log(r_mm[keep]), 1)
-    return -1/slope, c
 
 
 def fit_lambda_k0(r_mm, g):
@@ -57,11 +35,6 @@ def fit_lambda_k0(r_mm, g):
     (lam, ln_a), _ = curve_fit(lambda r, lam, ln_a: ln_a + np.log(k0(r/lam)), r_mm[keep], np.log(g[keep]),
                                p0=(fit_lambda(r_mm, g)[0], 0.0), bounds=([1.0, -50.0], [500.0, 50.0]))
     return lam, ln_a
-
-
-def g_model(r_mm, lam, c):
-    r = np.maximum(r_mm, 3.0)               # adjacent dies: keep the far-field form finite
-    return np.exp(c - r/lam)/np.sqrt(r)
 
 
 def decay_verdict(rows):
@@ -81,18 +54,6 @@ def proxy_peak_c(problem, layout, self_k_w, lam, c):
     mutual = g_model(d, lam, c)*problem.power_w[None]
     np.fill_diagonal(mutual, 0.0)
     return AMBIENT_C + float((problem.power_w*self_k_w + mutual.sum(axis=1)).max())
-
-
-def self_heating(problem, gap_um):
-    """Per die: peak rise (K/W) of that die alone, 1 W, at the carrier centre (one solve per distinct size)."""
-    by_size = {}
-    for k in range(problem.count):
-        key = tuple(problem.size_um[k])
-        if key not in by_size:
-            alone = Problem(problem.name, ('die',), problem.size_um[k:k + 1], np.ones(1), problem.carrier_um,
-                            np.zeros((0, 2), int), np.zeros((0, 2, 2)), problem.top_h_w_m2k)
-            by_size[key] = rise_c(alone, Layout(np.array(problem.carrier_um)[None]/2, np.zeros(1, int)), gap_um)[0]
-    return np.array([by_size[tuple(s)] for s in problem.size_um])
 
 
 def proxy_verdict(rows):
@@ -126,7 +87,7 @@ def cmd_proxy(args):
             problem, front, gap = load_front(case, Path(run))
             h = problem.top_h_w_m2k or H_SWEEP[1]
             lam, c = fit_lambda(R_MM, decay(h))
-            s = self_heating(problem, gap)
+            s, _ = self_heating(problem, gap)
             layouts = [front[i] for i in sorted(set(np.linspace(0, len(front) - 1, PER_FRONT).round().astype(int)))]
             n_front = len(layouts)
             layouts += [sample_legal(problem, gap, rng) for _ in range(RANDOM)]
