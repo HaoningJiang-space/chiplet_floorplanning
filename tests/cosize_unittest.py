@@ -88,6 +88,33 @@ class ShrinkChainTest(unittest.TestCase):
             self.assertLessEqual(pin_manhattan_um(sized, layout).sum()/1e6, length + 1e-9)
 
 
+class CandidateRetentionTest(unittest.TestCase):
+    def test_a_within_budget_axial_solution_survives_an_over_budget_polygon(self):
+        # Review 08c5ec7: same geometry, the second die turned 180 degrees; clustered 24 mm, exact 24 vs 44 mm.
+        from chiplet_floorplanning.placement.cosize import fixed_carrier
+        p = opposed_pins()
+        pair = [Layout(np.array([[10000., 20000.], [30000., 20000.]]), np.array([0, r])) for r in (0, 180)]
+        good, bad = sorted(pair, key=lambda l: pin_manhattan_um(p, l).sum())
+        lengths = [pin_manhattan_um(p, l).sum()/1000 for l in (good, bad)]
+        self.assertGreater(lengths[1], lengths[0])
+        budget = (min(lengths) + max(lengths))/2/1000
+        calls = []
+
+        def fake(problem, gap_um, time_s, **kwargs):
+            calls.append(kwargs.get('directions'))
+            cosize_module.MILP_STATUS['status'] = 'time_limit'
+            return good if kwargs.get('directions') is None else bad
+        original = cosize_module.milp_relations
+        cosize_module.milp_relations = fake
+        try:
+            out, statuses, proof, _ = fixed_carrier(p, 0, budget, 'model', None, 100.0, 1, 8)
+        finally:
+            cosize_module.milp_relations = original
+        self.assertIs(out, good)
+        self.assertIsNone(proof)
+        self.assertEqual(calls, [None, 8])
+
+
 class GeneratorOrderTest(unittest.TestCase):
     def test_the_binding_constraint_picks_the_first_generator(self):
         from chiplet_floorplanning.placement.cosize import generator_order
@@ -158,6 +185,28 @@ class AnchoredTest(unittest.TestCase):
         out = anchored(hot, self.anchor, 500, self.length, 1, inner='blind', workers=1, resolution=16,
                        expected_j_k=1.0)
         self.assertEqual(out['history'][0]['stop'], 'reproduction_mismatch')
+
+    def test_execution_errors_are_not_mistaken_for_a_missing_start(self):
+        from unittest.mock import patch
+        from chiplet_floorplanning.placement.cosize import try_carrier
+        limited = replace(self.p, limit_c=np.full(4, self.peak - 5.0))   # the mapped start fails: the search runs
+        with patch('chiplet_floorplanning.placement.methods.relation_front', side_effect=RuntimeError('solver died')):
+            with self.assertRaises(RuntimeError):
+                try_carrier(limited, self.anchor, limited.carrier_um, 500, self.length, 'relation_space', 0 + 50, 5.0,
+                            1, None, 16, 0, 2, 1, rs_share=20)
+
+    def test_a_small_relation_space_share_still_searches(self):
+        from unittest.mock import patch
+        from chiplet_floorplanning.placement import methods
+        seen = {}
+        original = methods.METHODS['relation_space']
+
+        def spy(run, starts, rng, **kwargs):
+            seen['starts'] = len(starts)
+            return original(run, starts, rng, **kwargs)
+        with patch.dict(methods.METHODS, relation_space=spy):
+            methods.relation_front(self.p, 500, 20, 2, [self.anchor], dict(milp_s=5, workers=1))
+        self.assertLessEqual(seen['starts'], 1 + 2*(20//6))      # the anchor plus 3 random and 3 descent starts
 
     def test_zero_budget_spends_no_solve(self):
         limited = replace(self.p, limit_c=np.full(4, self.peak))

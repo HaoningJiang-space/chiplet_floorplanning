@@ -24,7 +24,7 @@ import numpy as np
 from chiplet_floorplanning.cli import source_revision
 from chiplet_floorplanning.placement import Layout, Problem
 from chiplet_floorplanning.placement.cosize import anchored, ceil_grid, fit_into, verify_anchor
-from chiplet_floorplanning.placement.methods import relation_front
+from chiplet_floorplanning.placement.methods import NoLegalStart, relation_front
 from chiplet_floorplanning.placement.cost import interposer_cost
 from atplace_compare import from_atplace
 
@@ -67,7 +67,14 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
             return dict(best=None, history=[dict(stop='reproduction_mismatch')], fv_solves=used, anchor=check)
     share = (fv_budget - used)//(BISECTION_STEPS + 1)
     if share < 1:
-        return dict(best=None, history=[dict(stop='fv budget')], fv_solves=used, anchor=check)
+        best = None
+        if anchor is not None and math.isfinite(interposer_cost(w0, h0)['total_usd']):    # the checked anchor stands
+            c = interposer_cost(w0, h0)
+            best = dict(width_mm=w0, height_mm=h0, cost_usd=c['total_usd'], area_factor=1.0, j_k=check['j_k'],
+                        length_m=check['length_m'], centre_um=anchor.centre_um.tolist(),
+                        rotation_deg=anchor.rotation_deg.tolist(), die_overshoot_k=check['die_j_k'], step=0,
+                        layout_index=0, option=c['option'], fields=c['fields'], anchor=True)
+        return dict(best=best, history=[dict(stop='fv budget')], fv_solves=used, anchor=check)
     trial = 1.0
     for step in range(BISECTION_STEPS + 1):
         scale = math.sqrt(trial)
@@ -92,7 +99,7 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
                 ok = [0]                    # verify_anchor accepted it: |J| <= REPRODUCE_K, length within budget
             record.update(fv_solves=int(archive['solves']), certified=bool(ok),
                           best_j_k=min((r['thermal'] for r in rows if r['length_m'] <= length_m + 1e-9), default=None))
-        except RuntimeError as error:
+        except NoLegalStart as error:               # no legal start on this size; execution errors propagate
             ok, record['error'], record['certified'] = [], str(error), False
         history.append(record)
         if ok:

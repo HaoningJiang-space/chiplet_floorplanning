@@ -218,8 +218,10 @@ def verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k=0.
 def fixed_carrier(problem, gap_um, length_m, model, start, time_s, threads, directions, max_cuts=3):
     """MILP topology candidate on one carrier: min the proxy (model; wire-only without it) with the clustered wire
     within the budget, pin-length cuts on overshoot; axial first, then K directions warm-started by it. All calls
-    share `time_s`. Returns (layout or None, statuses, 'proven_infeasible' | None, MILP seconds). Infeasible is a
-    proof for the carrier: the rows are geometry, the clustered-wire relaxation and valid pin cuts only."""
+    share `time_s`. A solution within the exact pin budget is never replaced by one that is not: the K-direction
+    solution is returned if it qualifies, else the axial one; when neither does, both become cuts. Returns (layout
+    or None, statuses, 'proven_infeasible' | None, MILP seconds). Infeasible is a proof for the carrier: the rows
+    are geometry, the clustered-wire relaxation and valid pin cuts only."""
     import time
     wire_mm, cuts, statuses, out, began = length_m*1000, [], [], None, time.perf_counter()
     left = lambda: time_s - (time.perf_counter() - began)   # noqa: E731
@@ -234,17 +236,24 @@ def fixed_carrier(problem, gap_um, length_m, model, start, time_s, threads, dire
         # Gurobi's INF_OR_UNBD ('4') is infeasible here: the objective (proxy or wire) is bounded below.
         if found is None and statuses[-1] in ('infeasible', '4'):
             return None, statuses, 'proven_infeasible', time.perf_counter() - began
-        if model is not None and directions and found is not None and left() >= 1:
+        within = lambda layout: pin_manhattan_um(problem, layout).sum()/1000 <= wire_mm + 1e-6   # noqa: E731
+        if found is None:
+            break
+        over = [] if within(found) else [found]
+        good = None if over else found                   # the axial solution is kept if it meets the exact budget
+        if model is not None and directions and left() >= 1:
             polygon = milp_relations(problem, gap_um, left(), proxy=proxy, wire_mm=wire_mm, threads=threads, focus=1,
                                      wire_cuts=cuts, directions=directions, start=found)
             statuses.append(MILP_STATUS['status'])
-            found = polygon or found
-        if found is None:
-            break
-        out = found
-        if pin_manhattan_um(problem, found).sum()/1000 <= wire_mm + 1e-6:
-            break
-        cuts.append(found)
+            if polygon is not None:
+                if within(polygon):
+                    good = polygon                       # the K-direction solution is preferred when it qualifies
+                else:
+                    over.append(polygon)
+        if good is not None:
+            return good, statuses, None, time.perf_counter() - began
+        out = over[-1]                                   # nothing within the exact budget: cut and resolve
+        cuts.extend(over)
     return out, statuses, None, time.perf_counter() - began
 
 
@@ -264,13 +273,13 @@ def try_carrier(sized, base, base_um, gap_um, length_m, model, budget, size_s, t
         rec['stages'].append(dict(stage='start', fv_solves=n, best_j_k=j, best_length_m=l, certified=ok is not None))
     if ok is None and budget - used > 1:
         if model == 'relation_space':
-            from .methods import relation_front           # the size-then-place baseline's inner search
+            from .methods import NoLegalStart, relation_front   # the size-then-place baseline's inner search
             import time
             began = time.perf_counter()
             try:
                 rows, archive = relation_front(sized, gap_um, min(budget - used, rs_share or budget), seed, [start],
                                           dict(milp_s=size_s, workers=workers))
-            except RuntimeError:                  # no legal start (raised before any FV solve)
+            except NoLegalStart:                  # no legal start (raised before any FV solve); other errors propagate
                 rows, archive = [], dict(solves=0)
             n = int(archive['solves'])
             good = [i for i, r in enumerate(rows) if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]

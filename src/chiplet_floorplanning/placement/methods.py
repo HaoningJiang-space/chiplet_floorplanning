@@ -24,6 +24,10 @@ from .geometry import is_legal
 from .search import layout_key, length_descent, mutate
 
 
+class NoLegalStart(RuntimeError):
+    """A search found no legal layout to start from (raised before any FV solve)."""
+
+
 class Run:
     def __init__(self, evaluator, fv_solves, stall_rounds=20, max_rounds=2000):
         self.evaluator, self.limit = evaluator, fv_solves
@@ -444,7 +448,7 @@ def relation_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8,
     seeds = shortest_seeds(evaluator.problem, evaluator.gap_um, list(initial), evaluator.pool, milp_s, anneal_steps,
                            chains, int(rng.integers(1 << 30)))
     if not initial and not seeds:
-        raise RuntimeError('no legal start: no initial layouts and the MILP found no layout')
+        raise NoLegalStart('no legal start: no initial layouts and the MILP found no layout')
     topology_slp(run, list(initial) + seeds, rng, **kw)
 
 
@@ -468,7 +472,7 @@ def thermal_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, 
                            int(rng.integers(1 << 30)))
     starts = list(initial) + seeds
     if not starts:
-        raise RuntimeError('no legal start: no initial layouts and the MILP found no layout')
+        raise NoLegalStart('no legal start: no initial layouts and the MILP found no layout')
     table = ThermalTable(problem, gap_um, grid, evaluator.resolution)
     notes = run.notes.setdefault('thermal_milp', dict(grid=grid, refine=refine, kernel_solves=0, results=[]))
     reserve = levels*(calibrate + 1) + 2       # FV confirmations of the MILP results and of the shortest seed
@@ -553,7 +557,7 @@ def proxy_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, le
                            int(rng.integers(1 << 30)))
     starts = list(initial) + seeds
     if not starts:
-        raise RuntimeError('no legal start: no initial layouts and the MILP found no layout')
+        raise NoLegalStart('no legal start: no initial layouts and the MILP found no layout')
     cost = len(R_MM) + len({tuple(size) for size in problem.size_um})
     notes = run.notes.setdefault('proxy', dict(schema_version=2, calibration_solves=cost, results=[],
                                               thermal_kind='peak_c' if problem.limit_c is None else 'overshoot_k'))
@@ -613,12 +617,14 @@ METHODS = dict(random=random_search, pareto_ls=pareto_local_search, nsga=nsga_mu
 def relation_front(problem, gap_um, budget, seed, extra_starts, method_options):
     """relation_space on a fixed carrier (the size-then-place inner search of the cosize baselines); returns
     (per-layout rows, archive arrays). The thermal value is the peak in degC, or with Problem.limit_c the overshoot
-    J in K; the archive keeps every layout and die value."""
+    J in K; the archive keeps every layout and die value. The extra starts come first; random and length-descent
+    starts are min(24, budget // 6) each, so a small per-carrier share is not spent on scoring starts alone."""
     rng = np.random.default_rng(seed)
     starts = [s for s in extra_starts if s is not None and is_legal(problem, s, gap_um)]
+    count = min(24, budget//6)       # 24 + 24 from a budget of 144 up; a small share keeps FV for the search itself
     try:
-        starts += [sample_legal(problem, gap_um, rng) for _ in range(24)]
-        starts += [length_descent(problem, sample_legal(problem, gap_um, rng), rng, gap_um) for _ in range(24)]
+        starts += [sample_legal(problem, gap_um, rng) for _ in range(count)]
+        starts += [length_descent(problem, sample_legal(problem, gap_um, rng), rng, gap_um) for _ in range(count)]
     except RuntimeError:
         pass                                    # tight carrier: MILP seeds only (relation_space builds its own)
     with Evaluator(problem, gap_um, 64, method_options.pop('workers', 16)) as evaluator:

@@ -1,5 +1,6 @@
 """Control for the co-sizing baseline regression found at af855d2 (the other controls of that review covered code
 removed after 33ad191: the joint sizing MILP and the superposition/polygon check tools)."""
+from dataclasses import replace
 from pathlib import Path
 import sys
 import unittest
@@ -35,6 +36,18 @@ class FixedAspectRegressionTest(unittest.TestCase):
         self.assertEqual(best['rotation_deg'], [0, 0])
         self.assertEqual(best['die_overshoot_k'], [-.5, -1.])
         self.assertEqual(out['fv_solves'], 2)
+
+    def test_a_checked_anchor_stands_when_the_budget_cannot_fund_a_search(self):
+        from chiplet_floorplanning.placement import Evaluator, Layout
+        from chiplet_floorplanning.placement.geometry import pin_manhattan_um
+        p = replace(two_dies(), limit_c=None)
+        anchor = Layout(np.array([[6000., 6000.], [24000., 6000.]]), np.zeros(2, int))
+        with Evaluator(p, 0, resolution=16) as evaluator:
+            peak = evaluator.peaks_c([anchor])[0]
+        limited = replace(p, limit_c=np.array([peak, peak]))
+        out = fixed_aspect(limited, 0, pin_manhattan_um(p, anchor).sum()/1e6, 3, 2, 1., 1, anchor, resolution=16)
+        self.assertEqual(out['fv_solves'], 1)
+        self.assertTrue(out['best']['anchor'])
 
 
 if __name__ == '__main__':
