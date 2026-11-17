@@ -25,7 +25,7 @@ class FixedAspectRegressionTest(unittest.TestCase):
         rows = [dict(thermal=-2., length_m=.018), dict(thermal=-.5, length_m=.012)]
         archive = dict(centre_um=centres, rotation_deg=np.zeros((2, 2), int),
                        die_thermal=np.array([[-2., -3.], [-.5, -1.]]), solves=2)
-        with patch('run_cosize.BISECTION_STEPS', 0), patch('run_cosize.run_front', return_value=(rows, archive)):
+        with patch('run_cosize.BISECTION_STEPS', 0), patch('run_cosize.relation_front', return_value=(rows, archive)):
             out = fixed_aspect(p, 0, .015, 12, 2, 1., 1)
         best = out['best']
         self.assertEqual(best['layout_index'], 1)

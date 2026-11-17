@@ -14,12 +14,13 @@ Every method stops after `stall_rounds` rounds without progress, or after
 """
 import numpy as np
 
-from .evaluate import pareto_front, sample_legal, thermal_key
+from .evaluate import Evaluator, pareto_front, sample_legal, thermal_key
 from .geometry import pin_manhattan_um
 from .lp import (TopologyLP, centre_relations, cluster_length_mm, hotspot_move, legalize_relations, length_anneal,
                  milp_relations, slp_chain)
 from .proxy import R_MM, ThermalProxy
 from .thermal_milp import ThermalTable
+from .geometry import is_legal
 from .search import layout_key, length_descent, mutate
 
 
@@ -607,3 +608,26 @@ METHODS = dict(random=random_search, pareto_ls=pareto_local_search, nsga=nsga_mu
                annealing=annealing, epsilon=epsilon_search, topology_lp=topology_lp, lp_epsilon=lp_then_epsilon,
                topology_slp=topology_slp, relation_space=relation_space,
                thermal_space=thermal_space, proxy_space=proxy_space)
+
+
+def relation_front(problem, gap_um, budget, seed, extra_starts, method_options):
+    """relation_space on a fixed carrier (the size-then-place inner search of the cosize baselines); returns
+    (per-layout rows, archive arrays). The thermal value is the peak in degC, or with Problem.limit_c the overshoot
+    J in K; the archive keeps every layout and die value."""
+    rng = np.random.default_rng(seed)
+    starts = [s for s in extra_starts if s is not None and is_legal(problem, s, gap_um)]
+    try:
+        starts += [sample_legal(problem, gap_um, rng) for _ in range(24)]
+        starts += [length_descent(problem, sample_legal(problem, gap_um, rng), rng, gap_um) for _ in range(24)]
+    except RuntimeError:
+        pass                                    # tight carrier: MILP seeds only (relation_space builds its own)
+    with Evaluator(problem, gap_um, 64, method_options.pop('workers', 16)) as evaluator:
+        run = Run(evaluator, budget)
+        METHODS['relation_space'](run, starts, rng, batch=48, **method_options)
+        length, thermal, _ = run.arrays()
+        die, _ = run.local()
+        solves = evaluator.solves
+    archive = dict(centre_um=np.array([l.centre_um for l in run.layouts]),
+                   rotation_deg=np.array([l.rotation_deg for l in run.layouts]), length_m=length, thermal=thermal,
+                   die_thermal=die, carrier_um=np.array(problem.carrier_um), solves=solves)
+    return [dict(length_m=float(l), thermal=float(t)) for l, t in zip(length, thermal)], archive

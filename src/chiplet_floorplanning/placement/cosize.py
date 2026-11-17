@@ -260,11 +260,11 @@ def try_carrier(sized, base, base_um, gap_um, length_m, model, budget, size_s, t
         rec['stages'].append(dict(stage='start', fv_solves=n, best_j_k=j, best_length_m=l, certified=ok is not None))
     if ok is None and budget - used > 1:
         if model == 'relation_space':
-            from run_sizing import run_front              # tools/: the size-then-place baseline's inner search
+            from .methods import relation_front           # the size-then-place baseline's inner search
             import time
             began = time.perf_counter()
             try:
-                rows, archive = run_front(sized, gap_um, min(budget - used, rs_share or budget), seed, [start],
+                rows, archive = relation_front(sized, gap_um, min(budget - used, rs_share or budget), seed, [start],
                                           dict(milp_s=size_s, workers=workers))
             except RuntimeError:                  # no legal start (raised before any FV solve)
                 rows, archive = [], dict(solves=0)

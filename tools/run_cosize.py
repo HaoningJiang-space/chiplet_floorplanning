@@ -24,9 +24,9 @@ import numpy as np
 from chiplet_floorplanning.cli import source_revision
 from chiplet_floorplanning.placement import Layout, Problem
 from chiplet_floorplanning.placement.cosize import anchored, ceil_grid, fit_into, verify_anchor
+from chiplet_floorplanning.placement.methods import relation_front
 from chiplet_floorplanning.placement.cost import interposer_cost
 from atplace_compare import from_atplace
-from run_sizing import run_front
 
 ENVELOPE = 1.25
 BISECTION_STEPS = 5
@@ -84,7 +84,7 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
             else:
                 start = None if base is None else fit_into(sized, base, base_um, gap_um)
                 record['started'] = start is not None
-                rows, archive = run_front(sized, gap_um, share, seed, [start] if start is not None else [],
+                rows, archive = relation_front(sized, gap_um, share, seed, [start] if start is not None else [],
                                           dict(milp_s=milp_s, workers=workers))
             used += int(archive['solves'])
             ok = [i for i, r in enumerate(rows) if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]

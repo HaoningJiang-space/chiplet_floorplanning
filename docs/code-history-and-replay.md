@@ -39,6 +39,18 @@
 
 `lp.milp_relations` 的 sizing 基本形式（宽度档、面积上限、排除档）仍由 `tools/run_sizing.py` 使用，保留。
 
+## 2026-11-17 第四次精简
+
+sizing-v1（联合尺寸 MILP 对"先定尺寸再布局"）已跑完，并已被 cosize v3/v4 取代；它的结果没有保存布局，只作探索性标量记录（[处置](sizing-placement-plan.md)）。
+删除前最后一个包含下列代码的提交是 `cfbd9dc`：
+
+| 删除的代码 | 对应结果 |
+| --- | --- |
+| `tools/run_sizing.py`（`shapes`、`width_levels`、CLI）、`tools/sizing_compare.py` 及其测试 | [sizing-placement 计划](sizing-placement-plan.md)、[修订](sizing-plan-revisions.md) |
+| `lp.milp_relations` 的 `sizing` 参数（宽度档、面积上限、排除档） | 同上 |
+
+`run_sizing.run_front` 仍被 cosize 基线使用，移入 `placement/methods.relation_front`，行为不变；成本参数扫描 `SWEEP` 移入 `tools/cosize_compare.py`。
+
 ## 为什么改复现方式
 
 旧冻结计划把源文件 SHA-256 写入计划，`check_plan` 又逐级调用上一阶段检查
