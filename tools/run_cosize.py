@@ -120,7 +120,7 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--case', type=Path, required=True)
-    p.add_argument('--evidence', type=Path, default=Path('docs/evidence/atplace-compare-rsg4-v2.json'))
+    p.add_argument('--evidence', type=Path, default=Path('docs/evidence/atplace-compare-rsg4-v3.json'))
     p.add_argument('--reference', choices=('atp_cool', 'atp_wl'), required=True)
     p.add_argument('--method', choices=('cosize', 'cosize_axial', 'cosize_blind', 'cosize_rs', 'cosize_shrink', 'fixed_aspect'), required=True)
     p.add_argument('--anchor-dir', type=Path, required=True,
@@ -171,7 +171,7 @@ def main():
                        size_s=args.size_s, threads=args.threads, workers=args.workers, directions=args.directions,
                        seed=args.seed, expected_j_k=expected)
     w0, h0 = (s/1000 for s in problem.carrier_um)
-    record = dict(protocol_revision='cosize-v4', case=args.case.stem, method=args.method,
+    record = dict(protocol_revision='cosize-v4.1', case=args.case.stem, method=args.method,
                   reference=args.reference, reference_label=label, delta_k=args.delta_k if args.front_dir else None,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
                       k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),
