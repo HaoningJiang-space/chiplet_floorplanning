@@ -201,3 +201,18 @@ G2 的相关性下降与 ATPlace 的预算内选点损失应分别记录；暂�
 [预算复核](proxy-budget-review.md)给出 28 mm 聚类预算对应 38 mm 逐引脚值的合法控制，
 以及 Case3/Case9 在已有前沿预算内的 2.61/2.10 K 包络选点损失。
 这些是新增机制诊断，不是 v2 的实测胜负，也不改变已有对照和判定规则。
+
+## 2026-11-17 v2 结果（px-v2 / rsb-v1，代码 90be7ce）
+
+证据：[B vs A](evidence/proxy-v2-compare-px-v2-vs-rsb-v1.json)、[A vs rs-grb-v4](evidence/proxy-v2-compare-rsb-v1-vs-rs-grb-v4.json)、[B vs rs-grb-v4](evidence/proxy-v2-compare-px-v2-vs-rs-grb-v4.json)。
+
+**主比较 B（proxy_space，sweep=length，targets=both）vs A（relation_space，targets=both）：无明显差别**（胜 0、负 2：Case9、Case10）。运行前预测"改进"不成立。
+- 次要：A vs rs-grb-v4 胜 2（Case9、10）、负 0，判"无明显差别"。双向精修在大例子上有帮助。B vs rs-grb-v4 胜 0、负 0。
+- B 的两个负例都在大例子上：Case9、10 的最小代理 MILP 在 300 s 内没有解（候选 0/1），B 只比 A 多花了校准次数和整数规划时间。
+- 最凉端：B 在 8/10 例比 A 更凉。Case9 低 6.9 K，Case4 低 5.1 K，Case7 低 2.0 K，Case5 低 1.8 K。Case1 高 1.7 K，Case10 高 0.8 K。
+  但按 16 点带裕量支配，这些只影响前沿一端。
+- 代理 MILP 有解 29/42；原样留在最终前沿上的候选 13 个（Case2–5）。双向精修仍然没有在候选自己的线长上降温（见 2026-11-17 诊断）。
+- 墙钟为 A 的 1.0–2.6 倍。
+
+**结论。** 在固定尺寸的 ATPlace 例子上，两轮冻结对比（v1、v2）都没有显示代理全局阶段在整条前沿上的优势；它只稳定地改善最凉端。
+因此不把 proxy_space 作为固定尺寸布局的主方法。代理改用于问题本身受热约束的场合：中介层尺寸与光罩方案的协同优化（[cosize 计划](cosize-plan.md)）。
