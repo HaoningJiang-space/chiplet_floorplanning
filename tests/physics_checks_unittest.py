@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
 import unittest
+import unittest.mock
 
 import numpy as np
 
@@ -33,6 +34,17 @@ class PhysicsChecksTest(unittest.TestCase):
         self.assertGreater(proxy_peak_c(problem, near, s, 20., 1.), proxy_peak_c(problem, far, s, 20., 1.))
         self.assertAlmostEqual(proxy_peak_c(problem, far, s, 20., 1.), 45 + 20 + 10*float(g_model(np.array(40.), 20., 1.)))
         self.assertGreater(predicted_area_rise(problem, 20., 1.), 0)
+
+    def test_results_with_numpy_scalars_are_written(self):
+        # The first run printed every result but died writing JSON: numpy ints are not JSON types.
+        import json
+        import tempfile
+        from types import SimpleNamespace
+        import physics_checks
+        with tempfile.TemporaryDirectory() as d, unittest.mock.patch.object(physics_checks, 'decay', lambda h: g_model(R_MM, 30., 1.)):
+            out = Path(d)/'decay.json'
+            physics_checks.cmd_decay(SimpleNamespace(output=out))
+            self.assertIn(json.loads(out.read_text())['verdict'], ('holds', 'partial', 'fails'))
 
 
 if __name__ == '__main__':

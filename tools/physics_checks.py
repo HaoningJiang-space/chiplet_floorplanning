@@ -102,7 +102,7 @@ def cmd_decay(args):
     result, ok, slope = decay_verdict(rows)
     print(result, ok, round(slope, 3))
     args.output.write_text(json.dumps(dict(check='decay', verdict=result, ratio_ok=ok, slope=slope, rows=rows),
-                                      indent=1) + '\n')
+                                      indent=1, default=float) + '\n')
 
 
 def cmd_proxy(args):
@@ -125,7 +125,7 @@ def cmd_proxy(args):
             print(name, {k: round(v, 3) for k, v in rows[name].items() if not isinstance(v, list)}, flush=True)
     result = proxy_verdict(rows)
     print(result)
-    args.output.write_text(json.dumps(dict(check='proxy', verdict=result, cases=rows), indent=1) + '\n')
+    args.output.write_text(json.dumps(dict(check='proxy', verdict=result, cases=rows), indent=1, default=float) + '\n')
 
 
 def predicted_area_rise(problem, lam, c, factor=0.85):
@@ -151,7 +151,7 @@ def cmd_area(args):
         print(name, {k: (round(v, 2) if isinstance(v, float) else v) for k, v in r.items()})
     print(result, round(rho, 3), 'within 3x:', within3)
     args.output.write_text(json.dumps(dict(check='area', verdict=result, spearman=rho, within_3x=within3,
-                                           lambda_mm=lam, rows=rows), indent=1) + '\n')
+                                           lambda_mm=lam, rows=rows), indent=1, default=float) + '\n')
 
 
 def main():
