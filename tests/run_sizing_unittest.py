@@ -26,9 +26,13 @@ class RunSizingTest(unittest.TestCase):
         for k, (w, h, _) in enumerate(found):
             self.assertLessEqual(w*h, 400. + 1e-6)
             self.assertTrue(all(abs(w - v) > EXCLUDE*v for v in widths[:k]))
-        rows = run_front(replace(p, carrier_um=(found[0][0]*1000, found[0][1]*1000)), 500, 30, 1, [],
-                         dict(milp_s=10, workers=2, anneal_steps=10, chains=2))
-        self.assertTrue(rows and all(np.isfinite(r['peak_c']) for r in rows))
+        rows, archive = run_front(replace(p, carrier_um=(found[0][0]*1000, found[0][1]*1000)), 500, 30, 1, [],
+                                  dict(milp_s=10, workers=2, anneal_steps=10, chains=2))
+        self.assertTrue(rows and all(np.isfinite(r['thermal']) for r in rows))
+        # Every row is archived with its layout, so a reported point can be rebuilt and re-solved.
+        self.assertEqual(len(archive['centre_um']), len(rows))
+        np.testing.assert_allclose(archive['length_m'], [r['length_m'] for r in rows])
+        self.assertLessEqual(archive['solves'], 30)
 
 
 if __name__ == '__main__':

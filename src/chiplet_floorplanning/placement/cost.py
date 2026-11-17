@@ -19,7 +19,10 @@ class CostParams:
     cluster: float = 6.0
     seam_yield: float = 0.99           # per stitch; no public value, swept
     stitch_limit: float = 3.3          # CoWoS-S class: stitched silicon up to this many reticles
-    rdl_wafer_usd: float = 1200.0      # beyond it: RDL interposer with local bridges (CoWoS-L class)
+    # Beyond it an RDL interposer with local bridges (CoWoS-L class) is only a cost scenario: the FV model has
+    # no RDL/bridge stack, so it is off unless asked for (review of b50044e).
+    allow_rdl: bool = False
+    rdl_wafer_usd: float = 1200.0
     rdl_d0_per_cm2: float = 0.05
     rdl_cluster: float = 3.0
     rdl_limit: float = 5.5
@@ -51,7 +54,7 @@ def option(width_mm, height_mm, params=CostParams()):
         # Stitching joins whole exposure fields: count the fields that tile the interposer, either orientation.
         fields = min(math.ceil(width_mm/a)*math.ceil(height_mm/b) for a, b in (RETICLE_MM, RETICLE_MM[::-1]))
         return 'stitched', fields
-    if area <= params.rdl_limit*RETICLE_MM2:
+    if params.allow_rdl and area <= params.rdl_limit*RETICLE_MM2:
         return 'rdl_bridge', 1
     return None, 0
 

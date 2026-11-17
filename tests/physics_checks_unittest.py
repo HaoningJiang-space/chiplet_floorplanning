@@ -7,8 +7,9 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from chiplet_floorplanning.placement import Layout, Problem  # noqa: E402
-from physics_checks import (R_MM, decay_verdict, fit_lambda, g_model, lambda_theory_mm,  # noqa: E402
+from physics_checks import (R_MM, decay_verdict, fit_lambda, fit_lambda_k0, g_model, lambda_theory_mm,  # noqa: E402
                             predicted_area_rise, proxy_peak_c)
+from scipy.special import k0  # noqa: E402
 
 
 class PhysicsChecksTest(unittest.TestCase):
@@ -17,6 +18,10 @@ class PhysicsChecksTest(unittest.TestCase):
         self.assertAlmostEqual(lam, 21.0, places=6)
         self.assertAlmostEqual(c, 1.3, places=6)
         self.assertAlmostEqual(lambda_theory_mm(1/(.1*.06**2)), 33.73, places=1)
+        # The far-field fit is biased on an exact K0 field (the review's +26% at 45.9 mm); the K0 control is not.
+        exact = 0.2*k0(R_MM/45.898)
+        self.assertGreater(fit_lambda(R_MM, exact)[0], 1.2*45.898)
+        self.assertAlmostEqual(fit_lambda_k0(R_MM, exact)[0], 45.898, places=3)
 
     def test_decay_verdict(self):
         rows = lambda fits: [dict(h=h, lambda_fit_mm=f, lambda_theory_mm=lambda_theory_mm(h))
@@ -33,7 +38,8 @@ class PhysicsChecksTest(unittest.TestCase):
         far = Layout(np.array([[10000., 10000.], [50000., 10000.]]), np.zeros(2, int))
         self.assertGreater(proxy_peak_c(problem, near, s, 20., 1.), proxy_peak_c(problem, far, s, 20., 1.))
         self.assertAlmostEqual(proxy_peak_c(problem, far, s, 20., 1.), 45 + 20 + 10*float(g_model(np.array(40.), 20., 1.)))
-        self.assertGreater(predicted_area_rise(problem, 20., 1.), 0)
+        self.assertGreater(predicted_area_rise(problem, 20., 1., 0.7225), predicted_area_rise(problem, 20., 1., 0.85))
+        self.assertGreater(predicted_area_rise(problem, 20., 1., 0.85), 0)
 
     def test_results_with_numpy_scalars_are_written(self):
         # The first run printed every result but died writing JSON: numpy ints are not JSON types.

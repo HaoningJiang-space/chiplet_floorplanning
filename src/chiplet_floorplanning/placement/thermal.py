@@ -120,6 +120,7 @@ def die_peak_sensitivity(problem, layout, gap_um, resolution=64):
     """Exact solve plus first-order die-peak sensitivities from one LU factorisation.
 
     Returns (die peaks degC (n,), gradient K/mm (n, n, 2)): grad[i, j] = d(peak of die i)/d(centre of die j).
+    With Problem.limit_c the peaks are overshoots T_i - limit_i in K (same gradient).
     By reciprocity, one adjoint solve psi_i = A^-1 e_(hottest cell of die i) gives the rise at that cell per
     watt at every node; shifting die j's uniform source by dx changes it by q_j * dx * (integral of
     d psi_i/dx over die j). The mean slope comes from die j's first and last cell centres scaled to its full
@@ -176,9 +177,10 @@ def die_peak_sensitivity(problem, layout, gap_um, resolution=64):
             grad[i, j, 1] = q[j]*wy*(sy*dx[cj]).sum()
         grad[i, i] = 0.0
         grad[i, i] = -grad[i].sum(axis=0)
-    if problem.limit_offset_k is not None:       # each die relative to its own limit (Problem.limit_offset_k)
-        peaks = peaks - problem.limit_offset_k
-    return peaks + case.thermal["ambient_c"], grad
+    peaks = peaks + case.thermal["ambient_c"]
+    if problem.limit_c is not None:              # overshoot over each die's own limit, K (Problem.limit_c)
+        peaks = peaks - problem.limit_c
+    return peaks, grad
 
 
 def die_cells(problem, layout, edges):

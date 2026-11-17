@@ -17,7 +17,8 @@ class CostTest(unittest.TestCase):
         self.assertEqual(option(27, 27), ('stitched', 2))        # 729 mm^2, but 27 mm exceeds the 26 mm side
         self.assertEqual(option(42, 42), ('stitched', 4))        # 2 x 2 fields in either orientation
         self.assertEqual(option(50, 30), ('stitched', 2))        # 50 along the 33 mm side: 2 x 1
-        self.assertEqual(option(59, 61)[0], 'rdl_bridge')
+        self.assertEqual(option(59, 61), (None, 0))              # silicon only by default (no RDL thermal model)
+        self.assertEqual(option(59, 61, CostParams(allow_rdl=True))[0], 'rdl_bridge')
         self.assertEqual(option(50, 152), (None, 0))
 
     def test_cost_grows_with_area_and_jumps_at_a_new_field(self):
@@ -30,6 +31,13 @@ class CostTest(unittest.TestCase):
             self.assertAlmostEqual(row['yield_'], defect_yield(50*side, p.d0_per_cm2, p.cluster)*p.seam_yield**(row['fields'] - 1))
         self.assertGreater(above['total_usd'], below['total_usd'])
         self.assertTrue(math.isinf(interposer_cost(50, 152, p)['total_usd']))
+
+    def test_no_cheaper_option_appears_past_the_stitching_limit_by_default(self):
+        # Review of b50044e: 2,831.399 -> 2,831.401 mm^2 switched stitched silicon to RDL and the cost halved.
+        p = CostParams()
+        side = (p.stitch_limit*858)**0.5
+        self.assertTrue(math.isfinite(interposer_cost(side - 0.001, side - 0.001, p)['total_usd']))
+        self.assertTrue(math.isinf(interposer_cost(side + 0.001, side + 0.001, p)['total_usd']))
 
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@ Every evaluated layout is recorded with its carrier cost, so fronts over (cost, 
 """
 import argparse
 from dataclasses import replace
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -15,6 +16,7 @@ import time
 
 import numpy as np
 
+from chiplet_floorplanning.cli import source_revision
 from chiplet_floorplanning.placement import Evaluator, Problem, is_legal, sample_legal
 from chiplet_floorplanning.placement.cost import interposer_cost
 from chiplet_floorplanning.placement.lp import legalize_relations, milp_relations
@@ -52,7 +54,8 @@ def shapes(problem, gap_um, area_mm2, milp_s):
 
 
 def run_front(problem, gap_um, budget, seed, extra_starts, method_options):
-    """relation_space on a fixed carrier; returns per-layout rows (length m, peak degC)."""
+    """relation_space on a fixed carrier; returns (per-layout rows, archive arrays). The thermal value is the
+    peak in degC, or with Problem.limit_c the overshoot J in K; the archive keeps every layout and die value."""
     rng = np.random.default_rng(seed)
     starts = [s for s in extra_starts if s is not None and is_legal(problem, s, gap_um)]
     try:
@@ -63,8 +66,13 @@ def run_front(problem, gap_um, budget, seed, extra_starts, method_options):
     with Evaluator(problem, gap_um, 64, method_options.pop('workers', 16)) as evaluator:
         run = Run(evaluator, budget)
         METHODS['relation_space'](run, starts, rng, batch=48, **method_options)
-        length, peak, _ = run.arrays()
-    return [dict(length_m=float(l), peak_c=float(t)) for l, t in zip(length, peak)]
+        length, thermal, _ = run.arrays()
+        die, _ = run.local()
+        solves = evaluator.solves
+    archive = dict(centre_um=np.array([l.centre_um for l in run.layouts]),
+                   rotation_deg=np.array([l.rotation_deg for l in run.layouts]), length_m=length, thermal=thermal,
+                   die_thermal=die, carrier_um=np.array(problem.carrier_um), solves=solves)
+    return [dict(length_m=float(l), thermal=float(t)) for l, t in zip(length, thermal)], archive
 
 
 def main():
@@ -81,36 +89,45 @@ def main():
     args.output.mkdir(parents=True, exist_ok=False)
     problem = Problem.from_imported(json.loads(args.case.read_text()))
     width0, height0 = (s/1000 for s in problem.carrier_um)
+    identity = dict(case_path=str(args.case), case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(),
+                    code=source_revision(), limit_c=None if problem.limit_c is None else problem.limit_c.tolist(),
+                    thermal_kind='peak_c' if problem.limit_c is None else 'overshoot_k', names=list(problem.names))
     for factor in args.factors:
         started = time.perf_counter()
         area = factor*width0*height0
-        record = dict(case=problem.name, factor=factor, area_mm2=area, seed=args.seed, fv_solves=args.fv_solves,
-                      plan='docs/sizing-placement-plan.md', joint=[], baseline=None)
-        for width, height, layout in shapes(problem, args.gap_um, area, args.milp_s):
+        record = dict(case=problem.name, factor=factor, area_factor=factor, area_mm2=area, seed=args.seed,
+                      fv_solves=args.fv_solves, plan='docs/sizing-placement-plan.md + docs/sizing-plan-revisions.md',
+                      joint=[], baseline=None, **identity)
+        tag = f'factor{factor:g}'.replace('.', 'p')
+
+        def keep(name, archive):
+            np.savez_compressed(args.output/f'{tag}_{name}.npz', **archive)
+            return dict(archive=f'{tag}_{name}.npz', solves=int(archive['solves']))
+        for k, (width, height, layout) in enumerate(shapes(problem, args.gap_um, area, args.milp_s)):
             sized = replace(problem, carrier_um=(width*1000, height*1000))
             seed_layout = legalize_relations(sized, layout, args.gap_um)
+            entry = dict(width_mm=width, height_mm=height, cost=interposer_cost(width, height),
+                         seeded=seed_layout is not None, rows=[], error=None)
             try:
-                rows = run_front(sized, args.gap_um, args.fv_solves//SHAPES, args.seed, [seed_layout],
-                                 dict(milp_s=args.milp_s, workers=args.workers))
+                entry['rows'], archive = run_front(sized, args.gap_um, args.fv_solves//SHAPES, args.seed,
+                                                   [seed_layout], dict(milp_s=args.milp_s, workers=args.workers))
+                entry.update(keep(f'shape{k}', archive))
             except RuntimeError as error:
-                rows, note = [], str(error)
-            else:
-                note = None
-            record['joint'].append(dict(width_mm=width, height_mm=height, cost=interposer_cost(width, height),
-                                        seeded=seed_layout is not None, rows=rows, error=note))
+                entry['error'] = str(error)
+            record['joint'].append(entry)
         scale = math.sqrt(factor)
         base = replace(problem, carrier_um=(problem.carrier_um[0]*scale, problem.carrier_um[1]*scale))
-        try:
-            rows, note = run_front(base, args.gap_um, args.fv_solves, args.seed, [],
-                                   dict(milp_s=args.milp_s, workers=args.workers)), None
-        except RuntimeError as error:
-            rows, note = [], str(error)
         record['baseline'] = dict(width_mm=width0*scale, height_mm=height0*scale,
-                                  cost=interposer_cost(width0*scale, height0*scale), rows=rows, error=note)
+                                  cost=interposer_cost(width0*scale, height0*scale), rows=[], error=None)
+        try:
+            record['baseline']['rows'], archive = run_front(base, args.gap_um, args.fv_solves, args.seed, [],
+                                                            dict(milp_s=args.milp_s, workers=args.workers))
+            record['baseline'].update(keep('baseline', archive))
+        except RuntimeError as error:
+            record['baseline']['error'] = str(error)
         record['wall_s'] = time.perf_counter() - started
-        (args.output/f'factor{factor:g}'.replace('.', 'p')).with_suffix('.json').write_text(
-            json.dumps(record, default=float) + '\n')
-        best = lambda rows: (round(min(r['peak_c'] for r in rows), 2), round(min(r['length_m'] for r in rows), 3)) if rows else None
+        (args.output/f'{tag}.json').write_text(json.dumps(record, default=float) + '\n')
+        best = lambda rows: (round(min(r['thermal'] for r in rows), 2), round(min(r['length_m'] for r in rows), 3)) if rows else None
         print(problem.name, factor, 'joint', [(round(j['width_mm'], 1), round(j['height_mm'], 1), best(j['rows']))
                                               for j in record['joint']],
               'baseline', best(record['baseline']['rows']), round(record['wall_s']), 's', flush=True)

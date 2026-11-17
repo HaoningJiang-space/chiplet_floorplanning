@@ -13,6 +13,8 @@ import math
 from pathlib import Path
 
 import numpy as np
+from scipy.optimize import curve_fit
+from scipy.special import k0
 from scipy.stats import spearmanr
 
 from chiplet_floorplanning.placement import Layout, Problem, sample_legal, solve, thermal_case_data
@@ -47,6 +49,14 @@ def fit_lambda(r_mm, g):
     keep = g > 0.01*g[0]
     slope, c = np.polyfit(r_mm[keep], np.log(g[keep]) + 0.5*np.log(r_mm[keep]), 1)
     return -1/slope, c
+
+
+def fit_lambda_k0(r_mm, g):
+    """Control without the far-field approximation: least squares of ln g = ln a + ln K0(r / lambda)."""
+    keep = g > 0.01*g[0]
+    (lam, ln_a), _ = curve_fit(lambda r, lam, ln_a: ln_a + np.log(k0(r/lam)), r_mm[keep], np.log(g[keep]),
+                               p0=(fit_lambda(r_mm, g)[0], 0.0), bounds=([1.0, -50.0], [500.0, 50.0]))
+    return lam, ln_a
 
 
 def g_model(r_mm, lam, c):
@@ -97,8 +107,11 @@ def cmd_decay(args):
     for h in H_SWEEP:
         g = decay(h)
         lam, c = fit_lambda(R_MM, g)
-        rows.append(dict(h=h, g_k_w=g.tolist(), lambda_fit_mm=lam, c=c, lambda_theory_mm=lambda_theory_mm(h)))
-        print(f'h {h:.0f}: lambda fit {lam:.1f} mm, theory {lambda_theory_mm(h):.1f} mm', flush=True)
+        lam_k0, _ = fit_lambda_k0(R_MM, g)
+        rows.append(dict(h=h, g_k_w=g.tolist(), lambda_fit_mm=lam, c=c, lambda_k0_fit_mm=lam_k0,
+                         lambda_theory_mm=lambda_theory_mm(h)))
+        print(f'h {h:.0f}: lambda fit {lam:.1f} mm (exact-K0 control {lam_k0:.1f}), theory {lambda_theory_mm(h):.1f} mm',
+              flush=True)
     result, ok, slope = decay_verdict(rows)
     print(result, ok, round(slope, 3))
     args.output.write_text(json.dumps(dict(check='decay', verdict=result, ratio_ok=ok, slope=slope, rows=rows),
@@ -128,7 +141,8 @@ def cmd_proxy(args):
     args.output.write_text(json.dumps(dict(check='proxy', verdict=result, cases=rows), indent=1, default=float) + '\n')
 
 
-def predicted_area_rise(problem, lam, c, factor=0.85):
+def predicted_area_rise(problem, lam, c, factor):
+    """factor is an AREA factor; the old area screen scaled each side, so its 0.85 is an area factor of 0.7225."""
     n, area = problem.count, problem.carrier_um[0]*problem.carrier_um[1]/1e6
     spacing = lambda f: math.sqrt(f*area/n)
     return problem.power_w.sum()/n*4*float(g_model(np.array(spacing(factor)), lam, c) - g_model(np.array(spacing(1.0)), lam, c))
@@ -140,17 +154,19 @@ def cmd_area(args):
     rows = {}
     for name, row in screen.items():
         problem = Problem.from_imported(json.loads((args.import_dir/f'{name}.json').read_text()))
-        rows[name] = dict(predicted_k=predicted_area_rise(problem, lam, c), measured_k=row['dT_area_k'],
-                          infeasible=row['infeasible_0p85'])
-    measured = [math.inf if r['infeasible'] else r['measured_k'] for r in rows.values()]
-    rho = float(spearmanr([r['predicted_k'] for r in rows.values()], measured)[0])
-    within3 = sum(1/3 <= r['predicted_k']/r['measured_k'] <= 3 for r in rows.values()
-                  if not r['infeasible'] and r['measured_k'] > 0)
+        # Revision: side scale 0.85 -> area factor 0.7225; "no layout found" is unknown, not most sensitive.
+        rows[name] = dict(linear_scale=0.85, area_factor=0.85**2,
+                          predicted_k=predicted_area_rise(problem, lam, c, 0.85**2), measured_k=row['dT_area_k'],
+                          unknown=bool(row['infeasible_0p85']))
+    found = [r for r in rows.values() if not r['unknown']]
+    rho = float(spearmanr([r['predicted_k'] for r in found], [r['measured_k'] for r in found])[0])
+    within3 = sum(1/3 <= r['predicted_k']/r['measured_k'] <= 3 for r in found if r['measured_k'] > 0)
     result = 'holds' if rho >= 0.7 else 'fails' if rho < 0.3 else 'partial'
     for name, r in rows.items():
         print(name, {k: (round(v, 2) if isinstance(v, float) else v) for k, v in r.items()})
     print(result, round(rho, 3), 'within 3x:', within3)
-    args.output.write_text(json.dumps(dict(check='area', verdict=result, spearman=rho, within_3x=within3,
+    args.output.write_text(json.dumps(dict(check='area', plan='docs/sizing-plan-revisions.md section 6',
+                                           verdict=result, spearman=rho, within_3x=within3, cases_ranked=len(found),
                                            lambda_mm=lam, rows=rows), indent=1, default=float) + '\n')
 
 
