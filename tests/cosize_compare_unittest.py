@@ -1,0 +1,49 @@
+import json
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
+from cosize_compare import certified, combos, compare, outcome, verdict  # noqa: E402
+
+
+def run(best=None, history=()):
+    return dict(best=best and dict(width_mm=best[0], height_mm=best[1], cost_usd=0.0), history=[
+        dict(width_mm=w, height_mm=h, certified=c) for w, h, c in history],
+        original=dict(width_mm=42.0, height_mm=42.0, total_usd=253.9), fv_solves=10, wall_s=1.0)
+
+
+class CosizeCompareTest(unittest.TestCase):
+    def test_outcome_rule(self):
+        self.assertEqual(outcome(90., 100.), 'win')
+        self.assertEqual(outcome(97., 100.), 'tie')
+        self.assertEqual(outcome(106., 100.), 'loss')
+        self.assertEqual(outcome(None, 100.), 'loss')
+        self.assertEqual(outcome(100., None), 'win')
+        self.assertEqual(outcome(None, None), 'unavailable')
+
+    def test_certified_sizes_include_history_only_when_certified(self):
+        r = run((30., 30.), [(30., 30., True), (25., 25., False), (35., 35., True)])
+        self.assertEqual(certified(r), {(30., 30.), (35., 35.)})
+
+    def test_missing_runs_count_in_the_denominator(self):
+        self.assertEqual(len(combos()), 17)
+        result, coverage = verdict({'a': 'win'}, 17)
+        self.assertEqual(coverage['missing'], 16)
+        self.assertEqual(result, 'ineffective')
+
+    def test_compare_reads_files_and_counts(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d/'case1-atp_wl-cosize.json').write_text(json.dumps(run((26., 30.), [(26., 30., True)])))
+            (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(run((40., 40.), [(40., 40., True)])))
+            report = compare(d, [(1, 'atp_wl')])
+            row = report['cosize_vs_fixed_aspect']['rows']['case1-atp_wl']
+            self.assertEqual(row['outcome'], 'win')
+            self.assertEqual(report['cosize_vs_fixed_aspect']['verdict'], 'effective')
+            self.assertIn('case1-atp_wl', report['cosize_savings_vs_original'])
+
+
+if __name__ == '__main__':
+    unittest.main()
