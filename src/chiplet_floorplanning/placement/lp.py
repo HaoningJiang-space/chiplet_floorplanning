@@ -284,16 +284,27 @@ def slp_chain(args):
       within the budget; from a layout over the budget, min length without heating its hottest die.
     Steps stay inside a box trust region; a step is kept only if the exact solve of the snapped candidate
     confirms it, the radius then grows, otherwise it halves. One LU factorisation per step serves both the
-    exact check and the next gradients. Returns every exactly solved (layout, die peaks degC) pair.
+    exact check and the next gradients; adjoints are solved only for the near-peak dies the LP linearises at
+    the current layout, once per layout (none for a rejected candidate or with steps=0). Returns every exactly
+    solved (layout, die peaks degC) pair.
     """
     from .geometry import pin_manhattan_um
-    from .thermal import die_peak_sensitivity
+    from .thermal import peak_sensitivity
     problem, layout, gap_um, resolution, target, steps = args[:6]
     mode = args[6] if len(args) > 6 else "peak"
     n = problem.count
     inside = problem.pin_chip[:, 0] == problem.pin_chip[:, 1]
     radius, smallest, largest = SLP_RADIUS_MM
-    peaks, grad = die_peak_sensitivity(problem, layout, gap_um, resolution)
+    peaks, gradient = peak_sensitivity(problem, layout, gap_um, resolution)
+    known = {}                                    # die -> gradient row at the current layout
+
+    def grad_rows(dies):
+        missing = [i for i in dies if i not in known]
+        if missing:
+            g = gradient(missing)
+            known.update((i, g[i]) for i in missing)
+        return np.array([known[i] for i in dies]).reshape(len(dies), n, 2)
+
     solved = [(layout, peaks)]
     current, length = layout, pin_manhattan_um(problem, layout).sum()/1000
     for _ in range(steps):
@@ -307,8 +318,9 @@ def slp_chain(args):
             hot = np.flatnonzero(peaks >= hottest - SLP_BAND_K)
             budget = target*1000 - pin_manhattan_um(problem, current)[inside].sum()/1000   # LP covers inter-die nets
             minimise_peak = length <= target*1000     # within budget: cool; over it: shorten without heating
+        grad = grad_rows(hot.tolist())
         g = np.zeros((hot.size, lp.nvar))
-        g[:, :2*n] = np.concatenate([grad[hot, :, 0], grad[hot, :, 1]], axis=1)
+        g[:, :2*n] = np.concatenate([grad[:, :, 0], grad[:, :, 1]], axis=1)
         rows, rhs, objective, extra = [lp.A], [lp.b], lp.length, []
         if minimise_peak:   # epigraph t >= linearised peak of every hot die
             rows = [sparse.hstack([lp.A, sparse.csr_matrix((lp.A.shape[0], 1))]),
@@ -330,7 +342,7 @@ def slp_chain(args):
         if candidate is None or np.array_equal(candidate.centre_um, current.centre_um):
             radius /= 2
         else:
-            new_peaks, new_grad = die_peak_sensitivity(problem, candidate, gap_um, resolution)
+            new_peaks, new_gradient = peak_sensitivity(problem, candidate, gap_um, resolution)
             solved.append((candidate, new_peaks))
             new_length = pin_manhattan_um(problem, candidate).sum()/1000
             if mode == "peak":
@@ -340,7 +352,8 @@ def slp_chain(args):
                 keep = (new_peaks.max() < hottest - 1e-9 and new_length <= target*1000 + 1e-9 if minimise_peak
                         else new_length < length - 1e-9 and new_peaks.max() <= hottest + 1e-9)
             if keep:
-                current, peaks, grad, length = candidate, new_peaks, new_grad, new_length
+                current, peaks, gradient, length = candidate, new_peaks, new_gradient, new_length
+                known.clear()
                 radius = min(1.5*radius, largest)
             else:
                 radius /= 2

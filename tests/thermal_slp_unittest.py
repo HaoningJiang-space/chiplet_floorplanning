@@ -72,9 +72,9 @@ class ThermalSlpTest(unittest.TestCase):
         import chiplet_floorplanning.placement.evaluate as evaluate
         import chiplet_floorplanning.placement.thermal as thermal
         calls = []
-        peaks, sensitivity = evaluate._peaks, thermal.die_peak_sensitivity
+        peaks, sensitivity = evaluate._peaks, thermal.peak_sensitivity
         evaluate._peaks = lambda job: calls.append(1) or peaks(job)
-        thermal.die_peak_sensitivity = lambda *a, **k: calls.append(1) or sensitivity(*a, **k)
+        thermal.peak_sensitivity = lambda *a, **k: calls.append(1) or sensitivity(*a, **k)
         try:
             rng = np.random.default_rng(6)
             start = [sample_legal(self.problem, 1000, rng) for _ in range(4)]
@@ -86,7 +86,7 @@ class ThermalSlpTest(unittest.TestCase):
                     self.assertLessEqual(len(calls), budget)
                     self.assertEqual(evaluator.solves, len(calls))
         finally:
-            evaluate._peaks, thermal.die_peak_sensitivity = peaks, sensitivity
+            evaluate._peaks, thermal.peak_sensitivity = peaks, sensitivity
 
     def test_length_mode_keeps_the_budget_and_never_heats(self):
         budget = pin_manhattan_um(self.problem, self.layout).sum()/1e6

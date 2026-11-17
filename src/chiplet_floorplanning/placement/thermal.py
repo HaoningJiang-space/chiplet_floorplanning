@@ -117,9 +117,18 @@ def power_layer_responses(problem, layout, gap_um, powers, resolution=64):
 
 
 def die_peak_sensitivity(problem, layout, gap_um, resolution=64):
-    """Exact solve plus first-order die-peak sensitivities from one LU factorisation.
+    """Exact solve plus first-order die-peak sensitivities of every die; see peak_sensitivity."""
+    peaks, gradient = peak_sensitivity(problem, layout, gap_um, resolution)
+    return peaks, gradient(range(problem.count))
 
-    Returns (die peaks degC (n,), gradient K/mm (n, n, 2)): grad[i, j] = d(peak of die i)/d(centre of die j).
+
+def peak_sensitivity(problem, layout, gap_um, resolution=64):
+    """Exact solve (solve_spd: Jacobi-PCG, the Evaluator's solver) with the adjoints deferred.
+
+    Returns (die peaks degC (n,), gradient): gradient(dies) -> (n, n, 2) K/mm, rows i in `dies` filled with
+    d(peak of die i)/d(centre of die j), other rows zero. The first call factorises the SPD matrix once
+    (symmetric-mode LU) and later calls reuse it, so a layout that is only checked (a rejected step, an anchor)
+    costs one PCG solve, and an accepted one pays one factorisation plus the adjoints its LP needs.
     With Problem.limit_c the peaks are overshoots T_i - limit_i in K (same gradient).
     By reciprocity, one adjoint solve psi_i = A^-1 e_(hottest cell of die i) gives the rise at that cell per
     watt at every node; shifting die j's uniform source by dx changes it by q_j * dx * (integral of
@@ -133,10 +142,10 @@ def die_peak_sensitivity(problem, layout, gap_um, resolution=64):
     power, _ = rasterize(case)
     a, b, g, _, ids, power_z = assemble_package(case, power)
     require_heat_path(a, g)
-    lu = splu(a.tocsc(), permc_spec="MMD_AT_PLUS_A")
-    theta = lu.solve(b)
+    theta = solve_spd(a, b)
     checked_solution(a, b, g, theta)
     layer = ids[power_z]
+    factor = []
     field = np.where(layer >= 0, theta[np.maximum(layer, 0)], np.nan)
     edges = (np.concatenate(([0], np.cumsum(case.mesh.widths_mm))),
              np.concatenate(([0], np.cumsum(case.mesh.heights_mm))))
@@ -160,27 +169,37 @@ def die_peak_sensitivity(problem, layout, gap_um, resolution=64):
         hi = hi if np.isfinite(take(hi)).all() else idx[0]
         return ((take(hi) - take(lo))/(c[hi] - c[lo]) if hi != lo else np.zeros(strips.size)), length
 
-    peaks, grad = np.zeros(n), np.zeros((n, n, 2))
+    peaks, hottest = np.zeros(n), []
     for i, (rows, cols) in enumerate(cells):
         sub = field[np.ix_(rows, cols)]
         r, c = np.unravel_index(np.nanargmax(sub), sub.shape)
         peaks[i] = sub[r, c]
-        unit = np.zeros(a.shape[0])
-        unit[layer[rows[r], cols[c]]] = 1.0
-        adjoint = lu.solve(unit)
-        psi = np.where(layer >= 0, adjoint[np.maximum(layer, 0)], np.nan)
-        under = np.where(below >= 0, adjoint[np.maximum(below, 0)], np.nan)
-        for j, (rj, cj) in enumerate(cells):
-            sx, wx = slopes(psi, under, rj, cj, 0)
-            sy, wy = slopes(psi, under, rj, cj, 1)
-            grad[i, j, 0] = q[j]*wx*(sx*dy[rj]).sum()
-            grad[i, j, 1] = q[j]*wy*(sy*dx[cj]).sum()
-        grad[i, i] = 0.0
-        grad[i, i] = -grad[i].sum(axis=0)
+        hottest.append(layer[rows[r], cols[c]])
+
+    def gradient(dies):
+        grad = np.zeros((n, n, 2))
+        if dies and not factor:
+            factor.append(splu(a.tocsc(), permc_spec="MMD_AT_PLUS_A", diag_pivot_thresh=0.0,
+                               options=dict(SymmetricMode=True)))
+        for i in dies:
+            unit = np.zeros(a.shape[0])
+            unit[hottest[i]] = 1.0
+            adjoint = factor[0].solve(unit)
+            psi = np.where(layer >= 0, adjoint[np.maximum(layer, 0)], np.nan)
+            under = np.where(below >= 0, adjoint[np.maximum(below, 0)], np.nan)
+            for j, (rj, cj) in enumerate(cells):
+                sx, wx = slopes(psi, under, rj, cj, 0)
+                sy, wy = slopes(psi, under, rj, cj, 1)
+                grad[i, j, 0] = q[j]*wx*(sx*dy[rj]).sum()
+                grad[i, j, 1] = q[j]*wy*(sy*dx[cj]).sum()
+            grad[i, i] = 0.0
+            grad[i, i] = -grad[i].sum(axis=0)
+        return grad
+
     peaks = peaks + case.thermal["ambient_c"]
     if problem.limit_c is not None:              # overshoot over each die's own limit, K (Problem.limit_c)
         peaks = peaks - problem.limit_c
-    return peaks, grad
+    return peaks, gradient
 
 
 def die_cells(problem, layout, edges):
