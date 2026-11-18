@@ -1,0 +1,406 @@
+[
+ {
+  "case": "Case1",
+  "reference": "atp_cool",
+  "t_ref_c": 105.058871,
+  "l_ref_m": 51.608113,
+  "best": {
+   "cost_usd": 122.40003451958081,
+   "width_mm": 20.1,
+   "height_mm": 60.0,
+   "run": "cosize-v4-pilot",
+   "method": "cosize_shrink",
+   "mechanism": "shrink"
+  },
+  "by_run_method": {
+   "cosize-v4-pilot:cosize_shrink": 122.40003451958081,
+   "cosize-v41-pilot:cosize_shrink": 122.40003451958081,
+   "cosize-v42-pilot:cosize_shrink": 122.40003451958081,
+   "cosize-v32:cosize": 123.45194957667286,
+   "cosize-v32:cosize_axial": 123.45194957667286,
+   "cosize-v32:cosize_blind": 123.45194957667286,
+   "cosize-v3-pilot:cosize": 123.45194957667286,
+   "cosize-v2:cosize": 129.85287115579598,
+   "cosize-pilot:cosize": 129.85287115579598,
+   "cosize-pilot2:cosize": 129.85287115579598,
+   "cosize-v1:cosize": 129.85287115579598,
+   "cosize-v31-pilot2:cosize": 131.4248182468717,
+   "cosize-v31-pilot2:fixed_aspect": 171.62859959422897,
+   "cosize-v32:fixed_aspect": 171.62859959422897,
+   "cosize-pilot2:fixed_aspect": 187.44376089866432,
+   "cosize-v2:fixed_aspect": 187.44376089866432,
+   "cosize-v5a-pilot:cosize_rs2": 208.74929875120674,
+   "cosize-v32:cosize_rs": 217.08194787271123,
+   "cosize-v31-pilot2:cosize_rs": 251.41487376812654
+  }
+ },
+ {
+  "case": "Case2",
+  "reference": "atp_cool",
+  "t_ref_c": 76.335696,
+  "l_ref_m": 145.459173,
+  "best": {
+   "cost_usd": 174.9023520894848,
+   "width_mm": 66.3,
+   "height_mm": 22.1,
+   "run": "cosize-v2",
+   "method": "cosize",
+   "mechanism": "?"
+  },
+  "by_run_method": {
+   "cosize-v2:cosize": 174.9023520894848,
+   "cosize-v1:cosize": 181.93901791132288,
+   "cosize-v32:cosize": 202.56482674291726,
+   "cosize-v32:cosize_axial": 202.56482674291726,
+   "cosize-v32:cosize_blind": 490.063344170633,
+   "cosize-v32:fixed_aspect": Infinity,
+   "cosize-v2:fixed_aspect": Infinity
+  }
+ },
+ {
+  "case": "Case3",
+  "reference": "atp_cool",
+  "t_ref_c": 108.582109,
+  "l_ref_m": 194.303127,
+  "best": {
+   "cost_usd": 103.48937830060522,
+   "width_mm": 48.5,
+   "height_mm": 22.5,
+   "run": "cosize-v1",
+   "method": "cosize",
+   "mechanism": "?"
+  },
+  "by_run_method": {
+   "cosize-v1:cosize": 103.48937830060522,
+   "cosize-v2:cosize": 107.26726215812265,
+   "cosize-v32:cosize": 109.18325661717704,
+   "cosize-v32:cosize_axial": 109.18325661717704,
+   "cosize-v32:cosize_blind": 110.13162483110158,
+   "cosize-v32:fixed_aspect": 169.954866183491,
+   "cosize-v2:fixed_aspect": 189.28772092369348
+  }
+ },
+ {
+  "case": "Case4",
+  "reference": "atp_cool",
+  "t_ref_c": 138.421084,
+  "l_ref_m": 48.520145,
+  "best": {
+   "cost_usd": 557.2949520214255,
+   "width_mm": 52.0,
+   "height_mm": 48.0,
+   "run": "cosize-v2",
+   "method": "cosize",
+   "mechanism": "?"
+  },
+  "by_run_method": {
+   "cosize-v2:cosize": 557.2949520214255,
+   "cosize-v32:fixed_aspect": 640.1272139991413,
+   "cosize-v32:cosize_blind": 643.296553589952,
+   "cosize-pilot3:fixed_aspect": Infinity,
+   "cosize-v2:fixed_aspect": Infinity
+  }
+ },
+ {
+  "case": "Case5",
+  "reference": "atp_cool",
+  "t_ref_c": 133.572173,
+  "l_ref_m": 123.621772,
+  "best": {
+   "cost_usd": 85.921487546356,
+   "width_mm": 27.0,
+   "height_mm": 36.0,
+   "run": "cosize-pilot2",
+   "method": "cosize",
+   "mechanism": "?"
+  },
+  "by_run_method": {
+   "cosize-pilot2:cosize": 85.921487546356,
+   "cosize-v1:cosize": 85.921487546356,
+   "cosize-v32:cosize": 86.92711311098913,
+   "cosize-v32:cosize_axial": 86.92711311098913,
+   "cosize-v2:cosize": 95.72813860470569,
+   "cosize-v32:cosize_blind": 98.73708278608007,
+   "cosize-v32:fixed_aspect": 154.07538449235653,
+   "cosize-v2:fixed_aspect": 176.74794460294558
+  }
+ },
+ {
+  "case": "Case6",
+  "reference": "atp_cool",
+  "t_ref_c": 121.529385,
+  "l_ref_m": 32.121022,
+  "best": {
+   "cost_usd": 213.75763556709097,
+   "width_mm": 33.0,
+   "height_mm": 49.5,
+   "run": "cosize-v32",
+   "method": "cosize_blind",
+   "mechanism": "start"
+  },
+  "by_run_method": {
+   "cosize-v32:cosize_blind": 213.75763556709097,
+   "cosize-v2:fixed_aspect": 303.35129856107864,
+   "cosize-v32:fixed_aspect": 318.63801273950446,
+   "cosize-v32:cosize": 431.98355671202444,
+   "cosize-v32:cosize_axial": 431.98355671202444
+  }
+ },
+ {
+  "case": "Case7",
+  "reference": "atp_cool",
+  "t_ref_c": 75.740838,
+  "l_ref_m": 49.863472,
+  "best": {
+   "cost_usd": 39.91774603281076,
+   "width_mm": 13.8,
+   "height_mm": 41.400000000000006,
+   "run": "cosize-v32",
+   "method": "cosize_axial",
+   "mechanism": "milp-proxy"
+  },
+  "by_run_method": {
+   "cosize-v32:cosize_axial": 39.91774603281076,
+   "cosize-v32:cosize": 42.290602209482245,
+   "cosize-v32:cosize_blind": 46.941901370857806,
+   "cosize-v32:fixed_aspect": 57.758434860550636,
+   "cosize-v2:fixed_aspect": 112.31862957124832
+  }
+ },
+ {
+  "case": "Case8",
+  "reference": "atp_cool",
+  "t_ref_c": 84.634401,
+  "l_ref_m": 10.04512,
+  "best": {
+   "cost_usd": 18.783855238719916,
+   "width_mm": 19.200000000000003,
+   "height_mm": 17.0,
+   "run": "cosize-v32",
+   "method": "fixed_aspect",
+   "mechanism": "relation_space(fixed aspect)"
+  },
+  "by_run_method": {
+   "cosize-v32:fixed_aspect": 18.783855238719916,
+   "cosize-v32:cosize_blind": 21.370312415584756,
+   "cosize-v42-pilot:cosize_shrink": 21.44244762604091,
+   "cosize-v41-pilot:cosize_shrink": 23.546598317073162,
+   "cosize-v5a-pilot:cosize_rs2": 29.236827592008986,
+   "cosize-v32:cosize": 33.03338579323382,
+   "cosize-v32:cosize_axial": 33.03338579323382
+  }
+ },
+ {
+  "case": "Case1",
+  "reference": "atp_wl",
+  "t_ref_c": 112.094497,
+  "l_ref_m": 11.967331,
+  "best": {
+   "cost_usd": 156.962000348646,
+   "width_mm": 38.0,
+   "height_mm": 36.2,
+   "run": "cosize-v1",
+   "method": "cosize",
+   "mechanism": "?"
+  },
+  "by_run_method": {
+   "cosize-v1:cosize": 156.962000348646,
+   "cosize-v2:cosize": 156.962000348646,
+   "cosize-v32:fixed_aspect": 171.62859959422897,
+   "cosize-v32:cosize": 175.02497012312168,
+   "cosize-v32:cosize_axial": 175.02497012312168,
+   "cosize-v32:cosize_blind": 175.02497012312168,
+   "cosize-v1:fixed_aspect": 176.74794460294558,
+   "cosize-v2:fixed_aspect": 176.74794460294558
+  }
+ },
+ {
+  "case": "Case2",
+  "reference": "atp_wl",
+  "t_ref_c": 80.395202,
+  "l_ref_m": 15.349188,
+  "best": {
+   "cost_usd": 391.2916437123985,
+   "width_mm": 46.400000000000006,
+   "height_mm": 46.400000000000006,
+   "run": "cosize-v32",
+   "method": "cosize",
+   "mechanism": "start"
+  },
+  "by_run_method": {
+   "cosize-v32:cosize": 391.2916437123985,
+   "cosize-v32:cosize_axial": 391.2916437123985,
+   "cosize-v32:cosize_blind": 391.2916437123985,
+   "cosize-v32:fixed_aspect": 714.1613614400227
+  }
+ },
+ {
+  "case": "Case3",
+  "reference": "atp_wl",
+  "t_ref_c": 134.949626,
+  "l_ref_m": 33.568306,
+  "best": {
+   "cost_usd": 91.87953886954516,
+   "width_mm": 26.0,
+   "height_mm": 39.0,
+   "run": "cosize-v32",
+   "method": "cosize_blind",
+   "mechanism": "start"
+  },
+  "by_run_method": {
+   "cosize-v32:cosize_blind": 91.87953886954516,
+   "cosize-v32:fixed_aspect": 100.1007912908921,
+   "cosize-v32:cosize": 121.6273257533739,
+   "cosize-v32:cosize_axial": 121.6273257533739
+  }
+ },
+ {
+  "case": "Case4",
+  "reference": "atp_wl",
+  "t_ref_c": 138.221716,
+  "l_ref_m": 43.150768,
+  "best": {
+   "cost_usd": Infinity,
+   "width_mm": 54.6,
+   "height_mm": 56.5,
+   "run": "cosize-v32",
+   "method": "fixed_aspect",
+   "mechanism": "relation_space(fixed aspect)"
+  },
+  "by_run_method": {
+   "cosize-v32:fixed_aspect": Infinity
+  }
+ },
+ {
+  "case": "Case5",
+  "reference": "atp_wl",
+  "t_ref_c": 156.728697,
+  "l_ref_m": 41.155198,
+  "best": {
+   "cost_usd": 143.8328322907649,
+   "width_mm": 36.2,
+   "height_mm": 36.2,
+   "run": "cosize-v32",
+   "method": "cosize",
+   "mechanism": "start"
+  },
+  "by_run_method": {
+   "cosize-v32:cosize": 143.8328322907649,
+   "cosize-v32:cosize_axial": 143.8328322907649,
+   "cosize-v32:cosize_blind": 143.8328322907649,
+   "cosize-v32:fixed_aspect": 148.13859357975778
+  }
+ },
+ {
+  "case": "Case6",
+  "reference": "atp_wl",
+  "t_ref_c": 118.540635,
+  "l_ref_m": 29.577383,
+  "best": {
+   "cost_usd": 246.95859864768045,
+   "width_mm": 40.1,
+   "height_mm": 43.400000000000006,
+   "run": "cosize-v32",
+   "method": "cosize_blind",
+   "mechanism": "start"
+  },
+  "by_run_method": {
+   "cosize-v32:cosize_blind": 246.95859864768045,
+   "cosize-v32:fixed_aspect": 249.39075911634188,
+   "cosize-v41-pilot:cosize_shrink": 267.10719803933046,
+   "cosize-v42-pilot:cosize_shrink": 267.10719803933046,
+   "cosize-v31-pilot2:cosize_rs": 301.9227363894104,
+   "cosize-v5a-pilot:cosize_rs2": 307.91649445948707,
+   "cosize-v4-pilot:cosize_shrink": 356.7855834035714,
+   "cosize-v31-pilot2:cosize": 363.89517553032,
+   "cosize-v32:cosize": 363.89517553032,
+   "cosize-v32:cosize_axial": 363.89517553032,
+   "cosize-v32:cosize_rs": 363.89517553032,
+   "cosize-v31-pilot2:fixed_aspect": 677.664043347477
+  }
+ },
+ {
+  "case": "Case7",
+  "reference": "atp_wl",
+  "t_ref_c": 88.941481,
+  "l_ref_m": 11.01927,
+  "best": {
+   "cost_usd": 42.13617980966747,
+   "width_mm": 29.900000000000002,
+   "height_mm": 20.0,
+   "run": "cosize-v32",
+   "method": "cosize",
+   "mechanism": "start"
+  },
+  "by_run_method": {
+   "cosize-v32:cosize": 42.13617980966747,
+   "cosize-v32:cosize_axial": 42.13617980966747,
+   "cosize-v32:cosize_blind": 42.13617980966747,
+   "cosize-v32:fixed_aspect": 53.938785550165264,
+   "cosize-v2:fixed_aspect": 55.09836005552074
+  }
+ },
+ {
+  "case": "Case8",
+  "reference": "atp_wl",
+  "t_ref_c": 85.042558,
+  "l_ref_m": 7.36291,
+  "best": {
+   "cost_usd": 30.278580763958693,
+   "width_mm": 17.6,
+   "height_mm": 26.400000000000002,
+   "run": "cosize-v32",
+   "method": "cosize",
+   "mechanism": "start"
+  },
+  "by_run_method": {
+   "cosize-v32:cosize": 30.278580763958693,
+   "cosize-v32:cosize_axial": 30.278580763958693,
+   "cosize-v32:cosize_blind": 30.278580763958693,
+   "cosize-v32:fixed_aspect": 35.22036388309155
+  }
+ },
+ {
+  "case": "Case9",
+  "reference": "atp_wl",
+  "t_ref_c": 145.154522,
+  "l_ref_m": 45.4017,
+  "best": {
+   "cost_usd": 649.2810360263123,
+   "width_mm": 36.300000000000004,
+   "height_mm": 72.5,
+   "run": "cosize-v32",
+   "method": "cosize_blind",
+   "mechanism": "milp-wire"
+  },
+  "by_run_method": {
+   "cosize-v32:cosize_blind": 649.2810360263123,
+   "cosize-v2:fixed_aspect": Infinity,
+   "cosize-v32:fixed_aspect": Infinity
+  }
+ },
+ {
+  "case": "Case10",
+  "reference": "atp_wl",
+  "t_ref_c": 131.142026,
+  "l_ref_m": 32.123361,
+  "best": {
+   "cost_usd": 193.02985156533762,
+   "width_mm": 39.2,
+   "height_mm": 39.2,
+   "run": "cosize-v32",
+   "method": "fixed_aspect",
+   "mechanism": "relation_space(fixed aspect)"
+  },
+  "by_run_method": {
+   "cosize-v32:fixed_aspect": 193.02985156533762,
+   "cosize-v2:fixed_aspect": 200.73626405045007,
+   "cosize-v32:cosize_blind": 206.71659344697736,
+   "cosize-v42-pilot:cosize_shrink": 219.22937630432142,
+   "cosize-v41-pilot:cosize_shrink": 308.91184929899384,
+   "cosize-v5a-pilot:cosize_rs2": 311.96179182563213,
+   "cosize-v32:cosize": 330.91806185089,
+   "cosize-v32:cosize_axial": 330.91806185089
+  }
+ }
+]
