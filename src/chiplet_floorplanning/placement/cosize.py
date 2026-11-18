@@ -278,7 +278,7 @@ def try_carrier(sized, base, base_um, gap_um, length_m, model, budget, size_s, t
             began = time.perf_counter()
             try:
                 rows, archive = relation_front(sized, gap_um, min(budget - used, rs_share or budget), seed, [start],
-                                          dict(milp_s=size_s, workers=workers))
+                                          dict(milp_s=size_s, workers=workers, resolution=resolution))
             except NoLegalStart:                  # no legal start (raised before any FV solve); other errors propagate
                 rows, archive = [], dict(solves=0)
             n = int(archive['solves'])

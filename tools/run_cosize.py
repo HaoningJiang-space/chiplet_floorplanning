@@ -10,6 +10,7 @@ FV budget, search for the cheapest interposer (cost.interposer_cost, silicon onl
 - cosize_rs2 (v5a, docs/cosize-v5-plan.md): every aspect family screened by jump-and-repair, relation_space refinement
   on the cheapest three;
 - cosize_sh (v6, docs/cosize-v6-plan.md): successive halving over mechanism x shape arms (placement/portfolio.py);
+- cosize_v7 (docs/cosize-v7-plan.md): one size schedule shared by a fixed cost-ordered cascade (placement/schedule.py);
 - fixed_aspect: size-then-place - the original aspect ratio, bisection on the area factor, relation_space at each
   size with an equal share of the budget, seeded with the smallest certified layout; the original carrier is
   certified by the checked anchor.
@@ -54,7 +55,7 @@ def references(evidence, case):
 
 
 def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, anchor=None, resolution=64,
-                 expected_j_k=0.0, wall_s=math.inf):
+                 expected_j_k=0.0, deadline=math.inf):
     """Bisection on the area factor at the original aspect ratio; relation_space per size. With `anchor` (v3.1) the
     reference layout is checked by the shared verify_anchor (1 FV, counted), certifies the original carrier itself
     (step 0, not grid-rounded) with its measured J, and every later size is seeded with the smallest certified
@@ -81,9 +82,9 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
                         rotation_deg=anchor.rotation_deg.tolist(), die_overshoot_k=check['die_j_k'], step=0,
                         layout_index=0, option=c['option'], fields=c['fields'], anchor=True)
         return dict(best=best, history=[dict(stop='fv budget')], fv_solves=used, anchor=check)
-    trial, began = 1.0, time.perf_counter()
+    trial = 1.0
     for step in range(BISECTION_STEPS + 1):
-        if time.perf_counter() - began >= wall_s:      # no size is started after the deadline
+        if time.perf_counter() >= deadline:            # no size is started after the shared deadline
             history.append(dict(step=step, stop='deadline'))
             break
         scale = math.sqrt(trial)
@@ -101,10 +102,10 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
                 start = None if base is None else fit_into(sized, base, base_um, gap_um)
                 record['started'] = start is not None
                 rows, archive = relation_front(sized, gap_um, share, seed, [start] if start is not None else [],
-                                          dict(milp_s=milp_s, workers=workers))
+                                               dict(milp_s=milp_s, workers=workers, resolution=resolution))
             used += int(archive['solves'])
             ok = [i for i, r in enumerate(rows) if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]
-            if time.perf_counter() - began > wall_s:   # finished after the deadline: not counted
+            if time.perf_counter() > deadline:         # finished after the deadline: not counted
                 ok, record['after_deadline'] = [], True
             if record.get('anchor'):
                 ok = [0]                    # verify_anchor accepted it: |J| <= REPRODUCE_K, length within budget
@@ -141,7 +142,7 @@ def main():
     p.add_argument('--evidence', type=Path, default=Path('docs/evidence/atplace-compare-rsg4-v3.json'))
     p.add_argument('--reference', choices=('atp_cool', 'atp_wl'), required=True)
     p.add_argument('--method', choices=('cosize', 'cosize_axial', 'cosize_blind', 'cosize_rs', 'cosize_shrink', 'cosize_rs2', 'cosize_sh',
-                                         'fixed_aspect'), required=True)
+                                         'cosize_v7', 'fixed_aspect'), required=True)
     p.add_argument('--anchor-dir', type=Path, required=True,
                    help='ATPlace layouts CaseN/<label>/layout.json; the reference layout anchors every method')
     p.add_argument('--front-dir', type=Path, default=None,
@@ -159,6 +160,7 @@ def main():
     p.add_argument('--seed', type=int, default=2)
     p.add_argument('--output', type=Path, required=True)
     args = p.parse_args()
+    deadline = time.perf_counter() + args.wall_s        # one absolute deadline, set before the anchor check
     if not (math.isfinite(args.delta_k) and args.delta_k >= 0):
         raise SystemExit('--delta-k must be finite and >= 0 (a limit below the anchor peak would admit an overshooting anchor)')
     if args.output.exists():
@@ -181,14 +183,18 @@ def main():
     limited = replace(problem, limit_c=np.full(problem.count, t_ref))
     anchor = from_atplace(problem, json.loads(anchor_file.read_text()))
     started = time.perf_counter()
-    if args.method == 'cosize_sh':
+    if args.method == 'cosize_v7':
+        from chiplet_floorplanning.placement.schedule import scheduled
+        out = scheduled(limited, anchor, args.gap_um, l_ref, args.fv_solves, deadline=deadline, envelope=ENVELOPE,
+                        threads=args.workers, workers=args.workers, seed=args.seed, expected_j_k=expected)
+    elif args.method == 'cosize_sh':
         from chiplet_floorplanning.placement.portfolio import successive_halving
         out = successive_halving(limited, anchor, args.gap_um, l_ref, args.fv_solves, wall_s=args.wall_s,
                                  envelope=ENVELOPE, threads=args.workers, workers=args.workers, seed=args.seed,
                                  expected_j_k=expected)
     elif args.method == 'fixed_aspect':
         out = fixed_aspect(limited, args.gap_um, l_ref, args.fv_solves, args.seed, args.milp_s, args.workers, anchor,
-                           expected_j_k=expected, wall_s=args.wall_s)
+                           expected_j_k=expected, deadline=deadline)
     else:
         inner = dict(cosize='proxy', cosize_axial='axial', cosize_blind='blind', cosize_rs='relation_space',
                      cosize_shrink='shrink', cosize_rs2='rs2')[args.method]
@@ -199,7 +205,7 @@ def main():
     clash = set(out) & set(RECORD_FIELDS)
     if clash:
         raise RuntimeError(f'search output shadows record fields: {sorted(clash)}')
-    record = dict(protocol_revision='cosize-v6', case=args.case.stem, method=args.method,
+    record = dict(protocol_revision='cosize-v7', case=args.case.stem, method=args.method,
                   reference=args.reference, reference_label=label, delta_k=args.delta_k if args.front_dir else None,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
                       k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),
@@ -207,7 +213,7 @@ def main():
                   resources=dict(workers=args.workers, threads=args.threads, size_s=args.size_s, wall_s=args.wall_s),
                   limit_c=limited.limit_c.tolist(), names=list(limited.names), thermal_kind='overshoot_k',
                   case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(), code=source_revision(),
-                  plan='docs/cosize-v6-plan.md', anchor_file=str(anchor_file),
+                  plan='docs/cosize-v7-plan.md', anchor_file=str(anchor_file),
                   anchor_sha256=hashlib.sha256(anchor_file.read_bytes()).hexdigest(),
                   **out)
     args.output.parent.mkdir(parents=True, exist_ok=True)

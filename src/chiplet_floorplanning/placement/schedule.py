@@ -1,0 +1,194 @@
+"""cosize v7: one size schedule shared by the mechanisms, a fixed cost-ordered cascade per target carrier
+(docs/cosize-v7-plan.md).
+
+Per shape (the original aspect, 1:3, 3:1; merged within 5%) a queue of target areas is kept between the smallest
+certified area `hi` (at first the largest carrier cheaper than the anchor's) and the proven lower bound `lo` (at
+first the dies' total area); the first target is the interval's midpoint. A target is tried by, in this fixed order, (1) the shape's smallest certified layout
+moved without scaling (centred, when the target holds it; one FV) or else mapped proportionally and repaired by the
+SLP chain (at most REPAIR_FV), then (2) relation_space on the target (at most RS_FV), seeded with those layouts, on the
+shape's own continuing random stream. A success sets hi and puts the lower half's midpoint at the head of the queue.
+An ordinary failure is not a proof: the midpoints towards hi and towards lo both join the end of the queue, so the
+lower half is still visited. Only a
+MILP infeasibility of the geometry and wire relaxation (none is run here) or a shared proof would raise lo. Each shape
+has at most TARGETS distinct grid sizes; the shapes take turns. The free-shape joint MILP then uses what is left
+(at most JOINT_S of wall time over the 1-4 field options), its certified designs going to the global pool only.
+Every count starts at one absolute deadline set before the anchor check; nothing starts after it and nothing
+returned after it counts.
+"""
+from dataclasses import replace
+import math
+import time
+
+import numpy as np
+
+from .cosize import area_ceiling, box, certify, fit_into, verify_anchor
+from .cost import CostParams, interposer_cost
+from .geometry import is_legal, pin_manhattan_um
+from .problem import Layout
+from .proxy import R_MM, ThermalProxy
+
+REPAIR_FV, RS_FV, TARGETS, JOINT_S = 13, 36, 6, 60.0
+SHAPES = (1/3, 3.0)
+
+
+def centred(layout, source_um, target_um):
+    """The layout moved, unscaled, so that its carrier's centre lands on the target carrier's centre."""
+    shift = (np.asarray(target_um) - np.asarray(source_um))/2
+    return replace(layout, centre_um=layout.centre_um + shift)
+
+
+def cascade(ctx, shape, area, deadline):
+    """Try one target carrier of `shape`: unscaled move, else mapping + SLP repair; then relation_space. Returns the
+    target record (each stage: executed, FV, seconds, certified, wire-feasible overshoot) and the certified
+    (layout, J, length) or None."""
+    from .methods import NoLegalStart, relation_front
+    w, h = box(area, shape['aspect'])
+    sized = replace(ctx['problem'], carrier_um=(w*1000, h*1000))
+    rec = dict(aspect=shape['aspect'], area_mm2=area, width_mm=w, height_mm=h, stages=[],
+               cost_usd=interposer_cost(w, h, ctx['params'])['total_usd'], fv_solves=0)
+    base, base_um, L = shape['base'], shape['base_um'], ctx['length_m']
+    ok, starts = None, []
+
+    def stage(name, fv, began, certified, j=None):
+        rec['stages'].append(dict(stage=name, fv_solves=fv, seconds=time.perf_counter() - began, certified=certified,
+                                  wire_ok_j_k=j))
+        rec['fv_solves'] += fv
+        ctx['fv'] += fv
+
+    if time.perf_counter() < deadline and ctx['fv_budget'] - ctx['fv'] > 1:
+        began = time.perf_counter()
+        moved = centred(base, base_um, sized.carrier_um) if w*1000 >= base_um[0] and h*1000 >= base_um[1] else None
+        if moved is not None and is_legal(sized, moved, ctx['gap_um']):          # same geometry and pin length
+            starts.append(moved)
+            ok, (j, l), n = certify(sized, moved, ctx['gap_um'], L, 0, ctx['resolution'])
+            stage('move', n, began, ok is not None, j if l <= L + 1e-9 else None)
+        if ok is None and time.perf_counter() < deadline:
+            began = time.perf_counter()
+            mapped = fit_into(sized, base, base_um, ctx['gap_um'])
+            if mapped is not None:
+                starts.append(mapped)
+                steps = min(REPAIR_FV, ctx['fv_budget'] - ctx['fv']) - 1
+                if steps >= 0:
+                    ok, (j, l), n = certify(sized, mapped, ctx['gap_um'], L, steps, ctx['resolution'])
+                    stage('repair', n, began, ok is not None, j if l <= L + 1e-9 else None)
+            else:
+                stage('repair', 0, began, False)
+    if ok is None and time.perf_counter() < deadline:
+        budget = min(RS_FV, ctx['fv_budget'] - ctx['fv'])
+        began = time.perf_counter()
+        if budget > 1:
+            try:
+                rows, archive = relation_front(sized, ctx['gap_um'], budget, shape['rng'], starts,
+                                               dict(milp_s=max(1.0, min(60.0, deadline - time.perf_counter())),
+                                                    workers=ctx['workers'], resolution=ctx['resolution']))
+            except NoLegalStart:
+                rows, archive = [], dict(solves=0)
+            within = [i for i, r in enumerate(rows) if r['length_m'] <= L + 1e-9]
+            good = [i for i in within if rows[i]['thermal'] <= 0]
+            if good:
+                i = min(good, key=lambda i: (rows[i]['thermal'], rows[i]['length_m'], i))
+                ok = (Layout(np.asarray(archive['centre_um'][i]), np.asarray(archive['rotation_deg'][i])),
+                      rows[i]['thermal'], rows[i]['length_m'])
+            stage('relation_space', int(archive['solves']), began, ok is not None,
+                  min((rows[i]['thermal'] for i in within), default=None))
+    if ok is not None and time.perf_counter() > deadline:
+        rec['after_deadline'], ok = True, None
+    rec['certified'] = ok is not None
+    rec['first_certifier'] = next((s['stage'] for s in rec['stages'] if s['certified']), None)
+    rec['elapsed_s'], rec['fv_total'] = time.perf_counter() - ctx['started'], ctx['fv']
+    if ok is not None:
+        rec.update(j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
+                   rotation_deg=ok[0].rotation_deg.tolist())
+    return rec, ok
+
+
+def joint_search(ctx, deadline):
+    """The free-shape joint sizing MILP (portfolio.joint_arm) with what is left: one call of at most JOINT_S."""
+    from .portfolio import joint_arm
+    left_s = min(JOINT_S, deadline - time.perf_counter())
+    budget = ctx['fv_budget'] - ctx['fv']
+    if left_s < 2 or budget <= 1 or ctx['model'] is None:
+        return []
+    gen = joint_arm(ctx, 'joint')
+    next(gen)
+    recs = gen.send((budget, left_s))
+    used = sum(x.get('fv_solves', 0) for x in recs if 'centre_um' not in x)
+    ctx['fv'] += used
+    if time.perf_counter() > deadline:
+        for x in recs:
+            if x.get('certified'):
+                x['certified'], x['after_deadline'] = False, True
+    return recs
+
+
+def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, envelope=1.25, resolution=64,
+              chain_steps=12, threads=16, workers=16, seed=2, params=CostParams(), expected_j_k=0.0):
+    """cosize v7 (module docstring). `deadline` is an absolute time.perf_counter() value shared with the baseline."""
+    deadline = math.inf if deadline is None else deadline
+    out = dict(best=None, history=[], fv_solves=0, calibration_solves=0, anchor=None, inner='v7')
+    if fv_budget < 1 or time.perf_counter() >= deadline:
+        out['history'].append(dict(stop='fv budget or deadline before the anchor check'))
+        return out
+    check = verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k)
+    out.update(anchor=check, fv_solves=1)
+    if not check['ok']:
+        out['history'].append(dict(stop='reproduction_mismatch'))
+        return out
+    w0, h0 = (s/1000 for s in problem.carrier_um)
+    c0 = interposer_cost(w0, h0, params)
+    pool = [] if not math.isfinite(c0['total_usd']) else [dict(arm='anchor', width_mm=w0, height_mm=h0,
+            cost_usd=c0['total_usd'], certified=True, j_k=check['j_k'], length_m=check['length_m'],
+            centre_um=anchor.centre_um.tolist(), rotation_deg=anchor.rotation_deg.tolist())]
+    ctx = dict(problem=problem, anchor=anchor, gap_um=gap_um, length_m=length_m, params=params, seed=seed,
+               workers=workers, threads=threads, resolution=resolution, chain_steps=chain_steps, fv=1,
+               fv_budget=fv_budget, started=time.perf_counter(), model=None, joint_margin=0.0)
+    die_area = float(problem.size_um.prod(axis=1).sum())/1e6
+    shapes = []
+    for k, a in enumerate([w0/h0] + [a for a in SHAPES if abs(math.log(a*h0/w0)) > math.log(1.05)]):
+        high = area_ceiling(a, die_area, w0*h0*envelope**2, c0['total_usd'], params)
+        if high is None:
+            out['history'].append(dict(aspect=a, stop='no carrier cheaper than the anchor'))
+            continue
+        shapes.append(dict(aspect=a, hi=high, lo=die_area, queue=[(die_area + high)/2], tried=set(), targets=0, base=anchor,
+                           base_um=problem.carrier_um, rng=np.random.default_rng([seed, k]), certified_hi=None))
+    while shapes and time.perf_counter() < deadline and fv_budget - ctx['fv'] > 1:
+        progressed = False
+        for s in shapes:
+            if not s['queue'] or s['targets'] >= TARGETS or time.perf_counter() >= deadline or fv_budget - ctx['fv'] <= 1:
+                continue
+            area = s['queue'].pop(0)
+            size = box(area, s['aspect'])
+            if size in s['tried'] or area <= s['lo']:
+                continue
+            s['tried'].add(size)
+            s['targets'] += 1
+            progressed = True
+            rec, ok = cascade(ctx, s, area, deadline)
+            out['history'].append(rec)
+            ref = s['certified_hi'] if s['certified_hi'] is not None else s['hi']
+            if ok is not None:
+                pool.append(dict(rec, arm=f"{rec['first_certifier']}:{s['aspect']:.3f}"))
+                s['certified_hi'], s['base'], s['base_um'] = area, ok[0], (rec['width_mm']*1000, rec['height_mm']*1000)
+                s['queue'].insert(0, (s['lo'] + area)/2)
+            else:                                        # not a proof: both halves stay queued, in turn
+                if area < ref:
+                    s['queue'].append((area + ref)/2)
+                s['queue'].append((s['lo'] + area)/2)
+        if not progressed:
+            break
+    if time.perf_counter() < deadline and fv_budget - ctx['fv'] > 1 and \
+            fv_budget - ctx['fv'] >= len(R_MM) + len({tuple(x) for x in problem.size_um}) + 2:
+        model = ThermalProxy.calibrate(problem, gap_um, resolution)
+        ctx['fv'] += model.solves
+        out['calibration_solves'] = model.solves
+        ctx.update(model=model, joint_margin=-(model.envelope_value(problem, anchor, gap_um) - check['j_k']))
+        joint = joint_search(ctx, deadline)
+        out['history'] += joint
+        pool += [x for x in joint if x.get('certified') and 'centre_um' in x]
+    out['fv_solves'] = ctx['fv']
+    if pool:
+        best = min(pool, key=lambda x: x['cost_usd'])
+        c = interposer_cost(best['width_mm'], best['height_mm'], params)
+        out['best'] = dict(best, option=c['option'], fields=c['fields'], anchor=best['arm'] == 'anchor')
+    out['search_wall_s'] = time.perf_counter() - ctx['started']
+    return out

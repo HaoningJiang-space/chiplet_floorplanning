@@ -628,7 +628,8 @@ def relation_front(problem, gap_um, budget, seed, extra_starts, method_options):
         starts += [length_descent(problem, sample_legal(problem, gap_um, rng), rng, gap_um) for _ in range(count)]
     except RuntimeError:
         pass                                    # tight carrier: MILP seeds only (relation_space builds its own)
-    with Evaluator(problem, gap_um, 64, method_options.pop('workers', 16)) as evaluator:
+    resolution = method_options.pop('resolution', 64)      # the caller's FV grid, so certification matches
+    with Evaluator(problem, gap_um, resolution, method_options.pop('workers', 16)) as evaluator:
         run = Run(evaluator, budget)
         METHODS['relation_space'](run, starts, rng, batch=48, **method_options)
         length, thermal, _ = run.arrays()

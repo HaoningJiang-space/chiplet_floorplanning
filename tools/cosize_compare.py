@@ -23,7 +23,8 @@ SWEEP = [dict(d0_per_cm2=d0, seam_yield=ys, wafer_usd=w)
 COMPARISONS = (('cosize', 'fixed_aspect'), ('cosize', 'cosize_blind'), ('cosize', 'cosize_axial'),
                ('cosize_shrink', 'fixed_aspect'),   # v4 (docs/cosize-v4-plan.md); missing runs make it incomplete
                ('cosize_rs2', 'fixed_aspect'),      # v5a (docs/cosize-v5-plan.md)
-               ('cosize_sh', 'fixed_aspect'))       # v6 (docs/cosize-v6-plan.md)
+               ('cosize_sh', 'fixed_aspect'),       # v6 (docs/cosize-v6-plan.md)
+               ('cosize_v7', 'fixed_aspect'))       # v7 (docs/cosize-v7-plan.md)
 
 
 def combos(with_case8_cool=False):
@@ -72,7 +73,8 @@ def verdict(outcomes, expected):
     return 'partial', coverage
 
 
-IDENTITY = ('protocol_revision', 'case_sha256', 'anchor_sha256', 't_ref_c', 'l_ref_m', 'seed', 'fv_budget', 'resources')
+IDENTITY = ('protocol_revision', 'case_sha256', 'anchor_sha256', 't_ref_c', 'l_ref_m', 'seed', 'fv_budget', 'resources',
+            'code', 'milp_s')
 # delta_k (family B) is covered by t_ref_c, which includes it.
 
 

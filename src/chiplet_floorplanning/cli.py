@@ -23,7 +23,8 @@ from .thermal import solve_steady
 def source_revision():
     root = Path(__file__).resolve().parents[2]
     if not (root / ".git").exists():
-        return {"commit": None, "dirty": None}
+        code = root / "CODE"                     # a deployed `git archive` copy names its commit here
+        return {"commit": code.read_text().strip() if code.exists() else None, "dirty": None}
     try:
         sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, stderr=subprocess.DEVNULL, text=True).strip()
         status = subprocess.check_output(["git", "status", "--porcelain"], cwd=root, text=True)

@@ -9,7 +9,8 @@ from cosize_compare import certified, combos, compare, outcome, verdict  # noqa:
 
 
 IDENTITY = dict(protocol_revision='cosize-v3.2', case_sha256='c', anchor_sha256='a', t_ref_c=100.0, l_ref_m=1.0,
-                seed=2, fv_budget=1000, resources=dict(workers=16, wall_s=2400))
+                seed=2, fv_budget=1000, resources=dict(workers=16, wall_s=2400), code=dict(commit='x', dirty=None),
+                milp_s=60)
 
 
 def run(best=None, history=(), **identity):
@@ -55,7 +56,7 @@ class CosizeCompareTest(unittest.TestCase):
             d = Path(d)
             (d/'case1-atp_wl-cosize.json').write_text(json.dumps(run((26., 30.))))
             for bad in (dict(protocol_revision='cosize-v2'), dict(seed=3), dict(fv_budget=100), dict(seed=None),
-                        dict(resources=dict(workers=8, wall_s=2400))):
+                        dict(resources=dict(workers=8, wall_s=2400)), dict(code=dict(commit='y', dirty=None)), dict(milp_s=30)):
                 (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(run((40., 40.), **bad)))
                 report = compare(d, [(1, 'atp_wl')])
                 self.assertEqual(report['cosize_vs_fixed_aspect']['rows']['case1-atp_wl']['outcome'], 'unpaired')

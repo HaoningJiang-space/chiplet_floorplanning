@@ -60,7 +60,8 @@ def rs_arm(ctx, aspect, name):
         began = time.perf_counter()
         try:
             rows, archive = relation_front(sized, ctx['gap_um'], budget, rng, [start],
-                                           dict(milp_s=max(1.0, min(60.0, time_s/2)), workers=ctx['workers']))
+                                           dict(milp_s=max(1.0, min(60.0, time_s/2)), workers=ctx['workers'],
+                                                resolution=ctx['resolution']))
         except NoLegalStart:
             rows, archive = [], dict(solves=0)
         within = [i for i, r in enumerate(rows) if r['length_m'] <= ctx['length_m'] + 1e-9]
