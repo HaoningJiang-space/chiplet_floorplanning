@@ -124,6 +124,22 @@ class AnchoredTest(unittest.TestCase):
         self.assertEqual(base['history'][0]['stop'], 'reproduction_mismatch')
         self.assertEqual(base['fv_solves'], 1)
 
+    def test_an_illegal_anchor_stops_all_three_drivers_before_the_first_fv(self):
+        from unittest.mock import patch
+        from run_cosize import fixed_aspect
+        from chiplet_floorplanning.placement.schedule import scheduled
+        limited = replace(self.p, limit_c=np.full(4, self.peak))
+        with patch.object(cosize_module, 'slp_chain', side_effect=AssertionError('illegal anchor reached FV')):
+            runs = [scheduled(limited, self.anchor, 30000, self.length, 10),
+                    anchored(limited, self.anchor, 30000, self.length, 10),
+                    fixed_aspect(limited, 30000, self.length, 10, 2, 5, 1, self.anchor)]
+        for out in runs:
+            self.assertIsNone(out['best'])
+            self.assertEqual(out['fv_solves'], 0)
+            self.assertFalse(out['anchor']['ok'])
+            self.assertTrue(out['anchor']['violations']['pairs'])
+            self.assertIsNone(out['anchor']['j_k'])
+
     def test_the_baseline_accepts_an_anchor_within_the_reproduction_tolerance(self):
         from unittest.mock import patch
         from run_cosize import fixed_aspect

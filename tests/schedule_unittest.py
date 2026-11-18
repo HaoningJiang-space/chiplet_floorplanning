@@ -46,6 +46,22 @@ class ChainTest(unittest.TestCase):
         self.assertAlmostEqual(lp.minimum_span_mm(0, 0.023), 32.0)
         self.assertAlmostEqual(lp.minimum_span_mm(1, 0.023), 6.0)
 
+    def test_rectangle_query_skips_only_axes_already_at_the_geometric_floor(self):
+        parent = replace(self.p, carrier_um=(32000., 40000.))
+        row = replace(self.row, centre_um=self.row.centre_um - [1000., 0.])
+        ctx = dict(gap_um=1000, length_m=1., fv=0, fv_budget=10)
+        with patch.object(schedule.TopologyLP, 'minimum_span_mm', return_value=None) as solve:
+            schedule.refine_rectangle(ctx, parent, row, float('inf'), float('inf'))
+        solve.assert_called_once_with(1, 1.)
+        elongated = replace(parent, carrier_um=(40000., 120000.))
+        with patch.object(schedule.TopologyLP, 'minimum_span_mm', return_value=None) as solve:
+            schedule.refine_rectangle(ctx, elongated, row, float('inf'), float('inf'))
+        solve.assert_called_once_with(1, 1.)   # geometry allows a narrower row, the 3:1 shape limit does not
+        tight = replace(parent, carrier_um=(32000., 6000.))
+        row = replace(row, centre_um=row.centre_um - [0., 17000.])
+        with patch.object(schedule, 'TopologyLP', side_effect=AssertionError('both sides at floor')):
+            self.assertEqual(schedule.refine_rectangle(ctx, tight, row, float('inf'), float('inf')), [])
+
     def test_rigid_move_certifies_a_smaller_carrier_without_scaling_the_layout(self):
         parent = replace(self.row, centre_um=self.row.centre_um + [2000., 0.])
         p = replace(self.p, limit_c=np.full(3, 300.))
@@ -110,10 +126,27 @@ class ScheduleTest(unittest.TestCase):
         search.assert_not_called()
         self.assertEqual(base['history'][-1]['stop'], 'deadline')
 
+    def test_baseline_skips_search_if_mapping_uses_the_remaining_time(self):
+        from run_cosize import fixed_aspect
+        now = [0.]
+
+        def slow_mapping(*args):
+            now[0] = 2.
+            return None
+
+        with patch('run_cosize.time.perf_counter', side_effect=lambda: now[0]), \
+                patch('run_cosize.fit_into', side_effect=slow_mapping), patch('run_cosize.relation_front') as search:
+            out = fixed_aspect(self.limited, 500, self.length, 100, 2, 60, 1,
+                               self.anchor, resolution=16, deadline=1.)
+        search.assert_not_called()
+        self.assertEqual(out['fv_solves'], 1)
+        self.assertEqual(out['history'][-1]['stop'], 'deadline')
+        self.assertEqual(out['best']['step'], 0)
+
     def test_a_late_anchor_is_charged_but_cannot_enter_either_comparison(self):
         from run_cosize import fixed_aspect
         for module in ('chiplet_floorplanning.placement.schedule', 'run_cosize'):
-            with patch(module + '.verify_anchor', return_value=dict(ok=True)), \
+            with patch(module + '.verify_anchor', return_value=dict(ok=True, fv_solves=1)), \
                     patch(module + '.time.perf_counter', side_effect=[0., 2.]):
                 if module == 'run_cosize':
                     out = fixed_aspect(self.limited, 500, self.length, 1, 2, 5, 1, self.anchor, deadline=1.)

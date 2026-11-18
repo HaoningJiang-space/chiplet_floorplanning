@@ -15,6 +15,7 @@ import math
 from pathlib import Path
 
 from chiplet_floorplanning.placement.cost import CostParams, interposer_cost
+from chiplet_floorplanning.placement.cosize import PROTOCOL_REVISION
 
 # 18 cost-parameter sets: defect density, stitch-seam yield, wafer price (docs/sizing-placement-plan.md).
 SWEEP = [dict(d0_per_cm2=d0, seam_yield=ys, wafer_usd=w)
@@ -83,7 +84,10 @@ IDENTITY = ('protocol_revision', 'case_sha256', 'anchor_sha256', 't_ref_c', 'l_r
 
 def mismatch(a, b):
     """Identity fields missing from either run or differing between them (such runs must not be paired)."""
-    return [k for k in IDENTITY if a.get(k) is None or b.get(k) is None or a[k] != b[k]]
+    fields = IDENTITY
+    if any(r.get('protocol_revision') == PROTOCOL_REVISION or 'gap_um' in r for r in (a, b)):
+        fields += ('gap_um',)
+    return [k for k in fields if a.get(k) is None or b.get(k) is None or a[k] != b[k]]
 
 
 def compare(runs, combos_list):
@@ -100,8 +104,16 @@ def compare(runs, combos_list):
             a, b = load(n, ref, ours), load(n, ref, theirs)
             if a is None or b is None:
                 continue
-            if mismatch(a, b):
-                rows[f'case{n}-{ref}'] = dict(outcome='unpaired', mismatch=mismatch(a, b))
+            differences = mismatch(a, b)
+            for side, record, method in (('ours', a, ours), ('theirs', b, theirs)):
+                if record.get('case') not in (f'Case{n}', f'case{n}'):
+                    differences.append(f'{side}.case')
+                if record.get('reference') != ref:
+                    differences.append(f'{side}.reference')
+                if record.get('method') != method:
+                    differences.append(f'{side}.method')
+            if differences:
+                rows[f'case{n}-{ref}'] = dict(outcome='unpaired', mismatch=differences)
                 continue
             failed = [side for side, r in (('ours', a), ('theirs', b)) if not (r.get('anchor') or {}).get('ok')]
             if failed:                                   # no checked anchor: the run did not search, not a loss

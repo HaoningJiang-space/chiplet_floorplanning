@@ -13,7 +13,7 @@ import math
 import numpy as np
 
 from .cost import CostParams, interposer_cost
-from .geometry import is_legal, pin_manhattan_um
+from .geometry import is_legal, pin_manhattan_um, violations
 from .lp import MILP_STATUS, legalize_relations, milp_relations, slp_chain
 from .problem import Layout
 from .proxy import R_MM, ThermalProxy
@@ -38,6 +38,7 @@ def certify(problem, layout, gap_um, length_m, steps, resolution):
 
 ASPECTS = (1/3, 1/2, 2/3, 1.0, 3/2, 2.0, 3.0)
 REPRODUCE_K, REPRODUCE_M = 1e-6, 1e-9
+PROTOCOL_REVISION = 'cosize-v8.1'  # records the physical clearance used for certification
 EVEN = (0.0, 0.25, 0.5, 0.75)   # trial areas: high - f (high - low), plus the carriers just below each cost step
 MAX_TRIALS, REFINE = 8, 2
 
@@ -77,17 +78,16 @@ def fit_into(problem, layout, source_um, gap_um):
 
 
 def verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k=0.0):
-    """One FV solve of the reference layout on its own carrier: legality, exact pin length and every die's
-    overshoot J against problem.limit_c. Shared by every method; ok only if the declared limits reproduce, i.e. the
-    peak overshoot is expected_j_k (0 when the limit is the anchor's own peak; -delta when it is delta above it)."""
+    """Check geometry and exact pin length; evaluate the peak overshoot with one FV solve on a legal anchor."""
+    geometry = violations(problem, anchor, gap_um)
+    length = float(pin_manhattan_um(problem, anchor).sum()/1e6)
+    check = dict(expected_j_k=expected_j_k, length_m=length, carrier_mm=[s/1000 for s in problem.carrier_um])
+    if geometry['outside'] or geometry['pairs']:
+        return dict(check, ok=False, legal=False, violations=geometry, fv_solves=0, j_k=None, die_j_k=None)
     (_, peaks), = slp_chain((problem, anchor, gap_um, resolution, length_m, 0, 'length'))
-    j, length = float(peaks.max()), pin_manhattan_um(problem, anchor).sum()/1e6
-    check = dict(j_k=j, die_j_k=np.asarray(peaks, float).tolist(), length_m=length,
-                 legal=bool(is_legal(problem, anchor, gap_um)), carrier_mm=[s/1000 for s in problem.carrier_um])
-    check.update(expected_j_k=expected_j_k)
-    check['ok'] = (check['legal'] and abs(j - expected_j_k) <= REPRODUCE_K and j <= REPRODUCE_K
-                   and length <= length_m + REPRODUCE_M)            # reproduces, and is itself within the limits
-    return check
+    j = float(peaks.max())
+    ok = abs(j - expected_j_k) <= REPRODUCE_K and j <= REPRODUCE_K and length <= length_m + REPRODUCE_M
+    return dict(check, ok=ok, legal=True, fv_solves=1, j_k=j, die_j_k=np.asarray(peaks, float).tolist())
 
 
 def fixed_carrier(problem, gap_um, length_m, model, start, time_s, threads, directions, max_cuts=3):
@@ -262,7 +262,7 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
         out['history'].append(dict(stop='fv budget before the anchor check'))
         return out
     check = verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k)
-    out.update(anchor=check, fv_solves=1)
+    out.update(anchor=check, fv_solves=check['fv_solves'])
     if not check['ok']:
         out['history'].append(dict(stop='reproduction_mismatch'))
         return out

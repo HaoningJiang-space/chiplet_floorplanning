@@ -207,8 +207,15 @@ def refine_rectangle(ctx, parent, layout, cost_cap, deadline):
     if ctx['fv'] >= ctx['fv_budget'] or time.perf_counter() >= deadline:
         return records
     relations = topology(parent, layout, gap)
+    extent_mm, _ = min_extent(parent, layout, relations, gap)
+    # With one side fixed, both the longest chain and the 3:1 limit bound the other before any wire LP.
+    aspect_floor_mm = [side_um/1000/3 for side_um in reversed(upper_um)]
+    axes = [a for a, span in enumerate(extent_mm)
+            if round(ceil_grid(max(span, aspect_floor_mm[a]))*1000) < upper_um[a]]
+    if not axes:
+        return records
     lp = TopologyLP(envelope, layout, gap, pairs=0, relations=relations)
-    for axis in (0, 1):
+    for axis in axes:
         if ctx['fv'] >= ctx['fv_budget'] or time.perf_counter() >= deadline:
             break
         span = lp.minimum_span_mm(axis, length)
@@ -216,7 +223,7 @@ def refine_rectangle(ctx, parent, layout, cost_cap, deadline):
             continue
         target = list(upper_um)
         fixed_mm = target[1-axis]/1000
-        span_mm = ceil_grid(max(span, fixed_mm/3))
+        span_mm = ceil_grid(max(span, aspect_floor_mm[axis]))
         target[axis] = round(span_mm*1000)
         if target[axis] >= upper_um[axis] or span_mm > 3*fixed_mm + 1e-9:
             continue
@@ -315,7 +322,7 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
         out['history'].append(dict(stop='fv budget or deadline before the anchor check'))
         return out
     check = verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k)
-    out.update(anchor=check, fv_solves=1)
+    out.update(anchor=check, fv_solves=check['fv_solves'])
     if not check['ok']:
         out['history'].append(dict(stop='reproduction_mismatch'))
         return out

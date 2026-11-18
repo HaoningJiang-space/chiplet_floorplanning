@@ -24,14 +24,14 @@ import numpy as np
 
 from chiplet_floorplanning.cli import source_revision
 from chiplet_floorplanning.placement import Layout, Problem
-from chiplet_floorplanning.placement.cosize import anchored, ceil_grid, fit_into, verify_anchor
+from chiplet_floorplanning.placement.cosize import PROTOCOL_REVISION, anchored, ceil_grid, fit_into, verify_anchor
 from chiplet_floorplanning.placement.methods import NoLegalStart, relation_front
 from chiplet_floorplanning.placement.cost import interposer_cost
 from atplace_compare import from_atplace
 
 ENVELOPE = 1.25
 RECORD_FIELDS = ('protocol_revision', 'case', 'method', 'reference', 'reference_label', 'delta_k', 't_ref_c', 'l_ref_m',
-                 'original', 'seed', 'fv_budget', 'milp_s', 'wall_s', 'resources', 'limit_c', 'names', 'thermal_kind',
+                 'original', 'seed', 'fv_budget', 'gap_um', 'milp_s', 'wall_s', 'resources', 'limit_c', 'names', 'thermal_kind',
                  'case_sha256', 'code', 'plan', 'anchor_file', 'anchor_sha256')
 BISECTION_STEPS = 5
 
@@ -68,7 +68,7 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
         if time.perf_counter() >= deadline:
             return dict(best=None, history=[dict(stop='deadline')], fv_solves=0, anchor=None)
         check = verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k)
-        used = 1
+        used = check['fv_solves']
         if not check['ok']:
             return dict(best=None, history=[dict(stop='reproduction_mismatch')], fv_solves=used, anchor=check)
         if time.perf_counter() >= deadline:
@@ -103,8 +103,12 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
             else:
                 start = None if base is None else fit_into(sized, base, base_um, gap_um)
                 record['started'] = start is not None
+                remaining_s = deadline - time.perf_counter()
+                if remaining_s <= 0:
+                    history.append(dict(record, stop='deadline', certified=False, fv_solves=0))
+                    break
                 rows, archive = relation_front(sized, gap_um, share, seed, [start] if start is not None else [],
-                                               dict(milp_s=milp_s, workers=workers, resolution=resolution))
+                                               dict(milp_s=min(milp_s, remaining_s), workers=workers, resolution=resolution))
             used += int(archive['solves'])
             ok = [i for i, r in enumerate(rows) if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]
             if time.perf_counter() > deadline:         # finished after the deadline: not counted
@@ -162,7 +166,6 @@ def main():
     p.add_argument('--seed', type=int, default=2)
     p.add_argument('--output', type=Path, required=True)
     args = p.parse_args()
-    deadline = time.perf_counter() + args.wall_s        # one absolute deadline, set before the anchor check
     if not (math.isfinite(args.delta_k) and args.delta_k >= 0):
         raise SystemExit('--delta-k must be finite and >= 0 (a limit below the anchor peak would admit an overshooting anchor)')
     if args.output.exists():
@@ -185,6 +188,7 @@ def main():
     limited = replace(problem, limit_c=np.full(problem.count, t_ref))
     anchor = from_atplace(problem, json.loads(anchor_file.read_text()))
     started = time.perf_counter()
+    deadline = started + args.wall_s
     if args.method in ('cosize_rect', 'cosize_v8'):
         from chiplet_floorplanning.placement.schedule import scheduled
         out = scheduled(limited, anchor, args.gap_um, l_ref, args.fv_solves, deadline=deadline, envelope=ENVELOPE,
@@ -202,7 +206,7 @@ def main():
     clash = set(out) & set(RECORD_FIELDS)
     if clash:
         raise RuntimeError(f'search output shadows record fields: {sorted(clash)}')
-    record = dict(protocol_revision='cosize-v8', case=args.case.stem, method=args.method,
+    record = dict(protocol_revision=PROTOCOL_REVISION, case=args.case.stem, method=args.method, gap_um=args.gap_um,
                   reference=args.reference, reference_label=label, delta_k=args.delta_k if args.front_dir else None,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
                       k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),

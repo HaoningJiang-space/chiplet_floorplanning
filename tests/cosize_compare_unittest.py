@@ -5,7 +5,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from cosize_compare import certified, combos, compare, outcome, verdict  # noqa: E402
+from cosize_compare import PROTOCOL_REVISION, certified, combos, compare, mismatch, outcome, verdict  # noqa: E402
 
 
 IDENTITY = dict(protocol_revision='cosize-v3.2', case_sha256='c', anchor_sha256='a', t_ref_c=100.0, l_ref_m=1.0,
@@ -13,8 +13,9 @@ IDENTITY = dict(protocol_revision='cosize-v3.2', case_sha256='c', anchor_sha256=
                 milp_s=60)
 
 
-def run(best=None, history=(), **identity):
-    return dict(anchor=dict(ok=True, carrier_mm=[42.0, 42.0]), best=best and dict(width_mm=best[0], height_mm=best[1],
+def run(best=None, history=(), method='cosize', **identity):
+    return dict(case='Case1', reference='atp_wl', method=method,
+                anchor=dict(ok=True, carrier_mm=[42.0, 42.0]), best=best and dict(width_mm=best[0], height_mm=best[1],
                                                                                   cost_usd=0.0), history=[
         dict(width_mm=w, height_mm=h, certified=c) for w, h, c in history],
         original=dict(width_mm=42.0, height_mm=42.0, total_usd=253.9), fv_solves=10, wall_s=1.0,
@@ -46,7 +47,7 @@ class CosizeCompareTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             d = Path(d)
             (d/'case1-atp_wl-cosize.json').write_text(json.dumps(run((26., 30.), [(26., 30., True)])))
-            (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(run((40., 40.), [(40., 40., True)])))
+            (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(run((40., 40.), [(40., 40., True)], method='fixed_aspect')))
             report = compare(d, [(1, 'atp_wl')])
             row = report['cosize_vs_fixed_aspect']['rows']['case1-atp_wl']
             self.assertEqual(row['outcome'], 'win')
@@ -62,7 +63,7 @@ class CosizeCompareTest(unittest.TestCase):
             (d/'case1-atp_wl-cosize.json').write_text(json.dumps(run((26., 30.))))
             for bad in (dict(protocol_revision='cosize-v2'), dict(seed=3), dict(fv_budget=100), dict(seed=None),
                         dict(resources=dict(workers=8, wall_s=2400)), dict(code=dict(commit='y', dirty=None)), dict(milp_s=30)):
-                (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(run((40., 40.), **bad)))
+                (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(run((40., 40.), method='fixed_aspect', **bad)))
                 report = compare(d, [(1, 'atp_wl')])
                 self.assertEqual(report['cosize_vs_fixed_aspect']['rows']['case1-atp_wl']['outcome'], 'unpaired')
                 self.assertEqual(report['cosize_vs_fixed_aspect']['verdict'], 'incomplete')
@@ -71,12 +72,32 @@ class CosizeCompareTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             d = Path(d)
             (d/'case1-atp_wl-cosize.json').write_text(json.dumps(run((26., 30.), [(26., 30., True)])))
-            base = run(None)
+            base = run(None, method='fixed_aspect')
             base['anchor'] = dict(ok=False)
             (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(base))
             report = compare(d, [(1, 'atp_wl')])
             self.assertEqual(report['cosize_vs_fixed_aspect']['rows']['case1-atp_wl']['outcome'], 'unpaired')
             self.assertEqual(report['cosize_vs_fixed_aspect']['verdict'], 'incomplete')
+
+    def test_clearance_is_required_on_new_records_and_compared_when_available(self):
+        old = run()
+        new = dict(old, protocol_revision=PROTOCOL_REVISION)
+        self.assertEqual(mismatch(old, old), [])
+        self.assertEqual(mismatch(new, new), ['gap_um'])
+        self.assertEqual(mismatch(dict(new, gap_um=0), dict(new, gap_um=1)), ['gap_um'])
+        self.assertEqual(mismatch(dict(new, gap_um=0), dict(new, gap_um=0)), [])
+
+    def test_filename_cannot_relabel_a_search(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d/'case1-atp_wl-fixed_aspect.json').write_text(json.dumps(run(method='fixed_aspect')))
+            renamed = dict(run(method='cosize_rect'), case='Case2', reference='atp_cool')
+            (d/'case1-atp_wl-cosize_v8.json').write_text(json.dumps(renamed))
+            pair = compare(d, [(1, 'atp_wl')])['cosize_v8_vs_fixed_aspect']
+            row = pair['rows']['case1-atp_wl']
+            self.assertEqual(row['outcome'], 'unpaired')
+            self.assertEqual(set(row['mismatch']), {'ours.case', 'ours.reference', 'ours.method'})
+            self.assertEqual(pair['coverage']['found'], 0)
 
     def test_the_checked_anchor_stays_in_the_repriced_pool(self):
         r = run((26., 30.), [(26., 30., True)])

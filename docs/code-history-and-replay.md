@@ -67,6 +67,8 @@ python tools/replay_at_commit.py --commit 64d899e -- python tools/run_cosize.py 
 
 逐次复现使用各计划记录的实际运行提交、输入和资源。冻结 v8 的运行提交为 `76173f3`。[v4](cosize-v4-plan.md) · [v5a](cosize-v5-plan.md) · [v6](cosize-v6-plan.md) · [v7](cosize-v7-plan.md) · [v8](cosize-v8-plan.md)
 
+从记录格式 `cosize-v8.1` 起，所有方法都将芯粒间距写入 `gap_um`。配对要求间距一致，并逐文件检查实际运行的案例、参照和方法。冻结 v8 的旧记录未保存间距，重放时应使用原命令中的设置。若锚点违反几何要求，结果会列出越界芯粒和间距冲突，FV 计数为零。
+
 ## 为什么改复现方式
 
 旧冻结计划把源文件 SHA-256 写入计划，`check_plan` 又逐级调用上一阶段检查
