@@ -1,5 +1,8 @@
-"""cosize v7: one size schedule shared by the mechanisms, a fixed cost-ordered cascade per target carrier
-(docs/cosize-v7-plan.md).
+"""cosize v7 / v8: one size schedule shared by the mechanisms, a fixed cost-ordered cascade per target carrier
+(docs/cosize-v7-plan.md, docs/cosize-v8-plan.md). v8 adds two cascade stages between the repair and relation_space:
+the parent's binding chain flipped (`chain_flip`: the longest path of the separation graph is the smallest carrier
+that keeps the parent's relations; links of that chain are moved to the other axis, LP only, then the SLP repair)
+and the min-wire MILP generator (v6 / v3.2 blind's), whose infeasibility proves the box and smaller ones out.
 
 Per shape (the original aspect, 1:3, 3:1; merged within 5%) a queue of target areas is kept between the smallest
 certified area `hi` (at first the largest carrier cheaper than the anchor's) and the proven lower bound `lo` (at
@@ -24,10 +27,11 @@ import numpy as np
 from .cosize import area_ceiling, box, certify, fit_into, verify_anchor
 from .cost import CostParams, interposer_cost
 from .geometry import is_legal, pin_manhattan_um
+from .lp import legalize_relations
 from .problem import Layout
 from .proxy import R_MM, ThermalProxy
 
-REPAIR_FV, RS_FV, TARGETS, JOINT_S = 13, 36, 6, 60.0
+REPAIR_FV, RS_FV, TARGETS, JOINT_S, MILP_S = 13, 36, 6, 60.0, 60.0
 SHAPES = (1/3, 3.0)
 
 
@@ -37,8 +41,79 @@ def centred(layout, source_um, target_um):
     return replace(layout, centre_um=layout.centre_um + shift)
 
 
+def min_extent(problem, layout, relations, gap_um):
+    """Smallest carrier width and height that keep `relations` ((i, j, axis, sign), as centre_relations gives them):
+    per axis the longest path of the separation graph, half sizes at both ends. Returns ((w_mm, h_mm), chains) with
+    each axis's critical chain as a list of dies."""
+    n = problem.count
+    size = np.where((layout.rotation_deg % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)/1000
+    gap = gap_um/1000
+    extent, chains = [], []
+    for axis in (0, 1):
+        succ = [[] for _ in range(n)]
+        indeg = np.zeros(n, int)
+        for i, j, a, sign in relations:
+            if a == axis:
+                first, second = (i, j) if sign > 0 else (j, i)
+                succ[first].append(second)
+                indeg[second] += 1
+        dist, prev = size[:, axis]/2, [-1]*n
+        dist = dist.copy()
+        order = [k for k in range(n) if indeg[k] == 0]
+        for k in order:                                  # Kahn's order; the relations from centres are acyclic
+            for m in succ[k]:
+                d = dist[k] + (size[k, axis] + size[m, axis])/2 + gap
+                if d > dist[m]:
+                    dist[m], prev[m] = d, k
+                indeg[m] -= 1
+                if indeg[m] == 0:
+                    order.append(m)
+        end = int(np.argmax(dist + size[:, axis]/2))
+        chain = [end]
+        while prev[chain[-1]] >= 0:
+            chain.append(prev[chain[-1]])
+        extent.append(float(dist[end] + size[end, axis]/2))
+        chains.append(chain[::-1])
+    return tuple(extent), chains
+
+
+def chain_flip(sized, layout, gap_um, max_flips=3):
+    """Relations that fit `sized`: starting from the layout's centre relations, while an axis's longest chain is
+    longer than the carrier, flip the chain link whose move to the other axis lowers the worse overflow most (the
+    side taken from the centres). Then the exact length LP inside the carrier gives the layout. LP only, no FV.
+    Returns (layout or None, flips)."""
+    from .lp import TopologyLP, centre_relations
+    w, h = (v/1000 for v in sized.carrier_um)
+    rel = {(i, j): (axis, sign) for i, j, axis, sign in centre_relations(sized, layout, gap_um)}
+    c = layout.centre_um
+    as_list = lambda r: [(i, j, a, s) for (i, j), (a, s) in r.items()]    # noqa: E731
+    over = lambda e: max(e[0] - w, e[1] - h)                              # noqa: E731
+    flips = 0
+    extent, chains = min_extent(sized, layout, as_list(rel), gap_um)
+    while over(extent) > 1e-9 and flips < max_flips:
+        axis = 0 if extent[0] - w >= extent[1] - h else 1
+        chain, best = chains[axis], None
+        for a, b in zip(chain, chain[1:]):
+            i, j = min(a, b), max(a, b)
+            trial = dict(rel)
+            trial[(i, j)] = (1 - axis, 1 if c[j, 1 - axis] >= c[i, 1 - axis] else -1)
+            e, ch = min_extent(sized, layout, as_list(trial), gap_um)
+            if best is None or over(e) < best[0]:
+                best = (over(e), trial, e, ch)
+        if best is None or best[0] >= over(extent) - 1e-9:
+            return None, flips                           # no single flip shortens the binding chain
+        _, rel, extent, chains = best
+        flips += 1
+    if over(extent) > 1e-9:
+        return None, flips
+    lp = TopologyLP(sized, layout, gap_um, pairs=0, relations=as_list(rel))
+    x = lp._solve(lp.length)
+    return (None if x is None else lp._layout(x)), flips
+
+
 def cascade(ctx, shape, area, deadline):
-    """Try one target carrier of `shape`: unscaled move, else mapping + SLP repair; then relation_space. Returns the
+    """Try one target carrier of `shape`: unscaled move, else mapping + SLP repair; with v8 then the chain flip and
+    the min-wire MILP generator; then relation_space (skipped once the MILP proves the box infeasible). Returns the
     target record (each stage: executed, FV, seconds, certified, wire-feasible overshoot) and the certified
     (layout, J, length) or None."""
     from .methods import NoLegalStart, relation_front
@@ -73,7 +148,36 @@ def cascade(ctx, shape, area, deadline):
                     stage('repair', n, began, ok is not None, j if l <= L + 1e-9 else None)
             else:
                 stage('repair', 0, began, False)
-    if ok is None and time.perf_counter() < deadline:
+    if ok is None and ctx.get('v8') and time.perf_counter() < deadline and ctx['fv_budget'] - ctx['fv'] > 1:
+        began = time.perf_counter()                      # the parent's binding chain: flip links, LP, repair
+        flipped, flips = chain_flip(sized, base, ctx['gap_um'])
+        if flipped is not None:
+            starts.append(flipped)
+            steps = min(REPAIR_FV, ctx['fv_budget'] - ctx['fv']) - 1
+            ok, (j, l), n = certify(sized, flipped, ctx['gap_um'], L, steps, ctx['resolution'])
+            stage('chain_flip', n, began, ok is not None, j if l <= L + 1e-9 else None)
+            rec['stages'][-1]['flips'] = flips
+        else:
+            stage('chain_flip', 0, began, False)
+            rec['stages'][-1]['flips'] = flips
+    if ok is None and ctx.get('v8') and time.perf_counter() < deadline and ctx['fv_budget'] - ctx['fv'] > 1:
+        from .cosize import fixed_carrier                 # the min-wire MILP topology (v6/v3.2 blind's generator)
+        began = time.perf_counter()
+        layout, statuses, proof, _ = fixed_carrier(sized, ctx['gap_um'], L, None, starts[0] if starts else None,
+                                                   max(1.0, min(MILP_S, deadline - time.perf_counter())),
+                                                   ctx['threads'], None)
+        legal = None if layout is None else legalize_relations(sized, layout, ctx['gap_um'])
+        n, j = 0, None
+        if legal is not None and is_legal(sized, legal, ctx['gap_um']):
+            starts.append(legal)
+            steps = min(REPAIR_FV, ctx['fv_budget'] - ctx['fv']) - 1
+            ok, (jj, l), n = certify(sized, legal, ctx['gap_um'], L, steps, ctx['resolution'])
+            j = jj if l <= L + 1e-9 else None
+        stage('milp_wire', n, began, ok is not None, j)
+        rec['stages'][-1]['solver'] = statuses
+        if proof:
+            rec['proof'] = proof                         # geometry + wire relaxation: holds for smaller boxes too
+    if ok is None and not rec.get('proof') and time.perf_counter() < deadline:
         budget = min(RS_FV, ctx['fv_budget'] - ctx['fv'])
         began = time.perf_counter()
         if budget > 1:
@@ -122,10 +226,10 @@ def joint_search(ctx, deadline):
 
 
 def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, envelope=1.25, resolution=64,
-              chain_steps=12, threads=16, workers=16, seed=2, params=CostParams(), expected_j_k=0.0):
+              chain_steps=12, threads=16, workers=16, seed=2, params=CostParams(), expected_j_k=0.0, v8=False):
     """cosize v7 (module docstring). `deadline` is an absolute time.perf_counter() value shared with the baseline."""
     deadline = math.inf if deadline is None else deadline
-    out = dict(best=None, history=[], fv_solves=0, calibration_solves=0, anchor=None, inner='v7')
+    out = dict(best=None, history=[], fv_solves=0, calibration_solves=0, anchor=None, inner='v8' if v8 else 'v7')
     if fv_budget < 1 or time.perf_counter() >= deadline:
         out['history'].append(dict(stop='fv budget or deadline before the anchor check'))
         return out
@@ -141,7 +245,7 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
             centre_um=anchor.centre_um.tolist(), rotation_deg=anchor.rotation_deg.tolist())]
     ctx = dict(problem=problem, anchor=anchor, gap_um=gap_um, length_m=length_m, params=params, seed=seed,
                workers=workers, threads=threads, resolution=resolution, chain_steps=chain_steps, fv=1,
-               fv_budget=fv_budget, started=time.perf_counter(), model=None, joint_margin=0.0)
+               fv_budget=fv_budget, started=time.perf_counter(), model=None, joint_margin=0.0, v8=v8)
     die_area = float(problem.size_um.prod(axis=1).sum())/1e6
     shapes = []
     for k, a in enumerate([w0/h0] + [a for a in SHAPES if abs(math.log(a*h0/w0)) > math.log(1.05)]):
@@ -170,6 +274,11 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
                 pool.append(dict(rec, arm=f"{rec['first_certifier']}:{s['aspect']:.3f}"))
                 s['certified_hi'], s['base'], s['base_um'] = area, ok[0], (rec['width_mm']*1000, rec['height_mm']*1000)
                 s['queue'].insert(0, (s['lo'] + area)/2)
+            elif rec.get('proof'):                       # proven: this box and smaller ones of the shape are out
+                s['lo'] = max(s['lo'], area)
+                s['queue'] = [a for a in s['queue'] if a > s['lo']]
+                if area < ref:
+                    s['queue'].insert(0, (area + ref)/2)
             else:                                        # not a proof: both halves stay queued, in turn
                 if area < ref:
                     s['queue'].append((area + ref)/2)

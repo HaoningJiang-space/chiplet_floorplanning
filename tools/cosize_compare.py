@@ -20,11 +20,14 @@ from chiplet_floorplanning.placement.cost import CostParams, interposer_cost
 SWEEP = [dict(d0_per_cm2=d0, seam_yield=ys, wafer_usd=w)
          for d0, ys, w in itertools.product((0.06, 0.15, 0.3), (1.0, 0.99, 0.95), (500.0, 1937.0))]
 
+DEVELOPMENT = ('case1-atp_cool', 'case6-atp_wl', 'case10-atp_wl', 'case8-atp_cool')   # the v4-v7 pilot set
+
 COMPARISONS = (('cosize', 'fixed_aspect'), ('cosize', 'cosize_blind'), ('cosize', 'cosize_axial'),
                ('cosize_shrink', 'fixed_aspect'),   # v4 (docs/cosize-v4-plan.md); missing runs make it incomplete
                ('cosize_rs2', 'fixed_aspect'),      # v5a (docs/cosize-v5-plan.md)
                ('cosize_sh', 'fixed_aspect'),       # v6 (docs/cosize-v6-plan.md)
-               ('cosize_v7', 'fixed_aspect'))       # v7 (docs/cosize-v7-plan.md)
+               ('cosize_v7', 'fixed_aspect'),       # v7 (docs/cosize-v7-plan.md)
+               ('cosize_v8', 'fixed_aspect'))       # v8 (docs/cosize-v8-plan.md)
 
 
 def combos(with_case8_cool=False):
@@ -109,8 +112,12 @@ def compare(runs, combos_list):
                                           theirs_best=b.get('best') and {k: b['best'][k] for k in ('width_mm', 'height_mm', 'option', 'fields') if k in b['best']},
                                           original=a.get('original'))
         result, coverage = verdict(outcomes, len(combos_list))
-        report[f'{ours}_vs_{theirs}'] = dict(verdict=result, coverage=coverage, rows=rows)
-        print(f'{ours} vs {theirs}:', result, coverage, flush=True)
+        held = [f'case{n}-{ref}' for n, ref in combos_list if f'case{n}-{ref}' not in DEVELOPMENT]
+        held_result, held_coverage = verdict({k: o for k, o in outcomes.items() if k in held}, len(held))
+        report[f'{ours}_vs_{theirs}'] = dict(verdict=result, coverage=coverage, rows=rows,
+                                             held_out=dict(combinations=held, verdict=held_result,
+                                                           coverage=held_coverage))
+        print(f'{ours} vs {theirs}:', result, coverage, '| held-out', held_result, held_coverage, flush=True)
     savings = {}
     for n, ref in combos_list:
         a = load(n, ref, 'cosize')
@@ -127,7 +134,7 @@ def main():
     p.add_argument('--output', type=Path, required=True)
     args = p.parse_args()
     report = compare(args.runs, combos(args.with_case8_cool))
-    args.output.write_text(json.dumps(dict(plan='docs/cosize-v3-plan.md', **report), indent=1, default=float) + '\n')
+    args.output.write_text(json.dumps(dict(plan='docs/cosize-v8-plan.md', **report), indent=1, default=float) + '\n')
 
 
 if __name__ == '__main__':

@@ -13,6 +13,31 @@ from chiplet_floorplanning.placement import Evaluator, Layout, is_legal, pin_man
 from chiplet_floorplanning.placement import schedule  # noqa: E402
 
 
+class ChainTest(unittest.TestCase):
+    def setUp(self):
+        from chiplet_floorplanning.placement import Problem
+        # three 10 x 6 mm dies in a row, 1 mm gaps: the row needs 32 mm of width and 6 mm of height
+        pins = np.array([[0, 1], [1, 2]])
+        self.p = Problem('row', ('a', 'b', 'c'), np.array([[10000., 6000.]]*3), np.array([10., 10., 10.]),
+                         (40000., 40000.), pins, np.zeros((2, 2, 2)))
+        self.row = Layout(np.array([[6000., 20000.], [17000., 20000.], [28000., 20000.]]), np.zeros(3, int))
+
+    def test_the_longest_chain_is_the_minimum_extent(self):
+        from chiplet_floorplanning.placement.lp import centre_relations
+        (w, h), chains = schedule.min_extent(self.p, self.row, centre_relations(self.p, self.row, 1000), 1000)
+        self.assertAlmostEqual(w, 32.0)
+        self.assertAlmostEqual(h, 6.0)
+        self.assertEqual(chains[0], [0, 1, 2])
+
+    def test_flipping_the_binding_chain_fits_a_narrower_carrier(self):
+        sized = replace(self.p, carrier_um=(22000., 14000.))        # too narrow for the row, tall enough for two rows
+        self.assertIsNone(schedule.fit_into(sized, self.row, self.p.carrier_um, 1000))
+        layout, flips = schedule.chain_flip(sized, self.row, 1000)
+        self.assertIsNotNone(layout)
+        self.assertGreaterEqual(flips, 1)
+        self.assertTrue(is_legal(sized, layout, 1000))
+
+
 class ScheduleTest(unittest.TestCase):
     def setUp(self):
         self.p = small_problem()
@@ -36,6 +61,20 @@ class ScheduleTest(unittest.TestCase):
         self.assertLess(best['cost_usd'], 208.75)
         targets = [r for r in out['history'] if 'stages' in r]
         self.assertTrue(targets and all('first_certifier' in r and 'fv_total' in r for r in targets))
+
+    def test_v8_designs_are_certified_within_budget(self):
+        out = schedule.scheduled(self.limited, self.anchor, 500, self.length, fv_budget=200,
+                                 deadline=time.perf_counter() + 300, threads=1, workers=1, resolution=16, chain_steps=3,
+                                 v8=True)
+        self.assertEqual(out['inner'], 'v8')
+        self.assertLessEqual(out['fv_solves'], 200)
+        best = out['best']
+        sized = replace(self.limited, carrier_um=(best['width_mm']*1000, best['height_mm']*1000))
+        layout = Layout(np.array(best['centre_um']), np.array(best['rotation_deg']))
+        self.assertTrue(is_legal(sized, layout, 500))
+        with Evaluator(sized, 500, resolution=16) as evaluator:
+            self.assertLessEqual(evaluator.peaks_c([layout])[0], 1e-6)
+        self.assertLessEqual(pin_manhattan_um(sized, layout).sum()/1e6, self.length + 1e-9)
 
     def test_nothing_starts_after_the_shared_deadline(self):
         out = schedule.scheduled(self.limited, self.anchor, 500, self.length, fv_budget=200,

@@ -11,6 +11,7 @@ FV budget, search for the cheapest interposer (cost.interposer_cost, silicon onl
   on the cheapest three;
 - cosize_sh (v6, docs/cosize-v6-plan.md): successive halving over mechanism x shape arms (placement/portfolio.py);
 - cosize_v7 (docs/cosize-v7-plan.md): one size schedule shared by a fixed cost-ordered cascade (placement/schedule.py);
+- cosize_v8 (docs/cosize-v8-plan.md): v7 plus the binding-chain flip and the min-wire MILP generator in the cascade;
 - fixed_aspect: size-then-place - the original aspect ratio, bisection on the area factor, relation_space at each
   size with an equal share of the budget, seeded with the smallest certified layout; the original carrier is
   certified by the checked anchor.
@@ -142,7 +143,7 @@ def main():
     p.add_argument('--evidence', type=Path, default=Path('docs/evidence/atplace-compare-rsg4-v3.json'))
     p.add_argument('--reference', choices=('atp_cool', 'atp_wl'), required=True)
     p.add_argument('--method', choices=('cosize', 'cosize_axial', 'cosize_blind', 'cosize_rs', 'cosize_shrink', 'cosize_rs2', 'cosize_sh',
-                                         'cosize_v7', 'fixed_aspect'), required=True)
+                                         'cosize_v7', 'cosize_v8', 'fixed_aspect'), required=True)
     p.add_argument('--anchor-dir', type=Path, required=True,
                    help='ATPlace layouts CaseN/<label>/layout.json; the reference layout anchors every method')
     p.add_argument('--front-dir', type=Path, default=None,
@@ -183,10 +184,11 @@ def main():
     limited = replace(problem, limit_c=np.full(problem.count, t_ref))
     anchor = from_atplace(problem, json.loads(anchor_file.read_text()))
     started = time.perf_counter()
-    if args.method == 'cosize_v7':
+    if args.method in ('cosize_v7', 'cosize_v8'):
         from chiplet_floorplanning.placement.schedule import scheduled
         out = scheduled(limited, anchor, args.gap_um, l_ref, args.fv_solves, deadline=deadline, envelope=ENVELOPE,
-                        threads=args.workers, workers=args.workers, seed=args.seed, expected_j_k=expected)
+                        threads=args.workers, workers=args.workers, seed=args.seed, expected_j_k=expected,
+                        v8=args.method == 'cosize_v8')
     elif args.method == 'cosize_sh':
         from chiplet_floorplanning.placement.portfolio import successive_halving
         out = successive_halving(limited, anchor, args.gap_um, l_ref, args.fv_solves, wall_s=args.wall_s,
@@ -205,7 +207,7 @@ def main():
     clash = set(out) & set(RECORD_FIELDS)
     if clash:
         raise RuntimeError(f'search output shadows record fields: {sorted(clash)}')
-    record = dict(protocol_revision='cosize-v7', case=args.case.stem, method=args.method,
+    record = dict(protocol_revision='cosize-v8', case=args.case.stem, method=args.method,
                   reference=args.reference, reference_label=label, delta_k=args.delta_k if args.front_dir else None,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
                       k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),
@@ -213,7 +215,7 @@ def main():
                   resources=dict(workers=args.workers, threads=args.threads, size_s=args.size_s, wall_s=args.wall_s),
                   limit_c=limited.limit_c.tolist(), names=list(limited.names), thermal_kind='overshoot_k',
                   case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(), code=source_revision(),
-                  plan='docs/cosize-v7-plan.md', anchor_file=str(anchor_file),
+                  plan='docs/cosize-v8-plan.md', anchor_file=str(anchor_file),
                   anchor_sha256=hashlib.sha256(anchor_file.read_bytes()).hexdigest(),
                   **out)
     args.output.parent.mkdir(parents=True, exist_ok=True)

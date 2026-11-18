@@ -50,6 +50,9 @@ class CosizeCompareTest(unittest.TestCase):
             self.assertEqual(row['outcome'], 'win')
             self.assertEqual(report['cosize_vs_fixed_aspect']['verdict'], 'effective')
             self.assertIn('case1-atp_wl', report['cosize_savings_vs_original'])
+            held = report['cosize_vs_fixed_aspect']['held_out']
+            self.assertIn('case1-atp_wl', held['combinations'])           # not a development combination
+            self.assertEqual(held['coverage']['wins'], 1)
 
     def test_runs_from_different_protocols_are_not_paired(self):
         with tempfile.TemporaryDirectory() as d:
