@@ -618,8 +618,9 @@ def relation_front(problem, gap_um, budget, seed, extra_starts, method_options):
     """relation_space on a fixed carrier (the size-then-place inner search of the cosize baselines); returns
     (per-layout rows, archive arrays). The thermal value is the peak in degC, or with Problem.limit_c the overshoot
     J in K; the archive keeps every layout and die value. The extra starts come first; random and length-descent
-    starts are min(24, budget // 6) each, so a small per-carrier share is not spent on scoring starts alone."""
-    rng = np.random.default_rng(seed)
+    starts are min(24, budget // 6) each, so a small per-carrier share is not spent on scoring starts alone. `seed`
+    may be a numpy Generator, which a resumed search passes on so its random stream continues."""
+    rng = seed if isinstance(seed, np.random.Generator) else np.random.default_rng(seed)   # a Generator continues
     starts = [s for s in extra_starts if s is not None and is_legal(problem, s, gap_um)]
     count = min(24, budget//6)       # 24 + 24 from a budget of 144 up; a small share keeps FV for the search itself
     try:

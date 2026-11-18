@@ -22,7 +22,8 @@ SWEEP = [dict(d0_per_cm2=d0, seam_yield=ys, wafer_usd=w)
 
 COMPARISONS = (('cosize', 'fixed_aspect'), ('cosize', 'cosize_blind'), ('cosize', 'cosize_axial'),
                ('cosize_shrink', 'fixed_aspect'),   # v4 (docs/cosize-v4-plan.md); missing runs make it incomplete
-               ('cosize_rs2', 'fixed_aspect'))      # v5a (docs/cosize-v5-plan.md)
+               ('cosize_rs2', 'fixed_aspect'),      # v5a (docs/cosize-v5-plan.md)
+               ('cosize_sh', 'fixed_aspect'))       # v6 (docs/cosize-v6-plan.md)
 
 
 def combos(with_case8_cool=False):
