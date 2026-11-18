@@ -2125,3 +2125,5 @@ python tools/case3_interstitial.py --data "$DATA" --output "$DATA/case3-layouts-
 ![相同芯粒中心下两种等带宽接口的引脚长度，以及达到满速的窄接口布局](evidence/case3-phy-codesign.png)
 
 UCIe Standard Package 的长距能耗和速率目标用于构造对照，散热沿用 Case3 原有的硅中介层研究模型。真实有机基板上的热、信号完整性、协议时序、详细布线和实际应用吞吐仍待验证。补充核算使用上阶段存档 `$FIRST`（含 geometry.json、thermal.json）和同一服务器 results 根目录 `$DATA`。运行 `python tools/check_case3_phy_population.py --data "$DATA" --first "$FIRST" --output "$OUT/population.json"`，再运行 `python tools/check_phy_route_margin.py --data "$DATA" --first "$FIRST" --population "$OUT/population.json" --output "$OUT/margin.json"`。完整数值和原始文件校验值见紧凑证据。[全候选复核](../tools/check_case3_phy_population.py)
+
+**阶段审阅。** 已推送并核实 `a98eb9bb2c51cff3b74537e65fbb9ea4a1640304` 后，Chat 通过 GitHub 读取了该 SHA 的数值证据、端口余量复核及几何脚本。审阅复算了八条有向流的有效吞吐和两组固定中心的线长下界，认可单位、求界方向及三网格判定，并将宽档排除限定于已枚举的端口与布局。Oracle 浏览器会话 `chiplet-equal-throughput-review` 请求 `gpt-6-astra`、extended，界面选择器记录为 GPT-6、High；审阅没有执行新的物理布线或硅片测量。
