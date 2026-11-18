@@ -2248,3 +2248,5 @@ python tools/wide_square_thermal.py --data "$DATA" --output "$OUT/square.json"
 python tools/wide_span_joint.py --data "$DATA" --output "$OUT/joint.json"
 python tools/wide_span_transfer.py --data "$DATA" --output "$OUT/power.json"
 ```
+
+**阶段审阅。** 实验提交 `b2b143bca0dfcc28be6df376dc090b9ce9119303` 推送并核实后，独立 Chat 通过 GitHub 读取了两份证据和四份程序，复核了联合净距界、最优峰温区间和固定布局的冷却结果。系数按原始物理线数可直接区分：每条 CPU 边 352 根，对应 0.352 × (2S − 31.2) m；最小割 704 根，对 S 的系数为 0.704 m/mm；内存束为 1.408 m/mm，两者之比为 2。审阅属于源码与数值记录的静态核对。Oracle 浏览器会话 `chiplet-joint-clearance-review` 已完成，请求 gpt-6-astra / extended，界面选择器记录为 GPT-6 / High。
