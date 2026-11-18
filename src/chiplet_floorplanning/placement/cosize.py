@@ -271,7 +271,7 @@ def try_carrier(sized, base, base_um, gap_um, length_m, model, budget, size_s, t
         ok, (j, l), n = certify(sized, start, gap_um, length_m, min(chain_steps, budget - used - 1), resolution)
         used += n
         rec['stages'].append(dict(stage='start', fv_solves=n, best_j_k=j, best_length_m=l, certified=ok is not None))
-    if ok is None and budget - used > 1:
+    if ok is None and budget - used > 1 and model != 'start':      # 'start': the mapped layout only (screening)
         if model == 'relation_space':
             from .methods import NoLegalStart, relation_front   # the size-then-place baseline's inner search
             import time
@@ -460,6 +460,74 @@ def family_shrink(args):
     return records, used
 
 
+SCREEN_FV, TOP_FAMILIES, REFINE_STEPS = 40, 3, 4
+
+
+def screen_family(args):
+    """cosize v5a stage 1, one aspect family: jump-and-repair down the trial areas - each trial only maps the last
+    certified layout (the anchor first) and repairs it by the SLP chain, no topology generator - until the first
+    failure or SCREEN_FV solves. Cheap evidence of which shapes the anchor's topology reaches."""
+    (problem, anchor, gap_um, length_m, model, aspect, low, high, budget, size_s, threads, directions, resolution,
+     chain_steps, params, seed, workers) = args
+    budget = min(budget, SCREEN_FV)
+    base, base_um, used, records = anchor, problem.carrier_um, 0, []
+    for step, area in enumerate(trial_areas(aspect, low, high, params)):
+        if budget - used <= 1:
+            break
+        w, h = box(area, aspect)
+        sized = replace(problem, carrier_um=(w*1000, h*1000))
+        rec, ok, n = try_carrier(sized, base, base_um, gap_um, length_m, 'start', budget - used, size_s, threads,
+                                 directions, resolution, chain_steps, seed, workers)
+        used += n
+        rec.update(aspect=aspect, step=step, stage='screen', area_mm2=area, width_mm=w, height_mm=h, fv_solves=n,
+                   cost_usd=interposer_cost(w, h, params)['total_usd'], certified=ok is not None)
+        if ok is not None:
+            rec.update(j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
+                       rotation_deg=ok[0].rotation_deg.tolist())
+            base, base_um = ok[0], sized.carrier_um
+        records.append(rec)
+        if ok is None:
+            break
+    return records, used
+
+
+def refine_family(args, records, budget):
+    """cosize v5a stage 2, one chosen family: REFINE_STEPS bisections between its smallest certified area (from the
+    screen; else the family's largest cheaper carrier, tried first) and the next failed area below (else the dies'
+    total area), each trial seeded with the smallest certified layout and searched by relation_space with an equal
+    share of `budget`."""
+    (problem, anchor, gap_um, length_m, model, aspect, low, high, _, size_s, threads, directions, resolution,
+     chain_steps, params, seed, workers) = args
+    cert = [r for r in records if r.get('certified')]
+    good = min(cert, key=lambda r: r['area_mm2']) if cert else None
+    failed = [r['area_mm2'] for r in records if not r.get('certified') and (good is None or r['area_mm2'] < good['area_mm2'])]
+    if good is None:
+        base, base_um, hi, lo, first = anchor, problem.carrier_um, None, low, high
+    else:
+        base = Layout(np.array(good['centre_um']), np.array(good['rotation_deg']))
+        base_um, hi, lo, first = (good['width_mm']*1000, good['height_mm']*1000), good['area_mm2'], max(failed, default=low), None
+    used, out, share = 0, [], max(2, budget//REFINE_STEPS)
+    for step in range(REFINE_STEPS):
+        if budget - used <= 1:
+            break
+        area = first if (step == 0 and first is not None) else (hi + lo)/2 if hi is not None else (high + lo)/2
+        w, h = box(area, aspect)
+        sized = replace(problem, carrier_um=(w*1000, h*1000))
+        rec, ok, n = try_carrier(sized, base, base_um, gap_um, length_m, 'relation_space', budget - used, size_s,
+                                 threads, directions, resolution, chain_steps, seed, workers, rs_share=share)
+        used += n
+        rec.update(aspect=aspect, step=100 + step, stage='refine', area_mm2=area, width_mm=w, height_mm=h,
+                   fv_solves=n, cost_usd=interposer_cost(w, h, params)['total_usd'], certified=ok is not None)
+        if ok is not None:
+            rec.update(j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
+                       rotation_deg=ok[0].rotation_deg.tolist())
+            base, base_um, hi = ok[0], sized.carrier_um, area
+        else:
+            lo = area
+        out.append(rec)
+    return out, used
+
+
 def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', directions=8, aspects=ASPECTS,
              envelope=1.25, size_s=120.0, threads=2, workers=8, resolution=64, chain_steps=12, params=CostParams(),
              seed=2, expected_j_k=0.0):
@@ -469,7 +537,9 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
     if that is not) are searched by `family`; every trial is FV-certified. inner: 'proxy' (K-direction MILP),
     'axial', 'blind' (min-wire MILP) or 'relation_space' (control: the baseline's inner search on the same trials;
     families then run one after another, the FV evaluator using `workers`); 'shrink' is cosize v4 (`family_shrink`:
-    continuous carrier-scale SLP with K-direction MILP topology moves, docs/cosize-v4-plan.md). The FV budget covers the anchor check
+    continuous carrier-scale SLP with K-direction MILP topology moves, docs/cosize-v4-plan.md); 'rs2' is cosize v5a
+    (screen_family on every family, then refine_family with relation_space on the TOP_FAMILIES cheapest,
+    docs/cosize-v5-plan.md). The FV budget covers the anchor check
     and the calibration. Returns the cheapest certified design (the anchor if nothing beats it) and every record."""
     from concurrent.futures import ProcessPoolExecutor
     import multiprocessing
@@ -511,12 +581,28 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
         jobs.append((problem, anchor, gap_um, length_m, model, aspect, die_area, high, share, size_s, threads,
                      directions if inner in ('proxy', 'shrink') else None, resolution, chain_steps, params, seed,
                      workers))
-    search = family_shrink if inner == 'shrink' else family
-    if workers > 1 and len(jobs) > 1 and inner != 'relation_space':
-        with ProcessPoolExecutor(min(workers, len(jobs)), mp_context=multiprocessing.get_context('spawn')) as pool:
-            results = list(pool.map(search, jobs))
+    def run(fn, items):
+        if workers > 1 and len(items) > 1:
+            with ProcessPoolExecutor(min(workers, len(items)), mp_context=multiprocessing.get_context('spawn')) as pool:
+                return list(pool.map(fn, items))
+        return [fn(item) for item in items]
+
+    if inner == 'rs2':                                  # cosize v5a: screen every family, refine the cheapest few
+        screened = run(screen_family, jobs)
+        spent = sum(u for _, u in screened)
+        cheapest = [min((r['cost_usd'] for r in records if r.get('certified')), default=math.inf)
+                    for records, _ in screened]
+        ranked = sorted(range(len(jobs)), key=lambda k: cheapest[k])
+        chosen = [k for k in ranked if math.isfinite(cheapest[k])][:TOP_FAMILIES]
+        if not chosen:                                  # the anchor's topology reached no shape: original aspect
+            chosen = [min(range(len(jobs)), key=lambda k: abs(math.log(jobs[k][5]*h0/w0)))]
+        out['history'].append(dict(stage='screen', families=[jobs[k][5] for k in ranked],
+                                   chosen=[jobs[k][5] for k in chosen], fv_solves=spent))
+        left = fv_budget - out['fv_solves'] - spent    # relation_space runs its own FV pool: families in turn
+        results = screened + [refine_family(jobs[k], screened[k][0], left//len(chosen)) for k in chosen]
     else:
-        results = [search(j) for j in jobs]
+        search = family_shrink if inner == 'shrink' else family
+        results = run(search, jobs) if inner != 'relation_space' else [search(j) for j in jobs]
     best = out['best']
     for records, used in results:
         out['history'] += records

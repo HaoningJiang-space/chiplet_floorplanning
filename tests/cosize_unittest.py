@@ -136,7 +136,7 @@ class AnchoredTest(unittest.TestCase):
 
     def test_designs_meet_the_anchor_limits_and_never_cost_more(self):
         limited = replace(self.p, limit_c=np.full(4, self.peak))
-        for inner in ('proxy', 'axial', 'blind', 'relation_space', 'shrink'):
+        for inner in ('proxy', 'axial', 'blind', 'relation_space', 'shrink', 'rs2'):
             out = anchored(limited, self.anchor, 500, self.length, 200, inner=inner, aspects=(1.0, 2.0),
                            size_s=10, threads=1, workers=1, resolution=16, chain_steps=3)
             self.assertLessEqual(abs(out['anchor']['j_k']), 1e-6)

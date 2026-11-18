@@ -7,6 +7,8 @@ FV budget, search for the cheapest interposer (cost.interposer_cost, silicon onl
 - cosize / cosize_axial / cosize_blind / cosize_rs: cosize.anchored with the K-direction proxy MILP, the axial one,
   the min-wire MILP or relation_space (control) as the new-topology step;
 - cosize_shrink (v4, docs/cosize-v4-plan.md): continuous carrier-scale SLP with MILP topology moves;
+- cosize_rs2 (v5a, docs/cosize-v5-plan.md): every aspect family screened by jump-and-repair, relation_space refinement
+  on the cheapest three;
 - fixed_aspect: size-then-place - the original aspect ratio, bisection on the area factor, relation_space at each
   size with an equal share of the budget, seeded with the smallest certified layout; the original carrier is
   certified by the checked anchor.
@@ -129,7 +131,7 @@ def main():
     p.add_argument('--case', type=Path, required=True)
     p.add_argument('--evidence', type=Path, default=Path('docs/evidence/atplace-compare-rsg4-v3.json'))
     p.add_argument('--reference', choices=('atp_cool', 'atp_wl'), required=True)
-    p.add_argument('--method', choices=('cosize', 'cosize_axial', 'cosize_blind', 'cosize_rs', 'cosize_shrink', 'fixed_aspect'), required=True)
+    p.add_argument('--method', choices=('cosize', 'cosize_axial', 'cosize_blind', 'cosize_rs', 'cosize_shrink', 'cosize_rs2', 'fixed_aspect'), required=True)
     p.add_argument('--anchor-dir', type=Path, required=True,
                    help='ATPlace layouts CaseN/<label>/layout.json; the reference layout anchors every method')
     p.add_argument('--front-dir', type=Path, default=None,
@@ -173,12 +175,12 @@ def main():
                            expected_j_k=expected)
     else:
         inner = dict(cosize='proxy', cosize_axial='axial', cosize_blind='blind', cosize_rs='relation_space',
-                     cosize_shrink='shrink')[args.method]
+                     cosize_shrink='shrink', cosize_rs2='rs2')[args.method]
         out = anchored(limited, anchor, args.gap_um, l_ref, args.fv_solves, inner=inner, envelope=ENVELOPE,
                        size_s=args.size_s, threads=args.threads, workers=args.workers, directions=args.directions,
                        seed=args.seed, expected_j_k=expected)
     w0, h0 = (s/1000 for s in problem.carrier_um)
-    record = dict(protocol_revision='cosize-v4.2', case=args.case.stem, method=args.method,
+    record = dict(protocol_revision='cosize-v5a', case=args.case.stem, method=args.method,
                   reference=args.reference, reference_label=label, delta_k=args.delta_k if args.front_dir else None,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{
                       k: v for k, v in interposer_cost(w0, h0).items() if k in ('option', 'fields', 'total_usd')}),
@@ -186,7 +188,7 @@ def main():
                   resources=dict(workers=args.workers, threads=args.threads, size_s=args.size_s),
                   limit_c=limited.limit_c.tolist(), names=list(limited.names), thermal_kind='overshoot_k',
                   case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(), code=source_revision(),
-                  plan='docs/cosize-v4-plan.md', anchor_file=str(anchor_file),
+                  plan='docs/cosize-v5-plan.md', anchor_file=str(anchor_file),
                   anchor_sha256=hashlib.sha256(anchor_file.read_bytes()).hexdigest(),
                   **out)
     args.output.parent.mkdir(parents=True, exist_ok=True)

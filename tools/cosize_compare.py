@@ -21,7 +21,8 @@ SWEEP = [dict(d0_per_cm2=d0, seam_yield=ys, wafer_usd=w)
          for d0, ys, w in itertools.product((0.06, 0.15, 0.3), (1.0, 0.99, 0.95), (500.0, 1937.0))]
 
 COMPARISONS = (('cosize', 'fixed_aspect'), ('cosize', 'cosize_blind'), ('cosize', 'cosize_axial'),
-               ('cosize_shrink', 'fixed_aspect'))   # v4 (docs/cosize-v4-plan.md); missing runs make it incomplete
+               ('cosize_shrink', 'fixed_aspect'),   # v4 (docs/cosize-v4-plan.md); missing runs make it incomplete
+               ('cosize_rs2', 'fixed_aspect'))      # v5a (docs/cosize-v5-plan.md)
 
 
 def combos(with_case8_cool=False):
