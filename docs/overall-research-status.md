@@ -2127,3 +2127,9 @@ python tools/case3_interstitial.py --data "$DATA" --output "$DATA/case3-layouts-
 UCIe Standard Package 的长距能耗和速率目标用于构造对照，散热沿用 Case3 原有的硅中介层研究模型。真实有机基板上的热、信号完整性、协议时序、详细布线和实际应用吞吐仍待验证。补充核算使用上阶段存档 `$FIRST`（含 geometry.json、thermal.json）和同一服务器 results 根目录 `$DATA`。运行 `python tools/check_case3_phy_population.py --data "$DATA" --first "$FIRST" --output "$OUT/population.json"`，再运行 `python tools/check_phy_route_margin.py --data "$DATA" --first "$FIRST" --population "$OUT/population.json" --output "$OUT/margin.json"`。完整数值和原始文件校验值见紧凑证据。[全候选复核](../tools/check_case3_phy_population.py)
 
 **阶段审阅。** 已推送并核实 `a98eb9bb2c51cff3b74537e65fbb9ea4a1640304` 后，Chat 通过 GitHub 读取了该 SHA 的数值证据、端口余量复核及几何脚本。审阅复算了八条有向流的有效吞吐和两组固定中心的线长下界，认可单位、求界方向及三网格判定，并将宽档排除限定于已枚举的端口与布局。Oracle 浏览器会话 `chiplet-equal-throughput-review` 请求 `gpt-6-astra`、extended，界面选择器记录为 GPT-6、High；审阅没有执行新的物理布线或硅片测量。
+
+## 2026-11-18 宽接口的全部端口与连续位置搜索
+
+起始 fetch 成功，本地与远端 `main` 同为 `f23b0a0`。固定原 680 W、两档接口的引脚与能耗、25 mm 距离、5 ns 单跳延迟、109 °C 和 38.9537644485 m 主预算。上轮只验证每个布局中线长最短的端口配置。本轮先对原 6,607 个几何布局中可能通过主预算的全部宽档端口边分配做检查。每颗 CPU 的两组端口有序分配到各边，按共享转角避开原内存边。对固定边分配精确取内存线长最小的合法转角；相同芯粒足迹和无序端口边集合产生同一热源及网格，可合并热解。64 网格连关闭 PHY 都超过温限的配置直接排除，余者按满速与部分负载复核 96、128 网格。
+
+同时搜索新坐标。先在方形载板放置四个随 90° 旋转的 CPU/内存对，枚举内存相对 CPU 的内侧、外侧与横向位置，再以这些几何和先前存档为起点，在固定芯粒相对分离方向、朝向和端口选择的条件下连续移动八颗芯粒。以实际引脚距离与最大单线距离约束移动，按各热源间的均匀平面响应估计挑选降温方向。几何筛选与连续优化使用共同的预算阶梯 1、1.125、1.25、1.5 和 2 倍主预算；这几档用于回答宽接口达到同一满速具体需要多少已知线长。候选最终按原坐标逐根重算、检查合法性、实算端口发热和三个网格；报告每份可行点自己的长度、峰温和吞吐。凡未形成连续全域排除证书的阴性结果仅限于实际检查的集合。若连续移动找到两种接口均可满速，则直接按同一温限比较其可行线长，并保留原主预算的判定。
