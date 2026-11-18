@@ -37,6 +37,26 @@ class ChainTest(unittest.TestCase):
         self.assertGreaterEqual(flips, 1)
         self.assertTrue(is_legal(sized, layout, 1000))
 
+    def test_span_query_charges_internal_pins_and_the_gap(self):
+        pins = np.vstack((self.p.pin_chip, [1, 1]))
+        offsets = np.zeros((3, 2, 2))
+        offsets[2, 1] = [600., 400.]             # 1 mm on die b, unchanged by translation
+        lp = schedule.TopologyLP(replace(self.p, pin_chip=pins, pin_offset_um=offsets), self.row, 1000, pairs=0)
+        self.assertIsNone(lp.minimum_span_mm(0, 0.0229))
+        self.assertAlmostEqual(lp.minimum_span_mm(0, 0.023), 32.0)
+        self.assertAlmostEqual(lp.minimum_span_mm(1, 0.023), 6.0)
+
+    def test_rigid_move_certifies_a_smaller_carrier_without_scaling_the_layout(self):
+        parent = replace(self.row, centre_um=self.row.centre_um + [2000., 0.])
+        p = replace(self.p, limit_c=np.full(3, 300.))
+        length = pin_manhattan_um(p, parent).sum()/1e6
+        ctx = dict(problem=p, fv=0, fv_budget=2, gap_um=1000, length_m=length, params=schedule.CostParams(),
+                   resolution=16, started=time.perf_counter(), rectangles=True)
+        shape = dict(base=parent, base_um=p.carrier_um, aspect=1.)
+        rec, ok = schedule.cascade(ctx, shape, 36.**2, time.perf_counter() + 60)
+        self.assertEqual((rec['first_certifier'], ctx['fv']), ('move', 1))
+        np.testing.assert_allclose(ok[0].centre_um, parent.centre_um - 2000)
+
 
 class ScheduleTest(unittest.TestCase):
     def setUp(self):
@@ -59,6 +79,8 @@ class ScheduleTest(unittest.TestCase):
             self.assertLessEqual(evaluator.peaks_c([layout])[0], 1e-6)
         self.assertLessEqual(pin_manhattan_um(sized, layout).sum()/1e6, self.length + 1e-9)
         self.assertLess(best['cost_usd'], 208.75)
+        self.assertEqual(out['inner'], 'rectangles')
+        self.assertTrue(any(r.get('arm') == 'rectangle_lp' for r in out['history']))
         targets = [r for r in out['history'] if 'stages' in r]
         self.assertTrue(targets and all('first_certifier' in r and 'fv_total' in r for r in targets))
 
@@ -67,6 +89,7 @@ class ScheduleTest(unittest.TestCase):
                                  deadline=time.perf_counter() + 300, threads=1, workers=1, resolution=16, chain_steps=3,
                                  v8=True)
         self.assertEqual(out['inner'], 'v8')
+        self.assertFalse(any(r.get('arm') == 'rectangle_lp' for r in out['history']))
         self.assertLessEqual(out['fv_solves'], 200)
         best = out['best']
         sized = replace(self.limited, carrier_um=(best['width_mm']*1000, best['height_mm']*1000))
@@ -86,6 +109,20 @@ class ScheduleTest(unittest.TestCase):
                                 deadline=time.perf_counter() - 1)
         search.assert_not_called()
         self.assertEqual(base['history'][-1]['stop'], 'deadline')
+
+    def test_a_late_anchor_is_charged_but_cannot_enter_either_comparison(self):
+        from run_cosize import fixed_aspect
+        for module in ('chiplet_floorplanning.placement.schedule', 'run_cosize'):
+            with patch(module + '.verify_anchor', return_value=dict(ok=True)), \
+                    patch(module + '.time.perf_counter', side_effect=[0., 2.]):
+                if module == 'run_cosize':
+                    out = fixed_aspect(self.limited, 500, self.length, 1, 2, 5, 1, self.anchor, deadline=1.)
+                else:
+                    out = schedule.scheduled(self.limited, self.anchor, 500, self.length, fv_budget=1, deadline=1.)
+            self.assertEqual(out['fv_solves'], 1)
+            self.assertFalse(out['anchor']['ok'])
+            self.assertTrue(out['anchor']['after_deadline'])
+            self.assertIsNone(out['best'])
 
     def test_a_solver_status_other_than_infeasible_is_no_proof(self):
         from chiplet_floorplanning.placement import cosize
@@ -109,7 +146,7 @@ class ScheduleTest(unittest.TestCase):
             return rec, ((self.anchor, -1.0, 0.1) if ok else None)
         with patch.object(schedule, 'cascade', side_effect=fake), patch.object(schedule, 'SHAPES', ()):
             schedule.scheduled(self.limited, self.anchor, 500, self.length, fv_budget=50,
-                               deadline=time.perf_counter() + 60, threads=1, workers=1, resolution=16)
+                               deadline=time.perf_counter() + 60, threads=1, workers=1, resolution=16, v8=True)
         first_area = seen[0][0]
         self.assertTrue(all(area < first_area for area, _ in seen[1:]))   # no stale target above it was tried
 
@@ -139,7 +176,7 @@ class ScheduleTest(unittest.TestCase):
             return dict(stages=[], certified=False, first_certifier=None, width_mm=1, height_mm=1), None
         with patch.object(schedule, 'cascade', side_effect=fail):
             schedule.scheduled(self.limited, self.anchor, 500, self.length, fv_budget=200,
-                               deadline=time.perf_counter() + 60, threads=1, workers=1, resolution=16)
+                               deadline=time.perf_counter() + 60, threads=1, workers=1, resolution=16, v8=True)
         first = calls[0]
         self.assertTrue(any(a < first for a in calls))                 # the lower half is still tried
         self.assertTrue(any(a > first for a in calls))                 # and towards the certified side first

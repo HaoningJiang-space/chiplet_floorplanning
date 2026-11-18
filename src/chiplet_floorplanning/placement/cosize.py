@@ -5,23 +5,18 @@ absolute limit (Problem.limit_c, FV) and exact pin length within a budget. The r
 original carrier) is a known feasible anchor, re-checked by one FV solve. Per aspect family, trial carriers from the
 largest cheaper one down: each is seeded with the smallest certified layout so far (mapped and legalised), and a
 MILP on the fixed carrier proposes a new topology when that fails; every candidate is certified by an exact FV SLP
-chain. Only FV-certified layouts are reported; the proxy never certifies anything. The earlier joint sizing MILP
-(cosize-v1/v2) was removed after commit 33ad191; replay it at that commit.
+chain. The scheduled method in schedule.py reuses the candidate generators and certification functions here.
 """
 from dataclasses import replace
 import math
 
 import numpy as np
-from scipy import sparse
-from scipy.optimize import linprog
 
 from .cost import CostParams, interposer_cost
 from .geometry import is_legal, pin_manhattan_um
-from .lp import (GRID_UM, MILP_STATUS, SLP_BAND_K, SLP_RADIUS_MM, TopologyLP, legalize_relations, milp_relations,
-                 slp_chain)
+from .lp import MILP_STATUS, legalize_relations, milp_relations, slp_chain
 from .problem import Layout
 from .proxy import R_MM, ThermalProxy
-from .search import snap
 
 GRID_MM = 0.1          # carrier dimensions are rounded up to this grid
 
@@ -79,126 +74,6 @@ def fit_into(problem, layout, source_um, gap_um):
     side relations; None if they do not fit."""
     scaled = replace(layout, centre_um=layout.centre_um*np.asarray(problem.carrier_um)/np.asarray(source_um))
     return legalize_relations(problem, scaled, gap_um)
-
-
-SHRINK_DELTA = 0.03    # relative carrier growth of the scale secant: near the step size; a 1% difference amplifies
-                       # the ~0.01 K mesh jumps (it overstated the 3-6% response twice on Case6)
-SHRINK_BUFFER_K = 0.05  # linearised overshoot target -buffer: the FV peak jumps ~0.01 K as the mesh follows the carrier
-
-
-def shrink_chain(problem, layout, gap_um, length_m, steps, resolution, budget, cool_steps=6, rounds=4):
-    """Trust-region SLP on the carrier scale, from a certified layout on problem's carrier (cosize v4 plan).
-
-    The topology and rotations of `layout` are kept. At each accepted state (W, H) the carrier is parameterised
-    afresh as W = kx s, H = ky s with s0 = sqrt(W H), so the model is centred on the carrier actually solved (grid
-    rounding drifts the ratio slightly; the drift is recorded in the returned carriers). Each step solves the LP:
-    min s over centres and s with the topology's separation rows, every die inside [0, kx s] x [0, ky s], the exact
-    inter-die pin length within the budget, and every near-peak die's FV overshoot linearised,
-    J_i + grad_i . (c - c0) + h_i (s - s0) <= -buffer. grad comes from the deferred adjoints (rows cached per state);
-    h is a forward difference: one FV solve on the carrier grown by SHRINK_DELTA with the dies kept at their
-    physical package positions (the carrier is centred in the package, so local centres shift by half the growth;
-    with the adjoint's translation-invariant gradient the centre shift adds nothing to the model). The buffer is
-    min(SHRINK_BUFFER_K, half the current slack), so a state with no slack is not asked for 0.05 K out of nothing.
-    A candidate carrier is rounded up to the grid; its exact pin length is checked first, then an exact FV solve
-    must give J <= 0: every kept step is a certified design. An infeasible LP is not retried with a smaller trust
-    region (a smaller region is a subset); it ends the round, and a cooling SLP (slp_chain, length mode) on the
-    current carrier buys slack, for at most `rounds` rounds.
-    Returns (certified [(layout, (w, h), J, length m)], FV solves, final state (layout, carrier um, max J) - the
-    coolest certified state reached, cooled or shrunk, for continuation - and the model errors of the FV-checked
-    candidates, [(predicted max J, actual max J)])."""
-    from .thermal import peak_sensitivity
-    if budget < 1:
-        return [], 0, (layout, problem.carrier_um, None), []
-    n = problem.count
-    inside = problem.pin_chip[:, 0] == problem.pin_chip[:, 1]
-    size = np.where((layout.rotation_deg % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um)/1000
-    sized, current = problem, layout
-    peaks, gradient = peak_sensitivity(sized, current, gap_um, resolution)
-    used, out, slope, known, errors = 1, [], None, {}, []
-
-    def rows_of(dies):
-        missing = [i for i in dies if i not in known]
-        if missing:
-            g = gradient(missing)
-            known.update((i, g[i]) for i in missing)
-        return np.array([known[i] for i in dies]).reshape(len(dies), n, 2)
-
-    _, smallest, largest = SLP_RADIUS_MM
-    for _ in range(rounds):
-        radius = SLP_RADIUS_MM[0]
-        for _ in range(steps):
-            if used + 2 > budget or radius < smallest:
-                break
-            w, h = (v/1000 for v in sized.carrier_um)
-            s0 = math.sqrt(w*h)
-            kx, ky = w/s0, h/s0
-            if slope is None:                              # forward difference, dies fixed in the package
-                grown = replace(sized, carrier_um=(w*(1 + SHRINK_DELTA)*1000, h*(1 + SHRINK_DELTA)*1000))
-                moved = replace(current, centre_um=current.centre_um + np.array([w, h])*SHRINK_DELTA*500)
-                up, _ = peak_sensitivity(grown, moved, gap_um, resolution)
-                used += 1
-                slope = (up - peaks)/(s0*SHRINK_DELTA)
-            buffer = min(SHRINK_BUFFER_K, 0.5*max(0.0, -float(peaks.max())))
-            hot = np.flatnonzero(peaks >= peaks.max() - SLP_BAND_K)
-            grad = rows_of(hot.tolist())
-            lp = TopologyLP(sized, current, gap_um, pairs=0)
-            nv = lp.nvar + 1                               # LP variables, then s
-            x0 = current.centre_um.T.ravel()/1000
-            box = sparse.lil_matrix((2*n, nv))             # c_i + size_i/2 <= k s
-            for axis, k in ((0, kx), (1, ky)):
-                for i in range(n):
-                    box[axis*n + i, axis*n + i], box[axis*n + i, nv - 1] = 1.0, -k
-            heat = np.zeros((hot.size, nv))
-            heat[:, :2*n] = np.concatenate([grad[:, :, 0], grad[:, :, 1]], axis=1)
-            heat[:, nv - 1] = slope[hot]
-            offset = heat[:, :2*n] @ x0 + slope[hot]*s0 - peaks[hot]
-            budget_mm = length_m*1000 - pin_manhattan_um(problem, current)[inside].sum()/1000
-            rows = sparse.vstack([sparse.hstack([lp.A, sparse.csr_matrix((lp.A.shape[0], 1))]), box.tocsr(),
-                                  sparse.csr_matrix(heat), sparse.csr_matrix(np.r_[lp.length, 0.0][None])])
-            rhs = np.r_[lp.b, -np.r_[size[:, 0], size[:, 1]]/2, offset - buffer, budget_mm]
-            bounds = ([(max(lo, x0[k] - radius), x0[k] + radius) for k, (lo, _) in enumerate(lp.bounds[:2*n])]
-                      + lp.bounds[2*n:] + [(max(s0 - radius, 0.0), s0)])
-            result = linprog(np.r_[np.zeros(lp.nvar), 1.0], A_ub=rows, b_ub=rhs, bounds=bounds, method='highs')
-            if result.status == 2:                         # infeasible: a smaller region cannot help; go cool
-                break
-            if result.status != 0:
-                radius /= 2
-                continue
-            s = result.x[-1]
-            cw, ch = min(ceil_grid(kx*s), w), min(ceil_grid(ky*s), h)
-            trial = replace(problem, carrier_um=(cw*1000, ch*1000))
-            centre = snap(trial, np.stack((result.x[:n], result.x[n:2*n]), axis=1)*1000, current.rotation_deg, GRID_UM)
-            candidate = Layout(centre, current.rotation_deg.copy())
-            length = pin_manhattan_um(problem, candidate).sum()/1e6
-            if (cw, ch) == (w, h) or length > length_m + 1e-9 or not is_legal(trial, candidate, gap_um):
-                radius /= 2
-                continue
-            new_peaks, new_gradient = peak_sensitivity(trial, candidate, gap_um, resolution)
-            used += 1
-            z = np.r_[candidate.centre_um.T.ravel()/1000, math.sqrt(cw*ch)]
-            predicted = float((heat[:, :2*n] @ z[:-1] + slope[hot]*z[-1] - offset).max())
-            errors.append((predicted, float(new_peaks.max())))
-            accurate = new_peaks.max() - predicted <= max(SHRINK_BUFFER_K, 0.25*abs(predicted - peaks.max()))
-            if new_peaks.max() <= 0:
-                sized, current, peaks, gradient, slope = trial, candidate, new_peaks, new_gradient, None
-                known.clear()
-                out.append((candidate, (cw, ch), float(new_peaks.max()), length))
-                radius = min(1.5*radius, largest) if accurate else radius    # grow only on a model that held
-            else:
-                radius /= 2
-        if used + 2 > budget:
-            break
-        chain = slp_chain((sized, current, gap_um, resolution, length_m, min(cool_steps, budget - used - 2), 'length'))
-        used += len(chain)
-        within = [(l, p) for l, p in chain[1:] if pin_manhattan_um(problem, l).sum()/1e6 <= length_m + 1e-9]
-        cooler = min(within, key=lambda pair: pair[1].max(), default=None)
-        if cooler is None or cooler[1].max() > peaks.max() - SHRINK_BUFFER_K:
-            break                                          # no slack to buy: shrinking has stalled
-        current, slope = cooler[0], None
-        peaks, gradient = peak_sensitivity(sized, current, gap_um, resolution)
-        known.clear()
-        used += 1
-    return out, used, (current, sized.carrier_um, float(peaks.max())), errors
 
 
 def verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k=0.0):
@@ -262,7 +137,7 @@ def try_carrier(sized, base, base_um, gap_um, length_m, model, budget, size_s, t
                 chain_steps, seed, workers, rs_share=None):
     """One trial carrier. Candidates in order, each FV-certified within `budget`: (1) the last certified layout
     mapped into this carrier (keeps its topology; the SLP chain is the local thermal/length repair), (2) a new
-    topology - the MILP (model given or 'blind'; a list tries the generators in order, sharing size_s), or
+    topology - the MILP (model given or 'blind'), or
     relation_space seeded with (1) (model == 'relation_space').
     relation_space spends at most `rs_share` FV solves per trial (it would otherwise use the whole family budget on
     the first trial). Returns (record fields, certified (layout, J, length) or None, FV solves)."""
@@ -272,7 +147,7 @@ def try_carrier(sized, base, base_um, gap_um, length_m, model, budget, size_s, t
         ok, (j, l), n = certify(sized, start, gap_um, length_m, min(chain_steps, budget - used - 1), resolution)
         used += n
         rec['stages'].append(dict(stage='start', fv_solves=n, best_j_k=j, best_length_m=l, certified=ok is not None))
-    if ok is None and budget - used > 1 and model != 'start':      # 'start': the mapped layout only (screening)
+    if ok is None and budget - used > 1:
         if model == 'relation_space':
             from .methods import NoLegalStart, relation_front   # the size-then-place baseline's inner search
             import time
@@ -286,31 +161,26 @@ def try_carrier(sized, base, base_um, gap_um, length_m, model, budget, size_s, t
             good = [i for i, r in enumerate(rows) if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]
             if good:
                 i = min(good, key=lambda i: (rows[i]['thermal'], rows[i]['length_m'], i))
-                from .problem import Layout
                 ok = (Layout(archive['centre_um'][i], archive['rotation_deg'][i]), rows[i]['thermal'], rows[i]['length_m'])
             used += n
             rec['stages'].append(dict(stage='relation_space', fv_solves=n, certified=ok is not None,
                                       seconds=time.perf_counter() - began))
         else:
-            order = list(model) if isinstance(model, (list, tuple)) else [model]
-            for generator in order:                        # a list: the time is shared, the first certified wins
-                if ok is not None or rec.get('proof') or budget - used <= 1:
-                    break
-                proxy = None if generator == 'blind' else generator
-                layout, statuses, proof, secs = fixed_carrier(sized, gap_um, length_m, proxy, start, size_s/len(order),
-                                                              threads, directions)
-                stage = dict(stage='milp', generator='wire' if proxy is None else 'proxy', solver=statuses,
-                             milp_s=secs)
-                if proof:                                  # either model relaxes the same geometry and wire rows
-                    rec['proof'] = stage['proof'] = proof
-                legal = None if layout is None else legalize_relations(sized, layout, gap_um)
-                if legal is not None and is_legal(sized, legal, gap_um) and budget - used > 1:
-                    ok, (j, l), n = certify(sized, legal, gap_um, length_m, min(chain_steps, budget - used - 1),
-                                            resolution)
-                    used += n
-                    stage.update(fv_solves=n, best_j_k=j, best_length_m=l)
-                stage['certified'] = ok is not None
-                rec['stages'].append(stage)
+            proxy = None if model == 'blind' else model
+            layout, statuses, proof, secs = fixed_carrier(sized, gap_um, length_m, proxy, start, size_s,
+                                                          threads, directions)
+            stage = dict(stage='milp', generator='wire' if proxy is None else 'proxy', solver=statuses,
+                         milp_s=secs)
+            if proof:                                  # either model relaxes the same geometry and wire rows
+                rec['proof'] = stage['proof'] = proof
+            legal = None if layout is None else legalize_relations(sized, layout, gap_um)
+            if legal is not None and is_legal(sized, legal, gap_um) and budget - used > 1:
+                ok, (j, l), n = certify(sized, legal, gap_um, length_m, min(chain_steps, budget - used - 1),
+                                        resolution)
+                used += n
+                stage.update(fv_solves=n, best_j_k=j, best_length_m=l)
+            stage['certified'] = ok is not None
+            rec['stages'].append(stage)
     rec['status'] = 'certified' if ok is not None else rec.get('proof', 'not_found')
     return rec, ok, used
 
@@ -371,164 +241,6 @@ def family(args):
     return records, used
 
 
-SHRINK_STEPS, MOVE_AREA, MOVE_FAILS = 12, 0.97, 2
-WIRE_TIGHT, THERMAL_TIGHT_K = 0.02, 0.5
-
-
-def generator_order(problem, layout, length_m, j_k, model):
-    """Topology generators for the next move, by the constraint that stopped shrinking (docs/cosize-binding-analysis
-    .md): wire within WIRE_TIGHT of the budget -> the min-wire MILP first; thermal slack under THERMAL_TIGHT_K -> the
-    proxy MILP first; otherwise (geometry) the min-wire MILP first. The other generator follows."""
-    wire_slack = 1 - pin_manhattan_um(problem, layout).sum()/1e6/length_m
-    if wire_slack >= WIRE_TIGHT and -j_k < THERMAL_TIGHT_K:
-        return [model, 'blind']
-    return ['blind', model]
-
-
-def family_shrink(args):
-    """cosize v4.2, one aspect family. Entry: the family's trial areas from the largest down (as `family`), each
-    tried with the mapped anchor and then MILP topologies; a failure goes on to the next area, and only a proof of
-    infeasibility ends the family. From the first certified carrier, shrink_chain compresses continuously; when it
-    stalls, a topology move tries the carrier MOVE_AREA times smaller (mapped final state, then MILP topologies
-    ordered by the constraint that stopped shrinking, generator_order) and shrinking resumes. Moves go on while the
-    budget lasts, until MOVE_FAILS failures in a row or a proof. Same arguments and records as `family`."""
-    (problem, anchor, gap_um, length_m, model, aspect, low, high, budget, size_s, threads, directions, resolution,
-     chain_steps, params, seed, workers) = args
-    used, records, step = 0, [], 0
-
-    def record(rec, w, h, ok, area, n):
-        rec.update(aspect=aspect, step=step, area_mm2=area, width_mm=w, height_mm=h, fv_solves=n,
-                   cost_usd=interposer_cost(w, h, params)['total_usd'], certified=ok is not None)
-        if ok is not None:
-            rec.update(j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
-                       rotation_deg=ok[0].rotation_deg.tolist())
-        records.append(rec)
-
-    def attempt(area, base, base_um, generators, stage):
-        nonlocal used, step
-        w, h = box(area, aspect)
-        sized = replace(problem, carrier_um=(w*1000, h*1000))
-        rec, ok, n = try_carrier(sized, base, base_um, gap_um, length_m, generators, budget - used, size_s, threads,
-                                 directions, resolution, chain_steps, seed, workers)
-        used += n
-        rec['stage'] = stage
-        record(rec, w, h, ok, area, n)
-        step += 1
-        return sized, ok, rec['status']
-
-    entry = None
-    for area in trial_areas(aspect, low, high, params):   # the anchor has no slack of either kind: wire first
-        if budget - used <= 2:
-            records.append(dict(aspect=aspect, step=step, stop='fv budget'))
-            return records, used
-        sized, ok, status = attempt(area, anchor, problem.carrier_um, ['blind', model], 'entry')
-        if ok is not None:
-            entry = (sized, ok)
-            break
-        if status == 'proven_infeasible':
-            records.append(dict(aspect=aspect, step=step, stop='proven infeasible below'))
-            return records, used
-    if entry is None:
-        records.append(dict(aspect=aspect, step=step, stop='no certified entry carrier'))
-        return records, used
-    sized, ok = entry
-    fails = 0
-    while budget - used > 2:
-        chain, n, (base, base_um, final_j), errors = shrink_chain(sized, ok[0], gap_um, length_m, SHRINK_STEPS,
-                                                                   resolution, budget - used)
-        used += n
-        generators = generator_order(problem, base, length_m, ok[1] if final_j is None else final_j, model)
-        for k, (layout, (cw, ch), j, length) in enumerate(chain):
-            record(dict(status='certified', stage='shrink'), cw, ch, (layout, j, length), cw*ch,
-                   n if k == len(chain) - 1 else 0)
-            step += 1
-        records.append(dict(aspect=aspect, step=step, shrink_fv=n, model_errors=errors, next_generators=[
-            'wire' if g == 'blind' else 'proxy' for g in generators]))
-        area = MOVE_AREA*base_um[0]*base_um[1]/1e6
-        while area > low and budget - used > 2:
-            sized, ok, status = attempt(area, base, base_um, generators, 'topology move')
-            if ok is not None or status == 'proven_infeasible':
-                break
-            fails += 1
-            if fails >= MOVE_FAILS:
-                break
-            area *= MOVE_AREA
-        if ok is None or status == 'proven_infeasible' or area <= low:
-            records.append(dict(aspect=aspect, step=step, stop='proven infeasible below' if status ==
-                                'proven_infeasible' else 'topology moves failed' if ok is None else 'die area'))
-            break
-        fails = 0
-    return records, used
-
-
-SCREEN_FV, TOP_FAMILIES, REFINE_STEPS = 40, 3, 4
-
-
-def screen_family(args):
-    """cosize v5a stage 1, one aspect family: jump-and-repair down the trial areas - each trial only maps the last
-    certified layout (the anchor first) and repairs it by the SLP chain, no topology generator - until the first
-    failure or SCREEN_FV solves. Cheap evidence of which shapes the anchor's topology reaches."""
-    (problem, anchor, gap_um, length_m, model, aspect, low, high, budget, size_s, threads, directions, resolution,
-     chain_steps, params, seed, workers) = args
-    budget = min(budget, SCREEN_FV)
-    base, base_um, used, records = anchor, problem.carrier_um, 0, []
-    for step, area in enumerate(trial_areas(aspect, low, high, params)):
-        if budget - used <= 1:
-            break
-        w, h = box(area, aspect)
-        sized = replace(problem, carrier_um=(w*1000, h*1000))
-        rec, ok, n = try_carrier(sized, base, base_um, gap_um, length_m, 'start', budget - used, size_s, threads,
-                                 directions, resolution, chain_steps, seed, workers)
-        used += n
-        rec.update(aspect=aspect, step=step, stage='screen', area_mm2=area, width_mm=w, height_mm=h, fv_solves=n,
-                   cost_usd=interposer_cost(w, h, params)['total_usd'], certified=ok is not None)
-        if ok is not None:
-            rec.update(j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
-                       rotation_deg=ok[0].rotation_deg.tolist())
-            base, base_um = ok[0], sized.carrier_um
-        records.append(rec)
-        if ok is None:
-            break
-    return records, used
-
-
-def refine_family(args, records, budget):
-    """cosize v5a stage 2, one chosen family: REFINE_STEPS bisections between its smallest certified area (from the
-    screen; else the family's largest cheaper carrier, tried first) and the next failed area below (else the dies'
-    total area), each trial seeded with the smallest certified layout and searched by relation_space with an equal
-    share of `budget`."""
-    (problem, anchor, gap_um, length_m, model, aspect, low, high, _, size_s, threads, directions, resolution,
-     chain_steps, params, seed, workers) = args
-    cert = [r for r in records if r.get('certified')]
-    good = min(cert, key=lambda r: r['area_mm2']) if cert else None
-    failed = [r['area_mm2'] for r in records if not r.get('certified') and (good is None or r['area_mm2'] < good['area_mm2'])]
-    if good is None:
-        base, base_um, hi, lo, first = anchor, problem.carrier_um, None, low, high
-    else:
-        base = Layout(np.array(good['centre_um']), np.array(good['rotation_deg']))
-        base_um, hi, lo, first = (good['width_mm']*1000, good['height_mm']*1000), good['area_mm2'], max(failed, default=low), None
-    used, out, share = 0, [], max(2, budget//REFINE_STEPS)
-    for step in range(REFINE_STEPS):
-        if budget - used <= 1:
-            break
-        area = first if (step == 0 and first is not None) else (hi + lo)/2 if hi is not None else (high + lo)/2
-        w, h = box(area, aspect)
-        sized = replace(problem, carrier_um=(w*1000, h*1000))
-        rec, ok, n = try_carrier(sized, base, base_um, gap_um, length_m, 'relation_space', budget - used, size_s,
-                                 threads, directions, resolution, chain_steps, seed, workers, rs_share=share)
-        used += n
-        rec.update(aspect=aspect, step=100 + step, stage='refine', area_mm2=area, width_mm=w, height_mm=h,
-                   fv_solves=n, cost_usd=interposer_cost(w, h, params)['total_usd'], certified=ok is not None)
-        if ok is not None:
-            rec.update(j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
-                       rotation_deg=ok[0].rotation_deg.tolist())
-            base, base_um, hi = ok[0], sized.carrier_um, area
-        else:
-            lo = area
-        out.append(rec)
-    return out, used
-
-
 def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', directions=8, aspects=ASPECTS,
              envelope=1.25, size_s=120.0, threads=2, workers=8, resolution=64, chain_steps=12, params=CostParams(),
              seed=2, expected_j_k=0.0):
@@ -537,13 +249,12 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
     Per aspect family (ASPECTS plus the original) the trial carriers cheaper than the anchor's (or manufacturable,
     if that is not) are searched by `family`; every trial is FV-certified. inner: 'proxy' (K-direction MILP),
     'axial', 'blind' (min-wire MILP) or 'relation_space' (control: the baseline's inner search on the same trials;
-    families then run one after another, the FV evaluator using `workers`); 'shrink' is cosize v4 (`family_shrink`:
-    continuous carrier-scale SLP with K-direction MILP topology moves, docs/cosize-v4-plan.md); 'rs2' is cosize v5a
-    (screen_family on every family, then refine_family with relation_space on the TOP_FAMILIES cheapest,
-    docs/cosize-v5-plan.md). The FV budget covers the anchor check
+    families then run one after another, the FV evaluator using `workers`). The FV budget covers the anchor check
     and the calibration. Returns the cheapest certified design (the anchor if nothing beats it) and every record."""
     from concurrent.futures import ProcessPoolExecutor
     import multiprocessing
+    if inner not in ('proxy', 'axial', 'blind', 'relation_space'):
+        raise ValueError(f'unknown anchored search: {inner}')
     if problem.limit_c is None:
         raise ValueError('anchored needs absolute per-die limits (Problem.limit_c)')
     out = dict(best=None, history=[], fv_solves=0, calibration_solves=0, anchor=None, inner=inner)
@@ -562,7 +273,7 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
                            fields=c0['fields'], j_k=check['j_k'], length_m=check['length_m'],
                            centre_um=anchor.centre_um.tolist(), rotation_deg=anchor.rotation_deg.tolist(), anchor=True)
     model = inner
-    if inner in ('proxy', 'axial', 'shrink'):
+    if inner in ('proxy', 'axial'):
         if fv_budget - out['fv_solves'] < len(R_MM) + len({tuple(s) for s in problem.size_um}):
             out['history'].append(dict(stop='fv budget before calibration'))
             return out
@@ -580,7 +291,7 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
                                        else 'fv budget'))
             continue
         jobs.append((problem, anchor, gap_um, length_m, model, aspect, die_area, high, share, size_s, threads,
-                     directions if inner in ('proxy', 'shrink') else None, resolution, chain_steps, params, seed,
+                     directions if inner == 'proxy' else None, resolution, chain_steps, params, seed,
                      workers))
     def run(fn, items):
         if workers > 1 and len(items) > 1:
@@ -588,22 +299,7 @@ def anchored(problem, anchor, gap_um, length_m, fv_budget, inner='proxy', direct
                 return list(pool.map(fn, items))
         return [fn(item) for item in items]
 
-    if inner == 'rs2':                                  # cosize v5a: screen every family, refine the cheapest few
-        screened = run(screen_family, jobs)
-        spent = sum(u for _, u in screened)
-        cheapest = [min((r['cost_usd'] for r in records if r.get('certified')), default=math.inf)
-                    for records, _ in screened]
-        ranked = sorted(range(len(jobs)), key=lambda k: cheapest[k])
-        chosen = [k for k in ranked if math.isfinite(cheapest[k])][:TOP_FAMILIES]
-        if not chosen:                                  # the anchor's topology reached no shape: original aspect
-            chosen = [min(range(len(jobs)), key=lambda k: abs(math.log(jobs[k][5]*h0/w0)))]
-        out['history'].append(dict(stage='screen', families=[jobs[k][5] for k in ranked],
-                                   chosen=[jobs[k][5] for k in chosen], fv_solves=spent))
-        left = fv_budget - out['fv_solves'] - spent    # relation_space runs its own FV pool: families in turn
-        results = screened + [refine_family(jobs[k], screened[k][0], left//len(chosen)) for k in chosen]
-    else:
-        search = family_shrink if inner == 'shrink' else family
-        results = run(search, jobs) if inner != 'relation_space' else [search(j) for j in jobs]
+    results = run(family, jobs) if inner != 'relation_space' else [family(j) for j in jobs]
     best = out['best']
     for records, used in results:
         out['history'] += records

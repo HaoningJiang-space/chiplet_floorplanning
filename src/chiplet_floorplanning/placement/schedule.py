@@ -1,22 +1,6 @@
-"""cosize v7 / v8: one size schedule shared by the mechanisms, a fixed cost-ordered cascade per target carrier
-(docs/cosize-v7-plan.md, docs/cosize-v8-plan.md). v8 adds two cascade stages between the repair and relation_space:
-the parent's binding chain flipped (`chain_flip`: the longest path of the separation graph is the smallest carrier
-that keeps the parent's relations; links of that chain are moved to the other axis, LP only, then the SLP repair)
-and the min-wire MILP generator (v6 / v3.2 blind's), whose infeasibility proves the box and smaller ones out.
-
-Per shape (the original aspect, 1:3, 3:1; merged within 5%) a queue of target areas is kept between the smallest
-certified area `hi` (at first the largest carrier cheaper than the anchor's) and the proven lower bound `lo` (at
-first the dies' total area); the first target is the interval's midpoint. A target is tried by, in this fixed order, (1) the shape's smallest certified layout
-moved without scaling (centred, when the target holds it; one FV) or else mapped proportionally and repaired by the
-SLP chain (at most REPAIR_FV), then (2) relation_space on the target (at most RS_FV), seeded with those layouts, on the
-shape's own continuing random stream. A success sets hi and puts the lower half's midpoint at the head of the queue.
-An ordinary failure is not a proof: the midpoints towards hi and towards lo both join the end of the queue, so the
-lower half is still visited. Only a
-MILP infeasibility of the geometry and wire relaxation (none is run here) or a shared proof would raise lo. Each shape
-has at most TARGETS distinct grid sizes; the shapes take turns. The free-shape joint MILP then uses what is left
-(at most JOINT_S of wall time over the 1-4 field options), its certified designs going to the global pool only.
-Every count starts at one absolute deadline set before the anchor check; nothing starts after it and nothing
-returned after it counts.
+"""Certified carrier sizing with a per-shape target queue and a shared FV and wall budget.
+The cascade tries a rigid move, proportional repair, chain flip, min-wire MILP, then relation-space search.
+Only a solver proof raises a shape's lower bound. Free rectangles enter the global pool independently.
 """
 from dataclasses import replace
 import math
@@ -24,10 +8,10 @@ import time
 
 import numpy as np
 
-from .cosize import area_ceiling, box, certify, fit_into, verify_anchor
-from .cost import CostParams, interposer_cost
-from .geometry import is_legal, pin_manhattan_um
-from .lp import legalize_relations
+from .cosize import area_ceiling, box, ceil_grid, certify, fit_into, verify_anchor
+from .cost import CostParams, interposer_cost, max_height
+from .geometry import is_legal
+from .lp import MILP_STATUS, TopologyLP, legalize_relations, milp_relations, topology
 from .problem import Layout
 from .proxy import R_MM, ThermalProxy
 
@@ -107,18 +91,18 @@ def chain_flip(sized, layout, gap_um, max_flips=3):
     if over(extent) > 1e-9:
         return None, flips
     lp = TopologyLP(sized, layout, gap_um, pairs=0, relations=as_list(rel))
-    x = lp._solve(lp.length)
-    return (None if x is None else lp._layout(x)), flips
+    return lp.shortest_layout(), flips
 
 
 def cascade(ctx, shape, area, deadline):
-    """Try one target carrier of `shape`: unscaled move, else mapping + SLP repair; with v8 then the chain flip and
+    """Try one target carrier of `shape`: unscaled move, else mapping + SLP repair, then the chain flip and
     the min-wire MILP generator; then relation_space (skipped once the MILP proves the box infeasible). Returns the
     target record (each stage: executed, FV, seconds, certified, wire-feasible overshoot) and the certified
     (layout, J, length) or None."""
     from .methods import NoLegalStart, relation_front
     w, h = box(area, shape['aspect'])
-    sized = replace(ctx['problem'], carrier_um=(w*1000, h*1000))
+    dims_um = (round(w*1000), round(h*1000)) if ctx.get('rectangles') else (w*1000, h*1000)
+    sized = replace(ctx['problem'], carrier_um=dims_um)
     rec = dict(aspect=shape['aspect'], area_mm2=area, width_mm=w, height_mm=h, stages=[],
                cost_usd=interposer_cost(w, h, ctx['params'])['total_usd'], fv_solves=0)
     base, base_um, L = shape['base'], shape['base_um'], ctx['length_m']
@@ -132,7 +116,11 @@ def cascade(ctx, shape, area, deadline):
 
     if time.perf_counter() < deadline and ctx['fv_budget'] - ctx['fv'] > 1:
         began = time.perf_counter()
-        moved = centred(base, base_um, sized.carrier_um) if w*1000 >= base_um[0] and h*1000 >= base_um[1] else None
+        if ctx.get('rectangles'):
+            # Grid carriers have integral µm sides. Remove floating-point noise before translating touching dies.
+            moved = centred(base, np.round(base_um, 8), dims_um)
+        else:
+            moved = centred(base, base_um, sized.carrier_um) if w*1000 >= base_um[0] and h*1000 >= base_um[1] else None
         if moved is not None and is_legal(sized, moved, ctx['gap_um']) and time.perf_counter() < deadline:
             starts.append(moved)
             ok, (j, l), n = certify(sized, moved, ctx['gap_um'], L, 0, ctx['resolution'])
@@ -148,7 +136,7 @@ def cascade(ctx, shape, area, deadline):
                     stage('repair', n, began, ok is not None, j if l <= L + 1e-9 else None)
             else:
                 stage('repair', 0, began, False)
-    if ok is None and ctx.get('v8') and time.perf_counter() < deadline and ctx['fv_budget'] - ctx['fv'] > 1:
+    if ok is None and time.perf_counter() < deadline and ctx['fv_budget'] - ctx['fv'] > 1:
         began = time.perf_counter()                      # the parent's binding chain: flip links, LP, repair
         flipped, flips = chain_flip(sized, base, ctx['gap_um'])
         if flipped is not None and time.perf_counter() < deadline:
@@ -160,7 +148,7 @@ def cascade(ctx, shape, area, deadline):
         else:
             stage('chain_flip', 0, began, False)
             rec['stages'][-1]['flips'] = flips
-    if ok is None and ctx.get('v8') and time.perf_counter() < deadline and ctx['fv_budget'] - ctx['fv'] > 1:
+    if ok is None and time.perf_counter() < deadline and ctx['fv_budget'] - ctx['fv'] > 1:
         from .cosize import fixed_carrier                 # the min-wire MILP topology (v6/v3.2 blind's generator)
         began = time.perf_counter()
         layout, statuses, proof, _ = fixed_carrier(sized, ctx['gap_um'], L, None, starts[0] if starts else None,
@@ -208,30 +196,121 @@ def cascade(ctx, shape, area, deadline):
     return rec, ok
 
 
+def refine_rectangle(ctx, parent, layout, cost_cap, deadline):
+    """Query one grid endpoint per axis of a certified parent. Only FV-certified improvements enter the pool."""
+    records = []
+    dims_mm = [v/1000 for v in parent.carrier_um]
+    # The fixed side is also a grid choice. Build the LP on an envelope containing both rounded sides.
+    upper_um = tuple(round(ceil_grid(v)*1000) for v in dims_mm)
+    envelope = replace(parent, carrier_um=upper_um)
+    gap, length = ctx['gap_um'], ctx['length_m']
+    if ctx['fv'] >= ctx['fv_budget'] or time.perf_counter() >= deadline:
+        return records
+    relations = topology(parent, layout, gap)
+    lp = TopologyLP(envelope, layout, gap, pairs=0, relations=relations)
+    for axis in (0, 1):
+        if ctx['fv'] >= ctx['fv_budget'] or time.perf_counter() >= deadline:
+            break
+        span = lp.minimum_span_mm(axis, length)
+        if span is None:
+            continue
+        target = list(upper_um)
+        fixed_mm = target[1-axis]/1000
+        span_mm = ceil_grid(max(span, fixed_mm/3))
+        target[axis] = round(span_mm*1000)
+        if target[axis] >= upper_um[axis] or span_mm > 3*fixed_mm + 1e-9:
+            continue
+        w, h = (s/1000 for s in target)
+        cost = interposer_cost(w, h, ctx['params'])['total_usd']
+        if cost >= cost_cap or time.perf_counter() >= deadline:
+            continue
+        sized = replace(parent, carrier_um=tuple(target))
+        seed = TopologyLP(sized, layout, gap, pairs=0, relations=relations).shortest_layout()
+        rec = dict(arm='rectangle_lp', axis=('width', 'height')[axis], parent_mm=dims_mm,
+                   width_mm=w, height_mm=h, cost_usd=cost, minimum_span_mm=span, certified=False, fv_solves=0)
+        if seed is not None and time.perf_counter() < deadline:
+            steps = min(ctx['chain_steps'], ctx['fv_budget'] - ctx['fv'] - 1)
+            ok, _, used = certify(sized, seed, gap, length, steps, ctx['resolution'])
+            ctx['fv'] += used
+            rec['fv_solves'] = used
+            if time.perf_counter() > deadline:
+                rec['after_deadline'] = True
+            elif ok is not None:
+                rec.update(certified=True, j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
+                           rotation_deg=ok[0].rotation_deg.tolist())
+                cost_cap = cost
+        rec.update(fv_total=ctx['fv'], elapsed_s=time.perf_counter() - ctx['started'])
+        records.append(rec)
+    return records
+
+
 def joint_search(ctx, deadline):
-    """The free-shape joint sizing MILP (portfolio.joint_arm) with what is left: one call of at most JOINT_S."""
-    from .portfolio import joint_arm
+    """Search the free-width and height MILP over the remaining wall and FV budget."""
     left_s = min(JOINT_S, deadline - time.perf_counter())
     budget = ctx['fv_budget'] - ctx['fv']
     if left_s < 2 or budget <= 1 or ctx['model'] is None:
         return []
-    gen = joint_arm(ctx, 'joint')
-    next(gen)
-    recs = gen.send((budget, left_s))
-    used = sum(x.get('fv_solves', 0) for x in recs if 'centre_um' not in x)
+    p, gap = ctx['problem'], ctx['gap_um']
+    w_max, h_max = (s/1000*1.25 for s in p.carrier_um)
+    envelope = replace(p, carrier_um=(w_max*1000, h_max*1000))
+    narrow = p.size_um.min(axis=1).max()/1000
+    levels = np.arange(math.ceil(narrow/0.5)*0.5, w_max + 1e-9, 0.5)
+    model, margin = ctx['model'], ctx['joint_margin']
+    out, used, began = [], 0, time.perf_counter()
+    found = []
+    for k in (1, 2, 3, 4):
+        left = left_s - (time.perf_counter() - began)
+        if left < 2:
+            break
+        caps = np.array([min(max_height(w, k, h_max, ctx['params']), 3.0*w) for w in levels])
+        excluded = [l for l, w in enumerate(levels) if caps[l] < w/3.0]
+        if len(excluded) == len(levels):
+            continue
+        sizing = (levels, None, excluded, caps, True, levels/3.0)
+        res = milp_relations(envelope, gap, left/2, sizing=sizing, proxy=(model, -margin, ctx['length_m']*1000),
+                             threads=ctx['threads'], focus=1)
+        out.append(dict(arm='joint', fields=k, solver=MILP_STATUS['status'], margin_k=margin))
+        if res is None:
+            continue
+        layout, extent, _ = res
+        w, h = (ceil_grid(v) for v in extent)
+        w, h = max(w, ceil_grid(h/3.0)), max(h, ceil_grid(w/3.0))
+        cost = interposer_cost(w, h, ctx['params'])['total_usd']
+        if math.isfinite(cost):
+            found.append((cost, w, h, layout))
+    for cost, w, h, layout in sorted(found, key=lambda f: f[0]):
+        if budget - used <= 1 or time.perf_counter() >= deadline:
+            break
+        sized = replace(p, carrier_um=(w*1000, h*1000))
+        legal = legalize_relations(sized, layout, gap)
+        if legal is None or not is_legal(sized, legal, gap) or time.perf_counter() >= deadline:
+            continue
+        ok, (j, l), n = certify(sized, legal, gap, ctx['length_m'], min(ctx['chain_steps'], budget - used - 1),
+                                ctx['resolution'])
+        used += n
+        out.append(dict(arm='joint', width_mm=w, height_mm=h, cost_usd=cost, fv_solves=n, certified=ok is not None,
+                        best_j_k=j, wire_ok_j_k=j if l <= ctx['length_m'] + 1e-9 else None))
+        if ok is not None:
+            out.append(dict(arm='joint', width_mm=w, height_mm=h, cost_usd=cost, certified=True,
+                            j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
+                            rotation_deg=ok[0].rotation_deg.tolist()))
+            break
     ctx['fv'] += used
     if time.perf_counter() > deadline:
-        for x in recs:
+        for x in out:
             if x.get('certified'):
                 x['certified'], x['after_deadline'] = False, True
-    return recs
+    return out
 
 
 def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, envelope=1.25, resolution=64,
-              chain_steps=12, threads=16, workers=16, seed=2, params=CostParams(), expected_j_k=0.0, v8=False):
-    """cosize v7 (module docstring). `deadline` is an absolute time.perf_counter() value shared with the baseline."""
+              chain_steps=12, threads=16, workers=16, seed=2, params=CostParams(), expected_j_k=0.0, v8=None):
+    """Shared size schedule. `deadline` is an absolute time.perf_counter() value shared with the baseline."""
+    if v8 is False:
+        raise ValueError('v7 was retired; replay it at 64d899e or omit v8 for the current method')
+    rectangles = v8 is None
     deadline = math.inf if deadline is None else deadline
-    out = dict(best=None, history=[], fv_solves=0, calibration_solves=0, anchor=None, inner='v8' if v8 else 'v7')
+    out = dict(best=None, history=[], fv_solves=0, calibration_solves=0, anchor=None, inner='rectangles' if rectangles else 'v8')
     if fv_budget < 1 or time.perf_counter() >= deadline:
         out['history'].append(dict(stop='fv budget or deadline before the anchor check'))
         return out
@@ -240,6 +319,10 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
     if not check['ok']:
         out['history'].append(dict(stop='reproduction_mismatch'))
         return out
+    if time.perf_counter() >= deadline:
+        check.update(ok=False, after_deadline=True)
+        out['history'].append(dict(stop='deadline'))
+        return out
     w0, h0 = (s/1000 for s in problem.carrier_um)
     c0 = interposer_cost(w0, h0, params)
     pool = [] if not math.isfinite(c0['total_usd']) else [dict(arm='anchor', width_mm=w0, height_mm=h0,
@@ -247,7 +330,15 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
             centre_um=anchor.centre_um.tolist(), rotation_deg=anchor.rotation_deg.tolist())]
     ctx = dict(problem=problem, anchor=anchor, gap_um=gap_um, length_m=length_m, params=params, seed=seed,
                workers=workers, threads=threads, resolution=resolution, chain_steps=chain_steps, fv=1,
-               fv_budget=fv_budget, started=time.perf_counter(), model=None, joint_margin=0.0, v8=v8)
+               fv_budget=fv_budget, started=time.perf_counter(), model=None, joint_margin=0.0, rectangles=rectangles)
+    def refine(parent, layout):
+        cap = min((r['cost_usd'] for r in pool), default=math.inf)
+        trials = refine_rectangle(ctx, parent, layout, cap, deadline)
+        out['history'].extend(trials)
+        pool.extend(r for r in trials if r['certified'])
+
+    if rectangles:
+        refine(problem, anchor)
     die_area = float(problem.size_um.prod(axis=1).sum())/1e6
     shapes = []
     for k, a in enumerate([w0/h0] + [a for a in SHAPES if abs(math.log(a*h0/w0)) > math.log(1.05)]):
@@ -274,9 +365,13 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
             ref = s['certified_hi'] if s['certified_hi'] is not None else s['hi']
             if ok is not None:
                 pool.append(dict(rec, arm=f"{rec['first_certifier']}:{s['aspect']:.3f}"))
+                if rectangles:
+                    refine(replace(problem, carrier_um=tuple(round(v*1000) for v in size)), ok[0])
                 if s['certified_hi'] is None or area < s['certified_hi']:   # only a smaller parent replaces one
                     s['certified_hi'], s['base'] = area, ok[0]
                     s['base_um'] = (rec['width_mm']*1000, rec['height_mm']*1000)
+                    if rectangles:
+                        s['base_um'] = tuple(round(v) for v in s['base_um'])
                 s['queue'].insert(0, (s['lo'] + s['certified_hi'])/2)
             elif rec.get('proof'):                       # proven: this box and smaller ones of the shape are out
                 s['lo'] = max(s['lo'], area)

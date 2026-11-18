@@ -12,7 +12,7 @@ from chiplet_floorplanning.placement import cosize as cosize_module  # noqa: E40
 from chiplet_floorplanning.placement.cosize import anchored, family  # noqa: E402
 from chiplet_floorplanning.placement.cost import interposer_cost  # noqa: E402
 from chiplet_floorplanning.placement import Layout, Problem  # noqa: E402
-from chiplet_floorplanning.placement.lp import legalize_relations, milp_relations, pin_length_cut  # noqa: E402
+from chiplet_floorplanning.placement.lp import milp_relations, pin_length_cut  # noqa: E402
 
 
 def opposed_pins():
@@ -59,35 +59,6 @@ class PinCutTest(unittest.TestCase):
         self.assertLessEqual(pin_manhattan_um(p, out).sum()/1000, budget + 1e-6)
 
 
-class ShrinkChainTest(unittest.TestCase):
-    def test_every_kept_step_is_a_smaller_certified_carrier(self):
-        from chiplet_floorplanning.placement.cosize import shrink_chain
-        p = small_problem()
-        anchor = Layout(np.array([[10., 10.], [30., 10.], [10., 30.], [30., 30.]])*1000, np.zeros(4, int))
-        with Evaluator(p, 500, resolution=16) as evaluator:
-            peak = evaluator.peaks_c([anchor])[0]
-        limited = replace(p, limit_c=np.full(4, peak))
-        length = pin_manhattan_um(p, anchor).sum()/1e6
-        out, used, (final, final_um, final_j), errors = shrink_chain(limited, anchor, 500, length, 12, 16, 60)
-        self.assertTrue(out)
-        self.assertLessEqual(used, 60)
-        self.assertTrue(errors)
-        self.assertEqual(final_um, (out[-1][1][0]*1000, out[-1][1][1]*1000))
-        self.assertLessEqual(final_j, 0)
-        for budget in (0, 1, 3):                                       # the budget covers every FV solve
-            self.assertLessEqual(shrink_chain(limited, anchor, 500, length, 12, 16, budget)[1], budget)
-        area = 40.0*40.0
-        for layout, (w, h), j, l in out:
-            self.assertLess(w*h, area)
-            area = w*h
-            sized = replace(limited, carrier_um=(w*1000, h*1000))
-            self.assertTrue(is_legal(sized, layout, 500))
-            with Evaluator(sized, 500, resolution=16) as evaluator:        # independent FV re-check
-                self.assertAlmostEqual(evaluator.peaks_c([layout])[0], j, places=9)
-            self.assertLessEqual(j, 0)
-            self.assertLessEqual(pin_manhattan_um(sized, layout).sum()/1e6, length + 1e-9)
-
-
 class CandidateRetentionTest(unittest.TestCase):
     def test_a_within_budget_axial_solution_survives_an_over_budget_polygon(self):
         # Review 08c5ec7: same geometry, the second die turned 180 degrees; clustered 24 mm, exact 24 vs 44 mm.
@@ -115,17 +86,6 @@ class CandidateRetentionTest(unittest.TestCase):
         self.assertEqual(calls, [None, 8])
 
 
-class GeneratorOrderTest(unittest.TestCase):
-    def test_the_binding_constraint_picks_the_first_generator(self):
-        from chiplet_floorplanning.placement.cosize import generator_order
-        p = small_problem()
-        layout = Layout(np.array([[10., 10.], [30., 10.], [10., 30.], [30., 30.]])*1000, np.zeros(4, int))
-        length = pin_manhattan_um(p, layout).sum()/1e6
-        self.assertEqual(generator_order(p, layout, length, -2.0, 'proxy'), ['blind', 'proxy'])       # wire-bound
-        self.assertEqual(generator_order(p, layout, length*1.5, -0.1, 'proxy'), ['proxy', 'blind'])   # thermal
-        self.assertEqual(generator_order(p, layout, length*1.5, -2.0, 'proxy'), ['blind', 'proxy'])   # geometry
-
-
 class AnchoredTest(unittest.TestCase):
     def setUp(self):
         self.p = small_problem()
@@ -136,7 +96,7 @@ class AnchoredTest(unittest.TestCase):
 
     def test_designs_meet_the_anchor_limits_and_never_cost_more(self):
         limited = replace(self.p, limit_c=np.full(4, self.peak))
-        for inner in ('proxy', 'axial', 'blind', 'relation_space', 'shrink', 'rs2'):
+        for inner in ('proxy', 'axial', 'blind', 'relation_space'):
             out = anchored(limited, self.anchor, 500, self.length, 200, inner=inner, aspects=(1.0, 2.0),
                            size_s=10, threads=1, workers=1, resolution=16, chain_steps=3)
             self.assertLessEqual(abs(out['anchor']['j_k']), 1e-6)
@@ -149,7 +109,7 @@ class AnchoredTest(unittest.TestCase):
             with Evaluator(sized, 500, resolution=16) as evaluator:     # independent FV re-check
                 self.assertLessEqual(evaluator.peaks_c([layout])[0], self.peak + 1e-6)
             self.assertLessEqual(pin_manhattan_um(sized, layout).sum()/1e6, self.length + 1e-9)
-            if inner in ('proxy', 'shrink'):
+            if inner == 'proxy':
                 self.assertFalse(best['anchor'])        # the spread anchor leaves room to shrink
 
     def test_a_reference_that_does_not_reproduce_stops(self):
@@ -207,26 +167,6 @@ class AnchoredTest(unittest.TestCase):
         with patch.dict(methods.METHODS, relation_space=spy):
             methods.relation_front(self.p, 500, 20, 2, [self.anchor], dict(milp_s=5, workers=1))
         self.assertLessEqual(seen['starts'], 1 + 2*(20//6))      # the anchor plus 3 random and 3 descent starts
-
-    def test_a_failed_entry_carrier_does_not_end_the_family(self):
-        from chiplet_floorplanning.placement.cosize import family_shrink
-        limited = replace(self.p, limit_c=np.full(4, self.peak))
-        original, calls = cosize_module.try_carrier, []
-
-        def first_fails(*args, **kwargs):
-            calls.append(1)
-            if len(calls) == 1:
-                return dict(stages=[], status='not_found'), None, 0
-            return original(*args, **kwargs)
-        cosize_module.try_carrier = first_fails
-        try:
-            records, used = family_shrink((limited, self.anchor, 500, self.length, 'blind', 1.0, 159.0, 1500.0, 150,
-                                           5.0, 1, None, 16, 3, cosize_module.CostParams(), 2, 1))
-        finally:
-            cosize_module.try_carrier = original
-        self.assertGreater(len(calls), 1)
-        self.assertTrue(any(r.get('certified') for r in records))
-        self.assertLessEqual(used, 150)
 
     def test_zero_budget_spends_no_solve(self):
         limited = replace(self.p, limit_c=np.full(4, self.peak))

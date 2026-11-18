@@ -130,16 +130,39 @@ class TopologyLP:
             rhs.append(np.array([-(size[first, axis] + size[second, axis])/2 - self.gap]))
             r += 1
         self.nvar = t
-        self.A = sparse.csr_matrix((np.concatenate(vals), (np.concatenate(rows), np.concatenate(cols))),
-                                   shape=(r, self.nvar))
+        self.A = (sparse.csr_matrix((np.concatenate(vals), (np.concatenate(rows), np.concatenate(cols))),
+                                    shape=(r, self.nvar)) if r else sparse.csr_matrix((0, self.nvar)))
         self.b = np.concatenate(rhs)
         self.bounds = centre_bounds + [(0, None)]*(t - 2*n)
         self.length = np.r_[np.zeros(2*n), np.ones(t - 2*n)]  # mm of inter-die pin length
+        internal = a == b
+        self.internal_mm = np.abs(offset[internal, 0] - offset[internal, 1]).sum()
         self.heat = np.zeros(self.nvar)
         for weight, i, j, direction in hot_pairs(problem, layout, pairs):
             for axis in (0, 1):
                 self.heat[axis*n + j] += weight*direction[axis]
                 self.heat[axis*n + i] -= weight*direction[axis]
+
+    def minimum_span_mm(self, axis, length_m):
+        """Shrink one side inside this LP's envelope, keeping the other side and the topology fixed."""
+        n = self.problem.count
+        ids = np.arange(n)
+        centres = axis*n + ids
+        # The lower bound on each centre is its rotated half-size. Its far edge must fit within span.
+        edges = sparse.csr_matrix((np.r_[np.ones(n), -np.ones(n)],
+                                   (np.r_[ids, ids], np.r_[centres, np.full(n, self.nvar)])),
+                                  shape=(n, self.nvar + 1))
+        geometry = sparse.hstack((self.A, sparse.csr_matrix((self.A.shape[0], 1))))
+        rows = sparse.vstack((geometry, edges, sparse.csr_matrix(np.r_[self.length, 0.])))
+        rhs = np.r_[self.b, [-self.bounds[i][0] for i in centres], length_m*1000 - self.internal_mm]
+        result = linprog(np.r_[np.zeros(self.nvar), 1.], A_ub=rows, b_ub=rhs,
+                         bounds=self.bounds + [(0, self.problem.carrier_um[axis]/1000)], method='highs')
+        return result.fun if result.success else None
+
+    def shortest_layout(self):
+        """A legal, grid-snapped seed from the minimum inter-die pin-length LP."""
+        x = self._solve(self.length)
+        return None if x is None else self._layout(x)
 
     def _solve(self, objective, extra=None):
         A, b = self.A, self.b

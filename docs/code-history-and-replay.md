@@ -51,6 +51,22 @@ sizing-v1（联合尺寸 MILP 对"先定尺寸再布局"）已跑完，并已被
 
 `run_sizing.run_front` 仍被 cosize 基线使用，移入 `placement/methods.relation_front`，行为不变；成本参数扫描 `SWEEP` 移入 `tools/cosize_compare.py`。
 
+## cosize 主流程
+
+`tools/run_cosize.py` 默认使用 `cosize_rect`。它复核参考布局后，保留关键链翻转、最小线长 MILP、映射修复和 relation_space 的级联，以及剩余预算下的联合尺寸 MILP。在每个固定目标上，先将父布局居中平移，只要几何合法就尝试一次 FV。这样也能利用小载板上原本空着的边缘。
+
+原始锚点和级联新认证的布局都可触发矩形查询。固定父布局的旋转和分离关系，依次试固定高、固定宽。每次用 LP 求满足引脚曼哈顿总长预算的最小另一边，包括芯粒内部连接的常数。候选按 0.1 mm 网格向上取整，长短边比至多 3。对成本可能更低的候选重新求最短线长布局、取整、核对几何，再执行原有 SLP 和 FV 认证。两个方向共享全局预算。矩形查询失败只影响该次尝试，原比例的搜索仍可继续。
+
+v4 连续缩放、v5a 先筛后搜、v6 逐轮淘汰和 v7 原级联均未通过各自冻结的准入试跑，已移除这四个运行入口和专用测试。联合尺寸 MILP 从 v6 模块移入当前调度器。历史 JSON 仍由 `tools/cosize_compare.py` 读取。默认方法以 `method=cosize_rect` 单独记账，沿用 v8 的认证协议。比较器只在出现其结果时增加探索性统计。
+
+清理前最后同时包含四个入口的提交为 `64d899e`。查阅旧入口可以运行
+
+```bash
+python tools/replay_at_commit.py --commit 64d899e -- python tools/run_cosize.py --help
+```
+
+逐次复现使用各计划记录的实际运行提交、输入和资源。冻结 v8 的运行提交为 `76173f3`。[v4](cosize-v4-plan.md) · [v5a](cosize-v5-plan.md) · [v6](cosize-v6-plan.md) · [v7](cosize-v7-plan.md) · [v8](cosize-v8-plan.md)
+
 ## 为什么改复现方式
 
 旧冻结计划把源文件 SHA-256 写入计划，`check_plan` 又逐级调用上一阶段检查

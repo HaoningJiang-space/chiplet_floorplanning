@@ -91,7 +91,10 @@ def compare(runs, combos_list):
         f = runs/f'case{n}-{ref}-{label}.json'
         return json.loads(f.read_text()) if f.exists() else None
     report = {}
-    for ours, theirs in COMPARISONS:
+    pairs = COMPARISONS
+    if any(runs.glob('case*-*-cosize_rect.json')):
+        pairs += (('cosize_rect', 'fixed_aspect'),)
+    for ours, theirs in pairs:
         outcomes, rows = {}, {}
         for n, ref in combos_list:
             a, b = load(n, ref, ours), load(n, ref, theirs)
@@ -118,6 +121,8 @@ def compare(runs, combos_list):
         result, coverage = verdict(outcomes, len(combos_list))
         held = [f'case{n}-{ref}' for n, ref in combos_list if f'case{n}-{ref}' not in DEVELOPMENT]
         held_result, held_coverage = verdict({k: o for k, o in outcomes.items() if k in held}, len(held))
+        if ours == 'cosize_rect':                       # report paired observations; v8's gate was frozen for v8
+            result = held_result = 'exploratory'
         report[f'{ours}_vs_{theirs}'] = dict(verdict=result, coverage=coverage, rows=rows,
                                              held_out=dict(combinations=held, verdict=held_result,
                                                            coverage=held_coverage))

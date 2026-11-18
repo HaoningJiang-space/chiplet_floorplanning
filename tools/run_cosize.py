@@ -6,11 +6,7 @@ reference layout anchors every method after the shared FV check (cosize.verify_a
 FV budget, search for the cheapest interposer (cost.interposer_cost, silicon only) carrying a layout that meets both:
 - cosize / cosize_axial / cosize_blind / cosize_rs: cosize.anchored with the K-direction proxy MILP, the axial one,
   the min-wire MILP or relation_space (control) as the new-topology step;
-- cosize_shrink (v4, docs/cosize-v4-plan.md): continuous carrier-scale SLP with MILP topology moves;
-- cosize_rs2 (v5a, docs/cosize-v5-plan.md): every aspect family screened by jump-and-repair, relation_space refinement
-  on the cheapest three;
-- cosize_sh (v6, docs/cosize-v6-plan.md): successive halving over mechanism x shape arms (placement/portfolio.py);
-- cosize_v7 (docs/cosize-v7-plan.md): one size schedule shared by a fixed cost-ordered cascade (placement/schedule.py);
+- cosize_rect (default): the shared cascade with rigid cropping and exact-wire rectangle refinement;
 - cosize_v8 (docs/cosize-v8-plan.md): v7 plus the binding-chain flip and the min-wire MILP generator in the cascade;
 - fixed_aspect: size-then-place - the original aspect ratio, bisection on the area factor, relation_space at each
   size with an equal share of the budget, seeded with the smallest certified layout; the original carrier is
@@ -69,10 +65,15 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
     if anchor is not None:
         if fv_budget < 1:
             return dict(best=None, history=[dict(stop='fv budget before the anchor check')], fv_solves=0, anchor=None)
+        if time.perf_counter() >= deadline:
+            return dict(best=None, history=[dict(stop='deadline')], fv_solves=0, anchor=None)
         check = verify_anchor(problem, anchor, gap_um, length_m, resolution, expected_j_k)
         used = 1
         if not check['ok']:
             return dict(best=None, history=[dict(stop='reproduction_mismatch')], fv_solves=used, anchor=check)
+        if time.perf_counter() >= deadline:
+            check.update(ok=False, after_deadline=True)
+            return dict(best=None, history=[dict(stop='deadline')], fv_solves=used, anchor=check)
     share = (fv_budget - used)//(BISECTION_STEPS + 1)
     if share < 1:
         best = None
@@ -142,8 +143,8 @@ def main():
     p.add_argument('--case', type=Path, required=True)
     p.add_argument('--evidence', type=Path, default=Path('docs/evidence/atplace-compare-rsg4-v3.json'))
     p.add_argument('--reference', choices=('atp_cool', 'atp_wl'), required=True)
-    p.add_argument('--method', choices=('cosize', 'cosize_axial', 'cosize_blind', 'cosize_rs', 'cosize_shrink', 'cosize_rs2', 'cosize_sh',
-                                         'cosize_v7', 'cosize_v8', 'fixed_aspect'), required=True)
+    p.add_argument('--method', choices=('cosize_rect', 'cosize_v8', 'fixed_aspect', 'cosize', 'cosize_axial',
+                                        'cosize_blind', 'cosize_rs'), default='cosize_rect')
     p.add_argument('--anchor-dir', type=Path, required=True,
                    help='ATPlace layouts CaseN/<label>/layout.json; the reference layout anchors every method')
     p.add_argument('--front-dir', type=Path, default=None,
@@ -157,7 +158,7 @@ def main():
     p.add_argument('--threads', type=int, default=2, help='v3.1: Gurobi threads per aspect-family process')
     p.add_argument('--directions', type=int, default=8, help='K-direction proxy distance (cosize only)')
     p.add_argument('--workers', type=int, default=16)
-    p.add_argument('--wall-s', type=float, default=2400, help='cosize_sh (v6): wall-clock cap from the anchor check on')
+    p.add_argument('--wall-s', type=float, default=2400, help='wall-clock cap from the anchor check for the scheduled methods and fixed_aspect')
     p.add_argument('--seed', type=int, default=2)
     p.add_argument('--output', type=Path, required=True)
     args = p.parse_args()
@@ -184,22 +185,16 @@ def main():
     limited = replace(problem, limit_c=np.full(problem.count, t_ref))
     anchor = from_atplace(problem, json.loads(anchor_file.read_text()))
     started = time.perf_counter()
-    if args.method in ('cosize_v7', 'cosize_v8'):
+    if args.method in ('cosize_rect', 'cosize_v8'):
         from chiplet_floorplanning.placement.schedule import scheduled
         out = scheduled(limited, anchor, args.gap_um, l_ref, args.fv_solves, deadline=deadline, envelope=ENVELOPE,
                         threads=args.workers, workers=args.workers, seed=args.seed, expected_j_k=expected,
-                        v8=args.method == 'cosize_v8')
-    elif args.method == 'cosize_sh':
-        from chiplet_floorplanning.placement.portfolio import successive_halving
-        out = successive_halving(limited, anchor, args.gap_um, l_ref, args.fv_solves, wall_s=args.wall_s,
-                                 envelope=ENVELOPE, threads=args.workers, workers=args.workers, seed=args.seed,
-                                 expected_j_k=expected)
+                        v8=True if args.method == 'cosize_v8' else None)
     elif args.method == 'fixed_aspect':
         out = fixed_aspect(limited, args.gap_um, l_ref, args.fv_solves, args.seed, args.milp_s, args.workers, anchor,
                            expected_j_k=expected, deadline=deadline)
     else:
-        inner = dict(cosize='proxy', cosize_axial='axial', cosize_blind='blind', cosize_rs='relation_space',
-                     cosize_shrink='shrink', cosize_rs2='rs2')[args.method]
+        inner = dict(cosize='proxy', cosize_axial='axial', cosize_blind='blind', cosize_rs='relation_space')[args.method]
         out = anchored(limited, anchor, args.gap_um, l_ref, args.fv_solves, inner=inner, envelope=ENVELOPE,
                        size_s=args.size_s, threads=args.threads, workers=args.workers, directions=args.directions,
                        seed=args.seed, expected_j_k=expected)
@@ -215,7 +210,8 @@ def main():
                   resources=dict(workers=args.workers, threads=args.threads, size_s=args.size_s, wall_s=args.wall_s),
                   limit_c=limited.limit_c.tolist(), names=list(limited.names), thermal_kind='overshoot_k',
                   case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(), code=source_revision(),
-                  plan='docs/cosize-v8-plan.md', anchor_file=str(anchor_file),
+                  plan=('docs/code-history-and-replay.md' if args.method == 'cosize_rect' else 'docs/cosize-v8-plan.md'),
+                  anchor_file=str(anchor_file),
                   anchor_sha256=hashlib.sha256(anchor_file.read_bytes()).hexdigest(),
                   **out)
     args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -27,6 +27,15 @@ git clone https://github.com/PKU-IDEA/ATPlace_pub ../ATPlace_pub
 python tools/import_atplace_cases.py --source ../ATPlace_pub --output results/physical-calibration/atplace-import-v1
 ```
 
+载板尺寸与布局联合优化默认使用 `cosize_rect`。以下命令需要与参考证据匹配的锚点布局。将 `ANCHORS` 替换为包含 `Case1/wl/layout.json` 的目录。
+
+```bash
+python tools/run_cosize.py --case results/physical-calibration/atplace-import-v1/Case1.json \
+    --reference atp_wl --anchor-dir ANCHORS --output results/case1-atp_wl-cosize_rect.json
+```
+
+同资源基线使用 `--method fixed_aspect`。冻结的 v8 正式实验按提交 `76173f3` 复现。[方法与历史入口](docs/code-history-and-replay.md#cosize-主流程)
+
 ## 代码结构
 
 | 位置 | 内容 |
