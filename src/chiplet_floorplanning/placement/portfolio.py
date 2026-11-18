@@ -279,5 +279,5 @@ def successive_halving(problem, anchor, gap_um, length_m, fv_budget=1000, wall_s
         best = min(pool, key=lambda x: x['cost_usd'])
         c = interposer_cost(best['width_mm'], best['height_mm'], params)
         out['best'] = dict(best, option=c['option'], fields=c['fields'], anchor=best['arm'] == 'anchor')
-    out['wall_s'] = time.perf_counter() - started
+    out['search_wall_s'] = time.perf_counter() - started    # the runner records its own wall_s
     return out

@@ -32,6 +32,9 @@ from chiplet_floorplanning.placement.cost import interposer_cost
 from atplace_compare import from_atplace
 
 ENVELOPE = 1.25
+RECORD_FIELDS = ('protocol_revision', 'case', 'method', 'reference', 'reference_label', 'delta_k', 't_ref_c', 'l_ref_m',
+                 'original', 'seed', 'fv_budget', 'milp_s', 'wall_s', 'resources', 'limit_c', 'names', 'thermal_kind',
+                 'case_sha256', 'code', 'plan', 'anchor_file', 'anchor_sha256')
 BISECTION_STEPS = 5
 
 
@@ -188,6 +191,9 @@ def main():
                        size_s=args.size_s, threads=args.threads, workers=args.workers, directions=args.directions,
                        seed=args.seed, expected_j_k=expected)
     w0, h0 = (s/1000 for s in problem.carrier_um)
+    clash = set(out) & set(RECORD_FIELDS)
+    if clash:
+        raise RuntimeError(f'search output shadows record fields: {sorted(clash)}')
     record = dict(protocol_revision='cosize-v6', case=args.case.stem, method=args.method,
                   reference=args.reference, reference_label=label, delta_k=args.delta_k if args.front_dir else None,
                   t_ref_c=t_ref, l_ref_m=l_ref, original=dict(width_mm=w0, height_mm=h0, **{

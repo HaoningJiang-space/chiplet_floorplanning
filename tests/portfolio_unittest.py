@@ -41,6 +41,8 @@ class SuccessiveHalvingTest(unittest.TestCase):
             self.assertLessEqual(evaluator.peaks_c([layout])[0], 1e-6)
         self.assertLessEqual(pin_manhattan_um(sized, layout).sum()/1e6, length + 1e-9)
         self.assertLess(best['cost_usd'], 208.75)                         # cheaper than the 40 x 40 anchor carrier
+        from run_cosize import RECORD_FIELDS                              # the runner merges `out` into its record
+        self.assertFalse(set(out) & set(RECORD_FIELDS))
 
     def test_zero_budget_and_a_mismatched_anchor_stop(self):
         p = small_problem()
