@@ -1,0 +1,530 @@
+{
+  "protocol_commit": "aa12f7d0cd7ff5479f0861f68de196dfb0a9f01a",
+  "analyzed_commit": "606ff3d973e2fb65416cea8e25dc1c9c7796c4c6",
+  "host": "moe-server",
+  "remote_results_dir": "/data/ziheng/haoning/chiplet_floorplanning/results/case3-ring-aa12f7d-release",
+  "case_sha256": "34def31b4c3b64f86c46e690367108718888b391c123ac7274cbb75ad81c49dd",
+  "archive_sha256": {
+    "summary.json": "8c3daf15cd3401fb92b90fad5ee0675a160f53d81902083df553586ceb1985dc",
+    "layouts.npz": "410800e720064e948d82aa0481db602fd83a26004924ab79538142be193773ce"
+  },
+  "driver_sha256": {
+    "case3_ring_bound.cpp": "10e22e0b6f15bb877b8fef2b12223233ef7ada051846c0bcaa9a91b1d506e526",
+    "case3_ring_certificate.py": "0a7c36e50e174b552e40ead4e62fd382441890c81f6f2fa218435c6c80f1c85c",
+    "case3_interstitial.py": "7ab649b6c9ca6ffe443b48c204bbb75b13a2e8e6d58315338cb9059c374cb98b",
+    "check_case3_ring.py": "6ffbbc85429812d0ec7dc278cdf72f528a314479f84972ebcea1805833f64bea",
+    "case3_ring_replay.cpp": "23d529cdc83466dbbc1ee66f5d018145066c6f1f5a38bd09c2cacb2442e4aed5"
+  },
+  "raw_sha256": {
+    "bound/certificate.json": "8e8e3d6e69502e17ae9a6f1a4264d4a1dee4ed583c1fbf62c6ccb4bf80252ebb",
+    "bound/coarse.json": "043e109e5b5f534129cbdbe3fd25e02459e430c7fad4cfb5736170fef611282a",
+    "witness/layouts.json": "989c744d160d14dd38c9662ae46c5756d1b363614d33cd9333ca4a1459c7f951",
+    "audit/decision.json": "84b373a85eace54b0a33c0be7a368ccadea2d324ce32e26325c0a90b9f31a751",
+    "audit109/decision.json": "5f00cba59c07e4b921820b03f5a64f1c83203012aae31714b24ddbaa4ff2d09c",
+    "archived.json": "fcf402f68baf94994b0880ddf372b7f6b6421fc8cd9be315e337544f84eaa4f9"
+  },
+  "ambient_c": 45,
+  "total_power_w": 680,
+  "carrier_mm": [
+    39,
+    39
+  ],
+  "budget_metric": "Sum of original two-pin Manhattan lengths; fixed pins rotated about each die centre.",
+  "heat_lower_bound": {
+    "radii_mm": [
+      0.011792518889736415,
+      0.0194025795111844,
+      0.05685765874788234,
+      0.10420800157073279,
+      0.14171812602499445,
+      0.47866305200410064,
+      1.9279069108959528,
+      34.3197992840659
+    ],
+    "coefficients_k_w": [
+      0.016731509111765585,
+      0.13092432641390045,
+      0.2474979350202304,
+      5.95601257467283,
+      0.0626386861955138,
+      3.7891375642786285,
+      0.3572177727709516,
+      0.05016906489257302
+    ],
+    "self_terms_k_w": [
+      2.0238063826404368e-07,
+      4.279359510889535e-06,
+      6.885517816428098e-05,
+      0.0055037263063211425,
+      0.0001060977519080868,
+      0.06747415990014852,
+      0.07107776287215804,
+      0.11695704943709934
+    ],
+    "cpu_self_floor_k": 39.17881958610408,
+    "reserved_dram_bundle_sum_mm": 16626.43433728,
+    "layout_grid": "Closed continuous boxes; 0.125 mm terminal width.",
+    "orientation_order": "CPU0 fixed at 0; other three quarter turns in lexicographic order; null = excluded.",
+    "coarse_expansion_limit_per_orientation": 160000,
+    "refine_expansion_limit_per_orientation": 1200000
+  },
+  "certified_caps": [
+    {
+      "cap_m": 38.95376444850001,
+      "floor_c": 109.91,
+      "unrounded_floor_c": 109.911993491115,
+      "excluded_orientations": 24,
+      "expanded_in_final_trees": 11772632,
+      "first_pass_floor_c": 109.721107461356,
+      "floor_c_by_turns_lexicographic": [
+        113.806677142438,
+        null,
+        113.051535600259,
+        110.889452649467,
+        null,
+        null,
+        null,
+        110.91321322589,
+        113.068535717113,
+        116.49787250345,
+        113.876227339693,
+        111.313832475948,
+        111.098837932286,
+        111.442021234691,
+        111.062305240991,
+        110.579080561294,
+        110.47690140044,
+        null,
+        null,
+        null,
+        111.225662594873,
+        null,
+        null,
+        116.382094233491,
+        109.911993491115,
+        null,
+        null,
+        null,
+        110.519194625329,
+        111.788765063468,
+        111.114995282727,
+        110.760570244293,
+        112.64547528479,
+        111.699658689518,
+        null,
+        null,
+        117.883576117767,
+        110.614854842049,
+        null,
+        null,
+        110.778485274258,
+        110.653263438048,
+        112.601199392196,
+        null,
+        110.704644428359,
+        110.389720755734,
+        111.369893212284,
+        110.414556941656,
+        null,
+        null,
+        112.087690945198,
+        null,
+        null,
+        114.853240998635,
+        111.160728811323,
+        null,
+        116.595415852804,
+        null,
+        110.871853036994,
+        null,
+        111.155756044389,
+        110.389656955271,
+        110.573546346982,
+        110.546575946134
+      ],
+      "measured_layout": {
+        "cap_m": 38.95376444850001,
+        "id": 896,
+        "count": 131,
+        "length_m": 38.916131658800005,
+        "checks": {
+          "64": {
+            "peak_c": 125.75827699288624,
+            "error_w": -1.0470557754160836e-10
+          },
+          "96": {
+            "peak_c": 126.01542650273895,
+            "error_w": 1.9895196601282805e-11
+          },
+          "128": {
+            "peak_c": 125.84939201645935,
+            "error_w": -1.921307557495311e-11
+          }
+        },
+        "centre_um": [
+          [
+            13000.0,
+            26579.0
+          ],
+          [
+            14706.0,
+            12059.0
+          ],
+          [
+            21870.0,
+            24184.0
+          ],
+          [
+            5800.0,
+            14454.0
+          ],
+          [
+            4500.0,
+            26934.0
+          ],
+          [
+            23206.0,
+            11704.0
+          ],
+          [
+            22225.0,
+            32684.0
+          ],
+          [
+            5445.0,
+            5954.0
+          ]
+        ],
+        "rotation_deg": [
+          180,
+          0,
+          90,
+          270,
+          0,
+          180,
+          270,
+          90
+        ]
+      }
+    },
+    {
+      "cap_m": 31.163011558800008,
+      "floor_c": 116.25,
+      "unrounded_floor_c": 116.252387564729,
+      "excluded_orientations": 59,
+      "expanded_in_final_trees": 45544,
+      "first_pass_floor_c": 116.252387564729,
+      "floor_c_by_turns_lexicographic": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        118.311537127396,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        117.386861142826,
+        null,
+        null,
+        117.396896433962,
+        null,
+        null,
+        null,
+        null,
+        116.252387564729,
+        null,
+        117.389936239204,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "measured_layout": {
+        "cap_m": 31.163011558800008,
+        "id": 96,
+        "count": 1,
+        "length_m": 31.163011558800008,
+        "checks": {
+          "64": {
+            "peak_c": 136.66702219284656,
+            "error_w": -1.432454155292362e-11
+          },
+          "96": {
+            "peak_c": 136.7531475915543,
+            "error_w": -8.185452315956354e-12
+          },
+          "128": {
+            "peak_c": 136.8229744024256,
+            "error_w": -7.275957614183426e-12
+          }
+        },
+        "centre_um": [
+          [
+            13000.0,
+            21500.0
+          ],
+          [
+            21000.0,
+            12666.0
+          ],
+          [
+            21500.0,
+            21166.0
+          ],
+          [
+            12500.0,
+            13000.0
+          ],
+          [
+            4500.0,
+            21500.0
+          ],
+          [
+            29500.0,
+            12332.0
+          ],
+          [
+            21500.0,
+            29666.0
+          ],
+          [
+            12166.0,
+            4500.0
+          ]
+        ],
+        "rotation_deg": [
+          180,
+          0,
+          90,
+          270,
+          0,
+          180,
+          270,
+          90
+        ]
+      }
+    }
+  ],
+  "threshold_replay": [
+    {
+      "target_c": 109.0,
+      "cap_m": 38.95376444850001,
+      "orientations": 64,
+      "boxes": 2867160,
+      "geometry": 150198,
+      "wire": 899159,
+      "thermal": 384255,
+      "unresolved": 0
+    },
+    {
+      "target_c": 109.91,
+      "cap_m": 38.95376444850001,
+      "orientations": 64,
+      "boxes": 7730460,
+      "geometry": 311097,
+      "wire": 2277726,
+      "thermal": 1276439,
+      "unresolved": 0
+    }
+  ],
+  "witnesses": {
+    "span": {
+      "cap_m": 94.96378087040002,
+      "tested_layout_id": 50,
+      "upper_c": 108.8,
+      "layout": {
+        "centre_um": [
+          [
+            8500.0,
+            6000.0
+          ],
+          [
+            30500.0,
+            6000.0
+          ],
+          [
+            8500.0,
+            33000.0
+          ],
+          [
+            30500.0,
+            33000.0
+          ],
+          [
+            8500.0,
+            14500.0
+          ],
+          [
+            30500.0,
+            14500.0
+          ],
+          [
+            8500.0,
+            24500.0
+          ],
+          [
+            30500.0,
+            24500.0
+          ]
+        ],
+        "rotation_deg": [
+          270,
+          90,
+          270,
+          270,
+          270,
+          270,
+          90,
+          90
+        ],
+        "length_m": 93.96502636320002,
+        "checks": {
+          "64": {
+            "peak_c": 108.7900169865211,
+            "error_w": -1.7962520360015333e-11
+          },
+          "96": {
+            "peak_c": 108.61744223172067,
+            "error_w": 3.240074875066057e-11
+          },
+          "128": {
+            "peak_c": 108.6458025069987,
+            "error_w": -2.2737367544323206e-12
+          }
+        }
+      }
+    },
+    "open": {
+      "cap_m": 155.29238567879997,
+      "tested_layout_id": 41,
+      "upper_c": 104.85,
+      "layout": {
+        "centre_um": [
+          [
+            4500.0,
+            4000.0
+          ],
+          [
+            34500.0,
+            4000.0
+          ],
+          [
+            4500.0,
+            35000.0
+          ],
+          [
+            34500.0,
+            35000.0
+          ],
+          [
+            12000.0,
+            15000.0
+          ],
+          [
+            27000.0,
+            15000.0
+          ],
+          [
+            12000.0,
+            24000.0
+          ],
+          [
+            27000.0,
+            24000.0
+          ]
+        ],
+        "rotation_deg": [
+          90,
+          90,
+          270,
+          270,
+          270,
+          0,
+          180,
+          90
+        ],
+        "length_m": 155.29238567879997,
+        "checks": {
+          "64": {
+            "peak_c": 104.84679031990349,
+            "error_w": 2.6147972675971687e-12
+          },
+          "96": {
+            "peak_c": 104.76851505466217,
+            "error_w": 4.320099833421409e-12
+          },
+          "128": {
+            "peak_c": 104.76526780459784,
+            "error_w": 1.6484591469634324e-11
+          }
+        }
+      }
+    }
+  },
+  "proposal_counts": {
+    "proposed": 28224,
+    "legal": 7334,
+    "in_span": 38,
+    "span_distinct": 18,
+    "open_distinct": 1433
+  },
+  "full_package_solves_by_grid": {
+    "64": 52,
+    "96": 52,
+    "128": 9
+  },
+  "archive_layout_rechecks_by_grid": {
+    "64": 2,
+    "96": 2,
+    "128": 2
+  },
+  "independently_recomputed_full_pin_lengths": 52,
+  "worst_abs_energy_balance_error_w": 1.0470557754160836e-10,
+  "conservative_separations_k": {
+    "original_tight_vs_original_span": 1.11,
+    "archive_shortest_vs_original_span": 7.45,
+    "original_tight_vs_extended": 5.06
+  },
+  "scope": "Nominal steady geometry-conforming FV model; no external thermal calibration, detailed routing, or timing."
+}
