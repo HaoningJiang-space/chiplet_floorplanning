@@ -1,0 +1,50 @@
+{
+  "protocol_commit": "f62da805688b8138bbbb1b71eff71a07cba1f431",
+  "analysed_commit": "f23b0a036343ed1a90c4ac698af2e29b07d906da",
+  "host": "moe-server",
+  "raw_dir": "/data/ziheng/haoning/chiplet_floorplanning/results/wide-continuous-f23b0a0",
+  "raw_sha256": "6aa34f62094696e5f1db09bd1d6a17d30d0cf3798554c365fdb8eca32643cf01",
+  "driver_sha256": "c431a6b887eb352f9a970d5524731b0e5681e284f4190071fab711114d0b722d",
+  "input_population_sha256": "6cb23a2ea18f1d67ee118de314a0194eece7df1731ca0b72e86aa7dd094e9623",
+  "geometries": 365,
+  "ordered": 132412,
+  "thermal_signatures": 22865,
+  "minimum_zero_phy_peak_c": 117.08725261642036,
+  "lowest_layout_id": "archive-766",
+  "lowest_config": {
+    "wire_m": 37.865714469599205,
+    "memory_m": 16.627442469599227,
+    "sides": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "rotation_deg": [
+      0,
+      180,
+      270,
+      0,
+      180,
+      0,
+      90,
+      180
+    ],
+    "max_cpu_signal_mm": 23.511,
+    "latency_ns": 4.28174
+  },
+  "geometries_total": 6607,
+  "under_109": 0
+}
