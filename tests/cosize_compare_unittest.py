@@ -82,11 +82,13 @@ class CosizeCompareTest(unittest.TestCase):
     def test_crop_variants_are_paired_against_each_other_and_their_own_controls(self):
         with tempfile.TemporaryDirectory() as tmp:
             d = Path(tmp)
-            for method in ('cosize_rect', 'cosize_rect_crop', 'fixed_aspect', 'fixed_aspect_crop'):
+            for method in ('cosize_rect', 'cosize_rect_crop', 'fixed_aspect', 'fixed_aspect_crop',
+                           'cosize_rect_online', 'fixed_aspect_online'):
                 (d/f'case1-atp_wl-{method}.json').write_text(json.dumps(run((30., 30.), method=method)))
             report = compare(d, [(1, 'atp_wl')])
             for key in ('cosize_rect_crop_vs_fixed_aspect_crop', 'cosize_rect_crop_vs_cosize_rect',
-                        'fixed_aspect_crop_vs_fixed_aspect'):
+                        'fixed_aspect_crop_vs_fixed_aspect', 'cosize_rect_online_vs_fixed_aspect_online',
+                        'cosize_rect_online_vs_cosize_rect', 'fixed_aspect_online_vs_fixed_aspect'):
                 self.assertEqual(report[key]['verdict'], 'exploratory')
                 self.assertEqual(report[key]['coverage']['ties'], 1)
 

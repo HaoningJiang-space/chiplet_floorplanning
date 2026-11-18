@@ -8,7 +8,7 @@ import time
 
 import numpy as np
 
-from .cosize import area_ceiling, box, ceil_grid, certify, fit_into, verify_anchor
+from .cosize import area_ceiling, box, ceil_grid, certify, crop_candidate, fit_into, verify_anchor
 from .cost import CostParams, interposer_cost, max_height
 from .geometry import is_legal
 from .lp import MILP_STATUS, TopologyLP, legalize_relations, milp_relations, topology
@@ -196,6 +196,18 @@ def cascade(ctx, shape, area, deadline):
     return rec, ok
 
 
+def crop_parent(ctx, parent, layout, arm, j_k, cost_cap, deadline):
+    if ctx['best_crop'] is not None:
+        cost_cap = min(cost_cap, ctx['best_crop']['cost_usd'])
+    rec = crop_candidate(parent, layout, ctx['gap_um'], ctx['length_m'], arm, j_k, cost_cap, ctx['fv'],
+                         ctx['fv_budget'], deadline, ctx['resolution'], ctx['params'])
+    ctx['fv'] += rec['fv_solves']
+    rec['elapsed_s'] = time.perf_counter() - ctx['started']
+    if rec['certified']:
+        ctx['best_crop'] = rec
+    return rec
+
+
 def refine_rectangle(ctx, parent, layout, cost_cap, deadline):
     """Query one grid endpoint per axis of a certified parent. Only FV-certified improvements enter the pool."""
     records = []
@@ -248,6 +260,8 @@ def refine_rectangle(ctx, parent, layout, cost_cap, deadline):
                 cost_cap = cost
         rec.update(fv_total=ctx['fv'], elapsed_s=time.perf_counter() - ctx['started'])
         records.append(rec)
+        if rec['certified'] and ctx.get('online_crop'):
+            records.append(crop_parent(ctx, sized, ok[0], 'rectangle_lp', ok[1], cost_cap, deadline))
     return records
 
 
@@ -311,10 +325,13 @@ def joint_search(ctx, deadline):
 
 
 def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, envelope=1.25, resolution=64,
-              chain_steps=12, threads=16, workers=16, seed=2, params=CostParams(), expected_j_k=0.0, v8=None):
+              chain_steps=12, threads=16, workers=16, seed=2, params=CostParams(), expected_j_k=0.0, v8=None,
+              online_crop=False):
     """Shared size schedule. `deadline` is an absolute time.perf_counter() value shared with the baseline."""
     if v8 is False:
         raise ValueError('v7 was retired; replay it at 64d899e or omit v8 for the current method')
+    if online_crop and v8 is True:
+        raise ValueError('online cropping is available with the current rectangle schedule')
     rectangles = v8 is None
     deadline = math.inf if deadline is None else deadline
     out = dict(best=None, history=[], fv_solves=0, calibration_solves=0, anchor=None, inner='rectangles' if rectangles else 'v8')
@@ -337,15 +354,20 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
             centre_um=anchor.centre_um.tolist(), rotation_deg=anchor.rotation_deg.tolist())]
     ctx = dict(problem=problem, anchor=anchor, gap_um=gap_um, length_m=length_m, params=params, seed=seed,
                workers=workers, threads=threads, resolution=resolution, chain_steps=chain_steps, fv=1,
-               fv_budget=fv_budget, started=time.perf_counter(), model=None, joint_margin=0.0, rectangles=rectangles)
-    def refine(parent, layout):
+               fv_budget=fv_budget, started=time.perf_counter(), model=None, joint_margin=0.0, rectangles=rectangles,
+               online_crop=online_crop, best_crop=None)
+
+    def refine(parent, layout, arm, j_k):
         cap = min((r['cost_usd'] for r in pool), default=math.inf)
+        if online_crop:
+            out['history'].append(crop_parent(ctx, parent, layout, arm, j_k, cap, deadline))
         trials = refine_rectangle(ctx, parent, layout, cap, deadline)
         out['history'].extend(trials)
-        pool.extend(r for r in trials if r['certified'])
+        # A cheap crop bounds subsequent rigid moves. A costlier LP parent can still have a cheaper descendant.
+        pool.extend(r for r in trials if r['certified'] and r['arm'] == 'rectangle_lp')
 
     if rectangles:
-        refine(problem, anchor)
+        refine(problem, anchor, 'anchor', check['j_k'])
     die_area = float(problem.size_um.prod(axis=1).sum())/1e6
     shapes = []
     for k, a in enumerate([w0/h0] + [a for a in SHAPES if abs(math.log(a*h0/w0)) > math.log(1.05)]):
@@ -371,9 +393,10 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
             out['history'].append(rec)
             ref = s['certified_hi'] if s['certified_hi'] is not None else s['hi']
             if ok is not None:
-                pool.append(dict(rec, arm=f"{rec['first_certifier']}:{s['aspect']:.3f}"))
+                arm = f"{rec['first_certifier']}:{s['aspect']:.3f}"
+                pool.append(dict(rec, arm=arm))
                 if rectangles:
-                    refine(replace(problem, carrier_um=tuple(round(v*1000) for v in size)), ok[0])
+                    refine(replace(problem, carrier_um=tuple(round(v*1000) for v in size)), ok[0], arm, ok[1])
                 if s['certified_hi'] is None or area < s['certified_hi']:   # only a smaller parent replaces one
                     s['certified_hi'], s['base'] = area, ok[0]
                     s['base_um'] = (rec['width_mm']*1000, rec['height_mm']*1000)
@@ -399,8 +422,17 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
         ctx.update(model=model, joint_margin=-(model.envelope_value(problem, anchor, gap_um) - check['j_k']))
         joint = joint_search(ctx, deadline)
         out['history'] += joint
-        pool += [x for x in joint if x.get('certified') and 'centre_um' in x]
+        for row in joint:
+            if row.get('certified') and 'centre_um' in row:
+                pool.append(row)
+                if online_crop:
+                    parent = replace(problem, carrier_um=(row['width_mm']*1000, row['height_mm']*1000))
+                    layout = Layout(np.asarray(row['centre_um']), np.asarray(row['rotation_deg']))
+                    cap = min(r['cost_usd'] for r in pool)
+                    out['history'].append(crop_parent(ctx, parent, layout, 'joint', row['j_k'], cap, deadline))
     out['fv_solves'] = ctx['fv']
+    if ctx['best_crop'] is not None:
+        pool.append(ctx['best_crop'])
     if pool:
         best = min(pool, key=lambda x: x['cost_usd'])
         c = interposer_cost(best['width_mm'], best['height_mm'], params)

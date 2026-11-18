@@ -8,6 +8,7 @@ FV budget, search for the cheapest interposer (cost.interposer_cost, silicon onl
   the min-wire MILP or relation_space (control) as the new-topology step;
 - cosize_rect (default): the shared cascade with rigid cropping and exact-wire rectangle refinement;
 - cosize_rect_crop / fixed_aspect_crop: the corresponding search with one FV reserved for a final tight crop;
+- cosize_rect_online / fixed_aspect_online: test a competitive tight crop as each parent is certified;
 - cosize_v8 (docs/cosize-v8-plan.md): v7 plus the binding-chain flip and the min-wire MILP generator in the cascade;
 - fixed_aspect: size-then-place - the original aspect ratio, bisection on the area factor, relation_space at each
   size with an equal share of the budget, seeded with the smallest certified layout; the original carrier is
@@ -25,7 +26,8 @@ import numpy as np
 
 from chiplet_floorplanning.cli import source_revision
 from chiplet_floorplanning.placement import Layout, Problem
-from chiplet_floorplanning.placement.cosize import PROTOCOL_REVISION, anchored, ceil_grid, finish_crop, fit_into, verify_anchor
+from chiplet_floorplanning.placement.cosize import (PROTOCOL_REVISION, anchored, ceil_grid, crop_candidate, finish_crop,
+                                                   fit_into, verify_anchor)
 from chiplet_floorplanning.placement.methods import NoLegalStart, relation_front
 from chiplet_floorplanning.placement.cost import interposer_cost
 from atplace_compare import from_atplace
@@ -36,6 +38,7 @@ RECORD_FIELDS = ('protocol_revision', 'case', 'method', 'reference', 'reference_
                  'case_sha256', 'code', 'plan', 'anchor_file', 'anchor_sha256')
 BISECTION_STEPS = 5
 CROP_METHODS = {'cosize_rect_crop': 'cosize_rect', 'fixed_aspect_crop': 'fixed_aspect'}
+ONLINE_METHODS = {'cosize_rect_online': 'cosize_rect', 'fixed_aspect_online': 'fixed_aspect'}
 
 
 def references(evidence, case):
@@ -54,7 +57,7 @@ def references(evidence, case):
 
 
 def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, anchor=None, resolution=64,
-                 expected_j_k=0.0, deadline=math.inf):
+                 expected_j_k=0.0, deadline=math.inf, online_crop=False):
     """Bisection on the area factor at the original aspect ratio; relation_space per size. With `anchor` (v3.1) the
     reference layout is checked by the shared verify_anchor (1 FV, counted), certifies the original carrier itself
     (step 0, not grid-rounded) with its measured J, and every later size is seeded with the smallest certified
@@ -64,6 +67,8 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
     low, high = die_area/(w0*h0), ENVELOPE**2          # area factors: certainly infeasible / search ceiling
     best, history, used, check = None, [], 0, None
     base, base_um = anchor, problem.carrier_um
+    if online_crop:
+        started = time.perf_counter()
     if anchor is not None:
         if fv_budget < 1:
             return dict(best=None, history=[dict(stop='fv budget before the anchor check')], fv_solves=0, anchor=None)
@@ -77,7 +82,7 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
             check.update(ok=False, after_deadline=True)
             return dict(best=None, history=[dict(stop='deadline')], fv_solves=used, anchor=check)
     share = (fv_budget - used)//(BISECTION_STEPS + 1)
-    if share < 1:
+    if share < 1 and not (online_crop and anchor is not None):
         best = None
         if anchor is not None and math.isfinite(interposer_cost(w0, h0)['total_usd']):    # the checked anchor stands
             c = interposer_cost(w0, h0)
@@ -103,13 +108,17 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
                                die_thermal=[np.array(check['die_j_k'])])
                 record['anchor'] = True
             else:
+                remaining_fv = min(share, fv_budget - used)
+                if remaining_fv < 1:
+                    history.append(dict(step=step, stop='fv budget'))
+                    break
                 start = None if base is None else fit_into(sized, base, base_um, gap_um)
                 record['started'] = start is not None
                 remaining_s = deadline - time.perf_counter()
                 if remaining_s <= 0:
                     history.append(dict(record, stop='deadline', certified=False, fv_solves=0))
                     break
-                rows, archive = relation_front(sized, gap_um, share, seed, [start] if start is not None else [],
+                rows, archive = relation_front(sized, gap_um, remaining_fv, seed, [start] if start is not None else [],
                                                dict(milp_s=min(milp_s, remaining_s), workers=workers, resolution=resolution))
             used += int(archive['solves'])
             ok = [i for i, r in enumerate(rows) if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]
@@ -134,6 +143,16 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
                             die_overshoot_k=np.asarray(archive['die_thermal'][chosen]).tolist(),
                             step=step, layout_index=chosen, option=interposer_cost(w, h)['option'],
                             fields=interposer_cost(w, h)['fields'])
+            if online_crop:
+                cap = best['cost_usd'] if best is not None else math.inf
+                arm = 'anchor' if record.get('anchor') else 'relation_space'
+                crop = crop_candidate(sized, layout, gap_um, length_m, arm, rows[chosen]['thermal'], cap,
+                                      used, fv_budget, deadline, resolution)
+                used += crop['fv_solves']
+                crop.update(parent_step=step, elapsed_s=time.perf_counter() - started)
+                history.append(crop)
+                if crop['certified']:
+                    best = crop
             high = trial
         else:
             low = trial
@@ -149,7 +168,7 @@ def main():
     p.add_argument('--case', type=Path, required=True)
     p.add_argument('--evidence', type=Path, default=Path('docs/evidence/atplace-compare-rsg4-v3.json'))
     p.add_argument('--reference', choices=('atp_cool', 'atp_wl'), required=True)
-    p.add_argument('--method', choices=('cosize_rect', *CROP_METHODS, 'cosize_v8', 'fixed_aspect', 'cosize', 'cosize_axial',
+    p.add_argument('--method', choices=('cosize_rect', *CROP_METHODS, *ONLINE_METHODS, 'cosize_v8', 'fixed_aspect', 'cosize', 'cosize_axial',
                                         'cosize_blind', 'cosize_rs'), default='cosize_rect')
     p.add_argument('--anchor-dir', type=Path, required=True,
                    help='ATPlace layouts CaseN/<label>/layout.json; the reference layout anchors every method')
@@ -191,17 +210,18 @@ def main():
     anchor = from_atplace(problem, json.loads(anchor_file.read_text()))
     started = time.perf_counter()
     deadline = started + args.wall_s
-    method = CROP_METHODS.get(args.method, args.method)
+    method = ONLINE_METHODS.get(args.method, CROP_METHODS.get(args.method, args.method))
     crop = args.method in CROP_METHODS
+    online = args.method in ONLINE_METHODS
     search_budget = args.fv_solves - int(crop and args.fv_solves > 1)
     if method in ('cosize_rect', 'cosize_v8'):
         from chiplet_floorplanning.placement.schedule import scheduled
         out = scheduled(limited, anchor, args.gap_um, l_ref, search_budget, deadline=deadline, envelope=ENVELOPE,
                         threads=args.workers, workers=args.workers, seed=args.seed, expected_j_k=expected,
-                        v8=True if method == 'cosize_v8' else None)
+                        v8=True if method == 'cosize_v8' else None, online_crop=online)
     elif method == 'fixed_aspect':
         out = fixed_aspect(limited, args.gap_um, l_ref, search_budget, args.seed, args.milp_s, args.workers, anchor,
-                           expected_j_k=expected, deadline=deadline)
+                           expected_j_k=expected, deadline=deadline, online_crop=online)
     else:
         inner = dict(cosize='proxy', cosize_axial='axial', cosize_blind='blind', cosize_rs='relation_space')[args.method]
         out = anchored(limited, anchor, args.gap_um, l_ref, args.fv_solves, inner=inner, envelope=ENVELOPE,
@@ -222,7 +242,7 @@ def main():
                   resources=dict(workers=args.workers, threads=args.threads, size_s=args.size_s, wall_s=args.wall_s),
                   limit_c=limited.limit_c.tolist(), names=list(limited.names), thermal_kind='overshoot_k',
                   case_sha256=hashlib.sha256(args.case.read_bytes()).hexdigest(), code=source_revision(),
-                  plan=('docs/code-history-and-replay.md' if crop or method == 'cosize_rect' else 'docs/cosize-v8-plan.md'),
+                  plan=('docs/code-history-and-replay.md' if crop or online or method == 'cosize_rect' else 'docs/cosize-v8-plan.md'),
                   anchor_file=str(anchor_file),
                   anchor_sha256=hashlib.sha256(anchor_file.read_bytes()).hexdigest(),
                   **out)

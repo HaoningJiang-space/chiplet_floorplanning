@@ -48,6 +48,15 @@ class ChainTest(unittest.TestCase):
             else:
                 self.assertIs(result['best'], parent)
 
+    def test_only_global_improvements_spend_a_crop_solve(self):
+        from chiplet_floorplanning.placement.cosize import crop_candidate
+        p = replace(self.p, limit_c=np.full(3, 250.))
+        cropped_price = schedule.interposer_cost(32., 10.7)['total_usd']
+        for cap, used, status in ((cropped_price, 0, 'no_cheaper_crop'), (cropped_price + 1., 1, 'certified')):
+            rec = crop_candidate(p, self.row, 1000, 1., 'repair', -1., cap, 5, 6, float('inf'), 16)
+            self.assertLess(cap, rec['parent_cost_usd'])    # the search would discard this parent on price alone
+            self.assertEqual((rec['fv_solves'], rec['status']), (used, status))
+
     def test_the_longest_chain_is_the_minimum_extent(self):
         from chiplet_floorplanning.placement.lp import centre_relations
         (w, h), chains = schedule.min_extent(self.p, self.row, centre_relations(self.p, self.row, 1000), 1000)
@@ -125,6 +134,17 @@ class ScheduleTest(unittest.TestCase):
         self.assertTrue(any(r.get('arm') == 'rectangle_lp' for r in out['history']))
         targets = [r for r in out['history'] if 'stages' in r]
         self.assertTrue(targets and all('first_certifier' in r and 'fv_total' in r for r in targets))
+
+    def test_both_searches_spend_the_last_available_solve_on_a_new_parent(self):
+        from run_cosize import fixed_aspect
+        p = replace(self.limited, limit_c=self.limited.limit_c + 20.)
+        opts = dict(online_crop=True, expected_j_k=-20., resolution=16)
+        for out in (schedule.scheduled(p, self.anchor, 500, self.length, fv_budget=2, **opts),
+                    fixed_aspect(p, 500, self.length, 2, 2, 1, 1, self.anchor, **opts)):
+            self.assertEqual(out['fv_solves'], 2)
+            crop, = [r for r in out['history'] if r.get('arm') == 'tight_crop']
+            self.assertEqual((crop['parent_arm'], crop['fv_total'], crop['status']), ('anchor', 2, 'certified'))
+            self.assertEqual(out['best']['cost_usd'], crop['cost_usd'])
 
     def test_v8_designs_are_certified_within_budget(self):
         out = schedule.scheduled(self.limited, self.anchor, 500, self.length, fv_budget=200,
