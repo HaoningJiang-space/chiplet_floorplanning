@@ -1,0 +1,660 @@
+{
+  "protocol_commit": "b098fd96714638e046b5ec64f6874dbdafc8cb88",
+  "analyzed_commit": "32ae8fc48a20c6619caa8851bd9639271a361d1d",
+  "host": "moe-server",
+  "raw_dir": "/data/ziheng/haoning/chiplet_floorplanning/results/case3-phy-b098fd9-r1",
+  "source_sha256": {
+    "case3_phy_experiment.py": "8659aeed6d0fd3ce7332fe577765d609c74d496c0c82ba10b451a932fe9ac690",
+    "case3_phy_thermal.py": "810760c206b5f7f6d7c98336f5f2693e76cc098526b63cb656a032260a77f858",
+    "case3_phy_geometry.py": "60a33b4cddc7f9041eecff4811cf496c22a4a2f6055a815f4d1cc7c997e138c1"
+  },
+  "input_case_sha256": "34def31b4c3b64f86c46e690367108718888b391c123ac7274cbb75ad81c49dd",
+  "raw_sha256": {
+    "geometry.json": "3e8accb9df2bc1bdf187adf285bfdf1877c01d1c834e86a132d87fa56984f9ca",
+    "thermal.json": "a884472323a83dc7d8e16002beb2b15af106472bfbcf96472e24d7c7ee75f29d"
+  },
+  "service": {
+    "payload_bytes": 256,
+    "total_bytes": 272,
+    "independent_directed_streams": 8,
+    "raw_per_stream_gbit_s": 1024,
+    "total_payload_ceiling_decimal_TB_s": 0.963764705882353,
+    "latency_limit_ns": 5,
+    "assumed_fixed_endpoint_ns": 2
+  },
+  "signals_per_module": 44,
+  "memory_nets": 5632,
+  "reach_mm": 25,
+  "wire_cap_m": 38.95376444850001,
+  "temperature_limit_c": 109,
+  "non_phy_power_w": 680,
+  "counts": {
+    "wide": {
+      "reach": 2276,
+      "wire_and_delay": 365
+    },
+    "narrow": {
+      "reach": 2276,
+      "wire_and_delay": 558
+    }
+  },
+  "geometries": 3016,
+  "geometry_selected": {
+    "wide": 40,
+    "narrow": 40
+  },
+  "field_pair_counts": {
+    "64": 154,
+    "96": 18,
+    "128": 18
+  },
+  "full_field_solves": 386,
+  "final": {
+    "wide": {
+      "best": "archive-767",
+      "shortest_full": null,
+      "coolest_full_load": "archive-767"
+    },
+    "narrow": {
+      "best": "corner-2861",
+      "shortest_full": null,
+      "coolest_full_load": "corner-2861"
+    }
+  },
+  "operating_points": {
+    "wide": {
+      "id": "archive-767",
+      "profile": "wide",
+      "centres_um": [
+        [
+          15010.0,
+          7446.0
+        ],
+        [
+          14005.0,
+          33082.0
+        ],
+        [
+          5385.0,
+          14281.0
+        ],
+        [
+          23532.0,
+          27314.0
+        ],
+        [
+          23510.0,
+          7091.0
+        ],
+        [
+          5505.0,
+          33437.0
+        ],
+        [
+          5030.0,
+          5781.0
+        ],
+        [
+          32032.0,
+          27639.0
+        ]
+      ],
+      "config": {
+        "wire_m": 37.730498469599205,
+        "memory_m": 16.627442469599213,
+        "sides": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "rotation_deg": [
+          0,
+          180,
+          270,
+          0,
+          180,
+          0,
+          90,
+          180
+        ],
+        "max_cpu_signal_mm": 24.88,
+        "latency_ns": 4.290866666666667
+      },
+      "checks": {
+        "64": {
+          "base_peak_c": 117.22333619079998,
+          "full_peak_c": 117.88308789243895,
+          "power_fraction": 0.0,
+          "max_full_rate_energy_pj_bit": 0.0,
+          "energy_error_w": 1.659827830735594e-11
+        },
+        "96": {
+          "base_peak_c": 116.99769620362926,
+          "full_peak_c": 117.76123215284804,
+          "power_fraction": 0.0,
+          "max_full_rate_energy_pj_bit": 0.0,
+          "energy_error_w": 1.4335910236695781e-10
+        },
+        "128": {
+          "base_peak_c": 116.84158697478996,
+          "full_peak_c": 117.6070847872114,
+          "power_fraction": 0.0,
+          "max_full_rate_energy_pj_bit": 0.0,
+          "energy_error_w": 1.5234036254696548e-11
+        }
+      },
+      "utilisation": {
+        "0.0": 0.0,
+        "0.25": 0.0,
+        "0.5": 0.0
+      },
+      "nominal_payload_tb_s": 0.0,
+      "operating_checks": {
+        "64": {
+          "peak_c": 117.38827411620967,
+          "energy_error_w": 1.6484591469634324e-11,
+          "phy_w": 2.048
+        },
+        "96": {
+          "peak_c": 117.18858019093382,
+          "energy_error_w": 1.4074430509936064e-10,
+          "phy_w": 2.048
+        },
+        "128": {
+          "peak_c": 117.03296142789526,
+          "energy_error_w": 1.5916157281026244e-11,
+          "phy_w": 2.048
+        }
+      },
+      "qualified_geometry": true
+    },
+    "narrow": {
+      "id": "corner-2861",
+      "profile": "narrow",
+      "centres_um": [
+        [
+          7500.0,
+          7000.0
+        ],
+        [
+          32000.0,
+          7500.0
+        ],
+        [
+          7000.0,
+          31500.0
+        ],
+        [
+          31500.0,
+          32000.0
+        ],
+        [
+          7500.0,
+          17500.0
+        ],
+        [
+          21500.0,
+          7500.0
+        ],
+        [
+          17500.0,
+          31500.0
+        ],
+        [
+          31500.0,
+          21500.0
+        ]
+      ],
+      "config": {
+        "wire_m": 36.3384343935992,
+        "memory_m": 27.890434393599207,
+        "sides": [
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "rotation_deg": [
+          90,
+          180,
+          0,
+          270,
+          270,
+          0,
+          180,
+          90
+        ],
+        "max_cpu_signal_mm": 24.9,
+        "latency_ns": 4.291
+      },
+      "checks": {
+        "64": {
+          "base_peak_c": 108.41995019156104,
+          "full_peak_c": 109.75771347782548,
+          "power_fraction": 0.6749187403772297,
+          "max_full_rate_energy_pj_bit": 0.8436484254715371,
+          "energy_error_w": 2.955857780762017e-11
+        },
+        "96": {
+          "base_peak_c": 108.37080959776272,
+          "full_peak_c": 109.61145623134352,
+          "power_fraction": 0.8542915732091361,
+          "max_full_rate_energy_pj_bit": 1.06786446651142,
+          "energy_error_w": 3.524291969370097e-12
+        },
+        "128": {
+          "base_peak_c": 108.40480507610435,
+          "full_peak_c": 109.49690255579107,
+          "power_fraction": 0.8396473604775117,
+          "max_full_rate_energy_pj_bit": 1.0495592005968897,
+          "energy_error_w": 1.432454155292362e-11
+        }
+      },
+      "utilisation": {
+        "0.0": 0.6749187403772297,
+        "0.25": 0.5665583205029728,
+        "0.5": 0.3498374807544593
+      },
+      "nominal_payload_tb_s": 0.5460289131247474,
+      "operating_checks": {
+        "64": {
+          "peak_c": 108.99999999999977,
+          "energy_error_w": 3.001332515850663e-11,
+          "phy_w": 6.911167901462832
+        },
+        "96": {
+          "peak_c": 108.85170753694723,
+          "energy_error_w": 2.9558577807620168e-12,
+          "phy_w": 6.911167901462832
+        },
+        "128": {
+          "peak_c": 108.88322998068122,
+          "energy_error_w": 1.432454155292362e-11,
+          "phy_w": 6.911167901462832
+        }
+      },
+      "qualified_geometry": true
+    }
+  },
+  "reference": {
+    "wide": {
+      "id": "reference",
+      "profile": "wide",
+      "centres_um": [
+        [
+          8500.0,
+          6000.0
+        ],
+        [
+          30500.0,
+          6000.0
+        ],
+        [
+          8500.0,
+          33000.0
+        ],
+        [
+          30500.0,
+          33000.0
+        ],
+        [
+          8500.0,
+          14500.0
+        ],
+        [
+          30500.0,
+          14500.0
+        ],
+        [
+          8500.0,
+          24500.0
+        ],
+        [
+          30500.0,
+          24500.0
+        ]
+      ],
+      "config": {
+        "wire_m": 70.21977827200003,
+        "memory_m": 46.00217827200006,
+        "sides": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "rotation_deg": [
+          270,
+          270,
+          90,
+          90,
+          270,
+          270,
+          90,
+          90
+        ],
+        "max_cpu_signal_mm": 21.2,
+        "latency_ns": 4.266333333333334
+      },
+      "checks": {
+        "64": {
+          "base_peak_c": 109.05851570787169,
+          "full_peak_c": 109.73649446623041,
+          "power_fraction": 0.0,
+          "max_full_rate_energy_pj_bit": 0.0,
+          "energy_error_w": 1.1254996934439987e-11
+        },
+        "96": {
+          "base_peak_c": 108.57134519258727,
+          "full_peak_c": 109.10501389985009,
+          "power_fraction": 0.8032226765014802,
+          "max_full_rate_energy_pj_bit": 0.8032226765014802,
+          "energy_error_w": 1.0800249583553523e-11
+        },
+        "128": {
+          "base_peak_c": 108.6579209396939,
+          "full_peak_c": 109.24853310119897,
+          "power_fraction": 0.5791940677861844,
+          "max_full_rate_energy_pj_bit": 0.5791940677861844,
+          "energy_error_w": 2.0122570276726037e-11
+        }
+      },
+      "utilisation": {
+        "0.0": 0.0,
+        "0.25": 0.0,
+        "0.5": 0.0
+      },
+      "nominal_payload_tb_s": 0.0,
+      "operating_checks": null,
+      "qualified_geometry": false
+    },
+    "narrow": {
+      "id": "reference",
+      "profile": "narrow",
+      "centres_um": [
+        [
+          8500.0,
+          6000.0
+        ],
+        [
+          30500.0,
+          6000.0
+        ],
+        [
+          8500.0,
+          33000.0
+        ],
+        [
+          30500.0,
+          33000.0
+        ],
+        [
+          8500.0,
+          14500.0
+        ],
+        [
+          30500.0,
+          14500.0
+        ],
+        [
+          8500.0,
+          24500.0
+        ],
+        [
+          30500.0,
+          24500.0
+        ]
+      ],
+      "config": {
+        "wire_m": 52.05657827200005,
+        "memory_m": 46.00217827200006,
+        "sides": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "rotation_deg": [
+          270,
+          270,
+          90,
+          90,
+          270,
+          270,
+          90,
+          90
+        ],
+        "max_cpu_signal_mm": 21.2,
+        "latency_ns": 4.266333333333334
+      },
+      "checks": {
+        "64": {
+          "base_peak_c": 108.50259562577266,
+          "full_peak_c": 110.02641812771907,
+          "power_fraction": 0.48416270184942806,
+          "max_full_rate_energy_pj_bit": 0.6052033773117851,
+          "energy_error_w": 6.139089236967266e-12
+        },
+        "96": {
+          "base_peak_c": 108.36969604685702,
+          "full_peak_c": 109.32996307847806,
+          "power_fraction": 0.679400668646042,
+          "max_full_rate_energy_pj_bit": 0.8492508358075525,
+          "energy_error_w": 1.7394086171407253e-11
+        },
+        "128": {
+          "base_peak_c": 108.37808999923283,
+          "full_peak_c": 109.24288146563514,
+          "power_fraction": 0.7191444700009081,
+          "max_full_rate_energy_pj_bit": 0.8989305875011351,
+          "energy_error_w": 5.229594535194337e-12
+        }
+      },
+      "utilisation": {
+        "0.0": 0.48416270184942806,
+        "0.25": 0.3122169357992374,
+        "0.5": 0.0
+      },
+      "nominal_payload_tb_s": 0.30090366330204155,
+      "operating_checks": null,
+      "qualified_geometry": false
+    }
+  },
+  "scope": "Synthetic sustained payload service, matched long-reach targets and signal Manhattan lengths. Endpoint heat is additional to base. No detailed routing, memory throughput, eye/BER, hardware timing, or external thermal calibration.",
+  "max_abs_energy_error_w": 1.5086243365658447e-10,
+  "fine_candidate_summary": [
+    {
+      "id": "archive-540",
+      "profile": "wide",
+      "wire_m": 37.12635446959921,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 119.27064211768719,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.0
+    },
+    {
+      "id": "archive-540",
+      "profile": "narrow",
+      "wire_m": 21.74393846959922,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 119.96146033323605,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.0
+    },
+    {
+      "id": "archive-546",
+      "profile": "wide",
+      "wire_m": 37.18456646959921,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 118.16471653213006,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.0
+    },
+    {
+      "id": "archive-546",
+      "profile": "narrow",
+      "wire_m": 21.748162469599222,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 119.8669621526786,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.0
+    },
+    {
+      "id": "archive-766",
+      "profile": "wide",
+      "wire_m": 37.69122246959921,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 117.94553622014584,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.0
+    },
+    {
+      "id": "archive-766",
+      "profile": "narrow",
+      "wire_m": 21.893010469599233,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 119.65870469919008,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.0
+    },
+    {
+      "id": "archive-767",
+      "profile": "wide",
+      "wire_m": 37.730498469599205,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 117.88308789243895,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.0
+    },
+    {
+      "id": "archive-767",
+      "profile": "narrow",
+      "wire_m": 21.896530469599213,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 119.59031794592178,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.0
+    },
+    {
+      "id": "reference",
+      "profile": "wide",
+      "wire_m": 70.21977827200003,
+      "admitted_geometry": false,
+      "worst_full_peak_c": 109.73649446623041,
+      "payload_decimal_TB_s_if_geometry_admitted": null
+    },
+    {
+      "id": "reference",
+      "profile": "narrow",
+      "wire_m": 52.05657827200005,
+      "admitted_geometry": false,
+      "worst_full_peak_c": 110.02641812771907,
+      "payload_decimal_TB_s_if_geometry_admitted": null
+    },
+    {
+      "id": "corner-2242",
+      "profile": "wide",
+      "wire_m": 61.023106332799614,
+      "admitted_geometry": false,
+      "worst_full_peak_c": 109.68407343057636,
+      "payload_decimal_TB_s_if_geometry_admitted": null
+    },
+    {
+      "id": "corner-2242",
+      "profile": "narrow",
+      "wire_m": 38.65350633279963,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 110.40261293522424,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.22711214391242515
+    },
+    {
+      "id": "corner-2308",
+      "profile": "wide",
+      "wire_m": 50.77043439359921,
+      "admitted_geometry": false,
+      "worst_full_peak_c": 109.56012377652497,
+      "payload_decimal_TB_s_if_geometry_admitted": null
+    },
+    {
+      "id": "corner-2308",
+      "profile": "narrow",
+      "wire_m": 25.074434393599212,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 110.03940455017442,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.3116174951726509
+    },
+    {
+      "id": "corner-2861",
+      "profile": "wide",
+      "wire_m": 62.034434393599206,
+      "admitted_geometry": false,
+      "worst_full_peak_c": 109.37295820948226,
+      "payload_decimal_TB_s_if_geometry_admitted": null
+    },
+    {
+      "id": "corner-2861",
+      "profile": "narrow",
+      "wire_m": 36.3384343935992,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 109.75771347782548,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.5460289131247474
+    },
+    {
+      "id": "corner-2865",
+      "profile": "wide",
+      "wire_m": 60.626434393599204,
+      "admitted_geometry": false,
+      "worst_full_peak_c": 110.22949403700461,
+      "payload_decimal_TB_s_if_geometry_admitted": null
+    },
+    {
+      "id": "corner-2865",
+      "profile": "narrow",
+      "wire_m": 35.986434393599204,
+      "admitted_geometry": true,
+      "worst_full_peak_c": 110.80972808410313,
+      "payload_decimal_TB_s_if_geometry_admitted": 0.0
+    }
+  ]
+}
