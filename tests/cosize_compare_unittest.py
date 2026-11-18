@@ -79,6 +79,17 @@ class CosizeCompareTest(unittest.TestCase):
             self.assertEqual(report['cosize_vs_fixed_aspect']['rows']['case1-atp_wl']['outcome'], 'unpaired')
             self.assertEqual(report['cosize_vs_fixed_aspect']['verdict'], 'incomplete')
 
+    def test_crop_variants_are_paired_against_each_other_and_their_own_controls(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp)
+            for method in ('cosize_rect', 'cosize_rect_crop', 'fixed_aspect', 'fixed_aspect_crop'):
+                (d/f'case1-atp_wl-{method}.json').write_text(json.dumps(run((30., 30.), method=method)))
+            report = compare(d, [(1, 'atp_wl')])
+            for key in ('cosize_rect_crop_vs_fixed_aspect_crop', 'cosize_rect_crop_vs_cosize_rect',
+                        'fixed_aspect_crop_vs_fixed_aspect'):
+                self.assertEqual(report[key]['verdict'], 'exploratory')
+                self.assertEqual(report[key]['coverage']['ties'], 1)
+
     def test_clearance_is_required_on_new_records_and_compared_when_available(self):
         old = run()
         new = dict(old, protocol_revision=PROTOCOL_REVISION)

@@ -98,6 +98,9 @@ def compare(runs, combos_list):
     pairs = COMPARISONS
     if any(runs.glob('case*-*-cosize_rect.json')):
         pairs += (('cosize_rect', 'fixed_aspect'),)
+    if any(runs.glob('case*-*-*_crop.json')):
+        pairs += (('cosize_rect_crop', 'fixed_aspect_crop'), ('cosize_rect_crop', 'cosize_rect'),
+                  ('fixed_aspect_crop', 'fixed_aspect'))
     for ours, theirs in pairs:
         outcomes, rows = {}, {}
         for n, ref in combos_list:
@@ -133,7 +136,7 @@ def compare(runs, combos_list):
         result, coverage = verdict(outcomes, len(combos_list))
         held = [f'case{n}-{ref}' for n, ref in combos_list if f'case{n}-{ref}' not in DEVELOPMENT]
         held_result, held_coverage = verdict({k: o for k, o in outcomes.items() if k in held}, len(held))
-        if ours == 'cosize_rect':                       # report paired observations; v8's gate was frozen for v8
+        if ours == 'cosize_rect' or ours.endswith('_crop'):
             result = held_result = 'exploratory'
         report[f'{ours}_vs_{theirs}'] = dict(verdict=result, coverage=coverage, rows=rows,
                                              held_out=dict(combinations=held, verdict=held_result,

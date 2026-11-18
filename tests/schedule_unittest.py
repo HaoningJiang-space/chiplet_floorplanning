@@ -22,6 +22,32 @@ class ChainTest(unittest.TestCase):
                          (40000., 40000.), pins, np.zeros((2, 2, 2)))
         self.row = Layout(np.array([[6000., 20000.], [17000., 20000.], [28000., 20000.]]), np.zeros(3, int))
 
+    def test_tight_crop_preserves_pins_and_clamps_the_translation_at_the_edge(self):
+        from chiplet_floorplanning.placement.cosize import tight_crop
+        sized, moved = tight_crop(self.p, self.row)
+        self.assertEqual(sized.carrier_um, (32000, 10700))
+        np.testing.assert_array_equal(moved.centre_um, self.row.centre_um + [-1000., -14650.])
+        np.testing.assert_array_equal(pin_manhattan_um(sized, moved), pin_manhattan_um(self.p, self.row))
+        self.assertTrue(is_legal(sized, moved, 1000))
+
+    def test_finishing_fv_is_charged_and_only_an_in_time_certificate_replaces_the_parent(self):
+        from chiplet_floorplanning.placement import cosize
+        p = replace(self.p, limit_c=np.full(3, 250.))
+        length = pin_manhattan_um(p, self.row).sum()/1e6
+        parent = dict(width_mm=40., height_mm=40., centre_um=self.row.centre_um.tolist(),
+                      rotation_deg=self.row.rotation_deg.tolist(), arm='repair')
+        for budget, clock, status, used in ((1, [0.], 'fv_budget', 1), (2, [2.], 'deadline', 1),
+                                             (2, [0., 0., 2.], 'deadline', 2), (2, [0., 0., 0.], 'certified', 2)):
+            result = dict(history=[], anchor=dict(ok=True), best=parent, fv_solves=1)
+            with patch.object(cosize.time, 'perf_counter', side_effect=clock):
+                cosize.finish_crop(p, self.row, 1000, length, result, budget, 1., resolution=16)
+            self.assertEqual(result['history'][-1]['status'], status)
+            self.assertEqual(result['fv_solves'], used)
+            if status == 'certified':
+                self.assertEqual(result['best']['arm'], 'tight_crop')
+            else:
+                self.assertIs(result['best'], parent)
+
     def test_the_longest_chain_is_the_minimum_extent(self):
         from chiplet_floorplanning.placement.lp import centre_relations
         (w, h), chains = schedule.min_extent(self.p, self.row, centre_relations(self.p, self.row, 1000), 1000)

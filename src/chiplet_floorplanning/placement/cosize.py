@@ -9,11 +9,12 @@ chain. The scheduled method in schedule.py reuses the candidate generators and c
 """
 from dataclasses import replace
 import math
+import time
 
 import numpy as np
 
 from .cost import CostParams, interposer_cost
-from .geometry import is_legal, pin_manhattan_um, violations
+from .geometry import boxes, is_legal, pin_manhattan_um, violations
 from .lp import MILP_STATUS, legalize_relations, milp_relations, slp_chain
 from .problem import Layout
 from .proxy import R_MM, ThermalProxy
@@ -34,6 +35,68 @@ def certify(problem, layout, gap_um, length_m, steps, resolution):
     within = [r for r in rows if r[2] <= length_m + 1e-9]
     seen = min(within or rows, key=lambda r: r[1])
     return (min(ok, key=lambda r: r[1]) if ok else None), (seen[1], seen[2]), len(chain)
+
+
+def tight_crop(problem, layout):
+    """Smallest grid box for this rigid layout with aspect at most 3:1, translated closest to package coordinates."""
+    rect = boxes(problem, layout)
+    lo, hi = rect[:, :2].min(axis=0), rect[:, 2:].max(axis=0)
+    grid_um = round(GRID_MM*1000)
+    ticks = np.ceil((hi - lo)/grid_um).astype(np.int64)
+    sides = grid_um*np.maximum(ticks, (ticks[::-1] + 2)//3)
+    shift = np.clip((sides - problem.carrier_um)/2, -lo, sides - hi)
+    return replace(problem, carrier_um=tuple(map(int, sides))), replace(layout, centre_um=layout.centre_um + shift)
+
+
+def finish_crop(problem, anchor, gap_um, length_m, result, fv_budget, deadline, resolution=64, params=CostParams()):
+    """Try the same one-FV rigid crop on a search's incumbent, charging it to the original total budget."""
+    rec = dict(arm='tight_crop', certified=False, fv_solves=0)
+    result['history'].append(rec)
+    if not (result.get('anchor') or {}).get('ok'):
+        rec['status'] = 'no_checked_anchor'
+        return
+    best = result['best']
+    if best is None:
+        source, layout = problem, anchor
+    else:
+        source = replace(problem, carrier_um=(best['width_mm']*1000, best['height_mm']*1000))
+        layout = Layout(np.asarray(best['centre_um']), np.asarray(best['rotation_deg']))
+    parent_mm = [s/1000 for s in source.carrier_um]
+    parent_cost = interposer_cost(*parent_mm, params)['total_usd']
+    rec.update(parent_mm=parent_mm, parent_cost_usd=parent_cost, parent_arm=(best or {}).get('arm'),
+               parent_j_k=(best or result['anchor']).get('j_k'))
+    if time.perf_counter() >= deadline:
+        rec['status'] = 'deadline'
+        return
+    sized, moved = tight_crop(source, layout)
+    w, h = (s/1000 for s in sized.carrier_um)
+    cost = interposer_cost(w, h, params)
+    rec.update(width_mm=w, height_mm=h, cost_usd=cost['total_usd'],
+               shift_um=(moved.centre_um[0] - layout.centre_um[0]).tolist())
+    removed_um = np.asarray(source.carrier_um) - sized.carrier_um
+    if cost['total_usd'] >= parent_cost or removed_um.min() < -1e-8 or removed_um.max() <= 1e-8:
+        rec['status'] = 'no_cheaper_crop'
+        return
+    if not is_legal(sized, moved, gap_um):
+        rec['status'] = 'illegal_translation'
+        return
+    if result['fv_solves'] >= fv_budget:
+        rec['status'] = 'fv_budget'
+        return
+    if time.perf_counter() >= deadline:
+        rec['status'] = 'deadline'
+        return
+    ok, (j, wire), used = certify(sized, moved, gap_um, length_m, 0, resolution)
+    result['fv_solves'] += used
+    rec.update(fv_solves=used, fv_total=result['fv_solves'], j_k=j, length_m=wire)
+    if time.perf_counter() >= deadline:
+        rec.update(status='deadline', after_deadline=True)
+    elif ok is None:
+        rec['status'] = 'limits_failed'
+    else:
+        rec.update(status='certified', certified=True, centre_um=moved.centre_um.tolist(),
+                   rotation_deg=moved.rotation_deg.tolist())
+        result['best'] = dict(rec, option=cost['option'], fields=cost['fields'], anchor=False)
 
 
 ASPECTS = (1/3, 1/2, 2/3, 1.0, 3/2, 2.0, 3.0)
