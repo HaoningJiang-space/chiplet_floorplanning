@@ -54,7 +54,7 @@ def references(evidence, case):
 
 
 def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, anchor=None, resolution=64,
-                 expected_j_k=0.0):
+                 expected_j_k=0.0, wall_s=math.inf):
     """Bisection on the area factor at the original aspect ratio; relation_space per size. With `anchor` (v3.1) the
     reference layout is checked by the shared verify_anchor (1 FV, counted), certifies the original carrier itself
     (step 0, not grid-rounded) with its measured J, and every later size is seeded with the smallest certified
@@ -81,8 +81,11 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
                         rotation_deg=anchor.rotation_deg.tolist(), die_overshoot_k=check['die_j_k'], step=0,
                         layout_index=0, option=c['option'], fields=c['fields'], anchor=True)
         return dict(best=best, history=[dict(stop='fv budget')], fv_solves=used, anchor=check)
-    trial = 1.0
+    trial, began = 1.0, time.perf_counter()
     for step in range(BISECTION_STEPS + 1):
+        if time.perf_counter() - began >= wall_s:      # no size is started after the deadline
+            history.append(dict(step=step, stop='deadline'))
+            break
         scale = math.sqrt(trial)
         w, h = (w0, h0) if trial == 1.0 else (ceil_grid(w0*scale), ceil_grid(h0*scale))
         sized = replace(problem, carrier_um=(w*1000, h*1000))
@@ -101,6 +104,8 @@ def fixed_aspect(problem, gap_um, length_m, fv_budget, seed, milp_s, workers, an
                                           dict(milp_s=milp_s, workers=workers))
             used += int(archive['solves'])
             ok = [i for i, r in enumerate(rows) if r['thermal'] <= 0 and r['length_m'] <= length_m + 1e-9]
+            if time.perf_counter() - began > wall_s:   # finished after the deadline: not counted
+                ok, record['after_deadline'] = [], True
             if record.get('anchor'):
                 ok = [0]                    # verify_anchor accepted it: |J| <= REPRODUCE_K, length within budget
             record.update(fv_solves=int(archive['solves']), certified=bool(ok),
@@ -183,7 +188,7 @@ def main():
                                  expected_j_k=expected)
     elif args.method == 'fixed_aspect':
         out = fixed_aspect(limited, args.gap_um, l_ref, args.fv_solves, args.seed, args.milp_s, args.workers, anchor,
-                           expected_j_k=expected)
+                           expected_j_k=expected, wall_s=args.wall_s)
     else:
         inner = dict(cosize='proxy', cosize_axial='axial', cosize_blind='blind', cosize_rs='relation_space',
                      cosize_shrink='shrink', cosize_rs2='rs2')[args.method]

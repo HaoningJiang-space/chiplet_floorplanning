@@ -67,7 +67,7 @@ def rs_arm(ctx, aspect, name):
         good_rows = [i for i in within if rows[i]['thermal'] <= 0]
         rec = dict(arm=name, area_mm2=area, width_mm=w, height_mm=h, fv_solves=int(archive['solves']),
                    seconds=time.perf_counter() - began, cost_usd=interposer_cost(w, h, ctx['params'])['total_usd'],
-                   certified=bool(good_rows), best_j_k=min((rows[i]['thermal'] for i in within), default=None))
+                   certified=bool(good_rows), wire_ok_j_k=min((rows[i]['thermal'] for i in within), default=None))
         out = [rec]
         if good_rows:
             i = min(good_rows, key=lambda i: (rows[i]['thermal'], rows[i]['length_m'], i))
@@ -97,7 +97,8 @@ def repair_arm(ctx, aspect, name):
             if areas:
                 area = areas.pop(0)
             elif good is not None and refine and failed:
-                area, refine = (good + max(a for a in failed if a < good))/2, refine - 1
+                lower = max((a for a in failed if a < good), default=low)   # nothing failed below: the die area
+                area, refine = (good + lower)/2, refine - 1
             else:
                 out.append(dict(arm=name, stop='trials exhausted'))
                 break
@@ -108,7 +109,9 @@ def repair_arm(ctx, aspect, name):
                                      None, ctx['resolution'], ctx['chain_steps'], ctx['seed'], ctx['workers'])
             used += n
             rec.update(arm=name, area_mm2=area, width_mm=w, height_mm=h, fv_solves=n, certified=ok is not None,
-                       cost_usd=interposer_cost(w, h, ctx['params'])['total_usd'])
+                       cost_usd=interposer_cost(w, h, ctx['params'])['total_usd'],
+                       wire_ok_j_k=min((st['best_j_k'] for st in rec['stages'] if st.get('best_j_k') is not None
+                                        and st.get('best_length_m', math.inf) <= ctx['length_m'] + 1e-9), default=None))
             out.append(rec)
             if ok is not None:
                 out.append(certified_record(name, w, h, ok, ctx['params']))
@@ -165,11 +168,11 @@ def joint_arm(ctx, name, levels_step=0.5, aspect_limit=3.0):
             legal = legalize_relations(sized, layout, gap)
             if legal is None or not is_legal(sized, legal, gap):
                 continue
-            ok, (j, _), n = certify(sized, legal, gap, ctx['length_m'], min(ctx['chain_steps'], budget - used - 1),
+            ok, (j, l), n = certify(sized, legal, gap, ctx['length_m'], min(ctx['chain_steps'], budget - used - 1),
                                     ctx['resolution'])
             used += n
             out.append(dict(arm=name, width_mm=w, height_mm=h, cost_usd=cost, fv_solves=n, certified=ok is not None,
-                            best_j_k=j))
+                            best_j_k=j, wire_ok_j_k=j if l <= ctx['length_m'] + 1e-9 else None))
             js.append(j)
             if ok is not None:
                 out.append(certified_record(name, w, h, ok, ctx['params']))
@@ -185,7 +188,8 @@ def best_cost(records):
 
 
 def closest_overshoot(records):
-    return min((r['best_j_k'] for r in records if r.get('best_j_k') is not None), default=math.inf)
+    """The smallest measured overshoot among the arm's layouts that met the exact pin budget (same layout)."""
+    return min((r['wire_ok_j_k'] for r in records if r.get('wire_ok_j_k') is not None), default=math.inf)
 
 
 def promote(arms, keep, first_round):
@@ -258,11 +262,18 @@ def successive_halving(problem, anchor, gap_um, length_m, fv_budget=1000, wall_s
             break
         round_fv = min(per_arm, fv_left//len(alive))
         for a in alive:
-            time_s = max(1.0, (wall_s - (time.perf_counter() - started))*round_fv/max(1, fv_budget - out['fv_solves']))
+            left = wall_s - (time.perf_counter() - started)
+            if left <= 0:
+                break                                    # nothing is started after the deadline
+            time_s = max(1.0, left*round_fv/max(1, fv_budget - out['fv_solves']))
             budget = min(round_fv, fv_budget - out['fv_solves'])
             if budget <= 1:
                 break
             recs = a['gen'].send((budget, time_s))
+            if time.perf_counter() - started > wall_s:   # returned after the deadline: its designs do not count
+                for x in recs:
+                    if x.get('certified'):
+                        x['certified'], x['after_deadline'] = False, True
             used = sum(x.get('fv_solves', 0) for x in recs if 'centre_um' not in x)
             a['records'] += recs
             a['fv'] += used

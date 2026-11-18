@@ -72,7 +72,7 @@ def verdict(outcomes, expected):
     return 'partial', coverage
 
 
-IDENTITY = ('protocol_revision', 'case_sha256', 'anchor_sha256', 't_ref_c', 'l_ref_m', 'seed', 'fv_budget')
+IDENTITY = ('protocol_revision', 'case_sha256', 'anchor_sha256', 't_ref_c', 'l_ref_m', 'seed', 'fv_budget', 'resources')
 # delta_k (family B) is covered by t_ref_c, which includes it.
 
 

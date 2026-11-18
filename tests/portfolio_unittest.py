@@ -22,6 +22,35 @@ class PromoteTest(unittest.TestCase):
         self.assertEqual([a['name'] for a in promote(arms, 2, False)], ['r1', 'r2'])
 
 
+class ReviewControlsTest(unittest.TestCase):
+    def test_ranking_uses_the_wire_feasible_overshoot_of_every_mechanism(self):
+        repair = dict(name='repair', kind='repair', order=1, records=[dict(wire_ok_j_k=0.1, best_j_k=0.1)])
+        rs = dict(name='rs', kind='rs', order=0, records=[dict(wire_ok_j_k=0.5)])
+        joint = dict(name='joint', kind='joint', order=2, records=[dict(best_j_k=-1.0, wire_ok_j_k=None)])
+        self.assertEqual([a['name'] for a in promote([rs, repair, joint], 3, False)], ['repair', 'rs', 'joint'])
+
+    def test_a_failure_above_a_success_does_not_end_the_repair_arm(self):
+        from unittest.mock import patch
+        from chiplet_floorplanning.placement import portfolio
+        p = small_problem()
+        anchor = Layout(np.array([[10., 10.], [30., 10.], [10., 30.], [30., 30.]])*1000, np.zeros(4, int))
+        calls = []
+
+        def fake(sized, *args, **kwargs):
+            calls.append(sized.carrier_um)
+            ok = (anchor, -1.0, 0.1) if len(calls) == 2 else None
+            return dict(stages=[], status='not_found' if ok is None else 'certified'), ok, 1
+        ctx = dict(problem=p, anchor=anchor, gap_um=500, length_m=1.0, params=portfolio.CostParams(), seed=2,
+                   workers=1, threads=1, resolution=16, chain_steps=1, die_area=159.0, a_max=2500.0, cap=1e9)
+        with patch.object(portfolio, 'trial_areas', return_value=[900.0, 800.0]), \
+                patch.object(portfolio, 'try_carrier', side_effect=fake):
+            gen = portfolio.repair_arm(ctx, 1.0, 'repair:1')
+            next(gen)
+            records = gen.send((50, 60.0))                       # 900 fails, 800 certifies, then refines below
+        self.assertGreater(len(calls), 2)
+        self.assertTrue(any(r.get('certified') for r in records))
+
+
 class SuccessiveHalvingTest(unittest.TestCase):
     def test_the_best_design_is_certified_and_the_budget_holds(self):
         p = small_problem()
