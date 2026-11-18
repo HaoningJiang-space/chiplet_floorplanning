@@ -30,7 +30,7 @@ COMPARISONS = (('cosize', 'fixed_aspect'), ('cosize', 'cosize_blind'), ('cosize'
                ('cosize_v8', 'fixed_aspect'))       # v8 (docs/cosize-v8-plan.md)
 
 
-def combos(with_case8_cool=False):
+def combos(with_case8_cool=True):
     out = [(n, 'atp_wl') for n in range(1, 11)] + [(n, 'atp_cool') for n in range(1, 8)]
     return out + ([(8, 'atp_cool')] if with_case8_cool else [])
 
@@ -100,6 +100,10 @@ def compare(runs, combos_list):
             if mismatch(a, b):
                 rows[f'case{n}-{ref}'] = dict(outcome='unpaired', mismatch=mismatch(a, b))
                 continue
+            failed = [side for side, r in (('ours', a), ('theirs', b)) if not (r.get('anchor') or {}).get('ok')]
+            if failed:                                   # no checked anchor: the run did not search, not a loss
+                rows[f'case{n}-{ref}'] = dict(outcome='unpaired', anchor_check_failed=failed)
+                continue
             sa, sb = certified(a), certified(b)
             ca, cb = cheapest(sa), cheapest(sb)
             o = outcome(ca, cb)
@@ -130,10 +134,10 @@ def compare(runs, combos_list):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--runs', type=Path, required=True)
-    p.add_argument('--with-case8-cool', action='store_true')
+    p.add_argument('--without-case8-cool', action='store_true', help='only for runs before Case8 cool was added')
     p.add_argument('--output', type=Path, required=True)
     args = p.parse_args()
-    report = compare(args.runs, combos(args.with_case8_cool))
+    report = compare(args.runs, combos(not args.without_case8_cool))
     args.output.write_text(json.dumps(dict(plan='docs/cosize-v8-plan.md', **report), indent=1, default=float) + '\n')
 
 

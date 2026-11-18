@@ -447,7 +447,8 @@ def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s, threads
             v.Start = np.where(np.isfinite(start), start, gp.GRB.UNDEFINED)
         model.optimize()
         MILP_STATUS['status'] = {gp.GRB.OPTIMAL: 'optimal', gp.GRB.INFEASIBLE: 'infeasible',
-                                 gp.GRB.TIME_LIMIT: 'time_limit'}.get(model.Status, str(model.Status))
+                                 gp.GRB.INF_OR_UNBD: 'inf_or_unbd',   # bounded objectives here: infeasible
+                                 gp.GRB.TIME_LIMIT: 'time_limit'}.get(model.Status, f'gurobi_{model.Status}')
         return v.X if model.SolCount else None
     except ImportError:
         pass
@@ -457,7 +458,8 @@ def _solve_milp(cost, matrix, lo, hi, integrality, bounds, time_limit_s, threads
     from scipy.optimize import LinearConstraint, milp
     result = milp(cost, constraints=LinearConstraint(matrix, lo, hi), integrality=integrality, bounds=bounds,
                   options=dict(time_limit=time_limit_s, disp=False))
-    MILP_STATUS['status'] = {0: 'optimal', 1: 'time_limit', 2: 'infeasible'}.get(result.status, str(result.status))
+    # scipy.optimize.milp: 0 optimal, 1 iteration or time limit, 2 infeasible, 3 unbounded, 4 other
+    MILP_STATUS['status'] = {0: 'optimal', 1: 'time_limit', 2: 'infeasible'}.get(result.status, f'highs_{result.status}')
     return result.x
 
 

@@ -87,6 +87,50 @@ class ScheduleTest(unittest.TestCase):
         search.assert_not_called()
         self.assertEqual(base['history'][-1]['stop'], 'deadline')
 
+    def test_a_solver_status_other_than_infeasible_is_no_proof(self):
+        from chiplet_floorplanning.placement import cosize
+        def other(*args, **kwargs):
+            cosize.MILP_STATUS['status'] = 'highs_4'          # scipy.optimize.milp status 4: "other", not infeasible
+            return None
+        with patch.object(cosize, 'milp_relations', side_effect=other):
+            _, _, proof, _ = cosize.fixed_carrier(self.limited, 500, self.length, None, None, 5.0, 1, None)
+        self.assertIsNone(proof)
+
+    def test_a_larger_late_success_does_not_replace_a_smaller_parent(self):
+        results = iter([True, True])                            # first target certifies, then a stale larger one
+        seen = []
+
+        def fake(ctx, shape, area, deadline):
+            seen.append((area, shape['base_um']))
+            ok = next(results, False)
+            w, h = schedule.box(area, shape['aspect'])
+            rec = dict(stages=[], certified=bool(ok), first_certifier='move' if ok else None, width_mm=w, height_mm=h,
+                       cost_usd=area)
+            return rec, ((self.anchor, -1.0, 0.1) if ok else None)
+        with patch.object(schedule, 'cascade', side_effect=fake), patch.object(schedule, 'SHAPES', ()):
+            schedule.scheduled(self.limited, self.anchor, 500, self.length, fv_budget=50,
+                               deadline=time.perf_counter() + 60, threads=1, workers=1, resolution=16)
+        first_area = seen[0][0]
+        self.assertTrue(all(area < first_area for area, _ in seen[1:]))   # no stale target above it was tried
+
+    def test_no_repair_starts_after_the_deadline(self):
+        from chiplet_floorplanning.placement import cosize
+        late = time.perf_counter() + 0.5
+
+        def slow_milp(*args, **kwargs):
+            time.sleep(1.0)                                    # returns after the deadline
+            return self.anchor, ['optimal'], None, 1.0
+        shape = dict(aspect=1.0, base=self.anchor, base_um=(1000., 1000.), rng=np.random.default_rng(0))
+        ctx = dict(problem=self.limited, gap_um=500, length_m=self.length, params=schedule.CostParams(), fv=0,
+                   fv_budget=100, resolution=16, threads=1, workers=1, v8=True, started=time.perf_counter())
+        with patch.object(cosize, 'fixed_carrier', side_effect=slow_milp), \
+                patch.object(schedule, 'fit_into', return_value=None), \
+                patch.object(schedule, 'chain_flip', return_value=(None, 0)), \
+                patch.object(schedule, 'certify', side_effect=AssertionError('certify after the deadline')):
+            rec, ok = schedule.cascade(ctx, shape, 1600.0, late)
+        self.assertIsNone(ok)
+        self.assertIsNone(rec['first_certifier'])
+
     def test_an_ordinary_failure_is_not_a_proof(self):
         calls = []
 

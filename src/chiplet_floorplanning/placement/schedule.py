@@ -133,7 +133,7 @@ def cascade(ctx, shape, area, deadline):
     if time.perf_counter() < deadline and ctx['fv_budget'] - ctx['fv'] > 1:
         began = time.perf_counter()
         moved = centred(base, base_um, sized.carrier_um) if w*1000 >= base_um[0] and h*1000 >= base_um[1] else None
-        if moved is not None and is_legal(sized, moved, ctx['gap_um']):          # same geometry and pin length
+        if moved is not None and is_legal(sized, moved, ctx['gap_um']) and time.perf_counter() < deadline:
             starts.append(moved)
             ok, (j, l), n = certify(sized, moved, ctx['gap_um'], L, 0, ctx['resolution'])
             stage('move', n, began, ok is not None, j if l <= L + 1e-9 else None)
@@ -143,7 +143,7 @@ def cascade(ctx, shape, area, deadline):
             if mapped is not None:
                 starts.append(mapped)
                 steps = min(REPAIR_FV, ctx['fv_budget'] - ctx['fv']) - 1
-                if steps >= 0:
+                if steps >= 0 and time.perf_counter() < deadline:
                     ok, (j, l), n = certify(sized, mapped, ctx['gap_um'], L, steps, ctx['resolution'])
                     stage('repair', n, began, ok is not None, j if l <= L + 1e-9 else None)
             else:
@@ -151,7 +151,7 @@ def cascade(ctx, shape, area, deadline):
     if ok is None and ctx.get('v8') and time.perf_counter() < deadline and ctx['fv_budget'] - ctx['fv'] > 1:
         began = time.perf_counter()                      # the parent's binding chain: flip links, LP, repair
         flipped, flips = chain_flip(sized, base, ctx['gap_um'])
-        if flipped is not None:
+        if flipped is not None and time.perf_counter() < deadline:
             starts.append(flipped)
             steps = min(REPAIR_FV, ctx['fv_budget'] - ctx['fv']) - 1
             ok, (j, l), n = certify(sized, flipped, ctx['gap_um'], L, steps, ctx['resolution'])
@@ -168,7 +168,7 @@ def cascade(ctx, shape, area, deadline):
                                                    ctx['threads'], None)
         legal = None if layout is None else legalize_relations(sized, layout, ctx['gap_um'])
         n, j = 0, None
-        if legal is not None and is_legal(sized, legal, ctx['gap_um']):
+        if legal is not None and is_legal(sized, legal, ctx['gap_um']) and time.perf_counter() < deadline:
             starts.append(legal)
             steps = min(REPAIR_FV, ctx['fv_budget'] - ctx['fv']) - 1
             ok, (jj, l), n = certify(sized, legal, ctx['gap_um'], L, steps, ctx['resolution'])
@@ -197,8 +197,10 @@ def cascade(ctx, shape, area, deadline):
                   min((rows[i]['thermal'] for i in within), default=None))
     if ok is not None and time.perf_counter() > deadline:
         rec['after_deadline'], ok = True, None
+        for st in rec['stages']:
+            st['certified'] = False                      # not accepted: no stage is credited
     rec['certified'] = ok is not None
-    rec['first_certifier'] = next((s['stage'] for s in rec['stages'] if s['certified']), None)
+    rec['first_certifier'] = next((s['stage'] for s in rec['stages'] if s['certified']), None) if ok else None
     rec['elapsed_s'], rec['fv_total'] = time.perf_counter() - ctx['started'], ctx['fv']
     if ok is not None:
         rec.update(j_k=ok[1], length_m=ok[2], centre_um=ok[0].centre_um.tolist(),
@@ -262,8 +264,8 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
                 continue
             area = s['queue'].pop(0)
             size = box(area, s['aspect'])
-            if size in s['tried'] or area <= s['lo']:
-                continue
+            if size in s['tried'] or area <= s['lo'] or (s['certified_hi'] is not None and area >= s['certified_hi']):
+                continue                                 # tried, proven out, or no smaller than a certified carrier
             s['tried'].add(size)
             s['targets'] += 1
             progressed = True
@@ -272,8 +274,10 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
             ref = s['certified_hi'] if s['certified_hi'] is not None else s['hi']
             if ok is not None:
                 pool.append(dict(rec, arm=f"{rec['first_certifier']}:{s['aspect']:.3f}"))
-                s['certified_hi'], s['base'], s['base_um'] = area, ok[0], (rec['width_mm']*1000, rec['height_mm']*1000)
-                s['queue'].insert(0, (s['lo'] + area)/2)
+                if s['certified_hi'] is None or area < s['certified_hi']:   # only a smaller parent replaces one
+                    s['certified_hi'], s['base'] = area, ok[0]
+                    s['base_um'] = (rec['width_mm']*1000, rec['height_mm']*1000)
+                s['queue'].insert(0, (s['lo'] + s['certified_hi'])/2)
             elif rec.get('proof'):                       # proven: this box and smaller ones of the shape are out
                 s['lo'] = max(s['lo'], area)
                 s['queue'] = [a for a in s['queue'] if a > s['lo']]

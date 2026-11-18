@@ -233,8 +233,9 @@ def fixed_carrier(problem, gap_um, length_m, model, start, time_s, threads, dire
         found = milp_relations(problem, gap_um, share, proxy=proxy, wire_mm=wire_mm, threads=threads, focus=1,
                                wire_cuts=cuts, start=start)
         statuses.append(MILP_STATUS['status'])
-        # Gurobi's INF_OR_UNBD ('4') is infeasible here: the objective (proxy or wire) is bounded below.
-        if found is None and statuses[-1] in ('infeasible', '4'):
+        # Only a solver's own infeasibility verdict is a proof (Gurobi INFEASIBLE / INF_OR_UNBD - the objective
+        # here is bounded below - or HiGHS status 2); timeouts and other statuses are not.
+        if found is None and statuses[-1] in ('infeasible', 'inf_or_unbd'):
             return None, statuses, 'proven_infeasible', time.perf_counter() - began
         within = lambda layout: pin_manhattan_um(problem, layout).sum()/1000 <= wire_mm + 1e-6   # noqa: E731
         if found is None:
