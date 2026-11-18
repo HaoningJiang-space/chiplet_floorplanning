@@ -30,6 +30,40 @@ class ChainTest(unittest.TestCase):
         np.testing.assert_array_equal(pin_manhattan_um(sized, moved), pin_manhattan_um(self.p, self.row))
         self.assertTrue(is_legal(sized, moved, 1000))
 
+    def test_wire_seed_is_certified_before_annealing_and_reuses_the_parent_solve(self):
+        from chiplet_floorplanning.placement import methods
+        from chiplet_floorplanning.placement.cosize import WireSeedCheck
+        p = replace(self.p, limit_c=np.full(3, 250.))
+        for limit, late in ((2, False), (3, False), (3, True)):
+            now = [0.]
+            check = WireSeedCheck(1., float('inf'), 7, 0., 10.)
+            def anneal(job):
+                self.assertEqual([e['status'] for e in check.records], ['certified', 'certified'])
+                now[0] = 11. if late else 1.
+                return job[1], 0.
+            def resume(run, starts, rng, **opts):
+                run.evaluate(starts)
+                self.assertEqual(run.evaluator.solves, 2)
+            with Evaluator(p, 1000, resolution=16) as ev, patch('time.perf_counter', side_effect=lambda: now[0]), \
+                    patch.object(methods, 'milp_relations', return_value=self.row), \
+                    patch.object(methods, 'length_anneal', side_effect=anneal) as chains, \
+                    patch.object(methods, 'topology_slp', side_effect=resume) as search:
+                run = methods.Run(ev, limit)
+                methods.relation_space(run, [], np.random.default_rng(2), chains=1, seed_check=check)
+                self.assertEqual(check.solves, ev.solves)
+                self.assertEqual([e['fv_total'] for e in check.records], [8, 9])
+                self.assertEqual(chains.call_count, int(limit > 2))
+                self.assertEqual(search.call_count, int(limit > 2 and not late))
+
+    def test_seed_rejects_uncompetitive_or_long_wire_layouts_without_spending_fv(self):
+        from chiplet_floorplanning.placement import methods
+        from chiplet_floorplanning.placement.cosize import WireSeedCheck
+        for length, cap, status in ((0., float('inf'), 'wire'), (1., 0., 'price')):
+            with Evaluator(self.p, 1000, resolution=16) as ev:
+                check = WireSeedCheck(length, cap, 0, 0., float('inf'))
+                self.assertTrue(check.evaluate(methods.Run(ev, 3), self.row))
+                self.assertEqual((check.records[0]['status'], ev.solves), (status, 0))
+
     def test_finishing_fv_is_charged_and_only_an_in_time_certificate_replaces_the_parent(self):
         from chiplet_floorplanning.placement import cosize
         p = replace(self.p, limit_c=np.full(3, 250.))
@@ -188,6 +222,24 @@ class ScheduleTest(unittest.TestCase):
         self.assertEqual(out['fv_solves'], 1)
         self.assertEqual(out['history'][-1]['stop'], 'deadline')
         self.assertEqual(out['best']['step'], 0)
+
+    def test_fixed_search_keeps_the_early_seed_when_the_rest_of_the_batch_is_late(self):
+        from run_cosize import fixed_aspect
+        now = [0.]
+        def late_batch(problem, gap, budget, seed, starts, opts):
+            probe = opts['seed_check']
+            w, h = (s/1000 for s in problem.carrier_um)
+            probe.records.append(dict(arm='wire_seed', certified=True, width_mm=w, height_mm=h,
+                                      cost_usd=schedule.interposer_cost(w, h)['total_usd'], fv_solves=1))
+            now[0] = 2.
+            return [], dict(solves=3)
+        with patch('time.perf_counter', side_effect=lambda: now[0]), patch('run_cosize.relation_front', late_batch):
+            out = fixed_aspect(self.limited, 500, self.length, 30, 2, 5, 1, self.anchor, resolution=16,
+                               deadline=1., seed_first=True)
+        self.assertEqual(out['best']['arm'], 'wire_seed')
+        late, = [r for r in out['history'] if r.get('after_deadline')]
+        self.assertEqual((late['certified'], late['fv_solves']), (False, 2))
+        self.assertEqual(out['fv_solves'], 1 + sum(r.get('fv_solves', 0) for r in out['history']))
 
     def test_a_late_anchor_is_charged_but_cannot_enter_either_comparison(self):
         from run_cosize import fixed_aspect

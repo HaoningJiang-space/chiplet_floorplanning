@@ -8,7 +8,7 @@ import time
 
 import numpy as np
 
-from .cosize import area_ceiling, box, ceil_grid, certify, crop_candidate, fit_into, verify_anchor
+from .cosize import WireSeedCheck, area_ceiling, box, ceil_grid, certify, crop_candidate, fit_into, verify_anchor
 from .cost import CostParams, interposer_cost, max_height
 from .geometry import is_legal
 from .lp import MILP_STATUS, TopologyLP, legalize_relations, milp_relations, topology
@@ -169,10 +169,14 @@ def cascade(ctx, shape, area, deadline):
         budget = min(RS_FV, ctx['fv_budget'] - ctx['fv'])
         began = time.perf_counter()
         if budget > 1:
+            options = dict(milp_s=max(1.0, min(60.0, deadline - began)), workers=ctx['workers'],
+                           resolution=ctx['resolution'])
+            probe = None
+            if ctx.get('seed_first'):
+                probe = WireSeedCheck(L, ctx['seed_cap_usd'], ctx['fv'], ctx['started'], deadline, ctx['params'])
+                options['seed_check'] = probe
             try:
-                rows, archive = relation_front(sized, ctx['gap_um'], budget, shape['rng'], starts,
-                                               dict(milp_s=max(1.0, min(60.0, deadline - time.perf_counter())),
-                                                    workers=ctx['workers'], resolution=ctx['resolution']))
+                rows, archive = relation_front(sized, ctx['gap_um'], budget, shape['rng'], starts, options)
             except NoLegalStart:
                 rows, archive = [], dict(solves=0)
             within = [i for i, r in enumerate(rows) if r['length_m'] <= L + 1e-9]
@@ -181,7 +185,14 @@ def cascade(ctx, shape, area, deadline):
                 i = min(good, key=lambda i: (rows[i]['thermal'], rows[i]['length_m'], i))
                 ok = (Layout(np.asarray(archive['centre_um'][i]), np.asarray(archive['rotation_deg'][i])),
                       rows[i]['thermal'], rows[i]['length_m'])
-            stage('relation_space', int(archive['solves']), began, ok is not None,
+                if probe is not None and i == probe.cropped_index:
+                    rec['crop_checked_at_seed'] = True
+            early_fv = 0
+            if probe is not None:
+                rec['seed_records'] = probe.records
+                early_fv = probe.solves
+                ctx['fv'] += early_fv   # recorded on the early events, not billed again to the returned batch
+            stage('relation_space', int(archive['solves']) - early_fv, began, ok is not None,
                   min((rows[i]['thermal'] for i in within), default=None))
     if ok is not None and time.perf_counter() > deadline:
         rec['after_deadline'], ok = True, None
@@ -326,10 +337,11 @@ def joint_search(ctx, deadline):
 
 def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, envelope=1.25, resolution=64,
               chain_steps=12, threads=16, workers=16, seed=2, params=CostParams(), expected_j_k=0.0, v8=None,
-              online_crop=False):
+              online_crop=False, seed_first=False):
     """Shared size schedule. `deadline` is an absolute time.perf_counter() value shared with the baseline."""
     if v8 is False:
         raise ValueError('v7 was retired; replay it at 64d899e or omit v8 for the current method')
+    online_crop = online_crop or seed_first
     if online_crop and v8 is True:
         raise ValueError('online cropping is available with the current rectangle schedule')
     rectangles = v8 is None
@@ -355,11 +367,11 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
     ctx = dict(problem=problem, anchor=anchor, gap_um=gap_um, length_m=length_m, params=params, seed=seed,
                workers=workers, threads=threads, resolution=resolution, chain_steps=chain_steps, fv=1,
                fv_budget=fv_budget, started=time.perf_counter(), model=None, joint_margin=0.0, rectangles=rectangles,
-               online_crop=online_crop, best_crop=None)
+               online_crop=online_crop, best_crop=None, seed_first=seed_first)
 
-    def refine(parent, layout, arm, j_k):
+    def refine(parent, layout, arm, j_k, crop_checked=False):
         cap = min((r['cost_usd'] for r in pool), default=math.inf)
-        if online_crop:
+        if online_crop and not crop_checked:
             out['history'].append(crop_parent(ctx, parent, layout, arm, j_k, cap, deadline))
         trials = refine_rectangle(ctx, parent, layout, cap, deadline)
         out['history'].extend(trials)
@@ -389,14 +401,26 @@ def scheduled(problem, anchor, gap_um, length_m, fv_budget=1000, deadline=None, 
             s['tried'].add(size)
             s['targets'] += 1
             progressed = True
+            if seed_first:
+                ctx['seed_cap_usd'] = min((r['cost_usd'] for r in pool), default=math.inf)
+                if ctx['best_crop'] is not None:
+                    ctx['seed_cap_usd'] = min(ctx['seed_cap_usd'], ctx['best_crop']['cost_usd'])
             rec, ok = cascade(ctx, s, area, deadline)
+            for event in rec.pop('seed_records', []):
+                out['history'].append(event)
+                if event['certified'] and math.isfinite(event['cost_usd']):
+                    if event['arm'] == 'tight_crop':
+                        ctx['best_crop'] = event
+                    else:
+                        pool.append(event)
             out['history'].append(rec)
             ref = s['certified_hi'] if s['certified_hi'] is not None else s['hi']
             if ok is not None:
                 arm = f"{rec['first_certifier']}:{s['aspect']:.3f}"
                 pool.append(dict(rec, arm=arm))
                 if rectangles:
-                    refine(replace(problem, carrier_um=tuple(round(v*1000) for v in size)), ok[0], arm, ok[1])
+                    refine(replace(problem, carrier_um=tuple(round(v*1000) for v in size)), ok[0], arm, ok[1],
+                           rec.get('crop_checked_at_seed', False))
                 if s['certified_hi'] is None or area < s['certified_hi']:   # only a smaller parent replaces one
                     s['certified_hi'], s['base'] = area, ok[0]
                     s['base_um'] = (rec['width_mm']*1000, rec['height_mm']*1000)

@@ -7,7 +7,7 @@ largest cheaper one down: each is seeded with the smallest certified layout so f
 MILP on the fixed carrier proposes a new topology when that fails; every candidate is certified by an exact FV SLP
 chain. The scheduled method in schedule.py reuses the candidate generators and certification functions here.
 """
-from dataclasses import replace
+from dataclasses import dataclass, field, replace
 import math
 import time
 
@@ -88,6 +88,77 @@ def crop_candidate(source, layout, gap_um, length_m, parent_arm, parent_j_k, cos
                    rotation_deg=moved.rotation_deg.tolist())
         rec.update(option=cost['option'], fields=cost['fields'], anchor=False)
     return rec
+
+
+@dataclass
+class WireSeedCheck:
+    """In-time certificates on one relation-space target. Its Run owns the FV budget and the seed's thermal cache."""
+    length_m: float
+    cost_cap_usd: float
+    fv_offset: int
+    started: float
+    deadline: float
+    params: CostParams = CostParams()
+    records: list = field(default_factory=list, init=False)
+    cropped_index: int | None = field(default=None, init=False)
+
+    @property
+    def solves(self):
+        return sum(r['fv_solves'] for r in self.records)
+
+    def can_continue(self, run):
+        return not run.exhausted and time.perf_counter() < self.deadline
+
+    def evaluate(self, run, layout):
+        ev = run.evaluator
+        p = ev.problem
+        w, h = (s/1000 for s in p.carrier_um)
+        cost = interposer_cost(w, h, self.params)
+        rec = dict(arm='wire_seed', width_mm=w, height_mm=h, cost_usd=cost['total_usd'], certified=False,
+                   fv_solves=0, elapsed_s=time.perf_counter() - self.started)
+        self.records.append(rec)
+        if not self.can_continue(run):
+            rec['status'] = 'fv_budget' if run.exhausted else 'deadline'
+            return False
+        if not is_legal(p, layout, ev.gap_um):
+            rec['status'] = 'geometry'
+            return True
+        wire = ev.length_m(layout)
+        rec['length_m'] = wire
+        if wire > self.length_m + 1e-9:
+            rec['status'] = 'wire'
+            return True
+        if cost['total_usd'] >= self.cost_cap_usd:
+            tight, _ = tight_crop(p, layout)
+            lower = interposer_cost(*(s/1000 for s in tight.carrier_um), self.params)['total_usd']
+            rec['crop_quote_usd'] = lower
+            if lower >= self.cost_cap_usd:
+                rec['status'] = 'price'
+                return True
+        if time.perf_counter() >= self.deadline:
+            rec['status'] = 'deadline'
+            return False
+        before = ev.solves
+        index, = run.evaluate([layout])
+        now = time.perf_counter()
+        j = run.peaks[index]
+        rec.update(fv_solves=ev.solves - before, fv_total=self.fv_offset + ev.solves, j_k=j, elapsed_s=now - self.started)
+        if now >= self.deadline:
+            rec.update(status='deadline', after_deadline=True)
+            return False
+        if not j <= 0:
+            rec['status'] = 'thermal'
+            return self.can_continue(run)
+        rec.update(status='certified', certified=True, option=cost['option'], fields=cost['fields'],
+                   centre_um=layout.centre_um.tolist(), rotation_deg=layout.rotation_deg.tolist())
+        crop = crop_candidate(p, layout, ev.gap_um, self.length_m, 'wire_seed', j, self.cost_cap_usd,
+                              self.fv_offset + ev.solves, self.fv_offset + run.limit, self.deadline,
+                              ev.resolution, self.params)
+        ev.solves += crop['fv_solves']    # a different carrier, outside the fixed target's thermal cache
+        crop['elapsed_s'] = time.perf_counter() - self.started
+        self.records.append(crop)
+        self.cropped_index = index
+        return self.can_continue(run)
 
 
 def finish_crop(problem, anchor, gap_um, length_m, result, fv_budget, deadline, resolution=64, params=CostParams()):

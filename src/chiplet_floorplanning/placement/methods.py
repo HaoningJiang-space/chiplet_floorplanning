@@ -12,6 +12,8 @@ Every method stops after `stall_rounds` rounds without progress, or after
 `max_rounds` rounds in total; `Run.stop_reason` records 'budget', 'stalled',
 'round_cap' or 'sampler_failed' (random search only).
 """
+from functools import partial
+
 import numpy as np
 
 from .evaluate import Evaluator, pareto_front, sample_legal, thermal_key
@@ -423,7 +425,7 @@ def topology_slp(run, initial, rng, lp_share=0.5, caps=8, steps=8, explore=0.5, 
     _loop(run, propose)
 
 
-def shortest_seeds(problem, gap_um, initial, pool, milp_s=120.0, steps=1000, chains=8, seed=0):
+def shortest_seeds(problem, gap_um, initial, pool, milp_s=120.0, steps=1000, chains=8, seed=0, on_exact=None):
     """Short-end seeds with no FV cost: MILP rotations/relations finished by the exact relation LP, then
     length annealing chains from it and from the shortest start. Returns the distinct legal results."""
     length = lambda l: float(pin_manhattan_um(problem, l).sum())/1e6
@@ -433,7 +435,10 @@ def shortest_seeds(problem, gap_um, initial, pool, milp_s=120.0, steps=1000, cha
         lp = TopologyLP(problem, found, gap_um, pairs=0, relations=centre_relations(problem, found, gap_um))
         x = lp._solve(lp.length)
         exact = lp._layout(x) if x is not None else None
-        starts += [exact] if exact is not None else []
+        if exact is not None:
+            starts.append(exact)
+            if on_exact is not None and not on_exact(exact):
+                return starts
     if not starts:
         return []
     jobs = [(problem, starts[k % len(starts)], gap_um, seed*1000 + k, steps, 0.02*length(starts[k % len(starts)]),
@@ -442,11 +447,14 @@ def shortest_seeds(problem, gap_um, initial, pool, milp_s=120.0, steps=1000, cha
     return starts + [layout for layout, _ in results]
 
 
-def relation_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, **kw):
+def relation_space(run, initial, rng, milp_s=120.0, anneal_steps=1000, chains=8, seed_check=None, **kw):
     """The full method: short-end seeds (`shortest_seeds`, no FV), then `topology_slp` from all starts."""
     evaluator = run.evaluator
+    on_exact = partial(seed_check.evaluate, run) if seed_check is not None else None
     seeds = shortest_seeds(evaluator.problem, evaluator.gap_um, list(initial), evaluator.pool, milp_s, anneal_steps,
-                           chains, int(rng.integers(1 << 30)))
+                           chains, int(rng.integers(1 << 30)), on_exact=on_exact)
+    if seed_check is not None and not seed_check.can_continue(run):
+        return
     if not initial and not seeds:
         raise NoLegalStart('no legal start: no initial layouts and the MILP found no layout')
     topology_slp(run, list(initial) + seeds, rng, **kw)
