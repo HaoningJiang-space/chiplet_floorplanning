@@ -1,0 +1,4692 @@
+{
+ "protocol_commit": "393b003c5eda91fb967ba1ec5d5bfe85f3e44f7b",
+ "driver_sha256": "59ad19acba46e3c84b85c59caf1fe2fb13e28cbd28a7288563126342b5b107d5",
+ "host": "moe-server (hpclab03)",
+ "records": [
+  {
+   "case": "Case1",
+   "names": [
+    "CPU1_0",
+    "GPU_0",
+    "GPU_1",
+    "HBM_0",
+    "HBM_1",
+    "HBM_2"
+   ],
+   "seed": 2,
+   "cap_m": 14.459705884000002,
+   "gap_um": 0.0,
+   "case_sha256": "f2d55207a86fee7e03d14778ac5eea3847d3a101584d451a751d654295a4bb72",
+   "source_front_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+   "summary_sha256": "48e6e11c52c8526238103e487bf06d55db8d1fcc841bc1c9ccb7001a08f4d075",
+   "observations_sha256": "3427b6b7ab4fa79f4590a4caf51991453326981b0cd432cd784c3457549193c1",
+   "max_abs_balance_error_w": 1.5916157281026244e-11,
+   "parent_results": [
+    {
+     "archive_id": 107,
+     "labels": [
+      "shortest"
+     ],
+     "length_m": 11.567764707200002,
+     "base": {
+      "peak_c": 111.0762667014394,
+      "hot": 1,
+      "balance_error_w": 1.9326762412674725e-12
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.0035554943974176467
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 4,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 11.567764704800002,
+         "peak_c": 111.07530061557078
+        },
+        "far": {
+         "die": 4,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 11.652404670800001,
+         "peak_c": 111.07174512117336
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 238,
+     "labels": [
+      "1.125"
+     ],
+     "length_m": 12.730625902000005,
+     "base": {
+      "peak_c": 107.82447311329071,
+      "hot": 1,
+      "balance_error_w": -1.2505552149377763e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.03787223050080968
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 4,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 12.818625850000004,
+         "peak_c": 107.78701983134043
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 578,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 14.383457890000003,
+     "base": {
+      "peak_c": 105.96114090809128,
+      "hot": 1,
+      "balance_error_w": 1.2278178473934531e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": null
+    },
+    "500": {
+     "all": {
+      "pairs": 2,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 2,
+      "median_gain_k": 0.020713862449113662
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": 0.020713862449113662
+    }
+   },
+   "fine": [],
+   "fv64": 7,
+   "fv96": 0
+  },
+  {
+   "case": "Case2",
+   "names": [
+    "HBM_0",
+    "HBM_1",
+    "HBM_2",
+    "HBM_3",
+    "Virtuvian_0",
+    "Nimbus_0"
+   ],
+   "seed": 2,
+   "cap_m": 18.550999686399997,
+   "gap_um": 0.0,
+   "case_sha256": "1648efcd8889a7f3486b711349700286f0222032f9966083400ced1844550b18",
+   "source_front_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+   "summary_sha256": "f364da3f04c2f574293bd44c39301693319405110b2a51578e4a1775e06e08ae",
+   "observations_sha256": "1acc916cb65f75300547d07b7e218dd929577d345771c2d152dece1009228699",
+   "max_abs_balance_error_w": 4.189359970041551e-11,
+   "parent_results": [
+    {
+     "archive_id": 105,
+     "labels": [
+      "shortest"
+     ],
+     "length_m": 14.840799749119997,
+     "base": {
+      "peak_c": 80.59938310792487,
+      "hot": 4,
+      "balance_error_w": -3.490185918053612e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": -0.0009658012348836564
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 5,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 14.840799747319997,
+         "peak_c": 80.59920184418851
+        },
+        "far": null
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 353,
+     "labels": [
+      "1.125"
+     ],
+     "length_m": 15.854559853759996,
+     "base": {
+      "peak_c": 80.17464808564446,
+      "hot": 4,
+      "balance_error_w": -5.7411853049416095e-12
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 2,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 2,
+        "median_gain_k": -0.003007759579247704
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 0,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 15.914239790959998,
+         "peak_c": 80.16864795703805
+        },
+        "far": {
+         "die": 0,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 16.080159848399997,
+         "peak_c": 80.1701845495125
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 3,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 3,
+        "median_gain_k": -0.005527958215097328
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 0,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 15.854559848559997,
+         "peak_c": 80.16781002765538
+        },
+        "far": {
+         "die": 0,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 15.939199811959996,
+         "peak_c": 80.17333798587048
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 934,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 18.00524809664,
+     "base": {
+      "peak_c": 79.83262807984623,
+      "hot": 4,
+      "balance_error_w": 2.0463630789890885e-12
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 4,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 4,
+        "median_gain_k": 0.027936648477954407
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 0,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 18.06089600128,
+         "peak_c": 79.83200888531451
+        },
+        "far": {
+         "die": 3,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 18.23689601512,
+         "peak_c": 79.82017693538626
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 5,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 5,
+        "median_gain_k": 0.00886734330494221
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 5,
+         "axis": 0,
+         "away_um": -500,
+         "length_m": 18.00524807404,
+         "peak_c": 79.83206361706036
+        },
+        "far": {
+         "die": 3,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 18.092912022519997,
+         "peak_c": 79.82819985700215
+        }
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 6,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 6,
+      "median_gain_k": 0.0121297618533589
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": 0.012464444449353351
+    },
+    "500": {
+     "all": {
+      "pairs": 9,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 9,
+      "median_gain_k": 0.0028212529599755953
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": -0.0009658012348836564
+    }
+   },
+   "fine": [],
+   "fv64": 33,
+   "fv96": 0
+  },
+  {
+   "case": "Case3",
+   "names": [
+    "CPU2_0",
+    "CPU2_1",
+    "CPU2_2",
+    "CPU2_3",
+    "DRAM_0",
+    "DRAM_1",
+    "DRAM_2",
+    "DRAM_3"
+   ],
+   "seed": 2,
+   "cap_m": 38.95376444850001,
+   "gap_um": 0.0,
+   "case_sha256": "34def31b4c3b64f86c46e690367108718888b391c123ac7274cbb75ad81c49dd",
+   "source_front_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+   "summary_sha256": "8c3daf15cd3401fb92b90fad5ee0675a160f53d81902083df553586ceb1985dc",
+   "observations_sha256": "c4fc0e0cda078154b51e52cc15ae98077931ed3279359d022c182072e55b2039",
+   "max_abs_balance_error_w": 1.0470557754160836e-10,
+   "parent_results": [
+    {
+     "archive_id": 96,
+     "labels": [
+      "shortest"
+     ],
+     "length_m": 31.163011558800008,
+     "base": {
+      "peak_c": 136.66702219284656,
+      "hot": 0,
+      "balance_error_w": -1.432454155292362e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 841,
+     "labels": [
+      "1.125"
+     ],
+     "length_m": 35.00278765400001,
+     "base": {
+      "peak_c": 128.95951624568113,
+      "hot": 1,
+      "balance_error_w": -2.8990143619012088e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 2,
+        "far_cooler": 1,
+        "near_cooler": 1,
+        "within_band": 0,
+        "median_gain_k": 0.7995250671149563
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 0,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 36.36081956900001,
+         "peak_c": 128.31319758007498
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 3,
+        "far_cooler": 1,
+        "near_cooler": 2,
+        "within_band": 0,
+        "median_gain_k": -0.4200558898730833
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 0,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 35.61845163200001,
+         "peak_c": 128.61016466514408
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 896,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 38.916131658800005,
+     "base": {
+      "peak_c": 125.75827699288624,
+      "hot": 0,
+      "balance_error_w": -1.0470557754160836e-10
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 2,
+      "far_cooler": 1,
+      "near_cooler": 1,
+      "within_band": 0,
+      "median_gain_k": 0.7995250671149563
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": 0.7995250671149563
+    },
+    "500": {
+     "all": {
+      "pairs": 3,
+      "far_cooler": 1,
+      "near_cooler": 2,
+      "within_band": 0,
+      "median_gain_k": -0.4200558898730833
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": -0.4200558898730833
+    }
+   },
+   "fine": [
+    {
+     "reason": "largest_benefit",
+     "archive_id": 841,
+     "base": {
+      "peak_c": 129.13606064779725,
+      "hot": 1,
+      "balance_error_w": -1.8189894035458565e-12
+     },
+     "coarse_gain_k": 1.969192662557191,
+     "pair": {
+      "die": 0,
+      "axis": 1,
+      "away_um": 1000,
+      "near_length_m": 34.20763558880002,
+      "far_length_m": 36.36081956900001,
+      "near": {
+       "peak_c": 130.13678052978287,
+       "hot": 0,
+       "balance_error_w": -6.480149750132114e-12
+      },
+      "far": {
+       "peak_c": 128.4291988044307,
+       "hot": 1,
+       "balance_error_w": -5.343281372915953e-12
+      },
+      "gain_k": 1.7075817253521564
+     },
+     "coarse_pair": {
+      "die": 0,
+      "axis": 1,
+      "away_um": 1000,
+      "near_length_m": 34.20763558880002,
+      "far_length_m": 36.36081956900001,
+      "near": {
+       "peak_c": 130.28239024263218,
+       "hot": 0,
+       "balance_error_w": 9.094947017729282e-13
+      },
+      "far": {
+       "peak_c": 128.31319758007498,
+       "hot": 1,
+       "balance_error_w": -4.092726157978177e-11
+      },
+      "gain_k": 1.969192662557191
+     },
+     "same_base_hot": true
+    },
+    {
+     "reason": "largest_reversal",
+     "archive_id": 841,
+     "base": {
+      "peak_c": 129.13606064779725,
+      "hot": 1,
+      "balance_error_w": -1.8189894035458565e-12
+     },
+     "coarse_gain_k": -0.37014252832727834,
+     "pair": {
+      "die": 4,
+      "axis": 1,
+      "away_um": 1000,
+      "near_length_m": 35.0584355896,
+      "far_length_m": 35.23544360280001,
+      "near": {
+       "peak_c": 129.18126455322897,
+       "hot": 1,
+       "balance_error_w": -5.002220859751105e-12
+      },
+      "far": {
+       "peak_c": 129.0976472734182,
+       "hot": 0,
+       "balance_error_w": -6.252776074688882e-12
+      },
+      "gain_k": 0.08361727981076683
+     },
+     "coarse_pair": {
+      "die": 4,
+      "axis": 1,
+      "away_um": 1000,
+      "near_length_m": 35.0584355896,
+      "far_length_m": 35.23544360280001,
+      "near": {
+       "peak_c": 129.0603886223763,
+       "hot": 0,
+       "balance_error_w": -1.000444171950221e-11
+      },
+      "far": {
+       "peak_c": 129.4305311507036,
+       "hot": 0,
+       "balance_error_w": -4.5361048250924796e-11
+      },
+      "gain_k": -0.37014252832727834
+     },
+     "same_base_hot": true
+    }
+   ],
+   "fv64": 13,
+   "fv96": 5
+  },
+  {
+   "case": "Case4",
+   "names": [
+    "CPU1_0",
+    "CPU1_1",
+    "GPU_0",
+    "GPU_1",
+    "GPU_2",
+    "GPU_3",
+    "HBM_0",
+    "HBM_1",
+    "HBM_2",
+    "HBM_3",
+    "HBM_4"
+   ],
+   "seed": 2,
+   "cap_m": 52.73274061750001,
+   "gap_um": 0.0,
+   "case_sha256": "15a3323c1ba38e9cd6521471f452c90c58964ab3efadcd27f91167fde8cb47ec",
+   "source_front_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+   "summary_sha256": "26bc3574325241738e0cb8a7c8064d1afac63f3e22d2a9558d1c1e1b5c117c5f",
+   "observations_sha256": "a563144038f162450b8756814f46cdf7e1ba5e11a2ccfa84dd54655d3e2203c0",
+   "max_abs_balance_error_w": 1.3869794202037156e-10,
+   "parent_results": [
+    {
+     "archive_id": 96,
+     "labels": [
+      "shortest"
+     ],
+     "length_m": 42.18619249400001,
+     "base": {
+      "peak_c": 138.54304011838482,
+      "hot": 3,
+      "balance_error_w": 9.208633855450898e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 3,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 3,
+        "median_gain_k": 0.04215782293505299
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 6,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 42.24284844000001,
+         "peak_c": 138.52175802550676
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 3,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 3,
+        "median_gain_k": 0.02110993909212766
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 9,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 42.18619247400001,
+         "peak_c": 138.52876178437796
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 594,
+     "labels": [
+      "1.125"
+     ],
+     "length_m": 47.398540534800006,
+     "base": {
+      "peak_c": 129.58375193308416,
+      "hot": 3,
+      "balance_error_w": 8.981260180007666e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 3,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 3,
+        "median_gain_k": 0.04336534474691689
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 6,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 47.62447650400001,
+         "peak_c": 129.56227308886753
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 5,
+        "far_cooler": 1,
+        "near_cooler": 0,
+        "within_band": 4,
+        "median_gain_k": 0.020905930407593587
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 7,
+         "axis": 0,
+         "away_um": -500,
+         "length_m": 47.39820451680001,
+         "peak_c": 129.57751324802788
+        },
+        "far": {
+         "die": 6,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 47.48334050280001,
+         "peak_c": 129.56724149590747
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 876,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 52.21105636280001,
+     "base": {
+      "peak_c": 125.53253663703822,
+      "hot": 1,
+      "balance_error_w": 3.2514435588382185e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 4,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 4,
+        "median_gain_k": 0.05581861653310938
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 9,
+         "axis": 0,
+         "away_um": 1000,
+         "length_m": 52.38068833000001,
+         "peak_c": 125.50635127011358
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 5,
+        "far_cooler": 1,
+        "near_cooler": 0,
+        "within_band": 4,
+        "median_gain_k": 0.025435898796814627
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 9,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 52.26771232880001,
+         "peak_c": 125.52082985849641
+        }
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 10,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 10,
+      "median_gain_k": 0.04641432813247093
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": 0.04336534474691689
+    },
+    "500": {
+     "all": {
+      "pairs": 13,
+      "far_cooler": 2,
+      "near_cooler": 0,
+      "within_band": 11,
+      "median_gain_k": 0.02110993909212766
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": 0.02110993909212766
+    }
+   },
+   "fine": [],
+   "fv64": 49,
+   "fv96": 0
+  },
+  {
+   "case": "Case5",
+   "names": [
+    "CPU2_0",
+    "CPU2_1",
+    "CPU2_2",
+    "CPU2_3",
+    "CPU2_4",
+    "CPU2_5",
+    "DRAM_0",
+    "DRAM_1",
+    "DRAM_2",
+    "DRAM_3",
+    "DRAM_4",
+    "DRAM_5"
+   ],
+   "seed": 2,
+   "cap_m": 51.86533400925001,
+   "gap_um": 0.0,
+   "case_sha256": "1d5f01725b72e0c34accf56f0ece93d349d949a4387ee150e4f6d3dc4b0bf7fa",
+   "source_front_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+   "summary_sha256": "490978f65078727786641265873152e949e49ddf782bf29fe543b55eacee6851",
+   "observations_sha256": "bb52cc00f6c259ade3f99c6db802895451b3570f3139a98af6ea53a8b529ca85",
+   "max_abs_balance_error_w": 5.979927664157003e-11,
+   "parent_results": [
+    {
+     "archive_id": 96,
+     "labels": [
+      "shortest"
+     ],
+     "length_m": 41.49226720740001,
+     "base": {
+      "peak_c": 157.84752087952305,
+      "hot": 5,
+      "balance_error_w": -2.0691004465334117e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.09079341216087755
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 9,
+         "axis": 0,
+         "away_um": -1000,
+         "length_m": 41.750764211,
+         "peak_c": 157.77898169570162
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.04600959405877347
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 9,
+         "axis": 0,
+         "away_um": -500,
+         "length_m": 41.55665821960001,
+         "peak_c": 157.818696704679
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 707,
+     "labels": [
+      "1.125"
+     ],
+     "length_m": 46.61196041380001,
+     "base": {
+      "peak_c": 147.10472300245135,
+      "hot": 5,
+      "balance_error_w": 5.2523319027386606e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 2,
+        "far_cooler": 1,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.43619207420221073
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 4,
+         "axis": 0,
+         "away_um": -1000,
+         "length_m": 47.76671245500001,
+         "peak_c": 146.66340978651894
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 2,
+        "far_cooler": 1,
+        "near_cooler": 1,
+        "within_band": 0,
+        "median_gain_k": 0.09478370918085943
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 9,
+         "axis": 0,
+         "away_um": -500,
+         "length_m": 46.66403842940001,
+         "peak_c": 147.02964373827166
+        },
+        "far": {
+         "die": 4,
+         "axis": 0,
+         "away_um": -500,
+         "length_m": 47.15071245500001,
+         "peak_c": 146.88267451602715
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 886,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 51.5212154434,
+     "base": {
+      "peak_c": 144.1721593444594,
+      "hot": 5,
+      "balance_error_w": -1.2164491636212915e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 3,
+      "far_cooler": 1,
+      "near_cooler": 0,
+      "within_band": 2,
+      "median_gain_k": 0.09079341216087755
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": 0.26349274318154414
+    },
+    "500": {
+     "all": {
+      "pairs": 3,
+      "far_cooler": 1,
+      "near_cooler": 1,
+      "within_band": 1,
+      "median_gain_k": 0.04600959405877347
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": 0.07039665161981645
+    }
+   },
+   "fine": [
+    {
+     "reason": "largest_benefit",
+     "archive_id": 707,
+     "base": {
+      "peak_c": 147.12987925703678,
+      "hot": 5,
+      "balance_error_w": 9.094947017729282e-13
+     },
+     "coarse_gain_k": 0.9323468939451516,
+     "pair": {
+      "die": 4,
+      "axis": 0,
+      "away_um": -1000,
+      "near_length_m": 45.70341645500001,
+      "far_length_m": 47.76671245500001,
+      "near": {
+       "peak_c": 147.68648324807504,
+       "hot": 5,
+       "balance_error_w": 2.6147972675971687e-12
+      },
+      "far": {
+       "peak_c": 146.6569885975444,
+       "hot": 5,
+       "balance_error_w": 1.3869794202037156e-11
+      },
+      "gain_k": 1.029494650530637
+     },
+     "coarse_pair": {
+      "die": 4,
+      "axis": 0,
+      "away_um": -1000,
+      "near_length_m": 45.70341645500001,
+      "far_length_m": 47.76671245500001,
+      "near": {
+       "peak_c": 147.5957566804641,
+       "hot": 5,
+       "balance_error_w": 4.149569576838985e-11
+      },
+      "far": {
+       "peak_c": 146.66340978651894,
+       "hot": 5,
+       "balance_error_w": 1.0231815394945443e-12
+      },
+      "gain_k": 0.9323468939451516
+     },
+     "same_base_hot": true
+    }
+   ],
+   "fv64": 15,
+   "fv96": 3
+  },
+  {
+   "case": "Case6",
+   "names": [
+    "CPU2_0",
+    "CPU2_1",
+    "CPU2_2",
+    "CPU2_3",
+    "CPU2_4",
+    "CPU2_5",
+    "CPU2_6",
+    "CPU2_7",
+    "GPU_0",
+    "GPU_1",
+    "GPU_2",
+    "GPU_3",
+    "HBM_0",
+    "HBM_1",
+    "HBM_2",
+    "HBM_3",
+    "DRAM_0",
+    "DRAM_1",
+    "DRAM_2",
+    "DRAM_3"
+   ],
+   "seed": 2,
+   "cap_m": 35.892512894750006,
+   "gap_um": 0.0,
+   "case_sha256": "17427cfbee057235d2f17a8621a1ecde43012212e87398149f98ce4570184703",
+   "source_front_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+   "summary_sha256": "3a8ac18a79bc1851a64f65e50fc189c72e8b0cc9e7abcdf38a05e2bf473844aa",
+   "observations_sha256": "ecc926c2af3afbb306d2aefa0ee4fdd04b643a67c15039548fa8e5be89fcdb55",
+   "max_abs_balance_error_w": 6.52562448522076e-11,
+   "parent_results": [
+    {
+     "archive_id": 100,
+     "labels": [
+      "shortest"
+     ],
+     "length_m": 28.714010315800003,
+     "base": {
+      "peak_c": 120.21807204782266,
+      "hot": 0,
+      "balance_error_w": 1.1482370609883219e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 658,
+     "labels": [
+      "1.125"
+     ],
+     "length_m": 32.1522424328,
+     "base": {
+      "peak_c": 107.48134133381922,
+      "hot": 7,
+      "balance_error_w": 2.3419488570652902e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 11,
+        "far_cooler": 5,
+        "near_cooler": 0,
+        "within_band": 6,
+        "median_gain_k": 0.08307007807574962
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 3,
+         "axis": 0,
+         "away_um": -1000,
+         "length_m": 32.1807424196,
+         "peak_c": 107.45656881245398
+        },
+        "far": {
+         "die": 1,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 32.1529224056,
+         "peak_c": 107.40071698322456
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 14,
+        "far_cooler": 4,
+        "near_cooler": 0,
+        "within_band": 10,
+        "median_gain_k": 0.03689642143205418
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 17,
+         "axis": 0,
+         "away_um": -500,
+         "length_m": 32.1520624332,
+         "peak_c": 107.47465392798121
+        },
+        "far": {
+         "die": 3,
+         "axis": 0,
+         "away_um": -500,
+         "length_m": 32.1520624332,
+         "peak_c": 107.45729178936193
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 527,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 35.741498461999996,
+     "base": {
+      "peak_c": 102.5255723019897,
+      "hot": 2,
+      "balance_error_w": 3.979039320256561e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 9,
+        "far_cooler": 3,
+        "near_cooler": 0,
+        "within_band": 6,
+        "median_gain_k": 0.0674535513345802
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 19,
+         "axis": 0,
+         "away_um": 1000,
+         "length_m": 35.829498462,
+         "peak_c": 102.4891236532415
+        },
+        "far": {
+         "die": 1,
+         "axis": 1,
+         "away_um": -1000,
+         "length_m": 35.739158464400006,
+         "peak_c": 102.37399916788328
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 13,
+        "far_cooler": 2,
+        "near_cooler": 1,
+        "within_band": 10,
+        "median_gain_k": 0.026710416198113762
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 8,
+         "axis": 0,
+         "away_um": -500,
+         "length_m": 35.6354584464,
+         "peak_c": 102.43143305679624
+        },
+        "far": {
+         "die": 1,
+         "axis": 1,
+         "away_um": -500,
+         "length_m": 35.739158464400006,
+         "peak_c": 102.44900895085422
+        }
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 20,
+      "far_cooler": 8,
+      "near_cooler": 0,
+      "within_band": 12,
+      "median_gain_k": 0.07526181470516491
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": 0.07526181470516491
+    },
+    "500": {
+     "all": {
+      "pairs": 27,
+      "far_cooler": 6,
+      "near_cooler": 1,
+      "within_band": 20,
+      "median_gain_k": 0.03405666384452388
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": 0.03180341881508397
+    }
+   },
+   "fine": [
+    {
+     "reason": "largest_benefit",
+     "archive_id": 658,
+     "base": {
+      "peak_c": 107.28573670960455,
+      "hot": 7,
+      "balance_error_w": 1.864464138634503e-11
+     },
+     "coarse_gain_k": 0.8099712623114215,
+     "pair": {
+      "die": 0,
+      "axis": 0,
+      "away_um": -1000,
+      "near_length_m": 32.2174424648,
+      "far_length_m": 32.3785524144,
+      "near": {
+       "peak_c": 107.73997968593274,
+       "hot": 7,
+       "balance_error_w": -4.490630090003833e-11
+      },
+      "far": {
+       "peak_c": 107.15268059479443,
+       "hot": 6,
+       "balance_error_w": 1.3073986337985843e-11
+      },
+      "gain_k": 0.5872990911383056
+     },
+     "coarse_pair": {
+      "die": 0,
+      "axis": 0,
+      "away_um": -1000,
+      "near_length_m": 32.2174424648,
+      "far_length_m": 32.3785524144,
+      "near": {
+       "peak_c": 107.95096170906993,
+       "hot": 7,
+       "balance_error_w": 3.433342499192804e-11
+      },
+      "far": {
+       "peak_c": 107.14099044675851,
+       "hot": 7,
+       "balance_error_w": 2.7853275241795927e-11
+      },
+      "gain_k": 0.8099712623114215
+     },
+     "same_base_hot": true
+    }
+   ],
+   "fv64": 97,
+   "fv96": 3
+  },
+  {
+   "case": "Case7",
+   "names": [
+    "CPU1_0",
+    "CPU1_1",
+    "CPU1_2",
+    "CPU1_3",
+    "CPU1_4",
+    "CPU1_5",
+    "CPU1_6",
+    "CPU1_7",
+    "CPU2_0",
+    "CPU2_1",
+    "DRAM_0",
+    "DRAM_1",
+    "Analog_0",
+    "Analog_1",
+    "Analog_2",
+    "Analog_3",
+    "Analog_4",
+    "Analog_5",
+    "Analog_6",
+    "Analog_7",
+    "MEMS_0",
+    "MEMS_1",
+    "MEMS_2",
+    "MEMS_3",
+    "MEMS_4",
+    "MEMS_5",
+    "MEMS_6",
+    "MEMS_7"
+   ],
+   "seed": 2,
+   "cap_m": 12.884562655974998,
+   "gap_um": 0.0,
+   "case_sha256": "be89a969da2a6d65206bc09de8967f0f21e8cabad1e9b534bb665cd5d72e8405",
+   "source_front_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+   "summary_sha256": "021099fe57c7ce226140cec5443de16da47d9322eed228dfc44a430a0de11446",
+   "observations_sha256": "c025851b929c40bd35ed0f10a45446c228acabfae7953516265a9b9edb9ce0fe",
+   "max_abs_balance_error_w": 3.1889157980913296e-11,
+   "parent_results": [
+    {
+     "archive_id": 100,
+     "labels": [
+      "shortest"
+     ],
+     "length_m": 10.307650124779999,
+     "base": {
+      "peak_c": 89.95534296637828,
+      "hot": 5,
+      "balance_error_w": 1.1368683772161603e-13
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 3,
+        "far_cooler": 1,
+        "near_cooler": 0,
+        "within_band": 2,
+        "median_gain_k": 0.05511284481374901
+       },
+       "equal_wire": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.010992288087734892
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 21,
+         "axis": 0,
+         "away_um": 1000,
+         "length_m": 10.34157011998,
+         "peak_c": 89.94882677066809
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 4,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 4,
+        "median_gain_k": 0.018393420282876605
+       },
+       "equal_wire": {
+        "pairs": 2,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 2,
+        "median_gain_k": 0.007470280991363154
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 21,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 10.31957011998,
+         "peak_c": 89.95248495206181
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 706,
+     "labels": [
+      "1.125"
+     ],
+     "length_m": 11.540524164979999,
+     "base": {
+      "peak_c": 86.52270489291323,
+      "hot": 9,
+      "balance_error_w": -1.1368683772161603e-12
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 8,
+        "far_cooler": 1,
+        "near_cooler": 0,
+        "within_band": 7,
+        "median_gain_k": 0.020974014123794404
+       },
+       "equal_wire": {
+        "pairs": 2,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 2,
+        "median_gain_k": 0.006556384943650073
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 27,
+         "axis": 0,
+         "away_um": -1000,
+         "length_m": 11.574444168980001,
+         "peak_c": 86.51973133647945
+        },
+        "far": {
+         "die": 11,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 11.54120413778,
+         "peak_c": 86.49912252844311
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 11,
+        "far_cooler": 1,
+        "near_cooler": 0,
+        "within_band": 10,
+        "median_gain_k": 0.012586703058488524
+       },
+       "equal_wire": {
+        "pairs": 3,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 3,
+        "median_gain_k": 0.003273725147820983
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 20,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 11.552444160179999,
+         "peak_c": 86.51952075013415
+        },
+        "far": {
+         "die": 0,
+         "axis": 1,
+         "away_um": -500,
+         "length_m": 11.531024166580002,
+         "peak_c": 86.48713415931756
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 750,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 12.74065013786,
+     "base": {
+      "peak_c": 83.75193045558633,
+      "hot": 3,
+      "balance_error_w": -8.753886504564434e-12
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 9,
+        "far_cooler": 2,
+        "near_cooler": 1,
+        "within_band": 6,
+        "median_gain_k": 0.04169694133500457
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 27,
+         "axis": 0,
+         "away_um": 1000,
+         "length_m": 12.77151014346,
+         "peak_c": 83.74785296677302
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 12,
+        "far_cooler": 2,
+        "near_cooler": 0,
+        "within_band": 10,
+        "median_gain_k": 0.015568474004062693
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 27,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 12.75083014262,
+         "peak_c": 83.74911198917994
+        }
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 20,
+      "far_cooler": 4,
+      "near_cooler": 1,
+      "within_band": 15,
+      "median_gain_k": 0.034630662648709176
+     },
+     "equal_wire": {
+      "pairs": 3,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 3,
+      "median_gain_k": 0.010992288087734892
+     },
+     "median_of_parent_medians_k": 0.04169694133500457
+    },
+    "500": {
+     "all": {
+      "pairs": 27,
+      "far_cooler": 3,
+      "near_cooler": 0,
+      "within_band": 24,
+      "median_gain_k": 0.012586703058488524
+     },
+     "equal_wire": {
+      "pairs": 5,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 5,
+      "median_gain_k": 0.005331973757378705
+     },
+     "median_of_parent_medians_k": 0.015568474004062693
+    }
+   },
+   "fine": [
+    {
+     "reason": "largest_benefit",
+     "archive_id": 750,
+     "base": {
+      "peak_c": 83.7173027070115,
+      "hot": 3,
+      "balance_error_w": 3.1889157980913296e-11
+     },
+     "coarse_gain_k": 0.5451298859057516,
+     "pair": {
+      "die": 0,
+      "axis": 1,
+      "away_um": -1000,
+      "near_length_m": 12.74857013916,
+      "far_length_m": 12.862346132759999,
+      "near": {
+       "peak_c": 84.20356086087908,
+       "hot": 0,
+       "balance_error_w": -1.2164491636212915e-11
+      },
+      "far": {
+       "peak_c": 83.65746011143547,
+       "hot": 3,
+       "balance_error_w": -1.6370904631912708e-11
+      },
+      "gain_k": 0.5461007494436103
+     },
+     "coarse_pair": {
+      "die": 0,
+      "axis": 1,
+      "away_um": -1000,
+      "near_length_m": 12.74857013916,
+      "far_length_m": 12.862346132759999,
+      "near": {
+       "peak_c": 84.237172684848,
+       "hot": 0,
+       "balance_error_w": -1.0800249583553523e-11
+      },
+      "far": {
+       "peak_c": 83.69204279894225,
+       "hot": 3,
+       "balance_error_w": -1.48929757415317e-11
+      },
+      "gain_k": 0.5451298859057516
+     },
+     "same_base_hot": true
+    },
+    {
+     "reason": "largest_reversal",
+     "archive_id": 750,
+     "base": {
+      "peak_c": 83.7173027070115,
+      "hot": 3,
+      "balance_error_w": 3.1889157980913296e-11
+     },
+     "coarse_gain_k": -0.4375362635573481,
+     "pair": {
+      "die": 5,
+      "axis": 1,
+      "away_um": -1000,
+      "near_length_m": 12.69739013786,
+      "far_length_m": 12.81955013786,
+      "near": {
+       "peak_c": 83.99427908647422,
+       "hot": 3,
+       "balance_error_w": -9.038103598868474e-12
+      },
+      "far": {
+       "peak_c": 84.43232848603746,
+       "hot": 8,
+       "balance_error_w": 2.8421709430404007e-13
+      },
+      "gain_k": -0.4380493995632406
+     },
+     "coarse_pair": {
+      "die": 5,
+      "axis": 1,
+      "away_um": -1000,
+      "near_length_m": 12.69739013786,
+      "far_length_m": 12.81955013786,
+      "near": {
+       "peak_c": 84.02900846724759,
+       "hot": 3,
+       "balance_error_w": -5.4569682106375694e-12
+      },
+      "far": {
+       "peak_c": 84.46654473080494,
+       "hot": 8,
+       "balance_error_w": -7.048583938740194e-12
+      },
+      "gain_k": -0.4375362635573481
+     },
+     "same_base_hot": true
+    }
+   ],
+   "fv64": 97,
+   "fv96": 5
+  },
+  {
+   "case": "Case8",
+   "names": [
+    "CPU1_0",
+    "CPU1_1",
+    "CPU1_2",
+    "CPU1_3",
+    "CPU1_4",
+    "CPU1_5",
+    "CPU1_6",
+    "CPU1_7",
+    "CPU1_8",
+    "CPU1_9",
+    "CPU1_10",
+    "CPU1_11",
+    "Analog_0",
+    "Analog_1",
+    "Analog_2",
+    "Analog_3",
+    "Analog_4",
+    "Analog_5",
+    "Analog_6",
+    "Analog_7",
+    "Analog_8",
+    "Analog_9",
+    "Analog_10",
+    "Analog_11",
+    "Analog_12",
+    "Analog_13",
+    "Analog_14",
+    "Analog_15",
+    "Analog_16",
+    "Analog_17",
+    "Analog_18",
+    "Analog_19",
+    "Analog_20",
+    "Analog_21",
+    "Analog_22",
+    "Analog_23"
+   ],
+   "seed": 2,
+   "cap_m": 9.473449823374999,
+   "gap_um": 0.0,
+   "case_sha256": "6e7c1278d7b3812f505283c613e30890a4b68dc6c1c9bb8b4b4e4a44e4ee4a1b",
+   "source_front_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+   "summary_sha256": "784a85ecaeeaebdd390f2e641e0e0face93782064f730b690de698167997be8e",
+   "observations_sha256": "988f53c4c50091aaed685c7e7a182f34da7c8df1a9f973a67f874c1afbaa8944",
+   "max_abs_balance_error_w": 2.9757529773632996e-11,
+   "parent_results": [
+    {
+     "archive_id": 105,
+     "labels": [
+      "shortest"
+     ],
+     "length_m": 7.5787598587,
+     "base": {
+      "peak_c": 86.70551152049958,
+      "hot": 2,
+      "balance_error_w": 6.679101716144942e-12
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.0005425034211441471
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 30,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 7.6667598587,
+         "peak_c": 86.6718057440115
+        },
+        "far": {
+         "die": 30,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 7.5787598587,
+         "peak_c": 86.67126324059035
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 2,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 2,
+        "median_gain_k": 0.0069464858195615875
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 30,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 7.622759858699999,
+         "peak_c": 86.68273261378825
+        },
+        "far": {
+         "die": 30,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 7.5787598587,
+         "peak_c": 86.69935115700764
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 794,
+     "labels": [
+      "1.125"
+     ],
+     "length_m": 8.449335902100001,
+     "base": {
+      "peak_c": 80.43454894240817,
+      "hot": 5,
+      "balance_error_w": 4.604316927725449e-12
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 6,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 6,
+        "median_gain_k": 0.02481749614967299
+       },
+       "equal_wire": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.022650339745922565
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 28,
+         "axis": 1,
+         "away_um": -1000,
+         "length_m": 8.505695902,
+         "peak_c": 80.41079993747255
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 9,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 9,
+        "median_gain_k": 0.0147627115286042
+       },
+       "equal_wire": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.01135284790092328
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 32,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 8.4571758917,
+         "peak_c": 80.42453636241268
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 871,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 9.3586059461,
+     "base": {
+      "peak_c": 78.51206845049384,
+      "hot": 10,
+      "balance_error_w": -1.1084466677857563e-12
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 6,
+        "far_cooler": 1,
+        "near_cooler": 0,
+        "within_band": 5,
+        "median_gain_k": 0.03273770853318325
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 28,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 9.414965945999999,
+         "peak_c": 78.51198095918572
+        },
+        "far": {
+         "die": 28,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 9.4110259452,
+         "peak_c": 78.48665462304174
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 7,
+        "far_cooler": 2,
+        "near_cooler": 0,
+        "within_band": 5,
+        "median_gain_k": 0.029503798529063374
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 22,
+         "axis": 0,
+         "away_um": -500,
+         "length_m": 9.3586059461,
+         "peak_c": 78.50799719638871
+        }
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 13,
+      "far_cooler": 1,
+      "near_cooler": 0,
+      "within_band": 12,
+      "median_gain_k": 0.02532633614397639
+     },
+     "equal_wire": {
+      "pairs": 1,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 1,
+      "median_gain_k": 0.022650339745922565
+     },
+     "median_of_parent_medians_k": 0.02481749614967299
+    },
+    "500": {
+     "all": {
+      "pairs": 18,
+      "far_cooler": 2,
+      "near_cooler": 0,
+      "within_band": 16,
+      "median_gain_k": 0.02082331995649156
+     },
+     "equal_wire": {
+      "pairs": 1,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 1,
+      "median_gain_k": 0.01135284790092328
+     },
+     "median_of_parent_medians_k": 0.0147627115286042
+    }
+   },
+   "fine": [
+    {
+     "reason": "largest_benefit",
+     "archive_id": 871,
+     "base": {
+      "peak_c": 78.47317327658257,
+      "hot": 10,
+      "balance_error_w": 2.9757529773632996e-11
+     },
+     "coarse_gain_k": 0.23294007772122427,
+     "pair": {
+      "die": 16,
+      "axis": 1,
+      "away_um": -1000,
+      "near_length_m": 9.409165933299999,
+      "far_length_m": 9.440845952100002,
+      "near": {
+       "peak_c": 78.61714381636165,
+       "hot": 10,
+       "balance_error_w": 2.3845814212108962e-11
+      },
+      "far": {
+       "peak_c": 78.38428021463227,
+       "hot": 10,
+       "balance_error_w": -8.753886504564434e-12
+      },
+      "gain_k": 0.23286360172937748
+     },
+     "coarse_pair": {
+      "die": 16,
+      "axis": 1,
+      "away_um": -1000,
+      "near_length_m": 9.409165933299999,
+      "far_length_m": 9.440845952100002,
+      "near": {
+       "peak_c": 78.65607878968396,
+       "hot": 10,
+       "balance_error_w": 8.29913915367797e-12
+      },
+      "far": {
+       "peak_c": 78.42313871196274,
+       "hot": 10,
+       "balance_error_w": 4.462208380573429e-12
+      },
+      "gain_k": 0.23294007772122427
+     },
+     "same_base_hot": true
+    }
+   ],
+   "fv64": 65,
+   "fv96": 3
+  },
+  {
+   "case": "Case9",
+   "names": [
+    "CPU1_0",
+    "CPU1_1",
+    "CPU1_2",
+    "CPU1_3",
+    "CPU2_0",
+    "CPU2_1",
+    "CPU2_2",
+    "CPU2_3",
+    "CPU2_4",
+    "CPU2_5",
+    "CPU2_6",
+    "CPU2_7",
+    "CPU2_8",
+    "CPU2_9",
+    "CPU2_10",
+    "CPU2_11",
+    "GPU_0",
+    "GPU_1",
+    "GPU_2",
+    "GPU_3",
+    "GPU_4",
+    "GPU_5",
+    "GPU_6",
+    "GPU_7",
+    "HBM_0",
+    "HBM_1",
+    "HBM_2",
+    "HBM_3",
+    "HBM_4",
+    "HBM_5",
+    "HBM_6",
+    "HBM_7",
+    "DRAM_0",
+    "DRAM_1",
+    "IODie_0",
+    "IODie_1",
+    "Analog_0",
+    "Analog_1",
+    "Analog_2",
+    "Analog_3",
+    "Analog_4",
+    "Analog_5",
+    "Analog_6",
+    "Analog_7"
+   ],
+   "seed": 2,
+   "cap_m": 52.0337254435,
+   "gap_um": 0.0,
+   "case_sha256": "13003c5004f028229280860f8bbbfc9e4bb9f49d84d6e8f31f89eaa9397cb8d5",
+   "source_front_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+   "summary_sha256": "0fc51341eee9c44369f9ba86399c35c855ff04a1c12adc833ef000215da248d8",
+   "observations_sha256": "8a4be0f11d53aeab2613d280dcfd94bc69d0893788f35ab5dd7d034682da52de",
+   "max_abs_balance_error_w": 9.640643838793039e-11,
+   "parent_results": [
+    {
+     "archive_id": 100,
+     "labels": [
+      "shortest"
+     ],
+     "length_m": 41.626980354800004,
+     "base": {
+      "peak_c": 146.57408475609193,
+      "hot": 5,
+      "balance_error_w": 6.366462912410498e-12
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 4,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 4,
+        "median_gain_k": 0.019626512751329983
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 33,
+         "axis": 0,
+         "away_um": 1000,
+         "length_m": 41.627660327600005,
+         "peak_c": 146.5629626633547
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 5,
+        "far_cooler": 1,
+        "near_cooler": 0,
+        "within_band": 4,
+        "median_gain_k": 0.012101707001619388
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 33,
+         "axis": 0,
+         "away_um": 500,
+         "length_m": 41.6269803284,
+         "peak_c": 146.5683974550068
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 886,
+     "labels": [
+      "1.125"
+     ],
+     "length_m": 46.7501003428,
+     "base": {
+      "peak_c": 133.64295815397452,
+      "hot": 23,
+      "balance_error_w": -5.661604518536478e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 13,
+        "far_cooler": 4,
+        "near_cooler": 0,
+        "within_band": 9,
+        "median_gain_k": 0.043792669663616834
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 36,
+         "axis": 0,
+         "away_um": -1000,
+         "length_m": 46.66834034280001,
+         "peak_c": 133.6289589903394
+        },
+        "far": {
+         "die": 4,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 46.7501003428,
+         "peak_c": 133.62565304785625
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 19,
+        "far_cooler": 3,
+        "near_cooler": 0,
+        "within_band": 16,
+        "median_gain_k": 0.022673661107830867
+       },
+       "equal_wire": {
+        "pairs": 4,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 4,
+        "median_gain_k": 0.01741591523082775
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 21,
+         "axis": 1,
+         "away_um": -500,
+         "length_m": 46.66524034560001,
+         "peak_c": 133.6291678999081
+        },
+        "far": {
+         "die": 4,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 46.7501003428,
+         "peak_c": 133.63201432768346
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 884,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 51.6880984106,
+     "base": {
+      "peak_c": 129.24562577410967,
+      "hot": 23,
+      "balance_error_w": -2.6147972675971687e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 10,
+        "far_cooler": 1,
+        "near_cooler": 0,
+        "within_band": 9,
+        "median_gain_k": 0.03207255278169896
+       },
+       "equal_wire": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.0297463591914493
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 4,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 51.6880984106,
+         "peak_c": 129.23088789665408
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 20,
+        "far_cooler": 1,
+        "near_cooler": 2,
+        "within_band": 17,
+        "median_gain_k": 0.015166055920303734
+       },
+       "equal_wire": {
+        "pairs": 2,
+        "far_cooler": 0,
+        "near_cooler": 1,
+        "within_band": 1,
+        "median_gain_k": -0.1544122771005192
+       },
+       "shortest_within_parent_peak": {
+        "near": {
+         "die": 25,
+         "axis": 0,
+         "away_um": -500,
+         "length_m": 51.8640984106,
+         "peak_c": 129.2363905554234
+        },
+        "far": {
+         "die": 4,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 51.6880984106,
+         "peak_c": 129.23620117750738
+        }
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 27,
+      "far_cooler": 5,
+      "near_cooler": 0,
+      "within_band": 22,
+      "median_gain_k": 0.03556774863625378
+     },
+     "equal_wire": {
+      "pairs": 1,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 1,
+      "median_gain_k": 0.0297463591914493
+     },
+     "median_of_parent_medians_k": 0.03207255278169896
+    },
+    "500": {
+     "all": {
+      "pairs": 44,
+      "far_cooler": 5,
+      "near_cooler": 2,
+      "within_band": 37,
+      "median_gain_k": 0.018189446379224705
+     },
+     "equal_wire": {
+      "pairs": 6,
+      "far_cooler": 0,
+      "near_cooler": 1,
+      "within_band": 5,
+      "median_gain_k": 0.016145025973116844
+     },
+     "median_of_parent_medians_k": 0.015166055920303734
+    }
+   },
+   "fine": [
+    {
+     "reason": "largest_benefit",
+     "archive_id": 886,
+     "base": {
+      "peak_c": 133.56305086603953,
+      "hot": 23,
+      "balance_error_w": -2.523847797419876e-11
+     },
+     "coarse_gain_k": 0.49389793710227536,
+     "pair": {
+      "die": 11,
+      "axis": 0,
+      "away_um": -1000,
+      "near_length_m": 46.57410034280001,
+      "far_length_m": 46.926100342800005,
+      "near": {
+       "peak_c": 133.80382426346503,
+       "hot": 23,
+       "balance_error_w": -3.524291969370097e-11
+      },
+      "far": {
+       "peak_c": 133.37858075559754,
+       "hot": 23,
+       "balance_error_w": -2.546585164964199e-11
+      },
+      "gain_k": 0.4252435078674921
+     },
+     "coarse_pair": {
+      "die": 11,
+      "axis": 0,
+      "away_um": -1000,
+      "near_length_m": 46.57410034280001,
+      "far_length_m": 46.926100342800005,
+      "near": {
+       "peak_c": 133.9265788293959,
+       "hot": 23,
+       "balance_error_w": -5.5706550483591855e-11
+      },
+      "far": {
+       "peak_c": 133.43268089229363,
+       "hot": 23,
+       "balance_error_w": -5.729816621169448e-11
+      },
+      "gain_k": 0.49389793710227536
+     },
+     "same_base_hot": true
+    }
+   ],
+   "fv64": 145,
+   "fv96": 3
+  },
+  {
+   "case": "Case10",
+   "names": [
+    "CPU1_0",
+    "CPU1_1",
+    "CPU1_2",
+    "CPU1_3",
+    "CPU1_4",
+    "CPU1_5",
+    "CPU2_0",
+    "CPU2_1",
+    "CPU2_2",
+    "CPU2_3",
+    "CPU2_4",
+    "CPU2_5",
+    "CPU2_6",
+    "CPU2_7",
+    "CPU2_8",
+    "GPU_0",
+    "GPU_1",
+    "GPU_2",
+    "GPU_3",
+    "DUMMY_0",
+    "DUMMY_1",
+    "DUMMY_2",
+    "DUMMY_3",
+    "IODie_0",
+    "IODie_1",
+    "MEMS_0",
+    "MEMS_1",
+    "MEMS_2",
+    "MEMS_3",
+    "MEMS_4",
+    "MEMS_5",
+    "MEMS_6",
+    "MEMS_7",
+    "MEMS_8",
+    "MEMS_9",
+    "MEMS_10",
+    "MEMS_11",
+    "MEMS_12",
+    "MEMS_13",
+    "MEMS_14",
+    "MEMS_15",
+    "MEMS_16",
+    "MEMS_17",
+    "MEMS_18",
+    "MEMS_19",
+    "MEMS_20",
+    "MEMS_21",
+    "MEMS_22",
+    "MEMS_23",
+    "MEMS_24",
+    "MEMS_25",
+    "MEMS_26",
+    "MEMS_27",
+    "MEMS_28",
+    "MEMS_29",
+    "MEMS_30",
+    "MEMS_31",
+    "MEMS_32",
+    "MEMS_33",
+    "MEMS_34",
+    "MEMS_35"
+   ],
+   "seed": 2,
+   "cap_m": 33.33986273989999,
+   "gap_um": 0.0,
+   "case_sha256": "841ecee33a7226afdd99e7c094ce03894b4b969a8e1d4a72f845baf5924d4a90",
+   "source_front_commit": "2e01a85c6a41b8344d165c17d7caf05928026e68",
+   "summary_sha256": "d75878fef5111c5d00dbc2678f4510b0f1605ad8a57141d85cfa5d00d7781692",
+   "observations_sha256": "a41a570fedf329be9125158f8d8760d53d16a05b4760fe673e2ab4f41cf988a8",
+   "max_abs_balance_error_w": 8.424194675171748e-11,
+   "parent_results": [
+    {
+     "archive_id": 128,
+     "labels": [
+      "shortest"
+     ],
+     "length_m": 26.671890191919996,
+     "base": {
+      "peak_c": 131.2567804728133,
+      "hot": 11,
+      "balance_error_w": -1.1482370609883219e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": 0.012907621359204313
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 52,
+         "axis": 0,
+         "away_um": -1000,
+         "length_m": 26.67589019032,
+         "peak_c": 131.2504506948954
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 4,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 4,
+        "median_gain_k": 0.006580100836245606
+       },
+       "equal_wire": {
+        "pairs": 1,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 1,
+        "median_gain_k": -0.02221161784197534
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 43,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 26.67389019032,
+         "peak_c": 131.25197869540636
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 857,
+     "labels": [
+      "1.125"
+     ],
+     "length_m": 29.9785301318,
+     "base": {
+      "peak_c": 124.27678872963753,
+      "hot": 11,
+      "balance_error_w": 2.319211489520967e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 4,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 4,
+        "median_gain_k": 0.02310353491409245
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 43,
+         "axis": 1,
+         "away_um": 1000,
+         "length_m": 29.982530130199997,
+         "peak_c": 124.26836989030963
+        }
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 13,
+        "far_cooler": 2,
+        "near_cooler": 0,
+        "within_band": 11,
+        "median_gain_k": 0.011001403049846203
+       },
+       "equal_wire": {
+        "pairs": 3,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 3,
+        "median_gain_k": 0.008741757474794554
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 43,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 29.9805301302,
+         "peak_c": 124.2728695945282
+        }
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 845,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 33.32415219366,
+     "base": {
+      "peak_c": 119.28777771959732,
+      "hot": 10,
+      "balance_error_w": -7.355538400588557e-11
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 3,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 3,
+        "median_gain_k": 0.00823207178110863
+       },
+       "equal_wire": {
+        "pairs": 2,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 2,
+        "median_gain_k": 0.00780391477955078
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": {
+         "die": 43,
+         "axis": 1,
+         "away_um": 500,
+         "length_m": 33.32615219366,
+         "peak_c": 119.28162881687459
+        }
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 5,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 5,
+      "median_gain_k": 0.02237349896368812
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": 0.01800557813664838
+    },
+    "500": {
+     "all": {
+      "pairs": 20,
+      "far_cooler": 2,
+      "near_cooler": 0,
+      "within_band": 18,
+      "median_gain_k": 0.009162419022594293
+     },
+     "equal_wire": {
+      "pairs": 6,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 6,
+      "median_gain_k": 0.00780391477955078
+     },
+     "median_of_parent_medians_k": 0.00823207178110863
+    }
+   },
+   "fine": [],
+   "fv64": 53,
+   "fv96": 0
+  },
+  {
+   "case": "G1_h100_slack",
+   "names": [
+    "GPU",
+    "HBM_L0",
+    "HBM_L1",
+    "HBM_L2",
+    "HBM_R0",
+    "HBM_R1",
+    "HBM_DUMMY"
+   ],
+   "seed": 1,
+   "cap_m": 0.0425,
+   "gap_um": 200.0,
+   "case_sha256": "198bd4165668d7d6879f8a73ab6a1e2a98ebf73fb0531574357477dff2b3d8db",
+   "source_front_commit": "9d68193d5b8efffd531a05ff326fd0bc84048252",
+   "summary_sha256": "6fbceb70b4c0a43bf1b423a4c40bd2230a37fc6675c829ca309140b62bee24ed",
+   "observations_sha256": "62fe43f84cdaa5c91144e80797acae6a41dd15f27dfdf31b538af538e05f31ae",
+   "max_abs_balance_error_w": 1.0516032489249483e-10,
+   "parent_results": [
+    {
+     "archive_id": 312,
+     "labels": [
+      "shortest",
+      "1.125",
+      "1.25"
+     ],
+     "length_m": 0.034,
+     "base": {
+      "peak_c": 85.03031993211528,
+      "hot": 0,
+      "balance_error_w": -1.0516032489249483e-10
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": null
+    },
+    "500": {
+     "all": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": null
+    }
+   },
+   "fine": [],
+   "fv64": 1,
+   "fv96": 0
+  },
+  {
+   "case": "G2_4gpu16hbm_slack",
+   "names": [
+    "GPU0",
+    "HBM0L0",
+    "HBM0L1",
+    "HBM0R0",
+    "HBM0R1",
+    "GPU1",
+    "HBM1L0",
+    "HBM1L1",
+    "HBM1R0",
+    "HBM1R1",
+    "GPU2",
+    "HBM2L0",
+    "HBM2L1",
+    "HBM2R0",
+    "HBM2R1",
+    "GPU3",
+    "HBM3L0",
+    "HBM3L1",
+    "HBM3R0",
+    "HBM3R1",
+    "IO_A",
+    "IO_B"
+   ],
+   "seed": 1,
+   "cap_m": 7.952500000000001,
+   "gap_um": 200.0,
+   "case_sha256": "49a862db5695e338f671c3e15331d695cf2a3fb9cb43f86415847ed41b700264",
+   "source_front_commit": "9d68193d5b8efffd531a05ff326fd0bc84048252",
+   "summary_sha256": "7f7cc5b2885d2ec09be891b906c78fcbaf74bcbb931d9b01e7240b5c9e8cf6c8",
+   "observations_sha256": "fd7522220d8f892dcd3e760a57320bd657dc9823cfbda4541c1d6ec400c9b936",
+   "max_abs_balance_error_w": 2.369233698118478e-10,
+   "parent_results": [
+    {
+     "archive_id": 96,
+     "labels": [
+      "shortest",
+      "1.125"
+     ],
+     "length_m": 6.362,
+     "base": {
+      "peak_c": 85.00427135084044,
+      "hot": 10,
+      "balance_error_w": -2.369233698118478e-10
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      }
+     }
+    },
+    {
+     "archive_id": 741,
+     "labels": [
+      "1.25"
+     ],
+     "length_m": 7.77675,
+     "base": {
+      "peak_c": 84.49009250704208,
+      "hot": 5,
+      "balance_error_w": 2.000888343900442e-10
+     },
+     "steps": {
+      "1000": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      },
+      "500": {
+       "all": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "equal_wire": {
+        "pairs": 0,
+        "far_cooler": 0,
+        "near_cooler": 0,
+        "within_band": 0,
+        "median_gain_k": null
+       },
+       "shortest_within_parent_peak": {
+        "near": null,
+        "far": null
+       }
+      }
+     }
+    }
+   ],
+   "case_results": {
+    "1000": {
+     "all": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": null
+    },
+    "500": {
+     "all": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "equal_wire": {
+      "pairs": 0,
+      "far_cooler": 0,
+      "near_cooler": 0,
+      "within_band": 0,
+      "median_gain_k": null
+     },
+     "median_of_parent_medians_k": null
+    }
+   },
+   "fine": [],
+   "fv64": 2,
+   "fv96": 0
+  }
+ ],
+ "posthoc": {
+  "source_split_script_sha256": "facdbe1d0fb4c40882f821fd3c96c6ff016b710ac70e4a2baf8fd086c994d28e",
+  "source_split": [
+   {
+    "case": "Case7",
+    "archive_id": 750,
+    "moved_die": "CPU1_5",
+    "power_w": 12.0,
+    "axis": 1,
+    "away_um": -1000,
+    "names": [
+     "CPU1_0",
+     "CPU1_1",
+     "CPU1_2",
+     "CPU1_3",
+     "CPU1_4",
+     "CPU1_5",
+     "CPU1_6",
+     "CPU1_7",
+     "CPU2_0",
+     "CPU2_1",
+     "DRAM_0",
+     "DRAM_1",
+     "Analog_0",
+     "Analog_1",
+     "Analog_2",
+     "Analog_3",
+     "Analog_4",
+     "Analog_5",
+     "Analog_6",
+     "Analog_7",
+     "MEMS_0",
+     "MEMS_1",
+     "MEMS_2",
+     "MEMS_3",
+     "MEMS_4",
+     "MEMS_5",
+     "MEMS_6",
+     "MEMS_7"
+    ],
+    "observations": [
+     {
+      "resolution": 64,
+      "side": "parent",
+      "hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.75193045558598,
+       "moved_die_contribution_k": 1.3983229324568536,
+       "other_sources_k": 37.353607523129114
+      },
+      "original_hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.75193045558598,
+       "moved_die_contribution_k": 1.3983229324568536,
+       "other_sources_k": 37.353607523129114
+      },
+      "die_peak_c": [
+       83.59460262925131,
+       82.83795053465047,
+       83.01858345024104,
+       83.75193045558598,
+       82.30414085191512,
+       83.20456480697166,
+       83.38689471910273,
+       82.80991076341866,
+       83.62875854616803,
+       83.68496806788235,
+       75.45071652432885,
+       74.99953367412334,
+       77.27307531141662,
+       74.02201030572103,
+       75.05896865628364,
+       76.89365555458761,
+       73.26492173014938,
+       76.31755775397454,
+       75.69377627189866,
+       76.12121962394973,
+       77.52204519483163,
+       75.97933122006303,
+       78.08367736086855,
+       77.49541565927622,
+       74.12659838175507,
+       79.42921445878973,
+       76.26346660405333,
+       74.92603528561921
+      ],
+      "wire_m": 12.74065013786,
+      "distance_to_parent_hot_mm": 4.915640853439152
+     },
+     {
+      "resolution": 64,
+      "side": "near",
+      "hot": {
+       "die": "CPU1_3",
+       "peak_c": 84.02900846724754,
+       "moved_die_contribution_k": 1.6984151065752826,
+       "other_sources_k": 37.33059336067225
+      },
+      "original_hot": {
+       "die": "CPU1_3",
+       "peak_c": 84.02900846724754,
+       "moved_die_contribution_k": 1.6984151065752826,
+       "other_sources_k": 37.33059336067225
+      },
+      "die_peak_c": [
+       83.28765586086298,
+       82.96025427559056,
+       83.17032146561812,
+       84.02900846724754,
+       82.59040908475713,
+       83.39147754324796,
+       83.17126574006468,
+       82.66663100078017,
+       83.3087181239838,
+       83.88122110007356,
+       75.34156979403481,
+       75.04059814443795,
+       77.2131910197377,
+       74.07316020259445,
+       75.12369832807117,
+       77.04790120195715,
+       73.32986422993977,
+       76.81614850679642,
+       75.62354741063308,
+       76.06583389529274,
+       77.47243160520401,
+       76.0314187230464,
+       78.14401407817849,
+       77.58474592915269,
+       74.17923709330441,
+       79.37474874489638,
+       76.18395138214746,
+       74.87814504398366
+      ],
+      "wire_m": 12.69739013786,
+      "distance_to_parent_hot_mm": 3.9209086956979755
+     },
+     {
+      "resolution": 64,
+      "side": "far",
+      "hot": {
+       "die": "CPU2_0",
+       "peak_c": 84.46654473080355,
+       "moved_die_contribution_k": 3.781439827027851,
+       "other_sources_k": 35.685104903775695
+      },
+      "original_hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.57260418000408,
+       "moved_die_contribution_k": 1.2175376310949155,
+       "other_sources_k": 37.355066548909164
+      },
+      "die_peak_c": [
+       84.29948795581106,
+       82.74589351178832,
+       82.90934964181938,
+       83.57260418000408,
+       82.10356713379815,
+       84.13681881538872,
+       83.62847544336222,
+       82.96863975085805,
+       84.46654473080355,
+       83.52614753491486,
+       75.56434060159518,
+       74.94992027741992,
+       77.31643660074113,
+       73.9769484480001,
+       75.00416535976117,
+       76.77688932558948,
+       73.20931981152222,
+       76.50983244698209,
+       75.77655305610524,
+       76.17815752665203,
+       77.56890511603982,
+       75.93363774390184,
+       78.03186733995409,
+       77.4226655039549,
+       74.08015001211156,
+       79.35657655365983,
+       76.36480070640305,
+       74.97730668237367
+      ],
+      "wire_m": 12.81955013786,
+      "distance_to_parent_hot_mm": 5.912150623926965
+     },
+     {
+      "resolution": 96,
+      "side": "parent",
+      "hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.71730270701121,
+       "moved_die_contribution_k": 1.3967869810103797,
+       "other_sources_k": 37.32051572600084
+      },
+      "original_hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.71730270701121,
+       "moved_die_contribution_k": 1.3967869810103797,
+       "other_sources_k": 37.32051572600084
+      },
+      "die_peak_c": [
+       83.56018743239507,
+       82.80076791916085,
+       82.98182132021485,
+       83.71730270701121,
+       82.2648214491104,
+       83.17119409220365,
+       83.3522465769578,
+       82.77344966327058,
+       83.5941477106578,
+       83.6532970886708,
+       75.40203887794752,
+       74.96254695534395,
+       77.22619424103628,
+       73.94552320159457,
+       75.00855598389529,
+       76.84977977142485,
+       73.21147962460836,
+       76.27511628664158,
+       75.64818017474292,
+       76.07383031011665,
+       77.4693978577208,
+       75.9046020637847,
+       78.02613040570584,
+       77.44695513189816,
+       74.07102558340367,
+       79.38489071616868,
+       76.21492237863424,
+       74.87694208052713
+      ],
+      "wire_m": 12.74065013786,
+      "distance_to_parent_hot_mm": 4.915640853439152
+     },
+     {
+      "resolution": 96,
+      "side": "near",
+      "hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.99427908647257,
+       "moved_die_contribution_k": 1.6967706583329962,
+       "other_sources_k": 37.29750842813958
+      },
+      "original_hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.99427908647257,
+       "moved_die_contribution_k": 1.6967706583329962,
+       "other_sources_k": 37.29750842813958
+      },
+      "die_peak_c": [
+       83.25321350975008,
+       82.92295886549749,
+       83.13344286105638,
+       83.99427908647257,
+       82.5509236981325,
+       83.35817705736952,
+       83.13670083947073,
+       82.63026737668531,
+       83.27307275017,
+       83.8494937662723,
+       75.2933080461098,
+       75.00351956853062,
+       77.16642663337635,
+       73.99651052664169,
+       75.07314180831247,
+       77.00380330949622,
+       73.27625815396883,
+       76.77228250016923,
+       75.57810013523303,
+       76.01856730703362,
+       77.41991356594012,
+       75.9565235251976,
+       78.08632383497391,
+       77.53608912130396,
+       74.12352084601034,
+       79.33043724949258,
+       76.13562247046066,
+       74.82917570585715
+      ],
+      "wire_m": 12.69739013786,
+      "distance_to_parent_hot_mm": 3.9209086956979755
+     },
+     {
+      "resolution": 96,
+      "side": "far",
+      "hot": {
+       "die": "CPU2_0",
+       "peak_c": 84.4323284860387,
+       "moved_die_contribution_k": 3.7794607063945116,
+       "other_sources_k": 35.65286777964419
+      },
+      "original_hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.53807459761342,
+       "moved_die_contribution_k": 1.2161016045412611,
+       "other_sources_k": 37.32197299307215
+      },
+      "die_peak_c": [
+       84.26570994039066,
+       82.7088111970745,
+       82.87269175803786,
+       83.53807459761342,
+       82.06441301697535,
+       84.10306397254634,
+       83.59374695550605,
+       82.93208324607608,
+       84.4323284860387,
+       83.49453975363548,
+       75.51522462031775,
+       74.9130587625854,
+       77.26947858736085,
+       73.90059238687321,
+       74.95386953476297,
+       76.7332053800721,
+       73.1560026861956,
+       76.46722871558427,
+       75.7307851023541,
+       76.13064213198312,
+       77.51613335311697,
+       75.85904133403741,
+       77.97443861258131,
+       77.3743598149872,
+       74.02468581272116,
+       79.31127434591531,
+       76.31598216133227,
+       74.9280783376263
+      ],
+      "wire_m": 12.81955013786,
+      "distance_to_parent_hot_mm": 5.912150623926965
+     },
+     {
+      "resolution": 128,
+      "side": "parent",
+      "hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.71987460442185,
+       "moved_die_contribution_k": 1.3949568958775147,
+       "other_sources_k": 37.324917708544326
+      },
+      "original_hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.71987460442185,
+       "moved_die_contribution_k": 1.3949568958775147,
+       "other_sources_k": 37.324917708544326
+      },
+      "die_peak_c": [
+       83.5616936205278,
+       82.86090054660477,
+       83.0115824064722,
+       83.71987460442185,
+       82.25227486130986,
+       83.16389711988543,
+       83.37521252866114,
+       82.82518658514081,
+       83.58696130099437,
+       83.66415484111653,
+       75.3831221733645,
+       74.99482155389438,
+       77.36083463459167,
+       73.94164057082607,
+       75.22981264657619,
+       76.82922796563548,
+       73.83147895615701,
+       76.2601906706274,
+       75.67983434476578,
+       76.37973055259457,
+       77.5509091926352,
+       75.91092415091293,
+       78.07344848840278,
+       77.30964825006409,
+       73.90752180430263,
+       79.36897773978782,
+       76.19285882744647,
+       74.8691696661143
+      ],
+      "wire_m": 12.74065013786,
+      "distance_to_parent_hot_mm": 4.915640853439152
+     },
+     {
+      "resolution": 128,
+      "side": "near",
+      "hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.99611880592366,
+       "moved_die_contribution_k": 1.6941888194605443,
+       "other_sources_k": 37.301929986463115
+      },
+      "original_hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.99611880592366,
+       "moved_die_contribution_k": 1.6941888194605443,
+       "other_sources_k": 37.301929986463115
+      },
+      "die_peak_c": [
+       83.25938521842548,
+       82.98141729284558,
+       83.16183228740925,
+       83.99611880592366,
+       82.53802674083889,
+       83.35107241297955,
+       83.16155148833073,
+       82.68355374639441,
+       83.26349594034102,
+       83.85829920732735,
+       75.2746238297262,
+       75.03519983212925,
+       77.3015438795836,
+       73.99239722033991,
+       75.293946128643,
+       76.98281081772298,
+       73.90231875255023,
+       76.7565567391809,
+       75.6097587718696,
+       76.32460963343001,
+       77.50173505137889,
+       75.96259187212762,
+       78.13325111213587,
+       77.39804226827722,
+       73.95980127487525,
+       79.31449068336883,
+       76.11368608973936,
+       74.82139570000311
+      ],
+      "wire_m": 12.69739013786,
+      "distance_to_parent_hot_mm": 3.9209086956979755
+     },
+     {
+      "resolution": 128,
+      "side": "far",
+      "hot": {
+       "die": "CPU2_0",
+       "peak_c": 84.4251708532295,
+       "moved_die_contribution_k": 3.777518748557822,
+       "other_sources_k": 35.64765210467168
+      },
+      "original_hot": {
+       "die": "CPU1_3",
+       "peak_c": 83.54110805076942,
+       "moved_die_contribution_k": 1.2147405061357375,
+       "other_sources_k": 37.326367544633676
+      },
+      "die_peak_c": [
+       84.26470279928782,
+       82.76987778102645,
+       82.90324000986263,
+       83.54110805076942,
+       82.0521394370667,
+       84.09599337332253,
+       83.61401508444368,
+       82.98084295023271,
+       84.4251708532295,
+       83.50651152739155,
+       75.49607111779252,
+       74.94565181383939,
+       77.40302776533332,
+       73.89685296426283,
+       75.17539312058356,
+       76.71296729203314,
+       73.77161959634154,
+       76.45222422630715,
+       75.7622197408458,
+       76.43613466804189,
+       77.59699371575769,
+       75.86552012834653,
+       78.02198792673835,
+       77.23754826523458,
+       73.8613320265965,
+       79.29483483983918,
+       76.29369547117577,
+       74.92024640832318
+      ],
+      "wire_m": 12.81955013786,
+      "distance_to_parent_hot_mm": 5.912150623926965
+     }
+    ]
+   },
+   {
+    "case": "Case9",
+    "archive_id": 884,
+    "moved_die": "CPU2_5",
+    "power_w": 34.0,
+    "axis": 1,
+    "away_um": 500,
+    "names": [
+     "CPU1_0",
+     "CPU1_1",
+     "CPU1_2",
+     "CPU1_3",
+     "CPU2_0",
+     "CPU2_1",
+     "CPU2_2",
+     "CPU2_3",
+     "CPU2_4",
+     "CPU2_5",
+     "CPU2_6",
+     "CPU2_7",
+     "CPU2_8",
+     "CPU2_9",
+     "CPU2_10",
+     "CPU2_11",
+     "GPU_0",
+     "GPU_1",
+     "GPU_2",
+     "GPU_3",
+     "GPU_4",
+     "GPU_5",
+     "GPU_6",
+     "GPU_7",
+     "HBM_0",
+     "HBM_1",
+     "HBM_2",
+     "HBM_3",
+     "HBM_4",
+     "HBM_5",
+     "HBM_6",
+     "HBM_7",
+     "DRAM_0",
+     "DRAM_1",
+     "IODie_0",
+     "IODie_1",
+     "Analog_0",
+     "Analog_1",
+     "Analog_2",
+     "Analog_3",
+     "Analog_4",
+     "Analog_5",
+     "Analog_6",
+     "Analog_7"
+    ],
+    "observations": [
+     {
+      "resolution": 64,
+      "side": "parent",
+      "hot": {
+       "die": "GPU_7",
+       "peak_c": 129.24562577410865,
+       "moved_die_contribution_k": 2.293704796100575,
+       "other_sources_k": 81.95192097800808
+      },
+      "original_hot": {
+       "die": "GPU_7",
+       "peak_c": 129.24562577410865,
+       "moved_die_contribution_k": 2.293704796100575,
+       "other_sources_k": 81.95192097800808
+      },
+      "die_peak_c": [
+       125.99892341494919,
+       127.69938156499596,
+       127.5688117281483,
+       121.02681914818409,
+       111.82291360867924,
+       128.81814416835044,
+       127.87349145795046,
+       127.35146474270832,
+       128.40060080898627,
+       128.90500393755855,
+       129.0995026665076,
+       129.17077628871374,
+       125.90408550833155,
+       112.29569507158537,
+       125.06284002659424,
+       127.39114274010541,
+       108.34500244069166,
+       127.28176379247942,
+       125.67048949771647,
+       123.52213022702594,
+       127.28907850443447,
+       124.39231167662969,
+       123.5666615755925,
+       129.24562577410865,
+       100.78423123063038,
+       115.6709303975546,
+       100.95414933602459,
+       109.09076822819937,
+       113.41675855110252,
+       107.44412688405842,
+       102.26299520566056,
+       114.13884088241339,
+       109.15742788221833,
+       95.58915924014629,
+       117.02787226791017,
+       118.11185677214559,
+       121.39023040697217,
+       117.47875502887575,
+       122.60546196640487,
+       120.66585164414397,
+       121.27349058022855,
+       121.5244125336197,
+       106.87938892560126,
+       110.25345435712833
+      ],
+      "wire_m": 51.6880984106,
+      "distance_to_parent_hot_mm": 12.359877386123213
+     },
+     {
+      "resolution": 64,
+      "side": "near",
+      "hot": {
+       "die": "GPU_7",
+       "peak_c": 129.28300918755684,
+       "moved_die_contribution_k": 2.331868554686018,
+       "other_sources_k": 81.95114063287082
+      },
+      "original_hot": {
+       "die": "GPU_7",
+       "peak_c": 129.28300918755684,
+       "moved_die_contribution_k": 2.331868554686018,
+       "other_sources_k": 81.95114063287082
+      },
+      "die_peak_c": [
+       125.98174497745488,
+       127.70691332209176,
+       127.37598550434161,
+       120.9978814788564,
+       111.81962517422275,
+       128.81433726443976,
+       127.88174700212623,
+       127.35720467776132,
+       127.95145424283263,
+       128.41590334506856,
+       128.68827096038598,
+       129.1725883670562,
+       125.91004794643808,
+       112.33675467958537,
+       125.06445795431769,
+       127.39361963960023,
+       108.34035951191913,
+       127.27366872737866,
+       125.67998011455438,
+       123.52628159487946,
+       127.07438538101155,
+       124.50207725320507,
+       123.51126513061459,
+       129.28300918755684,
+       100.77607925487885,
+       115.64973644445288,
+       100.96417505401027,
+       109.09312249123666,
+       113.35898639568832,
+       107.51015243821595,
+       102.23144387482384,
+       114.17577791177072,
+       109.16327131242423,
+       95.61764483583451,
+       117.03938375662739,
+       118.1083399920889,
+       121.37533278563663,
+       117.44989882275398,
+       122.6125460379655,
+       120.67154566458267,
+       121.18981178657722,
+       121.38541601770712,
+       106.87635789254048,
+       109.79708171208155
+      ],
+      "wire_m": 51.6880984106,
+      "distance_to_parent_hot_mm": 12.07081476123298
+     },
+     {
+      "resolution": 64,
+      "side": "far",
+      "hot": {
+       "die": "CPU2_6",
+       "peak_c": 129.6093207944412,
+       "moved_die_contribution_k": 5.214729200692806,
+       "other_sources_k": 79.39459159374839
+      },
+      "original_hot": {
+       "die": "GPU_7",
+       "peak_c": 129.20578875997782,
+       "moved_die_contribution_k": 2.254406438274536,
+       "other_sources_k": 81.95138232170328
+      },
+      "die_peak_c": [
+       126.01526509112855,
+       127.69194152037157,
+       127.79074123576488,
+       121.05794061635154,
+       111.82608294216163,
+       128.82226593078929,
+       127.86530478192553,
+       127.34590211356438,
+       128.87525751339948,
+       129.51204657192304,
+       129.6093207944412,
+       129.17056311245335,
+       125.8982609106283,
+       112.2560860290605,
+       125.056668681956,
+       127.39249970489817,
+       108.3495831877841,
+       127.28944062600985,
+       125.6610744193653,
+       123.51819720690385,
+       127.49320314316338,
+       124.29283050349187,
+       123.62482083223564,
+       129.20578875997782,
+       100.79232822940779,
+       115.69177076579135,
+       100.94427236787668,
+       109.08913126570778,
+       113.47769326084662,
+       107.38085191085284,
+       102.29562457762384,
+       114.10244230631383,
+       109.15169317328883,
+       95.56149328963599,
+       117.11536845794197,
+       118.10541259062943,
+       121.40374981932922,
+       117.50676514643278,
+       122.59848808111138,
+       120.6603393630147,
+       121.35947763650235,
+       121.66906083087092,
+       106.87873444199944,
+       109.86133051558345
+      ],
+      "wire_m": 51.6880984106,
+      "distance_to_parent_hot_mm": 12.66209180980773
+     },
+     {
+      "resolution": 96,
+      "side": "parent",
+      "hot": {
+       "die": "GPU_7",
+       "peak_c": 129.35598059537398,
+       "moved_die_contribution_k": 2.2424822727529974,
+       "other_sources_k": 82.113498322621
+      },
+      "original_hot": {
+       "die": "GPU_7",
+       "peak_c": 129.35598059537398,
+       "moved_die_contribution_k": 2.2424822727529974,
+       "other_sources_k": 82.113498322621
+      },
+      "die_peak_c": [
+       125.9355149282556,
+       127.67844052812015,
+       127.6429433661234,
+       120.96052904737549,
+       111.72496037121041,
+       128.78315487512629,
+       127.85049151774729,
+       127.33696543254642,
+       128.4293978194991,
+       128.92769832516203,
+       129.13251870943446,
+       129.0933570533272,
+       125.91716777023986,
+       112.31974492453057,
+       125.0280448443883,
+       127.3444381065614,
+       108.03905523328524,
+       127.2522073049569,
+       125.64651419693573,
+       123.59396624273369,
+       127.56151000449512,
+       124.16529662048873,
+       123.5454989422972,
+       129.35598059537398,
+       100.7476167645674,
+       115.60129329251517,
+       100.9158589034289,
+       109.43156523490633,
+       114.08815944736597,
+       107.56151653899322,
+       102.24004049010085,
+       114.16070202536366,
+       109.83502308829767,
+       95.55076633751949,
+       116.93382353152965,
+       117.99078167374921,
+       121.33396195480915,
+       118.37065480010713,
+       122.58992548756078,
+       120.63723993342214,
+       121.27873010114476,
+       121.57548757488482,
+       106.72540105366335,
+       109.92834062553318
+      ],
+      "wire_m": 51.6880984106,
+      "distance_to_parent_hot_mm": 12.359877386123213
+     },
+     {
+      "resolution": 96,
+      "side": "near",
+      "hot": {
+       "die": "GPU_7",
+       "peak_c": 129.39478056646044,
+       "moved_die_contribution_k": 2.281991143165173,
+       "other_sources_k": 82.11278942329527
+      },
+      "original_hot": {
+       "die": "GPU_7",
+       "peak_c": 129.39478056646044,
+       "moved_die_contribution_k": 2.281991143165173,
+       "other_sources_k": 82.11278942329527
+      },
+      "die_peak_c": [
+       125.91829631018317,
+       127.68597564340006,
+       127.4482951367436,
+       120.93287941493124,
+       111.72159457388058,
+       128.7791667879203,
+       127.85875246813679,
+       127.34270419533547,
+       127.988835784671,
+       128.43391146157703,
+       128.7204250877992,
+       129.0951749053068,
+       125.92312806810861,
+       112.36017110346381,
+       125.02965144042592,
+       127.34692140912196,
+       108.03430581796124,
+       127.24409730134064,
+       125.6560122694184,
+       123.59811439051448,
+       127.20899563355256,
+       124.2723746784946,
+       123.48435462457866,
+       129.39478056646044,
+       100.73945798828817,
+       115.58003692523373,
+       100.92588927211231,
+       109.4339842992959,
+       114.02624478546021,
+       107.62762814143288,
+       102.20854057488705,
+       114.19770085348378,
+       109.84112860622213,
+       95.5792256823245,
+       116.94534933000558,
+       117.98764939627644,
+       121.31904018042411,
+       118.34399443018856,
+       122.59701107593561,
+       120.64293583118304,
+       121.19324290761766,
+       121.43050745842274,
+       106.7226423189052,
+       109.48165855283712
+      ],
+      "wire_m": 51.6880984106,
+      "distance_to_parent_hot_mm": 12.07081476123298
+     },
+     {
+      "resolution": 96,
+      "side": "far",
+      "hot": {
+       "die": "CPU2_6",
+       "peak_c": 129.6433475931325,
+       "moved_die_contribution_k": 5.213114116809187,
+       "other_sources_k": 79.4302334763233
+      },
+      "original_hot": {
+       "die": "GPU_7",
+       "peak_c": 129.3153421907924,
+       "moved_die_contribution_k": 2.2022290941180773,
+       "other_sources_k": 82.11311309667431
+      },
+      "die_peak_c": [
+       125.95189540334475,
+       127.67099503732749,
+       127.86822871915379,
+       120.98992562439113,
+       111.72821172625588,
+       128.78728299724696,
+       127.84229763916811,
+       127.33139955546783,
+       128.8819833319193,
+       129.53275339193576,
+       129.6433475931325,
+       129.0931835604094,
+       125.91134136003677,
+       112.28072105376522,
+       125.02155188990922,
+       127.34579521693352,
+       108.04374269145733,
+       127.25989577057075,
+       125.63708994502909,
+       123.59002950913366,
+       127.90797016670629,
+       124.06802749640975,
+       123.61014864955199,
+       129.3153421907924,
+       100.75571854879894,
+       115.62219587638505,
+       100.90597646223569,
+       109.42997754855215,
+       114.15377776766034,
+       107.49815346864476,
+       102.27261030588726,
+       114.12424543409126,
+       109.82902424904337,
+       95.52312739584536,
+       117.02201243838557,
+       117.98457058607733,
+       121.3475043093584,
+       118.39643774404595,
+       122.58294756447152,
+       120.63172577177015,
+       121.3669631284593,
+       121.7275392559911,
+       106.72450088717295,
+       109.54334017875537
+      ],
+      "wire_m": 51.6880984106,
+      "distance_to_parent_hot_mm": 12.66209180980773
+     },
+     {
+      "resolution": 128,
+      "side": "parent",
+      "hot": {
+       "die": "GPU_7",
+       "peak_c": 129.3357343512156,
+       "moved_die_contribution_k": 2.241695569513018,
+       "other_sources_k": 82.09403878170257
+      },
+      "original_hot": {
+       "die": "GPU_7",
+       "peak_c": 129.3357343512156,
+       "moved_die_contribution_k": 2.241695569513018,
+       "other_sources_k": 82.09403878170257
+      },
+      "die_peak_c": [
+       125.92038532604717,
+       127.76358663130853,
+       127.6302582227412,
+       121.75137029808162,
+       111.68780592212615,
+       128.76682171882976,
+       127.75163659768391,
+       127.43127787561563,
+       128.41320377513188,
+       128.91260156946566,
+       129.11978375840178,
+       129.08364339487264,
+       125.87905893399551,
+       112.360649717017,
+       125.02976746304772,
+       127.38130065970203,
+       108.04499740665783,
+       127.23449575618505,
+       125.62220067018555,
+       123.44749377474243,
+       127.54821058371475,
+       124.15633977370814,
+       123.5415814135134,
+       129.3357343512156,
+       100.72644639110229,
+       115.58557408275034,
+       102.2820874601389,
+       109.42321475542094,
+       114.07148839440944,
+       107.50861248847093,
+       104.31993247957493,
+       115.23237886551674,
+       109.6037637433258,
+       96.78563360753373,
+       116.93934856287936,
+       118.01197101126795,
+       121.31929897072301,
+       118.35645754887732,
+       123.00498878172773,
+       121.05170308820972,
+       121.2657735951925,
+       121.56233568911776,
+       106.90382634009937,
+       110.11682021128841
+      ],
+      "wire_m": 51.6880984106,
+      "distance_to_parent_hot_mm": 12.359877386123213
+     },
+     {
+      "resolution": 128,
+      "side": "near",
+      "hot": {
+       "die": "GPU_7",
+       "peak_c": 129.37452651693997,
+       "moved_die_contribution_k": 2.2811965179009204,
+       "other_sources_k": 82.09332999903906
+      },
+      "original_hot": {
+       "die": "GPU_7",
+       "peak_c": 129.37452651693997,
+       "moved_die_contribution_k": 2.2811965179009204,
+       "other_sources_k": 82.09332999903906
+      },
+      "die_peak_c": [
+       125.9031674115151,
+       127.77088417436113,
+       127.4356459992416,
+       121.71725358986345,
+       111.68444071689566,
+       128.76283518190428,
+       127.75921183637139,
+       127.43724600029317,
+       127.97266716556516,
+       128.4186446829567,
+       128.7077505569485,
+       129.0854610836298,
+       125.88501942292778,
+       112.4010258342062,
+       125.03137706323209,
+       127.38375814756539,
+       108.0403436983614,
+       127.22638621234154,
+       125.63169883787964,
+       123.45157174658888,
+       127.195817604924,
+       124.26329024114989,
+       123.480502427399,
+       129.37452651693997,
+       100.7182862162562,
+       115.56431710172033,
+       102.29216386294462,
+       109.42563315769829,
+       114.0096500804037,
+       107.57455892548103,
+       104.28755160104976,
+       115.26973546850533,
+       109.60986895741542,
+       96.81432470121472,
+       116.95087022973111,
+       118.00884079969168,
+       121.30437856980994,
+       118.32980208947852,
+       123.01186002055873,
+       121.05722016159822,
+       121.18030643500414,
+       121.4173769003275,
+       106.901198957106,
+       109.68855308962307
+      ],
+      "wire_m": 51.6880984106,
+      "distance_to_parent_hot_mm": 12.07081476123298
+     },
+     {
+      "resolution": 128,
+      "side": "far",
+      "hot": {
+       "die": "CPU2_6",
+       "peak_c": 129.63055148878612,
+       "moved_die_contribution_k": 5.211604919221998,
+       "other_sources_k": 79.41894656956413
+      },
+      "original_hot": {
+       "die": "GPU_7",
+       "peak_c": 129.2951048312642,
+       "moved_die_contribution_k": 2.201450962838343,
+       "other_sources_k": 82.09365386842586
+      },
+      "die_peak_c": [
+       125.93676601663631,
+       127.75638090115481,
+       127.85550669554459,
+       121.78424704601805,
+       111.69105699050077,
+       128.77095071293735,
+       127.7441416294271,
+       127.42546198485061,
+       128.86690706655946,
+       129.51820058111372,
+       129.63055148878612,
+       129.08347017278896,
+       125.873232010558,
+       112.32166960664796,
+       125.02332924238847,
+       127.3827120073932,
+       108.04958199335134,
+       127.24218504374066,
+       125.61277635150128,
+       123.44364156213243,
+       127.89456083173683,
+       124.05918084783339,
+       123.60615778775961,
+       129.2951048312642,
+       100.73454929045354,
+       115.60647837169445,
+       102.27215785148124,
+       109.42162606020898,
+       114.13701915705163,
+       107.4453854889683,
+       104.35342665251909,
+       115.19554122468496,
+       109.59776499062463,
+       96.75776630871687,
+       117.02746318832934,
+       118.00570502653726,
+       121.33284079994203,
+       118.38223634172388,
+       122.99823059453105,
+       121.04639524887403,
+       121.35398645673264,
+       121.71436613294935,
+       106.90297555082856,
+       109.74703035571392
+      ],
+      "wire_m": 51.6880984106,
+      "distance_to_parent_hot_mm": 12.66209180980773
+     }
+    ]
+   }
+  ],
+  "geometry_only": [
+   {
+    "case": "Case1",
+    "archive_id": 107,
+    "step_um": 1000,
+    "geometric_pairs": 0,
+    "within_cap": 0,
+    "cap_m": 14.459705884000002,
+    "first_pair_cap_m": null
+   },
+   {
+    "case": "Case1",
+    "archive_id": 107,
+    "step_um": 500,
+    "geometric_pairs": 1,
+    "within_cap": 1,
+    "cap_m": 14.459705884000002,
+    "first_pair_cap_m": 11.652404670800001
+   },
+   {
+    "case": "Case1",
+    "archive_id": 238,
+    "step_um": 1000,
+    "geometric_pairs": 0,
+    "within_cap": 0,
+    "cap_m": 14.459705884000002,
+    "first_pair_cap_m": null
+   },
+   {
+    "case": "Case1",
+    "archive_id": 238,
+    "step_um": 500,
+    "geometric_pairs": 1,
+    "within_cap": 1,
+    "cap_m": 14.459705884000002,
+    "first_pair_cap_m": 12.818625850000004
+   },
+   {
+    "case": "Case1",
+    "archive_id": 578,
+    "step_um": 1000,
+    "geometric_pairs": 0,
+    "within_cap": 0,
+    "cap_m": 14.459705884000002,
+    "first_pair_cap_m": null
+   },
+   {
+    "case": "Case1",
+    "archive_id": 578,
+    "step_um": 500,
+    "geometric_pairs": 1,
+    "within_cap": 0,
+    "cap_m": 14.459705884000002,
+    "first_pair_cap_m": 14.471457838000003
+   },
+   {
+    "case": "G1_h100_slack",
+    "archive_id": 312,
+    "step_um": 1000,
+    "geometric_pairs": 0,
+    "within_cap": 0,
+    "cap_m": 0.0425,
+    "first_pair_cap_m": null
+   },
+   {
+    "case": "G1_h100_slack",
+    "archive_id": 312,
+    "step_um": 500,
+    "geometric_pairs": 0,
+    "within_cap": 0,
+    "cap_m": 0.0425,
+    "first_pair_cap_m": null
+   },
+   {
+    "case": "G2_4gpu16hbm_slack",
+    "archive_id": 96,
+    "step_um": 1000,
+    "geometric_pairs": 0,
+    "within_cap": 0,
+    "cap_m": 7.952500000000001,
+    "first_pair_cap_m": null
+   },
+   {
+    "case": "G2_4gpu16hbm_slack",
+    "archive_id": 96,
+    "step_um": 500,
+    "geometric_pairs": 0,
+    "within_cap": 0,
+    "cap_m": 7.952500000000001,
+    "first_pair_cap_m": null
+   },
+   {
+    "case": "G2_4gpu16hbm_slack",
+    "archive_id": 741,
+    "step_um": 1000,
+    "geometric_pairs": 0,
+    "within_cap": 0,
+    "cap_m": 7.952500000000001,
+    "first_pair_cap_m": null
+   },
+   {
+    "case": "G2_4gpu16hbm_slack",
+    "archive_id": 741,
+    "step_um": 500,
+    "geometric_pairs": 0,
+    "within_cap": 0,
+    "cap_m": 7.952500000000001,
+    "first_pair_cap_m": null
+   }
+  ]
+ }
+}
