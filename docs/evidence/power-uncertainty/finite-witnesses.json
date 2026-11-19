@@ -1,0 +1,1286 @@
+{
+  "predictions_sha256": "890ef1289930ce82a12233965b61a2dabcdd945ef0cc23cc2cfb8382cc4f4fc7",
+  "challenge_sha256": "0650066c7535e8346a2f2b7ae20438c9e2d63cf0f6eff55f33baac9b0c1c5c5b",
+  "periods_s": [
+    1.37,
+    13.7,
+    137.0,
+    1370.0
+  ],
+  "groups": [
+    {
+      "case": "Case4",
+      "cooling": "nominal",
+      "budget": "wide",
+      "fraction": 0.25,
+      "amplitude_w": 30.0,
+      "pool": [
+        "0",
+        "1",
+        "3",
+        "4"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "0",
+            "peak_c": 90.4805171283972,
+            "rival_c": 90.4805171283972,
+            "loss_k": 0.0
+          },
+          "1": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "0",
+            "peak_c": 92.18696656080239,
+            "rival_c": 90.48089938723095,
+            "loss_k": 1.7060671735714408
+          },
+          "3": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-03",
+            "rival": "0",
+            "peak_c": 95.53000292215903,
+            "rival_c": 90.48091536339454,
+            "loss_k": 5.049087558764484
+          },
+          "4": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-03",
+            "rival": "0",
+            "peak_c": 92.50659771057978,
+            "rival_c": 90.48091536339454,
+            "loss_k": 2.0256823471852385
+          }
+        }
+      },
+      "first_successful_period_s": 1.37,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.7289559157604231
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "1",
+          "peak_c": 92.1363789916535,
+          "rival_c": 91.40742307589308,
+          "loss_k": 0.7289559157604231
+        },
+        "1": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "0",
+          "peak_c": 93.07750492320882,
+          "rival_c": 90.52471379884426,
+          "loss_k": 2.5527911243645605
+        },
+        "3": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "0",
+          "peak_c": 96.44360686415584,
+          "rival_c": 90.52471379884426,
+          "loss_k": 5.918893065311579
+        },
+        "4": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-03",
+          "rival": "0",
+          "peak_c": 93.33349572583737,
+          "rival_c": 90.54978613448539,
+          "loss_k": 2.783709591351979
+        }
+      }
+    },
+    {
+      "case": "Case4",
+      "cooling": "nominal",
+      "budget": "tight",
+      "fraction": 0.25,
+      "amplitude_w": 30.0,
+      "pool": [
+        "0",
+        "1"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "0",
+            "peak_c": 90.4805171283972,
+            "rival_c": 90.4805171283972,
+            "loss_k": 0.0
+          },
+          "1": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "0",
+            "peak_c": 92.18696656080239,
+            "rival_c": 90.48089938723095,
+            "loss_k": 1.7060671735714408
+          }
+        }
+      },
+      "first_successful_period_s": 1.37,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.7289559157604231
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "1",
+          "peak_c": 92.1363789916535,
+          "rival_c": 91.40742307589308,
+          "loss_k": 0.7289559157604231
+        },
+        "1": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "0",
+          "peak_c": 93.07750492320882,
+          "rival_c": 90.52471379884426,
+          "loss_k": 2.5527911243645605
+        }
+      }
+    },
+    {
+      "case": "Case4",
+      "cooling": "half_top",
+      "budget": "wide",
+      "fraction": 0.25,
+      "amplitude_w": 30.0,
+      "pool": [
+        "0",
+        "1",
+        "3",
+        "4"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "0",
+            "peak_c": 103.3020352410932,
+            "rival_c": 103.3020352410932,
+            "loss_k": 0.0
+          },
+          "1": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "0",
+            "peak_c": 105.22006722801942,
+            "rival_c": 103.30241697999041,
+            "loss_k": 1.9176502480290054
+          },
+          "3": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-03",
+            "rival": "0",
+            "peak_c": 108.99044721231286,
+            "rival_c": 103.30243289410107,
+            "loss_k": 5.688014318211785
+          },
+          "4": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-03",
+            "rival": "0",
+            "peak_c": 105.57956825489184,
+            "rival_c": 103.30243289410107,
+            "loss_k": 2.2771353607907656
+          }
+        }
+      },
+      "first_successful_period_s": 1.37,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.5153398090667309
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "1",
+          "peak_c": 104.95598585271482,
+          "rival_c": 104.44064604364809,
+          "loss_k": 0.5153398090667309
+        },
+        "1": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "0",
+          "peak_c": 106.10858918144942,
+          "rival_c": 103.3465277304492,
+          "loss_k": 2.7620614510002213
+        },
+        "3": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "0",
+          "peak_c": 109.90242339314501,
+          "rival_c": 103.3465277304492,
+          "loss_k": 6.555895662695818
+        },
+        "4": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-03",
+          "rival": "0",
+          "peak_c": 106.37319588800655,
+          "rival_c": 103.37173780212134,
+          "loss_k": 3.0014580858852042
+        }
+      }
+    },
+    {
+      "case": "Case4",
+      "cooling": "half_top",
+      "budget": "tight",
+      "fraction": 0.25,
+      "amplitude_w": 30.0,
+      "pool": [
+        "0",
+        "1"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "0",
+            "peak_c": 103.3020352410932,
+            "rival_c": 103.3020352410932,
+            "loss_k": 0.0
+          },
+          "1": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "0",
+            "peak_c": 105.22006722801942,
+            "rival_c": 103.30241697999041,
+            "loss_k": 1.9176502480290054
+          }
+        }
+      },
+      "first_successful_period_s": 1.37,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.5153398090667309
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "1",
+          "peak_c": 104.95598585271482,
+          "rival_c": 104.44064604364809,
+          "loss_k": 0.5153398090667309
+        },
+        "1": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "0",
+          "peak_c": 106.10858918144942,
+          "rival_c": 103.3465277304492,
+          "loss_k": 2.7620614510002213
+        }
+      }
+    },
+    {
+      "case": "Case5",
+      "cooling": "nominal",
+      "budget": "wide",
+      "fraction": 0.25,
+      "amplitude_w": 15.0,
+      "pool": [
+        "0",
+        "2",
+        "3",
+        "4"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-12",
+            "rival": "3",
+            "peak_c": 97.32922795210466,
+            "rival_c": 92.3836682994995,
+            "loss_k": 4.945559652605155
+          },
+          "2": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-12",
+            "rival": "3",
+            "peak_c": 102.1573486397747,
+            "rival_c": 92.3836682994995,
+            "loss_k": 9.773680340275192
+          },
+          "3": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "3",
+            "peak_c": 92.3836677377018,
+            "rival_c": 92.3836677377018,
+            "loss_k": 0.0
+          },
+          "4": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-12",
+            "rival": "3",
+            "peak_c": 101.02268516362669,
+            "rival_c": 92.3836682994995,
+            "loss_k": 8.639016864127186
+          }
+        }
+      },
+      "first_successful_period_s": 13.7,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.0
+        },
+        {
+          "period_s": 13.7,
+          "lower_k": 0.16962296598012472
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 13.7,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "3",
+          "peak_c": 98.62444144946332,
+          "rival_c": 92.39514949459962,
+          "loss_k": 6.229291954863697
+        },
+        "2": {
+          "period_s": 13.7,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "3",
+          "peak_c": 103.59746912791111,
+          "rival_c": 92.39514949459962,
+          "loss_k": 11.20231963331149
+        },
+        "3": {
+          "period_s": 13.7,
+          "fraction": 0.25,
+          "signal": "pair-03",
+          "rival": "0",
+          "peak_c": 95.6892131143636,
+          "rival_c": 95.51959014838347,
+          "loss_k": 0.16962296598012472
+        },
+        "4": {
+          "period_s": 13.7,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "3",
+          "peak_c": 102.51061265117386,
+          "rival_c": 92.39514949459962,
+          "loss_k": 10.115463156574236
+        }
+      }
+    },
+    {
+      "case": "Case5",
+      "cooling": "nominal",
+      "budget": "tight",
+      "fraction": 0.25,
+      "amplitude_w": 15.0,
+      "pool": [
+        "0",
+        "3"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-12",
+            "rival": "3",
+            "peak_c": 97.32922795210466,
+            "rival_c": 92.3836682994995,
+            "loss_k": 4.945559652605155
+          },
+          "3": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "3",
+            "peak_c": 92.3836677377018,
+            "rival_c": 92.3836677377018,
+            "loss_k": 0.0
+          }
+        }
+      },
+      "first_successful_period_s": 13.7,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.0
+        },
+        {
+          "period_s": 13.7,
+          "lower_k": 0.16962296598012472
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 13.7,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "3",
+          "peak_c": 98.62444144946332,
+          "rival_c": 92.39514949459962,
+          "loss_k": 6.229291954863697
+        },
+        "3": {
+          "period_s": 13.7,
+          "fraction": 0.25,
+          "signal": "pair-03",
+          "rival": "0",
+          "peak_c": 95.6892131143636,
+          "rival_c": 95.51959014838347,
+          "loss_k": 0.16962296598012472
+        }
+      }
+    },
+    {
+      "case": "Case9",
+      "cooling": "half_top",
+      "budget": "wide",
+      "fraction": 0.25,
+      "amplitude_w": 10.0,
+      "pool": [
+        "0",
+        "3",
+        "4",
+        "5"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "3",
+            "peak_c": 89.36217703798872,
+            "rival_c": 87.75978818532694,
+            "loss_k": 1.6023888526617753
+          },
+          "3": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "3",
+            "peak_c": 87.75886630456947,
+            "rival_c": 87.75886630456947,
+            "loss_k": 0.0
+          },
+          "4": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-02",
+            "rival": "3",
+            "peak_c": 87.93310614013222,
+            "rival_c": 87.7588669280493,
+            "loss_k": 0.1742392120829237
+          },
+          "5": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "3",
+            "peak_c": 93.63768684359017,
+            "rival_c": 87.75978818532694,
+            "loss_k": 5.877898658263234
+          }
+        }
+      },
+      "first_successful_period_s": 137.0,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.0
+        },
+        {
+          "period_s": 13.7,
+          "lower_k": 0.07779116167955635
+        },
+        {
+          "period_s": 137.0,
+          "lower_k": 0.12172408546759073
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 137.0,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "3",
+          "peak_c": 90.72589326871976,
+          "rival_c": 88.07945703828487,
+          "loss_k": 2.6464362304348867
+        },
+        "3": {
+          "period_s": 137.0,
+          "fraction": 0.25,
+          "signal": "split-02",
+          "rival": "4",
+          "peak_c": 90.69811906713952,
+          "rival_c": 90.57639498167192,
+          "loss_k": 0.12172408546759073
+        },
+        "4": {
+          "period_s": 137.0,
+          "fraction": 0.25,
+          "signal": "pair-02",
+          "rival": "3",
+          "peak_c": 89.10256547456608,
+          "rival_c": 87.9579850843105,
+          "loss_k": 1.1445803902555838
+        },
+        "5": {
+          "period_s": 13.7,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "3",
+          "peak_c": 94.61870670037497,
+          "rival_c": 88.0055521975476,
+          "loss_k": 6.613154502827371
+        }
+      }
+    },
+    {
+      "case": "Case10",
+      "cooling": "nominal",
+      "budget": "wide",
+      "fraction": 1.0,
+      "amplitude_w": 40.0,
+      "pool": [
+        "0",
+        "1",
+        "2",
+        "4"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": 0.017,
+            "fraction": 1.0,
+            "signal": "pair-03",
+            "rival": "1",
+            "peak_c": 80.33494627828172,
+            "rival_c": 76.55553590138878,
+            "loss_k": 3.7794103768929403
+          },
+          "1": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "1",
+            "peak_c": 76.19736685287221,
+            "rival_c": 76.19736685287221,
+            "loss_k": 0.0
+          },
+          "2": {
+            "period_s": 0.017,
+            "fraction": 1.0,
+            "signal": "pair-03",
+            "rival": "1",
+            "peak_c": 79.58554975820839,
+            "rival_c": 76.55553590138878,
+            "loss_k": 3.0300138568196076
+          },
+          "4": {
+            "period_s": 0.137,
+            "fraction": 1.0,
+            "signal": "pair-03",
+            "rival": "1",
+            "peak_c": 85.15116054802913,
+            "rival_c": 79.35862261275875,
+            "loss_k": 5.792537935270374
+          }
+        }
+      },
+      "first_successful_period_s": 137.0,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.0
+        },
+        {
+          "period_s": 13.7,
+          "lower_k": 0.0
+        },
+        {
+          "period_s": 137.0,
+          "lower_k": 0.33698244513247744
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 137.0,
+          "fraction": 1.0,
+          "signal": "split-01",
+          "rival": "1",
+          "peak_c": 91.77056936753986,
+          "rival_c": 86.3793041738505,
+          "loss_k": 5.391265193689364
+        },
+        "1": {
+          "period_s": 137.0,
+          "fraction": 1.0,
+          "signal": "split-02",
+          "rival": "0",
+          "peak_c": 86.71014517729743,
+          "rival_c": 86.37316273216496,
+          "loss_k": 0.33698244513247744
+        },
+        "2": {
+          "period_s": 137.0,
+          "fraction": 1.0,
+          "signal": "split-03",
+          "rival": "1",
+          "peak_c": 89.39933000265144,
+          "rival_c": 86.08426304138841,
+          "loss_k": 3.315066961263028
+        },
+        "4": {
+          "period_s": 1.37,
+          "fraction": 1.0,
+          "signal": "pair-03",
+          "rival": "1",
+          "peak_c": 88.36480519681992,
+          "rival_c": 82.58223995170812,
+          "loss_k": 5.7825652451117975
+        }
+      }
+    },
+    {
+      "case": "Case10",
+      "cooling": "nominal",
+      "budget": "tight",
+      "fraction": 0.25,
+      "amplitude_w": 10.0,
+      "pool": [
+        "0",
+        "2"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-02",
+            "rival": "2",
+            "peak_c": 79.33739857282575,
+            "rival_c": 78.3999352080399,
+            "loss_k": 0.9374633647858417
+          },
+          "2": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "2",
+            "peak_c": 78.0575330321949,
+            "rival_c": 78.0575330321949,
+            "loss_k": 0.0
+          }
+        }
+      },
+      "first_successful_period_s": 1.37,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.18712131214779504
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "split-01",
+          "rival": "2",
+          "peak_c": 80.85068979928784,
+          "rival_c": 79.85652880404831,
+          "loss_k": 0.9941609952395254
+        },
+        "2": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "0",
+          "peak_c": 79.56637925244972,
+          "rival_c": 79.37925794030193,
+          "loss_k": 0.18712131214779504
+        }
+      }
+    },
+    {
+      "case": "Case10",
+      "cooling": "half_top",
+      "budget": "wide",
+      "fraction": 1.0,
+      "amplitude_w": 40.0,
+      "pool": [
+        "0",
+        "1",
+        "2",
+        "4"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": 0.137,
+            "fraction": 1.0,
+            "signal": "pair-03",
+            "rival": "1",
+            "peak_c": 89.62937916121905,
+            "rival_c": 85.67660255123857,
+            "loss_k": 3.952776609980475
+          },
+          "1": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "1",
+            "peak_c": 82.72497568999705,
+            "rival_c": 82.72497568999705,
+            "loss_k": 0.0
+          },
+          "2": {
+            "period_s": 0.017,
+            "fraction": 1.0,
+            "signal": "pair-03",
+            "rival": "1",
+            "peak_c": 86.13468351466203,
+            "rival_c": 82.88859719277878,
+            "loss_k": 3.2460863218832543
+          },
+          "4": {
+            "period_s": 0.137,
+            "fraction": 1.0,
+            "signal": "pair-03",
+            "rival": "1",
+            "peak_c": 91.95097168111313,
+            "rival_c": 85.67660255123857,
+            "loss_k": 6.274369129874557
+          }
+        }
+      },
+      "first_successful_period_s": 137.0,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.0
+        },
+        {
+          "period_s": 13.7,
+          "lower_k": 0.0
+        },
+        {
+          "period_s": 137.0,
+          "lower_k": 0.5018581969315079
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 137.0,
+          "fraction": 1.0,
+          "signal": "split-01",
+          "rival": "1",
+          "peak_c": 98.56885320907277,
+          "rival_c": 93.02427114603692,
+          "loss_k": 5.544582063035847
+        },
+        "1": {
+          "period_s": 137.0,
+          "fraction": 1.0,
+          "signal": "split-02",
+          "rival": "0",
+          "peak_c": 93.36270001784948,
+          "rival_c": 92.86084182091797,
+          "loss_k": 0.5018581969315079
+        },
+        "2": {
+          "period_s": 137.0,
+          "fraction": 1.0,
+          "signal": "split-03",
+          "rival": "1",
+          "peak_c": 96.19794092442098,
+          "rival_c": 92.69782716870421,
+          "loss_k": 3.500113755716768
+        },
+        "4": {
+          "period_s": 1.37,
+          "fraction": 1.0,
+          "signal": "pair-03",
+          "rival": "1",
+          "peak_c": 95.15446373857574,
+          "rival_c": 88.87244225547218,
+          "loss_k": 6.282021483103563
+        }
+      }
+    },
+    {
+      "case": "Case10",
+      "cooling": "half_top",
+      "budget": "tight",
+      "fraction": 0.25,
+      "amplitude_w": 10.0,
+      "pool": [
+        "0",
+        "2"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0827309321874452,
+        "witnesses": {
+          "0": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-02",
+            "rival": "2",
+            "peak_c": 85.77624789968004,
+            "rival_c": 84.83910296333273,
+            "loss_k": 0.937144936347309
+          },
+          "2": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "0",
+            "peak_c": 85.38518770823755,
+            "rival_c": 85.30245677605011,
+            "loss_k": 0.0827309321874452
+          }
+        }
+      },
+      "first_successful_period_s": 1.37,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.3119492358727314
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "split-01",
+          "rival": "2",
+          "peak_c": 87.34932038085502,
+          "rival_c": 86.40675404100075,
+          "loss_k": 0.9425663398542667
+        },
+        "2": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "0",
+          "peak_c": 86.19690320183895,
+          "rival_c": 85.88495396596622,
+          "loss_k": 0.3119492358727314
+        }
+      }
+    },
+    {
+      "case": "micro150",
+      "cooling": "nominal",
+      "budget": "wide",
+      "fraction": 0.25,
+      "amplitude_w": 15.0,
+      "pool": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "4",
+            "peak_c": 88.80792368172047,
+            "rival_c": 84.84302805330225,
+            "loss_k": 3.964895628418219
+          },
+          "1": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "4",
+            "peak_c": 92.43386717862654,
+            "rival_c": 84.84302805330225,
+            "loss_k": 7.590839125324294
+          },
+          "2": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "4",
+            "peak_c": 87.11291766761623,
+            "rival_c": 84.84302805330225,
+            "loss_k": 2.269889614313982
+          },
+          "3": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "split-02",
+            "rival": "4",
+            "peak_c": 87.86667153462605,
+            "rival_c": 85.87085518883362,
+            "loss_k": 1.9958163457924343
+          },
+          "4": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "4",
+            "peak_c": 84.13761567950372,
+            "rival_c": 84.13761567950372,
+            "loss_k": 0.0
+          },
+          "5": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "4",
+            "peak_c": 87.65845155340422,
+            "rival_c": 84.84302805330225,
+            "loss_k": 2.8154235001019714
+          }
+        }
+      },
+      "first_successful_period_s": 1.37,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 1.0243708556620987
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "5",
+          "peak_c": 90.87805141037984,
+          "rival_c": 86.0947330106038,
+          "loss_k": 4.783318399776036
+        },
+        "1": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "5",
+          "peak_c": 93.71865911258449,
+          "rival_c": 86.0947330106038,
+          "loss_k": 7.623926101980686
+        },
+        "2": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "5",
+          "peak_c": 89.12757194949269,
+          "rival_c": 86.0947330106038,
+          "loss_k": 3.0328389388888866
+        },
+        "3": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "5",
+          "peak_c": 89.20011078793105,
+          "rival_c": 86.0947330106038,
+          "loss_k": 3.1053777773272486
+        },
+        "4": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "5",
+          "peak_c": 87.1191038662659,
+          "rival_c": 86.0947330106038,
+          "loss_k": 1.0243708556620987
+        },
+        "5": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-03",
+          "rival": "2",
+          "peak_c": 89.1097041946051,
+          "rival_c": 86.14899781200576,
+          "loss_k": 2.9607063825993407
+        }
+      }
+    },
+    {
+      "case": "micro150",
+      "cooling": "half_top",
+      "budget": "wide",
+      "fraction": 0.25,
+      "amplitude_w": 15.0,
+      "pool": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "0": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "4",
+            "peak_c": 95.39574985759417,
+            "rival_c": 91.23408678070602,
+            "loss_k": 4.161663076888146
+          },
+          "1": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "4",
+            "peak_c": 99.28009027865649,
+            "rival_c": 91.23408678070602,
+            "loss_k": 8.046003497950466
+          },
+          "2": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "4",
+            "peak_c": 93.47062878795263,
+            "rival_c": 91.23408678070602,
+            "loss_k": 2.2365420072466122
+          },
+          "3": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "split-02",
+            "rival": "4",
+            "peak_c": 94.48894327120844,
+            "rival_c": 92.35816170156296,
+            "loss_k": 2.130781569645478
+          },
+          "4": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "4",
+            "peak_c": 90.62493164251902,
+            "rival_c": 90.62493164251902,
+            "loss_k": 0.0
+          },
+          "5": {
+            "period_s": 0.137,
+            "fraction": 0.25,
+            "signal": "pair-01",
+            "rival": "4",
+            "peak_c": 94.15788792803522,
+            "rival_c": 91.23408678070602,
+            "loss_k": 2.9238011473292005
+          }
+        }
+      },
+      "first_successful_period_s": 1.37,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.9385576782534457
+        }
+      ],
+      "slow_witnesses": {
+        "0": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "5",
+          "peak_c": 97.51919254297714,
+          "rival_c": 92.66675307831206,
+          "loss_k": 4.852439464665082
+        },
+        "1": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "4",
+          "peak_c": 100.50105864419233,
+          "rival_c": 92.42465033658351,
+          "loss_k": 8.076408307608816
+        },
+        "2": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "5",
+          "peak_c": 95.60993147569003,
+          "rival_c": 92.66675307831206,
+          "loss_k": 2.9431783973779773
+        },
+        "3": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "5",
+          "peak_c": 95.82165176380158,
+          "rival_c": 92.66675307831206,
+          "loss_k": 3.1548986854895276
+        },
+        "4": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-12",
+          "rival": "5",
+          "peak_c": 93.6053107565655,
+          "rival_c": 92.66675307831206,
+          "loss_k": 0.9385576782534457
+        },
+        "5": {
+          "period_s": 1.37,
+          "fraction": 0.25,
+          "signal": "pair-01",
+          "rival": "4",
+          "peak_c": 95.51343781531547,
+          "rival_c": 92.42465033658351,
+          "loss_k": 3.088787478731959
+        }
+      }
+    },
+    {
+      "case": "multigpu",
+      "cooling": "nominal",
+      "budget": "tight",
+      "fraction": 1.0,
+      "amplitude_w": 8.0,
+      "pool": [
+        "2",
+        "5"
+      ],
+      "matched_fast": {
+        "lower_k": 0.0,
+        "witnesses": {
+          "2": {
+            "period_s": 0.137,
+            "fraction": 1.0,
+            "signal": "pair-13",
+            "rival": "5",
+            "peak_c": 79.39543224272786,
+            "rival_c": 78.93045549108098,
+            "loss_k": 0.464976751646887
+          },
+          "5": {
+            "period_s": null,
+            "fraction": 0.0,
+            "signal": "mean",
+            "rival": "5",
+            "peak_c": 78.93045214582577,
+            "rival_c": 78.93045214582577,
+            "loss_k": 0.0
+          }
+        }
+      },
+      "first_successful_period_s": 137.0,
+      "slow_history": [
+        {
+          "period_s": 1.37,
+          "lower_k": 0.07898249439270444
+        },
+        {
+          "period_s": 13.7,
+          "lower_k": 0.07898249439270444
+        },
+        {
+          "period_s": 137.0,
+          "lower_k": 0.10300220357341061
+        }
+      ],
+      "slow_witnesses": {
+        "2": {
+          "period_s": 137.0,
+          "fraction": 1.0,
+          "signal": "pair-13",
+          "rival": "5",
+          "peak_c": 79.97216392076687,
+          "rival_c": 78.9997959300856,
+          "loss_k": 0.9723679906812777
+        },
+        "5": {
+          "period_s": 137.0,
+          "fraction": 1.0,
+          "signal": "split-02",
+          "rival": "2",
+          "peak_c": 79.90379348813079,
+          "rival_c": 79.80079128455738,
+          "loss_k": 0.10300220357341061
+        }
+      }
+    }
+  ]
+}

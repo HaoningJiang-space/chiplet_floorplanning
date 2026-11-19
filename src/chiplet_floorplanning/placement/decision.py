@@ -8,6 +8,19 @@ from .problem import Layout
 from .search import layout_key
 
 
+def guaranteed_amplitude(mean_c, gain_k_per_w, ceiling_c, max_w):
+    """Largest amplitude within [0,max_w] whose entire affine field is below a ceiling."""
+    mean = np.asarray(mean_c, float)
+    gain = np.asarray(gain_k_per_w, float)
+    if mean.shape != gain.shape or not mean.size or (gain < 0).any() or max_w < 0:
+        raise ValueError("expected matching field and nonnegative gain and amplitude")
+    if mean.max() > ceiling_c:
+        return None
+    rising = gain > 0
+    ratios = (ceiling_c - mean[rising]) / gain[rising]
+    return float(ratios.min(initial=max_w))
+
+
 def worst_regret_bounds(lower, upper):
     """Per-design bounds on worst regret across one group of scenarios.
 

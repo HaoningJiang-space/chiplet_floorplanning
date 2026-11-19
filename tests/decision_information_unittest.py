@@ -2,11 +2,18 @@ import unittest
 
 import numpy as np
 
-from chiplet_floorplanning.placement.decision import ThermalCandidate, search_thermal_targets, worst_regret_bounds
+from chiplet_floorplanning.placement.decision import (
+    ThermalCandidate, guaranteed_amplitude, search_thermal_targets, worst_regret_bounds,
+)
 from chiplet_floorplanning.placement.problem import Layout
 
 
 class WorkloadInformationTests(unittest.TestCase):
+    def test_power_radius_checks_all_cells_including_static_hotspots(self):
+        self.assertEqual(guaranteed_amplitude([90, 87], [0, 2], 91, 10), 2)
+        self.assertIsNone(guaranteed_amplitude([92, 87], [0, 2], 91, 10))
+        self.assertEqual(guaranteed_amplitude([90], [0], 91, 10), 10)
+
     def test_search_moves_for_relative_excess_and_charges_both_scenarios(self):
         def point(x, peaks):
             layout = Layout(np.array([[float(x), 0.]]), np.array([0]))
