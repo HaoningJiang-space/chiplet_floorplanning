@@ -2768,5 +2768,6 @@
     "directed_path_lp_count": 2500,
     "full_port_max_common_TB_s": 0.2409411764705882
   },
-  "scope": "MPI counts measure application-level keys and features. Modes are separate benchmark executions normalized to specified steady service. Routes may depend on mode. Geometry, power and thermal boundary are fixed. No measured chiplet throughput, router power, queueing, timing, routed length, transient or external thermal validation."
+  "scope": "MPI counts measure application-level keys and features. Modes are separate benchmark executions normalized to specified steady service. Routes may depend on mode. Geometry, power and thermal boundary are fixed. No measured chiplet throughput, router power, queueing, timing, routed length, transient or external thermal validation.",
+  "logical_payload_sha256": "1adddf78403d4c00923c8e8637be34a703e06e58404e5b9ff5a3afc8c1303050"
 }

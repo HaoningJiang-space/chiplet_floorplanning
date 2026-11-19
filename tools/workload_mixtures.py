@@ -12,7 +12,14 @@ from chiplet_floorplanning.placement import Problem
 from cut_traffic import EVIDENCE, digest
 from mixed_phy import bank_thermal_field
 from module_capacity import GRIDS, profile
-from shared_capacity import NAMES, TARGET, mapped_traffic, physical_capacity
+from shared_capacity import (
+    NAMES,
+    TARGET,
+    mapped_traffic,
+    physical_capacity,
+    payload_digest,
+    read_shared,
+)
 
 WEIGHTS = np.vstack(
     [
@@ -116,10 +123,9 @@ def main():
         ap.add_argument("--" + k, type=Path, required=True)
     args = ap.parse_args()
     prior = json.loads((EVIDENCE / "shared-capacity-v1.json").read_text())
-    assert (
-        digest(args.shared) == prior["raw_sha256"]["shared.json"]
-        and digest(args.payload) == prior["raw_sha256"]["capture/payload.json"]
-    )
+    shared = read_shared(args.shared, prior)
+    payload = json.loads(args.payload.read_text())
+    assert payload_digest(payload) == prior["logical_payload_sha256"]
     src = args.data / "physical-calibration/atplace-import-v1/Case3.json"
     assert (
         digest(src)
@@ -128,10 +134,8 @@ def main():
         ]["raw_source_sha256"]
     )
     p = Problem.from_imported(json.loads(src.read_text()))
-    demand, _ = mapped_traffic(
-        json.loads(args.payload.read_text()), np.arange(16) % 4, 4
-    )
-    layouts = json.loads(args.shared.read_text())["physical"]["layout_trials"]
+    demand, _ = mapped_traffic(payload, np.arange(16) % 4, 4)
+    layouts = shared["physical"]["layout_trials"]
     configurations = {}
     for r in layouts:
         for c in r["cases"]:

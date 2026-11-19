@@ -1,6 +1,7 @@
 """Size shared full-duplex capacity for measured, directed NAS payload matrices."""
 
 import argparse
+from hashlib import sha256
 from concurrent.futures import ProcessPoolExecutor
 from itertools import permutations
 import json
@@ -19,6 +20,34 @@ from module_capacity import CAPACITY, GRIDS, MODULES, UNIFORM, bank_table, profi
 
 NAMES = ("IS", "BH", "WH", "SH")
 TARGET = 0.20
+
+
+def payload_digest(payload):
+    """Identify the logical benchmark input independently of wall times in benchmark logs."""
+    inputs = [
+        payload["source_sha256"],
+        payload["benchmark_class"],
+        payload["ranks"],
+        [
+            (
+                k,
+                payload["workloads"][k]["verification"],
+                payload["workloads"][k]["payload_bytes"],
+            )
+            for k in NAMES
+        ],
+    ]
+    return sha256(json.dumps(inputs, separators=(",", ":")).encode()).hexdigest()
+
+
+def read_shared(path, evidence):
+    run = json.loads(path.read_text())
+    if "logical_payload_sha256" in run:
+        assert run["logical_payload_sha256"] == evidence["logical_payload_sha256"]
+        assert run["price_data_sha256"] == evidence["graph_prices_sha256"]
+    else:
+        assert digest(path) == evidence["raw_sha256"]["shared.json"]
+    return run
 
 
 def mapped_traffic(payload, mapping, n):
@@ -338,6 +367,7 @@ def main():
             dict(
                 driver_sha256=digest(Path(__file__)),
                 payload_sha256=digest(args.payload),
+                logical_payload_sha256=payload_digest(payload),
                 price_data_sha256=digest(data),
                 graphs=records,
                 physical=result,

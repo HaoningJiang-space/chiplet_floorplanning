@@ -14,7 +14,7 @@ from case3_phy_geometry import CAP_M, LIMIT_C, PAYLOAD_FRACTION, REACH_MM
 from chiplet_floorplanning.placement import Problem
 from cut_traffic import EVIDENCE, digest
 from module_capacity import CAPACITY, EDGES, GRIDS, MODULES, bank_table
-from shared_capacity import routed_load, thermal_job
+from shared_capacity import read_shared, routed_load, thermal_job
 
 
 def adjacency(n, edges, capacity):
@@ -116,8 +116,7 @@ def main():
         and digest(src) == evidence["physical_model"]["raw_source_sha256"]
     )
     prior = json.loads((EVIDENCE / "shared-capacity-v1.json").read_text())
-    assert digest(args.shared) == prior["raw_sha256"]["shared.json"]
-    measured = json.loads(args.shared.read_text())["physical"]["layout_trials"]
+    measured = read_shared(args.shared, prior)["physical"]["layout_trials"]
     p = Problem.from_imported(json.loads(src.read_text()))
     layouts = json.loads((EVIDENCE / "case3-selective-rate-v1.json").read_text())[
         "threshold_witnesses"

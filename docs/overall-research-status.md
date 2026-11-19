@@ -2482,4 +2482,4 @@ python tools/any_traffic.py --data "$DATA" --shared "$OUT/shared.json" --output 
 python tools/endpoint_capacity.py --data "$DATA" --output "$OUT/endpoint.json"
 ```
 
-混合与全流量复核程序默认核对归档 shared.json 的 SHA，完整重放可直接使用服务器已登记的 shared.json。新采集的 payload.json 含官方运行日志的摘要，计时信息可使原始日志摘要随重放而变，逐对字节计数才是逻辑输入。
+新采集文件同时保存原始日志摘要和可复现的通信数据标识。后者覆盖官方包、等级、进程数、验证结果和逐对字节数。moe-server 从官方源码再次构建并实跑四种工况，新的计时日志有独立摘要，逐对字节数全部复现。重新采集后直接按上述命令求得的共用配容、混合热场与全流量保证数值分别和首次结果一致。旧归档仍可用原始 SHA 重放。
