@@ -1,0 +1,241 @@
+{
+  "original_sha256": "f293f2adc36e9550e22839aa28a7ab87a1569092c37ee1a28fe83334db79cf87",
+  "power_fraction": 0.1,
+  "cases": {
+    "Case1": {
+      "origin_side": {
+        "arms": {
+          "start": {
+            "cost": 70.35004826359999,
+            "peak_power_layer_c": 57.33640313573296,
+            "source_power_w": 78.0,
+            "heat_removed_w": 78.00000000000051,
+            "energy_balance_error_w": 5.115907697472721e-13,
+            "linear_residual_inf_w": 5.897504706808832e-13,
+            "min_rise_k": 4.025488973959708,
+            "physical_calibrated": false,
+            "cooling_k": 0.0
+          },
+          "half_space": {
+            "cost": 69.95798421880001,
+            "peak_power_layer_c": 57.9023375934532,
+            "source_power_w": 78.0,
+            "heat_removed_w": 77.99999999999872,
+            "energy_balance_error_w": -1.2789769243681803e-12,
+            "linear_residual_inf_w": 5.826450433232822e-13,
+            "min_rise_k": 3.9669238690943924,
+            "physical_calibrated": false,
+            "cooling_k": -0.565934457720239
+          },
+          "sheet": {
+            "cost": 68.9420482636,
+            "peak_power_layer_c": 57.266416215302925,
+            "source_power_w": 78.0,
+            "heat_removed_w": 78.00000000000097,
+            "energy_balance_error_w": 9.663381206337363e-13,
+            "linear_residual_inf_w": 5.044853423896711e-13,
+            "min_rise_k": 4.0273359319718445,
+            "physical_calibrated": false,
+            "cooling_k": 0.06998692043003274
+          }
+        },
+        "distinct_solves": 3
+      },
+      "destination_side": {
+        "arms": {
+          "start": {
+            "cost": 70.35004826359999,
+            "peak_power_layer_c": 85.18991298192154,
+            "source_power_w": 78.0,
+            "heat_removed_w": 78.00000000000415,
+            "energy_balance_error_w": 4.149569576838985e-12,
+            "linear_residual_inf_w": 2.5011104298755527e-12,
+            "min_rise_k": 3.0877558786227595,
+            "physical_calibrated": false,
+            "cooling_k": 0.0
+          },
+          "half_space": {
+            "cost": 69.95798421880001,
+            "peak_power_layer_c": 83.56332736090098,
+            "source_power_w": 78.0,
+            "heat_removed_w": 78.00000000000225,
+            "energy_balance_error_w": 2.2453150450019166e-12,
+            "linear_residual_inf_w": 1.9326762412674725e-12,
+            "min_rise_k": 3.1553141539837317,
+            "physical_calibrated": false,
+            "cooling_k": 1.6265856210205527
+          },
+          "sheet": {
+            "cost": 69.95798421880001,
+            "peak_power_layer_c": 83.56332736090098,
+            "source_power_w": 78.0,
+            "heat_removed_w": 78.00000000000225,
+            "energy_balance_error_w": 2.2453150450019166e-12,
+            "linear_residual_inf_w": 1.9326762412674725e-12,
+            "min_rise_k": 3.1553141539837317,
+            "physical_calibrated": false,
+            "cooling_k": 1.6265856210205527
+          }
+        },
+        "distinct_solves": 2
+      }
+    },
+    "Case3": {
+      "origin_side": {
+        "arms": {
+          "start": {
+            "cost": 224.24524687480002,
+            "peak_power_layer_c": 73.44192256101826,
+            "source_power_w": 67.99999999999999,
+            "heat_removed_w": 68.00000000000215,
+            "energy_balance_error_w": 2.1600499167107046e-12,
+            "linear_residual_inf_w": 8.100187187665142e-13,
+            "min_rise_k": 3.0785660250575364,
+            "physical_calibrated": false,
+            "cooling_k": 0.0
+          },
+          "half_space": {
+            "cost": 221.66579087960002,
+            "peak_power_layer_c": 73.89973343310972,
+            "source_power_w": 68.0,
+            "heat_removed_w": 67.99999999999835,
+            "energy_balance_error_w": -1.6484591469634324e-12,
+            "linear_residual_inf_w": 6.323830348264892e-13,
+            "min_rise_k": 3.1279597587025965,
+            "physical_calibrated": false,
+            "cooling_k": -0.4578108720914571
+          },
+          "sheet": {
+            "cost": 218.06630455360002,
+            "peak_power_layer_c": 56.696613707912945,
+            "source_power_w": 68.0,
+            "heat_removed_w": 68.00000000000396,
+            "energy_balance_error_w": 3.964828465541359e-12,
+            "linear_residual_inf_w": 6.821210263296962e-13,
+            "min_rise_k": 3.2637415311854525,
+            "physical_calibrated": false,
+            "cooling_k": 16.745308853105314
+          }
+        },
+        "distinct_solves": 3
+      },
+      "destination_side": {
+        "arms": {
+          "start": {
+            "cost": 224.24524687480002,
+            "peak_power_layer_c": 93.8225081730202,
+            "source_power_w": 68.0,
+            "heat_removed_w": 68.00000000000828,
+            "energy_balance_error_w": 8.284928298962768e-12,
+            "linear_residual_inf_w": 2.2168933355715126e-12,
+            "min_rise_k": 2.711138582313871,
+            "physical_calibrated": false,
+            "cooling_k": 0.0
+          },
+          "half_space": {
+            "cost": 221.66579087960002,
+            "peak_power_layer_c": 91.98167661591665,
+            "source_power_w": 68.0,
+            "heat_removed_w": 67.99999999999993,
+            "energy_balance_error_w": -7.105427357601002e-14,
+            "linear_residual_inf_w": 1.9610979506978765e-12,
+            "min_rise_k": 2.816629829288164,
+            "physical_calibrated": false,
+            "cooling_k": 1.8408315571035416
+          },
+          "sheet": {
+            "cost": 214.01209656800003,
+            "peak_power_layer_c": 82.85081858201917,
+            "source_power_w": 68.0,
+            "heat_removed_w": 68.00000000000774,
+            "energy_balance_error_w": 7.744915819785092e-12,
+            "linear_residual_inf_w": 1.5631940186722204e-12,
+            "min_rise_k": 2.7796109566746905,
+            "physical_calibrated": false,
+            "cooling_k": 10.971689591001024
+          }
+        },
+        "distinct_solves": 3
+      }
+    },
+    "ascend910": {
+      "origin_side": {
+        "arms": {
+          "start": {
+            "cost": 26.34640522875817,
+            "peak_power_layer_c": 52.726174779093526,
+            "source_power_w": 35.0,
+            "heat_removed_w": 34.99999999999894,
+            "energy_balance_error_w": -1.0587086762825493e-12,
+            "linear_residual_inf_w": 3.055333763768431e-13,
+            "min_rise_k": 1.5210018224839608,
+            "physical_calibrated": false,
+            "cooling_k": 0.0
+          },
+          "half_space": {
+            "cost": 26.34640522875817,
+            "peak_power_layer_c": 53.44606142569739,
+            "source_power_w": 35.0,
+            "heat_removed_w": 34.99999999999968,
+            "energy_balance_error_w": -3.197442310920451e-13,
+            "linear_residual_inf_w": 4.405364961712621e-13,
+            "min_rise_k": 1.4859854050022843,
+            "physical_calibrated": false,
+            "cooling_k": -0.7198866466038609
+          },
+          "sheet": {
+            "cost": 26.34640522875817,
+            "peak_power_layer_c": 52.04306658879079,
+            "source_power_w": 35.0,
+            "heat_removed_w": 35.00000000000061,
+            "energy_balance_error_w": 6.110667527536862e-13,
+            "linear_residual_inf_w": 3.304023721284466e-13,
+            "min_rise_k": 1.521348087411447,
+            "physical_calibrated": false,
+            "cooling_k": 0.6831081903027325
+          }
+        },
+        "distinct_solves": 3
+      },
+      "destination_side": {
+        "arms": {
+          "start": {
+            "cost": 26.34640522875817,
+            "peak_power_layer_c": 52.486517592263944,
+            "source_power_w": 35.0,
+            "heat_removed_w": 34.999999999999915,
+            "energy_balance_error_w": -8.526512829121202e-14,
+            "linear_residual_inf_w": 3.765876499528531e-13,
+            "min_rise_k": 1.5180245504658083,
+            "physical_calibrated": false,
+            "cooling_k": 0.0
+          },
+          "half_space": {
+            "cost": 26.34640522875817,
+            "peak_power_layer_c": 51.57685492885034,
+            "source_power_w": 35.0,
+            "heat_removed_w": 34.99999999999924,
+            "energy_balance_error_w": -7.602807272633072e-13,
+            "linear_residual_inf_w": 3.694822225952521e-13,
+            "min_rise_k": 1.5493742925364846,
+            "physical_calibrated": false,
+            "cooling_k": 0.9096626634136058
+          },
+          "sheet": {
+            "cost": 26.34640522875817,
+            "peak_power_layer_c": 51.57685492885034,
+            "source_power_w": 35.0,
+            "heat_removed_w": 34.99999999999924,
+            "energy_balance_error_w": -7.602807272633072e-13,
+            "linear_residual_inf_w": 3.694822225952521e-13,
+            "min_rise_k": 1.5493742925364846,
+            "physical_calibrated": false,
+            "cooling_k": 0.9096626634136058
+          }
+        },
+        "distinct_solves": 2
+      }
+    }
+  },
+  "sheet_predictions_sha256": "3dcfc713728ebe32d5a6d21b2cb337593d386fb1da60f56dcaebabc750b2531e"
+}

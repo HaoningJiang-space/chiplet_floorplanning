@@ -1,0 +1,211 @@
+{
+  "predictions_sha256": "f293f2adc36e9550e22839aa28a7ab87a1569092c37ee1a28fe83334db79cf87",
+  "cooling_area_mm2": 900,
+  "top_h_w_m2k": 20000,
+  "cases": {
+    "Case1": {
+      "origin_side": {
+        "centre_package_mm": [
+          98.5,
+          112.0
+        ],
+        "grids": {
+          "64": {
+            "start": {
+              "peak_power_layer_c": 168.25372480391718,
+              "source_power_w": 780.0,
+              "heat_removed_w": 779.9999999999901,
+              "energy_balance_error_w": -9.890754881780595e-12,
+              "linear_residual_inf_w": 9.322320693172514e-12,
+              "min_rise_k": 40.2573049619026,
+              "physical_calibrated": false
+            },
+            "direct": {
+              "peak_power_layer_c": 174.53041501560466,
+              "source_power_w": 780.0,
+              "heat_removed_w": 779.9999999999847,
+              "energy_balance_error_w": -1.5347723092418164e-11,
+              "linear_residual_inf_w": 1.000444171950221e-11,
+              "min_rise_k": 39.66681898771552,
+              "physical_calibrated": false
+            },
+            "cooling_k": -6.27669021168748
+          },
+          "96": {
+            "start": {
+              "peak_power_layer_c": 168.3640313573297,
+              "source_power_w": 780.0,
+              "heat_removed_w": 780.000000000005,
+              "energy_balance_error_w": 5.002220859751105e-12,
+              "linear_residual_inf_w": 4.433786671143025e-12,
+              "min_rise_k": 40.25488973959707,
+              "physical_calibrated": false
+            },
+            "direct": {
+              "peak_power_layer_c": 174.02337593453188,
+              "source_power_w": 780.0,
+              "heat_removed_w": 779.9999999999868,
+              "energy_balance_error_w": -1.318767317570746e-11,
+              "linear_residual_inf_w": 5.030642569181509e-12,
+              "min_rise_k": 39.66923869094391,
+              "physical_calibrated": false
+            },
+            "cooling_k": -5.659344577202177
+          }
+        }
+      },
+      "destination_side": {
+        "centre_package_mm": [
+          118.5,
+          112.0
+        ],
+        "grids": {
+          "64": {
+            "start": {
+              "peak_power_layer_c": 451.72223715263885,
+              "source_power_w": 780.0,
+              "heat_removed_w": 779.9999999999494,
+              "energy_balance_error_w": -5.0590642786119133e-11,
+              "linear_residual_inf_w": 3.1377567211166024e-11,
+              "min_rise_k": 30.984972937391902,
+              "physical_calibrated": false
+            },
+            "direct": {
+              "peak_power_layer_c": 434.9173652982142,
+              "source_power_w": 780.0,
+              "heat_removed_w": 779.9999999999761,
+              "energy_balance_error_w": -2.3874235921539366e-11,
+              "linear_residual_inf_w": 2.773958840407431e-11,
+              "min_rise_k": 31.64585879383216,
+              "physical_calibrated": false
+            },
+            "cooling_k": 16.804871854424675
+          },
+          "96": {
+            "start": {
+              "peak_power_layer_c": 446.89912981921395,
+              "source_power_w": 780.0000000000001,
+              "heat_removed_w": 780.0000000000396,
+              "energy_balance_error_w": 3.944933268940076e-11,
+              "linear_residual_inf_w": 1.3415046851150692e-11,
+              "min_rise_k": 30.877558786227453,
+              "physical_calibrated": false
+            },
+            "direct": {
+              "peak_power_layer_c": 430.6332736090106,
+              "source_power_w": 780.0,
+              "heat_removed_w": 780.0000000000236,
+              "energy_balance_error_w": 2.3646862246096134e-11,
+              "linear_residual_inf_w": 1.546140993013978e-11,
+              "min_rise_k": 31.553141539837345,
+              "physical_calibrated": false
+            },
+            "cooling_k": 16.265856210203367
+          }
+        }
+      }
+    },
+    "ascend910": {
+      "origin_side": {
+        "centre_package_mm": [
+          85.0,
+          108.0
+        ],
+        "grids": {
+          "64": {
+            "start": {
+              "peak_power_layer_c": 122.8974110720546,
+              "source_power_w": 350.0,
+              "heat_removed_w": 349.9999999999902,
+              "energy_balance_error_w": -9.777068044058979e-12,
+              "linear_residual_inf_w": 5.115907697472721e-12,
+              "min_rise_k": 15.223278292924203,
+              "physical_calibrated": false
+            },
+            "direct": {
+              "peak_power_layer_c": 130.6813323432748,
+              "source_power_w": 350.0,
+              "heat_removed_w": 349.9999999999923,
+              "energy_balance_error_w": -7.673861546209082e-12,
+              "linear_residual_inf_w": 6.480149750132114e-12,
+              "min_rise_k": 14.8794109598963,
+              "physical_calibrated": false
+            },
+            "cooling_k": -7.783921271220194
+          },
+          "96": {
+            "start": {
+              "peak_power_layer_c": 122.26174779093525,
+              "source_power_w": 350.0,
+              "heat_removed_w": 349.9999999999897,
+              "energy_balance_error_w": -1.028865881380625e-11,
+              "linear_residual_inf_w": 3.183231456205249e-12,
+              "min_rise_k": 15.210018224839617,
+              "physical_calibrated": false
+            },
+            "direct": {
+              "peak_power_layer_c": 129.46061425697403,
+              "source_power_w": 350.0,
+              "heat_removed_w": 349.99999999999693,
+              "energy_balance_error_w": -3.069544618483633e-12,
+              "linear_residual_inf_w": 4.149569576838985e-12,
+              "min_rise_k": 14.85985405002281,
+              "physical_calibrated": false
+            },
+            "cooling_k": -7.19886646603878
+          }
+        }
+      },
+      "destination_side": {
+        "centre_package_mm": [
+          105.0,
+          108.0
+        ],
+        "grids": {
+          "64": {
+            "start": {
+              "peak_power_layer_c": 121.10602514415366,
+              "source_power_w": 350.0,
+              "heat_removed_w": 349.9999999999897,
+              "energy_balance_error_w": -1.028865881380625e-11,
+              "linear_residual_inf_w": 7.503331289626658e-12,
+              "min_rise_k": 15.226371108806294,
+              "physical_calibrated": false
+            },
+            "direct": {
+              "peak_power_layer_c": 111.69720406671475,
+              "source_power_w": 350.0,
+              "heat_removed_w": 350.0000000000023,
+              "energy_balance_error_w": 2.2737367544323206e-12,
+              "linear_residual_inf_w": 5.115907697472721e-12,
+              "min_rise_k": 15.523568844169514,
+              "physical_calibrated": false
+            },
+            "cooling_k": 9.408821077438915
+          },
+          "96": {
+            "start": {
+              "peak_power_layer_c": 119.86517592263951,
+              "source_power_w": 350.0,
+              "heat_removed_w": 349.99999999999886,
+              "energy_balance_error_w": -1.1368683772161603e-12,
+              "linear_residual_inf_w": 2.8990143619012088e-12,
+              "min_rise_k": 15.180245504658068,
+              "physical_calibrated": false
+            },
+            "direct": {
+              "peak_power_layer_c": 110.76854928850324,
+              "source_power_w": 350.0,
+              "heat_removed_w": 349.99999999999204,
+              "energy_balance_error_w": -7.958078640513122e-12,
+              "linear_residual_inf_w": 3.069544618483633e-12,
+              "min_rise_k": 15.493742925364822,
+              "physical_calibrated": false
+            },
+            "cooling_k": 9.096626634136271
+          }
+        }
+      }
+    }
+  }
+}
