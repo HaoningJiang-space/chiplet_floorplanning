@@ -1,0 +1,559 @@
+{
+  "source": "Terraneo, Leva & Fornaciari, SAMOS 2019, Zenodo 3345878 v2, CC BY",
+  "sample_hz": 10,
+  "chosen_hotspot_filename": "hotspot_4.csv",
+  "trials": {
+    "heatsink": [
+      {
+        "file": "hotspot_1.csv",
+        "sha256": "172dbb10ecd70697e2aca095bf77c5dc9e3d0f66d4cc43ba1b9ac28032e1b2e1",
+        "switch_sample": 18047,
+        "heater_1_based": 2,
+        "pre_step_w": 2.9277694799999994,
+        "samples": [
+          {
+            "seconds": 0.5,
+            "delta_total_w": 7.124567799999999,
+            "delta_heater_w": 7.143641749999999,
+            "hottest_sensor_1_based": 2,
+            "rise_k": 27.54000000000001,
+            "max_measured_c": 74.44,
+            "response_k_w": 3.8654976376251224
+          },
+          {
+            "seconds": 2,
+            "delta_total_w": 7.117890319999999,
+            "delta_heater_w": 7.136495689999999,
+            "hottest_sensor_1_based": 2,
+            "rise_k": 30.200000000000006,
+            "max_measured_c": 77.1,
+            "response_k_w": 4.242830198597386
+          },
+          {
+            "seconds": 10,
+            "delta_total_w": 7.108341780000001,
+            "delta_heater_w": 7.1216203700000005,
+            "hottest_sensor_1_based": 2,
+            "rise_k": 31.30000000000001,
+            "max_measured_c": 78.2,
+            "response_k_w": 4.403277299927468
+          },
+          {
+            "seconds": 20,
+            "delta_total_w": 7.1042311,
+            "delta_heater_w": 7.12756827,
+            "hottest_sensor_1_based": 2,
+            "rise_k": 32.28000000000001,
+            "max_measured_c": 79.18,
+            "response_k_w": 4.543771105644354
+          }
+        ]
+      },
+      {
+        "file": "hotspot_2.csv",
+        "sha256": "cd3b63f234a8da953c46cf02b14454b243f1b3c5e71dde5ffe7a300fbac32054",
+        "switch_sample": 18106,
+        "heater_1_based": 1,
+        "pre_step_w": 2.92683541,
+        "samples": [
+          {
+            "seconds": 0.5,
+            "delta_total_w": 7.421669229999999,
+            "delta_heater_w": 7.438840979999999,
+            "hottest_sensor_1_based": 1,
+            "rise_k": 28.02000000000001,
+            "max_measured_c": 75.42,
+            "response_k_w": 3.7754309888585555
+          },
+          {
+            "seconds": 2,
+            "delta_total_w": 7.144964689999999,
+            "delta_heater_w": 7.170212939999999,
+            "hottest_sensor_1_based": 1,
+            "rise_k": 34.78000000000001,
+            "max_measured_c": 82.18,
+            "response_k_w": 4.86776373418299
+          },
+          {
+            "seconds": 10,
+            "delta_total_w": 7.14359165,
+            "delta_heater_w": 7.1642546,
+            "hottest_sensor_1_based": 1,
+            "rise_k": 35.94000000000001,
+            "max_measured_c": 83.34,
+            "response_k_w": 5.031082648740149
+          },
+          {
+            "seconds": 20,
+            "delta_total_w": 7.14160419,
+            "delta_heater_w": 7.1683638,
+            "hottest_sensor_1_based": 1,
+            "rise_k": 36.92000000000001,
+            "max_measured_c": 84.32,
+            "response_k_w": 5.1697068358530816
+          }
+        ]
+      },
+      {
+        "file": "hotspot_3.csv",
+        "sha256": "66e2f17e7df96bb5785693c273eb97276dc2276c45c96f4048d1b08bc6dd7358",
+        "switch_sample": 18020,
+        "heater_1_based": 5,
+        "pre_step_w": 2.9195373399999998,
+        "samples": [
+          {
+            "seconds": 0.5,
+            "delta_total_w": 7.137507619999999,
+            "delta_heater_w": 7.14476864,
+            "hottest_sensor_1_based": 5,
+            "rise_k": 27.92000000000001,
+            "max_measured_c": 75.28,
+            "response_k_w": 3.9117296241849773
+          },
+          {
+            "seconds": 2,
+            "delta_total_w": 7.13136078,
+            "delta_heater_w": 7.14471248,
+            "hottest_sensor_1_based": 5,
+            "rise_k": 29.740000000000002,
+            "max_measured_c": 77.1,
+            "response_k_w": 4.170312078924158
+          },
+          {
+            "seconds": 10,
+            "delta_total_w": 7.12190616,
+            "delta_heater_w": 7.13499326,
+            "hottest_sensor_1_based": 5,
+            "rise_k": 30.880000000000006,
+            "max_measured_c": 78.24,
+            "response_k_w": 4.335917843657744
+          },
+          {
+            "seconds": 20,
+            "delta_total_w": 7.11221092,
+            "delta_heater_w": 7.12674446,
+            "hottest_sensor_1_based": 5,
+            "rise_k": 31.800000000000004,
+            "max_measured_c": 79.16,
+            "response_k_w": 4.471183483967881
+          }
+        ]
+      },
+      {
+        "file": "hotspot_4.csv",
+        "sha256": "ee96e4def0284e8d1dc16bdb0b66b3f7ea3c31c36ba415d8f315b01b4a49d808",
+        "switch_sample": 18016,
+        "heater_1_based": 6,
+        "pre_step_w": 2.92438181,
+        "samples": [
+          {
+            "seconds": 0.5,
+            "delta_total_w": 6.986959670000001,
+            "delta_heater_w": 7.004736920000001,
+            "hottest_sensor_1_based": 6,
+            "rise_k": 24.78000000000001,
+            "max_measured_c": 72.2,
+            "response_k_w": 3.546606989360224
+          },
+          {
+            "seconds": 2,
+            "delta_total_w": 6.987165470000001,
+            "delta_heater_w": 6.998988080000001,
+            "hottest_sensor_1_based": 6,
+            "rise_k": 26.640000000000004,
+            "max_measured_c": 74.06,
+            "response_k_w": 3.81270489648215
+          },
+          {
+            "seconds": 10,
+            "delta_total_w": 6.97414197,
+            "delta_heater_w": 6.9930622200000006,
+            "hottest_sensor_1_based": 6,
+            "rise_k": 27.68,
+            "max_measured_c": 75.1,
+            "response_k_w": 3.968947021593253
+          },
+          {
+            "seconds": 20,
+            "delta_total_w": 6.97031635,
+            "delta_heater_w": 6.98304956,
+            "hottest_sensor_1_based": 6,
+            "rise_k": 28.580000000000005,
+            "max_measured_c": 76.0,
+            "response_k_w": 4.100244316744678
+          }
+        ]
+      }
+    ],
+    "heatsink_with_fan": [
+      {
+        "file": "hotspot_1.csv",
+        "sha256": "c915ed0c5ca6cd69ea26bf96e7817887eb66bd199d5652d7c9948e695a685b2e",
+        "switch_sample": 18047,
+        "heater_1_based": 2,
+        "pre_step_w": 2.9489901000000005,
+        "samples": [
+          {
+            "seconds": 0.5,
+            "delta_total_w": 7.183150640000001,
+            "delta_heater_w": 7.1975365600000005,
+            "hottest_sensor_1_based": 2,
+            "rise_k": 23.580000000000005,
+            "max_measured_c": 52.10000000000001,
+            "response_k_w": 3.282682096167205
+          },
+          {
+            "seconds": 2,
+            "delta_total_w": 7.18670794,
+            "delta_heater_w": 7.2037984999999995,
+            "hottest_sensor_1_based": 2,
+            "rise_k": 26.4,
+            "max_measured_c": 54.92,
+            "response_k_w": 3.673448290984815
+          },
+          {
+            "seconds": 10,
+            "delta_total_w": 7.177697159999999,
+            "delta_heater_w": 7.1907643,
+            "hottest_sensor_1_based": 2,
+            "rise_k": 27.4,
+            "max_measured_c": 55.92,
+            "response_k_w": 3.8173803365089314
+          },
+          {
+            "seconds": 20,
+            "delta_total_w": 7.1787816399999995,
+            "delta_heater_w": 7.195484359999999,
+            "hottest_sensor_1_based": 2,
+            "rise_k": 28.3,
+            "max_measured_c": 56.82,
+            "response_k_w": 3.9421731178328474
+          }
+        ]
+      },
+      {
+        "file": "hotspot_2.csv",
+        "sha256": "fcb52b5b3ed425ccc64615714316f10782124f764108d066c7a91887bb11af3a",
+        "switch_sample": 18058,
+        "heater_1_based": 1,
+        "pre_step_w": 2.9485073,
+        "samples": [
+          {
+            "seconds": 0.5,
+            "delta_total_w": 7.228157259999999,
+            "delta_heater_w": 7.242008029999999,
+            "hottest_sensor_1_based": 1,
+            "rise_k": 28.229999999999997,
+            "max_measured_c": 57.519999999999996,
+            "response_k_w": 3.9055597415156407
+          },
+          {
+            "seconds": 2,
+            "delta_total_w": 7.2184113,
+            "delta_heater_w": 7.231983129999999,
+            "hottest_sensor_1_based": 1,
+            "rise_k": 30.089999999999996,
+            "max_measured_c": 59.379999999999995,
+            "response_k_w": 4.168507272507456
+          },
+          {
+            "seconds": 10,
+            "delta_total_w": 7.213846900000001,
+            "delta_heater_w": 7.238808350000001,
+            "hottest_sensor_1_based": 1,
+            "rise_k": 31.15,
+            "max_measured_c": 60.44,
+            "response_k_w": 4.318084432870345
+          },
+          {
+            "seconds": 20,
+            "delta_total_w": 7.209232919999999,
+            "delta_heater_w": 7.23420055,
+            "hottest_sensor_1_based": 1,
+            "rise_k": 31.830000000000002,
+            "max_measured_c": 61.120000000000005,
+            "response_k_w": 4.415171538111437
+          }
+        ]
+      },
+      {
+        "file": "hotspot_3.csv",
+        "sha256": "016f91c76b2257f90ffab09ad80d04719c4aa9be48bae27f2ab5d1144f55e094",
+        "switch_sample": 18052,
+        "heater_1_based": 5,
+        "pre_step_w": 2.95333398,
+        "samples": [
+          {
+            "seconds": 0.5,
+            "delta_total_w": 6.916185380000001,
+            "delta_heater_w": 6.930508570000001,
+            "hottest_sensor_1_based": 5,
+            "rise_k": 21.72,
+            "max_measured_c": 50.76,
+            "response_k_w": 3.140459488377681
+          },
+          {
+            "seconds": 2,
+            "delta_total_w": 7.18918874,
+            "delta_heater_w": 7.20833737,
+            "hottest_sensor_1_based": 5,
+            "rise_k": 26.939999999999998,
+            "max_measured_c": 55.98,
+            "response_k_w": 3.7472934672181104
+          },
+          {
+            "seconds": 10,
+            "delta_total_w": 7.1720388,
+            "delta_heater_w": 7.19461309,
+            "hottest_sensor_1_based": 5,
+            "rise_k": 28.060000000000002,
+            "max_measured_c": 57.1,
+            "response_k_w": 3.9124160901081573
+          },
+          {
+            "seconds": 20,
+            "delta_total_w": 7.1773218399999985,
+            "delta_heater_w": 7.198739889999999,
+            "hottest_sensor_1_based": 5,
+            "rise_k": 28.879999999999995,
+            "max_measured_c": 57.919999999999995,
+            "response_k_w": 4.02378500557807
+          }
+        ]
+      },
+      {
+        "file": "hotspot_4.csv",
+        "sha256": "963214efd890685aed0d186ededc5a8eecafd0fdba7246b0c38dd6270a922f2b",
+        "switch_sample": 18057,
+        "heater_1_based": 6,
+        "pre_step_w": 2.94810608,
+        "samples": [
+          {
+            "seconds": 0.5,
+            "delta_total_w": 7.05358502,
+            "delta_heater_w": 7.068980450000001,
+            "hottest_sensor_1_based": 6,
+            "rise_k": 22.269999999999996,
+            "max_measured_c": 51.66,
+            "response_k_w": 3.15725973910498
+          },
+          {
+            "seconds": 2,
+            "delta_total_w": 7.048620960000001,
+            "delta_heater_w": 7.066118010000001,
+            "hottest_sensor_1_based": 6,
+            "rise_k": 23.949999999999992,
+            "max_measured_c": 53.339999999999996,
+            "response_k_w": 3.3978277645958124
+          },
+          {
+            "seconds": 10,
+            "delta_total_w": 7.03758586,
+            "delta_heater_w": 7.05323703,
+            "hottest_sensor_1_based": 6,
+            "rise_k": 24.949999999999996,
+            "max_measured_c": 54.34,
+            "response_k_w": 3.5452498195169437
+          },
+          {
+            "seconds": 20,
+            "delta_total_w": 7.035560439999999,
+            "delta_heater_w": 7.05814407,
+            "hottest_sensor_1_based": 6,
+            "rise_k": 25.749999999999993,
+            "max_measured_c": 55.14,
+            "response_k_w": 3.6599785076965374
+          }
+        ]
+      }
+    ]
+  },
+  "comparisons": [
+    {
+      "group": "heatsink",
+      "seconds": 0.5,
+      "chosen": 4,
+      "best_response": 4,
+      "best_raw": 4,
+      "normalized_loss_k_w": 0.0,
+      "loss_at_6p8w_k": 0.0,
+      "actual_rise_loss_k": 0.0
+    },
+    {
+      "group": "heatsink",
+      "seconds": 2,
+      "chosen": 4,
+      "best_response": 4,
+      "best_raw": 4,
+      "normalized_loss_k_w": 0.0,
+      "loss_at_6p8w_k": 0.0,
+      "actual_rise_loss_k": 0.0
+    },
+    {
+      "group": "heatsink",
+      "seconds": 10,
+      "chosen": 4,
+      "best_response": 4,
+      "best_raw": 4,
+      "normalized_loss_k_w": 0.0,
+      "loss_at_6p8w_k": 0.0,
+      "actual_rise_loss_k": 0.0
+    },
+    {
+      "group": "heatsink",
+      "seconds": 20,
+      "chosen": 4,
+      "best_response": 4,
+      "best_raw": 4,
+      "normalized_loss_k_w": 0.0,
+      "loss_at_6p8w_k": 0.0,
+      "actual_rise_loss_k": 0.0
+    },
+    {
+      "group": "heatsink_with_fan",
+      "seconds": 0.5,
+      "chosen": 4,
+      "best_response": 3,
+      "best_raw": 3,
+      "normalized_loss_k_w": 0.016800250727299293,
+      "loss_at_6p8w_k": 0.1142417049456352,
+      "actual_rise_loss_k": 0.5499999999999972
+    },
+    {
+      "group": "heatsink_with_fan",
+      "seconds": 2,
+      "chosen": 4,
+      "best_response": 4,
+      "best_raw": 4,
+      "normalized_loss_k_w": 0.0,
+      "loss_at_6p8w_k": 0.0,
+      "actual_rise_loss_k": 0.0
+    },
+    {
+      "group": "heatsink_with_fan",
+      "seconds": 10,
+      "chosen": 4,
+      "best_response": 4,
+      "best_raw": 4,
+      "normalized_loss_k_w": 0.0,
+      "loss_at_6p8w_k": 0.0,
+      "actual_rise_loss_k": 0.0
+    },
+    {
+      "group": "heatsink_with_fan",
+      "seconds": 20,
+      "chosen": 4,
+      "best_response": 4,
+      "best_raw": 4,
+      "normalized_loss_k_w": 0.0,
+      "loss_at_6p8w_k": 0.0,
+      "actual_rise_loss_k": 0.0
+    }
+  ],
+  "simultaneous_heaters": {
+    "heatsink": {
+      "file": "four.csv",
+      "sha256": "3c7d8e576e119ae09909d66878e79ea55d9c2c8366cf27ac8f2ab525521d359f",
+      "start": 18067,
+      "heater_1_based": [
+        2,
+        1,
+        5,
+        6
+      ],
+      "weights": [
+        0.3997435619001642,
+        0.3986146745561826,
+        0.4060529467067907,
+        0.40373891590700356
+      ],
+      "input_relative_l2": 0.0012448669305297263,
+      "measured_rise20_k": 24.579999999999995,
+      "local": {
+        "rmse_k": 5.398027006267302,
+        "heated_sensors_rmse_k": 7.8672852523322465,
+        "max_abs_k": 9.950979976332473,
+        "worst_step": 181,
+        "worst_sensor_1_based": 1,
+        "peak20_k": 14.716853784614264,
+        "peak20_error_k": -9.863146215385731
+      },
+      "full": {
+        "rmse_k": 0.5672809190192976,
+        "heated_sensors_rmse_k": 1.0778838958670167,
+        "max_abs_k": 10.768545560255657,
+        "worst_step": 0,
+        "worst_sensor_1_based": 5,
+        "peak20_k": 23.540199143786648,
+        "peak20_error_k": -1.039800856213347
+      },
+      "early_window_shifts_samples": [
+        -1,
+        0,
+        1
+      ],
+      "early_window_best_hotspots_1_based": [
+        4,
+        4,
+        4
+      ],
+      "early_window_loss_at_6p8w_k": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "heatsink_with_fan": {
+      "file": "four.csv",
+      "sha256": "7789e13547f58510c9c05f21ee496f69c7ae13499b8f7bc62ea82c7f0cf9313e",
+      "start": 18061,
+      "heater_1_based": [
+        2,
+        1,
+        5,
+        6
+      ],
+      "weights": [
+        0.39971862598484403,
+        0.39946382230492583,
+        0.40639466356701387,
+        0.40411000256619495
+      ],
+      "input_relative_l2": 0.0012594264405909532,
+      "measured_rise20_k": 21.740000000000002,
+      "local": {
+        "rmse_k": 4.887855231859768,
+        "heated_sensors_rmse_k": 7.023873046295443,
+        "max_abs_k": 9.777656343433376,
+        "worst_step": 0,
+        "worst_sensor_1_based": 5,
+        "peak20_k": 12.714933463965789,
+        "peak20_error_k": -9.025066536034213
+      },
+      "full": {
+        "rmse_k": 0.5292740989934808,
+        "heated_sensors_rmse_k": 1.031978104515424,
+        "max_abs_k": 7.60168841383274,
+        "worst_step": 0,
+        "worst_sensor_1_based": 5,
+        "peak20_k": 20.237576212098674,
+        "peak20_error_k": -1.5024237879013285
+      },
+      "early_window_shifts_samples": [
+        -1,
+        0,
+        1
+      ],
+      "early_window_best_hotspots_1_based": [
+        3,
+        3,
+        4
+      ],
+      "early_window_loss_at_6p8w_k": [
+        0.7308406783408106,
+        0.1142417049456352,
+        0.0
+      ]
+    }
+  }
+}

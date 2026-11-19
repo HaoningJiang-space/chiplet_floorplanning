@@ -4,10 +4,23 @@ from itertools import product
 import numpy as np
 from scipy.sparse import csc_matrix
 
-from chiplet_floorplanning.placement.periodic import balanced_orders, cycle_trace, periodic_pulse, quota_peak
+from chiplet_floorplanning.placement.periodic import balanced_orders, cycle_trace, periodic_pulse, quota_peak, response_peak_bounds
 
 
 class PeriodicOrderTests(unittest.TestCase):
+    def test_asymmetric_three_source_bounds_for_every_phase_shift(self):
+        mean = np.array([10., 11.])
+        signals = np.array([[[3, -2], [-1, 0], [-2, 2]],
+                            [[-2, 3], [1, -1], [1, -2]],
+                            [[-1, -1], [-1, 0], [2, 1]]])
+        lower, upper = response_peak_bounds(mean, signals.min(1), signals.max(1))
+        peaks = [float((mean + sum(np.roll(signal, s, axis=0)
+                                   for signal, s in zip(signals, shifts))).max())
+                 for shifts in product(range(3), repeat=3)]
+        self.assertLessEqual(lower, min(peaks))
+        self.assertEqual(upper, max(peaks))
+        np.testing.assert_equal(response_peak_bounds(10., [-2.], [3.]), (13., 13.))
+
     def test_end_of_step_phase_against_closed_form(self):
         dt, cap = .08, .3
         factor = 1/(1+dt/cap)

@@ -73,3 +73,20 @@ def quota_peak(base, pulse, slots, count):
     lags = np.stack([np.roll(pulse, i * stride, axis=0)[:stride] for i in range(slots)])
     largest = np.sort(lags, axis=0)[slots-count:]
     return float((base + largest.sum(axis=0)).max())
+
+
+def response_peak_bounds(mean, lows, highs):
+    """Bound the cycle peak from separate sources' spatial response ranges.
+
+    mean is a spatial temperature field. Each row in lows and highs contains
+    one source's minimum and maximum zero-mean temperature excursion per cell
+    over the same periodic cycle. No relative phase information is required.
+    """
+    mean, lows, highs = (np.asarray(v, dtype=float) for v in (mean, lows, highs))
+    if lows.shape != highs.shape or lows.ndim != mean.ndim + 1 or not lows.size or lows.shape[1:] != mean.shape:
+        raise ValueError("each source must give both extrema on the mean temperature grid")
+    # At the time any source reaches its high, others are at least at their lows.
+    guaranteed = lows.sum(axis=0) + (highs-lows).max(axis=0)
+    lower = mean + np.maximum(0., guaranteed)
+    upper = mean + highs.sum(axis=0)
+    return float(lower.max()), float(upper.max())
