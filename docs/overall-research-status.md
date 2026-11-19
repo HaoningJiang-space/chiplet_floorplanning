@@ -2389,3 +2389,5 @@ export PYTHONPATH=src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
 python tools/capacity_cost.py --data "$DATA" --output "$OUT/scale-final.json"
 python tools/module_capacity.py --data "$DATA" --output "$OUT/modules-final.json"
 ```
+
+**独立阶段审阅。** 已推送并核实实验提交 `07f7bb773ea62b090246b9a7a21fb6db9e7364df`。oracle-advisor 浏览器会话 `chiplet-capacity-cost-review` 报告读取证据 JSON、两个实验程序和引脚几何程序，复核了双向计数、最短路径成本、模块取整余量及五网格温度的范围。请求 gpt-6-astra / extended，界面显示 GPT-6 / High。审阅确认单模块下界依赖此居中引脚构造，热场仅对预先指定且可达的参考方案求解。表中的总长与峰温均来自同一实际模块配置及所选流量分配。
