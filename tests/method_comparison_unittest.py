@@ -1,9 +1,11 @@
 import hashlib
 import json
 from pathlib import Path
+from types import SimpleNamespace
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 from scipy import sparse
@@ -11,7 +13,7 @@ from scipy import sparse
 from chiplet_floorplanning.package import require_heat_path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from run_method_comparison import checked_records, in_seed_order, report, same_problem
+from run_method_comparison import checked_records, execute, in_seed_order, report, same_problem
 
 
 class ComparisonProtocolTest(unittest.TestCase):
@@ -22,7 +24,8 @@ class ComparisonProtocolTest(unittest.TestCase):
         sha = lambda name: hashlib.sha256((self.dir/name).read_bytes()).hexdigest()
         self.plan = dict(case_path=str(self.dir/'case.json'), case_sha256=sha('case.json'),
                          reference_summary=str(self.dir/'ref.json'), reference_sha256=sha('ref.json'),
-                         methods=['random'], seeds=[1, 2], fv_solves=10)
+                         methods=['random'], seeds=[1, 2], fv_solves=10,
+                         code=dict(commit='revision-a', dirty=False))
         self.plan_path = self.dir/'plan.json'
         self.plan_path.write_text(json.dumps(self.plan))
         self.out = self.dir/'out'
@@ -31,7 +34,7 @@ class ComparisonProtocolTest(unittest.TestCase):
             self.record(seed)
 
     def record(self, seed, **change):
-        row = dict(method='random', seed=seed, fv_solves=10,
+        row = dict(method='random', seed=seed, fv_solves=10, code_commit='revision-a', code_dirty=False,
                    plan_sha256=hashlib.sha256(self.plan_path.read_bytes()).hexdigest())
         row.update(change)
         (self.out/f'random-seed{seed}.json').write_text(json.dumps(row))
@@ -39,6 +42,28 @@ class ComparisonProtocolTest(unittest.TestCase):
 
     def test_complete_records_pass(self):
         self.assertEqual(len(checked_records(self.plan_path, self.plan, self.out)), 2)
+
+    def test_legacy_reports_require_clean_matching_revisions(self):
+        for change in (dict(code_commit='revision-b'), dict(code_dirty=True), dict(code_dirty=None)):
+            self.record(2, **change)
+            with self.subTest(change=change), self.assertRaises(SystemExit):
+                checked_records(self.plan_path, self.plan, self.out)
+
+    def test_pinned_code_allows_docs_commits_and_rejects_changed_implementations(self):
+        self.plan['code']['implementation_sha256'] = 'frozen-digest'
+        self.plan_path.write_text(json.dumps(self.plan))
+        for seed in (1, 2):
+            self.record(seed, code_commit='docs-commit', implementation_sha256='frozen-digest')
+        self.assertEqual(len(checked_records(self.plan_path, self.plan, self.out)), 2)
+        for change in (dict(implementation_sha256='other'), dict(code_dirty=True)):
+            self.record(2, **(dict(implementation_sha256='frozen-digest') | change))
+            with self.subTest(change=change), self.assertRaises(SystemExit):
+                checked_records(self.plan_path, self.plan, self.out)
+        with patch('run_method_comparison.implementation', return_value=dict(
+                commit='revision-a', dirty=False, implementation_sha256='other')):
+            with self.assertRaisesRegex(SystemExit, 'implementation'):
+                execute(SimpleNamespace(plan=self.plan_path, output=self.dir/'new'))
+            self.assertFalse((self.dir/'new').exists())
 
     def test_changed_reference_is_refused(self):
         (self.dir/'ref.json').write_text('{"front": [{"peak_c": 0}]}')

@@ -47,9 +47,12 @@ class PinCutTest(unittest.TestCase):
     def test_cuts_bring_the_milp_within_the_exact_budget(self):
         p = opposed_pins()
         budget = 28.0
-        raw = milp_relations(p, 0, 10, wire_mm=budget)
-        self.assertGreater(pin_manhattan_um(p, raw).sum()/1000, budget)       # the relaxation alone fails
-        cuts = []
+        # Touching dies: four 6 mm centre spans, each with an extra 5 mm pin offset.
+        # Both orientations can minimize the relaxation; the solver's first pick is arbitrary.
+        opposed = Layout(np.array([[3000., 3000.], [9000., 3000.]]), np.array([0, 0]))
+        self.assertTrue(is_legal(p, opposed, 0))
+        self.assertEqual(pin_manhattan_um(p, opposed).sum()/1000, 44.)
+        cuts = [opposed]
         for _ in range(10):
             out = milp_relations(p, 0, 10, wire_mm=budget, wire_cuts=cuts)
             if out is None or pin_manhattan_um(p, out).sum()/1000 <= budget + 1e-6:

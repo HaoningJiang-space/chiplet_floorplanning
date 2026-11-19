@@ -31,6 +31,31 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def implementation():
+    """Pin the runner and imported project code across checkouts and documentation commits."""
+    root = Path(__file__).resolve().parents[1]
+    digest = hashlib.sha256()
+    paths = [Path(__file__), root/'pyproject.toml', *sorted((root/'src').rglob('*.py'))]
+    for path in paths:
+        digest.update(path.relative_to(root).as_posix().encode() + b'\0')
+        digest.update(hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).digest())
+    return dict(source_revision(), implementation_sha256=digest.hexdigest())
+
+
+def require_version(frozen, actual):
+    # Older plans have only a Git revision. Replaying those requires an exact clean match.
+    if not frozen.get('commit') or not actual.get('commit') or actual.get('dirty') is True:
+        raise SystemExit('comparison requires an identified, unmodified code version')
+    fingerprint = frozen.get('implementation_sha256')
+    if fingerprint:
+        matches = fingerprint == actual.get('implementation_sha256') and frozen.get('dirty') is False
+    else:
+        matches = (actual['commit'] == frozen['commit'] and frozen.get('dirty') is False
+                   and actual.get('dirty') is False)
+    if not matches:
+        raise SystemExit('comparison implementation differs from the frozen plan or cannot be verified')
+
+
 def same_problem(reference, case_path, gap_um, resolution):
     """The reference front must describe the same physical problem, not just an unchanged file."""
     case = json.loads(Path(case_path).read_text())
@@ -47,7 +72,7 @@ def freeze(args):
     length = np.array([p['length_m'] for p in front])
     peak = np.array([p['peak_c'] for p in front])
     plan = dict(
-        protocol='method-comparison-v1', case_path=str(args.case), case_sha256=sha256(args.case),
+        protocol='method-comparison-v2', case_path=str(args.case), case_sha256=sha256(args.case),
         reference_summary=str(args.reference), reference_sha256=sha256(args.reference),
         methods=args.methods, seeds=args.seeds, fv_solves=args.fv_solves, batch=args.batch,
         random_starts=args.random_starts, descent_starts=args.descent_starts, gap_um=args.gap_um,
@@ -57,7 +82,8 @@ def freeze(args):
         peak_caps_c=[float(peak[length <= f*length.min()].min()) for f in LENGTH_FACTORS],
         cap_rules=dict(length=f'shortest front L with T <= Tmin + {PEAK_MARGINS_K} K',
                        peak=f'coolest front T with L <= {LENGTH_FACTORS} x Lmin'),
-        code=source_revision())
+        code=implementation())
+    require_version(plan['code'], plan['code'])
     args.plan.parent.mkdir(parents=True, exist_ok=True)
     if args.plan.exists():
         raise SystemExit(f'plan exists; frozen plans are not overwritten: {args.plan}')
@@ -82,11 +108,12 @@ def metrics(plan, length, peak, cost, die_peak, max_net, names):
 
 def execute(args):
     plan = json.loads(args.plan.read_text())
+    source = implementation()
+    require_version(plan.get('code', {}), source)
     if sha256(plan['case_path']) != plan['case_sha256']:
         raise SystemExit('case input changed since freezing')
     problem = Problem.from_imported(json.loads(Path(plan['case_path']).read_text()))
     args.output.mkdir(parents=True, exist_ok=False)
-    source = source_revision()
     for seed in plan['seeds']:
         rng = np.random.default_rng(seed)
         initial = [sample_legal(problem, plan['gap_um'], rng) for _ in range(plan['random_starts'])]
@@ -104,6 +131,7 @@ def execute(args):
                           stop_reason=run.stop_reason, rounds=run.rounds,
                           wall_seconds=time.perf_counter() - started, workers=args.workers,
                           code_commit=source['commit'], code_dirty=source['dirty'],
+                          implementation_sha256=source['implementation_sha256'],
                           plan_sha256=sha256(args.plan),
                           metrics=metrics(plan, length, peak, cost, die_peak, max_net, problem.names))
             stem = args.output/f'{name}-seed{seed}'
@@ -131,6 +159,8 @@ def checked_records(plan_path, plan, output):
         raise SystemExit(f'method x seed set incomplete or extra: missing {sorted(expected - set(found))}, '
                          f'unexpected {sorted(set(found) - expected)}')
     for r in records:
+        require_version(plan.get('code', {}), dict(commit=r.get('code_commit'), dirty=r.get('code_dirty'),
+                                                   implementation_sha256=r.get('implementation_sha256')))
         if r['plan_sha256'] != plan_sha:
             raise SystemExit(f"{r['method']} seed {r['seed']} was run under a different plan")
         if r['fv_solves'] > plan['fv_solves']:
@@ -172,7 +202,7 @@ def report(args):
             out[fraction] = dict(peak_gap_k=gap_t, length_gap_m=gap_m, length_gap_fraction=gap_l)
         table[method] = out
     summary = dict(best_known_peak_c=best_t, best_known_length_m=best_l, seed_order=plan['seeds'],
-                   plan_sha256=sha256(args.plan), reference_sha256=plan['reference_sha256'],
+                   plan_sha256=sha256(args.plan), reference_sha256=plan['reference_sha256'], code=plan['code'],
                    stop_reasons={f"{r['method']}-seed{r['seed']}": r['stop_reason'] for r in records},
                    note='each gap list follows seed_order (paired by shared start set); None = cap not reached; '
                         'length_gap_fraction omits caps whose best known length is 0 (relative gap undefined)',
