@@ -1,0 +1,5360 @@
+{
+  "protocol": "a534a297df8879270af345b48ac33e87500c0de4",
+  "seed": 20261119,
+  "cases": [
+    {
+      "family": "ATPlace",
+      "name": "Case1",
+      "cost_metric": "pin_manhattan_m",
+      "wide_cap": 93.7183200072,
+      "source_sha256": "f2d55207a86fee7e03d14778ac5eea3847d3a101584d451a751d654295a4bb72",
+      "bank_sha256": "5f07133b4d6b852469d32b2712ae2803e0bb1abaf5d035ce05e288fe21a8b538",
+      "anchor_id": 2,
+      "anchor_xy_um": [
+        [
+          30000.0,
+          17900.0
+        ],
+        [
+          9900.0,
+          31000.0
+        ],
+        [
+          28000.0,
+          33000.0
+        ],
+        [
+          7000.0,
+          16000.0
+        ],
+        [
+          19900.0,
+          15900.0
+        ],
+        [
+          30000.0,
+          7000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        90,
+        90,
+        180,
+        270
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 70.35004826360007,
+        "predicted_rise_k": 39.60806888560277,
+        "predicted_hot": "GPU_1"
+      },
+      "chip_names": [
+        "CPU1_0",
+        "GPU_0",
+        "GPU_1",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2"
+      ],
+      "rated_w": [
+        105.0,
+        300.0,
+        300.0,
+        25.0,
+        25.0,
+        25.0
+      ],
+      "predicted_hot": "GPU_1",
+      "groups": {
+        "strict": {
+          "cap": 70.35004826359999,
+          "possible_translations": 17,
+          "possible_exchanges": 1,
+          "choices": {
+            "direct": {
+              "chips": [
+                "GPU_1"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  28000.0,
+                  33000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  31000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 69.95798421880008,
+              "predicted_rise_k": 38.5430425975217,
+              "predicted_hot": "GPU_1"
+            },
+            "hottest": {
+              "chips": [
+                "GPU_1"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  28000.0,
+                  33000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  31000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 69.95798421880008,
+              "predicted_rise_k": 38.5430425975217,
+              "predicted_hot": "GPU_1"
+            },
+            "random": {
+              "chips": [
+                "HBM_0"
+              ],
+              "indices": [
+                3
+              ],
+              "from_um": [
+                [
+                  7000.0,
+                  16000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  8000.0,
+                  15000.0
+                ]
+              ],
+              "cost": 70.35004826360007,
+              "predicted_rise_k": 39.6093594615664,
+              "predicted_hot": "GPU_1"
+            },
+            "shortest": {
+              "chips": [
+                "HBM_0",
+                "HBM_2"
+              ],
+              "indices": [
+                3,
+                5
+              ],
+              "from_um": [
+                [
+                  7000.0,
+                  16000.0
+                ],
+                [
+                  30000.0,
+                  7000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  30000.0,
+                  7000.0
+                ],
+                [
+                  7000.0,
+                  16000.0
+                ]
+              ],
+              "cost": 67.60156821400005,
+              "predicted_rise_k": 39.60806888560277,
+              "predicted_hot": "GPU_1"
+            },
+            "opposite": null
+          }
+        },
+        "published": {
+          "cap": 93.7183200072,
+          "possible_translations": 196,
+          "possible_exchanges": 2,
+          "choices": {
+            "direct": {
+              "chips": [
+                "GPU_1"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  28000.0,
+                  33000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  33000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 71.03051221400007,
+              "predicted_rise_k": 37.92584956450052,
+              "predicted_hot": "GPU_1"
+            },
+            "hottest": {
+              "chips": [
+                "GPU_1"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  28000.0,
+                  33000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  33000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 71.03051221400007,
+              "predicted_rise_k": 37.92584956450052,
+              "predicted_hot": "GPU_1"
+            },
+            "random": {
+              "chips": [
+                "HBM_0"
+              ],
+              "indices": [
+                3
+              ],
+              "from_um": [
+                [
+                  7000.0,
+                  16000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  7000.0,
+                  8000.0
+                ]
+              ],
+              "cost": 75.98204826360008,
+              "predicted_rise_k": 39.5427956035835,
+              "predicted_hot": "GPU_1"
+            },
+            "shortest": {
+              "chips": [
+                "HBM_0",
+                "HBM_2"
+              ],
+              "indices": [
+                3,
+                5
+              ],
+              "from_um": [
+                [
+                  7000.0,
+                  16000.0
+                ],
+                [
+                  30000.0,
+                  7000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  30000.0,
+                  7000.0
+                ],
+                [
+                  7000.0,
+                  16000.0
+                ]
+              ],
+              "cost": 67.60156821400005,
+              "predicted_rise_k": 39.60806888560277,
+              "predicted_hot": "GPU_1"
+            },
+            "opposite": null
+          }
+        }
+      }
+    },
+    {
+      "family": "ATPlace",
+      "name": "Case2",
+      "cost_metric": "pin_manhattan_m",
+      "wide_cap": 145.50003194319999,
+      "source_sha256": "1648efcd8889a7f3486b711349700286f0222032f9966083400ced1844550b18",
+      "bank_sha256": "5f07133b4d6b852469d32b2712ae2803e0bb1abaf5d035ce05e288fe21a8b538",
+      "anchor_id": 0,
+      "anchor_xy_um": [
+        [
+          51000.0,
+          24000.0
+        ],
+        [
+          48000.0,
+          8000.0
+        ],
+        [
+          7900.0,
+          43000.0
+        ],
+        [
+          20000.0,
+          42000.0
+        ],
+        [
+          18250.0,
+          20700.0
+        ],
+        [
+          35250.0,
+          36000.0
+        ]
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        90,
+        90,
+        90,
+        180
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 130.05228332924003,
+        "predicted_rise_k": 21.067827339723053,
+        "predicted_hot": "Virtuvian_0"
+      },
+      "chip_names": [
+        "HBM_0",
+        "HBM_1",
+        "HBM_2",
+        "HBM_3",
+        "Virtuvian_0",
+        "Nimbus_0"
+      ],
+      "rated_w": [
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        256.0,
+        14.0
+      ],
+      "predicted_hot": "Virtuvian_0",
+      "groups": {
+        "strict": {
+          "cap": 130.05228332924,
+          "possible_translations": 957,
+          "possible_exchanges": 2,
+          "choices": {
+            "direct": {
+              "chips": [
+                "HBM_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  7900.0,
+                  43000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  48900.0,
+                  36000.0
+                ]
+              ],
+              "cost": 129.38012319164002,
+              "predicted_rise_k": 20.954667191864555,
+              "predicted_hot": "Virtuvian_0"
+            },
+            "hottest": {
+              "chips": [],
+              "indices": [],
+              "from_um": [],
+              "to_um": [],
+              "cost": 130.05228332924003,
+              "predicted_rise_k": 21.067827339723053,
+              "predicted_hot": "Virtuvian_0"
+            },
+            "random": {
+              "chips": [
+                "HBM_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  51000.0,
+                  24000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  4000.0,
+                  23000.0
+                ]
+              ],
+              "cost": 101.13957912736005,
+              "predicted_rise_k": 21.45310948016987,
+              "predicted_hot": "Virtuvian_0"
+            },
+            "shortest": {
+              "chips": [
+                "HBM_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  48000.0,
+                  8000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  6000.0,
+                  19000.0
+                ]
+              ],
+              "cost": 95.18639524696,
+              "predicted_rise_k": 21.560871055437563,
+              "predicted_hot": "Virtuvian_0"
+            },
+            "opposite": {
+              "chips": [
+                "HBM_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  7900.0,
+                  43000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  6900.0,
+                  41000.0
+                ]
+              ],
+              "cost": 129.34828332924005,
+              "predicted_rise_k": 21.0915698682109,
+              "predicted_hot": "Virtuvian_0"
+            }
+          }
+        },
+        "published": {
+          "cap": 145.50003194319999,
+          "possible_translations": 1709,
+          "possible_exchanges": 3,
+          "choices": {
+            "direct": {
+              "chips": [
+                "Virtuvian_0"
+              ],
+              "indices": [
+                4
+              ],
+              "from_um": [
+                [
+                  18250.0,
+                  20700.0
+                ]
+              ],
+              "to_um": [
+                [
+                  12250.0,
+                  15700.0
+                ]
+              ],
+              "cost": 145.0800021401798,
+              "predicted_rise_k": 20.76926637643411,
+              "predicted_hot": "Virtuvian_0"
+            },
+            "hottest": {
+              "chips": [
+                "Virtuvian_0"
+              ],
+              "indices": [
+                4
+              ],
+              "from_um": [
+                [
+                  18250.0,
+                  20700.0
+                ]
+              ],
+              "to_um": [
+                [
+                  12250.0,
+                  15700.0
+                ]
+              ],
+              "cost": 145.0800021401798,
+              "predicted_rise_k": 20.76926637643411,
+              "predicted_hot": "Virtuvian_0"
+            },
+            "random": {
+              "chips": [
+                "HBM_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  51000.0,
+                  24000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  47000.0,
+                  43000.0
+                ]
+              ],
+              "cost": 140.53253925660005,
+              "predicted_rise_k": 21.03983368425964,
+              "predicted_hot": "Virtuvian_0"
+            },
+            "shortest": {
+              "chips": [
+                "HBM_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  48000.0,
+                  8000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  6000.0,
+                  19000.0
+                ]
+              ],
+              "cost": 95.18639524696,
+              "predicted_rise_k": 21.560871055437563,
+              "predicted_hot": "Virtuvian_0"
+            },
+            "opposite": {
+              "chips": [
+                "Virtuvian_0"
+              ],
+              "indices": [
+                4
+              ],
+              "from_um": [
+                [
+                  18250.0,
+                  20700.0
+                ]
+              ],
+              "to_um": [
+                [
+                  22250.0,
+                  16700.0
+                ]
+              ],
+              "cost": 134.91004824208002,
+              "predicted_rise_k": 21.01091136525778,
+              "predicted_hot": "Virtuvian_0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "family": "ATPlace",
+      "name": "Case3",
+      "cost_metric": "pin_manhattan_m",
+      "wide_cap": 249.5747199964,
+      "source_sha256": "34def31b4c3b64f86c46e690367108718888b391c123ac7274cbb75ad81c49dd",
+      "bank_sha256": "5f07133b4d6b852469d32b2712ae2803e0bb1abaf5d035ce05e288fe21a8b538",
+      "anchor_id": 1,
+      "anchor_xy_um": [
+        [
+          35000.0,
+          25500.0
+        ],
+        [
+          4000.0,
+          14500.0
+        ],
+        [
+          4000.0,
+          25500.0
+        ],
+        [
+          16000.0,
+          31500.0
+        ],
+        [
+          25500.0,
+          34500.0
+        ],
+        [
+          31500.0,
+          4500.0
+        ],
+        [
+          12600.0,
+          22400.0
+        ],
+        [
+          21500.0,
+          11500.0
+        ]
+      ],
+      "rotation_deg": [
+        0,
+        180,
+        180,
+        0,
+        270,
+        180,
+        0,
+        180
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 224.2452468747997,
+        "predicted_rise_k": 50.63853296056902,
+        "predicted_hot": "CPU2_2"
+      },
+      "chip_names": [
+        "CPU2_0",
+        "CPU2_1",
+        "CPU2_2",
+        "CPU2_3",
+        "DRAM_0",
+        "DRAM_1",
+        "DRAM_2",
+        "DRAM_3"
+      ],
+      "rated_w": [
+        150.0,
+        150.0,
+        150.0,
+        150.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "predicted_hot": "CPU2_2",
+      "groups": {
+        "strict": {
+          "cap": 224.24524687480002,
+          "possible_translations": 333,
+          "possible_exchanges": 6,
+          "choices": {
+            "direct": {
+              "chips": [
+                "CPU2_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  4000.0,
+                  14500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  5000.0,
+                  4500.0
+                ]
+              ],
+              "cost": 221.66579087959965,
+              "predicted_rise_k": 48.65278926410243,
+              "predicted_hot": "CPU2_3"
+            },
+            "hottest": {
+              "chips": [
+                "CPU2_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  4000.0,
+                  25500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  4000.0,
+                  28500.0
+                ]
+              ],
+              "cost": 223.5553188903997,
+              "predicted_rise_k": 49.86547328095705,
+              "predicted_hot": "CPU2_3"
+            },
+            "random": {
+              "chips": [
+                "CPU2_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  4000.0,
+                  14500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  10000.0,
+                  4500.0
+                ]
+              ],
+              "cost": 207.5857908795998,
+              "predicted_rise_k": 48.76558436300825,
+              "predicted_hot": "CPU2_3"
+            },
+            "shortest": {
+              "chips": [
+                "CPU2_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  4000.0,
+                  14500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  31000.0,
+                  14500.0
+                ]
+              ],
+              "cost": 174.90147036280015,
+              "predicted_rise_k": 49.24588561127578,
+              "predicted_hot": "CPU2_3"
+            },
+            "opposite": {
+              "chips": [
+                "CPU2_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  4000.0,
+                  14500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  4000.0,
+                  15500.0
+                ]
+              ],
+              "cost": 224.2452468747997,
+              "predicted_rise_k": 51.23957327795301,
+              "predicted_hot": "CPU2_2"
+            }
+          }
+        },
+        "published": {
+          "cap": 249.5747199964,
+          "possible_translations": 563,
+          "possible_exchanges": 13,
+          "choices": {
+            "direct": {
+              "chips": [
+                "CPU2_3"
+              ],
+              "indices": [
+                3
+              ],
+              "from_um": [
+                [
+                  16000.0,
+                  31500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  35000.0,
+                  14500.0
+                ]
+              ],
+              "cost": 246.11635086879977,
+              "predicted_rise_k": 48.163066301758924,
+              "predicted_hot": "CPU2_3"
+            },
+            "hottest": {
+              "chips": [
+                "CPU2_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  4000.0,
+                  25500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  34000.0,
+                  14500.0
+                ]
+              ],
+              "cost": 238.59734399999974,
+              "predicted_rise_k": 48.928043521466996,
+              "predicted_hot": "CPU2_0"
+            },
+            "random": {
+              "chips": [
+                "CPU2_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  4000.0,
+                  14500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  12000.0,
+                  7500.0
+                ]
+              ],
+              "cost": 202.11406587479968,
+              "predicted_rise_k": 49.06612587298381,
+              "predicted_hot": "CPU2_3"
+            },
+            "shortest": {
+              "chips": [
+                "CPU2_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  4000.0,
+                  14500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  31000.0,
+                  14500.0
+                ]
+              ],
+              "cost": 174.90147036280015,
+              "predicted_rise_k": 49.24588561127578,
+              "predicted_hot": "CPU2_3"
+            },
+            "opposite": {
+              "chips": [
+                "CPU2_3"
+              ],
+              "indices": [
+                3
+              ],
+              "from_um": [
+                [
+                  16000.0,
+                  31500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  13000.0,
+                  34500.0
+                ]
+              ],
+              "cost": 224.89894400119965,
+              "predicted_rise_k": 50.917215538447074,
+              "predicted_hot": "CPU2_2"
+            }
+          }
+        }
+      }
+    },
+    {
+      "family": "ATPlace",
+      "name": "Case4",
+      "cost_metric": "pin_manhattan_m",
+      "wide_cap": 319.4341442816,
+      "source_sha256": "15a3323c1ba38e9cd6521471f452c90c58964ab3efadcd27f91167fde8cb47ec",
+      "bank_sha256": "5f07133b4d6b852469d32b2712ae2803e0bb1abaf5d035ce05e288fe21a8b538",
+      "anchor_id": 0,
+      "anchor_xy_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          13000.0,
+          13000.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          34000.0,
+          9900.0
+        ],
+        [
+          24000.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          50000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 245.43560151680012,
+        "predicted_rise_k": 48.25847960935004,
+        "predicted_hot": "GPU_2"
+      },
+      "chip_names": [
+        "CPU1_0",
+        "CPU1_1",
+        "GPU_0",
+        "GPU_1",
+        "GPU_2",
+        "GPU_3",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2",
+        "HBM_3",
+        "HBM_4"
+      ],
+      "rated_w": [
+        105.0,
+        105.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0
+      ],
+      "predicted_hot": "GPU_2",
+      "groups": {
+        "strict": {
+          "cap": 245.43560151679998,
+          "possible_translations": 134,
+          "possible_exchanges": 3,
+          "choices": {
+            "direct": {
+              "chips": [
+                "GPU_0"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  9000.0,
+                  15000.0
+                ]
+              ],
+              "cost": 244.8758445348001,
+              "predicted_rise_k": 47.24746293243418,
+              "predicted_hot": "GPU_2"
+            },
+            "hottest": {
+              "chips": [],
+              "indices": [],
+              "from_um": [],
+              "to_um": [],
+              "cost": 245.43560151680012,
+              "predicted_rise_k": 48.25847960935004,
+              "predicted_hot": "GPU_2"
+            },
+            "random": {
+              "chips": [
+                "HBM_0"
+              ],
+              "indices": [
+                6
+              ],
+              "from_um": [
+                [
+                  9000.0,
+                  31000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  7000.0,
+                  29000.0
+                ]
+              ],
+              "cost": 245.03005254200013,
+              "predicted_rise_k": 48.25491682188681,
+              "predicted_hot": "GPU_2"
+            },
+            "shortest": {
+              "chips": [
+                "CPU1_1",
+                "HBM_4"
+              ],
+              "indices": [
+                1,
+                10
+              ],
+              "from_um": [
+                [
+                  6000.0,
+                  45000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  42000.0,
+                  53000.0
+                ],
+                [
+                  6000.0,
+                  45000.0
+                ]
+              ],
+              "cost": 221.13166598520007,
+              "predicted_rise_k": 48.275353920737814,
+              "predicted_hot": "GPU_2"
+            },
+            "opposite": {
+              "chips": [
+                "GPU_0"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15000.0,
+                  15000.0
+                ]
+              ],
+              "cost": 243.62205254200012,
+              "predicted_rise_k": 48.7568585596775,
+              "predicted_hot": "GPU_2"
+            }
+          }
+        },
+        "published": {
+          "cap": 319.4341442816,
+          "possible_translations": 343,
+          "possible_exchanges": 15,
+          "choices": {
+            "direct": {
+              "chips": [
+                "CPU1_0",
+                "HBM_4"
+              ],
+              "indices": [
+                0,
+                10
+              ],
+              "from_um": [
+                [
+                  31000.0,
+                  25000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  42000.0,
+                  53000.0
+                ],
+                [
+                  31000.0,
+                  25000.0
+                ]
+              ],
+              "cost": 256.8814574148001,
+              "predicted_rise_k": 46.87674080931655,
+              "predicted_hot": "GPU_2"
+            },
+            "hottest": {
+              "chips": [],
+              "indices": [],
+              "from_um": [],
+              "to_um": [],
+              "cost": 245.43560151680012,
+              "predicted_rise_k": 48.25847960935004,
+              "predicted_hot": "GPU_2"
+            },
+            "random": {
+              "chips": [
+                "GPU_0"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15000.0,
+                  15000.0
+                ]
+              ],
+              "cost": 243.62205254200012,
+              "predicted_rise_k": 48.7568585596775,
+              "predicted_hot": "GPU_2"
+            },
+            "shortest": {
+              "chips": [
+                "CPU1_1",
+                "HBM_4"
+              ],
+              "indices": [
+                1,
+                10
+              ],
+              "from_um": [
+                [
+                  6000.0,
+                  45000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  42000.0,
+                  53000.0
+                ],
+                [
+                  6000.0,
+                  45000.0
+                ]
+              ],
+              "cost": 221.13166598520007,
+              "predicted_rise_k": 48.275353920737814,
+              "predicted_hot": "GPU_2"
+            },
+            "opposite": {
+              "chips": [
+                "CPU1_0",
+                "HBM_0"
+              ],
+              "indices": [
+                0,
+                6
+              ],
+              "from_um": [
+                [
+                  31000.0,
+                  25000.0
+                ],
+                [
+                  9000.0,
+                  31000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  9000.0,
+                  31000.0
+                ],
+                [
+                  31000.0,
+                  25000.0
+                ]
+              ],
+              "cost": 273.5948517675997,
+              "predicted_rise_k": 47.12818834986658,
+              "predicted_hot": "GPU_2"
+            }
+          }
+        }
+      }
+    },
+    {
+      "family": "ATPlace",
+      "name": "Case5",
+      "cost_metric": "pin_manhattan_m",
+      "wide_cap": 179.88956741299998,
+      "source_sha256": "1d5f01725b72e0c34accf56f0ece93d349d949a4387ee150e4f6d3dc4b0bf7fa",
+      "bank_sha256": "5f07133b4d6b852469d32b2712ae2803e0bb1abaf5d035ce05e288fe21a8b538",
+      "anchor_id": 0,
+      "anchor_xy_um": [
+        [
+          13000.0,
+          4500.0
+        ],
+        [
+          16000.0,
+          22700.0
+        ],
+        [
+          7400.0,
+          23900.0
+        ],
+        [
+          29500.0,
+          32000.0
+        ],
+        [
+          4000.0,
+          9500.0
+        ],
+        [
+          26500.0,
+          23100.0
+        ],
+        [
+          31500.0,
+          5400.0
+        ],
+        [
+          25500.0,
+          14500.0
+        ],
+        [
+          8500.0,
+          32500.0
+        ],
+        [
+          12600.0,
+          13600.0
+        ],
+        [
+          21700.0,
+          4500.0
+        ],
+        [
+          20400.0,
+          32500.0
+        ]
+      ],
+      "rotation_deg": [
+        0,
+        180,
+        90,
+        90,
+        0,
+        90,
+        270,
+        90,
+        180,
+        180,
+        90,
+        90
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 170.48831156159991,
+        "predicted_rise_k": 63.91647475933019,
+        "predicted_hot": "CPU2_1"
+      },
+      "chip_names": [
+        "CPU2_0",
+        "CPU2_1",
+        "CPU2_2",
+        "CPU2_3",
+        "CPU2_4",
+        "CPU2_5",
+        "DRAM_0",
+        "DRAM_1",
+        "DRAM_2",
+        "DRAM_3",
+        "DRAM_4",
+        "DRAM_5"
+      ],
+      "rated_w": [
+        150.0,
+        150.0,
+        150.0,
+        150.0,
+        150.0,
+        150.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "predicted_hot": "CPU2_1",
+      "groups": {
+        "strict": {
+          "cap": 170.4883115616,
+          "possible_translations": 11,
+          "possible_exchanges": 16,
+          "choices": {
+            "direct": {
+              "chips": [
+                "CPU2_3",
+                "DRAM_0"
+              ],
+              "indices": [
+                3,
+                6
+              ],
+              "from_um": [
+                [
+                  29500.0,
+                  32000.0
+                ],
+                [
+                  31500.0,
+                  5400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  31500.0,
+                  5400.0
+                ],
+                [
+                  29500.0,
+                  32000.0
+                ]
+              ],
+              "cost": 166.38917616419997,
+              "predicted_rise_k": 62.957328627515686,
+              "predicted_hot": "CPU2_1"
+            },
+            "hottest": {
+              "chips": [],
+              "indices": [],
+              "from_um": [],
+              "to_um": [],
+              "cost": 170.48831156159991,
+              "predicted_rise_k": 63.91647475933019,
+              "predicted_hot": "CPU2_1"
+            },
+            "random": {
+              "chips": [
+                "DRAM_2"
+              ],
+              "indices": [
+                8
+              ],
+              "from_um": [
+                [
+                  8500.0,
+                  32500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  9500.0,
+                  32500.0
+                ]
+              ],
+              "cost": 169.7843115615999,
+              "predicted_rise_k": 63.95091758838412,
+              "predicted_hot": "CPU2_1"
+            },
+            "shortest": {
+              "chips": [
+                "CPU2_3",
+                "DRAM_3"
+              ],
+              "indices": [
+                3,
+                9
+              ],
+              "from_um": [
+                [
+                  29500.0,
+                  32000.0
+                ],
+                [
+                  12600.0,
+                  13600.0
+                ]
+              ],
+              "to_um": [
+                [
+                  12600.0,
+                  13600.0
+                ],
+                [
+                  29500.0,
+                  32000.0
+                ]
+              ],
+              "cost": 132.31156014179993,
+              "predicted_rise_k": 68.13059763289664,
+              "predicted_hot": "CPU2_3"
+            },
+            "opposite": {
+              "chips": [
+                "CPU2_3",
+                "DRAM_2"
+              ],
+              "indices": [
+                3,
+                8
+              ],
+              "from_um": [
+                [
+                  29500.0,
+                  32000.0
+                ],
+                [
+                  8500.0,
+                  32500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  8500.0,
+                  32500.0
+                ],
+                [
+                  29500.0,
+                  32000.0
+                ]
+              ],
+              "cost": 151.32141583899997,
+              "predicted_rise_k": 64.99444681574175,
+              "predicted_hot": "CPU2_1"
+            }
+          }
+        },
+        "published": {
+          "cap": 179.88956741299998,
+          "possible_translations": 47,
+          "possible_exchanges": 22,
+          "choices": {
+            "direct": {
+              "chips": [
+                "CPU2_2",
+                "DRAM_2"
+              ],
+              "indices": [
+                2,
+                8
+              ],
+              "from_um": [
+                [
+                  7400.0,
+                  23900.0
+                ],
+                [
+                  8500.0,
+                  32500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  8500.0,
+                  32500.0
+                ],
+                [
+                  7400.0,
+                  23900.0
+                ]
+              ],
+              "cost": 176.11143154039996,
+              "predicted_rise_k": 61.907661196478685,
+              "predicted_hot": "CPU2_1"
+            },
+            "hottest": {
+              "chips": [],
+              "indices": [],
+              "from_um": [],
+              "to_um": [],
+              "cost": 170.48831156159991,
+              "predicted_rise_k": 63.91647475933019,
+              "predicted_hot": "CPU2_1"
+            },
+            "random": {
+              "chips": [
+                "CPU2_4"
+              ],
+              "indices": [
+                4
+              ],
+              "from_um": [
+                [
+                  4000.0,
+                  9500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  4000.0,
+                  8500.0
+                ]
+              ],
+              "cost": 172.15137544819993,
+              "predicted_rise_k": 63.77750237569519,
+              "predicted_hot": "CPU2_1"
+            },
+            "shortest": {
+              "chips": [
+                "CPU2_3",
+                "DRAM_3"
+              ],
+              "indices": [
+                3,
+                9
+              ],
+              "from_um": [
+                [
+                  29500.0,
+                  32000.0
+                ],
+                [
+                  12600.0,
+                  13600.0
+                ]
+              ],
+              "to_um": [
+                [
+                  12600.0,
+                  13600.0
+                ],
+                [
+                  29500.0,
+                  32000.0
+                ]
+              ],
+              "cost": 132.31156014179993,
+              "predicted_rise_k": 68.13059763289664,
+              "predicted_hot": "CPU2_3"
+            },
+            "opposite": {
+              "chips": [
+                "CPU2_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  7400.0,
+                  23900.0
+                ]
+              ],
+              "to_um": [
+                [
+                  5400.0,
+                  22900.0
+                ]
+              ],
+              "cost": 172.24831156159993,
+              "predicted_rise_k": 62.50641277248865,
+              "predicted_hot": "CPU2_1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "family": "ATPlace",
+      "name": "Case6",
+      "cost_metric": "pin_manhattan_m",
+      "wide_cap": 196.788279454,
+      "source_sha256": "17427cfbee057235d2f17a8621a1ecde43012212e87398149f98ce4570184703",
+      "bank_sha256": "5f07133b4d6b852469d32b2712ae2803e0bb1abaf5d035ce05e288fe21a8b538",
+      "anchor_id": 0,
+      "anchor_xy_um": [
+        [
+          38400.0,
+          44400.0
+        ],
+        [
+          27500.0,
+          6500.0
+        ],
+        [
+          19500.0,
+          35400.0
+        ],
+        [
+          25500.0,
+          17500.0
+        ],
+        [
+          8400.0,
+          39500.0
+        ],
+        [
+          4400.0,
+          18500.0
+        ],
+        [
+          34500.0,
+          49500.0
+        ],
+        [
+          24600.0,
+          33500.0
+        ],
+        [
+          11500.0,
+          20500.0
+        ],
+        [
+          24600.0,
+          42500.0
+        ],
+        [
+          34500.0,
+          21500.0
+        ],
+        [
+          15500.0,
+          43500.0
+        ],
+        [
+          45000.0,
+          20000.0
+        ],
+        [
+          10900.0,
+          32000.0
+        ],
+        [
+          36000.0,
+          31000.0
+        ],
+        [
+          45000.0,
+          45000.0
+        ],
+        [
+          42500.0,
+          9400.0
+        ],
+        [
+          5500.0,
+          9500.0
+        ],
+        [
+          19500.0,
+          6500.0
+        ],
+        [
+          24500.0,
+          26400.0
+        ]
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        90,
+        90,
+        90,
+        180,
+        90,
+        0,
+        270,
+        90,
+        90,
+        180,
+        180,
+        270,
+        270,
+        180,
+        0,
+        90,
+        270,
+        270
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 161.88587953940012,
+        "predicted_rise_k": 42.05460946070038,
+        "predicted_hot": "CPU2_2"
+      },
+      "chip_names": [
+        "CPU2_0",
+        "CPU2_1",
+        "CPU2_2",
+        "CPU2_3",
+        "CPU2_4",
+        "CPU2_5",
+        "CPU2_6",
+        "CPU2_7",
+        "GPU_0",
+        "GPU_1",
+        "GPU_2",
+        "GPU_3",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2",
+        "HBM_3",
+        "DRAM_0",
+        "DRAM_1",
+        "DRAM_2",
+        "DRAM_3"
+      ],
+      "rated_w": [
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "predicted_hot": "CPU2_2",
+      "groups": {
+        "strict": {
+          "cap": 161.88587953939998,
+          "possible_translations": 653,
+          "possible_exchanges": 22,
+          "choices": {
+            "direct": {
+              "chips": [
+                "GPU_3"
+              ],
+              "indices": [
+                11
+              ],
+              "from_um": [
+                [
+                  15500.0,
+                  43500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15500.0,
+                  48500.0
+                ]
+              ],
+              "cost": 161.3258795438001,
+              "predicted_rise_k": 40.38692021884115,
+              "predicted_hot": "CPU2_2"
+            },
+            "hottest": {
+              "chips": [
+                "CPU2_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  19500.0,
+                  35400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  19500.0,
+                  34400.0
+                ]
+              ],
+              "cost": 161.88587953940012,
+              "predicted_rise_k": 41.6101504996358,
+              "predicted_hot": "CPU2_2"
+            },
+            "random": {
+              "chips": [
+                "CPU2_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  27500.0,
+                  6500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  29500.0,
+                  5500.0
+                ]
+              ],
+              "cost": 161.88587953940012,
+              "predicted_rise_k": 42.032485198288576,
+              "predicted_hot": "CPU2_2"
+            },
+            "shortest": {
+              "chips": [
+                "CPU2_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  38400.0,
+                  44400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  19400.0,
+                  18400.0
+                ]
+              ],
+              "cost": 141.6386796274001,
+              "predicted_rise_k": 42.20541878703606,
+              "predicted_hot": "CPU2_2"
+            },
+            "opposite": {
+              "chips": [
+                "GPU_1",
+                "GPU_3"
+              ],
+              "indices": [
+                9,
+                11
+              ],
+              "from_um": [
+                [
+                  24600.0,
+                  42500.0
+                ],
+                [
+                  15500.0,
+                  43500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15500.0,
+                  43500.0
+                ],
+                [
+                  24600.0,
+                  42500.0
+                ]
+              ],
+              "cost": 154.73867962100002,
+              "predicted_rise_k": 42.05460946070038,
+              "predicted_hot": "CPU2_2"
+            }
+          }
+        },
+        "published": {
+          "cap": 196.788279454,
+          "possible_translations": 1441,
+          "possible_exchanges": 60,
+          "choices": {
+            "direct": {
+              "chips": [
+                "GPU_1",
+                "DRAM_0"
+              ],
+              "indices": [
+                9,
+                16
+              ],
+              "from_um": [
+                [
+                  24600.0,
+                  42500.0
+                ],
+                [
+                  42500.0,
+                  9400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  42500.0,
+                  9400.0
+                ],
+                [
+                  24600.0,
+                  42500.0
+                ]
+              ],
+              "cost": 187.33449960939998,
+              "predicted_rise_k": 39.10626199982478,
+              "predicted_hot": "CPU2_2"
+            },
+            "hottest": {
+              "chips": [
+                "CPU2_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  19500.0,
+                  35400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  34500.0,
+                  3400.0
+                ]
+              ],
+              "cost": 171.78955962100014,
+              "predicted_rise_k": 39.77929162663094,
+              "predicted_hot": "GPU_1"
+            },
+            "random": {
+              "chips": [
+                "CPU2_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  19500.0,
+                  35400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  34500.0,
+                  11400.0
+                ]
+              ],
+              "cost": 167.88235962100012,
+              "predicted_rise_k": 39.85857299256963,
+              "predicted_hot": "GPU_1"
+            },
+            "shortest": {
+              "chips": [
+                "CPU2_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  38400.0,
+                  44400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  19400.0,
+                  18400.0
+                ]
+              ],
+              "cost": 141.6386796274001,
+              "predicted_rise_k": 42.20541878703606,
+              "predicted_hot": "CPU2_2"
+            },
+            "opposite": {
+              "chips": [
+                "GPU_1",
+                "GPU_3"
+              ],
+              "indices": [
+                9,
+                11
+              ],
+              "from_um": [
+                [
+                  24600.0,
+                  42500.0
+                ],
+                [
+                  15500.0,
+                  43500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15500.0,
+                  43500.0
+                ],
+                [
+                  24600.0,
+                  42500.0
+                ]
+              ],
+              "cost": 154.73867962100002,
+              "predicted_rise_k": 42.05460946070038,
+              "predicted_hot": "CPU2_2"
+            }
+          }
+        }
+      }
+    },
+    {
+      "family": "ATPlace",
+      "name": "Case7",
+      "cost_metric": "pin_manhattan_m",
+      "wide_cap": 59.2549798671,
+      "source_sha256": "be89a969da2a6d65206bc09de8967f0f21e8cabad1e9b534bb665cd5d72e8405",
+      "bank_sha256": "5f07133b4d6b852469d32b2712ae2803e0bb1abaf5d035ce05e288fe21a8b538",
+      "anchor_id": 0,
+      "anchor_xy_um": [
+        [
+          5250.0,
+          18750.0
+        ],
+        [
+          7750.0,
+          12250.0
+        ],
+        [
+          1750.0,
+          21250.0
+        ],
+        [
+          9250.0,
+          16750.0
+        ],
+        [
+          1250.0,
+          2750.0
+        ],
+        [
+          19250.0,
+          1750.0
+        ],
+        [
+          25250.0,
+          14750.0
+        ],
+        [
+          26750.0,
+          18250.0
+        ],
+        [
+          3400.0,
+          13500.0
+        ],
+        [
+          24400.0,
+          2500.0
+        ],
+        [
+          18500.0,
+          17500.0
+        ],
+        [
+          15500.0,
+          8400.0
+        ],
+        [
+          9400.0,
+          8000.0
+        ],
+        [
+          28000.0,
+          5500.0
+        ],
+        [
+          2500.0,
+          7000.0
+        ],
+        [
+          29000.0,
+          11500.0
+        ],
+        [
+          8000.0,
+          21500.0
+        ],
+        [
+          16400.0,
+          2000.0
+        ],
+        [
+          28000.0,
+          1500.0
+        ],
+        [
+          23900.0,
+          9500.0
+        ],
+        [
+          2600.0,
+          9900.0
+        ],
+        [
+          25600.0,
+          11000.0
+        ],
+        [
+          13000.0,
+          1600.0
+        ],
+        [
+          9600.0,
+          3000.0
+        ],
+        [
+          5600.0,
+          8000.0
+        ],
+        [
+          12000.0,
+          21600.0
+        ],
+        [
+          6000.0,
+          4600.0
+        ],
+        [
+          1000.0,
+          17600.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        90,
+        90,
+        0,
+        0,
+        0,
+        180,
+        270,
+        270,
+        270,
+        180,
+        180,
+        0,
+        90,
+        180,
+        270,
+        90,
+        0,
+        270,
+        270,
+        270,
+        90,
+        180,
+        270,
+        90,
+        0,
+        0,
+        0
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 47.33103000295999,
+        "predicted_rise_k": 25.660231715706303,
+        "predicted_hot": "CPU2_0"
+      },
+      "chip_names": [
+        "CPU1_0",
+        "CPU1_1",
+        "CPU1_2",
+        "CPU1_3",
+        "CPU1_4",
+        "CPU1_5",
+        "CPU1_6",
+        "CPU1_7",
+        "CPU2_0",
+        "CPU2_1",
+        "DRAM_0",
+        "DRAM_1",
+        "Analog_0",
+        "Analog_1",
+        "Analog_2",
+        "Analog_3",
+        "Analog_4",
+        "Analog_5",
+        "Analog_6",
+        "Analog_7",
+        "MEMS_0",
+        "MEMS_1",
+        "MEMS_2",
+        "MEMS_3",
+        "MEMS_4",
+        "MEMS_5",
+        "MEMS_6",
+        "MEMS_7"
+      ],
+      "rated_w": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        34.0,
+        34.0,
+        20.0,
+        20.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "predicted_hot": "CPU2_0",
+      "groups": {
+        "strict": {
+          "cap": 47.33103000296,
+          "possible_translations": 454,
+          "possible_exchanges": 70,
+          "choices": {
+            "direct": {
+              "chips": [
+                "CPU1_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  5250.0,
+                  18750.0
+                ]
+              ],
+              "to_um": [
+                [
+                  12250.0,
+                  17750.0
+                ]
+              ],
+              "cost": 47.242219995359996,
+              "predicted_rise_k": 25.2701169608425,
+              "predicted_hot": "CPU2_0"
+            },
+            "hottest": {
+              "chips": [],
+              "indices": [],
+              "from_um": [],
+              "to_um": [],
+              "cost": 47.33103000295999,
+              "predicted_rise_k": 25.660231715706303,
+              "predicted_hot": "CPU2_0"
+            },
+            "random": {
+              "chips": [
+                "Analog_7"
+              ],
+              "indices": [
+                19
+              ],
+              "from_um": [
+                [
+                  23900.0,
+                  9500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  23900.0,
+                  10500.0
+                ]
+              ],
+              "cost": 47.24303000295999,
+              "predicted_rise_k": 25.66084866547436,
+              "predicted_hot": "CPU2_0"
+            },
+            "shortest": {
+              "chips": [
+                "CPU1_3",
+                "CPU2_0"
+              ],
+              "indices": [
+                3,
+                8
+              ],
+              "from_um": [
+                [
+                  9250.0,
+                  16750.0
+                ],
+                [
+                  3400.0,
+                  13500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  3400.0,
+                  13500.0
+                ],
+                [
+                  9250.0,
+                  16750.0
+                ]
+              ],
+              "cost": 43.83269005975998,
+              "predicted_rise_k": 26.173341188268527,
+              "predicted_hot": "CPU2_0"
+            },
+            "opposite": null
+          }
+        },
+        "published": {
+          "cap": 59.2549798671,
+          "possible_translations": 1218,
+          "possible_exchanges": 153,
+          "choices": {
+            "direct": {
+              "chips": [
+                "CPU2_0"
+              ],
+              "indices": [
+                8
+              ],
+              "from_um": [
+                [
+                  3400.0,
+                  13500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  27400.0,
+                  22500.0
+                ]
+              ],
+              "cost": 52.663069882159995,
+              "predicted_rise_k": 24.13622858691068,
+              "predicted_hot": "CPU2_1"
+            },
+            "hottest": {
+              "chips": [
+                "CPU2_0"
+              ],
+              "indices": [
+                8
+              ],
+              "from_um": [
+                [
+                  3400.0,
+                  13500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  27400.0,
+                  22500.0
+                ]
+              ],
+              "cost": 52.663069882159995,
+              "predicted_rise_k": 24.13622858691068,
+              "predicted_hot": "CPU2_1"
+            },
+            "random": {
+              "chips": [
+                "Analog_2"
+              ],
+              "indices": [
+                14
+              ],
+              "from_um": [
+                [
+                  2500.0,
+                  7000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  20500.0,
+                  24000.0
+                ]
+              ],
+              "cost": 48.23742999415999,
+              "predicted_rise_k": 25.49727315691126,
+              "predicted_hot": "CPU2_0"
+            },
+            "shortest": {
+              "chips": [
+                "CPU1_3",
+                "CPU2_0"
+              ],
+              "indices": [
+                3,
+                8
+              ],
+              "from_um": [
+                [
+                  9250.0,
+                  16750.0
+                ],
+                [
+                  3400.0,
+                  13500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  3400.0,
+                  13500.0
+                ],
+                [
+                  9250.0,
+                  16750.0
+                ]
+              ],
+              "cost": 43.83269005975998,
+              "predicted_rise_k": 26.173341188268527,
+              "predicted_hot": "CPU2_0"
+            },
+            "opposite": null
+          }
+        }
+      }
+    },
+    {
+      "family": "ATPlace",
+      "name": "Case8",
+      "cost_metric": "pin_manhattan_m",
+      "wide_cap": 52.8266399606,
+      "source_sha256": "6e7c1278d7b3812f505283c613e30890a4b68dc6c1c9bb8b4b4e4a44e4ee4a1b",
+      "bank_sha256": "5f07133b4d6b852469d32b2712ae2803e0bb1abaf5d035ce05e288fe21a8b538",
+      "anchor_id": 1,
+      "anchor_xy_um": [
+        [
+          18250.0,
+          7750.0
+        ],
+        [
+          9750.0,
+          16250.0
+        ],
+        [
+          3750.0,
+          6450.0
+        ],
+        [
+          13250.0,
+          4750.0
+        ],
+        [
+          16750.0,
+          1250.0
+        ],
+        [
+          13750.0,
+          21250.0
+        ],
+        [
+          13750.0,
+          18250.0
+        ],
+        [
+          6250.0,
+          16750.0
+        ],
+        [
+          2250.0,
+          12750.0
+        ],
+        [
+          14750.0,
+          11250.0
+        ],
+        [
+          5750.0,
+          20250.0
+        ],
+        [
+          23250.0,
+          13850.0
+        ],
+        [
+          4400.0,
+          4100.0
+        ],
+        [
+          23500.0,
+          16900.0
+        ],
+        [
+          12500.0,
+          1900.0
+        ],
+        [
+          19000.0,
+          15500.0
+        ],
+        [
+          8800.0,
+          20500.0
+        ],
+        [
+          10900.0,
+          19500.0
+        ],
+        [
+          20500.0,
+          21100.0
+        ],
+        [
+          21400.0,
+          11000.0
+        ],
+        [
+          9000.0,
+          11500.0
+        ],
+        [
+          24500.0,
+          11000.0
+        ],
+        [
+          23500.0,
+          2900.0
+        ],
+        [
+          25000.0,
+          19500.0
+        ],
+        [
+          18300.0,
+          11000.0
+        ],
+        [
+          15500.0,
+          15000.0
+        ],
+        [
+          5000.0,
+          1500.0
+        ],
+        [
+          22500.0,
+          8900.0
+        ],
+        [
+          11000.0,
+          8400.0
+        ],
+        [
+          22500.0,
+          5000.0
+        ],
+        [
+          6000.0,
+          9500.0
+        ],
+        [
+          21500.0,
+          19000.0
+        ],
+        [
+          7500.0,
+          6000.0
+        ],
+        [
+          15900.0,
+          6500.0
+        ],
+        [
+          19900.0,
+          2500.0
+        ],
+        [
+          2400.0,
+          19000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        90,
+        90,
+        0,
+        90,
+        270,
+        90,
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        180,
+        180,
+        90,
+        90,
+        90,
+        0,
+        0,
+        270,
+        0,
+        0,
+        90,
+        180,
+        0,
+        270,
+        180,
+        270,
+        180,
+        90,
+        0,
+        180,
+        270,
+        270,
+        180
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 49.460340050900015,
+        "predicted_rise_k": 24.829742572562317,
+        "predicted_hot": "CPU1_1"
+      },
+      "chip_names": [
+        "CPU1_0",
+        "CPU1_1",
+        "CPU1_2",
+        "CPU1_3",
+        "CPU1_4",
+        "CPU1_5",
+        "CPU1_6",
+        "CPU1_7",
+        "CPU1_8",
+        "CPU1_9",
+        "CPU1_10",
+        "CPU1_11",
+        "Analog_0",
+        "Analog_1",
+        "Analog_2",
+        "Analog_3",
+        "Analog_4",
+        "Analog_5",
+        "Analog_6",
+        "Analog_7",
+        "Analog_8",
+        "Analog_9",
+        "Analog_10",
+        "Analog_11",
+        "Analog_12",
+        "Analog_13",
+        "Analog_14",
+        "Analog_15",
+        "Analog_16",
+        "Analog_17",
+        "Analog_18",
+        "Analog_19",
+        "Analog_20",
+        "Analog_21",
+        "Analog_22",
+        "Analog_23"
+      ],
+      "rated_w": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "predicted_hot": "CPU1_1",
+      "groups": {
+        "strict": {
+          "cap": 49.460340050899994,
+          "possible_translations": 335,
+          "possible_exchanges": 153,
+          "choices": {
+            "direct": {
+              "chips": [
+                "CPU1_10"
+              ],
+              "indices": [
+                10
+              ],
+              "from_um": [
+                [
+                  5750.0,
+                  20250.0
+                ]
+              ],
+              "to_um": [
+                [
+                  1750.0,
+                  1250.0
+                ]
+              ],
+              "cost": 48.66978003390001,
+              "predicted_rise_k": 24.53811776872,
+              "predicted_hot": "CPU1_9"
+            },
+            "hottest": {
+              "chips": [
+                "CPU1_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  9750.0,
+                  16250.0
+                ]
+              ],
+              "to_um": [
+                [
+                  9750.0,
+                  15250.0
+                ]
+              ],
+              "cost": 49.326840051900014,
+              "predicted_rise_k": 24.69646093423692,
+              "predicted_hot": "CPU1_9"
+            },
+            "random": {
+              "chips": [
+                "Analog_2"
+              ],
+              "indices": [
+                14
+              ],
+              "from_um": [
+                [
+                  12500.0,
+                  1900.0
+                ]
+              ],
+              "to_um": [
+                [
+                  1500.0,
+                  16900.0
+                ]
+              ],
+              "cost": 48.61378006970001,
+              "predicted_rise_k": 24.91478594992998,
+              "predicted_hot": "CPU1_1"
+            },
+            "shortest": {
+              "chips": [
+                "CPU1_2",
+                "CPU1_10"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  3750.0,
+                  6450.0
+                ],
+                [
+                  5750.0,
+                  20250.0
+                ]
+              ],
+              "to_um": [
+                [
+                  5750.0,
+                  20250.0
+                ],
+                [
+                  3750.0,
+                  6450.0
+                ]
+              ],
+              "cost": 44.503320045100004,
+              "predicted_rise_k": 24.829742572562317,
+              "predicted_hot": "CPU1_1"
+            },
+            "opposite": null
+          }
+        },
+        "published": {
+          "cap": 52.8266399606,
+          "possible_translations": 622,
+          "possible_exchanges": 235,
+          "choices": {
+            "direct": {
+              "chips": [
+                "CPU1_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  9750.0,
+                  16250.0
+                ]
+              ],
+              "to_um": [
+                [
+                  1750.0,
+                  1250.0
+                ]
+              ],
+              "cost": 51.63156005190002,
+              "predicted_rise_k": 24.23345236304178,
+              "predicted_hot": "CPU1_9"
+            },
+            "hottest": {
+              "chips": [
+                "CPU1_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  9750.0,
+                  16250.0
+                ]
+              ],
+              "to_um": [
+                [
+                  1750.0,
+                  1250.0
+                ]
+              ],
+              "cost": 51.63156005190002,
+              "predicted_rise_k": 24.23345236304178,
+              "predicted_hot": "CPU1_9"
+            },
+            "random": {
+              "chips": [
+                "Analog_1"
+              ],
+              "indices": [
+                13
+              ],
+              "from_um": [
+                [
+                  23500.0,
+                  16900.0
+                ]
+              ],
+              "to_um": [
+                [
+                  2500.0,
+                  16900.0
+                ]
+              ],
+              "cost": 50.653540068500014,
+              "predicted_rise_k": 24.934826857830153,
+              "predicted_hot": "CPU1_1"
+            },
+            "shortest": {
+              "chips": [
+                "CPU1_2",
+                "CPU1_10"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  3750.0,
+                  6450.0
+                ],
+                [
+                  5750.0,
+                  20250.0
+                ]
+              ],
+              "to_um": [
+                [
+                  5750.0,
+                  20250.0
+                ],
+                [
+                  3750.0,
+                  6450.0
+                ]
+              ],
+              "cost": 44.503320045100004,
+              "predicted_rise_k": 24.829742572562317,
+              "predicted_hot": "CPU1_1"
+            },
+            "opposite": {
+              "chips": [
+                "CPU1_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  9750.0,
+                  16250.0
+                ]
+              ],
+              "to_um": [
+                [
+                  11750.0,
+                  15250.0
+                ]
+              ],
+              "cost": 48.886840051900016,
+              "predicted_rise_k": 24.990479578643814,
+              "predicted_hot": "CPU1_1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "family": "ATPlace",
+      "name": "Case9",
+      "cost_metric": "pin_manhattan_m",
+      "wide_cap": 337.6416797496,
+      "source_sha256": "13003c5004f028229280860f8bbbfc9e4bb9f49d84d6e8f31f89eaa9397cb8d5",
+      "bank_sha256": "5f07133b4d6b852469d32b2712ae2803e0bb1abaf5d035ce05e288fe21a8b538",
+      "anchor_id": 0,
+      "anchor_xy_um": [
+        [
+          11250.0,
+          37750.0
+        ],
+        [
+          1250.0,
+          32750.0
+        ],
+        [
+          3750.0,
+          37250.0
+        ],
+        [
+          49850.0,
+          50250.0
+        ],
+        [
+          3500.0,
+          20500.0
+        ],
+        [
+          47500.0,
+          13400.0
+        ],
+        [
+          21500.0,
+          37400.0
+        ],
+        [
+          3500.0,
+          41500.0
+        ],
+        [
+          29500.0,
+          4500.0
+        ],
+        [
+          47500.0,
+          18500.0
+        ],
+        [
+          4500.0,
+          4400.0
+        ],
+        [
+          4400.0,
+          53500.0
+        ],
+        [
+          17600.0,
+          53500.0
+        ],
+        [
+          22500.0,
+          17500.0
+        ],
+        [
+          48500.0,
+          7500.0
+        ],
+        [
+          36500.0,
+          6300.0
+        ],
+        [
+          15500.0,
+          4500.0
+        ],
+        [
+          13500.0,
+          24500.0
+        ],
+        [
+          4500.0,
+          11500.0
+        ],
+        [
+          29500.0,
+          33500.0
+        ],
+        [
+          40400.0,
+          13400.0
+        ],
+        [
+          39400.0,
+          34600.0
+        ],
+        [
+          25500.0,
+          52600.0
+        ],
+        [
+          43500.0,
+          54500.0
+        ],
+        [
+          40900.0,
+          24000.0
+        ],
+        [
+          24000.0,
+          44000.0
+        ],
+        [
+          34900.0,
+          55000.0
+        ],
+        [
+          31800.0,
+          15000.0
+        ],
+        [
+          53000.0,
+          33000.0
+        ],
+        [
+          11000.0,
+          47000.0
+        ],
+        [
+          54100.0,
+          19000.0
+        ],
+        [
+          49000.0,
+          44000.0
+        ],
+        [
+          13600.0,
+          14500.0
+        ],
+        [
+          37500.0,
+          44400.0
+        ],
+        [
+          21500.0,
+          26500.0
+        ],
+        [
+          5500.0,
+          29500.0
+        ],
+        [
+          45500.0,
+          35000.0
+        ],
+        [
+          55500.0,
+          55000.0
+        ],
+        [
+          56000.0,
+          51500.0
+        ],
+        [
+          57500.0,
+          41000.0
+        ],
+        [
+          28500.0,
+          27900.0
+        ],
+        [
+          2500.0,
+          25000.0
+        ],
+        [
+          14000.0,
+          55500.0
+        ],
+        [
+          19700.0,
+          13900.0
+        ]
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        90,
+        90,
+        90,
+        180,
+        90,
+        0,
+        270,
+        90,
+        90,
+        180,
+        180,
+        270,
+        270,
+        180,
+        0,
+        90,
+        270,
+        270,
+        180,
+        0,
+        0,
+        90,
+        180,
+        270,
+        180,
+        0,
+        180,
+        180,
+        0,
+        270,
+        180,
+        0,
+        180,
+        0,
+        180,
+        180,
+        270,
+        0,
+        180,
+        0,
+        270,
+        180
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 332.9288797899998,
+        "predicted_rise_k": 51.094475111483725,
+        "predicted_hot": "GPU_3"
+      },
+      "chip_names": [
+        "CPU1_0",
+        "CPU1_1",
+        "CPU1_2",
+        "CPU1_3",
+        "CPU2_0",
+        "CPU2_1",
+        "CPU2_2",
+        "CPU2_3",
+        "CPU2_4",
+        "CPU2_5",
+        "CPU2_6",
+        "CPU2_7",
+        "CPU2_8",
+        "CPU2_9",
+        "CPU2_10",
+        "CPU2_11",
+        "GPU_0",
+        "GPU_1",
+        "GPU_2",
+        "GPU_3",
+        "GPU_4",
+        "GPU_5",
+        "GPU_6",
+        "GPU_7",
+        "HBM_0",
+        "HBM_1",
+        "HBM_2",
+        "HBM_3",
+        "HBM_4",
+        "HBM_5",
+        "HBM_6",
+        "HBM_7",
+        "DRAM_0",
+        "DRAM_1",
+        "IODie_0",
+        "IODie_1",
+        "Analog_0",
+        "Analog_1",
+        "Analog_2",
+        "Analog_3",
+        "Analog_4",
+        "Analog_5",
+        "Analog_6",
+        "Analog_7"
+      ],
+      "rated_w": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        20.0,
+        20.0,
+        10.0,
+        10.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "predicted_hot": "GPU_3",
+      "groups": {
+        "strict": {
+          "cap": 332.92887979,
+          "possible_translations": 3501,
+          "possible_exchanges": 137,
+          "choices": {
+            "direct": {
+              "chips": [
+                "GPU_3",
+                "DRAM_1"
+              ],
+              "indices": [
+                19,
+                33
+              ],
+              "from_um": [
+                [
+                  29500.0,
+                  33500.0
+                ],
+                [
+                  37500.0,
+                  44400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  37500.0,
+                  44400.0
+                ],
+                [
+                  29500.0,
+                  33500.0
+                ]
+              ],
+              "cost": 329.7561896363998,
+              "predicted_rise_k": 49.74038414568296,
+              "predicted_hot": "GPU_3"
+            },
+            "hottest": {
+              "chips": [
+                "GPU_3",
+                "DRAM_1"
+              ],
+              "indices": [
+                19,
+                33
+              ],
+              "from_um": [
+                [
+                  29500.0,
+                  33500.0
+                ],
+                [
+                  37500.0,
+                  44400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  37500.0,
+                  44400.0
+                ],
+                [
+                  29500.0,
+                  33500.0
+                ]
+              ],
+              "cost": 329.7561896363998,
+              "predicted_rise_k": 49.74038414568296,
+              "predicted_hot": "GPU_3"
+            },
+            "random": {
+              "chips": [
+                "CPU1_3"
+              ],
+              "indices": [
+                3
+              ],
+              "from_um": [
+                [
+                  49850.0,
+                  50250.0
+                ]
+              ],
+              "to_um": [
+                [
+                  24850.0,
+                  22250.0
+                ]
+              ],
+              "cost": 323.86487978999986,
+              "predicted_rise_k": 51.305750484510654,
+              "predicted_hot": "GPU_3"
+            },
+            "shortest": {
+              "chips": [
+                "GPU_2",
+                "GPU_6"
+              ],
+              "indices": [
+                18,
+                22
+              ],
+              "from_um": [
+                [
+                  4500.0,
+                  11500.0
+                ],
+                [
+                  25500.0,
+                  52600.0
+                ]
+              ],
+              "to_um": [
+                [
+                  25500.0,
+                  52600.0
+                ],
+                [
+                  4500.0,
+                  11500.0
+                ]
+              ],
+              "cost": 291.67479996599985,
+              "predicted_rise_k": 51.094475111483725,
+              "predicted_hot": "GPU_3"
+            },
+            "opposite": {
+              "chips": [
+                "GPU_1",
+                "GPU_3"
+              ],
+              "indices": [
+                17,
+                19
+              ],
+              "from_um": [
+                [
+                  13500.0,
+                  24500.0
+                ],
+                [
+                  29500.0,
+                  33500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  29500.0,
+                  33500.0
+                ],
+                [
+                  13500.0,
+                  24500.0
+                ]
+              ],
+              "cost": 326.6000799835998,
+              "predicted_rise_k": 51.09447511148372,
+              "predicted_hot": "GPU_1"
+            }
+          }
+        },
+        "published": {
+          "cap": 337.6416797496,
+          "possible_translations": 5761,
+          "possible_exchanges": 178,
+          "choices": {
+            "direct": {
+              "chips": [
+                "GPU_3",
+                "DRAM_1"
+              ],
+              "indices": [
+                19,
+                33
+              ],
+              "from_um": [
+                [
+                  29500.0,
+                  33500.0
+                ],
+                [
+                  37500.0,
+                  44400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  37500.0,
+                  44400.0
+                ],
+                [
+                  29500.0,
+                  33500.0
+                ]
+              ],
+              "cost": 329.7561896363998,
+              "predicted_rise_k": 49.74038414568296,
+              "predicted_hot": "GPU_3"
+            },
+            "hottest": {
+              "chips": [
+                "GPU_3",
+                "DRAM_1"
+              ],
+              "indices": [
+                19,
+                33
+              ],
+              "from_um": [
+                [
+                  29500.0,
+                  33500.0
+                ],
+                [
+                  37500.0,
+                  44400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  37500.0,
+                  44400.0
+                ],
+                [
+                  29500.0,
+                  33500.0
+                ]
+              ],
+              "cost": 329.7561896363998,
+              "predicted_rise_k": 49.74038414568296,
+              "predicted_hot": "GPU_3"
+            },
+            "random": {
+              "chips": [
+                "CPU1_3"
+              ],
+              "indices": [
+                3
+              ],
+              "from_um": [
+                [
+                  49850.0,
+                  50250.0
+                ]
+              ],
+              "to_um": [
+                [
+                  2850.0,
+                  58250.0
+                ]
+              ],
+              "cost": 327.15943978759987,
+              "predicted_rise_k": 51.044522166504116,
+              "predicted_hot": "GPU_3"
+            },
+            "shortest": {
+              "chips": [
+                "GPU_2",
+                "GPU_6"
+              ],
+              "indices": [
+                18,
+                22
+              ],
+              "from_um": [
+                [
+                  4500.0,
+                  11500.0
+                ],
+                [
+                  25500.0,
+                  52600.0
+                ]
+              ],
+              "to_um": [
+                [
+                  25500.0,
+                  52600.0
+                ],
+                [
+                  4500.0,
+                  11500.0
+                ]
+              ],
+              "cost": 291.67479996599985,
+              "predicted_rise_k": 51.094475111483725,
+              "predicted_hot": "GPU_3"
+            },
+            "opposite": {
+              "chips": [
+                "GPU_1",
+                "GPU_3"
+              ],
+              "indices": [
+                17,
+                19
+              ],
+              "from_um": [
+                [
+                  13500.0,
+                  24500.0
+                ],
+                [
+                  29500.0,
+                  33500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  29500.0,
+                  33500.0
+                ],
+                [
+                  13500.0,
+                  24500.0
+                ]
+              ],
+              "cost": 326.6000799835998,
+              "predicted_rise_k": 51.09447511148372,
+              "predicted_hot": "GPU_1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "family": "ATPlace",
+      "name": "Case10",
+      "cost_metric": "pin_manhattan_m",
+      "wide_cap": 189.67367000587998,
+      "source_sha256": "841ecee33a7226afdd99e7c094ce03894b4b969a8e1d4a72f845baf5924d4a90",
+      "bank_sha256": "5f07133b4d6b852469d32b2712ae2803e0bb1abaf5d035ce05e288fe21a8b538",
+      "anchor_id": 0,
+      "anchor_xy_um": [
+        [
+          1250.0,
+          37750.0
+        ],
+        [
+          7750.0,
+          1250.0
+        ],
+        [
+          17750.0,
+          10250.0
+        ],
+        [
+          14750.0,
+          37550.0
+        ],
+        [
+          26250.0,
+          6750.0
+        ],
+        [
+          26250.0,
+          2750.0
+        ],
+        [
+          39600.0,
+          16500.0
+        ],
+        [
+          41500.0,
+          2500.0
+        ],
+        [
+          9500.0,
+          40500.0
+        ],
+        [
+          3500.0,
+          42400.0
+        ],
+        [
+          14400.0,
+          14400.0
+        ],
+        [
+          24600.0,
+          13400.0
+        ],
+        [
+          31500.0,
+          22800.0
+        ],
+        [
+          19500.0,
+          14400.0
+        ],
+        [
+          40500.0,
+          9500.0
+        ],
+        [
+          16600.0,
+          29600.0
+        ],
+        [
+          7500.0,
+          33200.0
+        ],
+        [
+          32300.0,
+          4500.0
+        ],
+        [
+          32500.0,
+          13600.0
+        ],
+        [
+          4900.0,
+          22000.0
+        ],
+        [
+          17900.0,
+          4900.0
+        ],
+        [
+          15900.0,
+          21000.0
+        ],
+        [
+          7000.0,
+          8800.0
+        ],
+        [
+          25400.0,
+          18500.0
+        ],
+        [
+          24500.0,
+          27400.0
+        ],
+        [
+          1600.0,
+          14000.0
+        ],
+        [
+          1600.0,
+          8900.0
+        ],
+        [
+          16600.0,
+          35200.0
+        ],
+        [
+          11700.0,
+          10000.0
+        ],
+        [
+          46000.0,
+          4600.0
+        ],
+        [
+          1900.0,
+          29600.0
+        ],
+        [
+          30600.0,
+          19200.0
+        ],
+        [
+          14000.0,
+          34800.0
+        ],
+        [
+          600.0,
+          34900.0
+        ],
+        [
+          22600.0,
+          22100.0
+        ],
+        [
+          4000.0,
+          600.0
+        ],
+        [
+          37600.0,
+          1000.0
+        ],
+        [
+          44700.0,
+          2900.0
+        ],
+        [
+          37600.0,
+          3900.0
+        ],
+        [
+          9600.0,
+          27600.0
+        ],
+        [
+          600.0,
+          11000.0
+        ],
+        [
+          26700.0,
+          9800.0
+        ],
+        [
+          600.0,
+          6000.0
+        ],
+        [
+          2600.0,
+          46000.0
+        ],
+        [
+          10600.0,
+          15900.0
+        ],
+        [
+          43900.0,
+          5700.0
+        ],
+        [
+          3600.0,
+          38800.0
+        ],
+        [
+          600.0,
+          46000.0
+        ],
+        [
+          1900.0,
+          32600.0
+        ],
+        [
+          14600.0,
+          10000.0
+        ],
+        [
+          27000.0,
+          23600.0
+        ],
+        [
+          37900.0,
+          5600.0
+        ],
+        [
+          25000.0,
+          9600.0
+        ],
+        [
+          26000.0,
+          21700.0
+        ],
+        [
+          21800.0,
+          31000.0
+        ],
+        [
+          20600.0,
+          10000.0
+        ],
+        [
+          1900.0,
+          3600.0
+        ],
+        [
+          1000.0,
+          600.0
+        ],
+        [
+          10600.0,
+          1000.0
+        ],
+        [
+          45100.0,
+          600.0
+        ],
+        [
+          24900.0,
+          23600.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        90,
+        90,
+        90,
+        0,
+        0,
+        180,
+        180,
+        0,
+        90,
+        0,
+        90,
+        270,
+        270,
+        0,
+        180,
+        270,
+        270,
+        270,
+        180,
+        90,
+        90,
+        180,
+        90,
+        270,
+        90,
+        90,
+        90,
+        90,
+        0,
+        0,
+        270,
+        180,
+        90,
+        270,
+        180,
+        270,
+        90,
+        90,
+        270,
+        90,
+        90,
+        270,
+        270,
+        90,
+        0,
+        270,
+        90,
+        180,
+        90,
+        180,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0,
+        0,
+        90,
+        180,
+        0
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 154.5771297477199,
+        "predicted_rise_k": 47.618813628068175,
+        "predicted_hot": "CPU2_5"
+      },
+      "chip_names": [
+        "CPU1_0",
+        "CPU1_1",
+        "CPU1_2",
+        "CPU1_3",
+        "CPU1_4",
+        "CPU1_5",
+        "CPU2_0",
+        "CPU2_1",
+        "CPU2_2",
+        "CPU2_3",
+        "CPU2_4",
+        "CPU2_5",
+        "CPU2_6",
+        "CPU2_7",
+        "CPU2_8",
+        "GPU_0",
+        "GPU_1",
+        "GPU_2",
+        "GPU_3",
+        "DUMMY_0",
+        "DUMMY_1",
+        "DUMMY_2",
+        "DUMMY_3",
+        "IODie_0",
+        "IODie_1",
+        "MEMS_0",
+        "MEMS_1",
+        "MEMS_2",
+        "MEMS_3",
+        "MEMS_4",
+        "MEMS_5",
+        "MEMS_6",
+        "MEMS_7",
+        "MEMS_8",
+        "MEMS_9",
+        "MEMS_10",
+        "MEMS_11",
+        "MEMS_12",
+        "MEMS_13",
+        "MEMS_14",
+        "MEMS_15",
+        "MEMS_16",
+        "MEMS_17",
+        "MEMS_18",
+        "MEMS_19",
+        "MEMS_20",
+        "MEMS_21",
+        "MEMS_22",
+        "MEMS_23",
+        "MEMS_24",
+        "MEMS_25",
+        "MEMS_26",
+        "MEMS_27",
+        "MEMS_28",
+        "MEMS_29",
+        "MEMS_30",
+        "MEMS_31",
+        "MEMS_32",
+        "MEMS_33",
+        "MEMS_34",
+        "MEMS_35"
+      ],
+      "rated_w": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        34.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        10.0,
+        10.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "predicted_hot": "CPU2_5",
+      "groups": {
+        "strict": {
+          "cap": 154.57712974772,
+          "possible_translations": 6789,
+          "possible_exchanges": 199,
+          "choices": {
+            "direct": {
+              "chips": [
+                "GPU_2"
+              ],
+              "indices": [
+                17
+              ],
+              "from_um": [
+                [
+                  32300.0,
+                  4500.0
+                ]
+              ],
+              "to_um": [
+                [
+                  36300.0,
+                  42500.0
+                ]
+              ],
+              "cost": 154.4070998911199,
+              "predicted_rise_k": 45.40993060940363,
+              "predicted_hot": "CPU2_5"
+            },
+            "hottest": {
+              "chips": [],
+              "indices": [],
+              "from_um": [],
+              "to_um": [],
+              "cost": 154.5771297477199,
+              "predicted_rise_k": 47.618813628068175,
+              "predicted_hot": "CPU2_5"
+            },
+            "random": {
+              "chips": [
+                "CPU2_3"
+              ],
+              "indices": [
+                9
+              ],
+              "from_um": [
+                [
+                  3500.0,
+                  42400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  30500.0,
+                  30400.0
+                ]
+              ],
+              "cost": 136.61464974771994,
+              "predicted_rise_k": 47.995515512181285,
+              "predicted_hot": "CPU2_5"
+            },
+            "shortest": {
+              "chips": [
+                "CPU2_1",
+                "CPU2_3"
+              ],
+              "indices": [
+                7,
+                9
+              ],
+              "from_um": [
+                [
+                  41500.0,
+                  2500.0
+                ],
+                [
+                  3500.0,
+                  42400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  3500.0,
+                  42400.0
+                ],
+                [
+                  41500.0,
+                  2500.0
+                ]
+              ],
+              "cost": 131.17248974891984,
+              "predicted_rise_k": 47.618813628068175,
+              "predicted_hot": "CPU2_5"
+            },
+            "opposite": null
+          }
+        },
+        "published": {
+          "cap": 189.67367000587998,
+          "possible_translations": 33234,
+          "possible_exchanges": 465,
+          "choices": {
+            "direct": {
+              "chips": [
+                "GPU_3"
+              ],
+              "indices": [
+                18
+              ],
+              "from_um": [
+                [
+                  32500.0,
+                  13600.0
+                ]
+              ],
+              "to_um": [
+                [
+                  42500.0,
+                  41600.0
+                ]
+              ],
+              "cost": 157.7759698103199,
+              "predicted_rise_k": 44.54651793048072,
+              "predicted_hot": "CPU2_7"
+            },
+            "hottest": {
+              "chips": [
+                "CPU2_5"
+              ],
+              "indices": [
+                11
+              ],
+              "from_um": [
+                [
+                  24600.0,
+                  13400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  14600.0,
+                  44400.0
+                ]
+              ],
+              "cost": 162.26624974651992,
+              "predicted_rise_k": 45.66778310091753,
+              "predicted_hot": "GPU_3"
+            },
+            "random": {
+              "chips": [
+                "GPU_3"
+              ],
+              "indices": [
+                18
+              ],
+              "from_um": [
+                [
+                  32500.0,
+                  13600.0
+                ]
+              ],
+              "to_um": [
+                [
+                  41500.0,
+                  31600.0
+                ]
+              ],
+              "cost": 156.0848297825199,
+              "predicted_rise_k": 44.85766234502491,
+              "predicted_hot": "CPU2_7"
+            },
+            "shortest": {
+              "chips": [
+                "CPU2_1",
+                "CPU2_3"
+              ],
+              "indices": [
+                7,
+                9
+              ],
+              "from_um": [
+                [
+                  41500.0,
+                  2500.0
+                ],
+                [
+                  3500.0,
+                  42400.0
+                ]
+              ],
+              "to_um": [
+                [
+                  3500.0,
+                  42400.0
+                ],
+                [
+                  41500.0,
+                  2500.0
+                ]
+              ],
+              "cost": 131.17248974891984,
+              "predicted_rise_k": 47.618813628068175,
+              "predicted_hot": "CPU2_5"
+            },
+            "opposite": {
+              "chips": [
+                "GPU_2",
+                "GPU_3"
+              ],
+              "indices": [
+                17,
+                18
+              ],
+              "from_um": [
+                [
+                  32300.0,
+                  4500.0
+                ],
+                [
+                  32500.0,
+                  13600.0
+                ]
+              ],
+              "to_um": [
+                [
+                  32500.0,
+                  13600.0
+                ],
+                [
+                  32300.0,
+                  4500.0
+                ]
+              ],
+              "cost": 154.4659997223199,
+              "predicted_rise_k": 47.618813628068175,
+              "predicted_hot": "CPU2_5"
+            }
+          }
+        }
+      }
+    },
+    {
+      "family": "TAP-2.5D",
+      "name": "ascend910",
+      "cost_metric": "demand_weighted_centre_mm",
+      "wide_cap": 38.39869281045752,
+      "bank_sha256": "6722f463f5c661e6931cc18954b274f1f671752fd7ec2a14832363831465222e",
+      "anchor_id": 0,
+      "anchor_xy_um": [
+        [
+          19000.0,
+          33000.0
+        ],
+        [
+          20000.0,
+          11000.0
+        ],
+        [
+          7000.0,
+          43000.0
+        ],
+        [
+          43000.0,
+          31000.0
+        ],
+        [
+          7000.0,
+          23000.0
+        ],
+        [
+          37000.0,
+          13000.0
+        ]
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        180,
+        270,
+        180,
+        90
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 26.34640522875817,
+        "predicted_rise_k": 21.259975996829517,
+        "predicted_hot": "die_0"
+      },
+      "chip_names": [
+        "die_0",
+        "die_1",
+        "die_2",
+        "die_3",
+        "die_4",
+        "die_5"
+      ],
+      "rated_w": [
+        256.0,
+        14.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "predicted_hot": "die_0",
+      "groups": {
+        "strict": {
+          "cap": 26.34640522875817,
+          "possible_translations": 522,
+          "possible_exchanges": 3,
+          "choices": {
+            "direct": {
+              "chips": [
+                "die_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  19000.0,
+                  33000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  21000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 26.34640522875817,
+              "predicted_rise_k": 21.206059109203593,
+              "predicted_hot": "die_0"
+            },
+            "hottest": {
+              "chips": [
+                "die_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  19000.0,
+                  33000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  21000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 26.34640522875817,
+              "predicted_rise_k": 21.206059109203593,
+              "predicted_hot": "die_0"
+            },
+            "random": {
+              "chips": [
+                "die_3"
+              ],
+              "indices": [
+                3
+              ],
+              "from_um": [
+                [
+                  43000.0,
+                  31000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  33000.0,
+                  29000.0
+                ]
+              ],
+              "cost": 24.673202614379083,
+              "predicted_rise_k": 21.49396419582933,
+              "predicted_hot": "die_0"
+            },
+            "shortest": {
+              "chips": [
+                "die_5"
+              ],
+              "indices": [
+                5
+              ],
+              "from_um": [
+                [
+                  37000.0,
+                  13000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  33000.0,
+                  39000.0
+                ]
+              ],
+              "cost": 22.581699346405227,
+              "predicted_rise_k": 21.50359596700235,
+              "predicted_hot": "die_0"
+            },
+            "opposite": null
+          }
+        },
+        "published": {
+          "cap": 38.39869281045752,
+          "possible_translations": 1154,
+          "possible_exchanges": 3,
+          "choices": {
+            "direct": {
+              "chips": [
+                "die_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  7000.0,
+                  43000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  4000.0,
+                  6000.0
+                ]
+              ],
+              "cost": 30.529411764705884,
+              "predicted_rise_k": 21.002554342908006,
+              "predicted_hot": "die_0"
+            },
+            "hottest": {
+              "chips": [
+                "die_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  19000.0,
+                  33000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  26000.0,
+                  34000.0
+                ]
+              ],
+              "cost": 27.745098039215687,
+              "predicted_rise_k": 21.130133972791885,
+              "predicted_hot": "die_0"
+            },
+            "random": {
+              "chips": [
+                "die_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  7000.0,
+                  43000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  33000.0,
+                  43000.0
+                ]
+              ],
+              "cost": 26.76470588235294,
+              "predicted_rise_k": 21.209864634708598,
+              "predicted_hot": "die_0"
+            },
+            "shortest": {
+              "chips": [
+                "die_5"
+              ],
+              "indices": [
+                5
+              ],
+              "from_um": [
+                [
+                  37000.0,
+                  13000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  33000.0,
+                  39000.0
+                ]
+              ],
+              "cost": 22.581699346405227,
+              "predicted_rise_k": 21.50359596700235,
+              "predicted_hot": "die_0"
+            },
+            "opposite": {
+              "chips": [
+                "die_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  7000.0,
+                  43000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  44000.0,
+                  41000.0
+                ]
+              ],
+              "cost": 28.647058823529413,
+              "predicted_rise_k": 21.046224732640187,
+              "predicted_hot": "die_0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "family": "TAP-2.5D",
+      "name": "micro150",
+      "cost_metric": "demand_weighted_centre_mm",
+      "wide_cap": 36.3,
+      "bank_sha256": "6722f463f5c661e6931cc18954b274f1f671752fd7ec2a14832363831465222e",
+      "anchor_id": 0,
+      "anchor_xy_um": [
+        [
+          10000.0,
+          28000.0
+        ],
+        [
+          38000.0,
+          18000.0
+        ],
+        [
+          21000.0,
+          27000.0
+        ],
+        [
+          5000.0,
+          13000.0
+        ],
+        [
+          44000.0,
+          6000.0
+        ],
+        [
+          33000.0,
+          43000.0
+        ],
+        [
+          18000.0,
+          11000.0
+        ],
+        [
+          33000.0,
+          33000.0
+        ]
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        90,
+        270,
+        90,
+        180,
+        270,
+        90
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 36.300000000000004,
+        "predicted_rise_k": 49.23779070320457,
+        "predicted_hot": "die_2"
+      },
+      "chip_names": [
+        "die_0",
+        "die_1",
+        "die_2",
+        "die_3",
+        "die_4",
+        "die_5",
+        "die_6",
+        "die_7"
+      ],
+      "rated_w": [
+        150.0,
+        150.0,
+        150.0,
+        150.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "predicted_hot": "die_2",
+      "groups": {
+        "strict": {
+          "cap": 36.3,
+          "possible_translations": 1719,
+          "possible_exchanges": 19,
+          "choices": {
+            "direct": {
+              "chips": [
+                "die_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  10000.0,
+                  28000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  45000.0,
+                  45000.0
+                ]
+              ],
+              "cost": 35.50000000000001,
+              "predicted_rise_k": 45.73600686187215,
+              "predicted_hot": "die_2"
+            },
+            "hottest": {
+              "chips": [
+                "die_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  21000.0,
+                  27000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  29000.0,
+                  5000.0
+                ]
+              ],
+              "cost": 35.800000000000004,
+              "predicted_rise_k": 45.90084728582843,
+              "predicted_hot": "die_2"
+            },
+            "random": {
+              "chips": [
+                "die_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  38000.0,
+                  18000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  9000.0,
+                  42000.0
+                ]
+              ],
+              "cost": 34.20000000000001,
+              "predicted_rise_k": 50.961099013193014,
+              "predicted_hot": "die_0"
+            },
+            "shortest": {
+              "chips": [
+                "die_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  10000.0,
+                  28000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  35000.0,
+                  6000.0
+                ]
+              ],
+              "cost": 26.6,
+              "predicted_rise_k": 47.70330401071092,
+              "predicted_hot": "die_1"
+            },
+            "opposite": {
+              "chips": [
+                "die_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  10000.0,
+                  28000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  5000.0,
+                  23000.0
+                ]
+              ],
+              "cost": 35.800000000000004,
+              "predicted_rise_k": 48.71879437529992,
+              "predicted_hot": "die_0"
+            }
+          }
+        },
+        "published": {
+          "cap": 36.3,
+          "possible_translations": 1719,
+          "possible_exchanges": 19,
+          "choices": {
+            "direct": {
+              "chips": [
+                "die_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  10000.0,
+                  28000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  45000.0,
+                  45000.0
+                ]
+              ],
+              "cost": 35.50000000000001,
+              "predicted_rise_k": 45.73600686187215,
+              "predicted_hot": "die_2"
+            },
+            "hottest": {
+              "chips": [
+                "die_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  21000.0,
+                  27000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  29000.0,
+                  5000.0
+                ]
+              ],
+              "cost": 35.800000000000004,
+              "predicted_rise_k": 45.90084728582843,
+              "predicted_hot": "die_2"
+            },
+            "random": {
+              "chips": [
+                "die_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  38000.0,
+                  18000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  9000.0,
+                  42000.0
+                ]
+              ],
+              "cost": 34.20000000000001,
+              "predicted_rise_k": 50.961099013193014,
+              "predicted_hot": "die_0"
+            },
+            "shortest": {
+              "chips": [
+                "die_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  10000.0,
+                  28000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  35000.0,
+                  6000.0
+                ]
+              ],
+              "cost": 26.6,
+              "predicted_rise_k": 47.70330401071092,
+              "predicted_hot": "die_1"
+            },
+            "opposite": {
+              "chips": [
+                "die_0"
+              ],
+              "indices": [
+                0
+              ],
+              "from_um": [
+                [
+                  10000.0,
+                  28000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  5000.0,
+                  23000.0
+                ]
+              ],
+              "cost": 35.800000000000004,
+              "predicted_rise_k": 48.71879437529992,
+              "predicted_hot": "die_0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "family": "TAP-2.5D",
+      "name": "multigpu",
+      "cost_metric": "demand_weighted_centre_mm",
+      "wide_cap": 41.333333333333336,
+      "bank_sha256": "6722f463f5c661e6931cc18954b274f1f671752fd7ec2a14832363831465222e",
+      "anchor_id": 0,
+      "anchor_xy_um": [
+        [
+          24000.0,
+          7000.0
+        ],
+        [
+          31000.0,
+          37000.0
+        ],
+        [
+          10000.0,
+          29000.0
+        ],
+        [
+          8000.0,
+          10000.0
+        ],
+        [
+          24000.0,
+          20000.0
+        ],
+        [
+          40000.0,
+          21000.0
+        ]
+      ],
+      "rotation_deg": [
+        270,
+        90,
+        0,
+        90,
+        0,
+        270
+      ],
+      "start": {
+        "chips": [],
+        "indices": [],
+        "from_um": [],
+        "to_um": [],
+        "cost": 27.777777777777775,
+        "predicted_rise_k": 36.00794452302422,
+        "predicted_hot": "die_2"
+      },
+      "chip_names": [
+        "die_0",
+        "die_1",
+        "die_2",
+        "die_3",
+        "die_4",
+        "die_5"
+      ],
+      "rated_w": [
+        105.0,
+        295.0,
+        295.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "predicted_hot": "die_2",
+      "groups": {
+        "strict": {
+          "cap": 27.77777777777778,
+          "possible_translations": 171,
+          "possible_exchanges": 4,
+          "choices": {
+            "direct": {
+              "chips": [
+                "die_1",
+                "die_5"
+              ],
+              "indices": [
+                1,
+                5
+              ],
+              "from_um": [
+                [
+                  31000.0,
+                  37000.0
+                ],
+                [
+                  40000.0,
+                  21000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  40000.0,
+                  21000.0
+                ],
+                [
+                  31000.0,
+                  37000.0
+                ]
+              ],
+              "cost": 23.111111111111114,
+              "predicted_rise_k": 34.85403787570171,
+              "predicted_hot": "die_1"
+            },
+            "hottest": {
+              "chips": [],
+              "indices": [],
+              "from_um": [],
+              "to_um": [],
+              "cost": 27.777777777777775,
+              "predicted_rise_k": 36.00794452302422,
+              "predicted_hot": "die_2"
+            },
+            "random": {
+              "chips": [
+                "die_3"
+              ],
+              "indices": [
+                3
+              ],
+              "from_um": [
+                [
+                  8000.0,
+                  10000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  10000.0,
+                  7000.0
+                ]
+              ],
+              "cost": 26.296296296296294,
+              "predicted_rise_k": 35.953389225155505,
+              "predicted_hot": "die_2"
+            },
+            "shortest": {
+              "chips": [
+                "die_5"
+              ],
+              "indices": [
+                5
+              ],
+              "from_um": [
+                [
+                  40000.0,
+                  21000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  10000.0,
+                  43000.0
+                ]
+              ],
+              "cost": 20.666666666666664,
+              "predicted_rise_k": 36.31478595379665,
+              "predicted_hot": "die_2"
+            },
+            "opposite": {
+              "chips": [
+                "die_1",
+                "die_2"
+              ],
+              "indices": [
+                1,
+                2
+              ],
+              "from_um": [
+                [
+                  31000.0,
+                  37000.0
+                ],
+                [
+                  10000.0,
+                  29000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  10000.0,
+                  29000.0
+                ],
+                [
+                  31000.0,
+                  37000.0
+                ]
+              ],
+              "cost": 23.62962962962963,
+              "predicted_rise_k": 36.00794452302422,
+              "predicted_hot": "die_1"
+            }
+          }
+        },
+        "published": {
+          "cap": 41.333333333333336,
+          "possible_translations": 512,
+          "possible_exchanges": 5,
+          "choices": {
+            "direct": {
+              "chips": [
+                "die_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  31000.0,
+                  37000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  40000.0,
+                  40000.0
+                ]
+              ],
+              "cost": 32.22222222222222,
+              "predicted_rise_k": 34.355792684016414,
+              "predicted_hot": "die_2"
+            },
+            "hottest": {
+              "chips": [
+                "die_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  10000.0,
+                  29000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  10000.0,
+                  32000.0
+                ]
+              ],
+              "cost": 28.666666666666664,
+              "predicted_rise_k": 35.97252278458099,
+              "predicted_hot": "die_2"
+            },
+            "random": {
+              "chips": [
+                "die_2"
+              ],
+              "indices": [
+                2
+              ],
+              "from_um": [
+                [
+                  10000.0,
+                  29000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  10000.0,
+                  35000.0
+                ]
+              ],
+              "cost": 29.555555555555554,
+              "predicted_rise_k": 36.053736279833586,
+              "predicted_hot": "die_1"
+            },
+            "shortest": {
+              "chips": [
+                "die_5"
+              ],
+              "indices": [
+                5
+              ],
+              "from_um": [
+                [
+                  40000.0,
+                  21000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  10000.0,
+                  43000.0
+                ]
+              ],
+              "cost": 20.666666666666664,
+              "predicted_rise_k": 36.31478595379665,
+              "predicted_hot": "die_2"
+            },
+            "opposite": {
+              "chips": [
+                "die_1"
+              ],
+              "indices": [
+                1
+              ],
+              "from_um": [
+                [
+                  31000.0,
+                  37000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  29000.0,
+                  40000.0
+                ]
+              ],
+              "cost": 28.148148148148145,
+              "predicted_rise_k": 36.15929620968429,
+              "predicted_hot": "die_2"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
