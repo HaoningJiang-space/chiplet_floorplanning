@@ -2306,3 +2306,5 @@ python tools/mixed_link_audit.py --data "$DATA" --output "$OUT/audit.json"
 python tools/mixed_link_local.py --data "$DATA" --output "$OUT/local.json"
 python tools/mixed_link_thresholds.py --data "$DATA" --output "$OUT/thresholds-final.json"
 ```
+
+**阶段审阅状态。** 已推送并核实实验提交 `68583b24a60890eafbbdffdbe527042754dc2ba7`。oracle-advisor 通过既有 Chrome 浏览器路线请求独立 Chat 审阅，两个会话 `chiplet-selective-upgrades-review` 和 `chiplet-selective-upgrades-review-retry` 均在等待调试连接授权时超时，时长分别为 50、105 秒。两次均未发出审阅提示，独立审阅待完成。
