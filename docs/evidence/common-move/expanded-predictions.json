@@ -1,0 +1,206 @@
+{
+  "four_sha256": "a49c0dcf6a5d3b37b40f0869cf361e92465de3c8c144fbc105c72649aad1bb61",
+  "known_xy_mm": {
+    "west": [
+      88,
+      100
+    ],
+    "east": [
+      112,
+      100
+    ],
+    "south": [
+      100,
+      88
+    ],
+    "north": [
+      100,
+      112
+    ],
+    "centre": [
+      100,
+      100
+    ],
+    "6/-1,-1": [
+      94,
+      94
+    ],
+    "6/-1,1": [
+      94,
+      106
+    ],
+    "6/1,-1": [
+      106,
+      94
+    ],
+    "6/1,1": [
+      106,
+      106
+    ],
+    "12/-1,-1": [
+      88,
+      88
+    ],
+    "12/-1,1": [
+      88,
+      112
+    ],
+    "12/1,-1": [
+      112,
+      88
+    ],
+    "12/1,1": [
+      112,
+      112
+    ]
+  },
+  "held_xy_mm": {
+    "held_3_-9": [
+      103,
+      91
+    ],
+    "held_-9_3": [
+      91,
+      103
+    ]
+  },
+  "cases": {
+    "Case1": {
+      "stayed": true,
+      "inherited_upper_k": 0.0
+    },
+    "Case2": {
+      "stayed": true,
+      "actions": {
+        "expanded": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 130.05228332924003
+        }
+      },
+      "checks": {
+        "expanded": {
+          "best_model_gain_k": 0.005463972562235853,
+          "full_candidates": 1,
+          "could_clear_target": 0
+        }
+      },
+      "feasible": 960,
+      "forward_fields_while_searching": 13
+    },
+    "Case3": {
+      "stayed": true,
+      "inherited_upper_k": 0.01058750229711336
+    },
+    "Case4": {
+      "stayed": true,
+      "actions": {
+        "expanded": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 245.43560151680012
+        }
+      },
+      "checks": {
+        "expanded": {
+          "best_model_gain_k": 0.02026748353206642,
+          "full_candidates": 1,
+          "could_clear_target": 0
+        }
+      },
+      "feasible": 138,
+      "forward_fields_while_searching": 13
+    },
+    "Case5": {
+      "stayed": true,
+      "inherited_upper_k": 0.0
+    },
+    "Case6": {
+      "stayed": true,
+      "inherited_upper_k": 0.0946710481230646
+    },
+    "Case7": {
+      "stayed": true,
+      "inherited_upper_k": 0.0
+    },
+    "Case8": {
+      "stayed": true,
+      "inherited_upper_k": 0.0
+    },
+    "Case9": {
+      "stayed": true,
+      "actions": {
+        "expanded": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 332.9288797899998
+        }
+      },
+      "checks": {
+        "expanded": {
+          "best_model_gain_k": 0.035521447402430795,
+          "full_candidates": 1,
+          "could_clear_target": 0
+        }
+      },
+      "feasible": 3639,
+      "forward_fields_while_searching": 13
+    },
+    "Case10": {
+      "stayed": true,
+      "inherited_upper_k": 0.013992272806582662
+    },
+    "ascend910": {
+      "stayed": true,
+      "actions": {
+        "expanded": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 26.34640522875817
+        }
+      },
+      "checks": {
+        "expanded": {
+          "best_model_gain_k": 0.0,
+          "full_candidates": 2,
+          "could_clear_target": 0
+        }
+      },
+      "feasible": 526,
+      "forward_fields_while_searching": 26
+    },
+    "micro150": {
+      "stayed": true,
+      "actions": {
+        "expanded": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 36.300000000000004
+        }
+      },
+      "checks": {
+        "expanded": {
+          "best_model_gain_k": 0.0012416460413504637,
+          "full_candidates": 1,
+          "could_clear_target": 0
+        }
+      },
+      "feasible": 1739,
+      "forward_fields_while_searching": 13
+    },
+    "multigpu": {
+      "stayed": true,
+      "inherited_upper_k": 0.024354038953788404
+    }
+  }
+}
