@@ -2,7 +2,7 @@
   "source": "Terraneo, Leva & Fornaciari, SAMOS 2019, Zenodo 3345878 v2 (CC BY)",
   "archive_sha256": "3fc86c8d59a3b1cff1f45d1caa7eb21e56be39e22d75f24fb6ba2557b92111b0",
   "protocol_commit": "035cabbc47925fadc84721fe37e238447040fa68",
-  "host": "haonings-MacBook-Air.local",
+  "host": "hpclab03",
   "driver_sha256": "8a79ab374f69123b1abede1c26c958b72269488efc5679d7bfb903cec92a82eb",
   "groups": [
     {
@@ -99,7 +99,7 @@
       "max_error_sample_0_based": 0,
       "measured_mean_increment_total_w": 22.520375794000003,
       "predicted_mean_increment_total_w": 22.7470205835,
-      "mean_power_map_discrepancy_relative_l2": 0.016172513798872638,
+      "mean_power_map_discrepancy_relative_l2": 0.016172513798872634,
       "per_sensor_rmse_k": [
         0.28982753492379054,
         0.1996496932128865,
