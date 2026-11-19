@@ -187,7 +187,19 @@ def temperature(p, row, mask, cfg, grid, *, node_limit=DEFAULT_NODE_LIMIT):
 def bank_temperature(
     p, row, cfg, grid, profiles, endpoint_w, *, node_limit=DEFAULT_NODE_LIMIT
 ):
-    """Apply the same specified power to each end of each fitted full-duplex link."""
+    obs, _, _ = bank_thermal_field(
+        p, row, cfg, grid, profiles, endpoint_w, node_limit=node_limit
+    )
+    return dict(
+        peak_c=obs["peak_power_layer_c"],
+        balance_error_w=abs(obs["energy_balance_error_w"]),
+    )
+
+
+def bank_thermal_field(
+    p, row, cfg, grid, profiles, endpoint_w, *, node_limit=DEFAULT_NODE_LIMIT
+):
+    """Apply the specified power at both ends and return the steady power-layer rise and grid."""
     assert len(profiles) == len(endpoint_w) == len(RING)
     assert all(
         w >= 0 and (profile.modules or w == 0)
@@ -248,12 +260,9 @@ def bank_temperature(
             < 1e-8
         )
         chip["blocks"] = blocks
-    obs, _, _ = solve(data, node_limit=node_limit)
+    obs, rise, axes = solve(data, node_limit=node_limit)
     assert (
         abs(obs["source_power_w"] - p.power_w.sum() - 2 * sum(endpoint_w)) < 1e-7
         and abs(obs["energy_balance_error_w"]) < 1e-7
     )
-    return dict(
-        peak_c=obs["peak_power_layer_c"],
-        balance_error_w=abs(obs["energy_balance_error_w"]),
-    )
+    return obs, rise, axes

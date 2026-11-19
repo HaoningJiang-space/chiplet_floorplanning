@@ -1,0 +1,298 @@
+{
+  "driver_sha256": "920f20ae100b2220c079cdf6dc49f4674a57ed31d63488912f66a286e8ae95f8",
+  "thermal_sha256": "b5dcdb66c251b6b85106573ad86761419172d0e4ecf223ef947da5fd12707a6c",
+  "shared_sha256": "70ef39aab5b7081591ac08bf7723082d2d963fc21673fd3bcadc8bdba8ef9092",
+  "link_trials": [
+    {
+      "modules": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "target_TB_s": 0.2,
+      "profiles": 331,
+      "minimum_optimized_service_TB_s": 0.2108235294117647,
+      "minimum_over_terminal_profiles_TB_s": 0.2108235294117647,
+      "max_capacity_excess_gbps": 0
+    },
+    {
+      "modules": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "target_TB_s": 0.2,
+      "profiles": 331,
+      "minimum_optimized_service_TB_s": 0.2409411764705882,
+      "minimum_over_terminal_profiles_TB_s": 0.2409411764705882,
+      "max_capacity_excess_gbps": 0
+    },
+    {
+      "modules": [
+        4,
+        4,
+        2,
+        2
+      ],
+      "target_TB_s": 0.24,
+      "profiles": 331,
+      "minimum_optimized_service_TB_s": 0.24094117647058821,
+      "minimum_over_terminal_profiles_TB_s": 0.24094117647058821,
+      "max_capacity_excess_gbps": 0
+    },
+    {
+      "modules": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "target_TB_s": 0.24,
+      "profiles": 331,
+      "minimum_optimized_service_TB_s": 0.2409411764705882,
+      "minimum_over_terminal_profiles_TB_s": 0.2409411764705882,
+      "max_capacity_excess_gbps": 0
+    },
+    {
+      "modules": [
+        3,
+        4,
+        1,
+        2
+      ],
+      "target_TB_s": 0.2,
+      "profiles": 331,
+      "minimum_optimized_service_TB_s": 0.2108235294117647,
+      "minimum_over_terminal_profiles_TB_s": 0.2108235294117647,
+      "max_capacity_excess_gbps": 0
+    }
+  ],
+  "thermal_layout": "two-fast-local",
+  "thermal_modules": [
+    4,
+    3,
+    2,
+    1
+  ],
+  "thermal_target_TB_s": 0.2,
+  "original_demand_order": [
+    "IS",
+    "BH",
+    "WH",
+    "SH"
+  ],
+  "thermal_checks": [
+    {
+      "grid": 64,
+      "active_power_layer_cells": 930,
+      "terminal_peak_c": [
+        108.42375031981297,
+        108.40456121646136,
+        108.40521841595282,
+        108.41706325520799
+      ],
+      "mixed_fields": [
+        {
+          "weights": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125
+          ],
+          "direct_peak_c": 108.41264830185868,
+          "max_cell_error_k": 2.0605739337042905e-13,
+          "balance_error_w": 4.217781679471955e-11
+        },
+        {
+          "weights": [
+            0.5,
+            0.25,
+            0.125,
+            0.125,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direct_peak_c": 108.41580067291704,
+          "max_cell_error_k": 2.4158453015843406e-13,
+          "balance_error_w": 4.206412995699793e-11
+        }
+      ]
+    },
+    {
+      "grid": 96,
+      "active_power_layer_cells": 1521,
+      "terminal_peak_c": [
+        108.4718532566134,
+        108.48322696776769,
+        108.48347434753089,
+        108.43244151926783
+      ],
+      "mixed_fields": [
+        {
+          "weights": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125
+          ],
+          "direct_peak_c": 108.46274976991216,
+          "max_cell_error_k": 2.5579538487363607e-13,
+          "balance_error_w": 1.4097167877480388e-11
+        },
+        {
+          "weights": [
+            0.5,
+            0.25,
+            0.125,
+            0.125,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direct_peak_c": 108.46644812635105,
+          "max_cell_error_k": 2.2737367544323206e-13,
+          "balance_error_w": 1.4551915228366852e-11
+        }
+      ]
+    },
+    {
+      "grid": 128,
+      "active_power_layer_cells": 1681,
+      "terminal_peak_c": [
+        108.44596734709577,
+        108.44431729621837,
+        108.4445645796745,
+        108.40657875296264
+      ],
+      "mixed_fields": [
+        {
+          "weights": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125
+          ],
+          "direct_peak_c": 108.43483462696796,
+          "max_cell_error_k": 2.3447910280083306e-13,
+          "balance_error_w": 2.3419488570652902e-11
+        },
+        {
+          "weights": [
+            0.5,
+            0.25,
+            0.125,
+            0.125,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direct_peak_c": 108.43998717631715,
+          "max_cell_error_k": 3.126388037344441e-13,
+          "balance_error_w": 2.3646862246096134e-11
+        }
+      ]
+    },
+    {
+      "grid": 160,
+      "active_power_layer_cells": 2450,
+      "terminal_peak_c": [
+        108.4833602502845,
+        108.50007941511382,
+        108.50032401672007,
+        108.43825599283441
+      ],
+      "mixed_fields": [
+        {
+          "weights": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125
+          ],
+          "direct_peak_c": 108.48050491873818,
+          "max_cell_error_k": 2.984279490192421e-13,
+          "balance_error_w": 3.26281224261038e-11
+        },
+        {
+          "weights": [
+            0.5,
+            0.25,
+            0.125,
+            0.125,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direct_peak_c": 108.48402248011504,
+          "max_cell_error_k": 2.5579538487363607e-13,
+          "balance_error_w": 3.285549610154703e-11
+        }
+      ]
+    },
+    {
+      "grid": 192,
+      "active_power_layer_cells": 2970,
+      "terminal_peak_c": [
+        108.47273224345331,
+        108.47498214843876,
+        108.47522681831144,
+        108.43326569125603
+      ],
+      "mixed_fields": [
+        {
+          "weights": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125
+          ],
+          "direct_peak_c": 108.46210228201136,
+          "max_cell_error_k": 2.984279490192421e-13,
+          "balance_error_w": 1.2505552149377763e-11
+        },
+        {
+          "weights": [
+            0.5,
+            0.25,
+            0.125,
+            0.125,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direct_peak_c": 108.4671394625939,
+          "max_cell_error_k": 2.8421709430404007e-13,
+          "balance_error_w": 1.2278178473934531e-11
+        }
+      ]
+    }
+  ]
+}
