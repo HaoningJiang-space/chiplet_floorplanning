@@ -2343,3 +2343,5 @@ export PYTHONPATH=src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
 python tools/cut_traffic.py --data "$DATA" --output "$OUT/result-final.json"
 python tools/ring_capacity.py --output "$OUT/rings.json"
 ```
+
+**阶段审阅。** 实验提交 `228a3ec1a5291eadc0ebaf745538e0b43b5af8ea` 推送并核实后，oracle-advisor 浏览器会话 `chiplet-cut-traffic-ring-review` 完成。请求 gpt-6-astra / extended，界面选择器核实 GPT-6 / High。审阅者报告读取本轮两个程序、两份指定证据和三个底层 PHY/几何文件，独立核对了环割的充分性条件、Nd 等式、信号线数、逐线 25 mm 条件和两个吞吐数值。证据字段 analysed_commit 记录研究起点 `9756935`，审阅针对已发布实验提交 `228a3ec`。对上阶段的补充意见把最少升级数限于单个见证，我们重新代入全布局界 S+2G ≤ 47.314958 + 6.25k。k=1、2、3 的上界分别为 53.564958、59.814958、66.064958 mm，因此预先设定的 56、60、66.4 mm 门槛分别在全域至少需要 2、3、4 条提速边。五网格足够性来自各自的具体坐标。两种证据的作用范围据此保留。[上阶段全布局界与三份见证](evidence/case3-selective-rate-v1.json)
