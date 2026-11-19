@@ -70,6 +70,21 @@ class PackageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "aligned"):
             solve_package(bad, p)
 
+    def test_fine_mesh_explicit_node_budget(self):
+        raw = copy.deepcopy(self.case().input_data)
+        # Choose a nominal layered grid just under the default; actual conforming faces can add nodes.
+        count = len(raw['thermal']['layers'])
+        side = int((250_000 / count) ** .5)
+        raw['grid'] = dict(nx=side, ny=side, mode='geometry_conformal')
+        with self.assertRaisesRegex(ModelError, "250000 potential nodes"):
+            parse_case(raw)
+        fine = parse_case(raw, node_limit=400_000)
+        actual = fine.nx * fine.ny * count
+        self.assertGreater(actual, 250_000)
+        self.assertLessEqual(actual, 400_000)
+        with self.assertRaisesRegex(ModelError, "potential nodes"):
+            parse_case(raw, node_limit=actual - 1)
+
     def test_invalid_package(self):
         for field, value in [("top_h_w_m2k", 0), ("power_layer", "missing")]:
             raw = copy.deepcopy(self.case().input_data)

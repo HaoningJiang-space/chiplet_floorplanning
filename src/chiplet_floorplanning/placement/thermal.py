@@ -10,7 +10,7 @@ from dataclasses import replace
 
 import numpy as np
 
-from ..model import parse_case
+from ..model import DEFAULT_NODE_LIMIT, parse_case
 from ..package import assemble_package, checked_solution, require_heat_path, solve_spd
 from ..power import rasterize
 from .geometry import boxes, violations
@@ -69,10 +69,10 @@ def thermal_case_data(problem, layout, gap_um, resolution=64, top_h_w_m2k=None):
                 links=[])
 
 
-def solve(data):
+def solve(data, *, node_limit=DEFAULT_NODE_LIMIT):
     """Steady solve; power-layer peak (degC), energy-balance bookkeeping and the
     power-layer rise field (K) on mesh cells, with cell edges in package mm."""
-    case = parse_case(data)
+    case = parse_case(data, node_limit=node_limit)
     power, _ = rasterize(case)
     a, b, g, _, ids, power_z = assemble_package(case, power)
     require_heat_path(a, g)

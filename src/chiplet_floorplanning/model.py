@@ -10,6 +10,9 @@ from time import perf_counter
 from .mesh import GEOMETRY_TOL_MM, ThermalMesh, make_mesh
 
 
+DEFAULT_NODE_LIMIT = 250_000
+
+
 class ModelError(ValueError):
     """Invalid or unsupported evaluation input."""
 
@@ -144,7 +147,10 @@ class Case:
         return self.mesh.ny
 
 
-def parse_case(data, *, timings_s=None):
+def parse_case(data, *, timings_s=None, node_limit=DEFAULT_NODE_LIMIT):
+    """Validate a case using the caller's finite budget for potential solver nodes."""
+    if type(node_limit) is not int or node_limit < 1:
+        raise ModelError("node_limit must be a positive integer")
     started = perf_counter()
     fields(data, ("schema_version", "name", "package_mm", "grid", "chiplets", "thermal", "interconnect", "links"))
     if type(data["schema_version"]) is not int or data["schema_version"] != 1:
@@ -271,8 +277,8 @@ def parse_case(data, *, timings_s=None):
             number(thermal[key], key, minimum=0)
         if thermal["top_h_w_m2k"] + thermal["bottom_h_w_m2k"] <= 0:
             raise ModelError("package needs at least one positive convection boundary")
-        if len(layers) * grid["nx"] * grid["ny"] > 250_000:
-            raise ModelError("package exceeds 250000 potential nodes")
+        if len(layers) * grid["nx"] * grid["ny"] > node_limit:
+            raise ModelError(f"package exceeds {node_limit} potential nodes")
     else:
         fields(thermal, ("model", "conductivity_w_mk", "thickness_mm", "sink_h_w_m2k", "ambient_c", "provenance"))
         if thermal["model"] != "uniform_slab_steady":
@@ -336,8 +342,8 @@ def parse_case(data, *, timings_s=None):
         mesh = make_mesh(package.width, package.height, grid['nx'], grid['ny'], mode, rectangles)
     except ValueError as error:
         raise ModelError(str(error)) from error
-    if mesh.nx*mesh.ny*len(thermal.get('layers', [None])) > 250_000:
-        raise ModelError('geometry-conforming mesh exceeds 250000 potential nodes')
+    if mesh.nx*mesh.ny*len(thermal.get('layers', [None])) > node_limit:
+        raise ModelError(f'geometry-conforming mesh exceeds {node_limit} potential nodes')
     if timings_s is not None:
         timings_s['mesh_generation_s'] = perf_counter() - mesh_started
         timings_s['input_validation_s'] = mesh_started - started

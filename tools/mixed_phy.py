@@ -25,6 +25,8 @@ from chiplet_floorplanning.placement import (
     thermal_case_data,
 )
 
+from chiplet_floorplanning.model import DEFAULT_NODE_LIMIT
+
 PROFILES_BY_BIT = (PROFILES["wide"], MID)
 MASKS = np.arange(16)
 BITS = (MASKS[:, None] >> np.arange(4)) & 1
@@ -174,7 +176,7 @@ def exhaustive_wire(p, row, mask):
     return float(total.min())
 
 
-def temperature(p, row, mask, cfg, grid):
+def temperature(p, row, mask, cfg, grid, *, node_limit=DEFAULT_NODE_LIMIT):
     layout = Layout(np.array(row["centres_um"]), np.array(cfg["rotation_deg"]))
     data = thermal_case_data(p, layout, 0, grid)
     sizes = sizes_mm(p, row["parity"])
@@ -219,7 +221,7 @@ def temperature(p, row, mask, cfg, grid):
                 )
         assert abs(sum(x["power_w"] for x in blocks) - p.power_w[i] - 2.048) < 1e-8
         chip["blocks"] = blocks
-    obs, _, _ = solve(data)
+    obs, _, _ = solve(data, node_limit=node_limit)
     assert (
         abs(obs["source_power_w"] - 688.192) < 1e-7
         and abs(obs["energy_balance_error_w"]) < 1e-7
