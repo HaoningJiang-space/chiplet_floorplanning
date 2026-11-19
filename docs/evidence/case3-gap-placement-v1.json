@@ -1,0 +1,903 @@
+{
+  "protocol_commit": "84fd344",
+  "code": {
+    "commit": "276b0023f7a6bc55e64ec3f6006bf2445c53e06f",
+    "dirty": false
+  },
+  "case_sha256": "34def31b4c3b64f86c46e690367108718888b391c123ac7274cbb75ad81c49dd",
+  "initial_layout": "two-fast-local",
+  "seed": 20261119,
+  "search_grid": 64,
+  "budget_per_arm": 13,
+  "wire_cap_m": 31.696922389600005,
+  "reach_mm": 25.0,
+  "target_tb_s": 0.65,
+  "shares": [
+    0.6,
+    0.3,
+    0.1
+  ],
+  "modules": [
+    4,
+    2,
+    3,
+    4
+  ],
+  "endpoint_w": [
+    1.002578125,
+    0.490578125,
+    0.658171875,
+    0.959734375
+  ],
+  "package_power_w": 686.222125,
+  "finalist_checks": {
+    "start": {
+      "96": {
+        "peak_c": 108.6732873142652,
+        "balance_error_w": 2.1373125491663814e-11
+      },
+      "160": {
+        "peak_c": 108.69216933112757,
+        "balance_error_w": 4.092726157978177e-11
+      }
+    },
+    "baseline": {
+      "96": {
+        "peak_c": 108.5575668485034,
+        "balance_error_w": 1.1027623258996755e-11
+      },
+      "160": {
+        "peak_c": 108.55094023966578,
+        "balance_error_w": 3.285549610154703e-11
+      }
+    },
+    "guided": {
+      "96": {
+        "peak_c": 108.6732873142652,
+        "balance_error_w": 2.1373125491663814e-11
+      },
+      "160": {
+        "peak_c": 108.69216933112757,
+        "balance_error_w": 4.092726157978177e-11
+      }
+    }
+  },
+  "raw_sha256": "05409bd2e744cbaf4f3c6e6c0916372ae3901233e8d3000c79ec2351776f4077",
+  "execution": "local single worker",
+  "reverse_cap_c": 109,
+  "runs": {
+    "baseline": {
+      "fv_solves": 13,
+      "rounds": [
+        {
+          "parent": 0,
+          "cuts": [
+            {
+              "axis": 0,
+              "high": [
+                1,
+                3,
+                5,
+                7
+              ],
+              "gap_um": 4326.0,
+              "signals": 352,
+              "demand_gbps": 1933.75,
+              "capacity_gbps": 2048.0
+            },
+            {
+              "axis": 1,
+              "high": [
+                2,
+                3,
+                6,
+                7
+              ],
+              "gap_um": 414.0,
+              "signals": 220,
+              "demand_gbps": 1105.0,
+              "capacity_gbps": 1280.0
+            }
+          ],
+          "feasible": 56,
+          "shortlist": 28,
+          "first_row": 1,
+          "selected": 4
+        },
+        {
+          "parent": 2,
+          "cuts": [
+            {
+              "axis": 0,
+              "high": [
+                1,
+                3,
+                5,
+                7
+              ],
+              "gap_um": 4326.0,
+              "signals": 352,
+              "demand_gbps": 1933.75,
+              "capacity_gbps": 2048.0
+            },
+            {
+              "axis": 1,
+              "high": [
+                2,
+                3,
+                6,
+                7
+              ],
+              "gap_um": 539.0,
+              "signals": 220,
+              "demand_gbps": 1105.0,
+              "capacity_gbps": 1280.0
+            }
+          ],
+          "feasible": 59,
+          "shortlist": 30,
+          "first_row": 5,
+          "selected": 4
+        },
+        {
+          "parent": 5,
+          "cuts": [
+            {
+              "axis": 0,
+              "high": [
+                1,
+                3,
+                5,
+                7
+              ],
+              "gap_um": 4326.0,
+              "signals": 352,
+              "demand_gbps": 1933.75,
+              "capacity_gbps": 2048.0
+            },
+            {
+              "axis": 1,
+              "high": [
+                2,
+                3,
+                6,
+                7
+              ],
+              "gap_um": 664.0,
+              "signals": 220,
+              "demand_gbps": 1105.0,
+              "capacity_gbps": 1280.0
+            }
+          ],
+          "feasible": 59,
+          "shortlist": 30,
+          "first_row": 9,
+          "selected": 4
+        }
+      ],
+      "trials": [
+        {
+          "move_axis_dies_um": null,
+          "wire_m": 29.088156389600005,
+          "max_cpu_mm": 25.000000000000004,
+          "peak_c": 108.56690488183551,
+          "balance_error_w": 1.8758328224066645e-11
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              3,
+              7
+            ],
+            1000
+          ],
+          "wire_m": 29.264304389600003,
+          "max_cpu_mm": 24.999999999999996,
+          "peak_c": 108.61481389422516,
+          "balance_error_w": 4.547473508864641e-13
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              3,
+              7
+            ],
+            125
+          ],
+          "wire_m": 29.101970389600005,
+          "max_cpu_mm": 24.999999999999996,
+          "peak_c": 108.55012040319096,
+          "balance_error_w": 3.183231456205249e-12
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              2,
+              6
+            ],
+            250
+          ],
+          "wire_m": 29.054506389600004,
+          "max_cpu_mm": 24.999999999999996,
+          "peak_c": 108.63324643348878,
+          "balance_error_w": 1.7621459846850485e-11
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              1,
+              5
+            ],
+            -250
+          ],
+          "wire_m": 29.055156389600004,
+          "max_cpu_mm": 25.000000000000004,
+          "peak_c": 108.64932188404836,
+          "balance_error_w": 7.389644451905042e-12
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              2,
+              3,
+              6,
+              7
+            ],
+            125
+          ],
+          "wire_m": 29.129470389600005,
+          "max_cpu_mm": 24.999999999999996,
+          "peak_c": 108.49688684451107,
+          "balance_error_w": 3.410605131648481e-13
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              0,
+              4
+            ],
+            -500
+          ],
+          "wire_m": 29.149744389600002,
+          "max_cpu_mm": 24.875000000000004,
+          "peak_c": 108.61140206718309,
+          "balance_error_w": 2.5693225325085223e-11
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              2,
+              6
+            ],
+            125
+          ],
+          "wire_m": 29.084320389600002,
+          "max_cpu_mm": 24.999999999999996,
+          "peak_c": 108.58882453011954,
+          "balance_error_w": 3.228706191293895e-11
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              0,
+              4
+            ],
+            -250
+          ],
+          "wire_m": 29.120916389600005,
+          "max_cpu_mm": 24.875000000000004,
+          "peak_c": 108.60175713658447,
+          "balance_error_w": 1.3642420526593924e-12
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              3,
+              7
+            ],
+            -125
+          ],
+          "wire_m": 29.115656389600005,
+          "max_cpu_mm": 25.000000000000004,
+          "peak_c": 108.51296964798328,
+          "balance_error_w": 1.6143530956469476e-11
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              0,
+              4
+            ],
+            -1000
+          ],
+          "wire_m": 29.261618389600002,
+          "max_cpu_mm": 24.875000000000004,
+          "peak_c": 108.55099744336952,
+          "balance_error_w": 1.3642420526593924e-12
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              1,
+              5
+            ],
+            250
+          ],
+          "wire_m": 29.093416389600005,
+          "max_cpu_mm": 24.875000000000004,
+          "peak_c": 108.65264767736248,
+          "balance_error_w": 1.1368683772161603e-12
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              0,
+              1,
+              4,
+              5
+            ],
+            -125
+          ],
+          "wire_m": 29.156970389600005,
+          "max_cpu_mm": 24.999999999999996,
+          "peak_c": 108.44368179782003,
+          "balance_error_w": 2.2737367544323206e-13
+        }
+      ],
+      "best": {
+        "index": 12,
+        "wire_m": 29.156970389600005,
+        "max_cpu_mm": 24.999999999999996,
+        "centres_um": [
+          [
+            8062.0,
+            6168.0
+          ],
+          [
+            34663.0,
+            9869.0
+          ],
+          [
+            4337.0,
+            29131.0
+          ],
+          [
+            30938.0,
+            32957.0
+          ],
+          [
+            8099.0,
+            14668.0
+          ],
+          [
+            26163.0,
+            10213.0
+          ],
+          [
+            12837.0,
+            28787.0
+          ],
+          [
+            30901.0,
+            24457.0
+          ]
+        ],
+        "axis": 1,
+        "group": [
+          0,
+          1,
+          4,
+          5
+        ],
+        "step_um": -125,
+        "coupling_proxy_k": 54.63268066323212,
+        "gap_score_m": 0.051240234375,
+        "peak_c": 108.44368179782003,
+        "balance_error_w": 2.2737367544323206e-13
+      },
+      "shortest_within_109c": {
+        "index": 3,
+        "wire_m": 29.054506389600004,
+        "max_cpu_mm": 24.999999999999996,
+        "centres_um": [
+          [
+            8062.0,
+            6293.0
+          ],
+          [
+            34663.0,
+            9994.0
+          ],
+          [
+            4587.0,
+            29006.0
+          ],
+          [
+            30938.0,
+            32707.0
+          ],
+          [
+            8099.0,
+            14793.0
+          ],
+          [
+            26163.0,
+            10338.0
+          ],
+          [
+            13087.0,
+            28662.0
+          ],
+          [
+            30901.0,
+            24207.0
+          ]
+        ],
+        "axis": 0,
+        "group": [
+          2,
+          6
+        ],
+        "step_um": 250,
+        "coupling_proxy_k": 54.7971582077079,
+        "gap_score_m": -0.1710908203125,
+        "peak_c": 108.63324643348878,
+        "balance_error_w": 1.7621459846850485e-11
+      }
+    },
+    "guided": {
+      "fv_solves": 13,
+      "rounds": [
+        {
+          "parent": 0,
+          "cuts": [
+            {
+              "axis": 0,
+              "high": [
+                1,
+                3,
+                5,
+                7
+              ],
+              "gap_um": 4326.0,
+              "signals": 352,
+              "demand_gbps": 1933.75,
+              "capacity_gbps": 2048.0
+            },
+            {
+              "axis": 1,
+              "high": [
+                2,
+                3,
+                6,
+                7
+              ],
+              "gap_um": 414.0,
+              "signals": 220,
+              "demand_gbps": 1105.0,
+              "capacity_gbps": 1280.0
+            }
+          ],
+          "feasible": 56,
+          "shortlist": 28,
+          "first_row": 1,
+          "selected": 4
+        },
+        {
+          "parent": 0,
+          "cuts": [
+            {
+              "axis": 0,
+              "high": [
+                1,
+                3,
+                5,
+                7
+              ],
+              "gap_um": 4326.0,
+              "signals": 352,
+              "demand_gbps": 1933.75,
+              "capacity_gbps": 2048.0
+            },
+            {
+              "axis": 1,
+              "high": [
+                2,
+                3,
+                6,
+                7
+              ],
+              "gap_um": 414.0,
+              "signals": 220,
+              "demand_gbps": 1105.0,
+              "capacity_gbps": 1280.0
+            }
+          ],
+          "feasible": 52,
+          "shortlist": 26,
+          "first_row": 5,
+          "selected": 4
+        },
+        {
+          "parent": 0,
+          "cuts": [
+            {
+              "axis": 0,
+              "high": [
+                1,
+                3,
+                5,
+                7
+              ],
+              "gap_um": 4326.0,
+              "signals": 352,
+              "demand_gbps": 1933.75,
+              "capacity_gbps": 2048.0
+            },
+            {
+              "axis": 1,
+              "high": [
+                2,
+                3,
+                6,
+                7
+              ],
+              "gap_um": 414.0,
+              "signals": 220,
+              "demand_gbps": 1105.0,
+              "capacity_gbps": 1280.0
+            }
+          ],
+          "feasible": 48,
+          "shortlist": 24,
+          "first_row": 9,
+          "selected": 4
+        }
+      ],
+      "trials": [
+        {
+          "move_axis_dies_um": null,
+          "wire_m": 29.088156389600005,
+          "max_cpu_mm": 25.000000000000004,
+          "peak_c": 108.56690488183551,
+          "balance_error_w": 1.8758328224066645e-11
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              2,
+              6
+            ],
+            250
+          ],
+          "wire_m": 29.054506389600004,
+          "max_cpu_mm": 24.999999999999996,
+          "peak_c": 108.63324643348878,
+          "balance_error_w": 1.7621459846850485e-11
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              1,
+              5
+            ],
+            -250
+          ],
+          "wire_m": 29.055156389600004,
+          "max_cpu_mm": 25.000000000000004,
+          "peak_c": 108.64932188404836,
+          "balance_error_w": 7.389644451905042e-12
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              0,
+              2,
+              4,
+              6
+            ],
+            125
+          ],
+          "wire_m": 29.044156389600005,
+          "max_cpu_mm": 24.875000000000004,
+          "peak_c": 108.61354353386787,
+          "balance_error_w": 1.659827830735594e-11
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              1,
+              5
+            ],
+            -125
+          ],
+          "wire_m": 29.070456389600004,
+          "max_cpu_mm": 25.000000000000004,
+          "peak_c": 108.59706331528275,
+          "balance_error_w": 2.7284841053187847e-12
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              1,
+              3,
+              5,
+              7
+            ],
+            -125
+          ],
+          "wire_m": 29.044156389600005,
+          "max_cpu_mm": 24.875000000000004,
+          "peak_c": 108.61212809771435,
+          "balance_error_w": 1.8530954548623413e-11
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              2,
+              6
+            ],
+            125
+          ],
+          "wire_m": 29.070506389600006,
+          "max_cpu_mm": 24.999999999999996,
+          "peak_c": 108.59992909961377,
+          "balance_error_w": 3.4788172342814505e-11
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              2,
+              3,
+              6,
+              7
+            ],
+            -125
+          ],
+          "wire_m": 29.060656389600005,
+          "max_cpu_mm": 25.000000000000004,
+          "peak_c": 108.62170663400414,
+          "balance_error_w": 2.3646862246096134e-11
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              0,
+              1,
+              4,
+              5
+            ],
+            125
+          ],
+          "wire_m": 29.060656389600005,
+          "max_cpu_mm": 25.000000000000004,
+          "peak_c": 108.6186641100222,
+          "balance_error_w": 1.830358087318018e-11
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              3,
+              7
+            ],
+            -125
+          ],
+          "wire_m": 29.064056389600005,
+          "max_cpu_mm": 24.999999999999996,
+          "peak_c": 108.66034784919908,
+          "balance_error_w": 2.637534635141492e-11
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              1,
+              5
+            ],
+            125
+          ],
+          "wire_m": 29.068970389600004,
+          "max_cpu_mm": 25.000000000000004,
+          "peak_c": 108.65754237110716,
+          "balance_error_w": 1.693933882052079e-11
+        },
+        {
+          "move_axis_dies_um": [
+            0,
+            [
+              0,
+              4
+            ],
+            250
+          ],
+          "wire_m": 29.042206389600004,
+          "max_cpu_mm": 25.000000000000004,
+          "peak_c": 108.7117644133199,
+          "balance_error_w": 4.547473508864641e-12
+        },
+        {
+          "move_axis_dies_um": [
+            1,
+            [
+              2,
+              6
+            ],
+            -125
+          ],
+          "wire_m": 29.074470389600005,
+          "max_cpu_mm": 24.999999999999996,
+          "peak_c": 108.60385334936271,
+          "balance_error_w": 5.7980287238024175e-12
+        }
+      ],
+      "best": {
+        "index": 0,
+        "centres_um": [
+          [
+            8062.0,
+            6293.0
+          ],
+          [
+            34663.0,
+            9994.0
+          ],
+          [
+            4337.0,
+            29006.0
+          ],
+          [
+            30938.0,
+            32707.0
+          ],
+          [
+            8099.0,
+            14793.0
+          ],
+          [
+            26163.0,
+            10338.0
+          ],
+          [
+            12837.0,
+            28662.0
+          ],
+          [
+            30901.0,
+            24207.0
+          ]
+        ],
+        "wire_m": 29.088156389600005,
+        "max_cpu_mm": 25.000000000000004,
+        "peak_c": 108.56690488183551,
+        "balance_error_w": 1.8758328224066645e-11
+      },
+      "shortest_within_109c": {
+        "index": 11,
+        "wire_m": 29.042206389600004,
+        "max_cpu_mm": 25.000000000000004,
+        "centres_um": [
+          [
+            8312.0,
+            6293.0
+          ],
+          [
+            34663.0,
+            9994.0
+          ],
+          [
+            4337.0,
+            29006.0
+          ],
+          [
+            30938.0,
+            32707.0
+          ],
+          [
+            8349.0,
+            14793.0
+          ],
+          [
+            26163.0,
+            10338.0
+          ],
+          [
+            12837.0,
+            28662.0
+          ],
+          [
+            30901.0,
+            24207.0
+          ]
+        ],
+        "axis": 0,
+        "group": [
+          0,
+          4
+        ],
+        "step_um": 250,
+        "coupling_proxy_k": 54.810767130110264,
+        "gap_score_m": 0.0,
+        "peak_c": 108.7117644133199,
+        "balance_error_w": 4.547473508864641e-12
+      }
+    }
+  },
+  "screen_replay": {
+    "baseline": [
+      {
+        "legal": 88,
+        "over_wire": 0,
+        "over_reach": 32,
+        "admitted": 56
+      },
+      {
+        "legal": 87,
+        "over_wire": 0,
+        "over_reach": 28,
+        "admitted": 59
+      },
+      {
+        "legal": 87,
+        "over_wire": 0,
+        "over_reach": 28,
+        "admitted": 59
+      }
+    ],
+    "guided": [
+      {
+        "legal": 88,
+        "over_wire": 0,
+        "over_reach": 32,
+        "admitted": 56
+      },
+      {
+        "legal": 84,
+        "over_wire": 0,
+        "over_reach": 32,
+        "admitted": 52
+      },
+      {
+        "legal": 80,
+        "over_wire": 0,
+        "over_reach": 32,
+        "admitted": 48
+      }
+    ]
+  },
+  "posthoc_checks": {
+    "independent_pin_replay_rows": 26,
+    "max_sum_difference_m": 7.11e-15,
+    "max_reach_difference_mm": 0,
+    "same_top_four_without_capacity_weight": [
+      4,
+      4,
+      4
+    ],
+    "selection_grid": 64,
+    "confirmation_grids": [
+      96,
+      160
+    ]
+  }
+}
