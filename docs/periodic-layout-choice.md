@@ -2,6 +2,8 @@
 
 [实验结论与失败案例](#实验给出的选择规律) · [相同平均温度下的芯粒角色置换](#平均温度相同波动任务该放在哪里) · [无需瞬态仿真的布局判据](#哪些选择可以由能量守恒保证)
 
+时间线可由 Git 核查：`b044bb6` 固定发现与确认分组，`4522a1b` 记录五例发现后的确认预测，`9832240` 固定任务占比检验，`a6dcb80` 固定静态热界，`5f45f5b` 定义同平均热图干预，`e9ebc6c` 记录对其余六例的预测。结果与参数见 `c3d9133`。提交链提供公开记录的先后顺序，本地执行依照各阶段约定进行。
+
 ## 看结果前的约定
 
 本机 fetch 成功，远端 `1ba95b74c8697c60dff1d2f058b98996171660fc`。以前的工作分别处理了任意切换的单布局上界和连续稳态混合的布局选择。本轮把**固定任务量、可选运行顺序、物理布局**放入同一次决策。
@@ -89,6 +91,8 @@ Case1–5 的 15 个案例/节拍组合中，按平均发热选出的布局，�
 
 早期工作已研究在时限约束下为周期异质任务排序以抑制温度，并比较最优与最坏顺序。本实验进一步把任务具体落在哪个芯粒足印和共同引脚预算列为决策变量。两种负载的持续时间代表固定服务时间，未建模不同顺序下的缓存失效、性能及切换能耗。自定义热边界与真实引脚网表提供模型内对照，测得的 NAS 通信形状用于分配建模的端口功耗。[Jayaseelan 与 Mitra，ICCAD 2008](https://www.cecs.uci.edu/~papers/iccad08/PDFs/Papers/08B.3.pdf)
 
+利用空间热余量做任务映射也已有文献。Kanduri 等通过在活动核之间分布空闲核来获得提升频率所需的热余量。本实验控制平均功率图、导热材料和任务总时长，直接测算**只交换功率波动的空间归属**仍然要付多少峰温和线长代价。其研究价值取决于这种对照能否迁移到新的封装与负载，尚没有建立学术首创性。[Kanduri 等，adBoost](https://users.utu.fi/spakan/wp-content/uploads/sites/57/2018/02/patTCCR.pdf)
+
 ## 本地复现
 
 安装项目及其 NumPy、SciPy 依赖，`CASES` 是用仓库工具从固定版本导入的十份 ATPlace JSON 的目录。图需要 Matplotlib。本轮使用已有单种子布局档案，不重新采样。旧有 196 项测试及本次新增 2 项专项测试通过，双芯粒示例为 3 W、34.1886 °C。仅做了模型和数值验证。
@@ -106,3 +110,7 @@ python tools/periodic_role_swap.py --cases CASES --output results/roles.json
 python tools/periodic_role_swap.py --cases CASES --transfer --output results/roles-transfer.json
 python tools/periodic_role_swap.py --cases CASES --recheck Case9 --output results/case9-fine.json --figure results/case9-roles.png
 ```
+
+## 独立 Chat 审核
+
+Chat 从已连接的 GitHub 打开六个协议及结果提交 `c3d9133`，检查核心实验代码、角色与配额记录，按上下界重新计算 Case3 的 0.726824 K。它接受相同平均热图下改变角色位置的模型内证据。六例迁移中，Case7、9、10 明显优于最短线选法；Case2 近乎同温，Case5、6 的最短线本来已最优。审阅认为局部稳态温度能提供一个经验排序，多种任务都适用的最优算法及跨封装精度仍缺证据。Git 可验证预测先于结果的公开归档，Chat 没有直接观察本地计算的执行时刻。该次审阅仅核查远端代码与记录。[完整独立审核](https://chatgpt.com/c/6afef04a-901c-83e8-b13a-f36b74f04223)
