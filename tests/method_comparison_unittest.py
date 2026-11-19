@@ -55,7 +55,7 @@ class ComparisonProtocolTest(unittest.TestCase):
         for seed in (1, 2):
             self.record(seed, code_commit='docs-commit', implementation_sha256='frozen-digest')
         self.assertEqual(len(checked_records(self.plan_path, self.plan, self.out)), 2)
-        for change in (dict(implementation_sha256='other'), dict(code_dirty=True)):
+        for change in (dict(implementation_sha256='other'), dict(code_dirty=True), dict(code_dirty=None)):
             self.record(2, **(dict(implementation_sha256='frozen-digest') | change))
             with self.subTest(change=change), self.assertRaises(SystemExit):
                 checked_records(self.plan_path, self.plan, self.out)
@@ -64,6 +64,19 @@ class ComparisonProtocolTest(unittest.TestCase):
             with self.assertRaisesRegex(SystemExit, 'implementation'):
                 execute(SimpleNamespace(plan=self.plan_path, output=self.dir/'new'))
             self.assertFalse((self.dir/'new').exists())
+
+    def test_archive_requires_explicit_status_and_matching_content(self):
+        self.plan['code']['implementation_sha256'] = 'frozen-digest'
+        self.plan_path.write_text(json.dumps(self.plan))
+        for seed in (1, 2):
+            self.record(seed, code_source_kind='archive', code_dirty=None, implementation_sha256='frozen-digest')
+        self.assertEqual(len(checked_records(self.plan_path, self.plan, self.out)), 2)
+        path = self.out/'random-seed2.json'
+        row = json.loads(path.read_text())
+        del row['code_dirty']
+        path.write_text(json.dumps(row))
+        with self.assertRaisesRegex(SystemExit, 'source status'):
+            checked_records(self.plan_path, self.plan, self.out)
 
     def test_changed_reference_is_refused(self):
         (self.dir/'ref.json').write_text('{"front": [{"peak_c": 0}]}')

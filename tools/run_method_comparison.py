@@ -39,7 +39,9 @@ def implementation():
     for path in paths:
         digest.update(path.relative_to(root).as_posix().encode() + b'\0')
         digest.update(hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).digest())
-    return dict(source_revision(), implementation_sha256=digest.hexdigest())
+    archive = not (root/'.git').exists() and (root/'CODE').is_file()
+    return dict(source_revision(), implementation_sha256=digest.hexdigest(),
+                source_kind='archive' if archive else 'checkout')
 
 
 def require_version(frozen, actual):
@@ -48,7 +50,9 @@ def require_version(frozen, actual):
         raise SystemExit('comparison requires an identified, unmodified code version')
     fingerprint = frozen.get('implementation_sha256')
     if fingerprint:
-        matches = fingerprint == actual.get('implementation_sha256') and frozen.get('dirty') is False
+        archive = actual.get('source_kind') == 'archive' and 'dirty' in actual and actual['dirty'] is None
+        matches = (fingerprint == actual.get('implementation_sha256') and frozen.get('dirty') is False
+                   and (actual.get('dirty') is False or archive))
     else:
         matches = (actual['commit'] == frozen['commit'] and frozen.get('dirty') is False
                    and actual.get('dirty') is False)
@@ -131,7 +135,7 @@ def execute(args):
                           stop_reason=run.stop_reason, rounds=run.rounds,
                           wall_seconds=time.perf_counter() - started, workers=args.workers,
                           code_commit=source['commit'], code_dirty=source['dirty'],
-                          implementation_sha256=source['implementation_sha256'],
+                          implementation_sha256=source['implementation_sha256'], code_source_kind=source['source_kind'],
                           plan_sha256=sha256(args.plan),
                           metrics=metrics(plan, length, peak, cost, die_peak, max_net, problem.names))
             stem = args.output/f'{name}-seed{seed}'
@@ -159,7 +163,10 @@ def checked_records(plan_path, plan, output):
         raise SystemExit(f'method x seed set incomplete or extra: missing {sorted(expected - set(found))}, '
                          f'unexpected {sorted(set(found) - expected)}')
     for r in records:
-        require_version(plan.get('code', {}), dict(commit=r.get('code_commit'), dirty=r.get('code_dirty'),
+        if 'code_dirty' not in r:
+            raise SystemExit('comparison record has no source status')
+        require_version(plan.get('code', {}), dict(commit=r.get('code_commit'), dirty=r['code_dirty'],
+                                                   source_kind=r.get('code_source_kind'),
                                                    implementation_sha256=r.get('implementation_sha256')))
         if r['plan_sha256'] != plan_sha:
             raise SystemExit(f"{r['method']} seed {r['seed']} was run under a different plan")
