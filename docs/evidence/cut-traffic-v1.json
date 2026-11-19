@@ -1,0 +1,510 @@
+{
+  "analysed_commit": "9756935cb020c561c89e07db3355f9235bdef12b",
+  "fetch_succeeded": true,
+  "protocol_commits": [
+    "468773f764aad7dac9f42ae2b14018fe33d18b2d",
+    "6669dc0ed827eebdbf2e911825828eb30b353365"
+  ],
+  "host": "moe-server (hpclab03)",
+  "raw_dir": "/data/ziheng/haoning/chiplet_floorplanning/results/cut-traffic-9756935",
+  "raw_sha256": {
+    "result-final.json": "b02c69e80346639ef5cb24823b68aaa11906ddf612fdd9e9b0696fab35248ba5",
+    "rings.json": "f9adb87991310f74b908b5dde81e2f2be48315d1f29575ef2376590ba36cfc80"
+  },
+  "driver_sha256": {
+    "cut_traffic.py": "8b6874a405fbf3158c82f507c722a2ecb6482bda79a9c76f311f5b32a1143eec",
+    "ring_capacity.py": "da9467bed3c30a2c2389d426f5b9a143de40c7e4a91faa63886389b41b5daa13"
+  },
+  "input_evidence_sha256": {
+    "case3-joint-clearance-v1.json": "0e0c6a7ee97aa947cfd9ec8c3bd6965181f4758ef9a2f31386b1657527f7a548",
+    "case3-selective-rate-v1.json": "79e0a4ea45326738a5caa647742186dfdb380b7a12442eff5b951a49db1fcb8a"
+  },
+  "geometry_summary": {
+    "layouts": 9251,
+    "layouts_with_channels": 3079,
+    "layouts_without_channels": 6172,
+    "channels_tested": 4043,
+    "zero_signal_channels": 351,
+    "max_per_pin_error_um": 1.4551915228366852e-11,
+    "max_total_error_m": 1.0244548320770263e-14
+  },
+  "original_netlist_cases": [
+    {
+      "case": "Case1",
+      "dies": 6,
+      "layouts": 890,
+      "channels_tested": 310,
+      "layouts_with_channels": 295,
+      "layouts_without_channels": 595,
+      "zero_signal_channels": 0,
+      "max_per_pin_error_um": 7.275957614183426e-12,
+      "max_total_error_m": 2.7939677238464356e-15,
+      "widest_channel": {
+        "layout_index": 130,
+        "axis": "y",
+        "gap_um": 6000.0,
+        "crossing_signals": 1408,
+        "move_um": 1000.0,
+        "measured_wire_reduction_m": 1.408
+      },
+      "source_sha256": "f2d55207a86fee7e03d14778ac5eea3847d3a101584d451a751d654295a4bb72",
+      "archive_sha256": "aceb776d0e6caef5f71aef7f52af12da05f29e1a03a6daf3b3bfa7080e8f105f"
+    },
+    {
+      "case": "Case10",
+      "dies": 61,
+      "layouts": 923,
+      "channels_tested": 430,
+      "layouts_with_channels": 417,
+      "layouts_without_channels": 506,
+      "zero_signal_channels": 351,
+      "max_per_pin_error_um": 1.4551915228366852e-11,
+      "max_total_error_m": 1.7462298274040223e-16,
+      "widest_channel": {
+        "layout_index": 180,
+        "axis": "y",
+        "gap_um": 7220.0,
+        "crossing_signals": 0,
+        "move_um": 1000.0,
+        "measured_wire_reduction_m": 0.0
+      },
+      "source_sha256": "841ecee33a7226afdd99e7c094ce03894b4b969a8e1d4a72f845baf5924d4a90",
+      "archive_sha256": "390abcca92a90070b914d100cf6dea99c565d99e94a2544e85d5f35be7f56df4"
+    },
+    {
+      "case": "Case2",
+      "dies": 6,
+      "layouts": 942,
+      "channels_tested": 1372,
+      "layouts_with_channels": 859,
+      "layouts_without_channels": 83,
+      "zero_signal_channels": 0,
+      "max_per_pin_error_um": 1.4551915228366852e-11,
+      "max_total_error_m": 1.862645149230957e-15,
+      "widest_channel": {
+        "layout_index": 110,
+        "axis": "x",
+        "gap_um": 24500.0,
+        "crossing_signals": 1408,
+        "move_um": 1000.0,
+        "measured_wire_reduction_m": 1.408
+      },
+      "source_sha256": "1648efcd8889a7f3486b711349700286f0222032f9966083400ced1844550b18",
+      "archive_sha256": "6136407a61ce59a27a2ef7ba0c98e3dc18e2b3e8e75f311d77d91e3568193096"
+    },
+    {
+      "case": "Case3",
+      "dies": 8,
+      "layouts": 931,
+      "channels_tested": 908,
+      "layouts_with_channels": 698,
+      "layouts_without_channels": 233,
+      "zero_signal_channels": 0,
+      "max_per_pin_error_um": 1.4551915228366852e-11,
+      "max_total_error_m": 1.0244548320770263e-14,
+      "widest_channel": {
+        "layout_index": 134,
+        "axis": "x",
+        "gap_um": 13000.0,
+        "crossing_signals": 2816,
+        "move_um": 1000.0,
+        "measured_wire_reduction_m": 2.816
+      },
+      "source_sha256": "34def31b4c3b64f86c46e690367108718888b391c123ac7274cbb75ad81c49dd",
+      "archive_sha256": "410800e720064e948d82aa0481db602fd83a26004924ab79538142be193773ce"
+    },
+    {
+      "case": "Case4",
+      "dies": 11,
+      "layouts": 937,
+      "channels_tested": 23,
+      "layouts_with_channels": 22,
+      "layouts_without_channels": 915,
+      "zero_signal_channels": 0,
+      "max_per_pin_error_um": 1.4551915228366852e-11,
+      "max_total_error_m": 9.313225746154785e-16,
+      "widest_channel": {
+        "layout_index": 102,
+        "axis": "y",
+        "gap_um": 3000.0,
+        "crossing_signals": 2112,
+        "move_um": 1000.0,
+        "measured_wire_reduction_m": 2.1120000000000005
+      },
+      "source_sha256": "15a3323c1ba38e9cd6521471f452c90c58964ab3efadcd27f91167fde8cb47ec",
+      "archive_sha256": "7906ed3d9ba323b9499c1f0b8dca032c48c7ba1b86e27b2979a8c252a4928092"
+    },
+    {
+      "case": "Case5",
+      "dies": 12,
+      "layouts": 912,
+      "channels_tested": 76,
+      "layouts_with_channels": 70,
+      "layouts_without_channels": 842,
+      "zero_signal_channels": 0,
+      "max_per_pin_error_um": 7.275957614183426e-12,
+      "max_total_error_m": 9.313225746154785e-16,
+      "widest_channel": {
+        "layout_index": 485,
+        "axis": "y",
+        "gap_um": 2000.0,
+        "crossing_signals": 3520,
+        "move_um": 1000.0,
+        "measured_wire_reduction_m": 3.52
+      },
+      "source_sha256": "1d5f01725b72e0c34accf56f0ece93d349d949a4387ee150e4f6d3dc4b0bf7fa",
+      "archive_sha256": "d7d0aecb189f7ac4cf352c0d7bc2c30afd51646afeb3dd5fc92201010decd325"
+    },
+    {
+      "case": "Case6",
+      "dies": 20,
+      "layouts": 936,
+      "channels_tested": 484,
+      "layouts_with_channels": 323,
+      "layouts_without_channels": 613,
+      "zero_signal_channels": 0,
+      "max_per_pin_error_um": 7.275957614183426e-12,
+      "max_total_error_m": 5.238689482212067e-16,
+      "widest_channel": {
+        "layout_index": 359,
+        "axis": "y",
+        "gap_um": 12000.0,
+        "crossing_signals": 1056,
+        "move_um": 1000.0,
+        "measured_wire_reduction_m": 1.056
+      },
+      "source_sha256": "17427cfbee057235d2f17a8621a1ecde43012212e87398149f98ce4570184703",
+      "archive_sha256": "1cdcc9a663bddb5bbc390745f87403021f1dff09ee1a5184a1aacbfd9f88d46b"
+    },
+    {
+      "case": "Case7",
+      "dies": 28,
+      "layouts": 918,
+      "channels_tested": 203,
+      "layouts_with_channels": 188,
+      "layouts_without_channels": 730,
+      "zero_signal_channels": 0,
+      "max_per_pin_error_um": 7.275957614183426e-12,
+      "max_total_error_m": 2.328306436538696e-16,
+      "widest_channel": {
+        "layout_index": 363,
+        "axis": "x",
+        "gap_um": 6300.0,
+        "crossing_signals": 1716,
+        "move_um": 1000.0,
+        "measured_wire_reduction_m": 1.716
+      },
+      "source_sha256": "be89a969da2a6d65206bc09de8967f0f21e8cabad1e9b534bb665cd5d72e8405",
+      "archive_sha256": "a3b67f57456dd45b1297b8786bc26d224f837611e9d6c2165020d55de3770ac8"
+    },
+    {
+      "case": "Case8",
+      "dies": 36,
+      "layouts": 942,
+      "channels_tested": 225,
+      "layouts_with_channels": 195,
+      "layouts_without_channels": 747,
+      "zero_signal_channels": 0,
+      "max_per_pin_error_um": 3.637978807091713e-12,
+      "max_total_error_m": 4.0745362639427184e-16,
+      "widest_channel": {
+        "layout_index": 181,
+        "axis": "x",
+        "gap_um": 4500.0,
+        "crossing_signals": 308,
+        "move_um": 1000.0,
+        "measured_wire_reduction_m": 0.308
+      },
+      "source_sha256": "6e7c1278d7b3812f505283c613e30890a4b68dc6c1c9bb8b4b4e4a44e4ee4a1b",
+      "archive_sha256": "79a05d257c75877c1b2c48e6ddce32e4778a5e830aa1eea214c8edaa3e8444cb"
+    },
+    {
+      "case": "Case9",
+      "dies": 44,
+      "layouts": 920,
+      "channels_tested": 12,
+      "layouts_with_channels": 12,
+      "layouts_without_channels": 908,
+      "zero_signal_channels": 0,
+      "max_per_pin_error_um": 3.637978807091713e-12,
+      "max_total_error_m": 1.7462298274040223e-16,
+      "widest_channel": {
+        "layout_index": 841,
+        "axis": "x",
+        "gap_um": 1466.0,
+        "crossing_signals": 704,
+        "move_um": 1000.0,
+        "measured_wire_reduction_m": 0.704
+      },
+      "source_sha256": "13003c5004f028229280860f8bbbfc9e4bb9f49d84d6e8f31f89eaa9397cb8d5",
+      "archive_sha256": "2602305d733e8759c7dcf3f91307d35bf90bc6b4dbd95f916dd731c4010dea60"
+    }
+  ],
+  "physical_ring": {
+    "layout": "two-fast-local",
+    "modes": [
+      {
+        "mask": 0,
+        "length_m": 47.57705038960001,
+        "max_cpu_signal_mm": 27.4,
+        "wire_budget_met": false,
+        "cpu_reach_met": false,
+        "channels": [
+          {
+            "axis": "x",
+            "high_side_dies": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "gap_mm": 4.326,
+            "cpu_signals": 704,
+            "memory_signals": 0,
+            "cpu_raw_capacity_each_direction_gbps": 2048,
+            "move_mm": 1.0,
+            "saved_wire_m": 0.704
+          },
+          {
+            "axis": "y",
+            "high_side_dies": [
+              2,
+              3,
+              6,
+              7
+            ],
+            "gap_mm": 0.414,
+            "cpu_signals": 704,
+            "memory_signals": 0,
+            "cpu_raw_capacity_each_direction_gbps": 2048,
+            "move_mm": 0.414,
+            "saved_wire_m": 0.291456
+          }
+        ]
+      },
+      {
+        "mask": 9,
+        "length_m": 38.95269838960001,
+        "max_cpu_signal_mm": 25.0,
+        "wire_budget_met": true,
+        "cpu_reach_met": true,
+        "channels": [
+          {
+            "axis": "x",
+            "high_side_dies": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "gap_mm": 4.326,
+            "cpu_signals": 352,
+            "memory_signals": 0,
+            "cpu_raw_capacity_each_direction_gbps": 2048,
+            "move_mm": 1.0,
+            "saved_wire_m": 0.352
+          },
+          {
+            "axis": "y",
+            "high_side_dies": [
+              2,
+              3,
+              6,
+              7
+            ],
+            "gap_mm": 0.414,
+            "cpu_signals": 704,
+            "memory_signals": 0,
+            "cpu_raw_capacity_each_direction_gbps": 2048,
+            "move_mm": 0.414,
+            "saved_wire_m": 0.291456
+          }
+        ]
+      },
+      {
+        "mask": 15,
+        "length_m": 31.696922389600005,
+        "max_cpu_signal_mm": 25.0,
+        "wire_budget_met": true,
+        "cpu_reach_met": true,
+        "channels": [
+          {
+            "axis": "x",
+            "high_side_dies": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "gap_mm": 4.326,
+            "cpu_signals": 352,
+            "memory_signals": 0,
+            "cpu_raw_capacity_each_direction_gbps": 2048,
+            "move_mm": 1.0,
+            "saved_wire_m": 0.352
+          },
+          {
+            "axis": "y",
+            "high_side_dies": [
+              2,
+              3,
+              6,
+              7
+            ],
+            "gap_mm": 0.414,
+            "cpu_signals": 352,
+            "memory_signals": 0,
+            "cpu_raw_capacity_each_direction_gbps": 2048,
+            "move_mm": 0.414,
+            "saved_wire_m": 0.145728
+          }
+        ]
+      }
+    ]
+  },
+  "four_node_traffic": {
+    "raw_gbps_per_directed_edge": 1024,
+    "payload_fraction": 0.9411764705882353,
+    "synthetic_target_TB_s": 0.8,
+    "share_step": 0.025,
+    "labelled_matrices": 861,
+    "labelled_mapping_trials": 2583,
+    "matrices_crossing_target_by_mapping": 135,
+    "max_mapping_ratio": 2.0,
+    "max_lp_formula_error_gbps": 4.547473508864641e-13,
+    "max_constructive_flow_error_gbps": 2.2737367544323206e-13,
+    "reference_shares": [
+      0.45,
+      0.45,
+      0.1
+    ],
+    "reference_mappings": [
+      {
+        "diagonal_matching": 0,
+        "diagonal_share": 0.45,
+        "per_cpu_raw_gbps": 1137.7777777777778,
+        "aggregate_payload_TB_s": 0.5354248366013072,
+        "target_met": false
+      },
+      {
+        "diagonal_matching": 1,
+        "diagonal_share": 0.45,
+        "per_cpu_raw_gbps": 1137.7777777777778,
+        "aggregate_payload_TB_s": 0.5354248366013072,
+        "target_met": false
+      },
+      {
+        "diagonal_matching": 2,
+        "diagonal_share": 0.1,
+        "per_cpu_raw_gbps": 1861.8181818181818,
+        "aggregate_payload_TB_s": 0.8761497326203208,
+        "target_met": true
+      }
+    ]
+  },
+  "ring_extension": {
+    "synthetic_nodes": [
+      4,
+      6,
+      8,
+      11,
+      12,
+      20,
+      28,
+      36,
+      44,
+      61
+    ],
+    "seed": 0,
+    "trials": 120,
+    "interval_checks": 49728,
+    "per_size": {
+      "4": {
+        "trials": 12,
+        "intervals_per_trial": 6,
+        "max_abs_multiplier_difference": 7.105427357601002e-15,
+        "max_primal_residual_gbps": 1.1368683772161603e-13
+      },
+      "6": {
+        "trials": 12,
+        "intervals_per_trial": 15,
+        "max_abs_multiplier_difference": 1.0658141036401503e-14,
+        "max_primal_residual_gbps": 9.094947017729282e-13
+      },
+      "8": {
+        "trials": 12,
+        "intervals_per_trial": 28,
+        "max_abs_multiplier_difference": 8.881784197001252e-15,
+        "max_primal_residual_gbps": 1.0089706847793423e-12
+      },
+      "11": {
+        "trials": 12,
+        "intervals_per_trial": 55,
+        "max_abs_multiplier_difference": 6.217248937900877e-15,
+        "max_primal_residual_gbps": 2.5011104298755527e-12
+      },
+      "12": {
+        "trials": 12,
+        "intervals_per_trial": 66,
+        "max_abs_multiplier_difference": 7.105427357601002e-15,
+        "max_primal_residual_gbps": 1.3642420526593924e-12
+      },
+      "20": {
+        "trials": 12,
+        "intervals_per_trial": 190,
+        "max_abs_multiplier_difference": 7.105427357601002e-15,
+        "max_primal_residual_gbps": 7.744915819785092e-13
+      },
+      "28": {
+        "trials": 12,
+        "intervals_per_trial": 378,
+        "max_abs_multiplier_difference": 8.881784197001252e-16,
+        "max_primal_residual_gbps": 1.1368683772161603e-12
+      },
+      "36": {
+        "trials": 12,
+        "intervals_per_trial": 630,
+        "max_abs_multiplier_difference": 1.3322676295501878e-15,
+        "max_primal_residual_gbps": 9.094947017729282e-13
+      },
+      "44": {
+        "trials": 12,
+        "intervals_per_trial": 946,
+        "max_abs_multiplier_difference": 1.0658141036401503e-14,
+        "max_primal_residual_gbps": 1.922018100231071e-12
+      },
+      "61": {
+        "trials": 12,
+        "intervals_per_trial": 1830,
+        "max_abs_multiplier_difference": 4.440892098500626e-15,
+        "max_primal_residual_gbps": 5.002220859751105e-12
+      }
+    },
+    "max_abs_multiplier_difference": 1.0658141036401503e-14,
+    "max_primal_residual_gbps": 5.002220859751105e-12,
+    "example_61_nodes": {
+      "nodes": 61,
+      "capacity_profile": "heterogeneous",
+      "workload": "spread",
+      "mapping": "permuted",
+      "positive_directed_pairs": 366,
+      "interval_count": 1830,
+      "cut_bound": 0.3543252595155709,
+      "path_lp": 0.3543252595155709,
+      "path_primal_error_gbps": 1.199040866595169e-13,
+      "bottleneck": {
+        "edges": [
+          25,
+          59
+        ],
+        "one_way_crossing_demand_gbps": 1445,
+        "one_way_capacity_gbps": 512
+      }
+    }
+  },
+  "scope": {
+    "geometry": "Rigid, axis-aligned, die-free full strips and pin Manhattan lengths. Netlist counts include signals without assigning application traffic to the original benchmarks.",
+    "traffic": "Steady, pairwise symmetric unicast, symmetric full-duplex capacities, ideal forwarding and fractional splitting. Large rings and matrices are synthetic. Directed cuts remain necessary more widely.",
+    "physical_validation": "No new channel timing, packet-level delivery, detailed routing, or external thermal validation. Prior steady full-load temperatures apply to the previously specified sources."
+  }
+}
