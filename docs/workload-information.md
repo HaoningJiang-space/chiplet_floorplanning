@@ -50,9 +50,13 @@ $$\forall z\in D(S),\quad \bigcap_{s:D(s)=z} A_\epsilon(s)\ne\varnothing.$$
 
 使用与前轮相同的 ATPlace 导入目录，运行 `python tools/workload_information.py --cases CASES --output results/workload-information.json`。输入文件 SHA-256、冻结协议提交、种子和容限记录在输出中。四网表的平均功率、芯粒尺寸、距离预算及散热条件按前轮约定。详细布线和温度相关接口时序尚未进入这次热排序。[输入与物理条件](thermal-rule-transfer.md)
 
-## 新时长检验前的约定
-
 本轮全套 202 项测试通过，双芯粒 CLI 校验与评估通过，3 W、34.1886 °C。全部热与互连求解使用本机；两次新增时长求解得到相同结果。
+
+### 独立复核
+
+推送并确认远端为 `442fd0041e8b54fee1fec59da73f631c9803916a` 后，新 Chat 会话静态审阅 GitHub 上的该提交及预定协议 `7e3dd39`。它核对了 Case5 的 3.764 K、预留时长的 21/24 组和解析反例的 0.112 K，认可共同近优布局的交集判据及四节点等容量环的连续域证明。热侧的保证限于给定物理模型、有限候选与覆盖工况。复核没有在云端运行实验。[Chat 审阅记录](https://chatgpt.com/c/6afefcee-cec0-83e8-88a4-b21734dcde7d)
+
+## 新时长检验前的约定
 
 本机 fetch 后与 `origin/main` 同为 `d37529cd3c5a65b4e098507469ef6be7e13660ff`。先复用了已发布的 4 个网表、每例 5 个预算内布局和 18 个负载情景。这里按设计时能知道的负载属性分组，比较只知道逐芯粒平均功率、另知道活动对、另知道时长、两项皆知四种情况。该部分属于对已知结果的重分析。
 
