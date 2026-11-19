@@ -1,0 +1,174 @@
+{
+  "original_sha256": "f293f2adc36e9550e22839aa28a7ab87a1569092c37ee1a28fe83334db79cf87",
+  "power_fraction": 0.1,
+  "cases": {
+    "Case1": {
+      "origin_side": {
+        "chips": [
+          "HBM_1"
+        ],
+        "indices": [
+          4
+        ],
+        "from_um": [
+          [
+            19900.0,
+            15900.0
+          ]
+        ],
+        "to_um": [
+          [
+            17900.0,
+            15900.0
+          ]
+        ],
+        "cost": 68.94204826360007,
+        "centre_package_mm": [
+          98.5,
+          112.0
+        ],
+        "candidate_count": 19,
+        "predicted_cooling_k": 0.10195800587293924
+      },
+      "destination_side": {
+        "chips": [
+          "GPU_1"
+        ],
+        "indices": [
+          2
+        ],
+        "from_um": [
+          [
+            28000.0,
+            33000.0
+          ]
+        ],
+        "to_um": [
+          [
+            31000.0,
+            33000.0
+          ]
+        ],
+        "cost": 69.95798421880008,
+        "centre_package_mm": [
+          118.5,
+          112.0
+        ],
+        "candidate_count": 19,
+        "predicted_cooling_k": 2.2183340385169785
+      }
+    },
+    "Case3": {
+      "origin_side": {
+        "chips": [
+          "CPU2_0"
+        ],
+        "indices": [
+          0
+        ],
+        "from_um": [
+          [
+            35000.0,
+            25500.0
+          ]
+        ],
+        "to_um": [
+          [
+            4000.0,
+            4500.0
+          ]
+        ],
+        "cost": 218.06630455359956,
+        "centre_package_mm": [
+          84.00496280979002,
+          99.95037190209989
+        ],
+        "candidate_count": 340,
+        "predicted_cooling_k": 17.345915956503102
+      },
+      "destination_side": {
+        "chips": [
+          "CPU2_3"
+        ],
+        "indices": [
+          3
+        ],
+        "from_um": [
+          [
+            16000.0,
+            31500.0
+          ]
+        ],
+        "to_um": [
+          [
+            4000.0,
+            4500.0
+          ]
+        ],
+        "cost": 214.0120965679997,
+        "centre_package_mm": [
+          85.99503719020998,
+          80.04962809790011
+        ],
+        "candidate_count": 340,
+        "predicted_cooling_k": 13.135644512199093
+      }
+    },
+    "ascend910": {
+      "origin_side": {
+        "chips": [
+          "die_3"
+        ],
+        "indices": [
+          3
+        ],
+        "from_um": [
+          [
+            43000.0,
+            31000.0
+          ]
+        ],
+        "to_um": [
+          [
+            33000.0,
+            45000.0
+          ]
+        ],
+        "cost": 26.34640522875817,
+        "centre_package_mm": [
+          85.0,
+          108.0
+        ],
+        "candidate_count": 526,
+        "predicted_cooling_k": 0.7264474045781224
+      },
+      "destination_side": {
+        "chips": [
+          "die_0"
+        ],
+        "indices": [
+          0
+        ],
+        "from_um": [
+          [
+            19000.0,
+            33000.0
+          ]
+        ],
+        "to_um": [
+          [
+            21000.0,
+            33000.0
+          ]
+        ],
+        "cost": 26.34640522875817,
+        "centre_package_mm": [
+          105.0,
+          108.0
+        ],
+        "candidate_count": 526,
+        "predicted_cooling_k": 1.2769506746484822
+      }
+    }
+  }
+}
