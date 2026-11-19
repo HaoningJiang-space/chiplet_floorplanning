@@ -1,0 +1,1534 @@
+{
+  "origin_sha256": "f293f2adc36e9550e22839aa28a7ab87a1569092c37ee1a28fe83334db79cf87",
+  "boundary_xy_mm": {
+    "west": [
+      88,
+      100
+    ],
+    "east": [
+      112,
+      100
+    ],
+    "south": [
+      100,
+      88
+    ],
+    "north": [
+      100,
+      112
+    ],
+    "centre": [
+      100,
+      100
+    ]
+  },
+  "power_fraction": 0.1,
+  "target_k": 0.1,
+  "cases": {
+    "Case1": {
+      "family": "ATPlace",
+      "metric": "pin_manhattan_m",
+      "cap": 70.35004826359999,
+      "actions": {
+        "old_hot": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 70.35004826360007
+        },
+        "two": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 70.35004826360007
+        },
+        "four": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 70.35004826360007
+        },
+        "half_space": {
+          "chips": [
+            "GPU_1"
+          ],
+          "indices": [
+            2
+          ],
+          "from_um": [
+            [
+              28000.0,
+              33000.0
+            ]
+          ],
+          "to_um": [
+            [
+              31000.0,
+              33000.0
+            ]
+          ],
+          "cost": 69.95798421880008
+        }
+      },
+      "feasible": 19,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 0.0,
+          "full_candidates": 1,
+          "could_clear_target": 0
+        },
+        "four": {
+          "best_model_gain_k": 0.0,
+          "full_candidates": 1,
+          "could_clear_target": 0
+        }
+      },
+      "exhaustive": {
+        "two": {
+          "index": 0,
+          "best_k": 0.0
+        },
+        "four": {
+          "index": 0,
+          "best_k": 0.0
+        }
+      },
+      "forward_fields_while_searching": 4,
+      "old_hot_bound_k": 0.0,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        },
+        "two": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        },
+        "four": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        }
+      }
+    },
+    "Case2": {
+      "family": "ATPlace",
+      "metric": "pin_manhattan_m",
+      "cap": 130.05228332924,
+      "actions": {
+        "old_hot": {
+          "chips": [
+            "HBM_1"
+          ],
+          "indices": [
+            1
+          ],
+          "from_um": [
+            [
+              48000.0,
+              8000.0
+            ]
+          ],
+          "to_um": [
+            [
+              42000.0,
+              21000.0
+            ]
+          ],
+          "cost": 119.13349941296002
+        },
+        "two": {
+          "chips": [
+            "HBM_1"
+          ],
+          "indices": [
+            1
+          ],
+          "from_um": [
+            [
+              48000.0,
+              8000.0
+            ]
+          ],
+          "to_um": [
+            [
+              42000.0,
+              21000.0
+            ]
+          ],
+          "cost": 119.13349941296002
+        },
+        "four": {
+          "chips": [
+            "HBM_1"
+          ],
+          "indices": [
+            1
+          ],
+          "from_um": [
+            [
+              48000.0,
+              8000.0
+            ]
+          ],
+          "to_um": [
+            [
+              38000.0,
+              17000.0
+            ]
+          ],
+          "cost": 116.68101943944004
+        },
+        "half_space": {
+          "chips": [
+            "HBM_2"
+          ],
+          "indices": [
+            2
+          ],
+          "from_um": [
+            [
+              7900.0,
+              43000.0
+            ]
+          ],
+          "to_um": [
+            [
+              48900.0,
+              36000.0
+            ]
+          ],
+          "cost": 129.38012319164002
+        }
+      },
+      "feasible": 960,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 0.20322397953630755,
+          "full_candidates": 1,
+          "could_clear_target": 46
+        },
+        "four": {
+          "best_model_gain_k": 0.10716254536495029,
+          "full_candidates": 2,
+          "could_clear_target": 6
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 10,
+      "old_hot_bound_k": 0.2082871686730492,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 0.32734014635240705,
+          "east": 0.20322397953630755,
+          "south": -0.021941138564312013,
+          "north": 0.47496492923664846
+        },
+        "two": {
+          "west": 0.32734014635240705,
+          "east": 0.20322397953630755,
+          "south": -0.021941138564312013,
+          "north": 0.47496492923664846
+        },
+        "four": {
+          "west": 0.8963977889196446,
+          "east": 0.1212466805681558,
+          "south": 0.10716254536495029,
+          "north": 0.20815627484223143
+        }
+      }
+    },
+    "Case3": {
+      "family": "ATPlace",
+      "metric": "pin_manhattan_m",
+      "cap": 224.24524687480002,
+      "actions": {
+        "old_hot": {
+          "chips": [
+            "CPU2_0"
+          ],
+          "indices": [
+            0
+          ],
+          "from_um": [
+            [
+              35000.0,
+              25500.0
+            ]
+          ],
+          "to_um": [
+            [
+              34000.0,
+              19500.0
+            ]
+          ],
+          "cost": 223.69545543439972
+        },
+        "two": {
+          "chips": [
+            "CPU2_0"
+          ],
+          "indices": [
+            0
+          ],
+          "from_um": [
+            [
+              35000.0,
+              25500.0
+            ]
+          ],
+          "to_um": [
+            [
+              34000.0,
+              19500.0
+            ]
+          ],
+          "cost": 223.69545543439972
+        },
+        "four": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 224.2452468747997
+        },
+        "half_space": {
+          "chips": [
+            "CPU2_1"
+          ],
+          "indices": [
+            1
+          ],
+          "from_um": [
+            [
+              4000.0,
+              14500.0
+            ]
+          ],
+          "to_um": [
+            [
+              5000.0,
+              4500.0
+            ]
+          ],
+          "cost": 221.66579087959965
+        }
+      },
+      "feasible": 340,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 0.10242034712725712,
+          "full_candidates": 1,
+          "could_clear_target": 1
+        },
+        "four": {
+          "best_model_gain_k": 0.01058750229711336,
+          "full_candidates": 1,
+          "could_clear_target": 0
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 6,
+      "old_hot_bound_k": 0.10242034712732107,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 1.343104566538031,
+          "east": 0.10242034712725712,
+          "south": 2.0907068247584704,
+          "north": -0.5293412868461083
+        },
+        "two": {
+          "west": 1.343104566538031,
+          "east": 0.10242034712725712,
+          "south": 2.0907068247584704,
+          "north": -0.5293412868461083
+        },
+        "four": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        }
+      }
+    },
+    "Case4": {
+      "family": "ATPlace",
+      "metric": "pin_manhattan_m",
+      "cap": 245.43560151679998,
+      "actions": {
+        "old_hot": {
+          "chips": [
+            "GPU_0"
+          ],
+          "indices": [
+            2
+          ],
+          "from_um": [
+            [
+              13000.0,
+              13000.0
+            ]
+          ],
+          "to_um": [
+            [
+              13000.0,
+              15000.0
+            ]
+          ],
+          "cost": 242.61960151680012
+        },
+        "two": {
+          "chips": [
+            "GPU_0"
+          ],
+          "indices": [
+            2
+          ],
+          "from_um": [
+            [
+              13000.0,
+              13000.0
+            ]
+          ],
+          "to_um": [
+            [
+              13000.0,
+              15000.0
+            ]
+          ],
+          "cost": 242.61960151680012
+        },
+        "four": {
+          "chips": [
+            "GPU_0"
+          ],
+          "indices": [
+            2
+          ],
+          "from_um": [
+            [
+              13000.0,
+              13000.0
+            ]
+          ],
+          "to_um": [
+            [
+              15000.0,
+              15000.0
+            ]
+          ],
+          "cost": 243.62205254200012
+        },
+        "half_space": {
+          "chips": [
+            "GPU_0"
+          ],
+          "indices": [
+            2
+          ],
+          "from_um": [
+            [
+              13000.0,
+              13000.0
+            ]
+          ],
+          "to_um": [
+            [
+              9000.0,
+              15000.0
+            ]
+          ],
+          "cost": 244.8758445348001
+        }
+      },
+      "feasible": 138,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 0.6216766974427514,
+          "full_candidates": 1,
+          "could_clear_target": 5
+        },
+        "four": {
+          "best_model_gain_k": 0.35296934332059493,
+          "full_candidates": 1,
+          "could_clear_target": 2
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 6,
+      "old_hot_bound_k": 0.6216766974427661,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 0.6216766974427514,
+          "east": 0.9972060635177584,
+          "south": -0.25042502389405286,
+          "north": 1.4872359234272778
+        },
+        "two": {
+          "west": 0.6216766974427514,
+          "east": 0.9972060635177584,
+          "south": -0.25042502389405286,
+          "north": 1.4872359234272778
+        },
+        "four": {
+          "west": 0.35296934332059493,
+          "east": 3.6381103714913294,
+          "south": 0.38608101817047213,
+          "north": 0.9586166715050268
+        }
+      }
+    },
+    "Case5": {
+      "family": "ATPlace",
+      "metric": "pin_manhattan_m",
+      "cap": 170.4883115616,
+      "actions": {
+        "old_hot": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 170.48831156159991
+        },
+        "two": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 170.48831156159991
+        },
+        "four": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 170.48831156159991
+        },
+        "half_space": {
+          "chips": [
+            "CPU2_3",
+            "DRAM_0"
+          ],
+          "indices": [
+            3,
+            6
+          ],
+          "from_um": [
+            [
+              29500.0,
+              32000.0
+            ],
+            [
+              31500.0,
+              5400.0
+            ]
+          ],
+          "to_um": [
+            [
+              31500.0,
+              5400.0
+            ],
+            [
+              29500.0,
+              32000.0
+            ]
+          ],
+          "cost": 166.38917616419997
+        }
+      },
+      "feasible": 28,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 0.0,
+          "full_candidates": 13,
+          "could_clear_target": 0
+        },
+        "four": {
+          "best_model_gain_k": 0.0,
+          "full_candidates": 8,
+          "could_clear_target": 0
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 42,
+      "old_hot_bound_k": 0.0,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        },
+        "two": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        },
+        "four": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        }
+      }
+    },
+    "Case6": {
+      "family": "ATPlace",
+      "metric": "pin_manhattan_m",
+      "cap": 161.88587953939998,
+      "actions": {
+        "old_hot": {
+          "chips": [
+            "GPU_1",
+            "DRAM_3"
+          ],
+          "indices": [
+            9,
+            19
+          ],
+          "from_um": [
+            [
+              24600.0,
+              42500.0
+            ],
+            [
+              24500.0,
+              26400.0
+            ]
+          ],
+          "to_um": [
+            [
+              24500.0,
+              26400.0
+            ],
+            [
+              24600.0,
+              42500.0
+            ]
+          ],
+          "cost": 156.2816996760001
+        },
+        "two": {
+          "chips": [
+            "GPU_1",
+            "DRAM_3"
+          ],
+          "indices": [
+            9,
+            19
+          ],
+          "from_um": [
+            [
+              24600.0,
+              42500.0
+            ],
+            [
+              24500.0,
+              26400.0
+            ]
+          ],
+          "to_um": [
+            [
+              24500.0,
+              26400.0
+            ],
+            [
+              24600.0,
+              42500.0
+            ]
+          ],
+          "cost": 156.2816996760001
+        },
+        "four": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 161.88587953940012
+        },
+        "half_space": {
+          "chips": [
+            "GPU_3"
+          ],
+          "indices": [
+            11
+          ],
+          "from_um": [
+            [
+              15500.0,
+              43500.0
+            ]
+          ],
+          "to_um": [
+            [
+              15500.0,
+              48500.0
+            ]
+          ],
+          "cost": 161.3258795438001
+        }
+      },
+      "feasible": 676,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 1.4032832184555843,
+          "full_candidates": 1,
+          "could_clear_target": 115
+        },
+        "four": {
+          "best_model_gain_k": 0.0946710481230646,
+          "full_candidates": 1,
+          "could_clear_target": 0
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 6,
+      "old_hot_bound_k": 1.8035806269596193,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 2.294682208589361,
+          "east": 1.4032832184555843,
+          "south": 5.9962834888790795,
+          "north": -1.318633736297837
+        },
+        "two": {
+          "west": 2.294682208589361,
+          "east": 1.4032832184555843,
+          "south": 5.9962834888790795,
+          "north": -1.318633736297837
+        },
+        "four": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        }
+      }
+    },
+    "Case7": {
+      "family": "ATPlace",
+      "metric": "pin_manhattan_m",
+      "cap": 47.33103000296,
+      "actions": {
+        "old_hot": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 47.33103000295999
+        },
+        "two": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 47.33103000295999
+        },
+        "four": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 47.33103000295999
+        },
+        "half_space": {
+          "chips": [
+            "CPU1_0"
+          ],
+          "indices": [
+            0
+          ],
+          "from_um": [
+            [
+              5250.0,
+              18750.0
+            ]
+          ],
+          "to_um": [
+            [
+              12250.0,
+              17750.0
+            ]
+          ],
+          "cost": 47.242219995359996
+        }
+      },
+      "feasible": 525,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 0.009466011472705205,
+          "full_candidates": 3,
+          "could_clear_target": 0
+        },
+        "four": {
+          "best_model_gain_k": 0.0,
+          "full_candidates": 17,
+          "could_clear_target": 0
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 74,
+      "old_hot_bound_k": 0.0,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        },
+        "two": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        },
+        "four": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        }
+      }
+    },
+    "Case8": {
+      "family": "ATPlace",
+      "metric": "pin_manhattan_m",
+      "cap": 49.460340050899994,
+      "actions": {
+        "old_hot": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 49.460340050900015
+        },
+        "two": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 49.460340050900015
+        },
+        "four": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 49.460340050900015
+        },
+        "half_space": {
+          "chips": [
+            "CPU1_10"
+          ],
+          "indices": [
+            10
+          ],
+          "from_um": [
+            [
+              5750.0,
+              20250.0
+            ]
+          ],
+          "to_um": [
+            [
+              1750.0,
+              1250.0
+            ]
+          ],
+          "cost": 48.66978003390001
+        }
+      },
+      "feasible": 489,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 0.009913963652232738,
+          "full_candidates": 2,
+          "could_clear_target": 0
+        },
+        "four": {
+          "best_model_gain_k": 0.0,
+          "full_candidates": 113,
+          "could_clear_target": 0
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 456,
+      "old_hot_bound_k": 0.0,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        },
+        "two": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        },
+        "four": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        }
+      }
+    },
+    "Case9": {
+      "family": "ATPlace",
+      "metric": "pin_manhattan_m",
+      "cap": 332.92887979,
+      "actions": {
+        "old_hot": {
+          "chips": [
+            "CPU2_11"
+          ],
+          "indices": [
+            15
+          ],
+          "from_um": [
+            [
+              36500.0,
+              6300.0
+            ]
+          ],
+          "to_um": [
+            [
+              33500.0,
+              26300.0
+            ]
+          ],
+          "cost": 325.40495978999985
+        },
+        "two": {
+          "chips": [
+            "CPU2_11"
+          ],
+          "indices": [
+            15
+          ],
+          "from_um": [
+            [
+              36500.0,
+              6300.0
+            ]
+          ],
+          "to_um": [
+            [
+              33500.0,
+              26300.0
+            ]
+          ],
+          "cost": 325.40495978999985
+        },
+        "four": {
+          "chips": [
+            "CPU2_7"
+          ],
+          "indices": [
+            11
+          ],
+          "from_um": [
+            [
+              4400.0,
+              53500.0
+            ]
+          ],
+          "to_um": [
+            [
+              16400.0,
+              36500.0
+            ]
+          ],
+          "cost": 330.7834397899998
+        },
+        "half_space": {
+          "chips": [
+            "GPU_3",
+            "DRAM_1"
+          ],
+          "indices": [
+            19,
+            33
+          ],
+          "from_um": [
+            [
+              29500.0,
+              33500.0
+            ],
+            [
+              37500.0,
+              44400.0
+            ]
+          ],
+          "to_um": [
+            [
+              37500.0,
+              44400.0
+            ],
+            [
+              29500.0,
+              33500.0
+            ]
+          ],
+          "cost": 329.7561896363998
+        }
+      },
+      "feasible": 3639,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 1.101492987632625,
+          "full_candidates": 1,
+          "could_clear_target": 75
+        },
+        "four": {
+          "best_model_gain_k": 0.22628281012444518,
+          "full_candidates": 1,
+          "could_clear_target": 14
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 6,
+      "old_hot_bound_k": 1.108476366779727,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 1.6355176418737756,
+          "east": 1.101492987632625,
+          "south": -0.14450031509743155,
+          "north": 1.7001162520445376
+        },
+        "two": {
+          "west": 1.6355176418737756,
+          "east": 1.101492987632625,
+          "south": -0.14450031509743155,
+          "north": 1.7001162520445376
+        },
+        "four": {
+          "west": 0.26277989496009013,
+          "east": 0.22628281012444518,
+          "south": 1.383014059762374,
+          "north": 0.2881203571595279
+        }
+      }
+    },
+    "Case10": {
+      "family": "ATPlace",
+      "metric": "pin_manhattan_m",
+      "cap": 154.57712974772,
+      "actions": {
+        "old_hot": {
+          "chips": [
+            "GPU_2"
+          ],
+          "indices": [
+            17
+          ],
+          "from_um": [
+            [
+              32300.0,
+              4500.0
+            ]
+          ],
+          "to_um": [
+            [
+              41300.0,
+              24500.0
+            ]
+          ],
+          "cost": 152.47821982711991
+        },
+        "two": {
+          "chips": [
+            "GPU_2"
+          ],
+          "indices": [
+            17
+          ],
+          "from_um": [
+            [
+              32300.0,
+              4500.0
+            ]
+          ],
+          "to_um": [
+            [
+              41300.0,
+              24500.0
+            ]
+          ],
+          "cost": 152.47821982711991
+        },
+        "four": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 154.5771297477199
+        },
+        "half_space": {
+          "chips": [
+            "GPU_2"
+          ],
+          "indices": [
+            17
+          ],
+          "from_um": [
+            [
+              32300.0,
+              4500.0
+            ]
+          ],
+          "to_um": [
+            [
+              36300.0,
+              42500.0
+            ]
+          ],
+          "cost": 154.4070998911199
+        }
+      },
+      "feasible": 6989,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 1.1048018474226637,
+          "full_candidates": 1,
+          "could_clear_target": 377
+        },
+        "four": {
+          "best_model_gain_k": 0.013992272806582662,
+          "full_candidates": 1,
+          "could_clear_target": 0
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 6,
+      "old_hot_bound_k": 1.1048018474226258,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 2.0094919224400343,
+          "east": 1.1048018474226637,
+          "south": -1.6182319916617587,
+          "north": 9.16037784500724
+        },
+        "two": {
+          "west": 2.0094919224400343,
+          "east": 1.1048018474226637,
+          "south": -1.6182319916617587,
+          "north": 9.16037784500724
+        },
+        "four": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        }
+      }
+    },
+    "ascend910": {
+      "family": "TAP-2.5D",
+      "metric": "demand_weighted_centre_mm",
+      "cap": 26.34640522875817,
+      "actions": {
+        "old_hot": {
+          "chips": [
+            "die_2"
+          ],
+          "indices": [
+            2
+          ],
+          "from_um": [
+            [
+              7000.0,
+              43000.0
+            ]
+          ],
+          "to_um": [
+            [
+              4000.0,
+              36000.0
+            ]
+          ],
+          "cost": 25.50980392156863
+        },
+        "two": {
+          "chips": [
+            "die_2"
+          ],
+          "indices": [
+            2
+          ],
+          "from_um": [
+            [
+              7000.0,
+              43000.0
+            ]
+          ],
+          "to_um": [
+            [
+              31000.0,
+              23000.0
+            ]
+          ],
+          "cost": 26.34640522875817
+        },
+        "four": {
+          "chips": [
+            "die_2"
+          ],
+          "indices": [
+            2
+          ],
+          "from_um": [
+            [
+              7000.0,
+              43000.0
+            ]
+          ],
+          "to_um": [
+            [
+              31000.0,
+              32000.0
+            ]
+          ],
+          "cost": 24.464052287581698
+        },
+        "half_space": {
+          "chips": [
+            "die_0"
+          ],
+          "indices": [
+            0
+          ],
+          "from_um": [
+            [
+              19000.0,
+              33000.0
+            ]
+          ],
+          "to_um": [
+            [
+              21000.0,
+              33000.0
+            ]
+          ],
+          "cost": 26.34640522875817
+        }
+      },
+      "feasible": 526,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 0.34086177099801596,
+          "full_candidates": 5,
+          "could_clear_target": 48
+        },
+        "four": {
+          "best_model_gain_k": 0.12896919535383233,
+          "full_candidates": 3,
+          "could_clear_target": 11
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 22,
+      "old_hot_bound_k": 0.38695352940141947,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 0.384961031559504,
+          "east": 0.33678163180702825,
+          "south": 0.44861761082919216,
+          "north": -0.16412238930619516
+        },
+        "two": {
+          "west": 0.34086177099801596,
+          "east": 1.9566109433555177,
+          "south": 1.5571944632216628,
+          "north": -0.1147732885084416
+        },
+        "four": {
+          "west": 0.12896919535383233,
+          "east": 1.8596948941492641,
+          "south": 0.9817679445817831,
+          "north": 0.13096646850324944
+        }
+      }
+    },
+    "micro150": {
+      "family": "TAP-2.5D",
+      "metric": "demand_weighted_centre_mm",
+      "cap": 36.3,
+      "actions": {
+        "old_hot": {
+          "chips": [
+            "die_3"
+          ],
+          "indices": [
+            3
+          ],
+          "from_um": [
+            [
+              5000.0,
+              13000.0
+            ]
+          ],
+          "to_um": [
+            [
+              6000.0,
+              18000.0
+            ]
+          ],
+          "cost": 34.50000000000001
+        },
+        "two": {
+          "chips": [
+            "die_3"
+          ],
+          "indices": [
+            3
+          ],
+          "from_um": [
+            [
+              5000.0,
+              13000.0
+            ]
+          ],
+          "to_um": [
+            [
+              8000.0,
+              17000.0
+            ]
+          ],
+          "cost": 34.2
+        },
+        "four": {
+          "chips": [
+            "die_3"
+          ],
+          "indices": [
+            3
+          ],
+          "from_um": [
+            [
+              5000.0,
+              13000.0
+            ]
+          ],
+          "to_um": [
+            [
+              8000.0,
+              15000.0
+            ]
+          ],
+          "cost": 34.800000000000004
+        },
+        "half_space": {
+          "chips": [
+            "die_0"
+          ],
+          "indices": [
+            0
+          ],
+          "from_um": [
+            [
+              10000.0,
+              28000.0
+            ]
+          ],
+          "to_um": [
+            [
+              45000.0,
+              45000.0
+            ]
+          ],
+          "cost": 35.50000000000001
+        }
+      },
+      "feasible": 1739,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 0.31624005497985763,
+          "full_candidates": 28,
+          "could_clear_target": 172
+        },
+        "four": {
+          "best_model_gain_k": 0.16341715738229823,
+          "full_candidates": 1,
+          "could_clear_target": 2
+        }
+      },
+      "exhaustive": {
+        "two": {
+          "index": 648,
+          "best_k": 0.31624005497985763
+        },
+        "four": {
+          "index": 638,
+          "best_k": 0.16341715738229823
+        }
+      },
+      "forward_fields_while_searching": 60,
+      "old_hot_bound_k": 0.39216673770639693,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": 0.3921667377064004,
+          "east": -1.0064633922499766,
+          "south": -1.378431486278565,
+          "north": 3.194351618568355
+        },
+        "two": {
+          "west": 0.31624005497985763,
+          "east": 0.43674393827662783,
+          "south": -0.21632356457948276,
+          "north": 3.4758332569043233
+        },
+        "four": {
+          "west": 0.16341715738229823,
+          "east": 1.226819463124194,
+          "south": 0.39356590164389615,
+          "north": 2.159386471474633
+        }
+      }
+    },
+    "multigpu": {
+      "family": "TAP-2.5D",
+      "metric": "demand_weighted_centre_mm",
+      "cap": 27.77777777777778,
+      "actions": {
+        "old_hot": {
+          "chips": [
+            "die_1",
+            "die_5"
+          ],
+          "indices": [
+            1,
+            5
+          ],
+          "from_um": [
+            [
+              31000.0,
+              37000.0
+            ],
+            [
+              40000.0,
+              21000.0
+            ]
+          ],
+          "to_um": [
+            [
+              40000.0,
+              21000.0
+            ],
+            [
+              31000.0,
+              37000.0
+            ]
+          ],
+          "cost": 23.111111111111114
+        },
+        "two": {
+          "chips": [
+            "die_1"
+          ],
+          "indices": [
+            1
+          ],
+          "from_um": [
+            [
+              31000.0,
+              37000.0
+            ]
+          ],
+          "to_um": [
+            [
+              31000.0,
+              36000.0
+            ]
+          ],
+          "cost": 27.407407407407405
+        },
+        "four": {
+          "chips": [],
+          "indices": [],
+          "from_um": [],
+          "to_um": [],
+          "cost": 27.777777777777775
+        },
+        "half_space": {
+          "chips": [
+            "die_1",
+            "die_5"
+          ],
+          "indices": [
+            1,
+            5
+          ],
+          "from_um": [
+            [
+              31000.0,
+              37000.0
+            ],
+            [
+              40000.0,
+              21000.0
+            ]
+          ],
+          "to_um": [
+            [
+              40000.0,
+              21000.0
+            ],
+            [
+              31000.0,
+              37000.0
+            ]
+          ],
+          "cost": 23.111111111111114
+        }
+      },
+      "feasible": 176,
+      "checks": {
+        "two": {
+          "best_model_gain_k": 0.2852851130582863,
+          "full_candidates": 4,
+          "could_clear_target": 7
+        },
+        "four": {
+          "best_model_gain_k": 0.024354038953788404,
+          "full_candidates": 1,
+          "could_clear_target": 0
+        }
+      },
+      "exhaustive": {},
+      "forward_fields_while_searching": 12,
+      "old_hot_bound_k": 3.3947621200462352,
+      "decisions_model_gains_k": {
+        "old_hot": {
+          "west": -9.327627016878651,
+          "east": 3.3267589044136017,
+          "south": 10.350749419396962,
+          "north": -8.569030502832558
+        },
+        "two": {
+          "west": 0.5604256110848489,
+          "east": 0.2852851130582863,
+          "south": 1.3533280753256491,
+          "north": -0.13938591704389225
+        },
+        "four": {
+          "west": 0.0,
+          "east": 0.0,
+          "south": 0.0,
+          "north": 0.0
+        }
+      }
+    }
+  }
+}
