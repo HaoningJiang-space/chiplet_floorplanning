@@ -1,0 +1,387 @@
+{
+  "networks": {
+    "chain": [
+      {
+        "terminals": [
+          0,
+          6
+        ],
+        "nodes": 7,
+        "powers_w": [
+          1.0,
+          3.0
+        ],
+        "heterogeneous": false,
+        "resistance_k_w": 6.000000000000002,
+        "starts": 20,
+        "finite_moves": 88,
+        "common_cooling_possible": 0,
+        "zero_ceiling": 20,
+        "positive_ceiling_but_stuck": 0,
+        "max_common_reduction_k": 0.0,
+        "max_port_identity_error_k": 7.105427357601002e-15,
+        "max_gain_above_bound_k": 3.552713678800501e-15
+      },
+      {
+        "terminals": [
+          0,
+          6
+        ],
+        "nodes": 7,
+        "powers_w": [
+          2.0,
+          2.0
+        ],
+        "heterogeneous": false,
+        "resistance_k_w": 6.000000000000002,
+        "starts": 20,
+        "finite_moves": 88,
+        "common_cooling_possible": 0,
+        "zero_ceiling": 20,
+        "positive_ceiling_but_stuck": 0,
+        "max_common_reduction_k": 0.0,
+        "max_port_identity_error_k": 7.105427357601002e-15,
+        "max_gain_above_bound_k": 3.552713678800501e-15
+      },
+      {
+        "terminals": [
+          0,
+          6
+        ],
+        "nodes": 7,
+        "powers_w": [
+          1.0,
+          3.0
+        ],
+        "heterogeneous": true,
+        "resistance_k_w": 9.250000000000004,
+        "starts": 20,
+        "finite_moves": 88,
+        "common_cooling_possible": 0,
+        "zero_ceiling": 20,
+        "positive_ceiling_but_stuck": 0,
+        "max_common_reduction_k": 0.0,
+        "max_port_identity_error_k": 5.684341886080802e-14,
+        "max_gain_above_bound_k": 2.842170943040401e-14
+      },
+      {
+        "terminals": [
+          0,
+          6
+        ],
+        "nodes": 7,
+        "powers_w": [
+          2.0,
+          2.0
+        ],
+        "heterogeneous": true,
+        "resistance_k_w": 9.250000000000004,
+        "starts": 20,
+        "finite_moves": 88,
+        "common_cooling_possible": 0,
+        "zero_ceiling": 20,
+        "positive_ceiling_but_stuck": 0,
+        "max_common_reduction_k": 0.0,
+        "max_port_identity_error_k": 4.973799150320701e-14,
+        "max_gain_above_bound_k": 2.4868995751603507e-14
+      }
+    ],
+    "branch": [
+      {
+        "terminals": [
+          0,
+          6
+        ],
+        "nodes": 9,
+        "powers_w": [
+          1.0,
+          3.0
+        ],
+        "heterogeneous": false,
+        "resistance_k_w": 5.999999999999999,
+        "starts": 42,
+        "finite_moves": 294,
+        "common_cooling_possible": 17,
+        "zero_ceiling": 20,
+        "positive_ceiling_but_stuck": 5,
+        "max_common_reduction_k": 6.0,
+        "max_port_identity_error_k": 7.105427357601002e-15,
+        "max_gain_above_bound_k": 1.7763568394002505e-15
+      },
+      {
+        "terminals": [
+          0,
+          6
+        ],
+        "nodes": 9,
+        "powers_w": [
+          2.0,
+          2.0
+        ],
+        "heterogeneous": false,
+        "resistance_k_w": 5.999999999999999,
+        "starts": 42,
+        "finite_moves": 294,
+        "common_cooling_possible": 12,
+        "zero_ceiling": 20,
+        "positive_ceiling_but_stuck": 10,
+        "max_common_reduction_k": 3.9999999999999982,
+        "max_port_identity_error_k": 7.105427357601002e-15,
+        "max_gain_above_bound_k": 1.7763568394002505e-15
+      },
+      {
+        "terminals": [
+          0,
+          6
+        ],
+        "nodes": 9,
+        "powers_w": [
+          1.0,
+          3.0
+        ],
+        "heterogeneous": true,
+        "resistance_k_w": 9.25000000000001,
+        "starts": 42,
+        "finite_moves": 294,
+        "common_cooling_possible": 22,
+        "zero_ceiling": 20,
+        "positive_ceiling_but_stuck": 0,
+        "max_common_reduction_k": 9.749999999999996,
+        "max_port_identity_error_k": 4.973799150320701e-14,
+        "max_gain_above_bound_k": 2.4868995751603507e-14
+      },
+      {
+        "terminals": [
+          0,
+          6
+        ],
+        "nodes": 9,
+        "powers_w": [
+          2.0,
+          2.0
+        ],
+        "heterogeneous": true,
+        "resistance_k_w": 9.25000000000001,
+        "starts": 42,
+        "finite_moves": 294,
+        "common_cooling_possible": 22,
+        "zero_ceiling": 20,
+        "positive_ceiling_but_stuck": 0,
+        "max_common_reduction_k": 6.499999999999993,
+        "max_port_identity_error_k": 4.618527782440651e-14,
+        "max_gain_above_bound_k": 2.4868995751603507e-14
+      }
+    ],
+    "mesh": [
+      {
+        "terminals": [
+          0,
+          8
+        ],
+        "nodes": 9,
+        "powers_w": [
+          1.0,
+          3.0
+        ],
+        "heterogeneous": false,
+        "resistance_k_w": 1.4999999999999998,
+        "starts": 42,
+        "finite_moves": 306,
+        "common_cooling_possible": 20,
+        "zero_ceiling": 0,
+        "positive_ceiling_but_stuck": 22,
+        "max_common_reduction_k": 1.166666666666667,
+        "max_port_identity_error_k": 1.7763568394002505e-15,
+        "max_gain_above_bound_k": 0.0
+      },
+      {
+        "terminals": [
+          0,
+          8
+        ],
+        "nodes": 9,
+        "powers_w": [
+          2.0,
+          2.0
+        ],
+        "heterogeneous": false,
+        "resistance_k_w": 1.4999999999999998,
+        "starts": 42,
+        "finite_moves": 306,
+        "common_cooling_possible": 12,
+        "zero_ceiling": 4,
+        "positive_ceiling_but_stuck": 26,
+        "max_common_reduction_k": 0.33333333333333304,
+        "max_port_identity_error_k": 8.881784197001252e-16,
+        "max_gain_above_bound_k": 0.0
+      },
+      {
+        "terminals": [
+          0,
+          8
+        ],
+        "nodes": 9,
+        "powers_w": [
+          1.0,
+          3.0
+        ],
+        "heterogeneous": true,
+        "resistance_k_w": 2.404216836943514,
+        "starts": 42,
+        "finite_moves": 306,
+        "common_cooling_possible": 25,
+        "zero_ceiling": 0,
+        "positive_ceiling_but_stuck": 17,
+        "max_common_reduction_k": 1.9942621704743395,
+        "max_port_identity_error_k": 2.6645352591003757e-15,
+        "max_gain_above_bound_k": 0.0
+      },
+      {
+        "terminals": [
+          0,
+          8
+        ],
+        "nodes": 9,
+        "powers_w": [
+          2.0,
+          2.0
+        ],
+        "heterogeneous": true,
+        "resistance_k_w": 2.404216836943514,
+        "starts": 42,
+        "finite_moves": 306,
+        "common_cooling_possible": 18,
+        "zero_ceiling": 0,
+        "positive_ceiling_but_stuck": 24,
+        "max_common_reduction_k": 0.7586252597030514,
+        "max_port_identity_error_k": 2.6645352591003757e-15,
+        "max_gain_above_bound_k": 0.0
+      }
+    ],
+    "volume": [
+      {
+        "terminals": [
+          0,
+          11
+        ],
+        "nodes": 12,
+        "powers_w": [
+          1.0,
+          3.0
+        ],
+        "heterogeneous": false,
+        "resistance_k_w": 1.0,
+        "starts": 90,
+        "finite_moves": 994,
+        "common_cooling_possible": 34,
+        "zero_ceiling": 0,
+        "positive_ceiling_but_stuck": 56,
+        "max_common_reduction_k": 0.5142857142857142,
+        "max_port_identity_error_k": 1.3322676295501878e-15,
+        "max_gain_above_bound_k": 0.0
+      },
+      {
+        "terminals": [
+          0,
+          11
+        ],
+        "nodes": 12,
+        "powers_w": [
+          2.0,
+          2.0
+        ],
+        "heterogeneous": false,
+        "resistance_k_w": 1.0,
+        "starts": 90,
+        "finite_moves": 994,
+        "common_cooling_possible": 16,
+        "zero_ceiling": 0,
+        "positive_ceiling_but_stuck": 74,
+        "max_common_reduction_k": 0.09523809523809579,
+        "max_port_identity_error_k": 1.3322676295501878e-15,
+        "max_gain_above_bound_k": 0.0
+      },
+      {
+        "terminals": [
+          0,
+          11
+        ],
+        "nodes": 12,
+        "powers_w": [
+          1.0,
+          3.0
+        ],
+        "heterogeneous": true,
+        "resistance_k_w": 1.3905075058091219,
+        "starts": 90,
+        "finite_moves": 994,
+        "common_cooling_possible": 54,
+        "zero_ceiling": 0,
+        "positive_ceiling_but_stuck": 36,
+        "max_common_reduction_k": 0.7675776835755261,
+        "max_port_identity_error_k": 4.440892098500626e-15,
+        "max_gain_above_bound_k": 0.0
+      },
+      {
+        "terminals": [
+          0,
+          11
+        ],
+        "nodes": 12,
+        "powers_w": [
+          2.0,
+          2.0
+        ],
+        "heterogeneous": true,
+        "resistance_k_w": 1.3905075058091219,
+        "starts": 90,
+        "finite_moves": 994,
+        "common_cooling_possible": 40,
+        "zero_ceiling": 0,
+        "positive_ceiling_but_stuck": 50,
+        "max_common_reduction_k": 0.421154866245379,
+        "max_port_identity_error_k": 4.884981308350689e-15,
+        "max_gain_above_bound_k": 0.0
+      }
+    ]
+  },
+  "unit_fork_peaks_k": [
+    [
+      2.0,
+      2.0
+    ],
+    [
+      0.9999999999999999,
+      1.0
+    ]
+  ],
+  "four_outer_and_one_centre_peaks_k": [
+    [
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      0.9999999999999998
+    ],
+    [
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      1.999999999999999
+    ]
+  ],
+  "old_hotspot_only": {
+    "resistance_k_w": 1,
+    "starting_power_w": [
+      2,
+      1
+    ],
+    "moved_power_w": [
+      0,
+      3
+    ],
+    "old_cell_cooling_k": 2,
+    "global_cooling_k": -1
+  }
+}

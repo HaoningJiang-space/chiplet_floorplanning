@@ -1,0 +1,2069 @@
+{
+  "aggregate": {
+    "two": {
+      "four": {
+        "cooled_over_target": 3,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.0
+      },
+      "two": {
+        "cooled_over_target": 7,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.138415140127627
+      },
+      "old_hot": {
+        "cooled_over_target": 6,
+        "warmed_over_target": 2,
+        "median_worst_k": 0.00307729499544962
+      },
+      "half_space": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 11,
+        "median_worst_k": -1.0802975495211342
+      }
+    },
+    "north_south": {
+      "four": {
+        "cooled_over_target": 4,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.0
+      },
+      "two": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 5,
+        "median_worst_k": -0.07594236372980845
+      },
+      "old_hot": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 8,
+        "median_worst_k": -0.10830132250363533
+      },
+      "half_space": {
+        "cooled_over_target": 1,
+        "warmed_over_target": 10,
+        "median_worst_k": -1.594151558846292
+      }
+    },
+    "four": {
+      "four": {
+        "cooled_over_target": 3,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.0
+      },
+      "two": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 5,
+        "median_worst_k": -0.07594236372980845
+      },
+      "old_hot": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 8,
+        "median_worst_k": -0.10830132250363533
+      },
+      "half_space": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 12,
+        "median_worst_k": -3.7794628754496102
+      }
+    },
+    "five": {
+      "four": {
+        "cooled_over_target": 3,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.0
+      },
+      "two": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 5,
+        "median_worst_k": -0.07594236372980845
+      },
+      "old_hot": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 8,
+        "median_worst_k": -0.10830132250363533
+      },
+      "half_space": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 12,
+        "median_worst_k": -3.7794628754496102
+      }
+    },
+    "centre": {
+      "four": {
+        "cooled_over_target": 5,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.0
+      },
+      "two": {
+        "cooled_over_target": 8,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.2922320054636032
+      },
+      "old_hot": {
+        "cooled_over_target": 8,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.2922320054636032
+      },
+      "half_space": {
+        "cooled_over_target": 4,
+        "warmed_over_target": 6,
+        "median_worst_k": 0.0017897550486623004
+      }
+    },
+    "thirteen": {
+      "four": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 2,
+        "median_worst_k": 0.0
+      },
+      "expanded": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.0
+      },
+      "pair": {
+        "cooled_over_target": 3,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.0
+      }
+    },
+    "fifteen": {
+      "expanded": {
+        "cooled_over_target": 0,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.0
+      },
+      "pair": {
+        "cooled_over_target": 3,
+        "warmed_over_target": 0,
+        "median_worst_k": 0.0
+      }
+    }
+  },
+  "cases": {
+    "Case1": {
+      "metric": "pin_manhattan_m",
+      "cap": 70.35004826359999,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "half_space": {
+              "worst_cooling_k": -3.795721826054745,
+              "cost": 69.95798421880008
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "half_space": {
+              "worst_cooling_k": -0.4588384702227728,
+              "cost": 69.95798421880008
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "half_space": {
+              "worst_cooling_k": -3.795721826054745,
+              "cost": 69.95798421880008
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "half_space": {
+              "worst_cooling_k": -3.795721826054745,
+              "cost": 69.95798421880008
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "half_space": {
+              "worst_cooling_k": -0.8801319776977152,
+              "cost": 69.95798421880008
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826359999
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826359999
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 70.35004826360007
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        }
+      }
+    },
+    "Case2": {
+      "metric": "pin_manhattan_m",
+      "cap": 130.05228332924,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.09252587837781334,
+              "cost": 116.68101943944004
+            },
+            "two": {
+              "worst_cooling_k": 0.138415140127627,
+              "cost": 119.13349941296002
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.138415140127627,
+              "cost": 119.13349941296002
+            },
+            "half_space": {
+              "worst_cooling_k": -1.645363147977342,
+              "cost": 129.38012319164002
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 119.13349941296002
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0792512847385538,
+              "cost": 116.68101943944004
+            },
+            "two": {
+              "worst_cooling_k": 0.019513574307666204,
+              "cost": 119.13349941296002
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.019513574307666204,
+              "cost": 119.13349941296002
+            },
+            "half_space": {
+              "worst_cooling_k": 0.03145654843096679,
+              "cost": 129.38012319164002
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0792512847385538,
+              "cost": 116.68101943944004
+            },
+            "two": {
+              "worst_cooling_k": 0.019513574307666204,
+              "cost": 119.13349941296002
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.019513574307666204,
+              "cost": 119.13349941296002
+            },
+            "half_space": {
+              "worst_cooling_k": -1.645363147977342,
+              "cost": 129.38012319164002
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0792512847385538,
+              "cost": 116.68101943944004
+            },
+            "two": {
+              "worst_cooling_k": 0.019513574307666204,
+              "cost": 119.13349941296002
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.019513574307666204,
+              "cost": 119.13349941296002
+            },
+            "half_space": {
+              "worst_cooling_k": -1.645363147977342,
+              "cost": 129.38012319164002
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.26234942702643593,
+              "cost": 116.68101943944004
+            },
+            "two": {
+              "worst_cooling_k": 0.2922320054636032,
+              "cost": 119.13349941296002
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.2922320054636032,
+              "cost": 119.13349941296002
+            },
+            "half_space": {
+              "worst_cooling_k": 0.10965232625731147,
+              "cost": 129.38012319164002
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 116.68101943944004
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": -0.04729652615067437,
+              "cost": 116.68101943944004
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 130.05228332924
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 130.05228332924003
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 130.05228332924
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 130.05228332924003
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        }
+      }
+    },
+    "Case3": {
+      "metric": "pin_manhattan_m",
+      "cap": 224.24524687480002,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 224.2452468747997
+            },
+            "two": {
+              "worst_cooling_k": 0.00307729499544962,
+              "cost": 223.69545543439972
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.00307729499544962,
+              "cost": 223.69545543439972
+            },
+            "half_space": {
+              "worst_cooling_k": -0.3937334822982024,
+              "cost": 221.66579087959965
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 224.2452468747997
+            },
+            "two": {
+              "worst_cooling_k": -0.3817695129749126,
+              "cost": 223.69545543439972
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.3817695129749126,
+              "cost": 223.69545543439972
+            },
+            "half_space": {
+              "worst_cooling_k": -6.874017529539387,
+              "cost": 221.66579087959965
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 224.2452468747997
+            },
+            "two": {
+              "worst_cooling_k": -0.3817695129749126,
+              "cost": 223.69545543439972
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.3817695129749126,
+              "cost": 223.69545543439972
+            },
+            "half_space": {
+              "worst_cooling_k": -6.874017529539387,
+              "cost": 221.66579087959965
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 224.2452468747997
+            },
+            "two": {
+              "worst_cooling_k": -0.3817695129749126,
+              "cost": 223.69545543439972
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.3817695129749126,
+              "cost": 223.69545543439972
+            },
+            "half_space": {
+              "worst_cooling_k": -6.874017529539387,
+              "cost": 221.66579087959965
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 224.2452468747997
+            },
+            "two": {
+              "worst_cooling_k": 0.07162560985459976,
+              "cost": 223.69545543439972
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.07162560985459976,
+              "cost": 223.69545543439972
+            },
+            "half_space": {
+              "worst_cooling_k": -0.4944835974706763,
+              "cost": 221.66579087959965
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 224.2452468747997
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 224.24524687480002
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 224.2452468747997
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 224.24524687480002
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 224.2452468747997
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        }
+      }
+    },
+    "Case4": {
+      "metric": "pin_manhattan_m",
+      "cap": 245.43560151679998,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.28253101631035804,
+              "cost": 243.62205254200012
+            },
+            "two": {
+              "worst_cooling_k": 0.45630070781773213,
+              "cost": 242.61960151680012
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.45630070781773213,
+              "cost": 242.61960151680012
+            },
+            "half_space": {
+              "worst_cooling_k": -4.109728433998811,
+              "cost": 244.8758445348001
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 242.61960151680012
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.22168570520389608,
+              "cost": 243.62205254200012
+            },
+            "two": {
+              "worst_cooling_k": -0.1807910953247216,
+              "cost": 242.61960151680012
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.1807910953247216,
+              "cost": 242.61960151680012
+            },
+            "half_space": {
+              "worst_cooling_k": -1.253167955986413,
+              "cost": 244.8758445348001
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 243.62205254200012
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.22168570520389608,
+              "cost": 243.62205254200012
+            },
+            "two": {
+              "worst_cooling_k": -0.1807910953247216,
+              "cost": 242.61960151680012
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.1807910953247216,
+              "cost": 242.61960151680012
+            },
+            "half_space": {
+              "worst_cooling_k": -4.109728433998811,
+              "cost": 244.8758445348001
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 243.62205254200012
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.22168570520389608,
+              "cost": 243.62205254200012
+            },
+            "two": {
+              "worst_cooling_k": -0.1807910953247216,
+              "cost": 242.61960151680012
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.1807910953247216,
+              "cost": 242.61960151680012
+            },
+            "half_space": {
+              "worst_cooling_k": -4.109728433998811,
+              "cost": 244.8758445348001
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 243.62205254200012
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 1.328255653628844,
+              "cost": 243.62205254200012
+            },
+            "two": {
+              "worst_cooling_k": 1.292479181305609,
+              "cost": 242.61960151680012
+            },
+            "old_hot": {
+              "worst_cooling_k": 1.292479181305609,
+              "cost": 242.61960151680012
+            },
+            "half_space": {
+              "worst_cooling_k": -2.177360379241648,
+              "cost": 244.8758445348001
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 242.61960151680012
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": -0.08864293655238953,
+              "cost": 243.62205254200012
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 245.43560151679998
+            },
+            "pair": {
+              "worst_cooling_k": 0.6722910299863969,
+              "cost": 225.4906925420001
+            }
+          },
+          "shortest_at_target": "pair",
+          "cost_at_target": 225.4906925420001
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 245.43560151679998
+            },
+            "pair": {
+              "worst_cooling_k": 0.6722910299863969,
+              "cost": 225.4906925420001
+            }
+          },
+          "shortest_at_target": "pair",
+          "cost_at_target": 225.4906925420001
+        }
+      }
+    },
+    "Case5": {
+      "metric": "pin_manhattan_m",
+      "cap": 170.4883115616,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "half_space": {
+              "worst_cooling_k": -0.18613941774464138,
+              "cost": 166.38917616419997
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "half_space": {
+              "worst_cooling_k": -4.718335601406068,
+              "cost": 166.38917616419997
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "half_space": {
+              "worst_cooling_k": -4.718335601406068,
+              "cost": 166.38917616419997
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "half_space": {
+              "worst_cooling_k": -4.718335601406068,
+              "cost": 166.38917616419997
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "half_space": {
+              "worst_cooling_k": -0.2539907810020239,
+              "cost": 166.38917616419997
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.4883115616
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.4883115616
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 170.48831156159991
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        }
+      }
+    },
+    "Case6": {
+      "metric": "pin_manhattan_m",
+      "cap": 161.88587953939998,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 161.88587953940012
+            },
+            "two": {
+              "worst_cooling_k": 0.8988289056209311,
+              "cost": 156.2816996760001
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.8988289056209311,
+              "cost": 156.2816996760001
+            },
+            "half_space": {
+              "worst_cooling_k": -1.0802975495211342,
+              "cost": 161.3258795438001
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 156.2816996760001
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 161.88587953940012
+            },
+            "two": {
+              "worst_cooling_k": -0.7342145251266459,
+              "cost": 156.2816996760001
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.7342145251266459,
+              "cost": 156.2816996760001
+            },
+            "half_space": {
+              "worst_cooling_k": -1.594151558846292,
+              "cost": 161.3258795438001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 161.88587953940012
+            },
+            "two": {
+              "worst_cooling_k": -0.7342145251266459,
+              "cost": 156.2816996760001
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.7342145251266459,
+              "cost": 156.2816996760001
+            },
+            "half_space": {
+              "worst_cooling_k": -1.594151558846292,
+              "cost": 161.3258795438001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 161.88587953940012
+            },
+            "two": {
+              "worst_cooling_k": -0.7342145251266459,
+              "cost": 156.2816996760001
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.7342145251266459,
+              "cost": 156.2816996760001
+            },
+            "half_space": {
+              "worst_cooling_k": -2.9660022494799847,
+              "cost": 161.3258795438001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 161.88587953940012
+            },
+            "two": {
+              "worst_cooling_k": 1.6174017103368712,
+              "cost": 156.2816996760001
+            },
+            "old_hot": {
+              "worst_cooling_k": 1.6174017103368712,
+              "cost": 156.2816996760001
+            },
+            "half_space": {
+              "worst_cooling_k": -2.9660022494799847,
+              "cost": 161.3258795438001
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 156.2816996760001
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 161.88587953940012
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 161.88587953939998
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 161.88587953940012
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 161.88587953939998
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 161.88587953940012
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        }
+      }
+    },
+    "Case7": {
+      "metric": "pin_manhattan_m",
+      "cap": 47.33103000296,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "half_space": {
+              "worst_cooling_k": -0.02919305444209641,
+              "cost": 47.242219995359996
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "half_space": {
+              "worst_cooling_k": -0.010347046353302858,
+              "cost": 47.242219995359996
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "half_space": {
+              "worst_cooling_k": -0.02919305444209641,
+              "cost": 47.242219995359996
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "half_space": {
+              "worst_cooling_k": -0.02919305444209641,
+              "cost": 47.242219995359996
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "half_space": {
+              "worst_cooling_k": 0.0630592402089718,
+              "cost": 47.242219995359996
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000295999
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000296
+            },
+            "pair": {
+              "worst_cooling_k": 0.04311941178735168,
+              "cost": 46.63477999395998
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 47.33103000296
+            },
+            "pair": {
+              "worst_cooling_k": 0.04311941178735168,
+              "cost": 46.63477999395998
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        }
+      }
+    },
+    "Case8": {
+      "metric": "pin_manhattan_m",
+      "cap": 49.460340050899994,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "half_space": {
+              "worst_cooling_k": -0.06576993547582077,
+              "cost": 48.66978003390001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "half_space": {
+              "worst_cooling_k": -0.3505084310857498,
+              "cost": 48.66978003390001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "half_space": {
+              "worst_cooling_k": -0.3505084310857498,
+              "cost": 48.66978003390001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "half_space": {
+              "worst_cooling_k": -0.3505084310857498,
+              "cost": 48.66978003390001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "two": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "half_space": {
+              "worst_cooling_k": 0.05785273309199823,
+              "cost": 48.66978003390001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050899994
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050899994
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 49.460340050900015
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        }
+      }
+    },
+    "Case9": {
+      "metric": "pin_manhattan_m",
+      "cap": 332.92887979,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.14807758743202726,
+              "cost": 330.7834397899998
+            },
+            "two": {
+              "worst_cooling_k": 0.8762106122541837,
+              "cost": 325.40495978999985
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.8762106122541837,
+              "cost": 325.40495978999985
+            },
+            "half_space": {
+              "worst_cooling_k": -1.1653152753156064,
+              "cost": 329.7561896363998
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 325.40495978999985
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.3096860976881288,
+              "cost": 330.7834397899998
+            },
+            "two": {
+              "worst_cooling_k": -0.10830132250363533,
+              "cost": 325.40495978999985
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.10830132250363533,
+              "cost": 325.40495978999985
+            },
+            "half_space": {
+              "worst_cooling_k": -3.3984714330986634,
+              "cost": 329.7561896363998
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 330.7834397899998
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.14807758743202726,
+              "cost": 330.7834397899998
+            },
+            "two": {
+              "worst_cooling_k": -0.10830132250363533,
+              "cost": 325.40495978999985
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.10830132250363533,
+              "cost": 325.40495978999985
+            },
+            "half_space": {
+              "worst_cooling_k": -3.3984714330986634,
+              "cost": 329.7561896363998
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 330.7834397899998
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.14807758743202726,
+              "cost": 330.7834397899998
+            },
+            "two": {
+              "worst_cooling_k": -0.10830132250363533,
+              "cost": 325.40495978999985
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.10830132250363533,
+              "cost": 325.40495978999985
+            },
+            "half_space": {
+              "worst_cooling_k": -3.3984714330986634,
+              "cost": 329.7561896363998
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 330.7834397899998
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.47824655743769995,
+              "cost": 330.7834397899998
+            },
+            "two": {
+              "worst_cooling_k": 0.7433458879705768,
+              "cost": 325.40495978999985
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.7433458879705768,
+              "cost": 325.40495978999985
+            },
+            "half_space": {
+              "worst_cooling_k": 0.0017897550486623004,
+              "cost": 329.7561896363998
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 325.40495978999985
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": -0.05683945286878611,
+              "cost": 330.7834397899998
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 332.92887979
+            },
+            "pair": {
+              "worst_cooling_k": 1.1001002243798723,
+              "cost": 315.96511979000013
+            }
+          },
+          "shortest_at_target": "pair",
+          "cost_at_target": 315.96511979000013
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 332.92887979
+            },
+            "pair": {
+              "worst_cooling_k": 1.1001002243798723,
+              "cost": 315.96511979000013
+            }
+          },
+          "shortest_at_target": "pair",
+          "cost_at_target": 315.96511979000013
+        }
+      }
+    },
+    "Case10": {
+      "metric": "pin_manhattan_m",
+      "cap": 154.57712974772,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 154.5771297477199
+            },
+            "two": {
+              "worst_cooling_k": 0.6506198932024034,
+              "cost": 152.47821982711991
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.6506198932024034,
+              "cost": 152.47821982711991
+            },
+            "half_space": {
+              "worst_cooling_k": -0.48330741721645154,
+              "cost": 154.4070998911199
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 152.47821982711991
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 154.5771297477199
+            },
+            "two": {
+              "worst_cooling_k": -1.1044648055446658,
+              "cost": 152.47821982711991
+            },
+            "old_hot": {
+              "worst_cooling_k": -1.1044648055446658,
+              "cost": 152.47821982711991
+            },
+            "half_space": {
+              "worst_cooling_k": -3.7794628754496102,
+              "cost": 154.4070998911199
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 154.5771297477199
+            },
+            "two": {
+              "worst_cooling_k": -1.1044648055446658,
+              "cost": 152.47821982711991
+            },
+            "old_hot": {
+              "worst_cooling_k": -1.1044648055446658,
+              "cost": 152.47821982711991
+            },
+            "half_space": {
+              "worst_cooling_k": -3.7794628754496102,
+              "cost": 154.4070998911199
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 154.5771297477199
+            },
+            "two": {
+              "worst_cooling_k": -1.1044648055446658,
+              "cost": 152.47821982711991
+            },
+            "old_hot": {
+              "worst_cooling_k": -1.1044648055446658,
+              "cost": 152.47821982711991
+            },
+            "half_space": {
+              "worst_cooling_k": -3.7794628754496102,
+              "cost": 154.4070998911199
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 154.5771297477199
+            },
+            "two": {
+              "worst_cooling_k": 2.2875841834377866,
+              "cost": 152.47821982711991
+            },
+            "old_hot": {
+              "worst_cooling_k": 2.2875841834377866,
+              "cost": 152.47821982711991
+            },
+            "half_space": {
+              "worst_cooling_k": 1.5009788057254525,
+              "cost": 154.4070998911199
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 152.47821982711991
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 154.5771297477199
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 154.57712974772
+            },
+            "pair": {
+              "worst_cooling_k": 1.4749611973731618,
+              "cost": 153.90834979571997
+            }
+          },
+          "shortest_at_target": "pair",
+          "cost_at_target": 153.90834979571997
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 154.57712974772
+            },
+            "pair": {
+              "worst_cooling_k": 1.4749611973731618,
+              "cost": 153.90834979571997
+            }
+          },
+          "shortest_at_target": "pair",
+          "cost_at_target": 153.90834979571997
+        }
+      }
+    },
+    "ascend910": {
+      "metric": "demand_weighted_centre_mm",
+      "cap": 26.34640522875817,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.19218746749765359,
+              "cost": 24.464052287581698
+            },
+            "two": {
+              "worst_cooling_k": 0.30665909839026284,
+              "cost": 26.34640522875817
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.3801982934756083,
+              "cost": 25.50980392156863
+            },
+            "half_space": {
+              "worst_cooling_k": -0.3570399675593592,
+              "cost": 26.34640522875817
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 24.464052287581698
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.11607015024462441,
+              "cost": 24.464052287581698
+            },
+            "two": {
+              "worst_cooling_k": -0.07170191323285735,
+              "cost": 26.34640522875817
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.10595925270195039,
+              "cost": 25.50980392156863
+            },
+            "half_space": {
+              "worst_cooling_k": 0.2320535959665193,
+              "cost": 26.34640522875817
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 24.464052287581698
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.11607015024462441,
+              "cost": 24.464052287581698
+            },
+            "two": {
+              "worst_cooling_k": -0.07170191323285735,
+              "cost": 26.34640522875817
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.10595925270195039,
+              "cost": 25.50980392156863
+            },
+            "half_space": {
+              "worst_cooling_k": -0.3570399675593592,
+              "cost": 26.34640522875817
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 24.464052287581698
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.11607015024462441,
+              "cost": 24.464052287581698
+            },
+            "two": {
+              "worst_cooling_k": -0.07170191323285735,
+              "cost": 26.34640522875817
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.10595925270195039,
+              "cost": 25.50980392156863
+            },
+            "half_space": {
+              "worst_cooling_k": -0.3570399675593592,
+              "cost": 26.34640522875817
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 24.464052287581698
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.8353600655088655,
+              "cost": 24.464052287581698
+            },
+            "two": {
+              "worst_cooling_k": 0.8588052861446087,
+              "cost": 26.34640522875817
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.432856313164379,
+              "cost": 25.50980392156863
+            },
+            "half_space": {
+              "worst_cooling_k": 0.335603839128666,
+              "cost": 26.34640522875817
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 24.464052287581698
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": -0.4432309045704059,
+              "cost": 24.464052287581698
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 26.34640522875817
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 26.34640522875817
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 26.34640522875817
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 26.34640522875817
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        }
+      }
+    },
+    "micro150": {
+      "metric": "demand_weighted_centre_mm",
+      "cap": 36.3,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.07520319001253029,
+              "cost": 34.800000000000004
+            },
+            "two": {
+              "worst_cooling_k": 0.07867376695003259,
+              "cost": 34.2
+            },
+            "old_hot": {
+              "worst_cooling_k": -0.7533967811763489,
+              "cost": 34.50000000000001
+            },
+            "half_space": {
+              "worst_cooling_k": -12.389538145118863,
+              "cost": 35.50000000000001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.38017037064071246,
+              "cost": 34.800000000000004
+            },
+            "two": {
+              "worst_cooling_k": -0.07594236372980845,
+              "cost": 34.2
+            },
+            "old_hot": {
+              "worst_cooling_k": -1.1364837137371921,
+              "cost": 34.50000000000001
+            },
+            "half_space": {
+              "worst_cooling_k": -13.35457283024023,
+              "cost": 35.50000000000001
+            }
+          },
+          "shortest_at_target": "four",
+          "cost_at_target": 34.800000000000004
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.07520319001253029,
+              "cost": 34.800000000000004
+            },
+            "two": {
+              "worst_cooling_k": -0.07594236372980845,
+              "cost": 34.2
+            },
+            "old_hot": {
+              "worst_cooling_k": -1.1364837137371921,
+              "cost": 34.50000000000001
+            },
+            "half_space": {
+              "worst_cooling_k": -13.35457283024023,
+              "cost": 35.50000000000001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.07520319001253029,
+              "cost": 34.800000000000004
+            },
+            "two": {
+              "worst_cooling_k": -0.07594236372980845,
+              "cost": 34.2
+            },
+            "old_hot": {
+              "worst_cooling_k": -1.1364837137371921,
+              "cost": 34.50000000000001
+            },
+            "half_space": {
+              "worst_cooling_k": -13.35457283024023,
+              "cost": 35.50000000000001
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 3.5442078126476133,
+              "cost": 34.800000000000004
+            },
+            "two": {
+              "worst_cooling_k": 3.5322854288458743,
+              "cost": 34.2
+            },
+            "old_hot": {
+              "worst_cooling_k": 1.4142422968134625,
+              "cost": 34.50000000000001
+            },
+            "half_space": {
+              "worst_cooling_k": -3.476490321895838,
+              "cost": 35.50000000000001
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 34.2
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": -0.20515867747506888,
+              "cost": 34.800000000000004
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 36.3
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 36.300000000000004
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 36.3
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 36.300000000000004
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        }
+      }
+    },
+    "multigpu": {
+      "metric": "demand_weighted_centre_mm",
+      "cap": 27.77777777777778,
+      "domains": {
+        "two": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 27.777777777777775
+            },
+            "two": {
+              "worst_cooling_k": 0.2516661055000782,
+              "cost": 27.407407407407405
+            },
+            "old_hot": {
+              "worst_cooling_k": -9.243570220448177,
+              "cost": 23.111111111111114
+            },
+            "half_space": {
+              "worst_cooling_k": -9.243570220448177,
+              "cost": 23.111111111111114
+            }
+          },
+          "shortest_at_target": "two",
+          "cost_at_target": 27.407407407407405
+        },
+        "north_south": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 27.777777777777775
+            },
+            "two": {
+              "worst_cooling_k": -0.07876386663069468,
+              "cost": 27.407407407407405
+            },
+            "old_hot": {
+              "worst_cooling_k": -6.472024963798617,
+              "cost": 23.111111111111114
+            },
+            "half_space": {
+              "worst_cooling_k": -6.472024963798617,
+              "cost": 23.111111111111114
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "four": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 27.777777777777775
+            },
+            "two": {
+              "worst_cooling_k": -0.07876386663069468,
+              "cost": 27.407407407407405
+            },
+            "old_hot": {
+              "worst_cooling_k": -9.243570220448177,
+              "cost": 23.111111111111114
+            },
+            "half_space": {
+              "worst_cooling_k": -9.243570220448177,
+              "cost": 23.111111111111114
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "five": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 27.777777777777775
+            },
+            "two": {
+              "worst_cooling_k": -0.07876386663069468,
+              "cost": 27.407407407407405
+            },
+            "old_hot": {
+              "worst_cooling_k": -9.243570220448177,
+              "cost": 23.111111111111114
+            },
+            "half_space": {
+              "worst_cooling_k": -9.243570220448177,
+              "cost": 23.111111111111114
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "centre": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 27.777777777777775
+            },
+            "two": {
+              "worst_cooling_k": 0.10614675283150632,
+              "cost": 27.407407407407405
+            },
+            "old_hot": {
+              "worst_cooling_k": 0.2181551807822899,
+              "cost": 23.111111111111114
+            },
+            "half_space": {
+              "worst_cooling_k": 0.2181551807822899,
+              "cost": 23.111111111111114
+            }
+          },
+          "shortest_at_target": "old_hot",
+          "cost_at_target": 23.111111111111114
+        },
+        "thirteen": {
+          "arms": {
+            "four": {
+              "worst_cooling_k": 0.0,
+              "cost": 27.777777777777775
+            },
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 27.77777777777778
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 27.777777777777775
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        },
+        "fifteen": {
+          "arms": {
+            "expanded": {
+              "worst_cooling_k": 0.0,
+              "cost": 27.77777777777778
+            },
+            "pair": {
+              "worst_cooling_k": 0.0,
+              "cost": 27.777777777777775
+            }
+          },
+          "shortest_at_target": null,
+          "cost_at_target": null
+        }
+      }
+    }
+  }
+}
