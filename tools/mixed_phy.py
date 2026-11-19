@@ -200,6 +200,17 @@ def bank_thermal_field(
     p, row, cfg, grid, profiles, endpoint_w, *, node_limit=DEFAULT_NODE_LIMIT
 ):
     """Apply the specified power at both ends and return the steady power-layer rise and grid."""
+    data = bank_thermal_data(p, row, cfg, grid, profiles, endpoint_w)
+    obs, rise, axes = solve(data, node_limit=node_limit)
+    assert (
+        abs(obs["source_power_w"] - p.power_w.sum() - 2 * sum(endpoint_w)) < 1e-7
+        and abs(obs["energy_balance_error_w"]) < 1e-7
+    )
+    return obs, rise, axes
+
+
+def bank_thermal_data(p, row, cfg, grid, profiles, endpoint_w):
+    """Build one package with localized endpoint power in W at both ends of every edge."""
     assert len(profiles) == len(endpoint_w) == len(RING)
     assert all(
         w >= 0 and (profile.modules or w == 0)
@@ -260,9 +271,4 @@ def bank_thermal_field(
             < 1e-8
         )
         chip["blocks"] = blocks
-    obs, rise, axes = solve(data, node_limit=node_limit)
-    assert (
-        abs(obs["source_power_w"] - p.power_w.sum() - 2 * sum(endpoint_w)) < 1e-7
-        and abs(obs["energy_balance_error_w"]) < 1e-7
-    )
-    return obs, rise, axes
+    return data

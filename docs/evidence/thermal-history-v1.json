@@ -1,0 +1,572 @@
+{
+  "protocol_commit": "52ed7471ec8ba2ce1557ada1787f2933d4b62db9",
+  "analysed_commit": "8c81a562fe5cdb7fc5722f7a1ad8320f249ec07e",
+  "fetch_succeeded": true,
+  "host": "hpclab03",
+  "source_sha256": "34def31b4c3b64f86c46e690367108718888b391c123ac7274cbb75ad81c49dd",
+  "input_sha256": {
+    "case3-selective-rate": "79e0a4ea45326738a5caa647742186dfdb380b7a12442eff5b951a49db1fcb8a",
+    "any-traffic": "3c04ac4de5d045b3be45f3b4446ab754a34fee6c730612f48ac153d5aafc7d80",
+    "shared-capacity": "e62145a1ea9be1b146c15c60068cc3edb025024a98d1831bfaf7c85a13530bf4",
+    "capacity-cost": "b8a9e480e7b931c5cfd4c99dfa87f308747e72582955919b0da4acb426b891aa"
+  },
+  "driver_sha256": "f729cbb0547f8dd7243ebbace81b8ccc24d532aeac312646b366080b582dd2ad",
+  "material_j_per_m3_k": {
+    "silicon": 1750000.0,
+    "copper": 3550000.0,
+    "tim": 4000000.0,
+    "underfill": 2650000.0,
+    "substrate": 1600000.0
+  },
+  "limit_c": 109.0,
+  "controls": {
+    "steady_max_rise_k": 2.0,
+    "switch_before_peak_s": 0.5493061443340549,
+    "analytic_peak_rise_k": 2.192450089729875,
+    "direct_peak_rise_k": 2.192450089729875,
+    "exhaustive_controls": [
+      {
+        "topology": "chain",
+        "histories": 2187,
+        "error_inf_k": 2.220446049250313e-16
+      },
+      {
+        "topology": "ring",
+        "histories": 2187,
+        "error_inf_k": 2.220446049250313e-16
+      },
+      {
+        "topology": "star",
+        "histories": 2187,
+        "error_inf_k": 2.220446049250313e-16
+      },
+      {
+        "topology": "grid",
+        "histories": 2187,
+        "error_inf_k": 0.0
+      }
+    ]
+  },
+  "cases": [
+    {
+      "design": "any-pair",
+      "layout": "two-fast-local",
+      "modules": [
+        3,
+        4,
+        4,
+        4
+      ],
+      "grid": 64,
+      "nodes": 13112,
+      "total_capacity_j_per_k": 1017.0760042575001,
+      "steady_mode_peak_c": {
+        "0-1": 108.44770657905417,
+        "0-2": 108.43825335368851,
+        "0-3": 108.44463681235666,
+        "1-2": 108.43505001545685,
+        "1-3": 108.43459179947533,
+        "2-3": 108.41324164876768
+      },
+      "arbitrary_switch_upper_c": 108.46646042543838,
+      "guaranteed_margin_k": 0.5335395745616154,
+      "steady_lower_c": 108.44770657905417,
+      "timed_trials": [
+        {
+          "dt_s": 0.05,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.45197327278507,
+          "max_above_local_steady_k": 0.013802761480931736,
+          "peak_node": 3561,
+          "steady_prehistory": "0-1",
+          "oldest_to_newest": [
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-2",
+            "0-2",
+            "0-2"
+          ],
+          "target_replay_error_k": 2.4868995751603507e-12,
+          "max_step_energy_balance_w": 5.161382432561368e-11
+        },
+        {
+          "dt_s": 0.025,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.45208802186247,
+          "max_above_local_steady_k": 0.013891196716549814,
+          "peak_node": 3561,
+          "steady_prehistory": "0-1",
+          "oldest_to_newest": [
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-2",
+            "0-2"
+          ],
+          "target_replay_error_k": 2.1600499167107046e-12,
+          "max_step_energy_balance_w": 5.150013748789206e-11
+        },
+        {
+          "dt_s": 0.0125,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.45218843892368,
+          "max_above_local_steady_k": 0.013932145261897233,
+          "peak_node": 3561,
+          "steady_prehistory": "0-1",
+          "oldest_to_newest": [
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-2",
+            "0-2"
+          ],
+          "target_replay_error_k": 2.4513724383723456e-12,
+          "max_step_energy_balance_w": 4.0245140553452075e-11
+        }
+      ]
+    },
+    {
+      "design": "nas",
+      "layout": "two-fast-local",
+      "modules": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "grid": 64,
+      "nodes": 14936,
+      "total_capacity_j_per_k": 1017.0760042575001,
+      "steady_mode_peak_c": {
+        "BH": 108.40456121646136,
+        "IS": 108.42375031981297,
+        "SH": 108.41706325520799,
+        "WH": 108.40521841595282
+      },
+      "arbitrary_switch_upper_c": 108.44350434171099,
+      "guaranteed_margin_k": 0.556495658289009,
+      "steady_lower_c": 108.42375031981297,
+      "timed_trials": [
+        {
+          "dt_s": 0.05,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.42956542961554,
+          "max_above_local_steady_k": 0.012292064888313803,
+          "peak_node": 4370,
+          "steady_prehistory": "IS",
+          "oldest_to_newest": [
+            "IS",
+            "IS",
+            "IS",
+            "SH",
+            "SH",
+            "SH",
+            "SH",
+            "SH",
+            "SH",
+            "SH"
+          ],
+          "target_replay_error_k": 1.8189894035458565e-12,
+          "max_step_energy_balance_w": 3.7061909097246826e-11
+        },
+        {
+          "dt_s": 0.025,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.42960240134352,
+          "max_above_local_steady_k": 0.012337355252846294,
+          "peak_node": 4370,
+          "steady_prehistory": "IS",
+          "oldest_to_newest": [
+            "IS",
+            "IS",
+            "IS",
+            "SH",
+            "SH",
+            "SH",
+            "SH",
+            "SH",
+            "SH",
+            "SH"
+          ],
+          "target_replay_error_k": 1.2008172234345693e-12,
+          "max_step_energy_balance_w": 5.979927664157003e-11
+        },
+        {
+          "dt_s": 0.0125,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.42961988084076,
+          "max_above_local_steady_k": 0.01235951041564931,
+          "peak_node": 4370,
+          "steady_prehistory": "IS",
+          "oldest_to_newest": [
+            "IS",
+            "IS",
+            "IS",
+            "SH",
+            "SH",
+            "SH",
+            "SH",
+            "SH",
+            "SH",
+            "SH"
+          ],
+          "target_replay_error_k": 1.4708234630234074e-12,
+          "max_step_energy_balance_w": 7.014477887423709e-11
+        }
+      ]
+    },
+    {
+      "design": "any-pair",
+      "layout": "two-fast-local",
+      "modules": [
+        3,
+        4,
+        4,
+        4
+      ],
+      "grid": 96,
+      "nodes": 25928,
+      "total_capacity_j_per_k": 1017.0760042575001,
+      "steady_mode_peak_c": {
+        "0-1": 108.57397178286527,
+        "0-2": 108.56007034227828,
+        "0-3": 108.5709187288565,
+        "1-2": 108.55867803705294,
+        "1-3": 108.55172240937809,
+        "2-3": 108.54906983156647
+      },
+      "arbitrary_switch_upper_c": 108.58993512747168,
+      "guaranteed_margin_k": 0.4100648725283236,
+      "steady_lower_c": 108.57397178286527,
+      "timed_trials": [
+        {
+          "dt_s": 0.05,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.57463473753657,
+          "max_above_local_steady_k": 0.013819134098575603,
+          "peak_node": 6444,
+          "steady_prehistory": "0-1",
+          "oldest_to_newest": [
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-2"
+          ],
+          "target_replay_error_k": 5.542233338928781e-13,
+          "max_step_energy_balance_w": 1.432454155292362e-11
+        },
+        {
+          "dt_s": 0.025,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.57480829176076,
+          "max_above_local_steady_k": 0.013911013716928267,
+          "peak_node": 6444,
+          "steady_prehistory": "0-1",
+          "oldest_to_newest": [
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-2"
+          ],
+          "target_replay_error_k": 9.876544027065393e-13,
+          "max_step_energy_balance_w": 1.944044925039634e-11
+        },
+        {
+          "dt_s": 0.0125,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.57493833338424,
+          "max_above_local_steady_k": 0.013951412721510792,
+          "peak_node": 6444,
+          "steady_prehistory": "0-1",
+          "oldest_to_newest": [
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-1",
+            "0-2"
+          ],
+          "target_replay_error_k": 9.521272659185342e-13,
+          "max_step_energy_balance_w": 1.7962520360015333e-11
+        }
+      ]
+    },
+    {
+      "design": "nas",
+      "layout": "two-fast-local",
+      "modules": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "grid": 96,
+      "nodes": 27576,
+      "total_capacity_j_per_k": 1017.0760042575,
+      "steady_mode_peak_c": {
+        "BH": 108.48322696776769,
+        "IS": 108.4718532566134,
+        "SH": 108.43244151926783,
+        "WH": 108.48347434753089
+      },
+      "arbitrary_switch_upper_c": 108.49206695088773,
+      "guaranteed_margin_k": 0.5079330491122676,
+      "steady_lower_c": 108.48347434753089,
+      "timed_trials": [
+        {
+          "dt_s": 0.05,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.48347434753089,
+          "max_above_local_steady_k": 0.012284870493509459,
+          "peak_node": 6407,
+          "steady_prehistory": "WH",
+          "oldest_to_newest": [
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH"
+          ],
+          "target_replay_error_k": 1.0231815394945443e-12,
+          "max_step_energy_balance_w": 6.252776074688882e-12
+        },
+        {
+          "dt_s": 0.025,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.48347434753089,
+          "max_above_local_steady_k": 0.012330842335757097,
+          "peak_node": 6407,
+          "steady_prehistory": "WH",
+          "oldest_to_newest": [
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH"
+          ],
+          "target_replay_error_k": 7.744915819785092e-13,
+          "max_step_energy_balance_w": 8.86757334228605e-12
+        },
+        {
+          "dt_s": 0.0125,
+          "slots": 10,
+          "slot_s": 0.05,
+          "peak_c": 108.48347434753089,
+          "max_above_local_steady_k": 0.012353317587667334,
+          "peak_node": 6407,
+          "steady_prehistory": "WH",
+          "oldest_to_newest": [
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH",
+            "WH"
+          ],
+          "target_replay_error_k": 8.100187187665142e-13,
+          "max_step_energy_balance_w": 1.7053025658242404e-11
+        }
+      ]
+    },
+    {
+      "design": "any-pair",
+      "layout": "two-fast-local",
+      "modules": [
+        3,
+        4,
+        4,
+        4
+      ],
+      "grid": 128,
+      "nodes": 34904,
+      "total_capacity_j_per_k": 1017.0760042575001,
+      "steady_mode_peak_c": {
+        "0-1": 108.54569222507274,
+        "0-2": 108.5317988345133,
+        "0-3": 108.54264043320617,
+        "1-2": 108.53040581659491,
+        "1-3": 108.52237024400118,
+        "2-3": 108.52080072483113
+      },
+      "arbitrary_switch_upper_c": 108.5616472642718,
+      "guaranteed_margin_k": 0.438352735728202,
+      "steady_lower_c": 108.54569222507274,
+      "timed_trials": []
+    },
+    {
+      "design": "nas",
+      "layout": "two-fast-local",
+      "modules": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "grid": 128,
+      "nodes": 37672,
+      "total_capacity_j_per_k": 1017.0760042575002,
+      "steady_mode_peak_c": {
+        "BH": 108.44431729621837,
+        "IS": 108.44596734709577,
+        "SH": 108.40657875296264,
+        "WH": 108.4445645796745
+      },
+      "arbitrary_switch_upper_c": 108.46157774055875,
+      "guaranteed_margin_k": 0.5384222594412478,
+      "steady_lower_c": 108.44596734709577,
+      "timed_trials": []
+    },
+    {
+      "design": "any-pair",
+      "layout": "two-fast-local",
+      "modules": [
+        3,
+        4,
+        4,
+        4
+      ],
+      "grid": 160,
+      "nodes": 55660,
+      "total_capacity_j_per_k": 1017.0760042575,
+      "steady_mode_peak_c": {
+        "0-1": 108.59213356238679,
+        "0-2": 108.5772660525212,
+        "0-3": 108.58908543696178,
+        "1-2": 108.57769954313922,
+        "1-3": 108.56875208962964,
+        "2-3": 108.5687821802724
+      },
+      "arbitrary_switch_upper_c": 108.60779488912466,
+      "guaranteed_margin_k": 0.39220511087533794,
+      "steady_lower_c": 108.59213356238679,
+      "timed_trials": []
+    },
+    {
+      "design": "nas",
+      "layout": "two-fast-local",
+      "modules": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "grid": 160,
+      "nodes": 56820,
+      "total_capacity_j_per_k": 1017.0760042575001,
+      "steady_mode_peak_c": {
+        "BH": 108.50007941511382,
+        "IS": 108.4833602502845,
+        "SH": 108.43825599283441,
+        "WH": 108.50032401672007
+      },
+      "arbitrary_switch_upper_c": 108.50888219368792,
+      "guaranteed_margin_k": 0.4911178063120758,
+      "steady_lower_c": 108.50032401672007,
+      "timed_trials": []
+    },
+    {
+      "design": "any-pair",
+      "layout": "two-fast-local",
+      "modules": [
+        3,
+        4,
+        4,
+        4
+      ],
+      "grid": 192,
+      "nodes": 72024,
+      "total_capacity_j_per_k": 1017.0760042575,
+      "steady_mode_peak_c": {
+        "0-1": 108.57565908886556,
+        "0-2": 108.56078880362485,
+        "0-3": 108.57261124336668,
+        "1-2": 108.56123980726568,
+        "1-3": 108.55194724833335,
+        "2-3": 108.55232954807082
+      },
+      "arbitrary_switch_upper_c": 108.5913102315119,
+      "guaranteed_margin_k": 0.40868976848810235,
+      "steady_lower_c": 108.57565908886556,
+      "timed_trials": []
+    },
+    {
+      "design": "nas",
+      "layout": "two-fast-local",
+      "modules": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "grid": 192,
+      "nodes": 75240,
+      "total_capacity_j_per_k": 1017.0760042575,
+      "steady_mode_peak_c": {
+        "BH": 108.47498214843876,
+        "IS": 108.47273224345331,
+        "SH": 108.43326569125603,
+        "WH": 108.47522681831144
+      },
+      "arbitrary_switch_upper_c": 108.48865967022124,
+      "guaranteed_margin_k": 0.5113403297787613,
+      "steady_lower_c": 108.47522681831144,
+      "timed_trials": []
+    }
+  ]
+}
