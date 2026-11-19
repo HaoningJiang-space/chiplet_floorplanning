@@ -177,20 +177,44 @@ def exhaustive_wire(p, row, mask):
 
 
 def temperature(p, row, mask, cfg, grid, *, node_limit=DEFAULT_NODE_LIMIT):
+    profiles = [PROFILES_BY_BIT[bit] for bit in BITS[mask]]
+    endpoint_w = [profile.full_phy_w / 8 for profile in profiles]
+    return bank_temperature(
+        p, row, cfg, grid, profiles, endpoint_w, node_limit=node_limit
+    )
+
+
+def bank_temperature(
+    p, row, cfg, grid, profiles, endpoint_w, *, node_limit=DEFAULT_NODE_LIMIT
+):
+    """Apply the same specified power to each end of each fitted full-duplex link."""
+    assert len(profiles) == len(endpoint_w) == len(RING)
+    assert all(
+        w >= 0 and (profile.modules or w == 0)
+        for profile, w in zip(profiles, endpoint_w)
+    )
     layout = Layout(np.array(row["centres_um"]), np.array(cfg["rotation_deg"]))
     data = thermal_case_data(p, layout, 0, grid)
     sizes = sizes_mm(p, row["parity"])
     for i, chip in enumerate(data["chiplets"][:4]):
         size = sizes[i]
-        profiles = [PROFILES_BY_BIT[BITS[mask, e]] for e in EDGE_AT[i]]
+        active = [
+            (side, e)
+            for side, e in zip(cfg["sides"][i], EDGE_AT[i])
+            if profiles[e].modules
+        ]
+        if not active:
+            continue
         rects = np.array(
             [
-                np.round(bank(tuple(size), side, prof)[1] + np.tile(size / 2, 2), 9)
-                for side, prof in zip(cfg["sides"][i], profiles)
+                np.round(
+                    bank(tuple(size), side, profiles[e])[1] + np.tile(size / 2, 2), 9
+                )
+                for side, e in active
             ]
         )
         assert np.all(rects[:, :2] >= -1e-10) and np.all(rects[:, 2:] <= size + 1e-10)
-        assert np.any(
+        assert len(active) == 1 or np.any(
             np.minimum(rects[0, 2:], rects[1, 2:])
             <= np.maximum(rects[0, :2], rects[1, :2]) + 1e-10
         )
@@ -204,26 +228,29 @@ def temperature(p, row, mask, cfg, grid, *, node_limit=DEFAULT_NODE_LIMIT):
                 area = (x1 - x) * (y1 - y)
                 power = area * p.power_w[i] / size.prod()
                 centre = np.array([(x + x1) / 2, (y + y1) / 2])
-                for rect, profile in zip(rects, profiles):
+                for rect, (_, e) in zip(rects, active):
                     if np.all(centre > rect[:2]) and np.all(centre < rect[2:]):
-                        power += (
-                            area
-                            * profile.full_phy_w
-                            / (8 * np.prod(rect[2:] - rect[:2]))
-                        )
+                        power += area * endpoint_w[e] / np.prod(rect[2:] - rect[:2])
                 blocks.append(
                     dict(
                         id="cell" + str(len(blocks)),
                         rect_mm=dict(x=x, y=y, width=x1 - x, height=y1 - y),
                         power_w=float(power),
-                        provenance="Uniform core and localized equal-throughput PHY banks",
+                        provenance="Uniform core and localized PHY banks",
                     )
                 )
-        assert abs(sum(x["power_w"] for x in blocks) - p.power_w[i] - 2.048) < 1e-8
+        assert (
+            abs(
+                sum(x["power_w"] for x in blocks)
+                - p.power_w[i]
+                - sum(endpoint_w[e] for _, e in active)
+            )
+            < 1e-8
+        )
         chip["blocks"] = blocks
     obs, _, _ = solve(data, node_limit=node_limit)
     assert (
-        abs(obs["source_power_w"] - 688.192) < 1e-7
+        abs(obs["source_power_w"] - p.power_w.sum() - 2 * sum(endpoint_w)) < 1e-7
         and abs(obs["energy_balance_error_w"]) < 1e-7
     )
     return dict(

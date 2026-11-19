@@ -1,0 +1,2690 @@
+{
+  "analysed_commit": "2fd0b436fe737113f6ffbedf8165bee889dcc2d6",
+  "fetch_succeeded": true,
+  "protocols": [
+    "9c28673f54e5f0601199a27e22421ba7057eb794",
+    "ea6e1149a3d9a080e159f8b002adc7706ea53b32"
+  ],
+  "host": "moe-server (hpclab03)",
+  "raw_dir": "/data/ziheng/haoning/chiplet_floorplanning/results/capacity-cost-2fd0b43",
+  "raw_sha256": {
+    "scale-final.json": "a61b6f7f1b2d9342670ddf483bcf8fecbed67de2b030451bf40d15ea019f2521",
+    "modules-final.json": "918487d0cf3097a506f245c7fc1977c0394040d38dac4bd01f6717e731ed4f39"
+  },
+  "driver_sha256": {
+    "capacity_cost.py": "b2ff0e0e8ae74791c75d814baf53247a3d010731cad774e6ba721812c1a31c11",
+    "module_capacity.py": "524ce4f6fec0721b91e15b0c76b3e547223792caccbc8bbca0f3e9cece750555",
+    "mixed_phy.py": "22467e0a468982af9b8c0e9521704109b20e24c50a18a25062b1349f0ac5d6db",
+    "case3_phy_geometry.py": "60a33b4cddc7f9041eecff4811cf496c22a4a2f6055a815f4d1cc7c997e138c1",
+    "ring_capacity.py": "da9467bed3c30a2c2389d426f5b9a143de40c7e4a91faa63886389b41b5daa13",
+    "cut_traffic.py": "8b6874a405fbf3158c82f507c722a2ecb6482bda79a9c76f311f5b32a1143eec"
+  },
+  "parent_evidence_sha256": {
+    "case3-joint-clearance-v1.json": "0e0c6a7ee97aa947cfd9ec8c3bd6965181f4758ef9a2f31386b1657527f7a548",
+    "case3-selective-rate-v1.json": "79e0a4ea45326738a5caa647742186dfdb380b7a12442eff5b951a49db1fcb8a"
+  },
+  "graph_model": "Paired symmetric raw Gbit/s, full-duplex ports, source-layout mean physical pin metres per link times 44/256. Synthetic capacity expansion and symmetric traffic among connected terminals.",
+  "graph_summary": {
+    "netlists": 10,
+    "lp_solves": 30,
+    "positive_pair_instances": 1536,
+    "excluded_disconnected_pair_instances": 52,
+    "max_abs_cost_error_m": 8.881784197001252e-15,
+    "max_flow_residual_gbps": 0.0,
+    "scales": {
+      "1": {
+        "cases_and_loads": 30,
+        "exact_solves": 15,
+        "median_rounded_overhead_fraction": 1.887700758473663,
+        "median_exact_overhead_fraction": 1.7353186611905986,
+        "count_rounding_exact": 7
+      },
+      "16": {
+        "cases_and_loads": 30,
+        "exact_solves": 15,
+        "median_rounded_overhead_fraction": 0.08419508299254452,
+        "median_exact_overhead_fraction": 0.07435715607096749,
+        "count_rounding_exact": 6
+      },
+      "127": {
+        "cases_and_loads": 30,
+        "exact_solves": 15,
+        "median_rounded_overhead_fraction": 0.010832218269936411,
+        "median_exact_overhead_fraction": 0.010440729728097509,
+        "count_rounding_exact": 8
+      },
+      "128": {
+        "cases_and_loads": 30,
+        "exact_solves": 15,
+        "median_rounded_overhead_fraction": 0.005413867806023265,
+        "median_exact_overhead_fraction": 0.005954155992209831,
+        "count_rounding_exact": 10
+      },
+      "129": {
+        "cases_and_loads": 30,
+        "exact_solves": 15,
+        "median_rounded_overhead_fraction": 0.011385166595965113,
+        "median_exact_overhead_fraction": 0.011082489270661355,
+        "count_rounding_exact": 7
+      }
+    }
+  },
+  "graph_cases": [
+    {
+      "case": "Case1",
+      "layout_index": 107,
+      "nodes": 6,
+      "workloads": [
+        {
+          "workload": "local",
+          "one_module_per_used_edge_m": 0.7215795186999998,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.1645995051641601,
+              "rounded_m": 0.7215795186999998,
+              "exact_integer_m": 0.7215795186999999,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 2.6335920826265617,
+              "rounded_m": 2.9417424180749996,
+              "exact_integer_m": 2.9417424180749996,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 20.904137155848336,
+              "rounded_m": 21.234669216975,
+              "exact_integer_m": 21.234669216974996,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 128,
+              "lower_m": 21.068736661012494,
+              "rounded_m": 21.234669216975,
+              "exact_integer_m": 21.234669216974996,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 21.233336166176652,
+              "rounded_m": 21.62438362375,
+              "exact_integer_m": 21.624383623749996,
+              "integer_residual_gbps": 0.0
+            }
+          ],
+          "positive_pairs": 12,
+          "excluded_pairs": 0,
+          "predicted_m": 0.1645995051641601,
+          "flow_lp_m": 0.1645995051641601,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "hubs",
+          "one_module_per_used_edge_m": 0.7215795186999998,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.2941305814198242,
+              "rounded_m": 0.7215795186999998,
+              "exact_integer_m": 0.7215795186999999,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 4.706089302717187,
+              "rounded_m": 4.956165197649999,
+              "exact_integer_m": 4.956165197649999,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 37.35458384031767,
+              "rounded_m": 37.74459295429999,
+              "exact_integer_m": 37.74459295429999,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 128,
+              "lower_m": 37.648714421737495,
+              "rounded_m": 37.74459295429999,
+              "exact_integer_m": 37.74459295429999,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 37.942845003157316,
+              "rounded_m": 38.27441540787499,
+              "exact_integer_m": 38.27441540787499,
+              "integer_residual_gbps": 0.0
+            }
+          ],
+          "positive_pairs": 9,
+          "excluded_pairs": 0,
+          "predicted_m": 0.2941305814198242,
+          "flow_lp_m": 0.2941305814198242,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "spread",
+          "one_module_per_used_edge_m": 0.7215795186999998,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.39647118148388666,
+              "rounded_m": 0.7215795186999998,
+              "exact_integer_m": 0.7215795186999999,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 6.3435389037421865,
+              "rounded_m": 6.815226416049999,
+              "exact_integer_m": 6.815226416049998,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 50.3518400484536,
+              "rounded_m": 50.588481039749986,
+              "exact_integer_m": 50.588481039749986,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 128,
+              "lower_m": 50.74831122993749,
+              "rounded_m": 50.978195446524985,
+              "exact_integer_m": 50.978195446524985,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 51.14478241142138,
+              "rounded_m": 51.62972093882499,
+              "exact_integer_m": 51.62972093882499,
+              "integer_residual_gbps": 0.0
+            }
+          ],
+          "positive_pairs": 15,
+          "excluded_pairs": 0,
+          "predicted_m": 0.39647118148388666,
+          "flow_lp_m": 0.3964711814838866,
+          "flow_residual_gbps": 0.0
+        }
+      ],
+      "links": 6
+    },
+    {
+      "case": "Case2",
+      "layout_index": 105,
+      "nodes": 6,
+      "workloads": [
+        {
+          "workload": "local",
+          "one_module_per_used_edge_m": 0.9275499843200026,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.147672482011104,
+              "rounded_m": 0.9275499843200026,
+              "exact_integer_m": 0.9275499843200026,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 2.362759712177664,
+              "rounded_m": 2.712595955927508,
+              "exact_integer_m": 2.712595955927508,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 18.75440521541021,
+              "rounded_m": 19.11682969220756,
+              "exact_integer_m": 19.11682969220756,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 128,
+              "lower_m": 18.902077697421312,
+              "rounded_m": 19.11682969220756,
+              "exact_integer_m": 19.11682969220756,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 19.049750179432415,
+              "rounded_m": 19.61487568695506,
+              "exact_integer_m": 19.61487568695506,
+              "integer_residual_gbps": 0.0
+            }
+          ],
+          "positive_pairs": 12,
+          "excluded_pairs": 0,
+          "predicted_m": 0.147672482011104,
+          "flow_lp_m": 0.14767248201110397,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "hubs",
+          "one_module_per_used_edge_m": 0.9275499843200026,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.26104082404239365,
+              "rounded_m": 0.9275499843200026,
+              "exact_integer_m": 0.9275499843200026,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 4.176653184678298,
+              "rounded_m": 4.90643792155752,
+              "exact_integer_m": 4.90643792155752,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 33.15218465338399,
+              "rounded_m": 33.62759947298264,
+              "exact_integer_m": 33.62759947298264,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 128,
+              "lower_m": 33.41322547742639,
+              "rounded_m": 33.62759947298264,
+              "exact_integer_m": 33.62759947298264,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 33.67426630146878,
+              "rounded_m": 34.12640146619014,
+              "exact_integer_m": 34.12640146619014,
+              "integer_residual_gbps": 0.0
+            }
+          ],
+          "positive_pairs": 9,
+          "excluded_pairs": 0,
+          "predicted_m": 0.26104082404239365,
+          "flow_lp_m": 0.2610408240423936,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "spread",
+          "one_module_per_used_edge_m": 0.9275499843200026,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.292593791401788,
+              "rounded_m": 0.9275499843200026,
+              "exact_integer_m": 0.9275499843200026,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 4.681500662428608,
+              "rounded_m": 5.3352639024300155,
+              "exact_integer_m": 5.3352639024300155,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 37.15941150802708,
+              "rounded_m": 37.880753293072615,
+              "exact_integer_m": 37.88075329307261,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 128,
+              "lower_m": 37.45200529942886,
+              "rounded_m": 37.880753293072615,
+              "exact_integer_m": 37.88075329307261,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 37.74459909083065,
+              "rounded_m": 37.95080729010512,
+              "exact_integer_m": 37.95080729010511,
+              "integer_residual_gbps": 0.0
+            }
+          ],
+          "positive_pairs": 15,
+          "excluded_pairs": 0,
+          "predicted_m": 0.292593791401788,
+          "flow_lp_m": 0.292593791401788,
+          "flow_residual_gbps": 0.0
+        }
+      ],
+      "links": 5
+    },
+    {
+      "case": "Case3",
+      "layout_index": 96,
+      "nodes": 8,
+      "workloads": [
+        {
+          "workload": "local",
+          "one_module_per_used_edge_m": 1.4281121475499943,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.22351623007153218,
+              "rounded_m": 1.4281121475499945,
+              "exact_integer_m": 1.015170147774997,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 3.576259681144515,
+              "rounded_m": 4.366988515774979,
+              "exact_integer_m": 4.011502480574985,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 28.386561219084587,
+              "rounded_m": 28.710051467949864,
+              "exact_integer_m": 28.710051467949867,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 128,
+              "lower_m": 28.61007744915612,
+              "rounded_m": 28.710051467949864,
+              "exact_integer_m": 28.710051467949867,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 28.83359367922765,
+              "rounded_m": 29.938215577912363,
+              "exact_integer_m": 29.51267552386237,
+              "integer_residual_gbps": 0.0
+            }
+          ],
+          "positive_pairs": 16,
+          "excluded_pairs": 0,
+          "predicted_m": 0.22351623007153218,
+          "flow_lp_m": 0.22351623007153218,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "hubs",
+          "one_module_per_used_edge_m": 1.015170147774997,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.37113414322743854,
+              "rounded_m": 1.015170147774997,
+              "exact_integer_m": 1.015170147774997,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 5.938146291639017,
+              "rounded_m": 6.343918858887452,
+              "exact_integer_m": 6.331320804612456,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 47.1340361898847,
+              "rounded_m": 47.60514435188713,
+              "exact_integer_m": 47.59254629761213,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 128,
+              "lower_m": 47.50517033311213,
+              "rounded_m": 47.60514435188713,
+              "exact_integer_m": 47.605144351887134,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 47.87630447633957,
+              "rounded_m": 48.42036646211212,
+              "exact_integer_m": 48.42036646211213,
+              "integer_residual_gbps": 0.0
+            }
+          ],
+          "positive_pairs": 13,
+          "excluded_pairs": 0,
+          "predicted_m": 0.37113414322743854,
+          "flow_lp_m": 0.3711341432274385,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "spread",
+          "one_module_per_used_edge_m": 1.4281121475499943,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.5349084454095674,
+              "rounded_m": 1.4281121475499945,
+              "exact_integer_m": 1.015170147774997,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 8.558535126553078,
+              "rounded_m": 9.029623066824954,
+              "exact_integer_m": 8.959569047974954,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 67.93337256701506,
+              "rounded_m": 68.55032603226213,
+              "exact_integer_m": 68.55032603226213,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 128,
+              "lower_m": 68.46828101242463,
+              "rounded_m": 68.90581206746212,
+              "exact_integer_m": 68.90581206746214,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 69.0031894578342,
+              "rounded_m": 69.81434814013711,
+              "exact_integer_m": 69.38880808608712,
+              "integer_residual_gbps": 0.0
+            }
+          ],
+          "positive_pairs": 24,
+          "excluded_pairs": 0,
+          "predicted_m": 0.5349084454095674,
+          "flow_lp_m": 0.5349084454095674,
+          "flow_residual_gbps": 0.0
+        }
+      ],
+      "links": 8
+    },
+    {
+      "case": "Case4",
+      "layout_index": 96,
+      "nodes": 11,
+      "workloads": [
+        {
+          "workload": "local",
+          "one_module_per_used_edge_m": 3.8085289107000024,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.42709941213593794,
+              "rounded_m": 3.8085289107000024,
+              "exact_integer_m": 1.7276568812500026,
+              "integer_residual_gbps": 3.979039320256561e-13
+            },
+            {
+              "scale": 16,
+              "lower_m": 6.833590594175007,
+              "rounded_m": 8.051409083000006,
+              "exact_integer_m": 7.648327118650008,
+              "integer_residual_gbps": 1.7053025658242404e-12
+            },
+            {
+              "scale": 127,
+              "lower_m": 54.24162534126412,
+              "rounded_m": 55.94491063062505,
+              "exact_integer_m": 55.26981463350014,
+              "integer_residual_gbps": 4.729372449219227e-11
+            },
+            {
+              "scale": 128,
+              "lower_m": 54.668724753400056,
+              "rounded_m": 55.94491063062505,
+              "exact_integer_m": 55.269814633499976,
+              "integer_residual_gbps": 3.637978807091713e-12
+            },
+            {
+              "scale": 129,
+              "lower_m": 55.095824165535994,
+              "rounded_m": 57.20106778687506,
+              "exact_integer_m": 55.79529175455005,
+              "integer_residual_gbps": 4.547473508864641e-12
+            }
+          ],
+          "positive_pairs": 22,
+          "excluded_pairs": 0,
+          "predicted_m": 0.42709941213593794,
+          "flow_lp_m": 0.42709941213593794,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "hubs",
+          "one_module_per_used_edge_m": 2.732676840300002,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.6949261159721685,
+              "rounded_m": 2.732676840300002,
+              "exact_integer_m": 1.7276568812500033,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 11.118817855554695,
+              "rounded_m": 12.08096070915001,
+              "exact_integer_m": 11.603634685625002,
+              "integer_residual_gbps": 2.167155344068329e-11
+            },
+            {
+              "scale": 127,
+              "lower_m": 88.2556167284654,
+              "rounded_m": 89.81009221405007,
+              "exact_integer_m": 89.13499621692509,
+              "integer_residual_gbps": 9.094947017729282e-13
+            },
+            {
+              "scale": 128,
+              "lower_m": 88.95054284443756,
+              "rounded_m": 89.81009221405007,
+              "exact_integer_m": 89.4801682521251,
+              "integer_residual_gbps": 3.637978807091713e-12
+            },
+            {
+              "scale": 129,
+              "lower_m": 89.64546896040973,
+              "rounded_m": 90.8236703151251,
+              "exact_integer_m": 90.49003828872507,
+              "integer_residual_gbps": 4.547473508864641e-12
+            }
+          ],
+          "positive_pairs": 19,
+          "excluded_pairs": 0,
+          "predicted_m": 0.6949261159721685,
+          "flow_lp_m": 0.6949261159721686,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "spread",
+          "one_module_per_used_edge_m": 3.8085289107000024,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 1.3230664490809576,
+              "rounded_m": 3.8085289107000024,
+              "exact_integer_m": 2.0575808431750033,
+              "integer_residual_gbps": 1.5631940186722204e-13
+            },
+            {
+              "scale": 16,
+              "lower_m": 21.16906318529532,
+              "rounded_m": 23.735054583375018,
+              "exact_integer_m": 21.98410651585002,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 168.02943903328162,
+              "rounded_m": 170.1504822050002,
+              "exact_integer_m": 168.94027614339876,
+              "integer_residual_gbps": 5.20230969414115e-10
+            },
+            {
+              "scale": 128,
+              "lower_m": 169.35250548236257,
+              "rounded_m": 170.7176199018002,
+              "exact_integer_m": 169.69955187234598,
+              "integer_residual_gbps": 1.0913936421275139e-11
+            },
+            {
+              "scale": 129,
+              "lower_m": 170.67557193144353,
+              "rounded_m": 172.36305767042518,
+              "exact_integer_m": 171.37474804300015,
+              "integer_residual_gbps": 2.1827872842550278e-11
+            }
+          ],
+          "positive_pairs": 33,
+          "excluded_pairs": 0,
+          "predicted_m": 1.3230664490809576,
+          "flow_lp_m": 1.3230664490809583,
+          "flow_residual_gbps": 0.0
+        }
+      ],
+      "links": 14
+    },
+    {
+      "case": "Case5",
+      "layout_index": 96,
+      "nodes": 12,
+      "workloads": [
+        {
+          "workload": "local",
+          "one_module_per_used_edge_m": 3.836284674875004,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.5473720277250004,
+              "rounded_m": 3.836284674875004,
+              "exact_integer_m": 2.080758640550001,
+              "integer_residual_gbps": 1.8474111129762605e-13
+            },
+            {
+              "scale": 16,
+              "lower_m": 8.757952443600006,
+              "rounded_m": 10.383027701637507,
+              "exact_integer_m": 9.624055682975003,
+              "integer_residual_gbps": 4.149569576838985e-12
+            },
+            {
+              "scale": 127,
+              "lower_m": 69.51624752107504,
+              "rounded_m": 70.97822608940004,
+              "exact_integer_m": 70.39082155937504,
+              "integer_residual_gbps": 4.18367562815547e-11
+            },
+            {
+              "scale": 128,
+              "lower_m": 70.06361954880005,
+              "rounded_m": 70.97822608940004,
+              "exact_integer_m": 70.82466157803755,
+              "integer_residual_gbps": 1.8189894035458565e-12
+            },
+            {
+              "scale": 129,
+              "lower_m": 70.61099157652505,
+              "rounded_m": 72.98529768307503,
+              "exact_integer_m": 71.75890815961256,
+              "integer_residual_gbps": 3.8198777474462986e-10
+            }
+          ],
+          "positive_pairs": 24,
+          "excluded_pairs": 0,
+          "predicted_m": 0.5473720277250004,
+          "flow_lp_m": 0.5473720277250004,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "hubs",
+          "one_module_per_used_edge_m": 2.443968624012501,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.788110798311719,
+              "rounded_m": 2.443968624012501,
+              "exact_integer_m": 2.080758640550001,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 16,
+              "lower_m": 12.609772772987505,
+              "rounded_m": 13.641975090762507,
+              "exact_integer_m": 13.300765127212506,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 127,
+              "lower_m": 100.09007138558832,
+              "rounded_m": 101.06611444488755,
+              "exact_integer_m": 100.68477046180004,
+              "integer_residual_gbps": 3.637978807091713e-12
+            },
+            {
+              "scale": 128,
+              "lower_m": 100.87818218390004,
+              "rounded_m": 101.14494446381255,
+              "exact_integer_m": 101.14494446381255,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 101.66629298221176,
+              "rounded_m": 103.13421854692504,
+              "exact_integer_m": 102.79300858337504,
+              "integer_residual_gbps": 0.0
+            }
+          ],
+          "positive_pairs": 21,
+          "excluded_pairs": 0,
+          "predicted_m": 0.788110798311719,
+          "flow_lp_m": 0.788110798311719,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "spread",
+          "one_module_per_used_edge_m": 3.836284674875004,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 1.3243000723484872,
+              "rounded_m": 3.836284674875004,
+              "exact_integer_m": 2.2552287143250007,
+              "integer_residual_gbps": 5.0468074164200516e-11
+            },
+            {
+              "scale": 16,
+              "lower_m": 21.188801157575796,
+              "rounded_m": 23.524562056537523,
+              "exact_integer_m": 22.162742021337515,
+              "integer_residual_gbps": 4.956746124662459e-11
+            },
+            {
+              "scale": 127,
+              "lower_m": 168.1861091882579,
+              "rounded_m": 170.0737807676001,
+              "exact_integer_m": 169.36016869632513,
+              "integer_residual_gbps": 8.108872862067074e-08
+            },
+            {
+              "scale": 128,
+              "lower_m": 169.51040926060637,
+              "rounded_m": 170.4206228191501,
+              "exact_integer_m": 170.38048879961264,
+              "integer_residual_gbps": 0.0
+            },
+            {
+              "scale": 129,
+              "lower_m": 170.83470933295484,
+              "rounded_m": 172.78332242848762,
+              "exact_integer_m": 171.6526444306126,
+              "integer_residual_gbps": 1.4551915228366852e-11
+            }
+          ],
+          "positive_pairs": 36,
+          "excluded_pairs": 0,
+          "predicted_m": 1.3243000723484872,
+          "flow_lp_m": 1.3243000723484875,
+          "flow_residual_gbps": 0.0
+        }
+      ],
+      "links": 15
+    },
+    {
+      "case": "Case6",
+      "layout_index": 100,
+      "nodes": 20,
+      "workloads": [
+        {
+          "workload": "local",
+          "one_module_per_used_edge_m": 4.125458789475001,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 1.0261296255240235,
+              "rounded_m": 4.125458789475001
+            },
+            {
+              "scale": 16,
+              "lower_m": 16.418074008384377,
+              "rounded_m": 18.114600123500004
+            },
+            {
+              "scale": 127,
+              "lower_m": 130.318462441551,
+              "rounded_m": 132.17628832915003
+            },
+            {
+              "scale": 128,
+              "lower_m": 131.344592067075,
+              "rounded_m": 132.17628832915003
+            },
+            {
+              "scale": 129,
+              "lower_m": 132.37072169259903,
+              "rounded_m": 134.63835459447503
+            }
+          ],
+          "positive_pairs": 40,
+          "excluded_pairs": 0,
+          "predicted_m": 1.0261296255240235,
+          "flow_lp_m": 1.0261296255240235,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "hubs",
+          "one_module_per_used_edge_m": 4.125458789475001,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 1.31826262225586,
+              "rounded_m": 4.433458789475002
+            },
+            {
+              "scale": 16,
+              "lower_m": 21.09220195609376,
+              "rounded_m": 23.13853135197501
+            },
+            {
+              "scale": 127,
+              "lower_m": 167.4193530264942,
+              "rounded_m": 169.44867566655006
+            },
+            {
+              "scale": 128,
+              "lower_m": 168.73761564875008,
+              "rounded_m": 169.75667566655005
+            },
+            {
+              "scale": 129,
+              "lower_m": 170.05587827100595,
+              "rounded_m": 172.15201442042508
+            }
+          ],
+          "positive_pairs": 37,
+          "excluded_pairs": 0,
+          "predicted_m": 1.31826262225586,
+          "flow_lp_m": 1.31826262225586,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "spread",
+          "one_module_per_used_edge_m": 4.125458789475001,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 2.0826900210966794,
+              "rounded_m": 4.327168789475001
+            },
+            {
+              "scale": 16,
+              "lower_m": 33.32304033754687,
+              "rounded_m": 35.433616620775
+            },
+            {
+              "scale": 127,
+              "lower_m": 264.5016326792783,
+              "rounded_m": 266.2589252029501
+            },
+            {
+              "scale": 128,
+              "lower_m": 266.58432270037497,
+              "rounded_m": 268.03233021765004
+            },
+            {
+              "scale": 129,
+              "lower_m": 268.6670127214716,
+              "rounded_m": 271.03517898727506
+            }
+          ],
+          "positive_pairs": 60,
+          "excluded_pairs": 0,
+          "predicted_m": 2.0826900210966794,
+          "flow_lp_m": 2.0826900210966803,
+          "flow_residual_gbps": 0.0
+        }
+      ],
+      "links": 20
+    },
+    {
+      "case": "Case7",
+      "layout_index": 100,
+      "nodes": 28,
+      "workloads": [
+        {
+          "workload": "local",
+          "one_module_per_used_edge_m": 4.427489987080001,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.8745657752168751,
+              "rounded_m": 4.42748998708
+            },
+            {
+              "scale": 16,
+              "lower_m": 13.993052403470001,
+              "rounded_m": 15.811989890980001
+            },
+            {
+              "scale": 127,
+              "lower_m": 111.06985345254313,
+              "rounded_m": 112.9283092136
+            },
+            {
+              "scale": 128,
+              "lower_m": 111.94441922776001,
+              "rounded_m": 112.9283092136
+            },
+            {
+              "scale": 129,
+              "lower_m": 112.81898500297689,
+              "rounded_m": 115.38801922900002
+            }
+          ],
+          "positive_pairs": 56,
+          "excluded_pairs": 0,
+          "predicted_m": 0.8745657752168751,
+          "flow_lp_m": 0.874565775216875,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "hubs",
+          "one_module_per_used_edge_m": 3.8227599880800005,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 1.6815747539233596,
+              "rounded_m": 4.044029983580001
+            },
+            {
+              "scale": 16,
+              "lower_m": 26.905196062773754,
+              "rounded_m": 28.88988980378
+            },
+            {
+              "scale": 127,
+              "lower_m": 213.55999374826666,
+              "rounded_m": 215.24033850244
+            },
+            {
+              "scale": 128,
+              "lower_m": 215.24156850219003,
+              "rounded_m": 216.40301849894
+            },
+            {
+              "scale": 129,
+              "lower_m": 216.9231432561134,
+              "rounded_m": 219.06555849002
+            }
+          ],
+          "positive_pairs": 53,
+          "excluded_pairs": 0,
+          "predicted_m": 1.6815747539233596,
+          "flow_lp_m": 1.6815747539233596,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "spread",
+          "one_module_per_used_edge_m": 4.427489987080001,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 2.245393658439688,
+              "rounded_m": 4.787259988180001
+            },
+            {
+              "scale": 16,
+              "lower_m": 35.92629853503501,
+              "rounded_m": 38.24468978304
+            },
+            {
+              "scale": 127,
+              "lower_m": 285.1649946218404,
+              "rounded_m": 287.24445828864
+            },
+            {
+              "scale": 128,
+              "lower_m": 287.4103882802801,
+              "rounded_m": 288.50946827158003
+            },
+            {
+              "scale": 129,
+              "lower_m": 289.65578193871977,
+              "rounded_m": 292.003808259
+            }
+          ],
+          "positive_pairs": 84,
+          "excluded_pairs": 0,
+          "predicted_m": 2.245393658439688,
+          "flow_lp_m": 2.2453936584396867,
+          "flow_residual_gbps": 0.0
+        }
+      ],
+      "links": 34
+    },
+    {
+      "case": "Case8",
+      "layout_index": 105,
+      "nodes": 36,
+      "workloads": [
+        {
+          "workload": "local",
+          "one_module_per_used_edge_m": 5.04280993065,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 0.7902169040867187,
+              "rounded_m": 5.042809930649999
+            },
+            {
+              "scale": 16,
+              "lower_m": 12.6434704653875,
+              "rounded_m": 14.608519808799999
+            },
+            {
+              "scale": 127,
+              "lower_m": 100.35754681901328,
+              "rounded_m": 102.2640187163
+            },
+            {
+              "scale": 128,
+              "lower_m": 101.1477637231,
+              "rounded_m": 102.2640187163
+            },
+            {
+              "scale": 129,
+              "lower_m": 101.93798062718672,
+              "rounded_m": 105.07431866055
+            }
+          ],
+          "positive_pairs": 72,
+          "excluded_pairs": 0,
+          "predicted_m": 0.7902169040867187,
+          "flow_lp_m": 0.7902169040867186,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "hubs",
+          "one_module_per_used_edge_m": 4.772529928949998,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 2.4073580301314457,
+              "rounded_m": 5.5364699222499985
+            },
+            {
+              "scale": 16,
+              "lower_m": 38.51772848210313,
+              "rounded_m": 40.81420968950001
+            },
+            {
+              "scale": 127,
+              "lower_m": 305.7344698266936,
+              "rounded_m": 307.76249784019996
+            },
+            {
+              "scale": 128,
+              "lower_m": 308.14182785682505,
+              "rounded_m": 309.6193078357
+            },
+            {
+              "scale": 129,
+              "lower_m": 310.5491858869565,
+              "rounded_m": 313.2936878023999
+            }
+          ],
+          "positive_pairs": 69,
+          "excluded_pairs": 0,
+          "predicted_m": 2.4073580301314457,
+          "flow_lp_m": 2.407358030131445,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "spread",
+          "one_module_per_used_edge_m": 5.33386993065,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 3.49871130471328,
+              "rounded_m": 7.1261799309499985
+            },
+            {
+              "scale": 16,
+              "lower_m": 55.97938087541248,
+              "rounded_m": 58.6549195964
+            },
+            {
+              "scale": 127,
+              "lower_m": 444.3363356985866,
+              "rounded_m": 446.87205699145
+            },
+            {
+              "scale": 128,
+              "lower_m": 447.83504700329985,
+              "rounded_m": 449.4150269937
+            },
+            {
+              "scale": 129,
+              "lower_m": 451.3337583080131,
+              "rounded_m": 454.1319069458
+            }
+          ],
+          "positive_pairs": 108,
+          "excluded_pairs": 0,
+          "predicted_m": 3.49871130471328,
+          "flow_lp_m": 3.4987113047132814,
+          "flow_residual_gbps": 0.0
+        }
+      ],
+      "links": 42
+    },
+    {
+      "case": "Case9",
+      "layout_index": 100,
+      "nodes": 44,
+      "workloads": [
+        {
+          "workload": "local",
+          "one_module_per_used_edge_m": 9.967802560025001,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 5.423726903444139,
+              "rounded_m": 12.600062560025002
+            },
+            {
+              "scale": 16,
+              "lower_m": 86.77963045510623,
+              "rounded_m": 91.79491282767498
+            },
+            {
+              "scale": 127,
+              "lower_m": 688.8133167374057,
+              "rounded_m": 693.8483248913249
+            },
+            {
+              "scale": 128,
+              "lower_m": 694.2370436408498,
+              "rounded_m": 696.791464891325
+            },
+            {
+              "scale": 129,
+              "lower_m": 699.660770544294,
+              "rounded_m": 704.5935649504
+            }
+          ],
+          "positive_pairs": 88,
+          "excluded_pairs": 0,
+          "predicted_m": 5.423726903444139,
+          "flow_lp_m": 5.423726903444138,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "hubs",
+          "one_module_per_used_edge_m": 9.967802560025001,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 8.676697811807317,
+              "rounded_m": 15.554612571025
+            },
+            {
+              "scale": 16,
+              "lower_m": 138.82716498891708,
+              "rounded_m": 143.68300299087494
+            },
+            {
+              "scale": 127,
+              "lower_m": 1101.9406220995293,
+              "rounded_m": 1106.9989061729748
+            },
+            {
+              "scale": 128,
+              "lower_m": 1110.6173199113366,
+              "rounded_m": 1113.2616711891749
+            },
+            {
+              "scale": 129,
+              "lower_m": 1119.294017723144,
+              "rounded_m": 1124.203536209725
+            }
+          ],
+          "positive_pairs": 85,
+          "excluded_pairs": 0,
+          "predicted_m": 8.676697811807317,
+          "flow_lp_m": 8.676697811807323,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "spread",
+          "one_module_per_used_edge_m": 9.967802560025001,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 12.967494027673533,
+              "rounded_m": 18.294160063525
+            },
+            {
+              "scale": 16,
+              "lower_m": 207.47990444277653,
+              "rounded_m": 212.7723832240749
+            },
+            {
+              "scale": 127,
+              "lower_m": 1646.8717415145386,
+              "rounded_m": 1652.3958930447745
+            },
+            {
+              "scale": 128,
+              "lower_m": 1659.8392355422122,
+              "rounded_m": 1663.0288805567245
+            },
+            {
+              "scale": 129,
+              "lower_m": 1672.8067295698859,
+              "rounded_m": 1677.2503805996746
+            }
+          ],
+          "positive_pairs": 132,
+          "excluded_pairs": 0,
+          "predicted_m": 12.967494027673533,
+          "flow_lp_m": 12.967494027673531,
+          "flow_residual_gbps": 0.0
+        }
+      ],
+      "links": 43
+    },
+    {
+      "case": "Case10",
+      "layout_index": 128,
+      "nodes": 61,
+      "workloads": [
+        {
+          "workload": "local",
+          "one_module_per_used_edge_m": 9.70884506862,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 2.3126442867237498,
+              "rounded_m": 9.70884506862
+            },
+            {
+              "scale": 16,
+              "lower_m": 37.002308587579996,
+              "rounded_m": 41.85208517184
+            },
+            {
+              "scale": 127,
+              "lower_m": 293.7058244139162,
+              "rounded_m": 297.70827121146004
+            },
+            {
+              "scale": 128,
+              "lower_m": 296.01846870063997,
+              "rounded_m": 297.94125121146004
+            },
+            {
+              "scale": 129,
+              "lower_m": 298.3311129873637,
+              "rounded_m": 304.03751125844
+            }
+          ],
+          "positive_pairs": 111,
+          "excluded_pairs": 11,
+          "predicted_m": 2.3126442867237498,
+          "flow_lp_m": 2.31264428672375,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "hubs",
+          "one_module_per_used_edge_m": 8.559717568619998,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 9.177926084501637,
+              "rounded_m": 14.976582565579998
+            },
+            {
+              "scale": 16,
+              "lower_m": 146.8468173520262,
+              "rounded_m": 150.59566518795995
+            },
+            {
+              "scale": 127,
+              "lower_m": 1165.5966127317079,
+              "rounded_m": 1168.8556913349798
+            },
+            {
+              "scale": 128,
+              "lower_m": 1174.7745388162095,
+              "rounded_m": 1176.7111963384398
+            },
+            {
+              "scale": 129,
+              "lower_m": 1183.9524649007112,
+              "rounded_m": 1189.2531038660595
+            }
+          ],
+          "positive_pairs": 111,
+          "excluded_pairs": 8,
+          "predicted_m": 9.177926084501637,
+          "flow_lp_m": 9.177926084501642,
+          "flow_residual_gbps": 0.0
+        },
+        {
+          "workload": "spread",
+          "one_module_per_used_edge_m": 10.225472568619999,
+          "scales": [
+            {
+              "scale": 1,
+              "lower_m": 9.856308855591708,
+              "rounded_m": 15.78535758252
+            },
+            {
+              "scale": 16,
+              "lower_m": 157.70094168946733,
+              "rounded_m": 162.53875313524
+            },
+            {
+              "scale": 127,
+              "lower_m": 1251.7512246601468,
+              "rounded_m": 1256.6754222656198
+            },
+            {
+              "scale": 128,
+              "lower_m": 1261.6075335157386,
+              "rounded_m": 1264.4659247832794
+            },
+            {
+              "scale": 129,
+              "lower_m": 1271.4638423713304,
+              "rounded_m": 1276.7651173344798
+            }
+          ],
+          "positive_pairs": 150,
+          "excluded_pairs": 33,
+          "predicted_m": 9.856308855591708,
+          "flow_lp_m": 9.856308855591717,
+          "flow_residual_gbps": 0.0
+        }
+      ],
+      "links": 60
+    }
+  ],
+  "physical_model": {
+    "matched_links": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "matching_share_denominator": 40,
+    "grid_sizes": [
+      64,
+      96,
+      128,
+      160,
+      192
+    ],
+    "modules_per_link": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "signal_pins_per_module": 44,
+    "capacity_per_module_gbps_per_direction": 256,
+    "idle_fraction": 0.25,
+    "full_phy_pj_per_raw_bit": 1,
+    "base_die_w": 680,
+    "ambient_c": 45,
+    "wire_cap_m": 38.95376444850001,
+    "reach_mm": 25,
+    "peak_cap_c": 109,
+    "payload_fraction": 0.9411764705882353,
+    "raw_source_sha256": "34def31b4c3b64f86c46e690367108718888b391c123ac7274cbb75ad81c49dd",
+    "archived_full_port_replay_error_c": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "thermal_solves": 60
+  },
+  "physical_layouts": [
+    {
+      "layout": "two-fast-local",
+      "memory_m": 16.626754389600006,
+      "cpu_bank_wire_m": [
+        [
+          0.0,
+          1.0130279999999998,
+          2.033158,
+          3.0649039999999994,
+          4.110046
+        ],
+        [
+          0.0,
+          0.841572,
+          1.690294,
+          2.551016,
+          3.425038
+        ],
+        [
+          0.0,
+          0.841572,
+          1.6902940000000004,
+          2.5510159999999997,
+          3.4250380000000002
+        ],
+        [
+          0.0,
+          1.0130279999999998,
+          2.033158,
+          3.0649039999999994,
+          4.110046
+        ]
+      ],
+      "cpu_bank_reach_mm": [
+        [
+          0.0,
+          23.502,
+          23.800000000000004,
+          24.4,
+          24.999999999999996
+        ],
+        [
+          0.0,
+          19.938000000000002,
+          20.538,
+          21.138,
+          21.738
+        ],
+        [
+          0.0,
+          19.937999999999995,
+          20.538000000000004,
+          21.137999999999998,
+          21.737999999999992
+        ],
+        [
+          0.0,
+          23.502000000000006,
+          23.800000000000004,
+          24.400000000000002,
+          25.000000000000004
+        ]
+      ],
+      "reports": [
+        {
+          "target_TB_s": 0.65,
+          "matrices": 861,
+          "reachable": 190,
+          "uniform_reachable": 190,
+          "within_wire_cap": 190,
+          "uniform_within_wire_cap": 190,
+          "median_excess_over_continuous_m": 1.1775964199218745,
+          "common_matrices_with_wire_savings": 159,
+          "median_wire_saving_m": 2.0902840000000005
+        },
+        {
+          "target_TB_s": 0.8,
+          "matrices": 861,
+          "reachable": 45,
+          "uniform_reachable": 45,
+          "within_wire_cap": 45,
+          "uniform_within_wire_cap": 45,
+          "median_excess_over_continuous_m": 0.8710382656250015,
+          "common_matrices_with_wire_savings": 36,
+          "median_wire_saving_m": 1.0451419999999985
+        }
+      ],
+      "reference": [
+        {
+          "shares": [
+            18,
+            18,
+            4
+          ],
+          "target_TB_s": 0.65,
+          "reachable": true,
+          "uncapped_cpu_floor_m": 11.007159667968747,
+          "uncapped_shortest_load_gbps": [
+            897.8125,
+            759.6875,
+            759.6875,
+            621.5625
+          ],
+          "capped_linear_cpu_floor_m": 11.00715966796875,
+          "capped_rounded_modules": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "capped_rounded_wire_m": 28.732616389600004,
+          "sized": {
+            "modules": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "capacity_each_direction_gbps": [
+              768,
+              768,
+              768,
+              768
+            ],
+            "routed_each_direction_gbps": [
+              759.6875,
+              759.6875,
+              759.6875,
+              759.6875
+            ],
+            "max_cpu_signal_mm": 24.400000000000002,
+            "endpoint_w": [
+              0.761765625,
+              0.761765625,
+              0.761765625,
+              0.761765625
+            ],
+            "phy_w": 6.094125,
+            "total_wire_m": 27.858594389600004,
+            "cpu_wire_m": 11.231839999999998,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 108.65784385856765,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 108.40916357532424,
+              "96": 108.61527115048742,
+              "128": 108.58569262373956,
+              "160": 108.65784385856765,
+              "192": 108.64096010393962
+            },
+            "max_balance_error_w": 4.388311936054379e-11
+          },
+          "uniform": {
+            "modules": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "capacity_each_direction_gbps": [
+              768,
+              768,
+              768,
+              768
+            ],
+            "routed_each_direction_gbps": [
+              759.6875,
+              759.6875,
+              759.6875,
+              759.6875
+            ],
+            "max_cpu_signal_mm": 24.400000000000002,
+            "endpoint_w": [
+              0.761765625,
+              0.761765625,
+              0.761765625,
+              0.761765625
+            ],
+            "phy_w": 6.094125,
+            "total_wire_m": 27.858594389600004,
+            "cpu_wire_m": 11.231839999999998,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 108.65784385856765,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 108.40916357532424,
+              "96": 108.61527115048742,
+              "128": 108.58569262373956,
+              "160": 108.65784385856765,
+              "192": 108.64096010393962
+            },
+            "max_balance_error_w": 4.388311936054379e-11
+          }
+        },
+        {
+          "shares": [
+            24,
+            12,
+            4
+          ],
+          "target_TB_s": 0.65,
+          "reachable": true,
+          "uncapped_cpu_floor_m": 11.284687324218748,
+          "uncapped_shortest_load_gbps": [
+            1105.0,
+            552.5,
+            552.5,
+            828.75
+          ],
+          "capped_linear_cpu_floor_m": 11.284687324218748,
+          "capped_rounded_modules": [
+            4,
+            3,
+            3,
+            4
+          ],
+          "capped_rounded_wire_m": 29.948878389600004,
+          "sized": {
+            "modules": [
+              4,
+              2,
+              3,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              512,
+              768,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              995.4375,
+              483.4375,
+              621.5625,
+              938.3125
+            ],
+            "max_cpu_signal_mm": 25.000000000000004,
+            "endpoint_w": [
+              1.002578125,
+              0.490578125,
+              0.658171875,
+              0.959734375
+            ],
+            "phy_w": 6.222125,
+            "total_wire_m": 29.088156389600005,
+            "cpu_wire_m": 12.461402,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 108.69216933112762,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 108.56690488183548,
+              "96": 108.67328731426518,
+              "128": 108.64387108362232,
+              "160": 108.69216933112762,
+              "192": 108.67555497310664
+            },
+            "max_balance_error_w": 4.1040948417503387e-11
+          },
+          "uniform": {
+            "modules": [
+              4,
+              4,
+              4,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              966.875,
+              633.5,
+              471.5,
+              966.875
+            ],
+            "max_cpu_signal_mm": 25.000000000000004,
+            "endpoint_w": [
+              0.98115625,
+              0.731125,
+              0.609625,
+              0.98115625
+            ],
+            "phy_w": 6.6061250000000005,
+            "total_wire_m": 31.696922389600005,
+            "cpu_wire_m": 15.070167999999999,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 108.71335791458762,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 108.5941345936199,
+              "96": 108.69522969692929,
+              "128": 108.6668897962836,
+              "160": 108.71335791458762,
+              "192": 108.69683185617832
+            },
+            "max_balance_error_w": 4.1040948417503387e-11
+          }
+        },
+        {
+          "shares": [
+            18,
+            18,
+            4
+          ],
+          "target_TB_s": 0.8,
+          "reachable": true,
+          "uncapped_cpu_floor_m": 13.547273437499998,
+          "uncapped_shortest_load_gbps": [
+            1105.0,
+            935.0,
+            935.0,
+            765.0
+          ],
+          "capped_linear_cpu_floor_m": 13.5472734375,
+          "capped_rounded_modules": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "capped_rounded_wire_m": 31.696922389600005,
+          "sized": {
+            "modules": [
+              4,
+              4,
+              4,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              935.0,
+              935.0,
+              935.0,
+              935.0
+            ],
+            "max_cpu_signal_mm": 25.000000000000004,
+            "endpoint_w": [
+              0.95725,
+              0.95725,
+              0.95725,
+              0.95725
+            ],
+            "phy_w": 7.658,
+            "total_wire_m": 31.696922389600005,
+            "cpu_wire_m": 15.070167999999999,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 108.77827362253186,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 108.66635752694046,
+              "96": 108.76344886528199,
+              "128": 108.73507761769801,
+              "160": 108.77827362253186,
+              "192": 108.7616931240216
+            },
+            "max_balance_error_w": 4.1154635255225e-11
+          },
+          "uniform": {
+            "modules": [
+              4,
+              4,
+              4,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              935.0,
+              935.0,
+              935.0,
+              935.0
+            ],
+            "max_cpu_signal_mm": 25.000000000000004,
+            "endpoint_w": [
+              0.95725,
+              0.95725,
+              0.95725,
+              0.95725
+            ],
+            "phy_w": 7.658,
+            "total_wire_m": 31.696922389600005,
+            "cpu_wire_m": 15.070167999999999,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 108.77827362253186,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 108.66635752694046,
+              "96": 108.76344886528199,
+              "128": 108.73507761769801,
+              "160": 108.77827362253186,
+              "192": 108.7616931240216
+            },
+            "max_balance_error_w": 4.1154635255225e-11
+          }
+        },
+        {
+          "shares": [
+            24,
+            12,
+            4
+          ],
+          "target_TB_s": 0.8,
+          "reachable": false
+        }
+      ]
+    },
+    {
+      "layout": "move-move-rot-391-1.25-0-11-False",
+      "memory_m": 17.930658312400006,
+      "cpu_bank_wire_m": [
+        [
+          0.0,
+          1.0296880000000002,
+          2.0593760000000003,
+          3.0890640000000005,
+          4.118752000000001
+        ],
+        [
+          0.0,
+          1.0561120000000002,
+          2.1158240000000004,
+          3.1827360000000002,
+          4.260448
+        ],
+        [
+          0.0,
+          1.0559119999999997,
+          2.1118239999999995,
+          3.1677359999999997,
+          4.223647999999999
+        ],
+        [
+          0.0,
+          1.0296880000000002,
+          2.0601639999999994,
+          3.095807999999999,
+          4.139436
+        ]
+      ],
+      "cpu_bank_reach_mm": [
+        [
+          0.0,
+          23.402000000000005,
+          23.402000000000005,
+          23.402000000000005,
+          23.402000000000005
+        ],
+        [
+          0.0,
+          24.998000000000005,
+          24.998000000000005,
+          24.998000000000005,
+          24.998000000000005
+        ],
+        [
+          0.0,
+          24.998000000000005,
+          24.998000000000005,
+          24.998000000000005,
+          24.998000000000005
+        ],
+        [
+          0.0,
+          23.402,
+          23.79800000000001,
+          24.398000000000003,
+          24.997999999999998
+        ]
+      ],
+      "reports": [
+        {
+          "target_TB_s": 0.65,
+          "matrices": 861,
+          "reachable": 190,
+          "uniform_reachable": 190,
+          "within_wire_cap": 190,
+          "uniform_within_wire_cap": 190,
+          "median_excess_over_continuous_m": 1.199601687011718,
+          "common_matrices_with_wire_savings": 159,
+          "median_wire_saving_m": 2.1446240000000003
+        },
+        {
+          "target_TB_s": 0.8,
+          "matrices": 861,
+          "reachable": 45,
+          "uniform_reachable": 45,
+          "within_wire_cap": 45,
+          "uniform_within_wire_cap": 45,
+          "median_excess_over_continuous_m": 0.7932699999999979,
+          "common_matrices_with_wire_savings": 36,
+          "median_wire_saving_m": 1.0777119999999982
+        }
+      ],
+      "reference": [
+        {
+          "shares": [
+            18,
+            18,
+            4
+          ],
+          "target_TB_s": 0.65,
+          "reachable": true,
+          "uncapped_cpu_floor_m": 12.378643798828124,
+          "uncapped_shortest_load_gbps": [
+            759.6875,
+            621.5625,
+            897.8125,
+            759.6875
+          ],
+          "capped_linear_cpu_floor_m": 12.378643798828126,
+          "capped_rounded_modules": [
+            3,
+            3,
+            4,
+            3
+          ],
+          "capped_rounded_wire_m": 31.521914312400003,
+          "sized": {
+            "modules": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "capacity_each_direction_gbps": [
+              768,
+              768,
+              768,
+              768
+            ],
+            "routed_each_direction_gbps": [
+              759.6875,
+              759.6875,
+              759.6875,
+              759.6875
+            ],
+            "max_cpu_signal_mm": 24.998000000000005,
+            "endpoint_w": [
+              0.761765625,
+              0.761765625,
+              0.761765625,
+              0.761765625
+            ],
+            "phy_w": 6.094125,
+            "total_wire_m": 30.466002312400004,
+            "cpu_wire_m": 12.535343999999998,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 107.94782684083984,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.71148423722451,
+              "96": 107.94782684083984,
+              "128": 107.86874440660343,
+              "160": 107.82639422158525,
+              "192": 107.84955315634286
+            },
+            "max_balance_error_w": 3.89945853385143e-11
+          },
+          "uniform": {
+            "modules": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "capacity_each_direction_gbps": [
+              768,
+              768,
+              768,
+              768
+            ],
+            "routed_each_direction_gbps": [
+              759.6875,
+              759.6875,
+              759.6875,
+              759.6875
+            ],
+            "max_cpu_signal_mm": 24.998000000000005,
+            "endpoint_w": [
+              0.761765625,
+              0.761765625,
+              0.761765625,
+              0.761765625
+            ],
+            "phy_w": 6.094125,
+            "total_wire_m": 30.466002312400004,
+            "cpu_wire_m": 12.535343999999998,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 107.94782684083984,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.71148423722451,
+              "96": 107.94782684083984,
+              "128": 107.86874440660343,
+              "160": 107.82639422158525,
+              "192": 107.84955315634286
+            },
+            "max_balance_error_w": 3.89945853385143e-11
+          }
+        },
+        {
+          "shares": [
+            24,
+            12,
+            4
+          ],
+          "target_TB_s": 0.65,
+          "reachable": true,
+          "uncapped_cpu_floor_m": 12.33603439453125,
+          "uncapped_shortest_load_gbps": [
+            966.875,
+            414.375,
+            690.625,
+            966.875
+          ],
+          "capped_linear_cpu_floor_m": 12.33603439453125,
+          "capped_rounded_modules": [
+            4,
+            2,
+            3,
+            4
+          ],
+          "capped_rounded_wire_m": 31.472406312400004,
+          "sized": {
+            "modules": [
+              4,
+              2,
+              3,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              512,
+              768,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              995.4375,
+              483.4375,
+              621.5625,
+              938.3125
+            ],
+            "max_cpu_signal_mm": 24.998000000000005,
+            "endpoint_w": [
+              1.002578125,
+              0.490578125,
+              0.658171875,
+              0.959734375
+            ],
+            "phy_w": 6.222125,
+            "total_wire_m": 31.472406312400004,
+            "cpu_wire_m": 13.541747999999998,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 107.99039632415214,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.80522782433562,
+              "96": 107.99039632415214,
+              "128": 107.91792758970792,
+              "160": 107.85624984275739,
+              "192": 107.887949142419
+            },
+            "max_balance_error_w": 4.18367562815547e-11
+          },
+          "uniform": {
+            "modules": [
+              4,
+              4,
+              4,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              966.875,
+              633.5,
+              471.5,
+              966.875
+            ],
+            "max_cpu_signal_mm": 24.998000000000005,
+            "endpoint_w": [
+              0.98115625,
+              0.731125,
+              0.609625,
+              0.98115625
+            ],
+            "phy_w": 6.6061250000000005,
+            "total_wire_m": 34.672942312400004,
+            "cpu_wire_m": 16.742283999999998,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 107.98853390440183,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.91395709746666,
+              "96": 107.98853390440183,
+              "128": 107.94085972037954,
+              "160": 107.89361565319922,
+              "192": 107.84564392369077
+            },
+            "max_balance_error_w": 4.1382008930668235e-11
+          }
+        },
+        {
+          "shares": [
+            18,
+            18,
+            4
+          ],
+          "target_TB_s": 0.8,
+          "reachable": true,
+          "uncapped_cpu_floor_m": 15.235253906250001,
+          "uncapped_shortest_load_gbps": [
+            935.0,
+            765.0,
+            1105.0,
+            935.0
+          ],
+          "capped_linear_cpu_floor_m": 15.2353171875,
+          "capped_rounded_modules": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "capped_rounded_wire_m": 34.672942312400004,
+          "sized": {
+            "modules": [
+              4,
+              4,
+              4,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              935.0,
+              935.0,
+              935.0,
+              935.0
+            ],
+            "max_cpu_signal_mm": 24.998000000000005,
+            "endpoint_w": [
+              0.95725,
+              0.95725,
+              0.95725,
+              0.95725
+            ],
+            "phy_w": 7.658,
+            "total_wire_m": 34.672942312400004,
+            "cpu_wire_m": 16.742283999999998,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 108.0555344567236,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.9828804236295,
+              "96": 108.0555344567236,
+              "128": 108.00761365726378,
+              "160": 107.96783425063532,
+              "192": 107.91221609680852
+            },
+            "max_balance_error_w": 4.172306944383308e-11
+          },
+          "uniform": {
+            "modules": [
+              4,
+              4,
+              4,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              935.0,
+              935.0,
+              935.0,
+              935.0
+            ],
+            "max_cpu_signal_mm": 24.998000000000005,
+            "endpoint_w": [
+              0.95725,
+              0.95725,
+              0.95725,
+              0.95725
+            ],
+            "phy_w": 7.658,
+            "total_wire_m": 34.672942312400004,
+            "cpu_wire_m": 16.742283999999998,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 108.0555344567236,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.9828804236295,
+              "96": 108.0555344567236,
+              "128": 108.00761365726378,
+              "160": 107.96783425063532,
+              "192": 107.91221609680852
+            },
+            "max_balance_error_w": 4.172306944383308e-11
+          }
+        },
+        {
+          "shares": [
+            24,
+            12,
+            4
+          ],
+          "target_TB_s": 0.8,
+          "reachable": false
+        }
+      ]
+    },
+    {
+      "layout": "four-fast-50um",
+      "memory_m": 23.013890224000008,
+      "cpu_bank_wire_m": [
+        [
+          0.0,
+          0.9693999999999998,
+          1.9445999999999999,
+          2.9284,
+          3.9251000000000005
+        ],
+        [
+          0.0,
+          0.9693999999999999,
+          1.9446,
+          2.9284,
+          3.9251
+        ],
+        [
+          0.0,
+          0.9693999999999999,
+          1.9446,
+          2.9284,
+          3.9251
+        ],
+        [
+          0.0,
+          0.9694,
+          1.9446000000000003,
+          2.9283999999999994,
+          3.9251000000000005
+        ]
+      ],
+      "cpu_bank_reach_mm": [
+        [
+          0.0,
+          22.3,
+          22.900000000000006,
+          23.5,
+          24.099999999999998
+        ],
+        [
+          0.0,
+          22.5,
+          23.1,
+          23.700000000000003,
+          24.3
+        ],
+        [
+          0.0,
+          22.5,
+          23.10000000000001,
+          23.700000000000003,
+          24.299999999999997
+        ],
+        [
+          0.0,
+          22.300000000000004,
+          22.900000000000006,
+          23.500000000000004,
+          24.1
+        ]
+      ],
+      "reports": [
+        {
+          "target_TB_s": 0.65,
+          "matrices": 861,
+          "reachable": 190,
+          "uniform_reachable": 190,
+          "within_wire_cap": 190,
+          "uniform_within_wire_cap": 190,
+          "median_excess_over_continuous_m": 1.2034083984375057,
+          "common_matrices_with_wire_savings": 159,
+          "median_wire_saving_m": 1.9934000000000012
+        },
+        {
+          "target_TB_s": 0.8,
+          "matrices": 861,
+          "reachable": 45,
+          "uniform_reachable": 45,
+          "within_wire_cap": 45,
+          "uniform_within_wire_cap": 45,
+          "median_excess_over_continuous_m": 0.8632429687500007,
+          "common_matrices_with_wire_savings": 36,
+          "median_wire_saving_m": 0.9967000000000041
+        }
+      ],
+      "reference": [
+        {
+          "shares": [
+            18,
+            18,
+            4
+          ],
+          "target_TB_s": 0.65,
+          "reachable": true,
+          "uncapped_cpu_floor_m": 11.5068916015625,
+          "uncapped_shortest_load_gbps": [
+            897.8125,
+            759.6875,
+            759.6875,
+            621.5625
+          ],
+          "capped_linear_cpu_floor_m": 11.506891601562499,
+          "capped_rounded_modules": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "capped_rounded_wire_m": 34.72749022400001,
+          "sized": {
+            "modules": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "capacity_each_direction_gbps": [
+              768,
+              768,
+              768,
+              768
+            ],
+            "routed_each_direction_gbps": [
+              759.6875,
+              759.6875,
+              759.6875,
+              759.6875
+            ],
+            "max_cpu_signal_mm": 23.700000000000003,
+            "endpoint_w": [
+              0.761765625,
+              0.761765625,
+              0.761765625,
+              0.761765625
+            ],
+            "phy_w": 6.094125,
+            "total_wire_m": 34.72749022400001,
+            "cpu_wire_m": 11.7136,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 107.87790487944011,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.7120690284143,
+              "96": 107.86507487592908,
+              "128": 107.8322049095911,
+              "160": 107.87375164763023,
+              "192": 107.87790487944011
+            },
+            "max_balance_error_w": 4.433786671143025e-11
+          },
+          "uniform": {
+            "modules": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "capacity_each_direction_gbps": [
+              768,
+              768,
+              768,
+              768
+            ],
+            "routed_each_direction_gbps": [
+              759.6875,
+              759.6875,
+              759.6875,
+              759.6875
+            ],
+            "max_cpu_signal_mm": 23.700000000000003,
+            "endpoint_w": [
+              0.761765625,
+              0.761765625,
+              0.761765625,
+              0.761765625
+            ],
+            "phy_w": 6.094125,
+            "total_wire_m": 34.72749022400001,
+            "cpu_wire_m": 11.7136,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 107.87790487944011,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.7120690284143,
+              "96": 107.86507487592908,
+              "128": 107.8322049095911,
+              "160": 107.87375164763023,
+              "192": 107.87790487944011
+            },
+            "max_balance_error_w": 4.433786671143025e-11
+          }
+        },
+        {
+          "shares": [
+            24,
+            12,
+            4
+          ],
+          "target_TB_s": 0.65,
+          "reachable": true,
+          "uncapped_cpu_floor_m": 11.506891601562499,
+          "uncapped_shortest_load_gbps": [
+            1105.0,
+            552.5,
+            552.5,
+            828.75
+          ],
+          "capped_linear_cpu_floor_m": 11.506891601562499,
+          "capped_rounded_modules": [
+            4,
+            3,
+            3,
+            4
+          ],
+          "capped_rounded_wire_m": 36.72089022400001,
+          "sized": {
+            "modules": [
+              4,
+              3,
+              2,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              768,
+              512,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              975.1875,
+              641.8125,
+              463.1875,
+              958.5625
+            ],
+            "max_cpu_signal_mm": 24.1,
+            "endpoint_w": [
+              0.987390625,
+              0.673359375,
+              0.475390625,
+              0.974921875
+            ],
+            "phy_w": 6.222125,
+            "total_wire_m": 35.737090224000006,
+            "cpu_wire_m": 12.723199999999999,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 107.94133794325185,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.87038015682835,
+              "96": 107.94133794325185,
+              "128": 107.90652711842777,
+              "160": 107.92754136513699,
+              "192": 107.92722625425864
+            },
+            "max_balance_error_w": 4.581579560181126e-11
+          },
+          "uniform": {
+            "modules": [
+              4,
+              4,
+              4,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              966.875,
+              633.5,
+              471.5,
+              966.875
+            ],
+            "max_cpu_signal_mm": 24.3,
+            "endpoint_w": [
+              0.98115625,
+              0.731125,
+              0.609625,
+              0.98115625
+            ],
+            "phy_w": 6.6061250000000005,
+            "total_wire_m": 38.71429022400001,
+            "cpu_wire_m": 15.700400000000002,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 107.98954144628368,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.88955787151002,
+              "96": 107.9727252733316,
+              "128": 107.9362137047782,
+              "160": 107.98954144628368,
+              "192": 107.9617254267495
+            },
+            "max_balance_error_w": 4.18367562815547e-11
+          }
+        },
+        {
+          "shares": [
+            18,
+            18,
+            4
+          ],
+          "target_TB_s": 0.8,
+          "reachable": true,
+          "uncapped_cpu_floor_m": 14.162328124999998,
+          "uncapped_shortest_load_gbps": [
+            1105.0,
+            935.0,
+            935.0,
+            765.0
+          ],
+          "capped_linear_cpu_floor_m": 14.162328124999998,
+          "capped_rounded_modules": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "capped_rounded_wire_m": 38.71429022400001,
+          "sized": {
+            "modules": [
+              4,
+              4,
+              4,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              935.0,
+              935.0,
+              935.0,
+              935.0
+            ],
+            "max_cpu_signal_mm": 24.3,
+            "endpoint_w": [
+              0.95725,
+              0.95725,
+              0.95725,
+              0.95725
+            ],
+            "phy_w": 7.658,
+            "total_wire_m": 38.71429022400001,
+            "cpu_wire_m": 15.700400000000002,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 108.03785798603953,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.93812368026262,
+              "96": 108.02083338086506,
+              "128": 107.98433199148795,
+              "160": 108.03785798603953,
+              "192": 108.01195391564002
+            },
+            "max_balance_error_w": 4.1040948417503387e-11
+          },
+          "uniform": {
+            "modules": [
+              4,
+              4,
+              4,
+              4
+            ],
+            "capacity_each_direction_gbps": [
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "routed_each_direction_gbps": [
+              935.0,
+              935.0,
+              935.0,
+              935.0
+            ],
+            "max_cpu_signal_mm": 24.3,
+            "endpoint_w": [
+              0.95725,
+              0.95725,
+              0.95725,
+              0.95725
+            ],
+            "phy_w": 7.658,
+            "total_wire_m": 38.71429022400001,
+            "cpu_wire_m": 15.700400000000002,
+            "flow_residual_gbps": 0.0,
+            "max_peak_c": 108.03785798603953,
+            "joint_target_met": true,
+            "peak_c_by_grid": {
+              "64": 107.93812368026262,
+              "96": 108.02083338086506,
+              "128": 107.98433199148795,
+              "160": 108.03785798603953,
+              "192": 108.01195391564002
+            },
+            "max_balance_error_w": 4.1040948417503387e-11
+          }
+        },
+        {
+          "shares": [
+            24,
+            12,
+            4
+          ],
+          "target_TB_s": 0.8,
+          "reachable": false
+        }
+      ]
+    }
+  ],
+  "scope": "Steady synthetic unicast. Linear, uncapped capacity is a relaxation. Exact fixed-geometry module minima obey intact banks, pin reach and throughput. Temperatures use the specified minimum-hop routing, nominal PHY power and uncalibrated stack. Detailed routing, router overhead, external thermal validation and timing are open."
+}
