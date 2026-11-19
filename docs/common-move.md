@@ -100,3 +100,7 @@ python tools/complementary_moves.py --cases "$CASES" --evidence "$OUT" --audit "
 python tools/opposing_sinks.py --output "$OUT/networks.json"
 python tools/report_common_move.py --cases "$CASES" --evidence "$OUT"
 ~~~
+
+## 独立 Chat 复核
+
+远端核实 `5a8d65bb38c4ef698c105ebe5f60a18abadca3d7` 后，新的 Chat 会话通过已连接的 GitHub 审查了从 `b9d5272` 起的八个提交，核对各预测文件在冻结版本与结果版本中的 Git 对象一致。审阅者从已提交的起终点温度重新相减，复核了四个双移动的降温、Case9 两个组成动作的反例及 Case7 未达门槛。裁决为有条件通过，适用范围是给定热路的数学判据与所测三维条件的布局收益。Case3、micro150 均用满 24 个双移动薄板评分额度，搜索留下的空白不能当作全局不可能性。审阅未独立运行求解器。[完整 Chat 审稿](https://chatgpt.com/c/6aff22e3-d104-83e8-a3c1-9b7448b6aa3d)
