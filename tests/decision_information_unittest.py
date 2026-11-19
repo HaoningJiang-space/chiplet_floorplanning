@@ -2,10 +2,33 @@ import unittest
 
 import numpy as np
 
-from chiplet_floorplanning.placement.decision import worst_regret_bounds
+from chiplet_floorplanning.placement.decision import ThermalCandidate, search_thermal_targets, worst_regret_bounds
+from chiplet_floorplanning.placement.problem import Layout
 
 
 class WorkloadInformationTests(unittest.TestCase):
+    def test_search_moves_for_relative_excess_and_charges_both_scenarios(self):
+        def point(x, peaks):
+            layout = Layout(np.array([[float(x), 0.]]), np.array([0]))
+            return ThermalCandidate(layout, 1., np.array(peaks), np.array(peaks)[:, None])
+
+        anchor = point(0, [88., 103.])
+        first = point(1, [86., 105.])
+        second = point(2, [89., 100.])
+        sequence = iter([anchor.layout, first.layout, second.layout])
+        observations = []
+
+        def propose(parent, die_peaks):
+            observations.append(float(die_peaks[0]))
+            return next(sequence)
+
+        points = {1: first, 2: second}
+        _, result, trials = search_thermal_targets(
+            [anchor], [84., 102.], propose, lambda l: points[int(l.centre_um[0,0])], budget=5)
+        self.assertIs(result, first)
+        self.assertEqual(observations, [88., 88., 105.])
+        self.assertEqual([t[-1] for t in trials], [True, False])
+
     def test_pairwise_compatible_but_no_design_serves_three_loads(self):
         # Three sites; avoid the site already heating under this scenario.
         cost = np.eye(3)

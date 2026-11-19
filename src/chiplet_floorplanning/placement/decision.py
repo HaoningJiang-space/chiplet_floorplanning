@@ -1,6 +1,11 @@
 """Decide whether indistinguishable operating conditions can share a physical design."""
 
+from dataclasses import dataclass
+
 import numpy as np
+
+from .problem import Layout
+from .search import layout_key
 
 
 def worst_regret_bounds(lower, upper):
@@ -30,3 +35,50 @@ def worst_regret_bounds(lower, upper):
         lo[j] = max(0.0, float((lower[:, j] - best_other_upper).max()))
         hi[j] = max(0.0, float((upper[:, j] - best_other_lower).max()))
     return lo, hi
+
+
+@dataclass
+class ThermalCandidate:
+    layout: Layout
+    length_m: float
+    peaks_c: np.ndarray
+    die_peaks_c: np.ndarray
+
+
+def search_thermal_targets(anchors, targets_c, propose, evaluate, budget, attempts_per_step=256):
+    """Generate a shared layout using the worst excess over fixed scenario targets.
+
+    propose(parent, die_peaks) returns a legal, budget-feasible layout or None.
+    evaluate receives a fresh geometry and returns data for the visible scenarios.
+    Each queried geometry costs one thermal evaluation per scenario. Spent trials
+    are retained even when they do not replace the incumbent.
+    """
+    targets = np.asarray(targets_c, dtype=float)
+    if targets.ndim != 1 or not targets.size or not anchors or budget < 0:
+        raise ValueError("expected scenario targets, initial layouts and a nonnegative budget")
+
+    def score(point):
+        if point.peaks_c.shape != targets.shape or len(point.die_peaks_c) != len(targets):
+            raise ValueError("candidate must use the same scenarios as the objective")
+        excess = point.peaks_c - targets
+        return float(excess.max()), float(excess.sum()), point.length_m
+
+    current = min(anchors, key=score)
+    initial = current
+    visited = {layout_key(row.layout) for row in anchors}
+    trials = []
+    for _ in range(budget // len(targets)):
+        worst = int(np.argmax(current.peaks_c - targets))
+        for attempt in range(1, attempts_per_step + 1):
+            layout = propose(current.layout, current.die_peaks_c[worst])
+            if layout is not None and layout_key(layout) not in visited:
+                break
+        else:
+            break
+        visited.add(layout_key(layout))
+        candidate = evaluate(layout)
+        accepted = score(candidate) < score(current)
+        trials.append((current, worst, attempt, candidate, accepted))
+        if accepted:
+            current = candidate
+    return initial, current, trials

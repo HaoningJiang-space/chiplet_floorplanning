@@ -1,0 +1,5925 @@
+{
+  "case": "Case4",
+  "source_sha256": "15a3323c1ba38e9cd6521471f452c90c58964ab3efadcd27f91167fde8cb47ec",
+  "seed": 20261119,
+  "gap_um": 100,
+  "length_cap_m": 319.4341442816,
+  "chiplet_order": [
+    "CPU1_0",
+    "CPU1_1",
+    "GPU_0",
+    "GPU_1",
+    "GPU_2",
+    "GPU_3",
+    "HBM_0",
+    "HBM_1",
+    "HBM_2",
+    "HBM_3",
+    "HBM_4"
+  ],
+  "alternating_sites": [
+    "GPU_1",
+    "GPU_3"
+  ],
+  "mean_total_w": 803.75,
+  "amplitude_w": 120.0,
+  "dwell_s": [
+    0.005,
+    0.05,
+    0.015811388300841896
+  ],
+  "search_grid_steps": [
+    32,
+    4
+  ],
+  "audit_grid_steps": [
+    64,
+    8
+  ],
+  "initial_peaks_c": {
+    "base-0": [
+      90.48051712847959,
+      92.5915358270718
+    ],
+    "base-1": [
+      91.39097821017508,
+      91.39100142234923
+    ],
+    "base-3": [
+      94.7345609737669,
+      95.5228763941217
+    ],
+    "base-4": [
+      91.7049510255127,
+      93.63571603836468
+    ]
+  },
+  "rejected": [
+    {
+      "source_layout": 2,
+      "repaired_m": 319.9269442816
+    }
+  ],
+  "targets_search_c": [
+    90.48051712847959,
+    91.39100142234923
+  ],
+  "arms": {
+    "joint": {
+      "initial": "base-1",
+      "selected": "joint-09",
+      "visible_dwell_s": [
+        0.005,
+        0.05
+      ],
+      "queries": 24,
+      "trials": [
+        {
+          "parent": "base-1",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "joint-01",
+          "peaks_c": [
+            90.40380088340764,
+            90.40380276791447
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "joint-01",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_0",
+          "attempts": 2,
+          "proposal": "joint-02",
+          "peaks_c": [
+            90.40380088340764,
+            90.40380276791447
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "joint-01",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "joint-03",
+          "peaks_c": [
+            90.34628745807696,
+            90.34628943391343
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "joint-03",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_0",
+          "attempts": 2,
+          "proposal": "joint-04",
+          "peaks_c": [
+            91.72055975398898,
+            94.09964577209712
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "joint-03",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_0",
+          "attempts": 4,
+          "proposal": "joint-05",
+          "peaks_c": [
+            90.24478233268492,
+            90.24478429818049
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "joint-05",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "joint-06",
+          "peaks_c": [
+            92.61662565341054,
+            95.07202925979273
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "joint-05",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "joint-07",
+          "peaks_c": [
+            88.77520507891909,
+            89.65454001296133
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "joint-07",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "joint-08",
+          "peaks_c": [
+            87.88924681252709,
+            89.55821138784637
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "joint-08",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "joint-09",
+          "peaks_c": [
+            87.60204291562805,
+            89.2902485564829
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "joint-09",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "joint-10",
+          "peaks_c": [
+            90.22388494382471,
+            91.77676432035233
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "joint-09",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "joint-11",
+          "peaks_c": [
+            87.60204291562805,
+            89.2902485564829
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "joint-09",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "joint-12",
+          "peaks_c": [
+            92.73701724320182,
+            95.23836138637002
+          ],
+          "accepted": false
+        }
+      ],
+      "search_seconds": 7.356674599985126
+    },
+    "short": {
+      "initial": "base-0",
+      "selected": "short-21",
+      "visible_dwell_s": [
+        0.005
+      ],
+      "queries": 24,
+      "trials": [
+        {
+          "parent": "base-0",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-01",
+          "peaks_c": [
+            89.46623401451892
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "short-01",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_1",
+          "attempts": 1,
+          "proposal": "short-02",
+          "peaks_c": [
+            89.14609650840421
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "short-02",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-03",
+          "peaks_c": [
+            89.14609650840421
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-02",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-04",
+          "peaks_c": [
+            89.11278853151245
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "short-04",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-05",
+          "peaks_c": [
+            89.12023332506644
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-04",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-06",
+          "peaks_c": [
+            92.20146679688942
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-04",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-07",
+          "peaks_c": [
+            89.08373912505219
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "short-07",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-08",
+          "peaks_c": [
+            89.07852127152552
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "short-08",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-09",
+          "peaks_c": [
+            89.07450474736095
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "short-09",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-10",
+          "peaks_c": [
+            88.88449227092548
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "short-10",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-11",
+          "peaks_c": [
+            91.37203884865006
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-10",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 2,
+          "proposal": "short-12",
+          "peaks_c": [
+            88.58820208452671
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "short-12",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 2,
+          "proposal": "short-13",
+          "peaks_c": [
+            91.53144203995662
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-12",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-14",
+          "peaks_c": [
+            88.58820208452671
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-12",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-15",
+          "peaks_c": [
+            94.85279263308921
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-12",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-16",
+          "peaks_c": [
+            92.8197680229746
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-12",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-17",
+          "peaks_c": [
+            88.53351430781598
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "short-17",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-18",
+          "peaks_c": [
+            88.53351430781598
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-17",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-19",
+          "peaks_c": [
+            91.53166957288578
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-17",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 3,
+          "proposal": "short-20",
+          "peaks_c": [
+            92.82709785372505
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-17",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-21",
+          "peaks_c": [
+            88.52468664867865
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "short-21",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 3,
+          "proposal": "short-22",
+          "peaks_c": [
+            92.82488668373945
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-21",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 1,
+          "proposal": "short-23",
+          "peaks_c": [
+            88.61443887328464
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "short-21",
+          "binding_dwell_s": 0.005,
+          "hottest_die": "GPU_2",
+          "attempts": 4,
+          "proposal": "short-24",
+          "peaks_c": [
+            88.52468664867865
+          ],
+          "accepted": false
+        }
+      ],
+      "search_seconds": 7.959786699997494
+    },
+    "long": {
+      "initial": "base-1",
+      "selected": "long-24",
+      "visible_dwell_s": [
+        0.05
+      ],
+      "queries": 24,
+      "trials": [
+        {
+          "parent": "base-1",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "joint-01",
+          "peaks_c": [
+            90.40380276791447
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "joint-01",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 2,
+          "proposal": "joint-02",
+          "peaks_c": [
+            90.40380276791447
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "joint-01",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "joint-03",
+          "peaks_c": [
+            90.34628943391343
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "joint-03",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 2,
+          "proposal": "joint-04",
+          "peaks_c": [
+            94.09964577209712
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "joint-03",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 4,
+          "proposal": "joint-05",
+          "peaks_c": [
+            90.24478429818049
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "joint-05",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "joint-06",
+          "peaks_c": [
+            95.07202925979273
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "joint-05",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "joint-07",
+          "peaks_c": [
+            89.65454001296133
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "joint-07",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "long-08",
+          "peaks_c": [
+            89.65780826657819
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "joint-07",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "long-09",
+          "peaks_c": [
+            89.38738273610171
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "long-09",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "long-10",
+          "peaks_c": [
+            92.59493185169863
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "long-09",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "long-11",
+          "peaks_c": [
+            89.38738273610171
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "long-09",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "long-12",
+          "peaks_c": [
+            95.86538060495192
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "long-09",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 2,
+          "proposal": "long-13",
+          "peaks_c": [
+            89.33196360416812
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "long-13",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "long-14",
+          "peaks_c": [
+            89.33196360416812
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "long-13",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "long-15",
+          "peaks_c": [
+            92.54319064258272
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "long-13",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "long-16",
+          "peaks_c": [
+            89.33653942486441
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "long-13",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 2,
+          "proposal": "long-17",
+          "peaks_c": [
+            95.88506556687842
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "long-13",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "long-18",
+          "peaks_c": [
+            88.84864155774744
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "long-18",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 3,
+          "proposal": "long-19",
+          "peaks_c": [
+            93.2483485845382
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "long-18",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "long-20",
+          "peaks_c": [
+            88.78155903035801
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "long-20",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 1,
+          "proposal": "long-21",
+          "peaks_c": [
+            87.99114627418925
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "long-21",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_0",
+          "attempts": 2,
+          "proposal": "long-22",
+          "peaks_c": [
+            87.05340233713471
+          ],
+          "accepted": true
+        },
+        {
+          "parent": "long-22",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 1,
+          "proposal": "long-23",
+          "peaks_c": [
+            87.05340233713471
+          ],
+          "accepted": false
+        },
+        {
+          "parent": "long-22",
+          "binding_dwell_s": 0.05,
+          "hottest_die": "GPU_3",
+          "attempts": 2,
+          "proposal": "long-24",
+          "peaks_c": [
+            87.05340233713471
+          ],
+          "accepted": true
+        }
+      ],
+      "search_seconds": 9.23183269999572
+    }
+  },
+  "layouts": {
+    "base-0": {
+      "centre_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          13000.0,
+          13000.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          34000.0,
+          9900.0
+        ],
+        [
+          24000.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          50000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 245.43560151679998,
+      "peaks_c": [
+        90.55125080617695,
+        92.69715477527593,
+        91.23671449198471
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 90.55125080617694,
+          "closure_k": 7.602807272633072e-13,
+          "max_energy_error_w": 5.940137270954438e-10,
+          "peak_difference_k": 1.4210854715202004e-14
+        },
+        {
+          "direct_peak_c": 92.69715477527545,
+          "closure_k": 1.0800249583553523e-12,
+          "max_energy_error_w": 9.197265171678737e-11,
+          "peak_difference_k": 4.831690603168681e-13
+        },
+        {
+          "direct_peak_c": 91.23671449198466,
+          "closure_k": 1.3322676295501878e-12,
+          "max_energy_error_w": 1.8326318240724504e-10,
+          "peak_difference_k": 5.684341886080802e-14
+        }
+      ]
+    },
+    "base-1": {
+      "centre_um": [
+        [
+          49000.0,
+          8000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          33000.0,
+          21100.0
+        ],
+        [
+          13000.0,
+          10000.0
+        ],
+        [
+          47000.0,
+          39200.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          14000.0,
+          28000.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 260.660607926,
+      "peaks_c": [
+        91.27143987978701,
+        91.27150727685076,
+        91.27144006612362
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 91.27143987978698,
+          "closure_k": 1.2079226507921703e-12,
+          "max_energy_error_w": 5.098854671814479e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 91.27150727685083,
+          "closure_k": 1.2150280781497713e-12,
+          "max_energy_error_w": 7.844391802791506e-11,
+          "peak_difference_k": 7.105427357601002e-14
+        },
+        {
+          "direct_peak_c": 91.27144006612315,
+          "closure_k": 1.1368683772161603e-12,
+          "max_energy_error_w": 1.8667378753889352e-10,
+          "peak_difference_k": 4.689582056016661e-13
+        }
+      ]
+    },
+    "base-3": {
+      "centre_um": [
+        [
+          51000.0,
+          50000.0
+        ],
+        [
+          29000.0,
+          51000.0
+        ],
+        [
+          9000.0,
+          28000.0
+        ],
+        [
+          9000.0,
+          48000.0
+        ],
+        [
+          30000.0,
+          35000.0
+        ],
+        [
+          11000.0,
+          9900.0
+        ],
+        [
+          48000.0,
+          4000.0
+        ],
+        [
+          27000.0,
+          19900.0
+        ],
+        [
+          39000.0,
+          14000.0
+        ],
+        [
+          46000.0,
+          37000.0
+        ],
+        [
+          51000.0,
+          25000.0
+        ]
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        270,
+        0,
+        180,
+        270,
+        90,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 293.1637439612,
+      "peaks_c": [
+        94.72639215455071,
+        95.74907415723746,
+        94.7263949532667
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 94.7263921545505,
+          "closure_k": 8.668621376273222e-13,
+          "max_energy_error_w": 5.574065653490834e-10,
+          "peak_difference_k": 2.1316282072803006e-13
+        },
+        {
+          "direct_peak_c": 95.74907415723743,
+          "closure_k": 9.379164112033322e-13,
+          "max_energy_error_w": 9.424638847121969e-11,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 94.72639495326632,
+          "closure_k": 1.1510792319313623e-12,
+          "max_energy_error_w": 2.1668711269740015e-10,
+          "peak_difference_k": 3.836930773104541e-13
+        }
+      ]
+    },
+    "base-4": {
+      "centre_um": [
+        [
+          7000.0,
+          16000.0
+        ],
+        [
+          51000.0,
+          12000.0
+        ],
+        [
+          46000.0,
+          30000.0
+        ],
+        [
+          9000.0,
+          44000.0
+        ],
+        [
+          48000.0,
+          48100.0
+        ],
+        [
+          26000.0,
+          20000.0
+        ],
+        [
+          33000.0,
+          48000.0
+        ],
+        [
+          22100.0,
+          46000.0
+        ],
+        [
+          37000.0,
+          4000.0
+        ],
+        [
+          28000.0,
+          35000.0
+        ],
+        [
+          40900.0,
+          14900.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        0,
+        180,
+        0,
+        180,
+        0,
+        0,
+        270,
+        270,
+        0
+      ],
+      "length_m": 308.198445304,
+      "peaks_c": [
+        91.65433292057894,
+        93.60418948581629,
+        92.11994499629019
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 91.65433292057892,
+          "closure_k": 1.0871303857129533e-12,
+          "max_energy_error_w": 4.000639819423668e-10,
+          "peak_difference_k": 1.4210854715202004e-14
+        },
+        {
+          "direct_peak_c": 93.60418948581636,
+          "closure_k": 1.580957587066223e-12,
+          "max_energy_error_w": 8.93578544491902e-11,
+          "peak_difference_k": 7.105427357601002e-14
+        },
+        {
+          "direct_peak_c": 92.1199449962899,
+          "closure_k": 1.2043699371133698e-12,
+          "max_energy_error_w": 2.227125150966458e-10,
+          "peak_difference_k": 2.8421709430404007e-13
+        }
+      ]
+    },
+    "joint-01": {
+      "centre_um": [
+        [
+          49000.0,
+          8000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          33000.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          47000.0,
+          39200.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          14000.0,
+          28000.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 266.996607926,
+      "peaks_c": [
+        90.22787913331007,
+        90.2278816482107,
+        90.22787913511655
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 90.22787913331,
+          "closure_k": 1.1368683772161603e-12,
+          "max_energy_error_w": 5.110223355586641e-10,
+          "peak_difference_k": 7.105427357601002e-14
+        },
+        {
+          "direct_peak_c": 90.22788164821034,
+          "closure_k": 8.988365607365267e-13,
+          "max_energy_error_w": 8.492406777804717e-11,
+          "peak_difference_k": 3.552713678800501e-13
+        },
+        {
+          "direct_peak_c": 90.22787913511652,
+          "closure_k": 9.023892744153272e-13,
+          "max_energy_error_w": 1.6927970136748627e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        }
+      ]
+    },
+    "joint-02": {
+      "centre_um": [
+        [
+          49000.0,
+          8000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          33000.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          47000.0,
+          39200.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          14000.0,
+          28000.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        0,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 278.4831673908,
+      "peaks_c": [
+        90.22787913331007,
+        90.2278816482107,
+        90.22787913511655
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 90.22787913331,
+          "closure_k": 1.1368683772161603e-12,
+          "max_energy_error_w": 5.110223355586641e-10,
+          "peak_difference_k": 7.105427357601002e-14
+        },
+        {
+          "direct_peak_c": 90.22788164821034,
+          "closure_k": 8.988365607365267e-13,
+          "max_energy_error_w": 8.492406777804717e-11,
+          "peak_difference_k": 3.552713678800501e-13
+        },
+        {
+          "direct_peak_c": 90.22787913511652,
+          "closure_k": 9.023892744153272e-13,
+          "max_energy_error_w": 1.6927970136748627e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        }
+      ]
+    },
+    "joint-03": {
+      "centre_um": [
+        [
+          49000.0,
+          8000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          33000.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          47000.0,
+          39200.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 266.418623926,
+      "peaks_c": [
+        90.18724516306325,
+        90.18724700592294,
+        90.1872451645591
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 90.18724516306372,
+          "closure_k": 9.094947017729282e-13,
+          "max_energy_error_w": 4.375806383905001e-10,
+          "peak_difference_k": 4.689582056016661e-13
+        },
+        {
+          "direct_peak_c": 90.18724700592304,
+          "closure_k": 1.8758328224066645e-12,
+          "max_energy_error_w": 1.0038547770818695e-10,
+          "peak_difference_k": 9.947598300641403e-14
+        },
+        {
+          "direct_peak_c": 90.18724516455907,
+          "closure_k": 9.237055564881302e-13,
+          "max_energy_error_w": 1.8337686924496666e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        }
+      ]
+    },
+    "joint-04": {
+      "centre_um": [
+        [
+          49000.0,
+          8000.0
+        ],
+        [
+          32200.0,
+          39000.0
+        ],
+        [
+          9000.0,
+          27900.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          47300.0,
+          39200.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          22100.0,
+          29079.0
+        ],
+        [
+          33000.0,
+          21100.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 285.5548159052,
+      "peaks_c": [
+        91.81636846277203,
+        94.22942826938701,
+        92.91917942545828
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 91.81636846277186,
+          "closure_k": 6.252776074688882e-13,
+          "max_energy_error_w": 4.055209501530044e-10,
+          "peak_difference_k": 1.7053025658242404e-13
+        },
+        {
+          "direct_peak_c": 94.22942826938726,
+          "closure_k": 1.0871303857129533e-12,
+          "max_energy_error_w": 9.140421752817929e-11,
+          "peak_difference_k": 2.4158453015843406e-13
+        },
+        {
+          "direct_peak_c": 92.91917942545811,
+          "closure_k": 8.562039965909207e-13,
+          "max_energy_error_w": 2.000888343900442e-10,
+          "peak_difference_k": 1.7053025658242404e-13
+        }
+      ]
+    },
+    "joint-05": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          33000.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          47000.0,
+          39200.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 275.750271926,
+      "peaks_c": [
+        90.08251930299967,
+        90.08252113625511,
+        90.08251930449349
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 90.08251930300005,
+          "closure_k": 8.029132914089132e-13,
+          "max_energy_error_w": 5.849187800777145e-10,
+          "peak_difference_k": 3.836930773104541e-13
+        },
+        {
+          "direct_peak_c": 90.0825211362552,
+          "closure_k": 1.1830536550405668e-12,
+          "max_energy_error_w": 8.481038094032556e-11,
+          "peak_difference_k": 8.526512829121202e-14
+        },
+        {
+          "direct_peak_c": 90.08251930449353,
+          "closure_k": 1.0231815394945443e-12,
+          "max_energy_error_w": 1.7553247744217515e-10,
+          "peak_difference_k": 4.263256414560601e-14
+        }
+      ]
+    },
+    "joint-06": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          32200.0,
+          39000.0
+        ],
+        [
+          17100.0,
+          27900.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          47300.0,
+          39200.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          33000.0,
+          21100.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 299.0548479052,
+      "peaks_c": [
+        92.70747699215414,
+        95.12522926834535,
+        93.81073106902555
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 92.70747699215383,
+          "closure_k": 7.389644451905042e-13,
+          "max_energy_error_w": 5.810534275951795e-10,
+          "peak_difference_k": 3.126388037344441e-13
+        },
+        {
+          "direct_peak_c": 95.12522926834518,
+          "closure_k": 1.3891110484109959e-12,
+          "max_energy_error_w": 7.992184691829607e-11,
+          "peak_difference_k": 1.7053025658242404e-13
+        },
+        {
+          "direct_peak_c": 93.81073106902558,
+          "closure_k": 8.313350008393172e-13,
+          "max_energy_error_w": 1.8383161659585312e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        }
+      ]
+    },
+    "joint-07": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          33000.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 284.629119926,
+      "peaks_c": [
+        88.70568546510177,
+        89.78188011757746,
+        88.70568546667069
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.70568546510198,
+          "closure_k": 9.094947017729282e-13,
+          "max_energy_error_w": 5.078391041024588e-10,
+          "peak_difference_k": 2.1316282072803006e-13
+        },
+        {
+          "direct_peak_c": 89.78188011757774,
+          "closure_k": 1.652011860642233e-12,
+          "max_energy_error_w": 7.571543392259628e-11,
+          "peak_difference_k": 2.8421709430404007e-13
+        },
+        {
+          "direct_peak_c": 88.70568546667057,
+          "closure_k": 1.929123527588672e-12,
+          "max_energy_error_w": 1.8815171642927453e-10,
+          "peak_difference_k": 1.1368683772161603e-13
+        }
+      ]
+    },
+    "joint-08": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          33000.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          49817.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 291.403007926,
+      "peaks_c": [
+        87.87402507983303,
+        89.62967252657965,
+        88.14529551131079
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 87.87402507983332,
+          "closure_k": 8.988365607365267e-13,
+          "max_energy_error_w": 4.170033207628876e-10,
+          "peak_difference_k": 2.8421709430404007e-13
+        },
+        {
+          "direct_peak_c": 89.62967252657953,
+          "closure_k": 1.1652900866465643e-12,
+          "max_energy_error_w": 7.310063665499911e-11,
+          "peak_difference_k": 1.2789769243681803e-13
+        },
+        {
+          "direct_peak_c": 88.14529551131068,
+          "closure_k": 9.450218385609332e-13,
+          "max_energy_error_w": 1.9758772396016866e-10,
+          "peak_difference_k": 1.1368683772161603e-13
+        }
+      ]
+    },
+    "joint-09": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          49817.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 292.676031898,
+      "peaks_c": [
+        87.46396010475817,
+        89.35909943600018,
+        87.87156930690166
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 87.4639601047582,
+          "closure_k": 9.414691248821327e-13,
+          "max_energy_error_w": 3.3026026358129457e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 89.35909943600001,
+          "closure_k": 1.0587086762825493e-12,
+          "max_energy_error_w": 7.366907084360719e-11,
+          "peak_difference_k": 1.7053025658242404e-13
+        },
+        {
+          "direct_peak_c": 87.87156930690153,
+          "closure_k": 8.988365607365267e-13,
+          "max_energy_error_w": 2.277147359563969e-10,
+          "peak_difference_k": 1.2789769243681803e-13
+        }
+      ]
+    },
+    "joint-10": {
+      "centre_um": [
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          29900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          49817.0
+        ],
+        [
+          48000.0,
+          9000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          24100.0
+        ],
+        [
+          34900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 292.4831993236,
+      "peaks_c": [
+        90.12269264023897,
+        91.47376356981269,
+        90.1825658236311
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 90.12269264023888,
+          "closure_k": 6.963318810448982e-13,
+          "max_energy_error_w": 4.276898835087195e-10,
+          "peak_difference_k": 8.526512829121202e-14
+        },
+        {
+          "direct_peak_c": 91.47376356981212,
+          "closure_k": 1.808331262509455e-12,
+          "max_energy_error_w": 8.617462299298495e-11,
+          "peak_difference_k": 5.684341886080801e-13
+        },
+        {
+          "direct_peak_c": 90.18256582363139,
+          "closure_k": 8.846257060213247e-13,
+          "max_energy_error_w": 1.524540493846871e-10,
+          "peak_difference_k": 2.984279490192421e-13
+        }
+      ]
+    },
+    "joint-11": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          49817.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        90,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 305.175391342,
+      "peaks_c": [
+        87.46396010475817,
+        89.35909943600018,
+        87.87156930690166
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 87.4639601047582,
+          "closure_k": 9.414691248821327e-13,
+          "max_energy_error_w": 3.3026026358129457e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 89.35909943600001,
+          "closure_k": 1.0587086762825493e-12,
+          "max_energy_error_w": 7.366907084360719e-11,
+          "peak_difference_k": 1.7053025658242404e-13
+        },
+        {
+          "direct_peak_c": 87.87156930690153,
+          "closure_k": 8.988365607365267e-13,
+          "max_energy_error_w": 2.277147359563969e-10,
+          "peak_difference_k": 1.2789769243681803e-13
+        }
+      ]
+    },
+    "joint-12": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          42200.0
+        ],
+        [
+          34900.0,
+          27100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          49817.0
+        ],
+        [
+          35900.0,
+          9000.0
+        ],
+        [
+          31000.0,
+          52300.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          24100.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 308.0825754584,
+      "peaks_c": [
+        92.88054338702679,
+        95.34018423826522,
+        93.98887182546565
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 92.88054338702699,
+          "closure_k": 8.171241461241152e-13,
+          "max_energy_error_w": 4.37012204201892e-10,
+          "peak_difference_k": 1.9895196601282805e-13
+        },
+        {
+          "direct_peak_c": 95.34018423826508,
+          "closure_k": 1.6910917111090384e-12,
+          "max_energy_error_w": 8.924416761146858e-11,
+          "peak_difference_k": 1.4210854715202004e-13
+        },
+        {
+          "direct_peak_c": 93.9888718254654,
+          "closure_k": 9.094947017729282e-13,
+          "max_energy_error_w": 2.28283170145005e-10,
+          "peak_difference_k": 2.5579538487363607e-13
+        }
+      ]
+    },
+    "short-01": {
+      "centre_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          13854.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          34000.0,
+          9900.0
+        ],
+        [
+          24000.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          50000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 246.48941253479998,
+      "peaks_c": [
+        89.4706180707136,
+        92.06939380564788,
+        90.6017001492781
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 89.47061807071347,
+          "closure_k": 7.460698725481052e-13,
+          "max_energy_error_w": 5.765059540863149e-10,
+          "peak_difference_k": 1.2789769243681803e-13
+        },
+        {
+          "direct_peak_c": 92.06939380564815,
+          "closure_k": 1.1013412404281553e-12,
+          "max_energy_error_w": 9.060840966412798e-11,
+          "peak_difference_k": 2.7000623958883807e-13
+        },
+        {
+          "direct_peak_c": 90.60170014927827,
+          "closure_k": 1.2043699371133698e-12,
+          "max_energy_error_w": 1.9417711882852018e-10,
+          "peak_difference_k": 1.7053025658242404e-13
+        }
+      ]
+    },
+    "short-02": {
+      "centre_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          13854.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          24000.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          50000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 247.75661253479998,
+      "peaks_c": [
+        89.03227246033796,
+        91.06832699947242,
+        89.57572107924081
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 89.03227246033774,
+          "closure_k": 9.308109838457312e-13,
+          "max_energy_error_w": 5.169340511201881e-10,
+          "peak_difference_k": 2.2737367544323206e-13
+        },
+        {
+          "direct_peak_c": 91.06832699947269,
+          "closure_k": 9.237055564881302e-13,
+          "max_energy_error_w": 8.071765478234738e-11,
+          "peak_difference_k": 2.7000623958883807e-13
+        },
+        {
+          "direct_peak_c": 89.57572107924082,
+          "closure_k": 1.2931877790833823e-12,
+          "max_energy_error_w": 1.8337686924496666e-10,
+          "peak_difference_k": 1.4210854715202004e-14
+        }
+      ]
+    },
+    "short-03": {
+      "centre_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          13854.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          24000.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          50000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        180,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 248.0162604472,
+      "peaks_c": [
+        89.03227246033796,
+        91.06832699947242,
+        89.57572107924081
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 89.03227246033774,
+          "closure_k": 9.308109838457312e-13,
+          "max_energy_error_w": 5.169340511201881e-10,
+          "peak_difference_k": 2.2737367544323206e-13
+        },
+        {
+          "direct_peak_c": 91.06832699947269,
+          "closure_k": 9.237055564881302e-13,
+          "max_energy_error_w": 8.071765478234738e-11,
+          "peak_difference_k": 2.7000623958883807e-13
+        },
+        {
+          "direct_peak_c": 89.57572107924082,
+          "closure_k": 1.2931877790833823e-12,
+          "max_energy_error_w": 1.8337686924496666e-10,
+          "peak_difference_k": 1.4210854715202004e-14
+        }
+      ]
+    },
+    "short-04": {
+      "centre_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          13854.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          50000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 247.5937496004,
+      "peaks_c": [
+        89.02275403328758,
+        91.00657431694712,
+        89.51401737753524
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 89.0227540332877,
+          "closure_k": 7.815970093361102e-13,
+          "max_energy_error_w": 3.728928277269006e-10,
+          "peak_difference_k": 1.1368683772161603e-13
+        },
+        {
+          "direct_peak_c": 91.00657431694711,
+          "closure_k": 2.085442929455894e-12,
+          "max_energy_error_w": 9.356426744488999e-11,
+          "peak_difference_k": 1.4210854715202004e-14
+        },
+        {
+          "direct_peak_c": 89.5140173775352,
+          "closure_k": 1.3287149158713873e-12,
+          "max_energy_error_w": 1.7996626411331818e-10,
+          "peak_difference_k": 4.263256414560601e-14
+        }
+      ]
+    },
+    "short-05": {
+      "centre_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          13854.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          50000.0,
+          14900.0
+        ],
+        [
+          32180.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 247.5671406628,
+      "peaks_c": [
+        89.02026161487173,
+        91.00659310590459,
+        89.51467841596914
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 89.02026161487161,
+          "closure_k": 1.1901590823981678e-12,
+          "max_energy_error_w": 4.921503204968758e-10,
+          "peak_difference_k": 1.1368683772161603e-13
+        },
+        {
+          "direct_peak_c": 91.0065931059045,
+          "closure_k": 1.4601653219870059e-12,
+          "max_energy_error_w": 8.606093615526333e-11,
+          "peak_difference_k": 8.526512829121202e-14
+        },
+        {
+          "direct_peak_c": 89.51467841596889,
+          "closure_k": 8.704148513061227e-13,
+          "max_energy_error_w": 2.0668267097789794e-10,
+          "peak_difference_k": 2.5579538487363607e-13
+        }
+      ]
+    },
+    "short-06": {
+      "centre_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          13854.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          39900.0,
+          50000.0
+        ],
+        [
+          21800.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          50000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 239.2859117532,
+      "peaks_c": [
+        92.19566507012749,
+        94.53697475149717,
+        93.28645529447134
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 92.1956650701272,
+          "closure_k": 8.952838470577262e-13,
+          "max_energy_error_w": 4.893081495538354e-10,
+          "peak_difference_k": 2.8421709430404007e-13
+        },
+        {
+          "direct_peak_c": 94.5369747514969,
+          "closure_k": 1.1368683772161603e-12,
+          "max_energy_error_w": 8.560618880437687e-11,
+          "peak_difference_k": 2.7000623958883807e-13
+        },
+        {
+          "direct_peak_c": 93.2864552944713,
+          "closure_k": 7.105427357601002e-13,
+          "max_energy_error_w": 1.7246293282369152e-10,
+          "peak_difference_k": 4.263256414560601e-14
+        }
+      ]
+    },
+    "short-07": {
+      "centre_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15092.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          50000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 245.85064560040001,
+      "peaks_c": [
+        89.0264181438711,
+        91.06456491727677,
+        89.5719531077538
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 89.02641814387114,
+          "closure_k": 7.815970093361102e-13,
+          "max_energy_error_w": 4.489493221626617e-10,
+          "peak_difference_k": 4.263256414560601e-14
+        },
+        {
+          "direct_peak_c": 91.06456491727681,
+          "closure_k": 9.094947017729282e-13,
+          "max_energy_error_w": 7.491962605854496e-11,
+          "peak_difference_k": 4.263256414560601e-14
+        },
+        {
+          "direct_peak_c": 89.57195310775367,
+          "closure_k": 8.455458555545192e-13,
+          "max_energy_error_w": 1.5347723092418164e-10,
+          "peak_difference_k": 1.2789769243681803e-13
+        }
+      ]
+    },
+    "short-08": {
+      "centre_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          50000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 244.7129816004,
+      "peaks_c": [
+        89.018746218593,
+        91.09407150064192,
+        89.60166346918675
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 89.01874621859315,
+          "closure_k": 1.0018652574217413e-12,
+          "max_energy_error_w": 4.2530245991656557e-10,
+          "peak_difference_k": 1.5631940186722204e-13
+        },
+        {
+          "direct_peak_c": 91.09407150064206,
+          "closure_k": 1.0160761121369433e-12,
+          "max_energy_error_w": 8.287770469905809e-11,
+          "peak_difference_k": 1.4210854715202004e-13
+        },
+        {
+          "direct_peak_c": 89.60166346918672,
+          "closure_k": 8.668621376273222e-13,
+          "max_energy_error_w": 1.766693458193913e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        }
+      ]
+    },
+    "short-09": {
+      "centre_um": [
+        [
+          31000.0,
+          25000.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 245.4169816004,
+      "peaks_c": [
+        89.00908779962974,
+        91.05049437492043,
+        89.55282476919432
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 89.00908779962978,
+          "closure_k": 8.739675649849232e-13,
+          "max_energy_error_w": 4.788489604834467e-10,
+          "peak_difference_k": 4.263256414560601e-14
+        },
+        {
+          "direct_peak_c": 91.05049437492028,
+          "closure_k": 1.1297629498585593e-12,
+          "max_energy_error_w": 7.594280759803951e-11,
+          "peak_difference_k": 1.5631940186722204e-13
+        },
+        {
+          "direct_peak_c": 89.55282476919429,
+          "closure_k": 8.668621376273222e-13,
+          "max_energy_error_w": 1.999751475523226e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        }
+      ]
+    },
+    "short-10": {
+      "centre_um": [
+        [
+          31111.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 242.88258160039996,
+      "peaks_c": [
+        88.7843184057549,
+        91.06539718391177,
+        89.56731125677709
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.78431840575493,
+          "closure_k": 9.805489753489383e-13,
+          "max_energy_error_w": 4.381490725791082e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 91.0653971839116,
+          "closure_k": 9.698908343125368e-13,
+          "max_energy_error_w": 8.594724931754172e-11,
+          "peak_difference_k": 1.7053025658242404e-13
+        },
+        {
+          "direct_peak_c": 89.56731125677706,
+          "closure_k": 7.887024366937112e-13,
+          "max_energy_error_w": 2.0588686311384663e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        }
+      ]
+    },
+    "short-11": {
+      "centre_um": [
+        [
+          31111.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          28000.0
+        ],
+        [
+          48000.0,
+          46100.0
+        ],
+        [
+          21800.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          51000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          34900.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 234.0547889152,
+      "peaks_c": [
+        91.59232031066314,
+        93.99706798832689,
+        92.68240051837103
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 91.59232031066311,
+          "closure_k": 6.643574579356937e-13,
+          "max_energy_error_w": 3.724380803760141e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 93.99706798832648,
+          "closure_k": 1.0089706847793423e-12,
+          "max_energy_error_w": 6.866684998385608e-11,
+          "peak_difference_k": 4.121147867408581e-13
+        },
+        {
+          "direct_peak_c": 92.68240051837097,
+          "closure_k": 1.0089706847793423e-12,
+          "max_energy_error_w": 1.8530954548623413e-10,
+          "peak_difference_k": 5.684341886080802e-14
+        }
+      ]
+    },
+    "short-12": {
+      "centre_um": [
+        [
+          31111.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 241.54498160039998,
+      "peaks_c": [
+        88.4496774415844,
+        90.7979962290882,
+        89.30061546094726
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.4496774415845,
+          "closure_k": 1.1581846592889633e-12,
+          "max_energy_error_w": 4.758931027026847e-10,
+          "peak_difference_k": 9.947598300641403e-14
+        },
+        {
+          "direct_peak_c": 90.79799622908817,
+          "closure_k": 1.0871303857129533e-12,
+          "max_energy_error_w": 9.083578333957121e-11,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 89.30061546094733,
+          "closure_k": 9.912071163853398e-13,
+          "max_energy_error_w": 2.1316282072803006e-10,
+          "peak_difference_k": 7.105427357601002e-14
+        }
+      ]
+    },
+    "short-13": {
+      "centre_um": [
+        [
+          31111.0,
+          26800.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          9000.0,
+          46100.0
+        ],
+        [
+          27100.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 242.2685788208,
+      "peaks_c": [
+        91.55491996559103,
+        94.15799512931093,
+        92.68515448023152
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 91.55491996559053,
+          "closure_k": 8.455458555545192e-13,
+          "max_energy_error_w": 5.728679752792232e-10,
+          "peak_difference_k": 4.973799150320701e-13
+        },
+        {
+          "direct_peak_c": 94.15799512931025,
+          "closure_k": 1.5774048733874224e-12,
+          "max_energy_error_w": 8.526512829121202e-11,
+          "peak_difference_k": 6.821210263296962e-13
+        },
+        {
+          "direct_peak_c": 92.685154480231,
+          "closure_k": 1.0871303857129533e-12,
+          "max_energy_error_w": 2.0122570276726037e-10,
+          "peak_difference_k": 5.115907697472721e-13
+        }
+      ]
+    },
+    "short-14": {
+      "centre_um": [
+        [
+          31111.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        180,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 241.8827735128,
+      "peaks_c": [
+        88.4496774415844,
+        90.7979962290882,
+        89.30061546094726
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.4496774415845,
+          "closure_k": 1.1581846592889633e-12,
+          "max_energy_error_w": 4.758931027026847e-10,
+          "peak_difference_k": 9.947598300641403e-14
+        },
+        {
+          "direct_peak_c": 90.79799622908817,
+          "closure_k": 1.0871303857129533e-12,
+          "max_energy_error_w": 9.083578333957121e-11,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 89.30061546094733,
+          "closure_k": 9.912071163853398e-13,
+          "max_energy_error_w": 2.1316282072803006e-10,
+          "peak_difference_k": 7.105427357601002e-14
+        }
+      ]
+    },
+    "short-15": {
+      "centre_um": [
+        [
+          31111.0,
+          16800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          29900.0,
+          31900.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          14900.0
+        ],
+        [
+          30605.0,
+          6700.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 265.6207867072,
+      "peaks_c": [
+        94.5874841556607,
+        95.83948980706623,
+        94.58749522336494
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 94.58748415566068,
+          "closure_k": 8.597567102697212e-13,
+          "max_energy_error_w": 4.797584551852196e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 95.8394898070656,
+          "closure_k": 1.2185807918285718e-12,
+          "max_energy_error_w": 1.0447820386616513e-10,
+          "peak_difference_k": 6.252776074688882e-13
+        },
+        {
+          "direct_peak_c": 94.58749522336485,
+          "closure_k": 1.2008172234345693e-12,
+          "max_energy_error_w": 1.830358087318018e-10,
+          "peak_difference_k": 8.526512829121202e-14
+        }
+      ]
+    },
+    "short-16": {
+      "centre_um": [
+        [
+          31111.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          39900.0,
+          50000.0
+        ],
+        [
+          21800.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          14900.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 234.5043437532,
+      "peaks_c": [
+        92.85096753888244,
+        95.19226857354901,
+        93.94175777997462
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 92.85096753888266,
+          "closure_k": 7.460698725481052e-13,
+          "max_energy_error_w": 5.740048436564393e-10,
+          "peak_difference_k": 2.1316282072803006e-13
+        },
+        {
+          "direct_peak_c": 95.192268573549,
+          "closure_k": 9.663381206337363e-13,
+          "max_energy_error_w": 8.196820999728516e-11,
+          "peak_difference_k": 1.4210854715202004e-14
+        },
+        {
+          "direct_peak_c": 93.94175777997484,
+          "closure_k": 1.1652900866465643e-12,
+          "max_energy_error_w": 1.9667822925839573e-10,
+          "peak_difference_k": 2.1316282072803006e-13
+        }
+      ]
+    },
+    "short-17": {
+      "centre_um": [
+        [
+          31111.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          16800.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 242.8825816004,
+      "peaks_c": [
+        88.51464376188378,
+        90.83153566292147,
+        89.33429816198995
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.5146437618836,
+          "closure_k": 7.887024366937112e-13,
+          "max_energy_error_w": 3.9244696381501853e-10,
+          "peak_difference_k": 1.7053025658242404e-13
+        },
+        {
+          "direct_peak_c": 90.83153566292131,
+          "closure_k": 1.5845103007450234e-12,
+          "max_energy_error_w": 9.322320693172514e-11,
+          "peak_difference_k": 1.5631940186722204e-13
+        },
+        {
+          "direct_peak_c": 89.33429816198971,
+          "closure_k": 9.166001291305292e-13,
+          "max_energy_error_w": 2.1327650756575167e-10,
+          "peak_difference_k": 2.4158453015843406e-13
+        }
+      ]
+    },
+    "short-18": {
+      "centre_um": [
+        [
+          31111.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          16800.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        180,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 243.22037351279997,
+      "peaks_c": [
+        88.51464376188378,
+        90.83153566292147,
+        89.33429816198995
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.5146437618836,
+          "closure_k": 7.887024366937112e-13,
+          "max_energy_error_w": 3.9244696381501853e-10,
+          "peak_difference_k": 1.7053025658242404e-13
+        },
+        {
+          "direct_peak_c": 90.83153566292131,
+          "closure_k": 1.5845103007450234e-12,
+          "max_energy_error_w": 9.322320693172514e-11,
+          "peak_difference_k": 1.5631940186722204e-13
+        },
+        {
+          "direct_peak_c": 89.33429816198971,
+          "closure_k": 9.166001291305292e-13,
+          "max_energy_error_w": 2.1327650756575167e-10,
+          "peak_difference_k": 2.4158453015843406e-13
+        }
+      ]
+    },
+    "short-19": {
+      "centre_um": [
+        [
+          31111.0,
+          26800.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          9000.0,
+          46100.0
+        ],
+        [
+          27100.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          16800.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 240.9309788208,
+      "peaks_c": [
+        91.55910428411998,
+        94.16217944783362,
+        92.68933879876046
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 91.55910428411984,
+          "closure_k": 9.521272659185342e-13,
+          "max_energy_error_w": 5.154561222298071e-10,
+          "peak_difference_k": 1.4210854715202004e-13
+        },
+        {
+          "direct_peak_c": 94.1621794478333,
+          "closure_k": 9.983125437429408e-13,
+          "max_energy_error_w": 7.321432349272072e-11,
+          "peak_difference_k": 3.268496584496461e-13
+        },
+        {
+          "direct_peak_c": 92.68933879876033,
+          "closure_k": 9.379164112033322e-13,
+          "max_energy_error_w": 1.1334577720845118e-10,
+          "peak_difference_k": 1.2789769243681803e-13
+        }
+      ]
+    },
+    "short-20": {
+      "centre_um": [
+        [
+          31111.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          39900.0,
+          50000.0
+        ],
+        [
+          21800.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          16800.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 233.1667437532,
+      "peaks_c": [
+        92.85840770822259,
+        95.19970874280813,
+        93.94919794931477
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 92.85840770822259,
+          "closure_k": 8.597567102697212e-13,
+          "max_energy_error_w": 5.242100087343715e-10,
+          "peak_difference_k": 0.0
+        },
+        {
+          "direct_peak_c": 95.19970874280789,
+          "closure_k": 1.3429257705865894e-12,
+          "max_energy_error_w": 8.708411769475788e-11,
+          "peak_difference_k": 2.4158453015843406e-13
+        },
+        {
+          "direct_peak_c": 93.94919794931465,
+          "closure_k": 9.023892744153272e-13,
+          "max_energy_error_w": 2.1577761799562722e-10,
+          "peak_difference_k": 1.1368683772161603e-13
+        }
+      ]
+    },
+    "short-21": {
+      "centre_um": [
+        [
+          31275.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          16800.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 242.8825816004,
+      "peaks_c": [
+        88.51145782367566,
+        90.84857772916875,
+        89.35139239135614
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.51145782367547,
+          "closure_k": 6.892264536872972e-13,
+          "max_energy_error_w": 4.4565240386873484e-10,
+          "peak_difference_k": 1.8474111129762605e-13
+        },
+        {
+          "direct_peak_c": 90.84857772916864,
+          "closure_k": 1.652011860642233e-12,
+          "max_energy_error_w": 8.43556335894391e-11,
+          "peak_difference_k": 1.1368683772161603e-13
+        },
+        {
+          "direct_peak_c": 89.35139239135594,
+          "closure_k": 7.531752999057062e-13,
+          "max_energy_error_w": 2.0190782379359007e-10,
+          "peak_difference_k": 1.9895196601282805e-13
+        }
+      ]
+    },
+    "short-22": {
+      "centre_um": [
+        [
+          31275.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          39900.0,
+          50000.0
+        ],
+        [
+          21800.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          16800.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 233.1667437532,
+      "peaks_c": [
+        92.85707679082847,
+        95.19837134876826,
+        93.94786697716101
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 92.85707679082853,
+          "closure_k": 9.663381206337363e-13,
+          "max_energy_error_w": 4.883986548520625e-10,
+          "peak_difference_k": 5.684341886080802e-14
+        },
+        {
+          "direct_peak_c": 95.19837134876832,
+          "closure_k": 1.3393730569077889e-12,
+          "max_energy_error_w": 8.742517820792273e-11,
+          "peak_difference_k": 5.684341886080802e-14
+        },
+        {
+          "direct_peak_c": 93.947866977161,
+          "closure_k": 9.485745522397337e-13,
+          "max_energy_error_w": 2.2714630176778883e-10,
+          "peak_difference_k": 1.4210854715202004e-14
+        }
+      ]
+    },
+    "short-23": {
+      "centre_um": [
+        [
+          31275.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          22504.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          16800.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        270,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 242.94527680360002,
+      "peaks_c": [
+        88.46668493338603,
+        90.70513162834384,
+        89.20803066910632
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.4666849333861,
+          "closure_k": 8.384404281969182e-13,
+          "max_energy_error_w": 4.824869392905384e-10,
+          "peak_difference_k": 7.105427357601002e-14
+        },
+        {
+          "direct_peak_c": 90.70513162834362,
+          "closure_k": 1.2683187833317788e-12,
+          "max_energy_error_w": 9.458744898438454e-11,
+          "peak_difference_k": 2.1316282072803006e-13
+        },
+        {
+          "direct_peak_c": 89.20803066910614,
+          "closure_k": 1.0800249583553523e-12,
+          "max_energy_error_w": 2.0395418687257916e-10,
+          "peak_difference_k": 1.8474111129762605e-13
+        }
+      ]
+    },
+    "short-24": {
+      "centre_um": [
+        [
+          31275.0,
+          26800.0
+        ],
+        [
+          6000.0,
+          45000.0
+        ],
+        [
+          9000.0,
+          15900.0
+        ],
+        [
+          48000.0,
+          29900.0
+        ],
+        [
+          30605.0,
+          9000.0
+        ],
+        [
+          23497.0,
+          50000.0
+        ],
+        [
+          9000.0,
+          31000.0
+        ],
+        [
+          53000.0,
+          45000.0
+        ],
+        [
+          51000.0,
+          16800.0
+        ],
+        [
+          32000.0,
+          36900.0
+        ],
+        [
+          42000.0,
+          53000.0
+        ]
+      ],
+      "rotation_deg": [
+        90,
+        270,
+        270,
+        270,
+        180,
+        0,
+        0,
+        180,
+        90,
+        90,
+        0
+      ],
+      "length_m": 243.3358295128,
+      "peaks_c": [
+        88.51145782367566,
+        90.84857772916875,
+        89.35139239135614
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.51145782367547,
+          "closure_k": 6.892264536872972e-13,
+          "max_energy_error_w": 4.4565240386873484e-10,
+          "peak_difference_k": 1.8474111129762605e-13
+        },
+        {
+          "direct_peak_c": 90.84857772916864,
+          "closure_k": 1.652011860642233e-12,
+          "max_energy_error_w": 8.43556335894391e-11,
+          "peak_difference_k": 1.1368683772161603e-13
+        },
+        {
+          "direct_peak_c": 89.35139239135594,
+          "closure_k": 7.531752999057062e-13,
+          "max_energy_error_w": 2.0190782379359007e-10,
+          "peak_difference_k": 1.9895196601282805e-13
+        }
+      ]
+    },
+    "long-08": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          33000.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          44840.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 284.395391926,
+      "peaks_c": [
+        88.73658884351656,
+        89.78750467545787,
+        88.73658884508156
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.73658884351678,
+          "closure_k": 9.769962616701378e-13,
+          "max_energy_error_w": 5.70253178011626e-10,
+          "peak_difference_k": 2.2737367544323206e-13
+        },
+        {
+          "direct_peak_c": 89.78750467545807,
+          "closure_k": 1.1652900866465643e-12,
+          "max_energy_error_w": 7.594280759803951e-11,
+          "peak_difference_k": 1.9895196601282805e-13
+        },
+        {
+          "direct_peak_c": 88.73658884508167,
+          "closure_k": 9.983125437429408e-13,
+          "max_energy_error_w": 2.1543655748246238e-10,
+          "peak_difference_k": 1.1368683772161603e-13
+        }
+      ]
+    },
+    "long-09": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 285.902143898,
+      "peaks_c": [
+        88.39519670553666,
+        89.49117255055754,
+        88.3951967058148
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.39519670553665,
+          "closure_k": 9.556799795973347e-13,
+          "max_energy_error_w": 3.4140157367801294e-10,
+          "peak_difference_k": 1.4210854715202004e-14
+        },
+        {
+          "direct_peak_c": 89.49117255055785,
+          "closure_k": 1.1119993814645568e-12,
+          "max_energy_error_w": 8.037659426918253e-11,
+          "peak_difference_k": 3.126388037344441e-13
+        },
+        {
+          "direct_peak_c": 88.39519670581478,
+          "closure_k": 1.566746732351021e-12,
+          "max_energy_error_w": 2.2180302039487287e-10,
+          "peak_difference_k": 1.4210854715202004e-14
+        }
+      ]
+    },
+    "long-10": {
+      "centre_um": [
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          29900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          48000.0,
+          9000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          24100.0
+        ],
+        [
+          34900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 285.7093113236,
+      "peaks_c": [
+        90.86336222663654,
+        92.2166965186135,
+        90.92549877243177
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 90.8633622266364,
+          "closure_k": 7.887024366937112e-13,
+          "max_energy_error_w": 5.062474883743562e-10,
+          "peak_difference_k": 1.4210854715202004e-13
+        },
+        {
+          "direct_peak_c": 92.2166965186131,
+          "closure_k": 1.1013412404281553e-12,
+          "max_energy_error_w": 8.139977580867708e-11,
+          "peak_difference_k": 3.979039320256561e-13
+        },
+        {
+          "direct_peak_c": 90.9254987724321,
+          "closure_k": 9.592326932761353e-13,
+          "max_energy_error_w": 1.7462298274040222e-10,
+          "peak_difference_k": 3.410605131648481e-13
+        }
+      ]
+    },
+    "long-11": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        90,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 298.401503342,
+      "peaks_c": [
+        88.39519670553666,
+        89.49117255055754,
+        88.3951967058148
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.39519670553665,
+          "closure_k": 9.556799795973347e-13,
+          "max_energy_error_w": 3.4140157367801294e-10,
+          "peak_difference_k": 1.4210854715202004e-14
+        },
+        {
+          "direct_peak_c": 89.49117255055785,
+          "closure_k": 1.1119993814645568e-12,
+          "max_energy_error_w": 8.037659426918253e-11,
+          "peak_difference_k": 3.126388037344441e-13
+        },
+        {
+          "direct_peak_c": 88.39519670581478,
+          "closure_k": 1.566746732351021e-12,
+          "max_energy_error_w": 2.2180302039487287e-10,
+          "peak_difference_k": 1.4210854715202004e-14
+        }
+      ]
+    },
+    "long-12": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          42200.0
+        ],
+        [
+          34900.0,
+          27100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45200.0
+        ],
+        [
+          35900.0,
+          9000.0
+        ],
+        [
+          31000.0,
+          52300.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          30900.0
+        ],
+        [
+          48000.0,
+          24100.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 301.5818394584,
+      "peaks_c": [
+        93.55954556745309,
+        96.01918641869152,
+        94.66787400589195
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 93.55954556745311,
+          "closure_k": 8.242295734817162e-13,
+          "max_energy_error_w": 4.907860784442164e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 96.01918641869148,
+          "closure_k": 1.3429257705865894e-12,
+          "max_energy_error_w": 1.0049916454590857e-10,
+          "peak_difference_k": 4.263256414560601e-14
+        },
+        {
+          "direct_peak_c": 94.66787400589206,
+          "closure_k": 1.0444978215673473e-12,
+          "max_energy_error_w": 1.956550477189012e-10,
+          "peak_difference_k": 1.1368683772161603e-13
+        }
+      ]
+    },
+    "long-13": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 290.295807898,
+      "peaks_c": [
+        88.4004679000785,
+        89.44665148991182,
+        88.40046790035811
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.4004679000785,
+          "closure_k": 9.166001291305292e-13,
+          "max_energy_error_w": 5.341007636161521e-10,
+          "peak_difference_k": 0.0
+        },
+        {
+          "direct_peak_c": 89.44665148991223,
+          "closure_k": 1.1013412404281553e-12,
+          "max_energy_error_w": 9.094947017729282e-11,
+          "peak_difference_k": 4.121147867408581e-13
+        },
+        {
+          "direct_peak_c": 88.40046790035814,
+          "closure_k": 9.876544027065393e-13,
+          "max_energy_error_w": 1.6757439880166203e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        }
+      ]
+    },
+    "long-14": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        90,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 302.795167342,
+      "peaks_c": [
+        88.4004679000785,
+        89.44665148991182,
+        88.40046790035811
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.4004679000785,
+          "closure_k": 9.166001291305292e-13,
+          "max_energy_error_w": 5.341007636161521e-10,
+          "peak_difference_k": 0.0
+        },
+        {
+          "direct_peak_c": 89.44665148991223,
+          "closure_k": 1.1013412404281553e-12,
+          "max_energy_error_w": 9.094947017729282e-11,
+          "peak_difference_k": 4.121147867408581e-13
+        },
+        {
+          "direct_peak_c": 88.40046790035814,
+          "closure_k": 9.876544027065393e-13,
+          "max_energy_error_w": 1.6757439880166203e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        }
+      ]
+    },
+    "long-15": {
+      "centre_um": [
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          29900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          48000.0,
+          9000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          48000.0,
+          24100.0
+        ],
+        [
+          34900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 290.1029753236,
+      "peaks_c": [
+        90.88597996080108,
+        92.21673410319865,
+        90.92749704921431
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 90.88597996080095,
+          "closure_k": 6.998845947236987e-13,
+          "max_energy_error_w": 5.81508174946066e-10,
+          "peak_difference_k": 1.2789769243681803e-13
+        },
+        {
+          "direct_peak_c": 92.21673410319828,
+          "closure_k": 1.4388490399142029e-12,
+          "max_energy_error_w": 8.594724931754172e-11,
+          "peak_difference_k": 3.694822225952521e-13
+        },
+        {
+          "direct_peak_c": 90.9274970492145,
+          "closure_k": 8.242295734817162e-13,
+          "max_energy_error_w": 1.7575985111761838e-10,
+          "peak_difference_k": 1.8474111129762605e-13
+        }
+      ]
+    },
+    "long-16": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          39000.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          44794.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 289.997311898,
+      "peaks_c": [
+        88.44552397650021,
+        89.45461506745215,
+        88.44552397677789
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.44552397650031,
+          "closure_k": 8.100187187665142e-13,
+          "max_energy_error_w": 5.327365215634927e-10,
+          "peak_difference_k": 9.947598300641403e-14
+        },
+        {
+          "direct_peak_c": 89.45461506745247,
+          "closure_k": 1.0160761121369433e-12,
+          "max_energy_error_w": 8.128608897095546e-11,
+          "peak_difference_k": 3.126388037344441e-13
+        },
+        {
+          "direct_peak_c": 88.44552397677796,
+          "closure_k": 1.3571366253017914e-12,
+          "max_energy_error_w": 2.1464074961841106e-10,
+          "peak_difference_k": 7.105427357601002e-14
+        }
+      ]
+    },
+    "long-17": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          29000.0,
+          42200.0
+        ],
+        [
+          34900.0,
+          27100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45200.0
+        ],
+        [
+          35900.0,
+          9000.0
+        ],
+        [
+          31000.0,
+          52300.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          48000.0,
+          24100.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 305.9755034584,
+      "peaks_c": [
+        93.57820331865607,
+        96.00837397771407,
+        94.68059427894595
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 93.57820331865628,
+          "closure_k": 6.892264536872972e-13,
+          "max_energy_error_w": 5.161382432561368e-10,
+          "peak_difference_k": 2.1316282072803006e-13
+        },
+        {
+          "direct_peak_c": 96.00837397771404,
+          "closure_k": 1.666222715357435e-12,
+          "max_energy_error_w": 8.481038094032556e-11,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 94.68059427894573,
+          "closure_k": 9.556799795973347e-13,
+          "max_energy_error_w": 2.1475443645613268e-10,
+          "peak_difference_k": 2.1316282072803006e-13
+        }
+      ]
+    },
+    "long-18": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          32900.0,
+          36579.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 286.549823898,
+      "peaks_c": [
+        88.65247146553152,
+        88.99394489288093,
+        88.65247146570681
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.6524714655315,
+          "closure_k": 7.922551503725117e-13,
+          "max_energy_error_w": 4.727098712464795e-10,
+          "peak_difference_k": 1.4210854715202004e-14
+        },
+        {
+          "direct_peak_c": 88.99394489288122,
+          "closure_k": 9.450218385609332e-13,
+          "max_energy_error_w": 8.481038094032556e-11,
+          "peak_difference_k": 2.8421709430404007e-13
+        },
+        {
+          "direct_peak_c": 88.65247146570692,
+          "closure_k": 9.237055564881302e-13,
+          "max_energy_error_w": 2.2112089936854318e-10,
+          "peak_difference_k": 1.1368683772161603e-13
+        }
+      ]
+    },
+    "long-19": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          32900.0,
+          36579.0
+        ],
+        [
+          9000.0,
+          27100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          22100.0,
+          29079.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          48000.0,
+          21000.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 301.0753279052,
+      "peaks_c": [
+        91.03903311075686,
+        93.13941140747966,
+        91.82756626642959
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 91.03903311075678,
+          "closure_k": 8.029132914089132e-13,
+          "max_energy_error_w": 3.843751983367838e-10,
+          "peak_difference_k": 8.526512829121202e-14
+        },
+        {
+          "direct_peak_c": 93.13941140747914,
+          "closure_k": 6.394884621840902e-13,
+          "max_energy_error_w": 9.345058060716838e-11,
+          "peak_difference_k": 5.115907697472721e-13
+        },
+        {
+          "direct_peak_c": 91.82756626642936,
+          "closure_k": 7.105427357601002e-13,
+          "max_energy_error_w": 1.5779733075760305e-10,
+          "peak_difference_k": 2.2737367544323206e-13
+        }
+      ]
+    },
+    "long-20": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          32900.0,
+          36579.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          13900.0,
+          46000.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          53000.0,
+          20956.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 290.100799898,
+      "peaks_c": [
+        88.59293569940408,
+        88.97478718555658,
+        88.59293569960855
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 88.59293569940402,
+          "closure_k": 1.0018652574217413e-12,
+          "max_energy_error_w": 5.310312189976685e-10,
+          "peak_difference_k": 5.684341886080802e-14
+        },
+        {
+          "direct_peak_c": 88.97478718555638,
+          "closure_k": 2.2879476091475226e-12,
+          "max_energy_error_w": 7.94670995674096e-11,
+          "peak_difference_k": 1.9895196601282805e-13
+        },
+        {
+          "direct_peak_c": 88.59293569960838,
+          "closure_k": 9.663381206337363e-13,
+          "max_energy_error_w": 1.8258106138091534e-10,
+          "peak_difference_k": 1.7053025658242404e-13
+        }
+      ]
+    },
+    "long-21": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          32900.0,
+          36579.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          45006.0
+        ],
+        [
+          11286.0,
+          49100.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          53000.0,
+          20956.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 298.146111898,
+      "peaks_c": [
+        87.84285715267836,
+        87.84285778448272,
+        87.8428571528745
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 87.84285715267832,
+          "closure_k": 7.105427357601002e-13,
+          "max_energy_error_w": 5.243236955720931e-10,
+          "peak_difference_k": 4.263256414560601e-14
+        },
+        {
+          "direct_peak_c": 87.84285778448228,
+          "closure_k": 2.4300561562995426e-12,
+          "max_energy_error_w": 6.821210263296962e-11,
+          "peak_difference_k": 4.405364961712621e-13
+        },
+        {
+          "direct_peak_c": 87.84285715287432,
+          "closure_k": 1.3109513474773848e-12,
+          "max_energy_error_w": 1.7575985111761838e-10,
+          "peak_difference_k": 1.8474111129762605e-13
+        }
+      ]
+    },
+    "long-22": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          32900.0,
+          36579.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          50000.0
+        ],
+        [
+          11286.0,
+          49100.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          53000.0,
+          20956.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        180,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 305.177663898,
+      "peaks_c": [
+        86.86859650050147,
+        87.04518463227727,
+        86.8685965006979
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 86.8685965005015,
+          "closure_k": 7.105427357601002e-13,
+          "max_energy_error_w": 4.3860381992999464e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 87.04518463227714,
+          "closure_k": 1.0658141036401503e-12,
+          "max_energy_error_w": 8.003553375601768e-11,
+          "peak_difference_k": 1.2789769243681803e-13
+        },
+        {
+          "direct_peak_c": 86.86859650069786,
+          "closure_k": 8.526512829121202e-13,
+          "max_energy_error_w": 2.2498625185107812e-10,
+          "peak_difference_k": 4.263256414560601e-14
+        }
+      ]
+    },
+    "long-23": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          32900.0,
+          36579.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          50000.0
+        ],
+        [
+          11286.0,
+          49100.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          53000.0,
+          20956.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        90,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 317.677023342,
+      "peaks_c": [
+        86.86859650050147,
+        87.04518463227727,
+        86.8685965006979
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 86.8685965005015,
+          "closure_k": 7.105427357601002e-13,
+          "max_energy_error_w": 4.3860381992999464e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 87.04518463227714,
+          "closure_k": 1.0658141036401503e-12,
+          "max_energy_error_w": 8.003553375601768e-11,
+          "peak_difference_k": 1.2789769243681803e-13
+        },
+        {
+          "direct_peak_c": 86.86859650069786,
+          "closure_k": 8.526512829121202e-13,
+          "max_energy_error_w": 2.2498625185107812e-10,
+          "peak_difference_k": 4.263256414560601e-14
+        }
+      ]
+    },
+    "long-24": {
+      "centre_um": [
+        [
+          51000.0,
+          6000.0
+        ],
+        [
+          32900.0,
+          36579.0
+        ],
+        [
+          34900.0,
+          21100.0
+        ],
+        [
+          9000.0,
+          9000.0
+        ],
+        [
+          48000.0,
+          50000.0
+        ],
+        [
+          11286.0,
+          49100.0
+        ],
+        [
+          31000.0,
+          50000.0
+        ],
+        [
+          12100.0,
+          29079.0
+        ],
+        [
+          4000.0,
+          24659.0
+        ],
+        [
+          53000.0,
+          20956.0
+        ],
+        [
+          38900.0,
+          6000.0
+        ]
+      ],
+      "rotation_deg": [
+        180,
+        180,
+        90,
+        90,
+        0,
+        270,
+        270,
+        0,
+        180,
+        180,
+        0
+      ],
+      "length_m": 292.6598724684,
+      "peaks_c": [
+        86.86859650050147,
+        87.04518463227727,
+        86.8685965006979
+      ],
+      "replay": [
+        {
+          "direct_peak_c": 86.8685965005015,
+          "closure_k": 7.105427357601002e-13,
+          "max_energy_error_w": 4.3860381992999464e-10,
+          "peak_difference_k": 2.842170943040401e-14
+        },
+        {
+          "direct_peak_c": 87.04518463227714,
+          "closure_k": 1.0658141036401503e-12,
+          "max_energy_error_w": 8.003553375601768e-11,
+          "peak_difference_k": 1.2789769243681803e-13
+        },
+        {
+          "direct_peak_c": 86.86859650069786,
+          "closure_k": 8.526512829121202e-13,
+          "max_energy_error_w": 2.2498625185107812e-10,
+          "peak_difference_k": 4.263256414560601e-14
+        }
+      ]
+    }
+  },
+  "summary": {
+    "original_min_c": [
+      90.55125080617695,
+      91.27150727685076,
+      91.23671449198471
+    ],
+    "pool_min_c": [
+      86.86859650050147,
+      87.04518463227727,
+      86.8685965006979
+    ],
+    "groups": {
+      "initial": {
+        "count": 4,
+        "best_joint": {
+          "layout": "base-1",
+          "peaks_c": [
+            91.27143987978701,
+            91.27150727685076,
+            91.27144006612362
+          ],
+          "length_m": 260.660607926,
+          "worst_loss_k": 4.402843379285542,
+          "midpoint_loss_k": 4.402843565425712
+        },
+        "shortest_old_plus_0p1": null,
+        "shortest_pool_plus_0p1": null
+      },
+      "all": {
+        "count": 57,
+        "best_joint": {
+          "layout": "long-24",
+          "peaks_c": [
+            86.86859650050147,
+            87.04518463227727,
+            86.8685965006979
+          ],
+          "length_m": 292.6598724684,
+          "worst_loss_k": 0.0,
+          "midpoint_loss_k": 0.0
+        },
+        "shortest_old_plus_0p1": {
+          "layout": "short-12",
+          "peaks_c": [
+            88.4496774415844,
+            90.7979962290882,
+            89.30061546094726
+          ],
+          "length_m": 241.54498160039998,
+          "worst_loss_k": 3.752811596810929,
+          "midpoint_loss_k": 2.4320189602493514
+        },
+        "shortest_pool_plus_0p1": {
+          "layout": "long-24",
+          "peaks_c": [
+            86.86859650050147,
+            87.04518463227727,
+            86.8685965006979
+          ],
+          "length_m": 292.6598724684,
+          "worst_loss_k": 0.0,
+          "midpoint_loss_k": 0.0
+        }
+      },
+      "joint": {
+        "count": 16,
+        "best_joint": {
+          "layout": "joint-09",
+          "peaks_c": [
+            87.46396010475817,
+            89.35909943600018,
+            87.87156930690166
+          ],
+          "length_m": 292.676031898,
+          "worst_loss_k": 2.313914803722909,
+          "midpoint_loss_k": 1.0029728062037577
+        },
+        "shortest_old_plus_0p1": {
+          "layout": "joint-03",
+          "peaks_c": [
+            90.18724516306325,
+            90.18724700592294,
+            90.1872451645591
+          ],
+          "length_m": 266.418623926,
+          "worst_loss_k": 3.3186486625617846,
+          "midpoint_loss_k": 3.3186486638611967
+        },
+        "shortest_pool_plus_0p1": null
+      },
+      "short": {
+        "count": 28,
+        "best_joint": {
+          "layout": "short-23",
+          "peaks_c": [
+            88.46668493338603,
+            90.70513162834384,
+            89.20803066910632
+          ],
+          "length_m": 242.94527680360002,
+          "worst_loss_k": 3.659946996066566,
+          "midpoint_loss_k": 2.339434168408417
+        },
+        "shortest_old_plus_0p1": {
+          "layout": "short-12",
+          "peaks_c": [
+            88.4496774415844,
+            90.7979962290882,
+            89.30061546094726
+          ],
+          "length_m": 241.54498160039998,
+          "worst_loss_k": 3.752811596810929,
+          "midpoint_loss_k": 2.4320189602493514
+        },
+        "shortest_pool_plus_0p1": null
+      },
+      "long": {
+        "count": 28,
+        "best_joint": {
+          "layout": "long-24",
+          "peaks_c": [
+            86.86859650050147,
+            87.04518463227727,
+            86.8685965006979
+          ],
+          "length_m": 292.6598724684,
+          "worst_loss_k": 0.0,
+          "midpoint_loss_k": 0.0
+        },
+        "shortest_old_plus_0p1": {
+          "layout": "joint-03",
+          "peaks_c": [
+            90.18724516306325,
+            90.18724700592294,
+            90.1872451645591
+          ],
+          "length_m": 266.418623926,
+          "worst_loss_k": 3.3186486625617846,
+          "midpoint_loss_k": 3.3186486638611967
+        },
+        "shortest_pool_plus_0p1": {
+          "layout": "long-24",
+          "peaks_c": [
+            86.86859650050147,
+            87.04518463227727,
+            86.8685965006979
+          ],
+          "length_m": 292.6598724684,
+          "worst_loss_k": 0.0,
+          "midpoint_loss_k": 0.0
+        }
+      }
+    },
+    "returned": {
+      "joint": {
+        "layout": "joint-09",
+        "peaks_c": [
+          87.46396010475817,
+          89.35909943600018,
+          87.87156930690166
+        ],
+        "length_m": 292.676031898,
+        "worst_loss_k": 2.313914803722909,
+        "midpoint_loss_k": 1.0029728062037577
+      },
+      "short": {
+        "layout": "short-21",
+        "peaks_c": [
+          88.51145782367566,
+          90.84857772916875,
+          89.35139239135614
+        ],
+        "length_m": 242.8825816004,
+        "worst_loss_k": 3.803393096891483,
+        "midpoint_loss_k": 2.482795890658238
+      },
+      "long": {
+        "layout": "long-24",
+        "peaks_c": [
+          86.86859650050147,
+          87.04518463227727,
+          86.8685965006979
+        ],
+        "length_m": 292.6598724684,
+        "worst_loss_k": 0.0,
+        "midpoint_loss_k": 0.0
+      }
+    }
+  }
+}
