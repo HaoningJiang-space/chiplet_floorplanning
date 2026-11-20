@@ -1,0 +1,30 @@
+{
+  "slots_4x6_mesh_grid_start": {
+    "count": 24,
+    "links": 38,
+    "cap_m": 0.16295909689024515,
+    "sum_individual_minima_m": 0.162959096890245,
+    "budget_slack_over_minima_um": 1.7462298274040222e-10,
+    "minimum_positive_edge_penalty_um": 11797.726979169109,
+    "forced_displacement_links": 38,
+    "forced_graph_components": 1,
+    "unique_placement_established": true,
+    "routing_model": "fixed-attitude occupied lattice; two-terminal pin Manhattan",
+    "original_thermal_remaining_upper_k": 0.5367988243228088,
+    "combined_remaining_upper_k": 0.0
+  },
+  "slots_8x8_folded_torus_grid_start": {
+    "count": 64,
+    "links": 128,
+    "cap_m": 1.921795192845845,
+    "sum_individual_minima_m": 0.7892134028456095,
+    "budget_slack_over_minima_um": 1132581.7900002354,
+    "minimum_positive_edge_penalty_um": 11797.726979169109,
+    "forced_displacement_links": 0,
+    "forced_graph_components": 64,
+    "unique_placement_established": false,
+    "routing_model": "fixed-attitude occupied lattice; two-terminal pin Manhattan",
+    "original_thermal_remaining_upper_k": 1.2811725923034545,
+    "combined_remaining_upper_k": 1.2811725923034545
+  }
+}
