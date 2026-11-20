@@ -1,6 +1,7 @@
 """Run the pinned upstream thermal trainer and optimizer with common 3D FV labels (Python 3.9)."""
 
 import argparse
+from hashlib import sha256
 import json
 import os
 from pathlib import Path
@@ -17,6 +18,8 @@ def main():
     ap.add_argument("project_python")
     ap.add_argument("--export-guard",action="store_true",
                     help="Reserve CBC text and float32 coordinate precision inside the same physical cap.")
+    ap.add_argument("--projected-labels", action="store_true")
+    ap.add_argument("--native-limit-s", type=float, default=10.)
     args = ap.parse_args()
     upstream, out = args.upstream.resolve(), args.case_dir.resolve()
     sys.path.insert(0, str(upstream))
@@ -44,7 +47,7 @@ def main():
     params.training_seed = params.random_seed = 20261119
     params.training_iterations = 100
     params.training_sampling_time_limit_s = 10
-    params.initialization_time_limit_s = params.legalization_time_limit_s = 10
+    params.initialization_time_limit_s = params.legalization_time_limit_s = args.native_limit_s
     params.dis_bet_chips = 100.05  # 50 nm numerical allowance for float32/CBC coordinate export.
     params.floorplan_stages[0]["iteration"] = params.iteration = 10
     params.thermal_model = str(out/"shared-fv.pt")
@@ -58,12 +61,26 @@ def main():
     signature = dict(case=name, source=case["source_sha256"], names=data_names,
                      powers_w=system.powermap.tolist(), grid=[params.num_grid_x, params.num_grid_y],
                      evaluator=case["fv_fingerprint"], ambient_c=45, upstream=case["upstream"])
+    if args.projected_labels:
+        signature['labels'] = 'geometry-specific FV Galerkin, 4 mm blocks'
     checkpoint.metadata = training.metadata = lambda params, system: signature
     if args.stage == "train":
         rng = np.random.default_rng(params.training_seed)
-        geo = np.stack([training.sample_layout(system, params, rng) for _ in range(5)])
+        try:
+            geo = np.stack([training.sample_layout(system, params, rng) for _ in range(5)])
+            sample_method = 'author'
+        except RuntimeError:
+            if not args.projected_labels:
+                raise
+            driver = Path(__file__).with_name("continuous_atplace_reference.py")
+            subprocess.run([args.project_python,str(driver),"sample",str(out)],check=True)
+            sample = np.load(out/"fallback-samples.npz")
+            reorder = [sample['names'].tolist().index(n) for n in data_names]
+            geo = sample['geometry'][:,reorder]
+            sample_method = 'constructive legal sampler after native sampling timeout'
         np.savez(out/"sampled.npz", geometry=geo, names=np.array(data_names), grid=signature["grid"])
-        driver = Path(__file__).with_name("compare_atplace_margin.py").resolve()
+        driver = Path(__file__).with_name("continuous_atplace_reference.py" if args.projected_labels
+                                          else "compare_atplace_margin.py").resolve()
         subprocess.run([args.project_python, str(driver), "labels", str(out)], check=True)
         saved = dict(metadata=signature, geometry=torch.from_numpy(geo),
                      power=torch.tensor(system.powermap, dtype=torch.float32).repeat(5,1),
@@ -78,6 +95,8 @@ def main():
         stats = dict(fit_s=report["runtime_s"], test_mae_k=report["test_mae_c"],
                      heldout_sampled_peak_error_k=float(peaks[-1]-labels[-1]),
                      labels=5, torch=torch.__version__, pulp=pulp.__version__)
+        if args.projected_labels:
+            stats['sample_method'] = sample_method
         (out/"training.json").write_text(json.dumps(stats), encoding="utf8")
         return
 
@@ -102,6 +121,38 @@ def main():
             return original(problem, *solver_args, **kwargs)
         pulp.LpProblem.solve = solve_with_cap
     then = perf_counter()
+    if args.projected_labels and args.stage == 'native':
+        # Reuse the native solver's own continuous result when only its terminal
+        # MILP timed out. All positions, angles, weights and source pins remain its inputs.
+        model_id = sha256(Path(params.thermal_model).read_bytes()).hexdigest()
+        saved = out/('native-before-legalization-'+model_id+'.npz')
+        legalize = place_flow.Legalization
+        if args.native_limit_s > 10 and saved.exists():
+            prior = np.load(saved)
+            system.node_orient = prior['orient']
+            target = [[prior['x'],prior['y']]]
+            size = [prior['size_x'],prior['size_y']]
+            final = None
+            for weight in (params.wl_weight,0):
+                final = legalize(system,params.ilp_solver,weight,target,size,TimeLimit=args.native_limit_s,
+                                 num_threads=params.num_threads,random_seed=params.random_seed)
+                if final is not None:
+                    break
+            if final is None:
+                raise RuntimeError('native terminal legalization returned no feasible layout')
+            n = system.num_chiplets
+            xy = np.zeros((2,system.num_nodes))
+            xy[:,:n] = final[:,:n]
+            layout = cli.export_layout([xy.ravel().tolist(),system.node_orient.tolist()],system,params,name,'thermal')
+            (out/'native.json').write_text(json.dumps(dict(chiplets=layout['chiplets'],
+                optimizer_s=perf_counter()-then,terminal_replay=True)),encoding='utf8')
+            return
+        def record_target(sys_data, solver, weight, pos, size, **kwargs):
+            if weight:
+                np.savez(saved,orient=sys_data.node_orient,x=pos[0][0],y=pos[0][1],
+                         size_x=size[0],size_y=size[1])
+            return legalize(sys_data,solver,weight,pos,size,**kwargs)
+        place_flow.Legalization = record_target
     model = cli.build_compact_model(params, system)
     result = cli.placeflow_core(params, system, model)
     hpwl, best = cli.unpack_result(result)
