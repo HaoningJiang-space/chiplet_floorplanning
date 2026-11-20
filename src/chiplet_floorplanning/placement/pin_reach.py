@@ -4,8 +4,8 @@ import numpy as np
 from scipy import sparse
 from scipy.optimize import linprog
 
-from .geometry import is_legal, pin_manhattan_um, rotate
-from .lp import TopologyLP
+from .geometry import is_legal, pin_manhattan_um, pin_points_um, rotate
+from .lp import TopologyLP, topology
 from .search import layout_key
 from .thermal import peak_sensitivity
 
@@ -33,6 +33,55 @@ def reach_rows(problem, rotation, limits_mm, nvar):
             rows.append(row)
             rhs.append(bound)
     return sparse.csr_matrix(np.array(rows).reshape(-1,nvar)), np.asarray(rhs)
+
+
+def required_travel_mm(problem, start, reach_mm, displacement_mm, gap_um=100):
+    """Lower bound each follower's maximum-axis travel for each specified leader move.
+
+    Entry (i,j) treats the requested displacement of i as fixed; all other displacements
+    are unknown. Pin-only bounds apply throughout the fixed-orientation space. The
+    second array additionally uses the rectangular separation relations of this cell.
+    """
+    xy = np.asarray(start.centre_um) / 1000
+    delta = np.asarray(displacement_mm)
+    reach = np.asarray(reach_mm)
+    a, b = problem.pin_chip.T
+    pins = pin_points_um(problem, start) / 1000
+    offset = pins[:, 0] - pins[:, 1]
+    if delta.shape != xy.shape or reach.shape != a.shape:
+        raise ValueError('supply one displacement per chiplet and one reach per signal')
+    n = problem.count
+    pin_bound = np.zeros((n, n))
+    def propagate(direction, edges, slack, bound):
+        # An edge i -> j implies s.d_j >= s.d_i - slack_ij.
+        if np.any(slack < -1e-8):
+            raise ValueError('the starting pose violates a propagation constraint')
+        distance = np.full((n, n), np.inf)
+        np.minimum.at(distance, edges, np.maximum(0., slack))
+        np.fill_diagonal(distance, 0.)
+        for k in range(n):
+            np.minimum(distance, distance[:, k, None] + distance[None, k, :], out=distance)
+        travel = ((delta @ direction)[:, None] - distance) / np.abs(direction).sum()
+        np.maximum(bound, travel, out=bound)
+
+    for direction in np.array([(1, 1), (1, -1), (-1, 1), (-1, -1)]):
+        diff = offset @ direction
+        propagate(direction, (np.r_[a,b], np.r_[b,a]), np.r_[reach-diff, reach+diff], pin_bound)
+    cell_bound = pin_bound.copy()
+    size = np.where((start.rotation_deg % 180 != 0)[:, None], problem.size_um[:, ::-1], problem.size_um) / 1000
+    side_order = topology(problem, start, gap_um)
+    for axis in (0, 1):
+        pairs = [(i,j) if sign > 0 else (j,i) for i,j,ax,sign in side_order if ax == axis]
+        if not pairs:
+            continue
+        low, high = np.array(pairs).T
+        slack = xy[high,axis]-xy[low,axis]-(size[low,axis]+size[high,axis])/2-gap_um/1000
+        direction = np.eye(2)[axis]
+        propagate(direction, (low, high), slack, cell_bound)
+        propagate(-direction, (high, low), slack, cell_bound)
+    np.fill_diagonal(pin_bound, 0.)
+    np.fill_diagonal(cell_bound, 0.)
+    return pin_bound, cell_bound
 
 
 class PinReachCell(TopologyLP):

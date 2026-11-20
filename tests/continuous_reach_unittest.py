@@ -5,7 +5,7 @@ import numpy as np
 
 from chiplet_floorplanning.placement import heat_directed_moves, is_legal
 from chiplet_floorplanning.placement.geometry import pin_manhattan_um
-from chiplet_floorplanning.placement.pin_reach import PinReachCell, reach_rows
+from chiplet_floorplanning.placement.pin_reach import PinReachCell, reach_rows, required_travel_mm
 from chiplet_floorplanning.placement.problem import Layout, Problem
 from chiplet_floorplanning.placement.thermal import solve, thermal_case_data
 from chiplet_floorplanning.placement.thermal_projection import projected_field
@@ -43,6 +43,14 @@ class ContinuousReachTest(unittest.TestCase):
         delta,predicted=cell.cool_direction(start,np.array([80.]),np.array([[[1.,0.],[0.,0.]]]),1.)
         self.assertAlmostEqual(predicted,79.)
         np.testing.assert_allclose(delta,[[-1.,0.],[-1.,0.]],atol=2e-6)
+
+    def test_slack_propagates_through_two_links_and_stops_at_a_loose_link(self):
+        p=Problem('chain',('a','b','c','d'),np.full((4,2),1000.),np.ones(4),(20000,12000),
+                  np.array([[0,1],[2,1],[2,3]]),np.zeros((3,2,2)))
+        start=Layout(np.array([[3500.,3500.],[5500.,5500.],[7500.,7500.],[9500.,9500.]]),np.zeros(4,int))
+        delta=np.array([[-1.,-1.],[0.,0.],[0.,0.],[0.,0.]])
+        pins,_=required_travel_mm(p,start,[4.,4.25,8.],delta)
+        np.testing.assert_allclose(pins[0],[0.,1.,.875,0.])
 
     def test_public_entry_point_preserves_custom_signal_caps(self):
         start=Layout(np.array([[5000.,5000.],[10000.,6000.]]),np.array([0,90]))

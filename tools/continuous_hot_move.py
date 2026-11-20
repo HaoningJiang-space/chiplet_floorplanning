@@ -9,7 +9,7 @@ import numpy as np
 
 from chiplet_floorplanning.placement import Layout, Problem
 from chiplet_floorplanning.placement.geometry import pin_manhattan_um, violations
-from chiplet_floorplanning.placement.pin_reach import heat_directed_moves
+from chiplet_floorplanning.placement.pin_reach import heat_directed_moves, required_travel_mm
 from chiplet_floorplanning.placement.thermal import AMBIENT_C, thermal_case_data
 from compare_continuous_reach import finish, point, verified
 from compare_large_pool import write_json
@@ -36,6 +36,16 @@ def isolated_motion(p, report, rec):
     report['reach_by_class']=[dict(cap_mm=float(limit),signals=int((reach==limit).sum()),
                                    max_mm=float(length[reach==limit].max()))
                               for limit in np.unique(reach)]
+    delta=(b-a)/1000
+    pins,cell=required_travel_mm(p,Layout(a,rot),reach,delta)
+    observed=np.abs(delta).max(axis=1)
+    # All selected moves must satisfy the very inequalities used to certify followers.
+    assert np.all(cell<=observed[None,:]+1e-7)
+    def followers(bounds):
+        return {p.names[i]:{p.names[j]:float(row[j]) for j in np.flatnonzero(row>.001+1e-9)}
+                for i,row in enumerate(bounds)}
+    report['necessary_followers']=dict(minimum_reported_mm=.001,metric='max-axis travel in mm',
+                                       fixed_angles=followers(pins),within_starting_cell=followers(cell))
 
 
 def experiment(source, frozen):
