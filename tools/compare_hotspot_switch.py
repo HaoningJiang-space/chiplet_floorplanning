@@ -126,9 +126,58 @@ def compare(upstream, frozen_path, online_path, truth_path):
     write_json(truth_path,audit)
 
 
+def compare_preset(upstream, geometry, control_path, previous_online, reference):
+    """Run only the review control; reveal the previous results after sealing its choices."""
+    if control_path in (geometry, previous_online, reference):
+        raise ValueError('the control output must be separate from the evidence inputs')
+    t = perf_counter()
+    p, start = instance(upstream)
+    profiles = workloads(p, start)
+    control = dict(seed=SEED, input_s=perf_counter()-t, cases={})
+    for name, watts in profiles.items():
+        t = perf_counter()
+        problem = replace(p, power_w=watts)
+        pkg = SlotPackage(problem, start)
+        field = pkg.temperatures(watts)
+        start_s = perf_counter()-t
+        t = perf_counter()
+        frozen, bank = load_bank(geometry, p, problem, start)
+        assert frozen['cases'][name]['power_w'] == watts.tolist()
+        load_s = perf_counter()-t
+        t = perf_counter()
+        arm = choose(bank, pkg, field, 'static_three', trace_switches=True)
+        arm['decision_s'] = perf_counter()-t
+        arm['warm_pool_total_s'] = start_s+load_s+arm['decision_s']
+        arm.update(start_s=start_s, load_s=load_s)
+        assert arm['candidate_checks'] == 2 and arm['responses'] == 3
+        control['cases'][name] = arm
+    control.update(pool_sha256=frozen['pool_sha256'], freeze_s=frozen['freeze_s'])
+    write_json(control_path, control)
+
+    previous = json.loads(previous_online.read_bytes())
+    truth = json.loads(reference.read_bytes())
+    assert truth['online_sha256'] == fingerprint(previous)
+    assert previous['pool_sha256'] == control['pool_sha256']
+    for name, arm in control['cases'].items():
+        dynamic = previous['cases'][name]['arms']['single']
+        assert arm['candidates'][:2] == dynamic['candidates'][:2]
+        assert (dynamic['candidate_checks'], dynamic['responses']) == (2, 3)
+        ref = truth['cases'][name]
+        peaks = np.array(ref['peaks_c'])
+        for candidate in arm['candidates']:
+            assert abs(candidate['peak_c']-peaks[candidate['map_id']]) <= ref['peak_guard_k']
+        assert np.max(arm['peak_lower_bounds_c']-peaks) <= ref['peak_guard_k']
+        assert -TIE_K <= arm['best']['peak_c']-min(peaks) <= arm['remaining_bound_k']+TIE_K
+
+
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ('upstream','geometry','online','reference'):
         parser.add_argument('--'+name,required=True,type=Path)
+    parser.add_argument('--preset-control', type=Path, help='write only the three-preset-response control')
     args = parser.parse_args()
-    compare(args.upstream.resolve(),args.geometry,args.online,args.reference)
+    if args.preset_control:
+        compare_preset(args.upstream.resolve(), args.geometry.resolve(), args.preset_control.resolve(),
+                       args.online.resolve(), args.reference.resolve())
+    else:
+        compare(args.upstream.resolve(),args.geometry,args.online,args.reference)

@@ -132,6 +132,13 @@ def choose(bank, pkg, initial, mode, *, trace_switches=False):
     trace = []
     floors = None
     start_hot = int(pkg.active[np.argmax(initial[pkg.active])])
+    preset = ()
+    if mode == 'static_three':
+        # Freeze three distinct die locations before either board check.
+        hottest = [min(cells, key=lambda i: (-initial[i], i)) for cells in pkg.slots]
+        preset = tuple(int(i) for i in sorted(hottest, key=lambda i: (-initial[i], i))[:3])
+        if len(preset) != 3 or preset[0] != start_hot:
+            raise ValueError('the three-die control requires the global hotspot to lie on a die')
 
     def gap():
         pending = np.ones(len(bank.watts), dtype=bool)
@@ -152,6 +159,8 @@ def choose(bank, pkg, initial, mode, *, trace_switches=False):
         return int(possible.sum())
 
     def witnesses(field, quota):
+        if preset:
+            return (preset[len(points)-1],)
         return observer_nodes(pkg, field, owner, mode in ('single', 'static'), quota)
 
     def observe(nodes):
@@ -174,7 +183,13 @@ def choose(bank, pkg, initial, mode, *, trace_switches=False):
                 if old is not None:
                     trace[-1].update(old_nominee_updated_floor_c=float(floors[old]),
                                      lowest_after_response=lowest_unchecked())
-        return peak-AMBIENT_C-node_rise
+        gains = peak-AMBIENT_C-node_rise
+        if preset and len(points) > 1:
+            # A preset site can miss the peak of the layout just checked. Its exact
+            # peak is already known; every unchecked layout gets only the preset row.
+            checked = points[-1]
+            gains[checked['map_id']] = peak-checked['peak_c']
+        return gains
 
     def verify(k):
         field = pkg.temperatures(bank.watts[k])

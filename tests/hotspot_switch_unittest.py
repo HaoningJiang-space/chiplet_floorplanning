@@ -40,3 +40,8 @@ class HotspotSwitchTest(unittest.TestCase):
         self.assertAlmostEqual(static['best']['peak_c']-second['incumbent_c'],2.)
         self.assertAlmostEqual(second['after_response_bound_k'],0.,places=6)
         self.assertEqual(feedback['candidate_checks'],2)
+        preset = choose(bank,pkg,initial,'static_three',trace_switches=True)
+        self.assertEqual(preset['witnesses_by_stage'], [[0], [1], [2]])
+        self.assertEqual(preset['responses'], 3)
+        self.assertEqual(preset['candidates'][:2], feedback['candidates'][:2])
+        self.assertEqual(preset['candidate_checks'], 2)
