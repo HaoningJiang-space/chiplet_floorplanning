@@ -1,0 +1,149 @@
+{
+  "bank_sha256": "58f9b360da82534ddc8a8ad8d763df214cb4ef3bd59743b562f69ce9c8ae354a",
+  "cases": {
+    "Case1": {
+      "already_covered": true,
+      "index": 0
+    },
+    "Case2": {
+      "conditions": {
+        "west": {
+          "start": {
+            "cost": 130.05228332924,
+            "peak_c": 54.147517884690714,
+            "residual_w": 7.389644451905042e-13,
+            "balance_w": -1.1226575225009583e-12,
+            "watts": 37.0,
+            "cooling_k": 0.0
+          },
+          "2": {
+            "cost": 113.24197533616001,
+            "peak_c": 53.99498541933508,
+            "residual_w": 6.465938895416912e-13,
+            "balance_w": 1.2860823517257813e-12,
+            "watts": 37.0,
+            "cooling_k": 0.15253246535563392
+          }
+        },
+        "east": {
+          "start": {
+            "cost": 130.05228332924,
+            "peak_c": 62.140733395946825,
+            "residual_w": 1.5063505998114124e-12,
+            "balance_w": -3.922195901395753e-12,
+            "watts": 37.0,
+            "cooling_k": 0.0
+          },
+          "2": {
+            "cost": 113.24197533616001,
+            "peak_c": 57.36698318408763,
+            "residual_w": 8.100187187665142e-13,
+            "balance_w": 2.2737367544323206e-13,
+            "watts": 37.0,
+            "cooling_k": 4.773750211859195
+          }
+        },
+        "south": {
+          "start": {
+            "cost": 130.05228332924,
+            "peak_c": 56.395373021858276,
+            "residual_w": 1.0373923942097463e-12,
+            "balance_w": 1.5631940186722204e-13,
+            "watts": 37.0,
+            "cooling_k": 0.0
+          },
+          "2": {
+            "cost": 113.24197533616001,
+            "peak_c": 56.0938797945257,
+            "residual_w": 7.815970093361102e-13,
+            "balance_w": 3.694822225952521e-13,
+            "watts": 37.00000000000001,
+            "cooling_k": 0.30149322733257833
+          }
+        },
+        "north": {
+          "start": {
+            "cost": 130.05228332924,
+            "peak_c": 60.951442800127325,
+            "residual_w": 1.0231815394945443e-12,
+            "balance_w": 4.334310688136611e-13,
+            "watts": 37.0,
+            "cooling_k": 0.0
+          },
+          "2": {
+            "cost": 113.24197533616001,
+            "peak_c": 58.9898440090369,
+            "residual_w": 9.094947017729282e-13,
+            "balance_w": -3.737454790098127e-12,
+            "watts": 37.0,
+            "cooling_k": 1.9615987910904238
+          }
+        },
+        "centre": {
+          "start": {
+            "cost": 130.05228332924,
+            "peak_c": 52.09766610472213,
+            "residual_w": 4.973799150320701e-13,
+            "balance_w": -3.765876499528531e-13,
+            "watts": 37.0,
+            "cooling_k": 0.0
+          },
+          "2": {
+            "cost": 113.24197533616001,
+            "peak_c": 50.56127019531389,
+            "residual_w": 4.689582056016661e-13,
+            "balance_w": -6.750155989720952e-13,
+            "watts": 37.0,
+            "cooling_k": 1.5363959094082418
+          }
+        }
+      },
+      "distinct_solves": 10
+    },
+    "Case3": {
+      "already_covered": true,
+      "index": 0
+    },
+    "Case4": {
+      "already_covered": true,
+      "index": 1
+    },
+    "Case5": {
+      "already_covered": true,
+      "index": 1
+    },
+    "Case6": {
+      "already_covered": true,
+      "index": 4
+    },
+    "Case7": {
+      "already_covered": true,
+      "index": 1
+    },
+    "Case8": {
+      "already_covered": true,
+      "index": 0
+    },
+    "Case9": {
+      "already_covered": true,
+      "index": 1
+    },
+    "Case10": {
+      "already_covered": true,
+      "index": 1
+    },
+    "ascend910": {
+      "already_covered": true,
+      "index": 1
+    },
+    "micro150": {
+      "already_covered": true,
+      "index": 0
+    },
+    "multigpu": {
+      "already_covered": true,
+      "index": 1
+    }
+  },
+  "prediction_sha256": "d2c46e20b26df0050ff96105bf230908113d2f6c97b5db74595d3867a0bc387d"
+}

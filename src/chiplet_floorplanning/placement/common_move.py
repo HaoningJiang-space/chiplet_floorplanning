@@ -12,8 +12,19 @@ class HotspotResponse:
 
     def __init__(self, sheet, initial_watts):
         initial = sheet.temperatures(initial_watts)
+        self._set_cell(sheet, initial, np.unravel_index(initial.argmax(), initial.shape))
+
+    @classmethod
+    def at_cell(cls, sheet, initial, cell_yx):
+        """Build the adjoint at a specified observer using the already solved starting field."""
+        row = cls.__new__(cls)
+        row._set_cell(sheet, initial, cell_yx)
+        return row
+
+    def _set_cell(self, sheet, initial, cell_yx):
         self.peak_k = float(initial.max())
-        self.cell_yx = np.unravel_index(initial.argmax(), initial.shape)
+        self.cell_yx = tuple(cell_yx)
+        self.headroom_k = self.peak_k - float(initial[self.cell_yx])
         impulse = np.zeros_like(initial)
         impulse[self.cell_yx] = 1
         response = sheet.factor.solve(impulse.ravel(), trans="T").reshape(impulse.shape) + VERTICAL_MM2_K_W * impulse
