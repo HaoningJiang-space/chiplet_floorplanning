@@ -107,7 +107,15 @@ def audit(p, start, cap, meta, pred, *, grid, configs=None, centres=CENTRES):
                 assert abs(pred["actions"][arm]["cost"]-cost) < 1e-9
             key = b,lay.centre_um.tobytes()
             if key not in cache:
-                s,_,_ = solve(contact_model(p,lay,grid,np.array(centres[b],dtype=float)),node_limit=450000)
+                model = contact_model(p,lay,grid,np.array(centres[b],dtype=float))
+                if meta["family"] == "RapidChiplet":
+                    model["name"] = "rapidchiplet_fv_" + p.name.replace("-","_")
+                    source = "RapidChiplet chiplets; adapted placement/power and declared TAP-family FV package"
+                    model["thermal"]["provenance"] = source
+                    for die in model["chiplets"]:
+                        for block in die["blocks"]:
+                            block["provenance"] = source
+                s,_,_ = solve(model,node_limit=450000)
                 cache[key] = dict(peak_c=s["peak_power_layer_c"],residual_w=s["linear_residual_inf_w"],
                                   balance_w=s["energy_balance_error_w"],watts=s["source_power_w"])
             row[arm] = dict(cost=cost,**cache[key])

@@ -20,7 +20,7 @@ PROTOCOL = "a534a297df8879270af345b48ac33e87500c0de4"
 
 
 def rules(problem, meta):
-    if meta["family"] == "ATPlace":
+    if meta["family"] in ("ATPlace", "RapidChiplet"):
         return problem, None
     plan = json.loads((EVIDENCE / "tap-sensitivity-plan.json").read_bytes())
     domain = next(e["domain"] for e in plan["cases"] if e["domain"]["name"] == problem.name)
