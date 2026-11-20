@@ -1,0 +1,3893 @@
+{
+  "search_sha256": "4e53139818e12a862ae4ecba95e2409326b0b934e4b5d15233d8775dd9c3cc17",
+  "cases": {
+    "Case1": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "wire": 70.35004826360007,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": null
+        },
+        "tiled": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "wire": 70.35004826360007,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 1,
+          "least_passing_wire": null
+        },
+        "hotspots": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "wire": 70.35004826360007,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 1,
+          "least_passing_wire": null
+        },
+        "sparse": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "wire": 70.35004826360007,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 1,
+          "least_passing_wire": null
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "tiled": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "hotspots": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "sparse": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        }
+      },
+      "cap": 70.35004826359999,
+      "metric": "pin_manhattan_m",
+      "first_choices": 8
+    },
+    "Case2": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.5845312668850298,
+          "peak_above_ambient_k": {
+            "west": 9.070346895284734,
+            "east": 17.31726308971774,
+            "south": 12.263941079238617,
+            "north": 17.270955015660952
+          },
+          "wire": 114.56901943944011,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 0,
+          "least_passing_wire": 103.16553615316
+        },
+        "tiled": {
+          "gain_k": 0.8005709972152495,
+          "peak_above_ambient_k": {
+            "west": 8.854307164954514,
+            "east": 16.2073647557827,
+            "south": 12.062091299508007,
+            "north": 16.863064814829695
+          },
+          "wire": 110.68549941296016,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 4,
+          "least_passing_wire": 110.34754738455999
+        },
+        "hotspots": {
+          "gain_k": 0.8005709972152495,
+          "peak_above_ambient_k": {
+            "west": 8.854307164954514,
+            "east": 16.2073647557827,
+            "south": 12.062091299508007,
+            "north": 16.863064814829695
+          },
+          "wire": 110.68549941296016,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 4,
+          "least_passing_wire": 110.39916339764001
+        },
+        "sparse": {
+          "gain_k": 0.8005709972152495,
+          "peak_above_ambient_k": {
+            "west": 8.854307164954514,
+            "east": 16.2073647557827,
+            "south": 12.062091299508007,
+            "north": 16.863064814829695
+          },
+          "wire": 110.68549941296016,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 4,
+          "least_passing_wire": 110.34754738455999
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.5287929604834787,
+          "centre_k": 0.6942350539458957
+        },
+        "tiled": {
+          "four_k": 0.6797628044689432,
+          "centre_k": 0.8969269959004222
+        },
+        "hotspots": {
+          "four_k": 0.6797628044689432,
+          "centre_k": 0.8969269959004222
+        },
+        "sparse": {
+          "four_k": 0.6797628044689432,
+          "centre_k": 0.8969269959004222
+        }
+      },
+      "cap": 130.05228332924,
+      "metric": "pin_manhattan_m",
+      "first_choices": 28
+    },
+    "Case3": {
+      "arms": {
+        "previous": {
+          "gain_k": 1.3786570522886663,
+          "peak_above_ambient_k": {
+            "west": 20.261533609668025,
+            "east": 34.95472140645666,
+            "south": 33.141546575948006,
+            "north": 21.415161574554816
+          },
+          "wire": 179.58606587479966,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 179.5860658748
+        },
+        "tiled": {
+          "gain_k": 2.1744735005450337,
+          "peak_above_ambient_k": {
+            "west": 23.27020256573533,
+            "east": 34.74803511990022,
+            "south": 32.31309425761733,
+            "north": 20.725749987331493
+          },
+          "wire": 190.85006587479987,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 7,
+          "least_passing_wire": 182.4021858772
+        },
+        "hotspots": {
+          "gain_k": 1.6101055122476495,
+          "peak_above_ambient_k": {
+            "west": 20.55477284853679,
+            "east": 36.07775562658959,
+            "south": 32.20404888690385,
+            "north": 21.290117975628878
+          },
+          "wire": 187.6373668772001,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 7,
+          "least_passing_wire": 187.6373668772
+        },
+        "sparse": {
+          "gain_k": 2.1744735005450337,
+          "peak_above_ambient_k": {
+            "west": 23.27020256573533,
+            "east": 34.74803511990022,
+            "south": 32.31309425761733,
+            "north": 20.725749987331493
+          },
+          "wire": 190.85006587479987,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 7,
+          "least_passing_wire": 182.4021858772
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.5281902819484401,
+          "centre_k": 1.7460364548011
+        },
+        "tiled": {
+          "four_k": 1.4693237278006919,
+          "centre_k": 1.7644326168656121
+        },
+        "hotspots": {
+          "four_k": 0.9462700400160031,
+          "centre_k": 1.620858149993019
+        },
+        "sparse": {
+          "four_k": 1.4693237278006919,
+          "centre_k": 1.7644326168656121
+        }
+      },
+      "cap": 224.24524687480002,
+      "metric": "pin_manhattan_m",
+      "first_choices": 29
+    },
+    "Case4": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.9008936208686436,
+          "peak_above_ambient_k": {
+            "west": 67.79662668918539,
+            "east": 60.936750553173546,
+            "south": 61.031165471556896,
+            "north": 74.79968918275833
+          },
+          "wire": 224.7866925420001,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 224.786692542
+        },
+        "tiled": {
+          "gain_k": 1.1666675024195285,
+          "peak_above_ambient_k": {
+            "west": 67.64787361561984,
+            "east": 62.27471602029506,
+            "south": 61.348256631041835,
+            "north": 74.51701148886048
+          },
+          "wire": 224.0997595228001,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 1,
+          "least_passing_wire": 224.09975952279999
+        },
+        "hotspots": {
+          "gain_k": 1.1666675024195285,
+          "peak_above_ambient_k": {
+            "west": 67.64787361561984,
+            "east": 62.27471602029506,
+            "south": 61.348256631041835,
+            "north": 74.51701148886048
+          },
+          "wire": 224.0997595228001,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 1,
+          "least_passing_wire": 224.09975952279999
+        },
+        "sparse": {
+          "gain_k": 1.1666675024195285,
+          "peak_above_ambient_k": {
+            "west": 67.64787361561984,
+            "east": 62.27471602029506,
+            "south": 61.348256631041835,
+            "north": 74.51701148886048
+          },
+          "wire": 224.0997595228001,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 1,
+          "least_passing_wire": 224.09975952279999
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 1.1499471294979173,
+          "centre_k": 1.45402319312646
+        },
+        "tiled": {
+          "four_k": 1.2481174118633618,
+          "centre_k": 1.4481055058576686
+        },
+        "hotspots": {
+          "four_k": 1.2481174118633618,
+          "centre_k": 1.4481055058576686
+        },
+        "sparse": {
+          "four_k": 1.2481174118633618,
+          "centre_k": 1.4481055058576686
+        }
+      },
+      "cap": 245.43560151679998,
+      "metric": "pin_manhattan_m",
+      "first_choices": 27
+    },
+    "Case5": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.10029003311763773,
+          "peak_above_ambient_k": {
+            "west": 34.07989452214152,
+            "east": 43.68363716079602,
+            "south": 39.78353553526721,
+            "north": 38.250025359127854
+          },
+          "wire": 166.61631156159996,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 166.61631156159999
+        },
+        "tiled": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 34.75883331504743,
+            "east": 43.930318627622114,
+            "south": 39.976380584585925,
+            "north": 38.35031539224549
+          },
+          "wire": 170.48831156159991,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 1,
+          "least_passing_wire": null
+        },
+        "hotspots": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 34.75883331504743,
+            "east": 43.930318627622114,
+            "south": 39.976380584585925,
+            "north": 38.35031539224549
+          },
+          "wire": 170.48831156159991,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 1,
+          "least_passing_wire": null
+        },
+        "sparse": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 34.75883331504743,
+            "east": 43.930318627622114,
+            "south": 39.976380584585925,
+            "north": 38.35031539224549
+          },
+          "wire": 170.48831156159991,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 1,
+          "least_passing_wire": null
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.18340075268956468,
+          "centre_k": 0.02143918687045243
+        },
+        "tiled": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "hotspots": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "sparse": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        }
+      },
+      "cap": 170.4883115616,
+      "metric": "pin_manhattan_m",
+      "first_choices": 7
+    },
+    "Case6": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.6941487733738612,
+          "peak_above_ambient_k": {
+            "west": 29.767059813540587,
+            "east": 34.0592318071825,
+            "south": 41.24627605489284,
+            "north": 26.092084460094764
+          },
+          "wire": 154.1346195154001,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 154.1346195154
+        },
+        "tiled": {
+          "gain_k": 0.6941487733738612,
+          "peak_above_ambient_k": {
+            "west": 29.767059813540587,
+            "east": 34.0592318071825,
+            "south": 41.24627605489284,
+            "north": 26.092084460094764
+          },
+          "wire": 154.1346195154001,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 2,
+          "least_passing_wire": 154.1346195154
+        },
+        "hotspots": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 30.56480504782835,
+            "east": 35.1243522075501,
+            "south": 41.9404248282667,
+            "north": 26.807674165402194
+          },
+          "wire": 161.88587953940012,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 1,
+          "least_passing_wire": null
+        },
+        "sparse": {
+          "gain_k": 0.6941487733738612,
+          "peak_above_ambient_k": {
+            "west": 29.767059813540587,
+            "east": 34.0592318071825,
+            "south": 41.24627605489284,
+            "north": 26.092084460094764
+          },
+          "wire": 154.1346195154001,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 2,
+          "least_passing_wire": 154.1346195154
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.5188999491477944,
+          "centre_k": 1.7746765070594819
+        },
+        "tiled": {
+          "four_k": 0.5188999491477944,
+          "centre_k": 1.7746765070594819
+        },
+        "hotspots": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "sparse": {
+          "four_k": 0.5188999491477944,
+          "centre_k": 1.7746765070594819
+        }
+      },
+      "cap": 161.88587953939998,
+      "metric": "pin_manhattan_m",
+      "first_choices": 54
+    },
+    "Case7": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.28411170227425586,
+          "peak_above_ambient_k": {
+            "west": 9.707995035800488,
+            "east": 11.966022620064853,
+            "south": 7.644053563805963,
+            "north": 10.33063069975618
+          },
+          "wire": 46.62997997927998,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 45.81414999496
+        },
+        "tiled": {
+          "gain_k": 0.32412819447605123,
+          "peak_above_ambient_k": {
+            "west": 9.697735610199544,
+            "east": 11.937570412410949,
+            "south": 7.874430313383686,
+            "north": 10.290614207554384
+          },
+          "wire": 46.97062998167999,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 1,
+          "least_passing_wire": 45.81414999496
+        },
+        "hotspots": {
+          "gain_k": 0.32412819447605123,
+          "peak_above_ambient_k": {
+            "west": 9.697735610199544,
+            "east": 11.937570412410949,
+            "south": 7.874430313383686,
+            "north": 10.290614207554384
+          },
+          "wire": 46.97062998167999,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 2,
+          "least_passing_wire": 45.81414999496
+        },
+        "sparse": {
+          "gain_k": 0.32412819447605123,
+          "peak_above_ambient_k": {
+            "west": 9.697735610199544,
+            "east": 11.937570412410949,
+            "south": 7.874430313383686,
+            "north": 10.290614207554384
+          },
+          "wire": 46.97062998167999,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 2,
+          "least_passing_wire": 45.81414999496
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.27207601115717495,
+          "centre_k": 0.0431491519322762
+        },
+        "tiled": {
+          "four_k": 0.2883089757035222,
+          "centre_k": 0.048050825146823684
+        },
+        "hotspots": {
+          "four_k": 0.2883089757035222,
+          "centre_k": 0.048050825146823684
+        },
+        "sparse": {
+          "four_k": 0.2883089757035222,
+          "centre_k": 0.048050825146823684
+        }
+      },
+      "cap": 47.33103000296,
+      "metric": "pin_manhattan_m",
+      "first_choices": 84
+    },
+    "Case8": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "wire": 49.460340050900015,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": null
+        },
+        "tiled": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "wire": 49.460340050900015,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 9,
+          "least_passing_wire": null
+        },
+        "hotspots": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "wire": 49.460340050900015,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 4,
+          "least_passing_wire": null
+        },
+        "sparse": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "wire": 49.460340050900015,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 7,
+          "least_passing_wire": null
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "tiled": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "hotspots": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "sparse": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        }
+      },
+      "cap": 49.460340050899994,
+      "metric": "pin_manhattan_m",
+      "first_choices": 125
+    },
+    "Case9": {
+      "arms": {
+        "previous": {
+          "gain_k": 1.6966089640047244,
+          "peak_above_ambient_k": {
+            "west": 59.62603928575747,
+            "east": 77.47480523740637,
+            "south": 62.21530931266346,
+            "north": 75.66856028531384
+          },
+          "wire": 315.96511978999985,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 315.96511979
+        },
+        "tiled": {
+          "gain_k": 1.6966089640047244,
+          "peak_above_ambient_k": {
+            "west": 59.62603928575747,
+            "east": 77.47480523740637,
+            "south": 62.21530931266346,
+            "north": 75.66856028531384
+          },
+          "wire": 315.96511978999985,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 315.96511979
+        },
+        "hotspots": {
+          "gain_k": 1.6966089640047244,
+          "peak_above_ambient_k": {
+            "west": 59.62603928575747,
+            "east": 77.47480523740637,
+            "south": 62.21530931266346,
+            "north": 75.66856028531384
+          },
+          "wire": 315.96511978999985,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 315.96511979
+        },
+        "sparse": {
+          "gain_k": 1.6966089640047244,
+          "peak_above_ambient_k": {
+            "west": 59.62603928575747,
+            "east": 77.47480523740637,
+            "south": 62.21530931266346,
+            "north": 75.66856028531384
+          },
+          "wire": 315.96511978999985,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 315.96511979
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 1.4889145756463051,
+          "centre_k": 1.288660820976176
+        },
+        "tiled": {
+          "four_k": 1.4889145756463051,
+          "centre_k": 1.288660820976176
+        },
+        "hotspots": {
+          "four_k": 1.4889145756463051,
+          "centre_k": 1.288660820976176
+        },
+        "sparse": {
+          "four_k": 1.4889145756463051,
+          "centre_k": 1.288660820976176
+        }
+      },
+      "cap": 332.92887979,
+      "metric": "pin_manhattan_m",
+      "first_choices": 137
+    },
+    "Case10": {
+      "arms": {
+        "previous": {
+          "gain_k": 2.2442923711770675,
+          "peak_above_ambient_k": {
+            "west": 39.315011642388185,
+            "east": 42.533077707394995,
+            "south": 33.319254700147866,
+            "north": 50.50759490729008
+          },
+          "wire": 147.9766298213199,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 136.30917982712
+        },
+        "tiled": {
+          "gain_k": 2.31772796736643,
+          "peak_above_ambient_k": {
+            "west": 39.36974655819084,
+            "east": 42.06961325398717,
+            "south": 33.2458191039585,
+            "north": 50.268545366467855
+          },
+          "wire": 136.51140973991997,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 4,
+          "least_passing_wire": 126.07145974772
+        },
+        "hotspots": {
+          "gain_k": 2.31772796736643,
+          "peak_above_ambient_k": {
+            "west": 39.36974655819084,
+            "east": 42.06961325398717,
+            "south": 33.2458191039585,
+            "north": 50.268545366467855
+          },
+          "wire": 136.51140973991997,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 4,
+          "least_passing_wire": 133.10061989111998
+        },
+        "sparse": {
+          "gain_k": 2.31772796736643,
+          "peak_above_ambient_k": {
+            "west": 39.36974655819084,
+            "east": 42.06961325398717,
+            "south": 33.2458191039585,
+            "north": 50.268545366467855
+          },
+          "wire": 136.51140973991997,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 4,
+          "least_passing_wire": 126.07145974772
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 2.3025564840751684,
+          "centre_k": 1.5545054477032352
+        },
+        "tiled": {
+          "four_k": 2.2942890158912803,
+          "centre_k": 1.6170863831089406
+        },
+        "hotspots": {
+          "four_k": 2.2942890158912803,
+          "centre_k": 1.6170863831089406
+        },
+        "sparse": {
+          "four_k": 2.2942890158912803,
+          "centre_k": 1.6170863831089406
+        }
+      },
+      "cap": 154.57712974772,
+      "metric": "pin_manhattan_m",
+      "first_choices": 140
+    },
+    "ascend910": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.21853970619151397,
+          "peak_above_ambient_k": {
+            "west": 9.180266127823351,
+            "east": 16.762054388386574,
+            "south": 19.16976375458702,
+            "north": 7.6090309694622436
+          },
+          "wire": 25.300653594771237,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 24.88235294117647
+        },
+        "tiled": {
+          "gain_k": 0.25299471139923746,
+          "peak_above_ambient_k": {
+            "west": 9.145811122615628,
+            "east": 16.853662508600824,
+            "south": 19.225724665805625,
+            "north": 7.588357190798309
+          },
+          "wire": 24.464052287581698,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 3,
+          "least_passing_wire": 24.464052287581698
+        },
+        "hotspots": {
+          "gain_k": 0.24843796000632423,
+          "peak_above_ambient_k": {
+            "west": 9.150367874008541,
+            "east": 16.80102385707138,
+            "south": 19.217713856421923,
+            "north": 7.586038384493987
+          },
+          "wire": 24.464052287581698,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 3,
+          "least_passing_wire": 24.464052287581698
+        },
+        "sparse": {
+          "gain_k": 0.25299471139923746,
+          "peak_above_ambient_k": {
+            "west": 9.145811122615628,
+            "east": 16.853662508600824,
+            "south": 19.225724665805625,
+            "north": 7.588357190798309
+          },
+          "wire": 24.464052287581698,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 3,
+          "least_passing_wire": 24.464052287581698
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.21452307805325432,
+          "centre_k": 0.7544926561262173
+        },
+        "tiled": {
+          "four_k": 0.23674036643047458,
+          "centre_k": 0.8092777903138355
+        },
+        "hotspots": {
+          "four_k": 0.24949006720036948,
+          "centre_k": 0.779635278783708
+        },
+        "sparse": {
+          "four_k": 0.23674036643047458,
+          "centre_k": 0.8092777903138355
+        }
+      },
+      "cap": 26.34640522875817,
+      "metric": "demand_weighted_centre_mm",
+      "first_choices": 23
+    },
+    "micro150": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.8439542357297753,
+          "peak_above_ambient_k": {
+            "west": 23.460408829326692,
+            "east": 38.365607191580956,
+            "south": 22.13543745883333,
+            "north": 32.85758497417486
+          },
+          "wire": 34.80000000000002,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 0,
+          "least_passing_wire": 34.8
+        },
+        "tiled": {
+          "gain_k": 2.5944400305218984,
+          "peak_above_ambient_k": {
+            "west": 21.70992303453457,
+            "east": 30.152838436217877,
+            "south": 19.726618232739263,
+            "north": 30.39134559581528
+          },
+          "wire": 29.70000000000001,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 9,
+          "least_passing_wire": 28.8
+        },
+        "hotspots": {
+          "gain_k": 2.5944400305218984,
+          "peak_above_ambient_k": {
+            "west": 21.70992303453457,
+            "east": 30.152838436217877,
+            "south": 19.726618232739263,
+            "north": 30.39134559581528
+          },
+          "wire": 29.70000000000001,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 8,
+          "least_passing_wire": 29.7
+        },
+        "sparse": {
+          "gain_k": 2.5944400305218984,
+          "peak_above_ambient_k": {
+            "west": 21.70992303453457,
+            "east": 30.152838436217877,
+            "south": 19.726618232739263,
+            "north": 30.39134559581528
+          },
+          "wire": 29.70000000000001,
+          "outside_all_first_choices": true,
+          "outside_fixed_first_choices": true,
+          "outside_proposals": 9,
+          "least_passing_wire": 29.1
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.6738172368339406,
+          "centre_k": 3.1916705684913182
+        },
+        "tiled": {
+          "four_k": 2.3832927095090497,
+          "centre_k": 7.872805571157691
+        },
+        "hotspots": {
+          "four_k": 2.3832927095090497,
+          "centre_k": 7.872805571157691
+        },
+        "sparse": {
+          "four_k": 2.3832927095090497,
+          "centre_k": 7.872805571157691
+        }
+      },
+      "cap": 36.3,
+      "metric": "demand_weighted_centre_mm",
+      "first_choices": 38
+    },
+    "multigpu": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.3219485492621956,
+          "peak_above_ambient_k": {
+            "west": 22.226782146617865,
+            "east": 37.339234881197825,
+            "south": 34.625289033659804,
+            "north": 23.15443088449516
+          },
+          "wire": 27.555555555555554,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 27.555555555555557
+        },
+        "tiled": {
+          "gain_k": 0.3219485492621956,
+          "peak_above_ambient_k": {
+            "west": 22.226782146617865,
+            "east": 37.339234881197825,
+            "south": 34.625289033659804,
+            "north": 23.15443088449516
+          },
+          "wire": 27.555555555555554,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 27.555555555555557
+        },
+        "hotspots": {
+          "gain_k": 0.3219485492621956,
+          "peak_above_ambient_k": {
+            "west": 22.226782146617865,
+            "east": 37.339234881197825,
+            "south": 34.625289033659804,
+            "north": 23.15443088449516
+          },
+          "wire": 27.555555555555554,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 27.555555555555557
+        },
+        "sparse": {
+          "gain_k": 0.3219485492621956,
+          "peak_above_ambient_k": {
+            "west": 22.226782146617865,
+            "east": 37.339234881197825,
+            "south": 34.625289033659804,
+            "north": 23.15443088449516
+          },
+          "wire": 27.555555555555554,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": 27.555555555555557
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.20515908440063413,
+          "centre_k": 0.04141306055248606
+        },
+        "tiled": {
+          "four_k": 0.20515908440063413,
+          "centre_k": 0.04141306055248606
+        },
+        "hotspots": {
+          "four_k": 0.20515908440063413,
+          "centre_k": 0.04141306055248606
+        },
+        "sparse": {
+          "four_k": 0.20515908440063413,
+          "centre_k": 0.04141306055248606
+        }
+      },
+      "cap": 27.77777777777778,
+      "metric": "demand_weighted_centre_mm",
+      "first_choices": 20
+    },
+    "RC-mesh-3x4": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 9.625995183812346,
+            "east": 9.625995183812236,
+            "south": 8.356791094355051,
+            "north": 8.356791094355009
+          },
+          "wire": 0.4590438873070082,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": null
+        },
+        "tiled": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 9.625995183812346,
+            "east": 9.625995183812236,
+            "south": 8.356791094355051,
+            "north": 8.356791094355009
+          },
+          "wire": 0.4590438873070082,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 2,
+          "least_passing_wire": null
+        },
+        "hotspots": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 9.625995183812346,
+            "east": 9.625995183812236,
+            "south": 8.356791094355051,
+            "north": 8.356791094355009
+          },
+          "wire": 0.4590438873070082,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 2,
+          "least_passing_wire": null
+        },
+        "sparse": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 9.625995183812346,
+            "east": 9.625995183812236,
+            "south": 8.356791094355051,
+            "north": 8.356791094355009
+          },
+          "wire": 0.4590438873070082,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 2,
+          "least_passing_wire": null
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "tiled": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "hotspots": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "sparse": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        }
+      },
+      "cap": 0.4590438873070082,
+      "metric": "pin_manhattan_m",
+      "first_choices": 49
+    },
+    "RC-folded_torus-4x4": {
+      "arms": {
+        "previous": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 12.626413792278468,
+            "east": 12.62641379227832,
+            "south": 12.62641379227857,
+            "north": 12.626413792278393
+          },
+          "wire": 1.051083703790875,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 0,
+          "least_passing_wire": null
+        },
+        "tiled": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 12.626413792278468,
+            "east": 12.62641379227832,
+            "south": 12.62641379227857,
+            "north": 12.626413792278393
+          },
+          "wire": 1.051083703790875,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 4,
+          "least_passing_wire": null
+        },
+        "hotspots": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 12.626413792278468,
+            "east": 12.62641379227832,
+            "south": 12.62641379227857,
+            "north": 12.626413792278393
+          },
+          "wire": 1.051083703790875,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 4,
+          "least_passing_wire": null
+        },
+        "sparse": {
+          "gain_k": 0.0,
+          "peak_above_ambient_k": {
+            "west": 12.626413792278468,
+            "east": 12.62641379227832,
+            "south": 12.62641379227857,
+            "north": 12.626413792278393
+          },
+          "wire": 1.051083703790875,
+          "outside_all_first_choices": false,
+          "outside_fixed_first_choices": false,
+          "outside_proposals": 4,
+          "least_passing_wire": null
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "tiled": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "hotspots": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        },
+        "sparse": {
+          "four_k": 0.0,
+          "centre_k": 0.0
+        }
+      },
+      "cap": 1.0510837037908747,
+      "metric": "pin_manhattan_m",
+      "first_choices": 58
+    }
+  },
+  "case4_counterexample": {
+    "known": {
+      "action": {
+        "chips": [
+          "GPU_0",
+          "HBM_4"
+        ],
+        "indices": [
+          2,
+          10
+        ],
+        "from_um": [
+          [
+            13000.0,
+            13000.0
+          ],
+          [
+            42000.0,
+            53000.0
+          ]
+        ],
+        "to_um": [
+          [
+            14000.0,
+            15000.0
+          ],
+          [
+            20000.0,
+            34000.0
+          ]
+        ],
+        "cost": 224.09975952279999
+      },
+      "gain_k": 1.1666675024195285,
+      "improvement_k": 0.265773881550885,
+      "outside_old": true
+    },
+    "both_outside": true,
+    "equal_eight": {
+      "previous": {
+        "action": {
+          "chips": [
+            "GPU_0",
+            "HBM_4"
+          ],
+          "indices": [
+            2,
+            10
+          ],
+          "from_um": [
+            [
+              13000.0,
+              13000.0
+            ],
+            [
+              42000.0,
+              53000.0
+            ]
+          ],
+          "to_um": [
+            [
+              15000.0,
+              15000.0
+            ],
+            [
+              20000.0,
+              34000.0
+            ]
+          ],
+          "cost": 224.7866925420001
+        },
+        "raw_action": {
+          "chips": [
+            "GPU_0",
+            "HBM_4"
+          ],
+          "indices": [
+            2,
+            10
+          ],
+          "from_um": [
+            [
+              13000.0,
+              13000.0
+            ],
+            [
+              42000.0,
+              53000.0
+            ]
+          ],
+          "to_um": [
+            [
+              15000.0,
+              15000.0
+            ],
+            [
+              20000.0,
+              34000.0
+            ]
+          ],
+          "cost": 224.7866925420001
+        },
+        "gain_k": 0.9008936208686436,
+        "raw_k": 0.9008936208686436,
+        "cap": 245.43560151679998,
+        "budget": 8,
+        "trace": [
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15000.0,
+                  15000.0
+                ],
+                [
+                  20000.0,
+                  34000.0
+                ]
+              ],
+              "cost": 224.7866925420001
+            },
+            "upper_k": 0.9008936208685583,
+            "gains_k": [
+              1.6043087805229561,
+              2.9887414204444696,
+              1.4837586619044671,
+              0.9008936208686436
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              53
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15000.0,
+                  15000.0
+                ],
+                [
+                  19000.0,
+                  34000.0
+                ]
+              ],
+              "cost": 225.49069254200012
+            },
+            "upper_k": 0.8875243919249378,
+            "gains_k": [
+              1.6170781085416621,
+              2.913760209257717,
+              1.4670369959326948,
+              0.8875243919250408
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              53
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15000.0,
+                  15000.0
+                ],
+                [
+                  18000.0,
+                  34000.0
+                ]
+              ],
+              "cost": 226.19469254200013
+            },
+            "upper_k": 0.870549830860309,
+            "gains_k": [
+              1.6276054948673249,
+              2.8415292992411167,
+              1.4484621795500487,
+              0.8705498308603978
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              53
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15000.0,
+                  15000.0
+                ],
+                [
+                  20000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 224.0826925420001
+            },
+            "upper_k": 0.8649621422658326,
+            "gains_k": [
+              1.607785136929209,
+              2.96132565388875,
+              1.587715679601331,
+              0.8649621422658953
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              53
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15000.0,
+                  15000.0
+                ],
+                [
+                  19000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 224.7866925420001
+            },
+            "upper_k": 0.8518937788465818,
+            "gains_k": [
+              1.6205877202610992,
+              2.883621581247219,
+              1.5699495864404582,
+              0.8518937788466729
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              53
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15000.0,
+                  15000.0
+                ],
+                [
+                  18000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 225.49069254200012
+            },
+            "upper_k": 0.8351775946920128,
+            "gains_k": [
+              1.6311156749353444,
+              2.8087520403724895,
+              1.5498130873365596,
+              0.8351775946921265
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              53
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15000.0,
+                  15000.0
+                ],
+                [
+                  20000.0,
+                  32000.0
+                ]
+              ],
+              "cost": 223.39575954200015
+            },
+            "upper_k": 0.8217500271299466,
+            "gains_k": [
+              1.6099093205562127,
+              2.9312002108070274,
+              1.68522905471319,
+              0.8217500271300793
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              53
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  15000.0,
+                  15000.0
+                ],
+                [
+                  19000.0,
+                  32000.0
+                ]
+              ],
+              "cost": 224.09975954200016
+            },
+            "upper_k": 0.8091767954734029,
+            "gains_k": [
+              1.6227779925427086,
+              2.850648421469785,
+              1.6666045742216227,
+              0.8091767954734905
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              53
+            ],
+            "added": false
+          }
+        ],
+        "checks": 8,
+        "initial_observers": 4,
+        "added": 0,
+        "stored_rows": 4,
+        "certified_after": 1,
+        "incomplete_master": false,
+        "scored_pairs": 33640,
+        "wire_cuts": 0
+      },
+      "tiled": {
+        "action": {
+          "chips": [
+            "GPU_0",
+            "HBM_4"
+          ],
+          "indices": [
+            2,
+            10
+          ],
+          "from_um": [
+            [
+              13000.0,
+              13000.0
+            ],
+            [
+              42000.0,
+              53000.0
+            ]
+          ],
+          "to_um": [
+            [
+              14000.0,
+              15000.0
+            ],
+            [
+              20000.0,
+              34000.0
+            ]
+          ],
+          "cost": 224.0997595228001
+        },
+        "raw_action": {
+          "chips": [
+            "GPU_0",
+            "HBM_4"
+          ],
+          "indices": [
+            2,
+            10
+          ],
+          "from_um": [
+            [
+              13000.0,
+              13000.0
+            ],
+            [
+              42000.0,
+              53000.0
+            ]
+          ],
+          "to_um": [
+            [
+              14000.0,
+              15000.0
+            ],
+            [
+              20000.0,
+              34000.0
+            ]
+          ],
+          "cost": 224.0997595228001
+        },
+        "gain_k": 1.1666675024195285,
+        "raw_k": 1.1666675024195285,
+        "cap": 245.43560151679998,
+        "budget": 8,
+        "trace": [
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  14000.0,
+                  15000.0
+                ],
+                [
+                  20000.0,
+                  34000.0
+                ]
+              ],
+              "cost": 224.0997595228001
+            },
+            "upper_k": 1.1860634834676667,
+            "gains_k": [
+              1.7530618540885001,
+              1.650775953322956,
+              1.1666675024195285,
+              1.1835713147664961
+            ],
+            "limiting_boundary": "south",
+            "cell_yx": [
+              75,
+              43
+            ],
+            "added": true
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  14000.0,
+                  15000.0
+                ],
+                [
+                  20000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 223.3957595228001
+            },
+            "upper_k": 1.150132004864938,
+            "gains_k": [
+              1.7565382104947531,
+              1.6244981948821646,
+              1.2706245201163995,
+              1.1482625768986452
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              54
+            ],
+            "added": true
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  14000.0,
+                  15000.0
+                ],
+                [
+                  19000.0,
+                  34000.0
+                ]
+              ],
+              "cost": 224.8037595228001
+            },
+            "upper_k": 1.1499458364477908,
+            "gains_k": [
+              1.7658311821072203,
+              1.5743460518556347,
+              1.1499458364477704,
+              1.170674446872681
+            ],
+            "limiting_boundary": "south",
+            "cell_yx": [
+              75,
+              43
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  14000.0,
+                  15000.0
+                ],
+                [
+                  19000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 224.0997595228001
+            },
+            "upper_k": 1.13569454346327,
+            "gains_k": [
+              1.7693407938266006,
+              1.5453629506760294,
+              1.2528584269555338,
+              1.1356945434633587
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              54
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  14000.0,
+                  15000.0
+                ],
+                [
+                  18000.0,
+                  34000.0
+                ]
+              ],
+              "cost": 225.50775952280011
+            },
+            "upper_k": 1.1313710200651634,
+            "gains_k": [
+              1.7763585684328973,
+              1.5005217755459839,
+              1.1313710200651386,
+              1.1542265671144918
+            ],
+            "limiting_boundary": "south",
+            "cell_yx": [
+              75,
+              43
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  14000.0,
+                  15000.0
+                ],
+                [
+                  18000.0,
+                  33000.0
+                ]
+              ],
+              "cost": 224.8037595228001
+            },
+            "upper_k": 1.1195297450891744,
+            "gains_k": [
+              1.7798687485008458,
+              1.4688933648823905,
+              1.2327219278516353,
+              1.1195297450892383
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              54
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  14000.0,
+                  15000.0
+                ],
+                [
+                  20000.0,
+                  32000.0
+                ]
+              ],
+              "cost": 222.70882652280014
+            },
+            "upper_k": 1.1058096838309996,
+            "gains_k": [
+              1.7586623941217852,
+              1.59566532874598,
+              1.3681378952282799,
+              1.1058096838310405
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              54
+            ],
+            "added": false
+          },
+          {
+            "action": {
+              "chips": [
+                "GPU_0",
+                "HBM_4"
+              ],
+              "indices": [
+                2,
+                10
+              ],
+              "from_um": [
+                [
+                  13000.0,
+                  13000.0
+                ],
+                [
+                  42000.0,
+                  53000.0
+                ]
+              ],
+              "to_um": [
+                [
+                  14000.0,
+                  15000.0
+                ],
+                [
+                  19000.0,
+                  32000.0
+                ]
+              ],
+              "cost": 223.41282652280015
+            },
+            "upper_k": 1.0937669243392953,
+            "gains_k": [
+              1.7715310661082384,
+              1.5137141910839915,
+              1.3495134147367054,
+              1.0937669243393628
+            ],
+            "limiting_boundary": "north",
+            "cell_yx": [
+              24,
+              54
+            ],
+            "added": false
+          }
+        ],
+        "checks": 8,
+        "initial_observers": 100,
+        "added": 2,
+        "stored_rows": 17,
+        "certified_after": 1,
+        "incomplete_master": false,
+        "scored_pairs": 23392,
+        "wire_cuts": 0
+      }
+    }
+  },
+  "simultaneous_case5": {
+    "2": {
+      "action": {
+        "chips": [
+          "CPU2_5",
+          "DRAM_3"
+        ],
+        "indices": [
+          5,
+          9
+        ],
+        "from_um": [
+          [
+            26500.0,
+            23100.0
+          ],
+          [
+            12600.0,
+            13600.0
+          ]
+        ],
+        "to_um": [
+          [
+            25500.0,
+            23100.0
+          ],
+          [
+            15600.0,
+            13600.0
+          ]
+        ],
+        "cost": 166.61631156159993
+      },
+      "raw_action": {
+        "chips": [
+          "CPU2_5",
+          "DRAM_3"
+        ],
+        "indices": [
+          5,
+          9
+        ],
+        "from_um": [
+          [
+            26500.0,
+            23100.0
+          ],
+          [
+            12600.0,
+            13600.0
+          ]
+        ],
+        "to_um": [
+          [
+            25500.0,
+            23100.0
+          ],
+          [
+            15600.0,
+            13600.0
+          ]
+        ],
+        "cost": 166.61631156159993
+      },
+      "gain_k": 0.10029003311763773,
+      "raw_k": 0.10029003311763773,
+      "cap": 170.4883115616,
+      "budget": 8,
+      "trace": [
+        {
+          "action": {
+            "chips": [
+              "CPU2_2",
+              "CPU2_4"
+            ],
+            "indices": [
+              2,
+              4
+            ],
+            "from_um": [
+              [
+                7400.0,
+                23900.0
+              ],
+              [
+                4000.0,
+                9500.0
+              ]
+            ],
+            "to_um": [
+              [
+                6400.0,
+                22900.0
+              ],
+              [
+                4000.0,
+                12500.0
+              ]
+            ],
+            "cost": 169.68670399019996
+          },
+          "upper_k": 0.1434588634659324,
+          "gains_k": [
+            0.19632101735371776,
+            -1.3333950359983717,
+            0.14345886346593062,
+            1.7224768871588125
+          ],
+          "limiting_boundary": "east",
+          "cell_yx": [
+            45,
+            34
+          ],
+          "added": true,
+          "master_dual_upper_k": 0.1434588634659321
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_5",
+              "DRAM_3"
+            ],
+            "indices": [
+              5,
+              9
+            ],
+            "from_um": [
+              [
+                26500.0,
+                23100.0
+              ],
+              [
+                12600.0,
+                13600.0
+              ]
+            ],
+            "to_um": [
+              [
+                25500.0,
+                23100.0
+              ],
+              [
+                15600.0,
+                13600.0
+              ]
+            ],
+            "cost": 166.61631156159993
+          },
+          "upper_k": 0.10029003311766083,
+          "gains_k": [
+            0.6789387929059103,
+            0.2466814668260966,
+            0.19284504931871282,
+            0.10029003311763773
+          ],
+          "limiting_boundary": "north",
+          "cell_yx": [
+            35,
+            42
+          ],
+          "added": false,
+          "master_dual_upper_k": 0.10029003311766083
+        }
+      ],
+      "checks": 2,
+      "initial_observers": 100,
+      "added": 1,
+      "stored_rows": 101,
+      "certified_after": 2,
+      "incomplete_master": false,
+      "scored_pairs": 0,
+      "wire_cuts": 0
+    },
+    "12": {
+      "action": {
+        "chips": [
+          "CPU2_3",
+          "CPU2_4",
+          "CPU2_5",
+          "DRAM_1",
+          "DRAM_3",
+          "DRAM_5"
+        ],
+        "indices": [
+          3,
+          4,
+          5,
+          7,
+          9,
+          11
+        ],
+        "from_um": [
+          [
+            29500.0,
+            32000.0
+          ],
+          [
+            4000.0,
+            9500.0
+          ],
+          [
+            26500.0,
+            23100.0
+          ],
+          [
+            25500.0,
+            14500.0
+          ],
+          [
+            12600.0,
+            13600.0
+          ],
+          [
+            20400.0,
+            32500.0
+          ]
+        ],
+        "to_um": [
+          [
+            30500.0,
+            32000.0
+          ],
+          [
+            4000.0,
+            10500.0
+          ],
+          [
+            25500.0,
+            23100.0
+          ],
+          [
+            26500.0,
+            14500.0
+          ],
+          [
+            15600.0,
+            13600.0
+          ],
+          [
+            18400.0,
+            32500.0
+          ]
+        ],
+        "cost": 169.3026607629999
+      },
+      "raw_action": {
+        "chips": [
+          "CPU2_3",
+          "CPU2_4",
+          "CPU2_5",
+          "DRAM_1",
+          "DRAM_3",
+          "DRAM_5"
+        ],
+        "indices": [
+          3,
+          4,
+          5,
+          7,
+          9,
+          11
+        ],
+        "from_um": [
+          [
+            29500.0,
+            32000.0
+          ],
+          [
+            4000.0,
+            9500.0
+          ],
+          [
+            26500.0,
+            23100.0
+          ],
+          [
+            25500.0,
+            14500.0
+          ],
+          [
+            12600.0,
+            13600.0
+          ],
+          [
+            20400.0,
+            32500.0
+          ]
+        ],
+        "to_um": [
+          [
+            30500.0,
+            32000.0
+          ],
+          [
+            4000.0,
+            10500.0
+          ],
+          [
+            25500.0,
+            23100.0
+          ],
+          [
+            26500.0,
+            14500.0
+          ],
+          [
+            15600.0,
+            13600.0
+          ],
+          [
+            18400.0,
+            32500.0
+          ]
+        ],
+        "cost": 169.3026607629999
+      },
+      "gain_k": 0.2148309681802445,
+      "raw_k": 0.2148309681802445,
+      "cap": 170.4883115616,
+      "budget": 8,
+      "trace": [
+        {
+          "action": {
+            "chips": [
+              "CPU2_2",
+              "CPU2_4",
+              "CPU2_5",
+              "DRAM_2",
+              "DRAM_3",
+              "DRAM_5"
+            ],
+            "indices": [
+              2,
+              4,
+              5,
+              8,
+              9,
+              11
+            ],
+            "from_um": [
+              [
+                7400.0,
+                23900.0
+              ],
+              [
+                4000.0,
+                9500.0
+              ],
+              [
+                26500.0,
+                23100.0
+              ],
+              [
+                8500.0,
+                32500.0
+              ],
+              [
+                12600.0,
+                13600.0
+              ],
+              [
+                20400.0,
+                32500.0
+              ]
+            ],
+            "to_um": [
+              [
+                7400.0,
+                22900.0
+              ],
+              [
+                4000.0,
+                12500.0
+              ],
+              [
+                25500.0,
+                23100.0
+              ],
+              [
+                4500.0,
+                32500.0
+              ],
+              [
+                15600.0,
+                13600.0
+              ],
+              [
+                18400.0,
+                32500.0
+              ]
+            ],
+            "cost": 169.68670399019987
+          },
+          "upper_k": 0.5881860603605333,
+          "gains_k": [
+            1.0714511903917625,
+            -0.7607413875279363,
+            0.588186060360556,
+            1.9047966513751362
+          ],
+          "limiting_boundary": "east",
+          "cell_yx": [
+            45,
+            34
+          ],
+          "added": true,
+          "master_dual_upper_k": 0.5881860603605333
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_3",
+              "CPU2_4",
+              "CPU2_5",
+              "DRAM_3",
+              "DRAM_5"
+            ],
+            "indices": [
+              3,
+              4,
+              5,
+              9,
+              11
+            ],
+            "from_um": [
+              [
+                29500.0,
+                32000.0
+              ],
+              [
+                4000.0,
+                9500.0
+              ],
+              [
+                26500.0,
+                23100.0
+              ],
+              [
+                12600.0,
+                13600.0
+              ],
+              [
+                20400.0,
+                32500.0
+              ]
+            ],
+            "to_um": [
+              [
+                30500.0,
+                32000.0
+              ],
+              [
+                4000.0,
+                11500.0
+              ],
+              [
+                25500.0,
+                23100.0
+              ],
+              [
+                15600.0,
+                13600.0
+              ],
+              [
+                18400.0,
+                32500.0
+              ]
+            ],
+            "cost": 167.9306369672001
+          },
+          "upper_k": 0.3257570753001682,
+          "gains_k": [
+            0.3257570753001673,
+            0.1048962966375413,
+            0.4662812025030547,
+            1.4277509641129384
+          ],
+          "limiting_boundary": "east",
+          "cell_yx": [
+            43,
+            34
+          ],
+          "added": true,
+          "master_dual_upper_k": 0.3257570753001682
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_3",
+              "CPU2_4",
+              "CPU2_5",
+              "DRAM_3",
+              "DRAM_5"
+            ],
+            "indices": [
+              3,
+              4,
+              5,
+              9,
+              11
+            ],
+            "from_um": [
+              [
+                29500.0,
+                32000.0
+              ],
+              [
+                4000.0,
+                9500.0
+              ],
+              [
+                26500.0,
+                23100.0
+              ],
+              [
+                12600.0,
+                13600.0
+              ],
+              [
+                20400.0,
+                32500.0
+              ]
+            ],
+            "to_um": [
+              [
+                30500.0,
+                32000.0
+              ],
+              [
+                4000.0,
+                10500.0
+              ],
+              [
+                25500.0,
+                23100.0
+              ],
+              [
+                15600.0,
+                13600.0
+              ],
+              [
+                18400.0,
+                32500.0
+              ]
+            ],
+            "cost": 168.59866076299983
+          },
+          "upper_k": 0.2721107616777676,
+          "gains_k": [
+            0.2991371264828757,
+            0.19706916634248728,
+            0.5562548576752988,
+            0.7351469148706755
+          ],
+          "limiting_boundary": "east",
+          "cell_yx": [
+            42,
+            34
+          ],
+          "added": true,
+          "master_dual_upper_k": 0.2721107616777677
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_3",
+              "CPU2_4",
+              "CPU2_5",
+              "DRAM_1",
+              "DRAM_3",
+              "DRAM_5"
+            ],
+            "indices": [
+              3,
+              4,
+              5,
+              7,
+              9,
+              11
+            ],
+            "from_um": [
+              [
+                29500.0,
+                32000.0
+              ],
+              [
+                4000.0,
+                9500.0
+              ],
+              [
+                26500.0,
+                23100.0
+              ],
+              [
+                25500.0,
+                14500.0
+              ],
+              [
+                12600.0,
+                13600.0
+              ],
+              [
+                20400.0,
+                32500.0
+              ]
+            ],
+            "to_um": [
+              [
+                30500.0,
+                32000.0
+              ],
+              [
+                4000.0,
+                10500.0
+              ],
+              [
+                25500.0,
+                23100.0
+              ],
+              [
+                26500.0,
+                14500.0
+              ],
+              [
+                15600.0,
+                13600.0
+              ],
+              [
+                18400.0,
+                32500.0
+              ]
+            ],
+            "cost": 169.3026607629999
+          },
+          "upper_k": 0.21483096818025693,
+          "gains_k": [
+            0.237898894981889,
+            0.2148309681802445,
+            0.5401550348774933,
+            0.7486068651220208
+          ],
+          "limiting_boundary": "east",
+          "cell_yx": [
+            42,
+            34
+          ],
+          "added": false,
+          "master_dual_upper_k": 0.2148309681802569
+        }
+      ],
+      "checks": 4,
+      "initial_observers": 100,
+      "added": 3,
+      "stored_rows": 103,
+      "certified_after": 4,
+      "incomplete_master": false,
+      "scored_pairs": 0,
+      "wire_cuts": 0
+    }
+  },
+  "simultaneous_package": {
+    "west": {
+      "start": {
+        "cost": 170.4883115616,
+        "peak_c": 76.26360678456493,
+        "residual_w": 2.5011104298755527e-12,
+        "balance_w": -2.2737367544323206e-13,
+        "watts": 102.0,
+        "cooling_k": 0.0
+      },
+      "2": {
+        "cost": 166.61631156159999,
+        "peak_c": 75.62180182138263,
+        "residual_w": 1.2505552149377763e-12,
+        "balance_w": 2.8990143619012088e-12,
+        "watts": 102.0,
+        "cooling_k": 0.6418049631822953
+      },
+      "12": {
+        "cost": 169.302660763,
+        "peak_c": 76.30660591575399,
+        "residual_w": 1.5916157281026244e-12,
+        "balance_w": 4.433786671143025e-12,
+        "watts": 102.0,
+        "cooling_k": -0.04299913118906318
+      }
+    },
+    "east": {
+      "start": {
+        "cost": 170.4883115616,
+        "peak_c": 83.80044789683825,
+        "residual_w": 1.5929479957321746e-12,
+        "balance_w": 4.334310688136611e-12,
+        "watts": 102.0,
+        "cooling_k": 0.0
+      },
+      "2": {
+        "cost": 166.61631156159999,
+        "peak_c": 83.57730654451004,
+        "residual_w": 1.7337242752546445e-12,
+        "balance_w": -1.4921397450962104e-12,
+        "watts": 102.0,
+        "cooling_k": 0.22314135232821286
+      },
+      "12": {
+        "cost": 169.302660763,
+        "peak_c": 83.86038966932443,
+        "residual_w": 1.8758328224066645e-12,
+        "balance_w": -6.252776074688882e-13,
+        "watts": 102.0,
+        "cooling_k": -0.05994177248618371
+      }
+    },
+    "south": {
+      "start": {
+        "cost": 170.4883115616,
+        "peak_c": 80.32814464408864,
+        "residual_w": 2.704392265684419e-12,
+        "balance_w": -1.4779288903810084e-12,
+        "watts": 102.0,
+        "cooling_k": 0.0
+      },
+      "2": {
+        "cost": 166.61631156159999,
+        "peak_c": 80.11325672237733,
+        "residual_w": 2.4442670110147446e-12,
+        "balance_w": 1.7053025658242404e-13,
+        "watts": 102.00000000000001,
+        "cooling_k": 0.2148879217113091
+      },
+      "12": {
+        "cost": 169.302660763,
+        "peak_c": 79.86111662580109,
+        "residual_w": 1.9326762412674725e-12,
+        "balance_w": 3.396394276933279e-12,
+        "watts": 101.99999999999999,
+        "cooling_k": 0.46702801828755014
+      }
+    },
+    "north": {
+      "start": {
+        "cost": 170.4883115616,
+        "peak_c": 80.05738745999759,
+        "residual_w": 3.22608606495578e-12,
+        "balance_w": -1.9326762412674725e-12,
+        "watts": 102.0,
+        "cooling_k": 0.0
+      },
+      "2": {
+        "cost": 166.61631156159999,
+        "peak_c": 79.87398670730802,
+        "residual_w": 1.2505552149377763e-12,
+        "balance_w": 7.105427357601002e-14,
+        "watts": 102.00000000000001,
+        "cooling_k": 0.18340075268956468
+      },
+      "12": {
+        "cost": 169.302660763,
+        "peak_c": 79.22655235794464,
+        "residual_w": 1.7053025658242404e-12,
+        "balance_w": -1.7053025658242404e-13,
+        "watts": 102.0,
+        "cooling_k": 0.8308351020529443
+      }
+    },
+    "centre": {
+      "start": {
+        "cost": 170.4883115616,
+        "peak_c": 59.559946155450135,
+        "residual_w": 1.8366419496373965e-12,
+        "balance_w": -6.394884621840902e-13,
+        "watts": 101.99999999999999,
+        "cooling_k": 0.0
+      },
+      "2": {
+        "cost": 166.61631156159999,
+        "peak_c": 59.53850696857968,
+        "residual_w": 9.379164112033322e-13,
+        "balance_w": 1.5631940186722204e-12,
+        "watts": 101.99999999999999,
+        "cooling_k": 0.02143918687045243
+      },
+      "12": {
+        "cost": 169.302660763,
+        "peak_c": 59.34864781381581,
+        "residual_w": 1.2647660696529783e-12,
+        "balance_w": 1.4210854715202004e-13,
+        "watts": 102.00000000000001,
+        "cooling_k": 0.21129834163432548
+      }
+    }
+  },
+  "simultaneous_holdout": {
+    "action": {
+      "chips": [
+        "die_0",
+        "die_1",
+        "die_2",
+        "die_3",
+        "die_4",
+        "die_5",
+        "die_6",
+        "die_7",
+        "die_8",
+        "die_9",
+        "die_10",
+        "die_11"
+      ],
+      "indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "from_um": [
+        [
+          30994.317447922775,
+          7398.863489584554
+        ],
+        [
+          42792.04442709188,
+          30994.317447922775
+        ],
+        [
+          42792.04442709188,
+          7398.863489584554
+        ],
+        [
+          19196.59046875366,
+          30994.317447922775
+        ],
+        [
+          30994.317447922775,
+          30994.317447922775
+        ],
+        [
+          7398.863489584554,
+          30994.317447922775
+        ],
+        [
+          19196.59046875366,
+          7398.863489584554
+        ],
+        [
+          30994.317447922775,
+          19196.59046875366
+        ],
+        [
+          7398.863489584554,
+          19196.59046875366
+        ],
+        [
+          7398.863489584554,
+          7398.863489584554
+        ],
+        [
+          19196.59046875366,
+          19196.59046875366
+        ],
+        [
+          42792.04442709188,
+          19196.59046875366
+        ]
+      ],
+      "to_um": [
+        [
+          30994.317447922775,
+          9398.863489584553
+        ],
+        [
+          40792.04442709188,
+          29994.317447922775
+        ],
+        [
+          40792.04442709188,
+          8398.863489584553
+        ],
+        [
+          19196.59046875366,
+          28994.317447922775
+        ],
+        [
+          28994.317447922775,
+          28994.317447922775
+        ],
+        [
+          9398.863489584553,
+          29994.317447922775
+        ],
+        [
+          21196.59046875366,
+          9398.863489584553
+        ],
+        [
+          29994.317447922775,
+          19196.59046875366
+        ],
+        [
+          9398.863489584553,
+          18196.59046875366
+        ],
+        [
+          9398.863489584553,
+          8398.863489584553
+        ],
+        [
+          20196.59046875366,
+          19196.59046875366
+        ],
+        [
+          40792.04442709188,
+          20196.59046875366
+        ]
+      ],
+      "cost": 0.40604388730700813
+    },
+    "raw_action": {
+      "chips": [
+        "die_0",
+        "die_1",
+        "die_2",
+        "die_3",
+        "die_4",
+        "die_5",
+        "die_6",
+        "die_7",
+        "die_8",
+        "die_9",
+        "die_10",
+        "die_11"
+      ],
+      "indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "from_um": [
+        [
+          30994.317447922775,
+          7398.863489584554
+        ],
+        [
+          42792.04442709188,
+          30994.317447922775
+        ],
+        [
+          42792.04442709188,
+          7398.863489584554
+        ],
+        [
+          19196.59046875366,
+          30994.317447922775
+        ],
+        [
+          30994.317447922775,
+          30994.317447922775
+        ],
+        [
+          7398.863489584554,
+          30994.317447922775
+        ],
+        [
+          19196.59046875366,
+          7398.863489584554
+        ],
+        [
+          30994.317447922775,
+          19196.59046875366
+        ],
+        [
+          7398.863489584554,
+          19196.59046875366
+        ],
+        [
+          7398.863489584554,
+          7398.863489584554
+        ],
+        [
+          19196.59046875366,
+          19196.59046875366
+        ],
+        [
+          42792.04442709188,
+          19196.59046875366
+        ]
+      ],
+      "to_um": [
+        [
+          30994.317447922775,
+          9398.863489584553
+        ],
+        [
+          40792.04442709188,
+          29994.317447922775
+        ],
+        [
+          40792.04442709188,
+          8398.863489584553
+        ],
+        [
+          19196.59046875366,
+          28994.317447922775
+        ],
+        [
+          28994.317447922775,
+          28994.317447922775
+        ],
+        [
+          9398.863489584553,
+          29994.317447922775
+        ],
+        [
+          21196.59046875366,
+          9398.863489584553
+        ],
+        [
+          29994.317447922775,
+          19196.59046875366
+        ],
+        [
+          9398.863489584553,
+          18196.59046875366
+        ],
+        [
+          9398.863489584553,
+          8398.863489584553
+        ],
+        [
+          20196.59046875366,
+          19196.59046875366
+        ],
+        [
+          40792.04442709188,
+          20196.59046875366
+        ]
+      ],
+      "cost": 0.40604388730700813
+    },
+    "gain_k": 0.4755039367175238,
+    "raw_k": 0.4755039367175238,
+    "cap": 0.4590438873070082,
+    "budget": 4,
+    "trace": [
+      {
+        "action": {
+          "chips": [
+            "die_0",
+            "die_1",
+            "die_2",
+            "die_3",
+            "die_4",
+            "die_5",
+            "die_6",
+            "die_7",
+            "die_8",
+            "die_9",
+            "die_10",
+            "die_11"
+          ],
+          "indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "from_um": [
+            [
+              30994.317447922775,
+              7398.863489584554
+            ],
+            [
+              42792.04442709188,
+              30994.317447922775
+            ],
+            [
+              42792.04442709188,
+              7398.863489584554
+            ],
+            [
+              19196.59046875366,
+              30994.317447922775
+            ],
+            [
+              30994.317447922775,
+              30994.317447922775
+            ],
+            [
+              7398.863489584554,
+              30994.317447922775
+            ],
+            [
+              19196.59046875366,
+              7398.863489584554
+            ],
+            [
+              30994.317447922775,
+              19196.59046875366
+            ],
+            [
+              7398.863489584554,
+              19196.59046875366
+            ],
+            [
+              7398.863489584554,
+              7398.863489584554
+            ],
+            [
+              19196.59046875366,
+              19196.59046875366
+            ],
+            [
+              42792.04442709188,
+              19196.59046875366
+            ]
+          ],
+          "to_um": [
+            [
+              30994.317447922775,
+              9398.863489584553
+            ],
+            [
+              40792.04442709188,
+              29994.317447922775
+            ],
+            [
+              40792.04442709188,
+              8398.863489584553
+            ],
+            [
+              19196.59046875366,
+              28994.317447922775
+            ],
+            [
+              28994.317447922775,
+              28994.317447922775
+            ],
+            [
+              9398.863489584553,
+              29994.317447922775
+            ],
+            [
+              21196.59046875366,
+              9398.863489584553
+            ],
+            [
+              29994.317447922775,
+              19196.59046875366
+            ],
+            [
+              9398.863489584553,
+              18196.59046875366
+            ],
+            [
+              9398.863489584553,
+              8398.863489584553
+            ],
+            [
+              20196.59046875366,
+              19196.59046875366
+            ],
+            [
+              40792.04442709188,
+              20196.59046875366
+            ]
+          ],
+          "cost": 0.40604388730700813
+        },
+        "upper_k": 0.6665625372397526,
+        "gains_k": [
+          0.539385692457552,
+          0.5393856924575271,
+          0.4755039367175238,
+          0.47550393671755575
+        ],
+        "limiting_boundary": "south",
+        "cell_yx": [
+          63,
+          43
+        ],
+        "added": true,
+        "master_dual_upper_k": 0.6665625372397869
+      },
+      {
+        "action": {
+          "chips": [
+            "die_0",
+            "die_1",
+            "die_2",
+            "die_3",
+            "die_4",
+            "die_5",
+            "die_6",
+            "die_7",
+            "die_8",
+            "die_9",
+            "die_10",
+            "die_11"
+          ],
+          "indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "from_um": [
+            [
+              30994.317447922775,
+              7398.863489584554
+            ],
+            [
+              42792.04442709188,
+              30994.317447922775
+            ],
+            [
+              42792.04442709188,
+              7398.863489584554
+            ],
+            [
+              19196.59046875366,
+              30994.317447922775
+            ],
+            [
+              30994.317447922775,
+              30994.317447922775
+            ],
+            [
+              7398.863489584554,
+              30994.317447922775
+            ],
+            [
+              19196.59046875366,
+              7398.863489584554
+            ],
+            [
+              30994.317447922775,
+              19196.59046875366
+            ],
+            [
+              7398.863489584554,
+              19196.59046875366
+            ],
+            [
+              7398.863489584554,
+              7398.863489584554
+            ],
+            [
+              19196.59046875366,
+              19196.59046875366
+            ],
+            [
+              42792.04442709188,
+              19196.59046875366
+            ]
+          ],
+          "to_um": [
+            [
+              28994.317447922775,
+              9398.863489584553
+            ],
+            [
+              40792.04442709188,
+              28994.317447922775
+            ],
+            [
+              40792.04442709188,
+              7398.863489584554
+            ],
+            [
+              21196.59046875366,
+              28994.317447922775
+            ],
+            [
+              30994.317447922775,
+              28994.317447922775
+            ],
+            [
+              9398.863489584553,
+              29994.317447922775
+            ],
+            [
+              19196.59046875366,
+              9398.863489584553
+            ],
+            [
+              29994.317447922775,
+              19196.59046875366
+            ],
+            [
+              9398.863489584553,
+              20196.59046875366
+            ],
+            [
+              9398.863489584553,
+              8398.863489584553
+            ],
+            [
+              20196.59046875366,
+              19196.59046875366
+            ],
+            [
+              40792.04442709188,
+              19196.59046875366
+            ]
+          ],
+          "cost": 0.40804388730700814
+        },
+        "upper_k": 0.6240286932272942,
+        "gains_k": [
+          0.517119850633609,
+          0.5383610901579647,
+          0.4953733690849491,
+          0.4667460453791481
+        ],
+        "limiting_boundary": "north",
+        "cell_yx": [
+          36,
+          43
+        ],
+        "added": true,
+        "master_dual_upper_k": 0.6240286932272942
+      },
+      {
+        "action": {
+          "chips": [
+            "die_0",
+            "die_1",
+            "die_2",
+            "die_3",
+            "die_4",
+            "die_5",
+            "die_6",
+            "die_7",
+            "die_8",
+            "die_9",
+            "die_11"
+          ],
+          "indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11
+          ],
+          "from_um": [
+            [
+              30994.317447922775,
+              7398.863489584554
+            ],
+            [
+              42792.04442709188,
+              30994.317447922775
+            ],
+            [
+              42792.04442709188,
+              7398.863489584554
+            ],
+            [
+              19196.59046875366,
+              30994.317447922775
+            ],
+            [
+              30994.317447922775,
+              30994.317447922775
+            ],
+            [
+              7398.863489584554,
+              30994.317447922775
+            ],
+            [
+              19196.59046875366,
+              7398.863489584554
+            ],
+            [
+              30994.317447922775,
+              19196.59046875366
+            ],
+            [
+              7398.863489584554,
+              19196.59046875366
+            ],
+            [
+              7398.863489584554,
+              7398.863489584554
+            ],
+            [
+              42792.04442709188,
+              19196.59046875366
+            ]
+          ],
+          "to_um": [
+            [
+              30994.317447922775,
+              9398.863489584553
+            ],
+            [
+              40792.04442709188,
+              29994.317447922775
+            ],
+            [
+              40792.04442709188,
+              9398.863489584553
+            ],
+            [
+              20196.59046875366,
+              28994.317447922775
+            ],
+            [
+              29994.317447922775,
+              28994.317447922775
+            ],
+            [
+              9398.863489584553,
+              28994.317447922775
+            ],
+            [
+              21196.59046875366,
+              9398.863489584553
+            ],
+            [
+              28994.317447922775,
+              19196.59046875366
+            ],
+            [
+              9398.863489584553,
+              18196.59046875366
+            ],
+            [
+              9398.863489584553,
+              8398.863489584553
+            ],
+            [
+              40792.04442709188,
+              20196.59046875366
+            ]
+          ],
+          "cost": 0.40204388730700813
+        },
+        "upper_k": 0.5946671716127392,
+        "gains_k": [
+          0.5165538646852426,
+          0.45578439186305,
+          0.5287597639274395,
+          0.5422565656007414
+        ],
+        "limiting_boundary": "east",
+        "cell_yx": [
+          48,
+          32
+        ],
+        "added": true,
+        "master_dual_upper_k": 0.5946671716127393
+      },
+      {
+        "action": {
+          "chips": [
+            "die_0",
+            "die_1",
+            "die_2",
+            "die_3",
+            "die_4",
+            "die_5",
+            "die_6",
+            "die_7",
+            "die_8",
+            "die_9",
+            "die_10",
+            "die_11"
+          ],
+          "indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "from_um": [
+            [
+              30994.317447922775,
+              7398.863489584554
+            ],
+            [
+              42792.04442709188,
+              30994.317447922775
+            ],
+            [
+              42792.04442709188,
+              7398.863489584554
+            ],
+            [
+              19196.59046875366,
+              30994.317447922775
+            ],
+            [
+              30994.317447922775,
+              30994.317447922775
+            ],
+            [
+              7398.863489584554,
+              30994.317447922775
+            ],
+            [
+              19196.59046875366,
+              7398.863489584554
+            ],
+            [
+              30994.317447922775,
+              19196.59046875366
+            ],
+            [
+              7398.863489584554,
+              19196.59046875366
+            ],
+            [
+              7398.863489584554,
+              7398.863489584554
+            ],
+            [
+              19196.59046875366,
+              19196.59046875366
+            ],
+            [
+              42792.04442709188,
+              19196.59046875366
+            ]
+          ],
+          "to_um": [
+            [
+              29994.317447922775,
+              9398.863489584553
+            ],
+            [
+              40792.04442709188,
+              29994.317447922775
+            ],
+            [
+              40792.04442709188,
+              7398.863489584554
+            ],
+            [
+              21196.59046875366,
+              28994.317447922775
+            ],
+            [
+              30994.317447922775,
+              28994.317447922775
+            ],
+            [
+              8398.863489584553,
+              29994.317447922775
+            ],
+            [
+              20196.59046875366,
+              9398.863489584553
+            ],
+            [
+              29994.317447922775,
+              19196.59046875366
+            ],
+            [
+              9398.863489584553,
+              20196.59046875366
+            ],
+            [
+              9398.863489584553,
+              9398.863489584553
+            ],
+            [
+              20196.59046875366,
+              19196.59046875366
+            ],
+            [
+              40792.04442709188,
+              19196.59046875366
+            ]
+          ],
+          "cost": 0.40804388730700814
+        },
+        "upper_k": 0.5878256450304382,
+        "gains_k": [
+          0.4947945764075161,
+          0.5344494432269293,
+          0.4305011529521856,
+          0.4920507282584081
+        ],
+        "limiting_boundary": "south",
+        "cell_yx": [
+          63,
+          57
+        ],
+        "added": true,
+        "master_dual_upper_k": 0.5878256450304384
+      }
+    ],
+    "checks": 4,
+    "initial_observers": 64,
+    "added": 4,
+    "stored_rows": 68,
+    "certified_after": null,
+    "incomplete_master": false,
+    "scored_pairs": 0,
+    "wire_cuts": 0
+  },
+  "simultaneous_holdout_package": {
+    "west": {
+      "start": {
+        "cost": 0.4590438873070082,
+        "peak_c": 53.74660087448573,
+        "residual_w": 9.521272659185342e-13,
+        "balance_w": -4.121147867408581e-13,
+        "watts": 24.600000000000005,
+        "cooling_k": 0.0
+      },
+      "all_dies": {
+        "cost": 0.4060438873070082,
+        "peak_c": 53.10699363368124,
+        "residual_w": 6.536993168992922e-13,
+        "balance_w": -1.4210854715202004e-13,
+        "watts": 24.600000000000005,
+        "cooling_k": 0.6396072408044873
+      }
+    },
+    "east": {
+      "start": {
+        "cost": 0.4590438873070082,
+        "peak_c": 53.74660087448579,
+        "residual_w": 6.821210263296962e-13,
+        "balance_w": -1.9184653865522705e-13,
+        "watts": 24.600000000000005,
+        "cooling_k": 0.0
+      },
+      "all_dies": {
+        "cost": 0.4060438873070082,
+        "peak_c": 53.10699363368121,
+        "residual_w": 5.684341886080801e-13,
+        "balance_w": -2.3092638912203256e-13,
+        "watts": 24.600000000000005,
+        "cooling_k": 0.6396072408045796
+      }
+    },
+    "south": {
+      "start": {
+        "cost": 0.4590438873070082,
+        "peak_c": 52.46741854566389,
+        "residual_w": 4.689582056016661e-13,
+        "balance_w": -1.3891110484109959e-12,
+        "watts": 24.600000000000005,
+        "cooling_k": 0.0
+      },
+      "all_dies": {
+        "cost": 0.4060438873070082,
+        "peak_c": 51.865238726034505,
+        "residual_w": 3.979039320256561e-13,
+        "balance_w": -4.085620730620576e-13,
+        "watts": 24.60000000000001,
+        "cooling_k": 0.6021798196293844
+      }
+    },
+    "north": {
+      "start": {
+        "cost": 0.4590438873070082,
+        "peak_c": 52.46741854566389,
+        "residual_w": 3.694822225952521e-13,
+        "balance_w": -1.3855583347321954e-12,
+        "watts": 24.600000000000005,
+        "cooling_k": 0.0
+      },
+      "all_dies": {
+        "cost": 0.4060438873070082,
+        "peak_c": 51.86523872603449,
+        "residual_w": 3.126388037344441e-13,
+        "balance_w": -4.227729277772596e-13,
+        "watts": 24.600000000000005,
+        "cooling_k": 0.6021798196293986
+      }
+    },
+    "centre": {
+      "start": {
+        "cost": 0.4590438873070082,
+        "peak_c": 48.825593105609656,
+        "residual_w": 2.0605739337042905e-13,
+        "balance_w": -1.4566126083082054e-13,
+        "watts": 24.60000000000001,
+        "cooling_k": 0.0
+      },
+      "all_dies": {
+        "cost": 0.4060438873070082,
+        "peak_c": 48.17645117225614,
+        "residual_w": 2.2737367544323206e-13,
+        "balance_w": -3.552713678800501e-13,
+        "watts": 24.600000000000005,
+        "cooling_k": 0.6491419333535191
+      }
+    }
+  }
+}
