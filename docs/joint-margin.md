@@ -129,7 +129,7 @@ python tools/test_margin_transfer.py --output "$OUT/transfer-controls.json"
 python tools/plot_margin_controls.py "$OUT/transfer-controls.json" "$OUT/transfer-controls.png"
 ```
 
-本地全套发现的 215 项通过，新加入的分数脚印积分核对与离散三种求解对照也分别通过。双芯粒 CLI 复现 2 条链路、3 W、34.1886 °C。所有实验在本地执行。搜索用的线长各自采用案例定义的指标，三维结果来自固定材料与边界的封装模型；布后时序和实物降温尚未验证。
+阶段回归 215 项通过，最终完整回归 216 项全部通过，覆盖分数脚印积分及三种离散求解对照。双芯粒 CLI 复现 2 条链路、3 W、34.1886 °C。所有实验在本地执行。搜索用的线长各自采用案例定义的指标，三维结果来自固定材料与边界的封装模型；布后时序和实物降温尚未验证。
 
 ## 独立 Chat 审稿
 
