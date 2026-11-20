@@ -1,3 +1,4 @@
+from dataclasses import replace
 import unittest
 
 import numpy as np
@@ -56,3 +57,11 @@ class ContinuousReachTest(unittest.TestCase):
             new=pin_manhattan_um(self.p,pose)/1000
             self.assertTrue(np.all(new<=limits+1e-9))
             self.assertLessEqual(new.sum()/1000,start_m+1e-9)
+
+    def test_absolute_peak_for_problem_with_per_die_temperature_limits(self):
+        problem=replace(self.p, limit_c=np.array([95.,65.]))
+        start=Layout(np.array([[5000.,5000.],[10000.,6000.]]),np.array([0,90]))
+        lengths=pin_manhattan_um(problem,start)/1000
+        model,_=heat_directed_moves(problem,start,lengths+.5,lengths.sum()/1000,resolution=24)
+        exact=solve(thermal_case_data(problem,start,100,24))[0]
+        self.assertAlmostEqual(model['start_peak_c'],exact['peak_power_layer_c'],places=5)

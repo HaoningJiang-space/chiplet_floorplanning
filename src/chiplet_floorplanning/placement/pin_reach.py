@@ -4,7 +4,7 @@ import numpy as np
 from scipy import sparse
 from scipy.optimize import linprog
 
-from .geometry import pin_manhattan_um, rotate
+from .geometry import is_legal, pin_manhattan_um, rotate
 from .lp import TopologyLP
 from .search import layout_key
 from .thermal import peak_sensitivity
@@ -102,16 +102,21 @@ class PinReachCell(TopologyLP):
 def heat_directed_moves(problem, start, reach_mm, total_m, gap_um=100, resolution=64):
     """Propose full/half joint translations from five hotspot responses at any admissible start.
 
-    Pin limits follow the source net order. Temperatures and linear projections are in °C.
+    Pin limits follow the source net order. This objective uses absolute temperatures in °C,
+    including when the input also carries limits for a separate temperature-margin study.
     Call the 3D evaluator on returned layouts to choose a verified result.
     """
     reach = np.asarray(reach_mm, dtype=float)
+    if not is_legal(problem, start, gap_um):
+        raise ValueError('starting layout violates the carrier boundary or minimum spacing')
     lengths = pin_manhattan_um(problem, start)/1000
     if (reach.shape != lengths.shape or np.any(lengths > reach+1e-9)
             or not np.isfinite(total_m) or lengths.sum()/1000 > total_m+1e-9):
         raise ValueError('starting layout violates the supplied pin or total-length budget')
     cell = PinReachCell(problem, start, gap_um, reach, total_m)
     peaks, gradient = peak_sensitivity(problem, start, gap_um, resolution)
+    if problem.limit_c is not None:
+        peaks = peaks + problem.limit_c
     hot = np.argsort(-peaks, kind='stable')[:5].tolist()
     grad = gradient(hot)[hot]
     radius = float(np.median(problem.size_um.min(axis=1))/2000)
