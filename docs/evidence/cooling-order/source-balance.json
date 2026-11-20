@@ -1,0 +1,2136 @@
+{
+  "actions_sha256": "2c1bd90566eecb30243c9ccf0d99c733adfe0a12f9a894c8686532337c67e6fe",
+  "reference_sha256": "13e9bd4f196bfd074f9689a87a7f6774e9543cb50c2d3bcc6679f7db9ef242f3",
+  "two_site": {
+    "networks": {
+      "chain": {
+        "assignments_compared": 45,
+        "max_violation_k": 0.0
+      },
+      "square": {
+        "assignments_compared": 108,
+        "max_violation_k": 0.0
+      },
+      "cube": {
+        "assignments_compared": 84,
+        "max_violation_k": 1.1102230246251565e-16
+      }
+    },
+    "background_example": {
+      "matrix_w_k": [
+        [
+          4.0,
+          -1.0,
+          -1.0
+        ],
+        [
+          -1.0,
+          2.0,
+          0.0
+        ],
+        [
+          -1.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "self_k_w": [
+        0.39999999999999997,
+        0.6,
+        1.4
+      ],
+      "rise_k_by_third_source_w": {
+        "0": [
+          [
+            1.4000000000000001,
+            1.2,
+            1.4
+          ],
+          [
+            1.0,
+            2.0,
+            0.9999999999999999
+          ]
+        ],
+        "1": [
+          [
+            1.8,
+            1.4000000000000001,
+            2.8
+          ],
+          [
+            1.4,
+            2.2,
+            2.4
+          ]
+        ]
+      }
+    }
+  },
+  "cases": {
+    "Case4": {
+      "west": {
+        "scores": {
+          "start": {
+            "source_cells": 471,
+            "power_w": 153.5,
+            "total_w_k": 10.656955271576006,
+            "ideal_rise_k": 14.403738787326224,
+            "actual_rise_k": 61.84938863656946,
+            "headroom_k": 47.44564984912414,
+            "upper_rise_k": 149354.78702011038,
+            "identity_error_k": 1.190940679407504e-10
+          },
+          "pair": {
+            "source_cells": 494,
+            "power_w": 153.5,
+            "total_w_k": 11.355348002676294,
+            "ideal_rise_k": 13.517859599179367,
+            "actual_rise_k": 60.493433160612874,
+            "headroom_k": 46.97557356118541,
+            "upper_rise_k": 131422.13593814577,
+            "identity_error_k": 2.480931016179966e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.3559554759565842,
+            "ideal_floor_gain_k": 0.8858791881468573,
+            "headroom_gain_k": 0.47007628793872414,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "east": {
+        "scores": {
+          "start": {
+            "source_cells": 509,
+            "power_w": 153.5,
+            "total_w_k": 11.601362105180861,
+            "ideal_rise_k": 13.231204974754728,
+            "actual_rise_k": 57.31853811930122,
+            "headroom_k": 44.08733314515363,
+            "upper_rise_k": 54732.60528628846,
+            "identity_error_k": 6.071374514249328e-10
+          },
+          "pair": {
+            "source_cells": 527,
+            "power_w": 153.5,
+            "total_w_k": 11.589847851284443,
+            "ideal_rise_k": 13.244349880140005,
+            "actual_rise_k": 54.213998384518206,
+            "headroom_k": 40.969648504565654,
+            "upper_rise_k": 47765.98566644735,
+            "identity_error_k": 1.8745538454822963e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 3.1045397347830175,
+            "ideal_floor_gain_k": -0.013144905385276573,
+            "headroom_gain_k": 3.1176846405879743,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "south": {
+        "scores": {
+          "start": {
+            "source_cells": 473,
+            "power_w": 153.5,
+            "total_w_k": 11.387370780595806,
+            "ideal_rise_k": 13.479845607694232,
+            "actual_rise_k": 57.09813600456693,
+            "headroom_k": 43.618290397351636,
+            "upper_rise_k": 63577.18865126844,
+            "identity_error_k": 4.789342256117379e-10
+          },
+          "pair": {
+            "source_cells": 488,
+            "power_w": 153.5,
+            "total_w_k": 11.702209644805615,
+            "ideal_rise_k": 13.117180828163994,
+            "actual_rise_k": 55.6795047731435,
+            "headroom_k": 42.562323944887865,
+            "upper_rise_k": 94837.1850966768,
+            "identity_error_k": 9.163869663098012e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.4186312314234328,
+            "ideal_floor_gain_k": 0.36266477953023823,
+            "headroom_gain_k": 1.055966452463771,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "north": {
+        "scores": {
+          "start": {
+            "source_cells": 469,
+            "power_w": 153.5,
+            "total_w_k": 10.90147525264568,
+            "ideal_rise_k": 14.080663070142462,
+            "actual_rise_k": 68.04712634496352,
+            "headroom_k": 53.96646327400916,
+            "upper_rise_k": 139946.00311700345,
+            "identity_error_k": 8.118945515889209e-10
+          },
+          "pair": {
+            "source_cells": 481,
+            "power_w": 153.5,
+            "total_w_k": 11.03457626858122,
+            "ideal_rise_k": 13.910819614982495,
+            "actual_rise_k": 66.91506021992295,
+            "headroom_k": 53.004240604934225,
+            "upper_rise_k": 124711.67619158869,
+            "identity_error_k": 6.231459792616079e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.1320661250405664,
+            "ideal_floor_gain_k": 0.1698434551599668,
+            "headroom_gain_k": 0.9622226690749329,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "centre": {
+        "scores": {
+          "start": {
+            "source_cells": 492,
+            "power_w": 153.50000000000003,
+            "total_w_k": 10.886480320559517,
+            "ideal_rise_k": 14.10005763847381,
+            "actual_rise_k": 35.171067130166286,
+            "headroom_k": 21.071009491695452,
+            "upper_rise_k": 6305.030395170921,
+            "identity_error_k": 2.9771740628348198e-12
+          },
+          "pair": {
+            "source_cells": 503,
+            "power_w": 153.5,
+            "total_w_k": 11.534676884702927,
+            "ideal_rise_k": 13.307698302634627,
+            "actual_rise_k": 33.72682178264879,
+            "headroom_k": 20.41912348008329,
+            "upper_rise_k": 7083.330207906402,
+            "identity_error_k": 6.912515004842135e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.4442453475174943,
+            "ideal_floor_gain_k": 0.7923593358391834,
+            "headroom_gain_k": 0.651886011612163,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/-1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 447,
+            "power_w": 153.5,
+            "total_w_k": 11.076092309950099,
+            "ideal_rise_k": 13.858678286935618,
+            "actual_rise_k": 46.26757475379653,
+            "headroom_k": 32.40889646702882,
+            "upper_rise_k": 40479.429729850344,
+            "identity_error_k": 1.6790835388746927e-10
+          },
+          "pair": {
+            "source_cells": 487,
+            "power_w": 153.5,
+            "total_w_k": 11.728501123973766,
+            "ideal_rise_k": 13.087776381436901,
+            "actual_rise_k": 45.00430353194274,
+            "headroom_k": 31.916527150278284,
+            "upper_rise_k": 30938.577022647754,
+            "identity_error_k": 2.2755131112717208e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.2632712218537918,
+            "ideal_floor_gain_k": 0.7709019054987163,
+            "headroom_gain_k": 0.4923693167505334,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/-1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 487,
+            "power_w": 153.5,
+            "total_w_k": 10.857228065279118,
+            "ideal_rise_k": 14.138046937678823,
+            "actual_rise_k": 55.50034384274886,
+            "headroom_k": 41.362296904812865,
+            "upper_rise_k": 48763.23653237924,
+            "identity_error_k": 2.5717383778101066e-10
+          },
+          "pair": {
+            "source_cells": 520,
+            "power_w": 153.49999999999997,
+            "total_w_k": 11.52018935636453,
+            "ideal_rise_k": 13.324433761602732,
+            "actual_rise_k": 54.24135900404358,
+            "headroom_k": 40.91692524234993,
+            "upper_rise_k": 35725.17066851095,
+            "identity_error_k": 9.091394304050482e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.258984838705281,
+            "ideal_floor_gain_k": 0.8136131760760907,
+            "headroom_gain_k": 0.44537166246293225,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 451,
+            "power_w": 153.5,
+            "total_w_k": 11.46479488912568,
+            "ideal_rise_k": 13.388813448864598,
+            "actual_rise_k": 48.75397913164973,
+            "headroom_k": 35.36516568298563,
+            "upper_rise_k": 22363.50641960402,
+            "identity_error_k": 2.0049384374942747e-10
+          },
+          "pair": {
+            "source_cells": 494,
+            "power_w": 153.5,
+            "total_w_k": 11.741632919977022,
+            "ideal_rise_k": 13.073139063889284,
+            "actual_rise_k": 47.42807419874827,
+            "headroom_k": 34.35493513499868,
+            "upper_rise_k": 29175.832757321146,
+            "identity_error_k": 1.396927018504357e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.3259049329014587,
+            "ideal_floor_gain_k": 0.3156743849753134,
+            "headroom_gain_k": 1.01023054798695,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 494,
+            "power_w": 153.5,
+            "total_w_k": 11.057567272510266,
+            "ideal_rise_k": 13.881896100384543,
+            "actual_rise_k": 55.523345083714084,
+            "headroom_k": 41.64144898307763,
+            "upper_rise_k": 53395.42319899342,
+            "identity_error_k": 2.519087161090283e-10
+          },
+          "pair": {
+            "source_cells": 529,
+            "power_w": 153.5,
+            "total_w_k": 11.070417675763258,
+            "ideal_rise_k": 13.865782167917782,
+            "actual_rise_k": 51.42581244355405,
+            "headroom_k": 37.560030275697194,
+            "upper_rise_k": 45268.144429174965,
+            "identity_error_k": 6.092903959142859e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 4.097532640160033,
+            "ideal_floor_gain_k": 0.016113932466760517,
+            "headroom_gain_k": 4.081418707380436,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/-1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 452,
+            "power_w": 153.5,
+            "total_w_k": 11.005220005379778,
+            "ideal_rise_k": 13.947926522592303,
+            "actual_rise_k": 68.13568374983525,
+            "headroom_k": 54.18775722745857,
+            "upper_rise_k": 71061.58204398079,
+            "identity_error_k": 2.1562129859376e-10
+          },
+          "pair": {
+            "source_cells": 478,
+            "power_w": 153.5,
+            "total_w_k": 11.120473277403171,
+            "ideal_rise_k": 13.803369350467518,
+            "actual_rise_k": 66.57758803468167,
+            "headroom_k": 52.77421868389202,
+            "upper_rise_k": 59304.4913818065,
+            "identity_error_k": 3.221245492568414e-10
+          },
+          "part1": {
+            "source_cells": 451,
+            "power_w": 153.5,
+            "total_w_k": 10.939889053631576,
+            "ideal_rise_k": 14.031220906124688,
+            "actual_rise_k": 68.22432668638764,
+            "headroom_k": 54.193105780588546,
+            "upper_rise_k": 59198.06537297793,
+            "identity_error_k": 3.255919978073507e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.5580957151535841,
+            "ideal_floor_gain_k": 0.14455717212478447,
+            "headroom_gain_k": 1.4135385435665455,
+            "bound_verdict": "undecided"
+          },
+          "part1": {
+            "actual_gain_k": -0.08864293655238953,
+            "ideal_floor_gain_k": -0.08329438353238494,
+            "headroom_gain_k": -0.005348553129977063,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/-1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 448,
+            "power_w": 153.5,
+            "total_w_k": 10.817014397333834,
+            "ideal_rise_k": 14.190606979115653,
+            "actual_rise_k": 82.03667833568629,
+            "headroom_k": 67.84607135630199,
+            "upper_rise_k": 199390.7011901047,
+            "identity_error_k": 2.686419975361787e-10
+          },
+          "pair": {
+            "source_cells": 471,
+            "power_w": 153.49999999999997,
+            "total_w_k": 11.345960279044359,
+            "ideal_rise_k": 13.52904436687565,
+            "actual_rise_k": 80.70879252254917,
+            "headroom_k": 67.17974815550934,
+            "upper_rise_k": 185108.15269195303,
+            "identity_error_k": 1.6417800452472875e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.3278858131371152,
+            "ideal_floor_gain_k": 0.6615626122400027,
+            "headroom_gain_k": 0.6663232007926467,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 488,
+            "power_w": 153.5,
+            "total_w_k": 11.552136854289142,
+            "ideal_rise_k": 13.287584966845996,
+            "actual_rise_k": 67.6952180521391,
+            "headroom_k": 54.407633085038846,
+            "upper_rise_k": 70022.81365325337,
+            "identity_error_k": 2.5425350713703665e-10,
+            "matched_max_source_error_k": 1.7738397417588203e-09
+          },
+          "pair": {
+            "source_cells": 510,
+            "power_w": 153.49999999999997,
+            "total_w_k": 11.555617391760759,
+            "ideal_rise_k": 13.283582762912054,
+            "actual_rise_k": 67.0229270221527,
+            "headroom_k": 53.73934425902332,
+            "upper_rise_k": 113183.51300376143,
+            "identity_error_k": 2.1732660115958424e-10,
+            "matched_max_source_error_k": 9.287397517709906e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.6722910299863969,
+            "ideal_floor_gain_k": 0.004002203933941573,
+            "headroom_gain_k": 0.6682888260155266,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 484,
+            "power_w": 153.5,
+            "total_w_k": 11.116207737201028,
+            "ideal_rise_k": 13.80866601532674,
+            "actual_rise_k": 79.50896853894403,
+            "headroom_k": 65.70030252433922,
+            "upper_rise_k": 105420.92352367341,
+            "identity_error_k": 7.21925630386977e-10
+          },
+          "pair": {
+            "source_cells": 503,
+            "power_w": 153.49999999999997,
+            "total_w_k": 10.427458459062313,
+            "ideal_rise_k": 14.72074912622605,
+            "actual_rise_k": 76.96906938655125,
+            "headroom_k": 62.24832026053005,
+            "upper_rise_k": 99993.07519955708,
+            "identity_error_k": 2.0484947071963688e-10
+          },
+          "part2": {
+            "source_cells": 507,
+            "power_w": 153.5,
+            "total_w_k": 10.426598389304749,
+            "ideal_rise_k": 14.721963412099491,
+            "actual_rise_k": 80.14925386412325,
+            "headroom_k": 65.42729045300672,
+            "upper_rise_k": 115780.55349359811,
+            "identity_error_k": 9.829648206505226e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.5398991523927776,
+            "ideal_floor_gain_k": -0.9120831108993102,
+            "headroom_gain_k": 3.451982263809171,
+            "bound_verdict": "undecided"
+          },
+          "part2": {
+            "actual_gain_k": -0.6402853251792209,
+            "ideal_floor_gain_k": -0.9132973967727516,
+            "headroom_gain_k": 0.27301207133250216,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "held_3_-9": {
+        "scores": {
+          "start": {
+            "source_cells": 439,
+            "power_w": 153.5,
+            "total_w_k": 11.361766624826847,
+            "ideal_rise_k": 13.510222931756383,
+            "actual_rise_k": 52.16896013973522,
+            "headroom_k": 38.65873720795694,
+            "upper_rise_k": 41282.46195960441,
+            "identity_error_k": 2.1898927116126288e-11
+          },
+          "pair": {
+            "source_cells": 476,
+            "power_w": 153.5,
+            "total_w_k": 11.742556167150394,
+            "ideal_rise_k": 13.072111200916689,
+            "actual_rise_k": 50.73009089684798,
+            "headroom_k": 37.657979695909646,
+            "upper_rise_k": 53920.28169242614,
+            "identity_error_k": 2.1650237158610253e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.438869242887236,
+            "ideal_floor_gain_k": 0.4381117308396938,
+            "headroom_gain_k": 1.0007575120472936,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "held_-9_3": {
+        "scores": {
+          "start": {
+            "source_cells": 492,
+            "power_w": 153.5,
+            "total_w_k": 10.89324902655672,
+            "ideal_rise_k": 14.09129632727402,
+            "actual_rise_k": 55.47595572801958,
+            "headroom_k": 41.38465940099762,
+            "upper_rise_k": 104122.19129099055,
+            "identity_error_k": 2.5205793008353794e-10
+          },
+          "pair": {
+            "source_cells": 494,
+            "power_w": 153.5,
+            "total_w_k": 11.582658143979604,
+            "ideal_rise_k": 13.25257104991791,
+            "actual_rise_k": 54.31160610370761,
+            "headroom_k": 41.05903505369537,
+            "upper_rise_k": 58549.813717729354,
+            "identity_error_k": 9.43316535995109e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.164349624311967,
+            "ideal_floor_gain_k": 0.8387252773561098,
+            "headroom_gain_k": 0.3256243473022522,
+            "bound_verdict": "undecided"
+          }
+        }
+      }
+    },
+    "Case7": {
+      "west": {
+        "scores": {
+          "start": {
+            "source_cells": 649,
+            "power_w": 26.0,
+            "total_w_k": 7.631636152303646,
+            "ideal_rise_k": 3.406871014435322,
+            "actual_rise_k": 9.294459393975433,
+            "headroom_k": 5.887588379540224,
+            "upper_rise_k": 83.0688993790233,
+            "identity_error_k": 1.127986593019159e-13
+          },
+          "pair": {
+            "source_cells": 632,
+            "power_w": 26.0,
+            "total_w_k": 7.669272828649788,
+            "ideal_rise_k": 3.3901519193414096,
+            "actual_rise_k": 8.951509749840472,
+            "headroom_k": 5.561357830502734,
+            "upper_rise_k": 82.27310890090939,
+            "identity_error_k": 3.671729587040318e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.3429496441349613,
+            "ideal_floor_gain_k": 0.01671909509391245,
+            "headroom_gain_k": 0.32623054903748994,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "east": {
+        "scores": {
+          "start": {
+            "source_cells": 649,
+            "power_w": 26.000000000000004,
+            "total_w_k": 7.739482303515785,
+            "ideal_rise_k": 3.359397822796117,
+            "actual_rise_k": 11.187941280776315,
+            "headroom_k": 7.828543457971221,
+            "upper_rise_k": 101.34270892960951,
+            "identity_error_k": 8.976819287909166e-12
+          },
+          "pair": {
+            "source_cells": 632,
+            "power_w": 26.0,
+            "total_w_k": 7.661587359714193,
+            "ideal_rise_k": 3.393552638544854,
+            "actual_rise_k": 10.803124851697747,
+            "headroom_k": 7.409572213140582,
+            "upper_rise_k": 105.80069168838874,
+            "identity_error_k": 1.2311041075463436e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.38481642907856717,
+            "ideal_floor_gain_k": -0.03415481574873702,
+            "headroom_gain_k": 0.4189712448306384,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "south": {
+        "scores": {
+          "start": {
+            "source_cells": 673,
+            "power_w": 26.000000000000004,
+            "total_w_k": 7.793742827331027,
+            "ideal_rise_k": 3.336009485561089,
+            "actual_rise_k": 6.999061040216362,
+            "headroom_k": 3.663051554658502,
+            "upper_rise_k": 30.5603256032236,
+            "identity_error_k": 3.2289726448198053e-12
+          },
+          "pair": {
+            "source_cells": 659,
+            "power_w": 26.0,
+            "total_w_k": 7.856493825526369,
+            "ideal_rise_k": 3.309364275896704,
+            "actual_rise_k": 6.407173258280399,
+            "headroom_k": 3.0978089823775985,
+            "upper_rise_k": 28.192776149967457,
+            "identity_error_k": 6.0964566728216596e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.5918877819359629,
+            "ideal_floor_gain_k": 0.026645209664384772,
+            "headroom_gain_k": 0.5652425722809036,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "north": {
+        "scores": {
+          "start": {
+            "source_cells": 661,
+            "power_w": 26.000000000000004,
+            "total_w_k": 7.219254905511766,
+            "ideal_rise_k": 3.6014797012015034,
+            "actual_rise_k": 9.384846726414278,
+            "headroom_k": 5.783367025212556,
+            "upper_rise_k": 86.5407339840021,
+            "identity_error_k": 2.184918912462308e-13
+          },
+          "pair": {
+            "source_cells": 645,
+            "power_w": 26.0,
+            "total_w_k": 7.165417953798731,
+            "ideal_rise_k": 3.6285392098050826,
+            "actual_rise_k": 9.220439106050804,
+            "headroom_k": 5.591899896238625,
+            "upper_rise_k": 84.43013113757229,
+            "identity_error_k": 7.096545573404001e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.16440762036347323,
+            "ideal_floor_gain_k": -0.027059508603579197,
+            "headroom_gain_k": 0.19146712897393048,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "centre": {
+        "scores": {
+          "start": {
+            "source_cells": 649,
+            "power_w": 26.000000000000004,
+            "total_w_k": 9.803827344754474,
+            "ideal_rise_k": 2.6520254881794987,
+            "actual_rise_k": 3.735963968806719,
+            "headroom_k": 1.0839384806275345,
+            "upper_rise_k": 5.827794817831117,
+            "identity_error_k": 3.1397107136399427e-13,
+            "matched_max_source_error_k": 3.4011460314786746e-11
+          },
+          "pair": {
+            "source_cells": 632,
+            "power_w": 26.000000000000004,
+            "total_w_k": 9.798996931138106,
+            "ideal_rise_k": 2.653332803624037,
+            "actual_rise_k": 3.692844557019367,
+            "headroom_k": 1.039511753394343,
+            "upper_rise_k": 6.091294931222764,
+            "identity_error_k": 9.872103134966892e-13,
+            "matched_max_source_error_k": 2.87134760412755e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.043119411787352124,
+            "ideal_floor_gain_k": -0.0013073154445382151,
+            "headroom_gain_k": 0.04442672723319152,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/-1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 668,
+            "power_w": 26.0,
+            "total_w_k": 8.642201872282872,
+            "ideal_rise_k": 3.0084925559754367,
+            "actual_rise_k": 5.255527265582542,
+            "headroom_k": 2.247034709609814,
+            "upper_rise_k": 19.111898479251344,
+            "identity_error_k": 2.709388269295232e-12
+          },
+          "pair": {
+            "source_cells": 651,
+            "power_w": 26.000000000000004,
+            "total_w_k": 8.733789987867404,
+            "ideal_rise_k": 2.9769435761700316,
+            "actual_rise_k": 5.175999818469057,
+            "headroom_k": 2.199056242301359,
+            "upper_rise_k": 18.83357376118939,
+            "identity_error_k": 2.333688797762079e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.07952744711348458,
+            "ideal_floor_gain_k": 0.031548979805405164,
+            "headroom_gain_k": 0.04797846730845512,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/-1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 649,
+            "power_w": 26.0,
+            "total_w_k": 8.37072500550249,
+            "ideal_rise_k": 3.106063092851446,
+            "actual_rise_k": 7.2544251123166115,
+            "headroom_k": 4.148362019472309,
+            "upper_rise_k": 37.52613620578664,
+            "identity_error_k": 7.142730851228407e-12
+          },
+          "pair": {
+            "source_cells": 632,
+            "power_w": 26.000000000000007,
+            "total_w_k": 8.319316396410418,
+            "ideal_rise_k": 3.125256783263872,
+            "actual_rise_k": 6.969355376612168,
+            "headroom_k": 3.8440985933488574,
+            "upper_rise_k": 30.942560402712616,
+            "identity_error_k": 5.608846720406291e-13
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.28506973570444316,
+            "ideal_floor_gain_k": -0.019193690412425912,
+            "headroom_gain_k": 0.30426342612345136,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 668,
+            "power_w": 26.0,
+            "total_w_k": 8.686046466132344,
+            "ideal_rise_k": 2.993306575249888,
+            "actual_rise_k": 7.2156614776187595,
+            "headroom_k": 4.222354902369268,
+            "upper_rise_k": 31.09100552622126,
+            "identity_error_k": 3.97015753605956e-13
+          },
+          "pair": {
+            "source_cells": 651,
+            "power_w": 26.000000000000004,
+            "total_w_k": 8.674915843764207,
+            "ideal_rise_k": 2.9971472309658878,
+            "actual_rise_k": 6.9265200326708385,
+            "headroom_k": 3.9293728017073133,
+            "upper_rise_k": 28.85556466759014,
+            "identity_error_k": 2.362554596402333e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.28914144494792104,
+            "ideal_floor_gain_k": -0.0038406557159995636,
+            "headroom_gain_k": 0.29298210066195507,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 649,
+            "power_w": 26.0,
+            "total_w_k": 8.131341941891371,
+            "ideal_rise_k": 3.1975041986676476,
+            "actual_rise_k": 7.229424764016412,
+            "headroom_k": 4.031920565355782,
+            "upper_rise_k": 28.398960210526415,
+            "identity_error_k": 7.0174976940506895e-12
+          },
+          "pair": {
+            "source_cells": 632,
+            "power_w": 26.000000000000007,
+            "total_w_k": 8.13644435019399,
+            "ideal_rise_k": 3.195499026473414,
+            "actual_rise_k": 7.069749182299543,
+            "headroom_k": 3.8742501558274576,
+            "upper_rise_k": 26.826411504491723,
+            "identity_error_k": 1.3282708266615373e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.15967558171686846,
+            "ideal_floor_gain_k": 0.002005172194233573,
+            "headroom_gain_k": 0.15767040952832456,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/-1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 673,
+            "power_w": 26.0,
+            "total_w_k": 5.946151330082105,
+            "ideal_rise_k": 4.372576235734819,
+            "actual_rise_k": 10.138793042343774,
+            "headroom_k": 5.766216806606957,
+            "upper_rise_k": 121.31868803822985,
+            "identity_error_k": 1.9984014443252818e-12
+          },
+          "pair": {
+            "source_cells": 659,
+            "power_w": 26.0,
+            "total_w_k": 6.1252079402860415,
+            "ideal_rise_k": 4.244753852190987,
+            "actual_rise_k": 9.969400246574839,
+            "headroom_k": 5.724646394384824,
+            "upper_rise_k": 118.42718776912798,
+            "identity_error_k": 9.725553695716371e-13
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.1693927957689354,
+            "ideal_floor_gain_k": 0.12782238354383146,
+            "headroom_gain_k": 0.04157041222213298,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/-1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 661,
+            "power_w": 26.0,
+            "total_w_k": 5.755719936064496,
+            "ideal_rise_k": 4.5172455033970325,
+            "actual_rise_k": 13.080202132075723,
+            "headroom_k": 8.562956628672495,
+            "upper_rise_k": 168.95254342923343,
+            "identity_error_k": 6.195932655828074e-12
+          },
+          "pair": {
+            "source_cells": 645,
+            "power_w": 26.000000000000004,
+            "total_w_k": 5.666034819654332,
+            "ideal_rise_k": 4.588746950479592,
+            "actual_rise_k": 12.830567102442073,
+            "headroom_k": 8.241820151961235,
+            "upper_rise_k": 148.55512020782587,
+            "identity_error_k": 1.2452261444195756e-12
+          },
+          "part1": {
+            "source_cells": 641,
+            "power_w": 26.000000000000004,
+            "total_w_k": 5.663747866995923,
+            "ideal_rise_k": 4.590599830813182,
+            "actual_rise_k": 13.146387107644214,
+            "headroom_k": 8.55578727681985,
+            "upper_rise_k": 168.52676510610485,
+            "identity_error_k": 1.1183942660863977e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.2496350296336498,
+            "ideal_floor_gain_k": -0.0715014470825599,
+            "headroom_gain_k": 0.3211364767112599,
+            "bound_verdict": "undecided"
+          },
+          "part1": {
+            "actual_gain_k": -0.06618497556849157,
+            "ideal_floor_gain_k": -0.07335432741614945,
+            "headroom_gain_k": 0.007169351852645889,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 673,
+            "power_w": 26.0,
+            "total_w_k": 6.305780834000064,
+            "ideal_rise_k": 4.1232007081202235,
+            "actual_rise_k": 13.10112609671818,
+            "headroom_k": 8.977925388601836,
+            "upper_rise_k": 131.87962991633955,
+            "identity_error_k": 3.879563337250147e-12
+          },
+          "pair": {
+            "source_cells": 659,
+            "power_w": 26.0,
+            "total_w_k": 6.183677010204951,
+            "ideal_rise_k": 4.204618054450787,
+            "actual_rise_k": 12.620298122940342,
+            "headroom_k": 8.415680068482905,
+            "upper_rise_k": 136.11648155422614,
+            "identity_error_k": 6.650680006714538e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.4808279737778385,
+            "ideal_floor_gain_k": -0.08141734633056341,
+            "headroom_gain_k": 0.5622453201189312,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 661,
+            "power_w": 26.0,
+            "total_w_k": 5.554902949224786,
+            "ideal_rise_k": 4.680549820159941,
+            "actual_rise_k": 13.509341629318243,
+            "headroom_k": 8.828791809166633,
+            "upper_rise_k": 107.33753782642593,
+            "identity_error_k": 8.331113576787175e-12
+          },
+          "pair": {
+            "source_cells": 645,
+            "power_w": 26.000000000000004,
+            "total_w_k": 5.567468963344188,
+            "ideal_rise_k": 4.669985620249006,
+            "actual_rise_k": 13.230700655174697,
+            "headroom_k": 8.560715034930611,
+            "upper_rise_k": 104.97551832659393,
+            "identity_error_k": 4.920508445138694e-12
+          },
+          "part2": {
+            "source_cells": 669,
+            "power_w": 26.0,
+            "total_w_k": 5.547110594471446,
+            "ideal_rise_k": 4.687124865675658,
+            "actual_rise_k": 13.663192783906927,
+            "headroom_k": 8.976067918225146,
+            "upper_rise_k": 108.53840835547072,
+            "identity_error_k": 6.123102025412663e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.2786409741435456,
+            "ideal_floor_gain_k": 0.01056419991093449,
+            "headroom_gain_k": 0.2680767742360217,
+            "bound_verdict": "undecided"
+          },
+          "part2": {
+            "actual_gain_k": -0.15385115458868448,
+            "ideal_floor_gain_k": -0.006575045515717193,
+            "headroom_gain_k": -0.14727610905851307,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "held_3_-9": {
+        "scores": {
+          "start": {
+            "source_cells": 665,
+            "power_w": 26.0,
+            "total_w_k": 8.439127521288576,
+            "ideal_rise_k": 3.080887204798399,
+            "actual_rise_k": 6.242252124988044,
+            "headroom_k": 3.1613649201907017,
+            "upper_rise_k": 22.49446616796938,
+            "identity_error_k": 1.056932319443149e-12
+          },
+          "pair": {
+            "source_cells": 647,
+            "power_w": 26.0,
+            "total_w_k": 8.466256383512764,
+            "ideal_rise_k": 3.0710149589413036,
+            "actual_rise_k": 5.821104113183771,
+            "headroom_k": 2.7500891542407655,
+            "upper_rise_k": 18.446052647494806,
+            "identity_error_k": 1.70174985214544e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.42114801180427275,
+            "ideal_floor_gain_k": 0.00987224585709523,
+            "headroom_gain_k": 0.4112757659499362,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "held_-9_3": {
+        "scores": {
+          "start": {
+            "source_cells": 674,
+            "power_w": 26.0,
+            "total_w_k": 8.284789254291736,
+            "ideal_rise_k": 3.138281397626539,
+            "actual_rise_k": 7.806705527285272,
+            "headroom_k": 4.668424129661305,
+            "upper_rise_k": 46.61849000392306,
+            "identity_error_k": 2.5712765250318625e-12
+          },
+          "pair": {
+            "source_cells": 657,
+            "power_w": 26.0,
+            "total_w_k": 8.279556686352146,
+            "ideal_rise_k": 3.140264749060523,
+            "actual_rise_k": 7.4981490323959425,
+            "headroom_k": 4.3578842833354186,
+            "upper_rise_k": 39.630213772510004,
+            "identity_error_k": 8.881784197001252e-16
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 0.3085564948893298,
+            "ideal_floor_gain_k": -0.001983351433984204,
+            "headroom_gain_k": 0.31053984632588616,
+            "bound_verdict": "undecided"
+          }
+        }
+      }
+    },
+    "Case9": {
+      "west": {
+        "scores": {
+          "start": {
+            "source_cells": 2064,
+            "power_w": 154.8,
+            "total_w_k": 10.899044919053456,
+            "ideal_rise_k": 14.203079366099526,
+            "actual_rise_k": 54.569368884094445,
+            "headroom_k": 40.36628951777532,
+            "upper_rise_k": 85576.41509277273,
+            "identity_error_k": 2.1959323248665896e-10
+          },
+          "pair": {
+            "source_cells": 2078,
+            "power_w": 154.79999999999998,
+            "total_w_k": 11.061988194039753,
+            "ideal_rise_k": 13.993867764513336,
+            "actual_rise_k": 52.8804401237584,
+            "headroom_k": 38.886572359173535,
+            "upper_rise_k": 128992.62089747019,
+            "identity_error_k": 7.153033720896929e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.6889287603360472,
+            "ideal_floor_gain_k": 0.20921160158619045,
+            "headroom_gain_k": 1.4797171586017868,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "east": {
+        "scores": {
+          "start": {
+            "source_cells": 2087,
+            "power_w": 154.8,
+            "total_w_k": 11.470074169275186,
+            "ideal_rise_k": 13.495989451808583,
+            "actual_rise_k": 71.37084977799823,
+            "headroom_k": 57.87486032591707,
+            "upper_rise_k": 191257.38610527333,
+            "identity_error_k": 2.7257840429228963e-10
+          },
+          "pair": {
+            "source_cells": 2098,
+            "power_w": 154.8,
+            "total_w_k": 11.575327121114256,
+            "ideal_rise_k": 13.373272165901327,
+            "actual_rise_k": 69.89009487289283,
+            "headroom_k": 56.516822707130274,
+            "upper_rise_k": 185509.99935053283,
+            "identity_error_k": 1.3876899629394757e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.4807549051053996,
+            "ideal_floor_gain_k": 0.12271728590725672,
+            "headroom_gain_k": 1.3580376187867955,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "south": {
+        "scores": {
+          "start": {
+            "source_cells": 2105,
+            "power_w": 154.8,
+            "total_w_k": 11.068278839911647,
+            "ideal_rise_k": 13.985914362926884,
+            "actual_rise_k": 57.32259998921988,
+            "headroom_k": 43.33668562644093,
+            "upper_rise_k": 230900.08070105535,
+            "identity_error_k": 1.4793499758525286e-10
+          },
+          "pair": {
+            "source_cells": 2118,
+            "power_w": 154.8,
+            "total_w_k": 11.140037460801684,
+            "ideal_rise_k": 13.895824008195026,
+            "actual_rise_k": 55.35616165804528,
+            "headroom_k": 41.460337649903536,
+            "upper_rise_k": 208245.27974309583,
+            "identity_error_k": 5.328359975464991e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.9664383311746008,
+            "ideal_floor_gain_k": 0.09009035473185811,
+            "headroom_gain_k": 1.8763479765373958,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "north": {
+        "scores": {
+          "start": {
+            "source_cells": 2113,
+            "power_w": 154.8,
+            "total_w_k": 11.485740607649356,
+            "ideal_rise_k": 13.477581053580924,
+            "actual_rise_k": 70.29933037055991,
+            "headroom_k": 56.82174931680982,
+            "upper_rise_k": 113317.66041223712,
+            "identity_error_k": 1.6917311995712225e-10
+          },
+          "pair": {
+            "source_cells": 2122,
+            "power_w": 154.8,
+            "total_w_k": 11.590807693403974,
+            "ideal_rise_k": 13.355410951049826,
+            "actual_rise_k": 68.542323754875,
+            "headroom_k": 55.18691280410158,
+            "upper_rise_k": 112513.66234648136,
+            "identity_error_k": 2.7640822963803657e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.7570066156849151,
+            "ideal_floor_gain_k": 0.12217010253109706,
+            "headroom_gain_k": 1.6348365127082403,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "centre": {
+        "scores": {
+          "start": {
+            "source_cells": 2112,
+            "power_w": 154.8,
+            "total_w_k": 11.217976277096335,
+            "ideal_rise_k": 13.79928038500617,
+            "actual_rise_k": 46.07462586469871,
+            "headroom_k": 32.275345479643654,
+            "upper_rise_k": 24404.487753715446,
+            "identity_error_k": 4.888534022029489e-11
+          },
+          "pair": {
+            "source_cells": 2120,
+            "power_w": 154.8,
+            "total_w_k": 11.44327532024161,
+            "ideal_rise_k": 13.52759552382522,
+            "actual_rise_k": 44.7919477096129,
+            "headroom_k": 31.264352185775106,
+            "upper_rise_k": 24289.633243654873,
+            "identity_error_k": 1.2573053709274973e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.2826781550858115,
+            "ideal_floor_gain_k": 0.27168486118095103,
+            "headroom_gain_k": 1.0109932938685482,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/-1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 2090,
+            "power_w": 154.8,
+            "total_w_k": 11.001492198713136,
+            "ideal_rise_k": 14.070818503885068,
+            "actual_rise_k": 48.34823138763097,
+            "headroom_k": 34.277412883633744,
+            "upper_rise_k": 153497.515385305,
+            "identity_error_k": 1.1215206541237421e-10,
+            "matched_max_source_error_k": 1.172354657796859e-09
+          },
+          "pair": {
+            "source_cells": 2094,
+            "power_w": 154.79999999999998,
+            "total_w_k": 11.236658365510374,
+            "ideal_rise_k": 13.776337676612178,
+            "actual_rise_k": 47.24813116325108,
+            "headroom_k": 33.471793486525065,
+            "upper_rise_k": 125162.97010684725,
+            "identity_error_k": 1.1383605169612565e-10,
+            "matched_max_source_error_k": 1.1766800867007987e-09
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.1001002243798865,
+            "ideal_floor_gain_k": 0.29448082727289027,
+            "headroom_gain_k": 0.8056193971086785,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/-1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 2084,
+            "power_w": 154.8,
+            "total_w_k": 11.083148774554395,
+            "ideal_rise_k": 13.96714987309406,
+            "actual_rise_k": 52.56879760309548,
+            "headroom_k": 38.60164772964626,
+            "upper_rise_k": 109144.12896961204,
+            "identity_error_k": 3.551647864696861e-10
+          },
+          "pair": {
+            "source_cells": 2089,
+            "power_w": 154.8,
+            "total_w_k": 11.304461176206193,
+            "ideal_rise_k": 13.693708845303082,
+            "actual_rise_k": 50.21770259443544,
+            "headroom_k": 36.52399374907688,
+            "upper_rise_k": 96737.11405241842,
+            "identity_error_k": 5.547917680814862e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.351095008660046,
+            "ideal_floor_gain_k": 0.27344102779097845,
+            "headroom_gain_k": 2.07765398056938,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 2078,
+            "power_w": 154.8,
+            "total_w_k": 11.29182488526273,
+            "ideal_rise_k": 13.70903300156857,
+            "actual_rise_k": 52.42713440045643,
+            "headroom_k": 38.71810139860212,
+            "upper_rise_k": 60385.506464134705,
+            "identity_error_k": 2.857376557585667e-10
+          },
+          "pair": {
+            "source_cells": 2093,
+            "power_w": 154.79999999999998,
+            "total_w_k": 11.456834878016572,
+            "ideal_rise_k": 13.511585149667377,
+            "actual_rise_k": 51.13541548002375,
+            "headroom_k": 37.62383033056263,
+            "upper_rise_k": 43213.45715562804,
+            "identity_error_k": 2.0625634533644188e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.2917189204326789,
+            "ideal_floor_gain_k": 0.19744785190119352,
+            "headroom_gain_k": 1.0942710680394896,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 2073,
+            "power_w": 154.8,
+            "total_w_k": 11.381362504073476,
+            "ideal_rise_k": 13.6011835089688,
+            "actual_rise_k": 66.56610367547539,
+            "headroom_k": 52.96492016658542,
+            "upper_rise_k": 245530.89565182192,
+            "identity_error_k": 7.883471653258312e-11
+          },
+          "pair": {
+            "source_cells": 2089,
+            "power_w": 154.79999999999998,
+            "total_w_k": 11.534685297516981,
+            "ideal_rise_k": 13.420392148307945,
+            "actual_rise_k": 64.5353582195946,
+            "headroom_k": 51.11496607116329,
+            "upper_rise_k": 271390.726469158,
+            "identity_error_k": 1.233644297826686e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.0307454558807905,
+            "ideal_floor_gain_k": 0.1807913606608551,
+            "headroom_gain_k": 1.8499540954221345,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/-1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 2058,
+            "power_w": 154.8,
+            "total_w_k": 11.018179639576765,
+            "ideal_rise_k": 14.049507728478664,
+            "actual_rise_k": 69.48469385228677,
+            "headroom_k": 55.43518612376558,
+            "upper_rise_k": 420396.9080926597,
+            "identity_error_k": 4.2518877307884395e-11
+          },
+          "pair": {
+            "source_cells": 2077,
+            "power_w": 154.79999999999998,
+            "total_w_k": 11.129849521920445,
+            "ideal_rise_k": 13.908543839260227,
+            "actual_rise_k": 68.28490964132662,
+            "headroom_k": 54.3763658021048,
+            "upper_rise_k": 382133.40224821283,
+            "identity_error_k": 3.8404834867833415e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.1997842109601464,
+            "ideal_floor_gain_k": 0.14096388921843683,
+            "headroom_gain_k": 1.0588203216607823,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/-1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 2064,
+            "power_w": 154.8,
+            "total_w_k": 11.014064266418155,
+            "ideal_rise_k": 14.054757286280298,
+            "actual_rise_k": 75.13694214431189,
+            "headroom_k": 61.08218485806648,
+            "upper_rise_k": 219300.34339165833,
+            "identity_error_k": 3.489475375317852e-11
+          },
+          "pair": {
+            "source_cells": 2079,
+            "power_w": 154.8,
+            "total_w_k": 10.97326812604575,
+            "ideal_rise_k": 14.107009709584363,
+            "actual_rise_k": 73.18235224523525,
+            "headroom_k": 59.07534253534772,
+            "upper_rise_k": 335163.6041625887,
+            "identity_error_k": 3.0316726906676195e-10
+          },
+          "part1": {
+            "source_cells": 2057,
+            "power_w": 154.8,
+            "total_w_k": 10.85974500884048,
+            "ideal_rise_k": 14.25447833940701,
+            "actual_rise_k": 76.60610380011543,
+            "headroom_k": 62.35162546066047,
+            "upper_rise_k": 333929.47562418145,
+            "identity_error_k": 4.795452923644916e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.9545898990766375,
+            "ideal_floor_gain_k": -0.05225242330406488,
+            "headroom_gain_k": 2.006842322718761,
+            "bound_verdict": "undecided"
+          },
+          "part1": {
+            "actual_gain_k": -1.4691616558035463,
+            "ideal_floor_gain_k": -0.19972105312671218,
+            "headroom_gain_k": -1.2694406025939884,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 2082,
+            "power_w": 154.8,
+            "total_w_k": 11.236299635553058,
+            "ideal_rise_k": 13.776777499791251,
+            "actual_rise_k": 75.33024232000753,
+            "headroom_k": 61.553464820248195,
+            "upper_rise_k": 119043.15780538005,
+            "identity_error_k": 3.19175796903437e-11
+          },
+          "pair": {
+            "source_cells": 2098,
+            "power_w": 154.8,
+            "total_w_k": 11.224731572925474,
+            "ideal_rise_k": 13.790975667817673,
+            "actual_rise_k": 71.75113428503032,
+            "headroom_k": 57.960158617472544,
+            "upper_rise_k": 144513.28103953012,
+            "identity_error_k": 2.5990232188632945e-10
+          },
+          "part2": {
+            "source_cells": 2109,
+            "power_w": 154.8,
+            "total_w_k": 11.116567235252292,
+            "ideal_rise_k": 13.925162032853644,
+            "actual_rise_k": 76.76224719433527,
+            "headroom_k": 62.83708516115002,
+            "upper_rise_k": 144712.6007311644,
+            "identity_error_k": 3.3161029477923876e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 3.57910803497721,
+            "ideal_floor_gain_k": -0.014198168026421598,
+            "headroom_gain_k": 3.5933062027756506,
+            "bound_verdict": "undecided"
+          },
+          "part2": {
+            "actual_gain_k": -1.4320048743277454,
+            "ideal_floor_gain_k": -0.14838453306239252,
+            "headroom_gain_k": -1.2836203409018268,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 2087,
+            "power_w": 154.8,
+            "total_w_k": 11.531390298490996,
+            "ideal_rise_k": 13.424226913927042,
+            "actual_rise_k": 89.91972852127108,
+            "headroom_k": 76.49550160732336,
+            "upper_rise_k": 408281.115438373,
+            "identity_error_k": 2.0676793610618915e-11
+          },
+          "pair": {
+            "source_cells": 2099,
+            "power_w": 154.8,
+            "total_w_k": 11.537927918547688,
+            "ideal_rise_k": 13.416620479241574,
+            "actual_rise_k": 88.32843446266614,
+            "headroom_k": 74.91181398405807,
+            "upper_rise_k": 397529.10707879,
+            "identity_error_k": 6.335056923489901e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.5912940586049444,
+            "ideal_floor_gain_k": 0.007606434685467178,
+            "headroom_gain_k": 1.5836876232652912,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "held_3_-9": {
+        "scores": {
+          "start": {
+            "source_cells": 2108,
+            "power_w": 154.8,
+            "total_w_k": 11.15605742932292,
+            "ideal_rise_k": 13.875869766779703,
+            "actual_rise_k": 52.13472042606353,
+            "headroom_k": 38.25885065931135,
+            "upper_rise_k": 121263.24124573733,
+            "identity_error_k": 2.751932015598868e-11
+          },
+          "pair": {
+            "source_cells": 2107,
+            "power_w": 154.8,
+            "total_w_k": 11.318243363633131,
+            "ideal_rise_k": 13.677034061433147,
+            "actual_rise_k": 49.58464964339839,
+            "headroom_k": 35.90761558199999,
+            "upper_rise_k": 111361.28346435049,
+            "identity_error_k": 3.47455397786689e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.550070782665138,
+            "ideal_floor_gain_k": 0.19883570534655526,
+            "headroom_gain_k": 2.351235077311358,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "held_-9_3": {
+        "scores": {
+          "start": {
+            "source_cells": 2094,
+            "power_w": 154.8,
+            "total_w_k": 10.915990753068877,
+            "ideal_rise_k": 14.181030700899061,
+            "actual_rise_k": 52.123255841973965,
+            "headroom_k": 37.94222514100867,
+            "upper_rise_k": 74251.25394939426,
+            "identity_error_k": 6.622968840019894e-11
+          },
+          "pair": {
+            "source_cells": 2104,
+            "power_w": 154.8,
+            "total_w_k": 11.134570361577556,
+            "ideal_rise_k": 13.902646889203169,
+            "actual_rise_k": 49.917255186711586,
+            "headroom_k": 36.01460829735572,
+            "upper_rise_k": 93235.09747653206,
+            "identity_error_k": 1.5269563391484553e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.206000655262379,
+            "ideal_floor_gain_k": 0.27838381169589255,
+            "headroom_gain_k": 1.9276168436529488,
+            "bound_verdict": "undecided"
+          }
+        }
+      }
+    },
+    "Case10": {
+      "west": {
+        "scores": {
+          "start": {
+            "source_cells": 3737,
+            "power_w": 100.60000000000002,
+            "total_w_k": 11.218399522816703,
+            "ideal_rise_k": 8.967411063886008,
+            "actual_rise_k": 37.352968129411856,
+            "headroom_k": 28.385557065449657,
+            "upper_rise_k": 3183.17349386296,
+            "identity_error_k": 7.619149755555554e-11
+          },
+          "pair": {
+            "source_cells": 3864,
+            "power_w": 100.60000000000001,
+            "total_w_k": 11.287163833184124,
+            "ideal_rise_k": 8.912779285105904,
+            "actual_rise_k": 35.028449612864584,
+            "headroom_k": 26.115670327809717,
+            "upper_rise_k": 3087.3819140437627,
+            "identity_error_k": 5.1038284709647996e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.324518516547272,
+            "ideal_floor_gain_k": 0.05463177878010406,
+            "headroom_gain_k": 2.26988673763994,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "east": {
+        "scores": {
+          "start": {
+            "source_cells": 3747,
+            "power_w": 100.60000000000001,
+            "total_w_k": 8.09510469674173,
+            "ideal_rise_k": 12.427263607905083,
+            "actual_rise_k": 40.216482202688866,
+            "headroom_k": 27.789218594788657,
+            "upper_rise_k": 2933.6456340418626,
+            "identity_error_k": 4.874323167314287e-12
+          },
+          "pair": {
+            "source_cells": 3867,
+            "power_w": 100.60000000000001,
+            "total_w_k": 8.872524044468134,
+            "ideal_rise_k": 11.338374457573025,
+            "actual_rise_k": 37.74738761475594,
+            "headroom_k": 26.40901315727216,
+            "upper_rise_k": 3453.2831382377303,
+            "identity_error_k": 8.924772032514738e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.469094587932929,
+            "ideal_floor_gain_k": 1.088889150332058,
+            "headroom_gain_k": 1.3802054375164978,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "south": {
+        "scores": {
+          "start": {
+            "source_cells": 3800,
+            "power_w": 100.60000000000001,
+            "total_w_k": 11.338497793630326,
+            "ideal_rise_k": 8.872427532376863,
+            "actual_rise_k": 32.51114473815144,
+            "headroom_k": 23.638717205813478,
+            "upper_rise_k": 2505.9034237576457,
+            "identity_error_k": 3.8902214782865485e-11
+          },
+          "pair": {
+            "source_cells": 3916,
+            "power_w": 100.60000000000001,
+            "total_w_k": 11.333389775125898,
+            "ideal_rise_k": 8.87642638222795,
+            "actual_rise_k": 30.731733641793017,
+            "headroom_k": 21.85530725950137,
+            "upper_rise_k": 2455.016959886711,
+            "identity_error_k": 6.369660354721418e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.7794110963584195,
+            "ideal_floor_gain_k": -0.003998849851086561,
+            "headroom_gain_k": 1.7834099463121085,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "north": {
+        "scores": {
+          "start": {
+            "source_cells": 3815,
+            "power_w": 100.6,
+            "total_w_k": 7.790998012010641,
+            "ideal_rise_k": 12.912338039993662,
+            "actual_rise_k": 47.28271757348129,
+            "headroom_k": 34.37037953332003,
+            "upper_rise_k": 5903.792235578762,
+            "identity_error_k": 1.6759571508373483e-10
+          },
+          "pair": {
+            "source_cells": 3931,
+            "power_w": 100.60000000000001,
+            "total_w_k": 8.465424253369111,
+            "ideal_rise_k": 11.88363358870794,
+            "actual_rise_k": 44.92678076091065,
+            "headroom_k": 33.043147172138795,
+            "upper_rise_k": 6738.942220827724,
+            "identity_error_k": 6.391331908162101e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.35593681257064,
+            "ideal_floor_gain_k": 1.028704451285721,
+            "headroom_gain_k": 1.3272323611812382,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "centre": {
+        "scores": {
+          "start": {
+            "source_cells": 3787,
+            "power_w": 100.60000000000002,
+            "total_w_k": 10.657482823393199,
+            "ideal_rise_k": 9.439377165045277,
+            "actual_rise_k": 21.78075318144278,
+            "headroom_k": 12.34137601640367,
+            "upper_rise_k": 803.874084694244,
+            "identity_error_k": 6.16751094639767e-12
+          },
+          "pair": {
+            "source_cells": 3900,
+            "power_w": 100.6,
+            "total_w_k": 11.083864283316288,
+            "ideal_rise_k": 9.0762569288606,
+            "actual_rise_k": 20.26347120303892,
+            "headroom_k": 11.187214274195048,
+            "upper_rise_k": 937.7768938111707,
+            "identity_error_k": 1.6726175999792758e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.517281978403858,
+            "ideal_floor_gain_k": 0.3631202361846775,
+            "headroom_gain_k": 1.1541617422086219,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/-1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 3747,
+            "power_w": 100.6,
+            "total_w_k": 11.696222960331504,
+            "ideal_rise_k": 8.601067228385727,
+            "actual_rise_k": 22.784424544155822,
+            "headroom_k": 14.183357315778848,
+            "upper_rise_k": 592.7240145190469,
+            "identity_error_k": 8.752110147725034e-12
+          },
+          "pair": {
+            "source_cells": 3882,
+            "power_w": 100.60000000000001,
+            "total_w_k": 11.757471453105095,
+            "ideal_rise_k": 8.556261471800724,
+            "actual_rise_k": 21.047226610784232,
+            "headroom_k": 12.490965138986464,
+            "upper_rise_k": 632.8410733977832,
+            "identity_error_k": 2.9558577807620168e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.73719793337159,
+            "ideal_floor_gain_k": 0.044805756585002854,
+            "headroom_gain_k": 1.6923921767923833,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/-1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 3778,
+            "power_w": 100.60000000000001,
+            "total_w_k": 10.505878138955197,
+            "ideal_rise_k": 9.57559174677469,
+            "actual_rise_k": 37.2832572578956,
+            "headroom_k": 27.70766551107136,
+            "upper_rise_k": 2880.956366458242,
+            "identity_error_k": 4.9546144964551786e-11
+          },
+          "pair": {
+            "source_cells": 3901,
+            "power_w": 100.6,
+            "total_w_k": 10.691060018670598,
+            "ideal_rise_k": 9.40973110470942,
+            "actual_rise_k": 35.17326553254655,
+            "headroom_k": 25.763534427909104,
+            "upper_rise_k": 3693.5960250379094,
+            "identity_error_k": 7.197442641881935e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.1099917253490474,
+            "ideal_floor_gain_k": 0.16586064206526885,
+            "headroom_gain_k": 1.944131083162258,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 3776,
+            "power_w": 100.60000000000001,
+            "total_w_k": 10.759025190546428,
+            "ideal_rise_k": 9.350289474960393,
+            "actual_rise_k": 31.652036624096326,
+            "headroom_k": 22.301747149118878,
+            "upper_rise_k": 1889.6047724120424,
+            "identity_error_k": 1.7056578371921205e-11
+          },
+          "pair": {
+            "source_cells": 3912,
+            "power_w": 100.60000000000001,
+            "total_w_k": 10.829832836895594,
+            "ideal_rise_k": 9.289155383568904,
+            "actual_rise_k": 29.499995222162298,
+            "headroom_k": 20.210839838526184,
+            "upper_rise_k": 2353.4478192169645,
+            "identity_error_k": 6.721023737554788e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.152041401934028,
+            "ideal_floor_gain_k": 0.061134091391489065,
+            "headroom_gain_k": 2.0909073105926943,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "6/1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 3806,
+            "power_w": 100.60000000000001,
+            "total_w_k": 8.109255650636907,
+            "ideal_rise_k": 12.40557756889793,
+            "actual_rise_k": 33.02306058722816,
+            "headroom_k": 20.617483018218486,
+            "upper_rise_k": 1410.5992936077037,
+            "identity_error_k": 1.1173995062563336e-10,
+            "matched_max_source_error_k": 5.761222610090044e-10
+          },
+          "pair": {
+            "source_cells": 3930,
+            "power_w": 100.6,
+            "total_w_k": 9.182247252254035,
+            "ideal_rise_k": 10.955923668392284,
+            "actual_rise_k": 31.548099389854993,
+            "headroom_k": 20.5921757214427,
+            "upper_rise_k": 1537.5881935524242,
+            "identity_error_k": 2.000888343900442e-11,
+            "matched_max_source_error_k": 3.4841640683680453e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.4749611973731653,
+            "ideal_floor_gain_k": 1.4496539005056466,
+            "headroom_gain_k": 0.025307296775785915,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/-1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 3751,
+            "power_w": 100.6,
+            "total_w_k": 10.910097971928082,
+            "ideal_rise_k": 9.220815455447418,
+            "actual_rise_k": 34.15838902719268,
+            "headroom_k": 24.93757357172869,
+            "upper_rise_k": 1469.4969683568886,
+            "identity_error_k": 1.6573409311604337e-11
+          },
+          "pair": {
+            "source_cells": 3881,
+            "power_w": 100.60000000000001,
+            "total_w_k": 10.90912014628428,
+            "ideal_rise_k": 9.221641951964846,
+            "actual_rise_k": 32.21645334960372,
+            "headroom_k": 22.994811397651556,
+            "upper_rise_k": 1330.1596113895394,
+            "identity_error_k": 1.2686740546996589e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.9419356775889653,
+            "ideal_floor_gain_k": -0.0008264965174280547,
+            "headroom_gain_k": 1.942762174077135,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/-1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 3766,
+            "power_w": 100.6,
+            "total_w_k": 9.579944048423728,
+            "ideal_rise_k": 10.50110517258737,
+            "actual_rise_k": 56.24669171938911,
+            "headroom_k": 45.745586546761665,
+            "upper_rise_k": 11560.002331441166,
+            "identity_error_k": 4.008171572422725e-11
+          },
+          "pair": {
+            "source_cells": 3896,
+            "power_w": 100.60000000000002,
+            "total_w_k": 9.500882189390866,
+            "ideal_rise_k": 10.588490415377924,
+            "actual_rise_k": 53.879671555849086,
+            "headroom_k": 43.29118114022665,
+            "upper_rise_k": 13493.226239213387,
+            "identity_error_k": 2.445119662297657e-10
+          },
+          "part1": {
+            "source_cells": 3848,
+            "power_w": 100.60000000000001,
+            "total_w_k": 9.346561902105176,
+            "ideal_rise_k": 10.76331607854021,
+            "actual_rise_k": 57.269528591246846,
+            "headroom_k": 46.50621251265061,
+            "upper_rise_k": 16139.86843949384,
+            "identity_error_k": 5.60262947146839e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.367020163540026,
+            "ideal_floor_gain_k": -0.08738524279055504,
+            "headroom_gain_k": 2.4544054065350167,
+            "bound_verdict": "undecided"
+          },
+          "part1": {
+            "actual_gain_k": -1.0228368718577343,
+            "ideal_floor_gain_k": -0.26221090595284124,
+            "headroom_gain_k": -0.7606259658889485,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/1,-1": {
+        "scores": {
+          "start": {
+            "source_cells": 3761,
+            "power_w": 100.60000000000001,
+            "total_w_k": 9.950716464414771,
+            "ideal_rise_k": 10.109824790984693,
+            "actual_rise_k": 47.199854963201346,
+            "headroom_k": 37.0900301723286,
+            "upper_rise_k": 8394.441065329052,
+            "identity_error_k": 1.1194600801900378e-10
+          },
+          "pair": {
+            "source_cells": 3884,
+            "power_w": 100.60000000000001,
+            "total_w_k": 9.776728101686423,
+            "ideal_rise_k": 10.289741000636722,
+            "actual_rise_k": 45.52433016578672,
+            "headroom_k": 35.23458916532833,
+            "upper_rise_k": 10578.715452160523,
+            "identity_error_k": 1.7833201582106994e-10
+          },
+          "part2": {
+            "source_cells": 3806,
+            "power_w": 100.60000000000002,
+            "total_w_k": 9.71030746537733,
+            "ideal_rise_k": 10.360125089622056,
+            "actual_rise_k": 48.50619846758554,
+            "headroom_k": 38.146073378068024,
+            "upper_rise_k": 9547.843802326095,
+            "identity_error_k": 1.0453504728502594e-10
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.6755247974146243,
+            "ideal_floor_gain_k": -0.17991620965202948,
+            "headroom_gain_k": 1.8554410070002731,
+            "bound_verdict": "undecided"
+          },
+          "part2": {
+            "actual_gain_k": -1.3063435043841949,
+            "ideal_floor_gain_k": -0.25030029863736303,
+            "headroom_gain_k": -1.056043205739421,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "12/1,1": {
+        "scores": {
+          "start": {
+            "source_cells": 3776,
+            "power_w": 100.60000000000001,
+            "total_w_k": 4.61694557235342,
+            "ideal_rise_k": 21.789297366293326,
+            "actual_rise_k": 54.118229977859194,
+            "headroom_k": 32.32893261156083,
+            "upper_rise_k": 20258.885043095037,
+            "identity_error_k": 5.03774799653911e-12
+          },
+          "pair": {
+            "source_cells": 3899,
+            "power_w": 100.60000000000001,
+            "total_w_k": 6.192246897767189,
+            "ideal_rise_k": 16.246122233316395,
+            "actual_rise_k": 52.139750794644314,
+            "headroom_k": 35.89362856123878,
+            "upper_rise_k": 21987.229289565632,
+            "identity_error_k": 8.913758620110457e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 1.9784791832148798,
+            "ideal_floor_gain_k": 5.5431751329769305,
+            "headroom_gain_k": -3.5646959496779473,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "held_3_-9": {
+        "scores": {
+          "start": {
+            "source_cells": 3785,
+            "power_w": 100.60000000000002,
+            "total_w_k": 11.353541120762314,
+            "ideal_rise_k": 8.86067165565041,
+            "actual_rise_k": 31.04158415011253,
+            "headroom_k": 22.18091249447102,
+            "upper_rise_k": 1886.36242850966,
+            "identity_error_k": 8.899547765395255e-12
+          },
+          "pair": {
+            "source_cells": 3889,
+            "power_w": 100.60000000000001,
+            "total_w_k": 11.337801603771043,
+            "ideal_rise_k": 8.87297233764786,
+            "actual_rise_k": 29.019903486525656,
+            "headroom_k": 20.146931148873385,
+            "upper_rise_k": 2118.0499342025864,
+            "identity_error_k": 4.412470389070222e-12
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.0216806635868743,
+            "ideal_floor_gain_k": -0.012300681997450269,
+            "headroom_gain_k": 2.0339813455976348,
+            "bound_verdict": "undecided"
+          }
+        }
+      },
+      "held_-9_3": {
+        "scores": {
+          "start": {
+            "source_cells": 3733,
+            "power_w": 100.60000000000001,
+            "total_w_k": 11.145657251377944,
+            "ideal_rise_k": 9.025936984340943,
+            "actual_rise_k": 36.13503620477796,
+            "headroom_k": 27.109099220386636,
+            "upper_rise_k": 2526.252162443254,
+            "identity_error_k": 5.0381032679069904e-11
+          },
+          "pair": {
+            "source_cells": 3844,
+            "power_w": 100.60000000000001,
+            "total_w_k": 11.269504411345398,
+            "ideal_rise_k": 8.92674569599729,
+            "actual_rise_k": 33.75799624620159,
+            "headroom_k": 24.831250550157943,
+            "upper_rise_k": 2910.7062516681785,
+            "identity_error_k": 4.6359360794667737e-11
+          }
+        },
+        "changes": {
+          "pair": {
+            "actual_gain_k": 2.3770399585763684,
+            "ideal_floor_gain_k": 0.09919128834365232,
+            "headroom_gain_k": 2.2778486702286926,
+            "bound_verdict": "undecided"
+          }
+        }
+      }
+    }
+  }
+}
