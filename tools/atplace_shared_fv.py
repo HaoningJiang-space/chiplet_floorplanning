@@ -121,13 +121,13 @@ def main():
             return original(problem, *solver_args, **kwargs)
         pulp.LpProblem.solve = solve_with_cap
     then = perf_counter()
-    if args.projected_labels and args.stage == 'native':
+    if args.projected_labels and args.stage in ('native','shared'):
         # Reuse the native solver's own continuous result when only its terminal
         # MILP timed out. All positions, angles, weights and source pins remain its inputs.
         model_id = sha256(Path(params.thermal_model).read_bytes()).hexdigest()
-        saved = out/('native-before-legalization-'+model_id+'.npz')
+        saved = out/(args.stage+'-before-legalization-'+model_id+'.npz')
         legalize = place_flow.Legalization
-        if args.native_limit_s > 10 and saved.exists():
+        if args.stage=='native' and args.native_limit_s > 10 and saved.exists():
             prior = np.load(saved)
             system.node_orient = prior['orient']
             target = [[prior['x'],prior['y']]]
