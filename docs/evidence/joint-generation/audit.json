@@ -1,0 +1,4763 @@
+{
+  "search_sha256": "712279aad637d44411f0a5a08ba3598269d50c4f580011b07dcf33e47c5e4bd3",
+  "previous_pool_sha256": "58f9b360da82534ddc8a8ad8d763df214cb4ef3bd59743b562f69ce9c8ae354a",
+  "cases": {
+    "Case1": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.0,
+          "cost": 70.35004826360007,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "cheapest_passing_cost": null
+        },
+        "adaptive": {
+          "gain_k": 0.0,
+          "cost": 70.35004826360007,
+          "outside": false,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "cheapest_passing_cost": null
+        },
+        "fixed": {
+          "gain_k": 0.0,
+          "cost": 70.35004826360007,
+          "outside": false,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "cheapest_passing_cost": null
+        },
+        "singles": {
+          "gain_k": 0.0,
+          "cost": 70.35004826360007,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "cheapest_passing_cost": null
+        },
+        "matched": {
+          "gain_k": 0.0,
+          "cost": 70.35004826360007,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "cheapest_passing_cost": null
+        },
+        "protected": {
+          "gain_k": 0.0,
+          "cost": 70.35004826360007,
+          "outside": false,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "cheapest_passing_cost": null
+        },
+        "contacts": {
+          "gain_k": 0.0,
+          "cost": 70.35004826360007,
+          "outside": false,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "cheapest_passing_cost": null
+        },
+        "contacts_matched": {
+          "gain_k": 0.0,
+          "cost": 70.35004826360007,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 30.686791893703923,
+            "east": 33.80105841425746,
+            "south": 43.10981167075828,
+            "north": 13.083482618251729
+          },
+          "cheapest_passing_cost": null
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "adaptive": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "fixed": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "matched": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "protected": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "contacts": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "contacts_matched": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        }
+      },
+      "max_energy_balance_w": 9.15179043659009e-12,
+      "old_pairs_covered_by_retained_landings": 13,
+      "one_step_challenge": []
+    },
+    "Case2": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.438752623728881,
+          "cost": 106.68553615316002,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 8.383165478072435,
+            "east": 17.249870252765277,
+            "south": 12.584892583487195,
+            "north": 17.497763721073714
+          },
+          "cheapest_passing_cost": 106.68553615316002
+        },
+        "adaptive": {
+          "gain_k": 0.5845312668850298,
+          "cost": 114.56901943944011,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.070346895284734,
+            "east": 17.31726308971774,
+            "south": 12.263941079238617,
+            "north": 17.270955015660952
+          },
+          "cheapest_passing_cost": 114.56901943944011
+        },
+        "fixed": {
+          "gain_k": 0.5845312668850298,
+          "cost": 114.56901943944011,
+          "outside": true,
+          "novel_proposals": 5,
+          "peak_above_ambient_k": {
+            "west": 9.070346895284734,
+            "east": 17.31726308971774,
+            "south": 12.263941079238617,
+            "north": 17.270955015660952
+          },
+          "cheapest_passing_cost": 112.47909526776009
+        },
+        "singles": {
+          "gain_k": 0.438752623728881,
+          "cost": 106.68553615316002,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 8.383165478072435,
+            "east": 17.249870252765277,
+            "south": 12.584892583487195,
+            "north": 17.497763721073714
+          },
+          "cheapest_passing_cost": 106.68553615316002
+        },
+        "matched": {
+          "gain_k": 0.5845312668850298,
+          "cost": 114.56901943944011,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.070346895284734,
+            "east": 17.31726308971774,
+            "south": 12.263941079238617,
+            "north": 17.270955015660952
+          },
+          "cheapest_passing_cost": 114.56901943944011
+        },
+        "protected": {
+          "gain_k": 0.5845312668850298,
+          "cost": 114.56901943944011,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.070346895284734,
+            "east": 17.31726308971774,
+            "south": 12.263941079238617,
+            "north": 17.270955015660952
+          },
+          "cheapest_passing_cost": 106.68553615316002
+        },
+        "contacts": {
+          "gain_k": 0.5845312668850298,
+          "cost": 114.56901943944011,
+          "outside": true,
+          "novel_proposals": 4,
+          "peak_above_ambient_k": {
+            "west": 9.070346895284734,
+            "east": 17.31726308971774,
+            "south": 12.263941079238617,
+            "north": 17.270955015660952
+          },
+          "cheapest_passing_cost": 103.16553615316006
+        },
+        "contacts_matched": {
+          "gain_k": 0.5318070923643798,
+          "cost": 110.38866311315986,
+          "outside": true,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 8.63213350021959,
+            "east": 17.14851615709238,
+            "south": 12.491838114851696,
+            "north": 17.35904772937408
+          },
+          "cheapest_passing_cost": 103.16553615316006
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.17405802197733067,
+          "centre_k": 0.30733252554056634,
+          "by_condition_k": {
+            "west": 1.498774484152186,
+            "east": 2.281803756225628,
+            "south": 0.17405802197733067,
+            "north": 0.29349297671748786,
+            "centre": 0.30733252554056634
+          }
+        },
+        "adaptive": {
+          "four_k": 0.5287929604834787,
+          "centre_k": 0.6942350539458957,
+          "by_condition_k": {
+            "west": 0.7451598087302855,
+            "east": 2.4194334851809103,
+            "south": 0.5287929604834787,
+            "north": 0.6158537569969482,
+            "centre": 0.6942350539458957
+          }
+        },
+        "fixed": {
+          "four_k": 0.5287929604834787,
+          "centre_k": 0.6942350539458957,
+          "by_condition_k": {
+            "west": 0.7451598087302855,
+            "east": 2.4194334851809103,
+            "south": 0.5287929604834787,
+            "north": 0.6158537569969482,
+            "centre": 0.6942350539458957
+          }
+        },
+        "matched": {
+          "four_k": 0.5287929604834787,
+          "centre_k": 0.6942350539458957,
+          "by_condition_k": {
+            "west": 0.7451598087302855,
+            "east": 2.4194334851809103,
+            "south": 0.5287929604834787,
+            "north": 0.6158537569969482,
+            "centre": 0.6942350539458957
+          }
+        },
+        "protected": {
+          "four_k": 0.5287929604834787,
+          "centre_k": 0.6942350539458957,
+          "by_condition_k": {
+            "west": 0.7451598087302855,
+            "east": 2.4194334851809103,
+            "south": 0.5287929604834787,
+            "north": 0.6158537569969482,
+            "centre": 0.6942350539458957
+          }
+        },
+        "contacts": {
+          "four_k": 0.5287929604834787,
+          "centre_k": 0.6942350539458957,
+          "by_condition_k": {
+            "west": 0.7451598087302855,
+            "east": 2.4194334851809103,
+            "south": 0.5287929604834787,
+            "north": 0.6158537569969482,
+            "centre": 0.6942350539458957
+          }
+        },
+        "contacts_matched": {
+          "four_k": 0.2566779135884616,
+          "centre_k": 0.36373834849455733,
+          "by_condition_k": {
+            "west": 1.3016910770798447,
+            "east": 2.4072794569865152,
+            "south": 0.2566779135884616,
+            "north": 0.4568093173209178,
+            "centre": 0.36373834849455733
+          }
+        }
+      },
+      "max_energy_balance_w": 4.447997525858227e-12,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": [
+        {
+          "action": {
+            "chips": [
+              "HBM_1",
+              "Virtuvian_0"
+            ],
+            "indices": [
+              1,
+              4
+            ],
+            "from_um": [
+              [
+                48000.0,
+                8000.0
+              ],
+              [
+                18250.0,
+                20700.0
+              ]
+            ],
+            "to_um": [
+              [
+                36000.0,
+                17000.0
+              ],
+              [
+                20250.0,
+                20700.0
+              ]
+            ],
+            "cost": 113.86501943944002
+          },
+          "gain_k": 0.6720229395944948,
+          "improvement_k": 0.08749167270946501,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "HBM_1",
+              "Virtuvian_0"
+            ],
+            "indices": [
+              1,
+              4
+            ],
+            "from_um": [
+              [
+                48000.0,
+                8000.0
+              ],
+              [
+                18250.0,
+                20700.0
+              ]
+            ],
+            "to_um": [
+              [
+                38000.0,
+                17000.0
+              ],
+              [
+                20250.0,
+                20700.0
+              ]
+            ],
+            "cost": 115.27301943944
+          },
+          "gain_k": 0.46710520781162934,
+          "improvement_k": -0.11742605907340042,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "HBM_1",
+              "Virtuvian_0"
+            ],
+            "indices": [
+              1,
+              4
+            ],
+            "from_um": [
+              [
+                48000.0,
+                8000.0
+              ],
+              [
+                18250.0,
+                20700.0
+              ]
+            ],
+            "to_um": [
+              [
+                37000.0,
+                16000.0
+              ],
+              [
+                20250.0,
+                20700.0
+              ]
+            ],
+            "cost": 115.26828332923999
+          },
+          "gain_k": 0.5866043486339478,
+          "improvement_k": 0.002073081748918071,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "HBM_1",
+              "Virtuvian_0"
+            ],
+            "indices": [
+              1,
+              4
+            ],
+            "from_um": [
+              [
+                48000.0,
+                8000.0
+              ],
+              [
+                18250.0,
+                20700.0
+              ]
+            ],
+            "to_um": [
+              [
+                37000.0,
+                18000.0
+              ],
+              [
+                20250.0,
+                20700.0
+              ]
+            ],
+            "cost": 114.1020753738
+          },
+          "gain_k": 0.583353905237427,
+          "improvement_k": -0.001177361647602737,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "HBM_1",
+              "Virtuvian_0"
+            ],
+            "indices": [
+              1,
+              4
+            ],
+            "from_um": [
+              [
+                48000.0,
+                8000.0
+              ],
+              [
+                18250.0,
+                20700.0
+              ]
+            ],
+            "to_um": [
+              [
+                37000.0,
+                17000.0
+              ],
+              [
+                19250.0,
+                20700.0
+              ]
+            ],
+            "cost": 115.27301943944
+          },
+          "gain_k": 0.46867545564286317,
+          "improvement_k": -0.1158558112421666,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "HBM_1",
+              "Virtuvian_0"
+            ],
+            "indices": [
+              1,
+              4
+            ],
+            "from_um": [
+              [
+                48000.0,
+                8000.0
+              ],
+              [
+                18250.0,
+                20700.0
+              ]
+            ],
+            "to_um": [
+              [
+                37000.0,
+                17000.0
+              ],
+              [
+                21250.0,
+                20700.0
+              ]
+            ],
+            "cost": 113.86501943944002
+          },
+          "gain_k": 0.31090396964300737,
+          "improvement_k": -0.2736272972420224,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "HBM_1",
+              "Virtuvian_0"
+            ],
+            "indices": [
+              1,
+              4
+            ],
+            "from_um": [
+              [
+                48000.0,
+                8000.0
+              ],
+              [
+                18250.0,
+                20700.0
+              ]
+            ],
+            "to_um": [
+              [
+                37000.0,
+                17000.0
+              ],
+              [
+                20250.0,
+                19700.0
+              ]
+            ],
+            "cost": 116.24963229468
+          },
+          "gain_k": -0.17184225242481332,
+          "improvement_k": -0.7563735193098431,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "HBM_1",
+              "Virtuvian_0"
+            ],
+            "indices": [
+              1,
+              4
+            ],
+            "from_um": [
+              [
+                48000.0,
+                8000.0
+              ],
+              [
+                18250.0,
+                20700.0
+              ]
+            ],
+            "to_um": [
+              [
+                37000.0,
+                17000.0
+              ],
+              [
+                20250.0,
+                21700.0
+              ]
+            ],
+            "cost": 113.88709526776
+          },
+          "gain_k": 0.12747114580803753,
+          "improvement_k": -0.45706012107699223,
+          "outside_old": true
+        }
+      ],
+      "pair_at_limiting_cell": {
+        "boundary": "west",
+        "cell_yx": [
+          46,
+          74
+        ],
+        "headroom_k": 0.25057056853722237,
+        "parts": [
+          {
+            "chip": "HBM_1",
+            "cost": 115.97701943944001,
+            "gain_alone_k": 0.10540059968714743,
+            "change_at_cell_k": -0.7632532794558262
+          },
+          {
+            "chip": "Virtuvian_0",
+            "cost": 128.64428332923998,
+            "gain_alone_k": -0.45076153725894486,
+            "change_at_cell_k": 0.42929258110801527
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "west",
+        "cell_yx": [
+          46,
+          74
+        ],
+        "headroom_k": 0.25057056853722237,
+        "parts": [
+          {
+            "chip": "HBM_1",
+            "cost": 115.97701943944001,
+            "gain_alone_k": 0.10540059968714743,
+            "change_at_cell_k": -0.7632532794558262
+          },
+          {
+            "chip": "Virtuvian_0",
+            "cost": 128.64428332923998,
+            "gain_alone_k": -0.45076153725894486,
+            "change_at_cell_k": 0.42929258110801527
+          }
+        ]
+      }
+    },
+    "Case3": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.0,
+          "cost": 224.2452468747997,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 25.776055768043626,
+            "east": 39.43106971669208,
+            "south": 34.52020362823667,
+            "north": 22.900223487876527
+          },
+          "cheapest_passing_cost": null
+        },
+        "adaptive": {
+          "gain_k": 0.6538737767250993,
+          "cost": 193.26924687479982,
+          "outside": true,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 19.91091283440159,
+            "east": 37.749850095310194,
+            "south": 33.80543842501405,
+            "north": 22.246349711151428
+          },
+          "cheapest_passing_cost": 193.26924687479982
+        },
+        "fixed": {
+          "gain_k": 0.609635350365231,
+          "cost": 210.16524687479975,
+          "outside": true,
+          "novel_proposals": 24,
+          "peak_above_ambient_k": {
+            "west": 25.166420417678395,
+            "east": 36.798056799405074,
+            "south": 33.04106352083495,
+            "north": 22.09858450332942
+          },
+          "cheapest_passing_cost": 201.7323388747998
+        },
+        "singles": {
+          "gain_k": 0.0,
+          "cost": 224.2452468747997,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 25.776055768043626,
+            "east": 39.43106971669208,
+            "south": 34.52020362823667,
+            "north": 22.900223487876527
+          },
+          "cheapest_passing_cost": null
+        },
+        "matched": {
+          "gain_k": 0.609635350365231,
+          "cost": 210.16524687479975,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 25.166420417678395,
+            "east": 36.798056799405074,
+            "south": 33.04106352083495,
+            "north": 22.09858450332942
+          },
+          "cheapest_passing_cost": 210.16524687479975
+        },
+        "protected": {
+          "gain_k": 0.6538737767250993,
+          "cost": 193.26924687479982,
+          "outside": true,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 19.91091283440159,
+            "east": 37.749850095310194,
+            "south": 33.80543842501405,
+            "north": 22.246349711151428
+          },
+          "cheapest_passing_cost": 193.26924687479982
+        },
+        "contacts": {
+          "gain_k": 1.3786570522886663,
+          "cost": 179.58606587479966,
+          "outside": true,
+          "novel_proposals": 7,
+          "peak_above_ambient_k": {
+            "west": 20.261533609668025,
+            "east": 34.95472140645666,
+            "south": 33.141546575948006,
+            "north": 21.415161574554816
+          },
+          "cheapest_passing_cost": 179.58606587479966
+        },
+        "contacts_matched": {
+          "gain_k": 0.2540838382866397,
+          "cost": 201.56427443439966,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 25.037243824468742,
+            "east": 34.36524302412869,
+            "south": 30.800200142678307,
+            "north": 22.646139649589887
+          },
+          "cheapest_passing_cost": 201.56427443439966
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "adaptive": {
+          "four_k": 0.1157209076868213,
+          "centre_k": 0.9969035975094513,
+          "by_condition_k": {
+            "west": 6.03755635329685,
+            "east": 1.7892739052361435,
+            "south": 0.7062803299473188,
+            "north": 0.1157209076868213,
+            "centre": 0.9969035975094513
+          }
+        },
+        "fixed": {
+          "four_k": 0.3412706657479845,
+          "centre_k": 1.3656616156358794,
+          "by_condition_k": {
+            "west": 0.6162453529704948,
+            "east": 2.534912619514131,
+            "south": 1.1317879588098663,
+            "north": 0.3412706657479845,
+            "centre": 1.3656616156358794
+          }
+        },
+        "matched": {
+          "four_k": 0.3412706657479845,
+          "centre_k": 1.3656616156358794,
+          "by_condition_k": {
+            "west": 0.6162453529704948,
+            "east": 2.534912619514131,
+            "south": 1.1317879588098663,
+            "north": 0.3412706657479845,
+            "centre": 1.3656616156358794
+          }
+        },
+        "protected": {
+          "four_k": 0.1157209076868213,
+          "centre_k": 0.9969035975094513,
+          "by_condition_k": {
+            "west": 6.03755635329685,
+            "east": 1.7892739052361435,
+            "south": 0.7062803299473188,
+            "north": 0.1157209076868213,
+            "centre": 0.9969035975094513
+          }
+        },
+        "contacts": {
+          "four_k": 0.5281902819484401,
+          "centre_k": 1.7460364548011,
+          "by_condition_k": {
+            "west": 5.8446417738516345,
+            "east": 4.522316931943365,
+            "south": 1.0983034698561482,
+            "north": 0.5281902819484401,
+            "centre": 1.7460364548011
+          }
+        },
+        "contacts_matched": {
+          "four_k": -0.133161462056961,
+          "centre_k": 1.7874375170200594,
+          "by_condition_k": {
+            "west": 0.6675494460712201,
+            "east": 4.871063266842839,
+            "south": 2.795728532522375,
+            "north": -0.133161462056961,
+            "centre": 1.7874375170200594
+          }
+        }
+      },
+      "max_energy_balance_w": 6.963318810448982e-12,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": [
+        {
+          "action": {
+            "chips": [
+              "CPU2_0",
+              "CPU2_1"
+            ],
+            "indices": [
+              0,
+              1
+            ],
+            "from_um": [
+              [
+                35000.0,
+                25500.0
+              ],
+              [
+                4000.0,
+                14500.0
+              ]
+            ],
+            "to_um": [
+              [
+                26000.0,
+                24500.0
+              ],
+              [
+                12000.0,
+                11500.0
+              ]
+            ],
+            "cost": 176.77006587480003
+          },
+          "gain_k": 1.1777877593579618,
+          "improvement_k": -0.20086929293070455,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_0",
+              "CPU2_1"
+            ],
+            "indices": [
+              0,
+              1
+            ],
+            "from_um": [
+              [
+                35000.0,
+                25500.0
+              ],
+              [
+                4000.0,
+                14500.0
+              ]
+            ],
+            "to_um": [
+              [
+                28000.0,
+                24500.0
+              ],
+              [
+                12000.0,
+                11500.0
+              ]
+            ],
+            "cost": 182.4020658748
+          },
+          "gain_k": 1.480387443185176,
+          "improvement_k": 0.1017303908965097,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_0",
+              "CPU2_1"
+            ],
+            "indices": [
+              0,
+              1
+            ],
+            "from_um": [
+              [
+                35000.0,
+                25500.0
+              ],
+              [
+                4000.0,
+                14500.0
+              ]
+            ],
+            "to_um": [
+              [
+                27000.0,
+                23500.0
+              ],
+              [
+                12000.0,
+                11500.0
+              ]
+            ],
+            "cost": 179.5860658748
+          },
+          "gain_k": 1.3293071417053568,
+          "improvement_k": -0.04934991058330951,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_0",
+              "CPU2_1"
+            ],
+            "indices": [
+              0,
+              1
+            ],
+            "from_um": [
+              [
+                35000.0,
+                25500.0
+              ],
+              [
+                4000.0,
+                14500.0
+              ]
+            ],
+            "to_um": [
+              [
+                27000.0,
+                24500.0
+              ],
+              [
+                11000.0,
+                11500.0
+              ]
+            ],
+            "cost": 182.0203388748
+          },
+          "gain_k": 1.2675348208549373,
+          "improvement_k": -0.11112223143372901,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_0",
+              "CPU2_1"
+            ],
+            "indices": [
+              0,
+              1
+            ],
+            "from_um": [
+              [
+                35000.0,
+                25500.0
+              ],
+              [
+                4000.0,
+                14500.0
+              ]
+            ],
+            "to_um": [
+              [
+                27000.0,
+                24500.0
+              ],
+              [
+                12000.0,
+                10500.0
+              ]
+            ],
+            "cost": 179.5860658748
+          },
+          "gain_k": 0.5956979347876157,
+          "improvement_k": -0.7829591175010506,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_0",
+              "CPU2_1"
+            ],
+            "indices": [
+              0,
+              1
+            ],
+            "from_um": [
+              [
+                35000.0,
+                25500.0
+              ],
+              [
+                4000.0,
+                14500.0
+              ]
+            ],
+            "to_um": [
+              [
+                27000.0,
+                24500.0
+              ],
+              [
+                12000.0,
+                12500.0
+              ]
+            ],
+            "cost": 179.5860658748
+          },
+          "gain_k": 1.2360507773635803,
+          "improvement_k": -0.14260627492508604,
+          "outside_old": true
+        }
+      ],
+      "pair_at_limiting_cell": {
+        "boundary": "north",
+        "cell_yx": [
+          41,
+          36
+        ],
+        "headroom_k": 1.9208164929345344,
+        "parts": [
+          {
+            "chip": "CPU2_0",
+            "cost": 201.71724687480003,
+            "gain_alone_k": -0.4771532603150277,
+            "change_at_cell_k": -0.3311670857622673
+          },
+          {
+            "chip": "CPU2_1",
+            "cost": 215.79724687479995,
+            "gain_alone_k": -0.13306285989114386,
+            "change_at_cell_k": 1.598109801971706
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "south",
+        "cell_yx": [
+          63,
+          46
+        ],
+        "headroom_k": 0.19401836226433744,
+        "parts": [
+          {
+            "chip": "CPU2_0",
+            "cost": 201.71724687480003,
+            "gain_alone_k": -0.4771532603150277,
+            "change_at_cell_k": 0.3630118806709177
+          },
+          {
+            "chip": "CPU2_1",
+            "cost": 202.1140658748,
+            "gain_alone_k": -0.4977344110342514,
+            "change_at_cell_k": -1.547650570695268
+          }
+        ]
+      }
+    },
+    "Case4": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.49122120813649417,
+          "cost": 237.2860525420001,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 68.86756333265352,
+            "east": 60.239386910429744,
+            "south": 62.02370292532487,
+            "north": 74.66170680384579
+          },
+          "cheapest_passing_cost": 236.58205254200004
+        },
+        "adaptive": {
+          "gain_k": 0.9008936208686436,
+          "cost": 224.7866925420001,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 67.79662668918539,
+            "east": 60.936750553173546,
+            "south": 61.031165471556896,
+            "north": 74.79968918275833
+          },
+          "cheapest_passing_cost": 224.7866925420001
+        },
+        "fixed": {
+          "gain_k": 0.9008936208686436,
+          "cost": 224.7866925420001,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 67.79662668918539,
+            "east": 60.936750553173546,
+            "south": 61.031165471556896,
+            "north": 74.79968918275833
+          },
+          "cheapest_passing_cost": 224.7866925420001
+        },
+        "singles": {
+          "gain_k": 0.49122120813649417,
+          "cost": 237.2860525420001,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 68.86756333265352,
+            "east": 60.239386910429744,
+            "south": 62.02370292532487,
+            "north": 74.66170680384579
+          },
+          "cheapest_passing_cost": 236.58205254200004
+        },
+        "matched": {
+          "gain_k": 0.9008936208686436,
+          "cost": 224.7866925420001,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 67.79662668918539,
+            "east": 60.936750553173546,
+            "south": 61.031165471556896,
+            "north": 74.79968918275833
+          },
+          "cheapest_passing_cost": 224.7866925420001
+        },
+        "protected": {
+          "gain_k": 0.9008936208686436,
+          "cost": 224.7866925420001,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 67.79662668918539,
+            "east": 60.936750553173546,
+            "south": 61.031165471556896,
+            "north": 74.79968918275833
+          },
+          "cheapest_passing_cost": 224.7866925420001
+        },
+        "contacts": {
+          "gain_k": 0.9008936208686436,
+          "cost": 224.7866925420001,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 67.79662668918539,
+            "east": 60.936750553173546,
+            "south": 61.031165471556896,
+            "north": 74.79968918275833
+          },
+          "cheapest_passing_cost": 224.7866925420001
+        },
+        "contacts_matched": {
+          "gain_k": 0.9008936208686436,
+          "cost": 224.7866925420001,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 67.79662668918539,
+            "east": 60.936750553173546,
+            "south": 61.031165471556896,
+            "north": 74.79968918275833
+          },
+          "cheapest_passing_cost": 224.7866925420001
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.3536029817347526,
+          "centre_k": 1.3593271973915222,
+          "by_condition_k": {
+            "west": 0.3927777776978303,
+            "east": 3.6379219445326214,
+            "south": 0.3536029817347526,
+            "north": 1.0311731481038038,
+            "centre": 1.3593271973915222
+          }
+        },
+        "adaptive": {
+          "four_k": 1.1499471294979173,
+          "centre_k": 1.45402319312646,
+          "by_condition_k": {
+            "west": 1.347511567003835,
+            "east": 3.1558565611065887,
+            "south": 1.4627922845828891,
+            "north": 1.1499471294979173,
+            "centre": 1.45402319312646
+          }
+        },
+        "fixed": {
+          "four_k": 1.1499471294979173,
+          "centre_k": 1.45402319312646,
+          "by_condition_k": {
+            "west": 1.347511567003835,
+            "east": 3.1558565611065887,
+            "south": 1.4627922845828891,
+            "north": 1.1499471294979173,
+            "centre": 1.45402319312646
+          }
+        },
+        "matched": {
+          "four_k": 1.1499471294979173,
+          "centre_k": 1.45402319312646,
+          "by_condition_k": {
+            "west": 1.347511567003835,
+            "east": 3.1558565611065887,
+            "south": 1.4627922845828891,
+            "north": 1.1499471294979173,
+            "centre": 1.45402319312646
+          }
+        },
+        "protected": {
+          "four_k": 1.1499471294979173,
+          "centre_k": 1.45402319312646,
+          "by_condition_k": {
+            "west": 1.347511567003835,
+            "east": 3.1558565611065887,
+            "south": 1.4627922845828891,
+            "north": 1.1499471294979173,
+            "centre": 1.45402319312646
+          }
+        },
+        "contacts": {
+          "four_k": 1.1499471294979173,
+          "centre_k": 1.45402319312646,
+          "by_condition_k": {
+            "west": 1.347511567003835,
+            "east": 3.1558565611065887,
+            "south": 1.4627922845828891,
+            "north": 1.1499471294979173,
+            "centre": 1.45402319312646
+          }
+        },
+        "contacts_matched": {
+          "four_k": 1.1499471294979173,
+          "centre_k": 1.45402319312646,
+          "by_condition_k": {
+            "west": 1.347511567003835,
+            "east": 3.1558565611065887,
+            "south": 1.4627922845828891,
+            "north": 1.1499471294979173,
+            "centre": 1.45402319312646
+          }
+        }
+      },
+      "max_energy_balance_w": 1.7394086171407253e-11,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": [
+        {
+          "action": {
+            "chips": [
+              "GPU_0",
+              "HBM_4"
+            ],
+            "indices": [
+              2,
+              10
+            ],
+            "from_um": [
+              [
+                13000.0,
+                13000.0
+              ],
+              [
+                42000.0,
+                53000.0
+              ]
+            ],
+            "to_um": [
+              [
+                14000.0,
+                15000.0
+              ],
+              [
+                20000.0,
+                34000.0
+              ]
+            ],
+            "cost": 224.09975952279999
+          },
+          "gain_k": 1.1666675024195285,
+          "improvement_k": 0.265773881550885,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "GPU_0",
+              "HBM_4"
+            ],
+            "indices": [
+              2,
+              10
+            ],
+            "from_um": [
+              [
+                13000.0,
+                13000.0
+              ],
+              [
+                42000.0,
+                53000.0
+              ]
+            ],
+            "to_um": [
+              [
+                15000.0,
+                14000.0
+              ],
+              [
+                20000.0,
+                34000.0
+              ]
+            ],
+            "cost": 226.19469254199998
+          },
+          "gain_k": 0.059394585289922475,
+          "improvement_k": -0.8414990355787211,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "GPU_0",
+              "HBM_4"
+            ],
+            "indices": [
+              2,
+              10
+            ],
+            "from_um": [
+              [
+                13000.0,
+                13000.0
+              ],
+              [
+                42000.0,
+                53000.0
+              ]
+            ],
+            "to_um": [
+              [
+                15000.0,
+                15000.0
+              ],
+              [
+                19000.0,
+                34000.0
+              ]
+            ],
+            "cost": 225.490692542
+          },
+          "gain_k": 0.8875243919250408,
+          "improvement_k": -0.013369228943602707,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "GPU_0",
+              "HBM_4"
+            ],
+            "indices": [
+              2,
+              10
+            ],
+            "from_um": [
+              [
+                13000.0,
+                13000.0
+              ],
+              [
+                42000.0,
+                53000.0
+              ]
+            ],
+            "to_um": [
+              [
+                15000.0,
+                15000.0
+              ],
+              [
+                20000.0,
+                33000.0
+              ]
+            ],
+            "cost": 224.082692542
+          },
+          "gain_k": 0.8649621422658953,
+          "improvement_k": -0.03593147860274826,
+          "outside_old": true
+        }
+      ],
+      "pair_at_limiting_cell": {
+        "boundary": "north",
+        "cell_yx": [
+          24,
+          53
+        ],
+        "headroom_k": 0.0,
+        "parts": [
+          {
+            "chip": "GPU_0",
+            "cost": 243.622052542,
+            "gain_alone_k": 0.35296934332059493,
+            "change_at_cell_k": -0.9592642237758042
+          },
+          {
+            "chip": "HBM_4",
+            "cost": 226.6002415168,
+            "gain_alone_k": -0.6270954458624161,
+            "change_at_cell_k": 0.058370602907160674
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "north",
+        "cell_yx": [
+          24,
+          53
+        ],
+        "headroom_k": 0.0,
+        "parts": [
+          {
+            "chip": "GPU_0",
+            "cost": 243.622052542,
+            "gain_alone_k": 0.35296934332059493,
+            "change_at_cell_k": -0.9592642237758042
+          },
+          {
+            "chip": "HBM_4",
+            "cost": 226.6002415168,
+            "gain_alone_k": -0.6270954458624161,
+            "change_at_cell_k": 0.058370602907160674
+          }
+        ]
+      }
+    },
+    "Case5": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.10029003311763773,
+          "cost": 166.61631156159993,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 34.07989452214152,
+            "east": 43.68363716079602,
+            "south": 39.78353553526721,
+            "north": 38.250025359127854
+          },
+          "cheapest_passing_cost": 166.61631156159993
+        },
+        "adaptive": {
+          "gain_k": 0.10029003311763773,
+          "cost": 166.61631156159996,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 34.07989452214152,
+            "east": 43.68363716079602,
+            "south": 39.78353553526721,
+            "north": 38.250025359127854
+          },
+          "cheapest_passing_cost": 166.61631156159996
+        },
+        "fixed": {
+          "gain_k": 0.10029003311763773,
+          "cost": 166.61631156159996,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 34.07989452214152,
+            "east": 43.68363716079602,
+            "south": 39.78353553526721,
+            "north": 38.250025359127854
+          },
+          "cheapest_passing_cost": 166.61631156159996
+        },
+        "singles": {
+          "gain_k": 0.10029003311763773,
+          "cost": 166.61631156159993,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 34.07989452214152,
+            "east": 43.68363716079602,
+            "south": 39.78353553526721,
+            "north": 38.250025359127854
+          },
+          "cheapest_passing_cost": 166.61631156159993
+        },
+        "matched": {
+          "gain_k": 0.10029003311763773,
+          "cost": 166.61631156159996,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 34.07989452214152,
+            "east": 43.68363716079602,
+            "south": 39.78353553526721,
+            "north": 38.250025359127854
+          },
+          "cheapest_passing_cost": 166.61631156159996
+        },
+        "protected": {
+          "gain_k": 0.10029003311763773,
+          "cost": 166.61631156159993,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 34.07989452214152,
+            "east": 43.68363716079602,
+            "south": 39.78353553526721,
+            "north": 38.250025359127854
+          },
+          "cheapest_passing_cost": 166.61631156159993
+        },
+        "contacts": {
+          "gain_k": 0.10029003311763773,
+          "cost": 166.61631156159996,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 34.07989452214152,
+            "east": 43.68363716079602,
+            "south": 39.78353553526721,
+            "north": 38.250025359127854
+          },
+          "cheapest_passing_cost": 166.61631156159996
+        },
+        "contacts_matched": {
+          "gain_k": 0.10029003311763773,
+          "cost": 166.61631156159996,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 34.07989452214152,
+            "east": 43.68363716079602,
+            "south": 39.78353553526721,
+            "north": 38.250025359127854
+          },
+          "cheapest_passing_cost": 166.61631156159996
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.18340075268956468,
+          "centre_k": 0.02143918687045243,
+          "by_condition_k": {
+            "west": 0.6418049631822953,
+            "east": 0.22314135232821286,
+            "south": 0.2148879217113091,
+            "north": 0.18340075268956468,
+            "centre": 0.02143918687045243
+          }
+        },
+        "adaptive": {
+          "four_k": 0.18340075268956468,
+          "centre_k": 0.02143918687045243,
+          "by_condition_k": {
+            "west": 0.6418049631822953,
+            "east": 0.22314135232821286,
+            "south": 0.2148879217113091,
+            "north": 0.18340075268956468,
+            "centre": 0.02143918687045243
+          }
+        },
+        "fixed": {
+          "four_k": 0.18340075268956468,
+          "centre_k": 0.02143918687045243,
+          "by_condition_k": {
+            "west": 0.6418049631822953,
+            "east": 0.22314135232821286,
+            "south": 0.2148879217113091,
+            "north": 0.18340075268956468,
+            "centre": 0.02143918687045243
+          }
+        },
+        "matched": {
+          "four_k": 0.18340075268956468,
+          "centre_k": 0.02143918687045243,
+          "by_condition_k": {
+            "west": 0.6418049631822953,
+            "east": 0.22314135232821286,
+            "south": 0.2148879217113091,
+            "north": 0.18340075268956468,
+            "centre": 0.02143918687045243
+          }
+        },
+        "protected": {
+          "four_k": 0.18340075268956468,
+          "centre_k": 0.02143918687045243,
+          "by_condition_k": {
+            "west": 0.6418049631822953,
+            "east": 0.22314135232821286,
+            "south": 0.2148879217113091,
+            "north": 0.18340075268956468,
+            "centre": 0.02143918687045243
+          }
+        },
+        "contacts": {
+          "four_k": 0.18340075268956468,
+          "centre_k": 0.02143918687045243,
+          "by_condition_k": {
+            "west": 0.6418049631822953,
+            "east": 0.22314135232821286,
+            "south": 0.2148879217113091,
+            "north": 0.18340075268956468,
+            "centre": 0.02143918687045243
+          }
+        },
+        "contacts_matched": {
+          "four_k": 0.18340075268956468,
+          "centre_k": 0.02143918687045243,
+          "by_condition_k": {
+            "west": 0.6418049631822953,
+            "east": 0.22314135232821286,
+            "south": 0.2148879217113091,
+            "north": 0.18340075268956468,
+            "centre": 0.02143918687045243
+          }
+        }
+      },
+      "max_energy_balance_w": 4.334310688136611e-12,
+      "old_pairs_covered_by_retained_landings": 18,
+      "one_step_challenge": [
+        {
+          "action": {
+            "chips": [
+              "CPU2_5",
+              "DRAM_3"
+            ],
+            "indices": [
+              5,
+              9
+            ],
+            "from_um": [
+              [
+                26500.0,
+                23100.0
+              ],
+              [
+                12600.0,
+                13600.0
+              ]
+            ],
+            "to_um": [
+              [
+                25500.0,
+                23100.0
+              ],
+              [
+                14600.0,
+                13600.0
+              ]
+            ],
+            "cost": 167.3203115616
+          },
+          "gain_k": 0.06984463455823686,
+          "improvement_k": -0.03044539855940087,
+          "outside_old": true
+        }
+      ],
+      "pair_at_limiting_cell": {
+        "boundary": "north",
+        "cell_yx": [
+          35,
+          42
+        ],
+        "headroom_k": 0.0,
+        "parts": [
+          {
+            "chip": "CPU2_5",
+            "cost": 168.7283115616,
+            "gain_alone_k": -0.10256281069497675,
+            "change_at_cell_k": -0.019494885663000616
+          },
+          {
+            "chip": "DRAM_3",
+            "cost": 168.3763115616,
+            "gain_alone_k": -0.06452066348219887,
+            "change_at_cell_k": -0.0807951474546229
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "north",
+        "cell_yx": [
+          35,
+          42
+        ],
+        "headroom_k": 0.0,
+        "parts": [
+          {
+            "chip": "CPU2_5",
+            "cost": 168.7283115616,
+            "gain_alone_k": -0.10256281069497675,
+            "change_at_cell_k": -0.019494885663000616
+          },
+          {
+            "chip": "DRAM_3",
+            "cost": 168.3763115616,
+            "gain_alone_k": -0.06452066348219887,
+            "change_at_cell_k": -0.0807951474546229
+          }
+        ]
+      },
+      "exhaustive": {
+        "feasible": 175,
+        "gain_k": 0.10029003311763773,
+        "action": {
+          "chips": [
+            "CPU2_5",
+            "DRAM_3"
+          ],
+          "indices": [
+            5,
+            9
+          ],
+          "from_um": [
+            [
+              26500.0,
+              23100.0
+            ],
+            [
+              12600.0,
+              13600.0
+            ]
+          ],
+          "to_um": [
+            [
+              25500.0,
+              23100.0
+            ],
+            [
+              15600.0,
+              13600.0
+            ]
+          ],
+          "cost": 166.61631156159999
+        }
+      }
+    },
+    "Case6": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.17576304261760356,
+          "cost": 156.2466195154002,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 30.389042005210747,
+            "east": 34.51184365802044,
+            "south": 41.15317624143692,
+            "north": 26.419699082353933
+          },
+          "cheapest_passing_cost": 156.2466195154002
+        },
+        "adaptive": {
+          "gain_k": 0.3956072402536357,
+          "cost": 154.45258954860012,
+          "outside": true,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 29.59149063912429,
+            "east": 34.51079087052831,
+            "south": 41.46599394938901,
+            "north": 26.412066925148558
+          },
+          "cheapest_passing_cost": 154.45258954860012
+        },
+        "fixed": {
+          "gain_k": 0.3956072402536357,
+          "cost": 154.45258954860012,
+          "outside": true,
+          "novel_proposals": 22,
+          "peak_above_ambient_k": {
+            "west": 29.59149063912429,
+            "east": 34.51079087052831,
+            "south": 41.46599394938901,
+            "north": 26.412066925148558
+          },
+          "cheapest_passing_cost": 154.35637957700013
+        },
+        "singles": {
+          "gain_k": 0.17576304261760356,
+          "cost": 156.2466195154002,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 30.389042005210747,
+            "east": 34.51184365802044,
+            "south": 41.15317624143692,
+            "north": 26.419699082353933
+          },
+          "cheapest_passing_cost": 156.2466195154002
+        },
+        "matched": {
+          "gain_k": 0.3956072402536357,
+          "cost": 154.45258954860012,
+          "outside": true,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 29.59149063912429,
+            "east": 34.51079087052831,
+            "south": 41.46599394938901,
+            "north": 26.412066925148558
+          },
+          "cheapest_passing_cost": 154.45258954860012
+        },
+        "protected": {
+          "gain_k": 0.3956072402536357,
+          "cost": 154.45258954860012,
+          "outside": true,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 29.59149063912429,
+            "east": 34.51079087052831,
+            "south": 41.46599394938901,
+            "north": 26.412066925148558
+          },
+          "cheapest_passing_cost": 154.45258954860012
+        },
+        "contacts": {
+          "gain_k": 0.6941487733738612,
+          "cost": 154.1346195154001,
+          "outside": true,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 29.767059813540587,
+            "east": 34.0592318071825,
+            "south": 41.24627605489284,
+            "north": 26.092084460094764
+          },
+          "cheapest_passing_cost": 154.1346195154001
+        },
+        "contacts_matched": {
+          "gain_k": 0.6941487733738612,
+          "cost": 154.1346195154001,
+          "outside": true,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 29.767059813540587,
+            "east": 34.0592318071825,
+            "south": 41.24627605489284,
+            "north": 26.092084460094764
+          },
+          "cheapest_passing_cost": 154.1346195154001
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.34863356046466265,
+          "centre_k": 1.7199406176416048,
+          "by_condition_k": {
+            "west": 0.34863356046466265,
+            "east": 0.5584711393212416,
+            "south": 0.7839673569887822,
+            "north": 0.4868566843049251,
+            "centre": 1.7199406176416048
+          }
+        },
+        "adaptive": {
+          "four_k": 0.32804746642307236,
+          "centre_k": 1.5203860985683235,
+          "by_condition_k": {
+            "west": 1.1099546210533902,
+            "east": 0.5421083392101025,
+            "south": 0.4931808289429114,
+            "north": 0.32804746642307236,
+            "centre": 1.5203860985683235
+          }
+        },
+        "fixed": {
+          "four_k": 0.32804746642307236,
+          "centre_k": 1.5203860985683235,
+          "by_condition_k": {
+            "west": 1.1099546210533902,
+            "east": 0.5421083392101025,
+            "south": 0.4931808289429114,
+            "north": 0.32804746642307236,
+            "centre": 1.5203860985683235
+          }
+        },
+        "matched": {
+          "four_k": 0.32804746642307236,
+          "centre_k": 1.5203860985683235,
+          "by_condition_k": {
+            "west": 1.1099546210533902,
+            "east": 0.5421083392101025,
+            "south": 0.4931808289429114,
+            "north": 0.32804746642307236,
+            "centre": 1.5203860985683235
+          }
+        },
+        "protected": {
+          "four_k": 0.32804746642307236,
+          "centre_k": 1.5203860985683235,
+          "by_condition_k": {
+            "west": 1.1099546210533902,
+            "east": 0.5421083392101025,
+            "south": 0.4931808289429114,
+            "north": 0.32804746642307236,
+            "centre": 1.5203860985683235
+          }
+        },
+        "contacts": {
+          "four_k": 0.5188999491477944,
+          "centre_k": 1.7746765070594819,
+          "by_condition_k": {
+            "west": 1.002298944496232,
+            "east": 1.0985187490612418,
+            "south": 0.7789234633683293,
+            "north": 0.5188999491477944,
+            "centre": 1.7746765070594819
+          }
+        },
+        "contacts_matched": {
+          "four_k": 0.5188999491477944,
+          "centre_k": 1.7746765070594819,
+          "by_condition_k": {
+            "west": 1.002298944496232,
+            "east": 1.0985187490612418,
+            "south": 0.7789234633683293,
+            "north": 0.5188999491477944,
+            "centre": 1.7746765070594819
+          }
+        }
+      },
+      "max_energy_balance_w": 7.005951374594588e-12,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": [
+        {
+          "action": {
+            "chips": [
+              "CPU2_6",
+              "GPU_0"
+            ],
+            "indices": [
+              6,
+              8
+            ],
+            "from_um": [
+              [
+                34500.0,
+                49500.0
+              ],
+              [
+                11500.0,
+                20500.0
+              ]
+            ],
+            "to_um": [
+              [
+                32500.0,
+                38500.0
+              ],
+              [
+                14500.0,
+                22500.0
+              ]
+            ],
+            "cost": 153.4306195154
+          },
+          "gain_k": 0.6356777640043845,
+          "improvement_k": -0.05847100936947669,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_6",
+              "GPU_0"
+            ],
+            "indices": [
+              6,
+              8
+            ],
+            "from_um": [
+              [
+                34500.0,
+                49500.0
+              ],
+              [
+                11500.0,
+                20500.0
+              ]
+            ],
+            "to_um": [
+              [
+                34500.0,
+                38500.0
+              ],
+              [
+                14500.0,
+                22500.0
+              ]
+            ],
+            "cost": 154.83861951539998
+          },
+          "gain_k": 0.5941070055961113,
+          "improvement_k": -0.10004176777774987,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_6",
+              "GPU_0"
+            ],
+            "indices": [
+              6,
+              8
+            ],
+            "from_um": [
+              [
+                34500.0,
+                49500.0
+              ],
+              [
+                11500.0,
+                20500.0
+              ]
+            ],
+            "to_um": [
+              [
+                33500.0,
+                38500.0
+              ],
+              [
+                13500.0,
+                22500.0
+              ]
+            ],
+            "cost": 154.83861951539998
+          },
+          "gain_k": 0.5952572860960856,
+          "improvement_k": -0.09889148727777552,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_6",
+              "GPU_0"
+            ],
+            "indices": [
+              6,
+              8
+            ],
+            "from_um": [
+              [
+                34500.0,
+                49500.0
+              ],
+              [
+                11500.0,
+                20500.0
+              ]
+            ],
+            "to_um": [
+              [
+                33500.0,
+                38500.0
+              ],
+              [
+                14500.0,
+                21500.0
+              ]
+            ],
+            "cost": 154.1346195154
+          },
+          "gain_k": 0.3343911464899101,
+          "improvement_k": -0.3597576268839511,
+          "outside_old": true
+        }
+      ],
+      "pair_at_limiting_cell": {
+        "boundary": "north",
+        "cell_yx": [
+          31,
+          52
+        ],
+        "headroom_k": 0.4320080134148192,
+        "parts": [
+          {
+            "chip": "CPU2_1",
+            "cost": 160.699639601,
+            "gain_alone_k": 0.0018843398456027671,
+            "change_at_cell_k": 0.045103452483093776
+          },
+          {
+            "chip": "CPU2_6",
+            "cost": 155.63882948699998,
+            "gain_alone_k": 0.011803129055163453,
+            "change_at_cell_k": -0.008702679321920925
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "south",
+        "cell_yx": [
+          68,
+          44
+        ],
+        "headroom_k": 0.0,
+        "parts": [
+          {
+            "chip": "CPU2_6",
+            "cost": 156.2466195154,
+            "gain_alone_k": -0.014060609926531242,
+            "change_at_cell_k": -0.6364359284085523
+          },
+          {
+            "chip": "GPU_0",
+            "cost": 159.77387953939999,
+            "gain_alone_k": -0.061595248115693835,
+            "change_at_cell_k": -0.05771284496530171
+          }
+        ]
+      }
+    },
+    "Case7": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.28411170227425586,
+          "cost": 46.62997997927998,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 9.707995035800488,
+            "east": 11.966022620064853,
+            "south": 7.644053563805963,
+            "north": 10.33063069975618
+          },
+          "cheapest_passing_cost": 45.189429999680016
+        },
+        "adaptive": {
+          "gain_k": 0.24232911707930604,
+          "cost": 47.307819980679994,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 9.807539780247094,
+            "east": 11.815805364452983,
+            "south": 7.73693337869036,
+            "north": 10.28947215731686
+          },
+          "cheapest_passing_cost": 45.54541999736
+        },
+        "fixed": {
+          "gain_k": 0.24232911707930604,
+          "cost": 47.307819980679994,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 9.807539780247094,
+            "east": 11.815805364452983,
+            "south": 7.73693337869036,
+            "north": 10.28947215731686
+          },
+          "cheapest_passing_cost": 45.54541999736
+        },
+        "singles": {
+          "gain_k": 0.28411170227425586,
+          "cost": 46.62997997927998,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 9.707995035800488,
+            "east": 11.966022620064853,
+            "south": 7.644053563805963,
+            "north": 10.33063069975618
+          },
+          "cheapest_passing_cost": 45.189429999680016
+        },
+        "matched": {
+          "gain_k": 0.24232911707930604,
+          "cost": 47.307819980679994,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 9.807539780247094,
+            "east": 11.815805364452983,
+            "south": 7.73693337869036,
+            "north": 10.28947215731686
+          },
+          "cheapest_passing_cost": 45.54541999736
+        },
+        "protected": {
+          "gain_k": 0.28411170227425586,
+          "cost": 46.62997997927998,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 9.707995035800488,
+            "east": 11.966022620064853,
+            "south": 7.644053563805963,
+            "north": 10.33063069975618
+          },
+          "cheapest_passing_cost": 45.545419997360014
+        },
+        "contacts": {
+          "gain_k": 0.28411170227425586,
+          "cost": 46.62997997927998,
+          "outside": false,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.707995035800488,
+            "east": 11.966022620064853,
+            "south": 7.644053563805963,
+            "north": 10.33063069975618
+          },
+          "cheapest_passing_cost": 45.814149994960005
+        },
+        "contacts_matched": {
+          "gain_k": 0.26261541787044784,
+          "cost": 47.17245997927999,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.692501646863857,
+            "east": 12.051805158781695,
+            "south": 7.8636596097333324,
+            "north": 10.322009508824888
+          },
+          "cheapest_passing_cost": 45.814149994960005
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.27207601115717495,
+          "centre_k": 0.0431491519322762,
+          "by_condition_k": {
+            "west": 0.3474263194724827,
+            "east": 0.44525232120744107,
+            "south": 0.4893656518791758,
+            "north": 0.27207601115717495,
+            "centre": 0.0431491519322762
+          }
+        },
+        "adaptive": {
+          "four_k": 0.2689563739738645,
+          "centre_k": 0.062253118808776264,
+          "by_condition_k": {
+            "west": 0.2689563739738645,
+            "east": 0.5315791477634946,
+            "south": 0.3891835615714143,
+            "north": 0.2867180921348478,
+            "centre": 0.062253118808776264
+          }
+        },
+        "fixed": {
+          "four_k": 0.2689563739738645,
+          "centre_k": 0.062253118808776264,
+          "by_condition_k": {
+            "west": 0.2689563739738645,
+            "east": 0.5315791477634946,
+            "south": 0.3891835615714143,
+            "north": 0.2867180921348478,
+            "centre": 0.062253118808776264
+          }
+        },
+        "matched": {
+          "four_k": 0.2689563739738645,
+          "centre_k": 0.062253118808776264,
+          "by_condition_k": {
+            "west": 0.2689563739738645,
+            "east": 0.5315791477634946,
+            "south": 0.3891835615714143,
+            "north": 0.2867180921348478,
+            "centre": 0.062253118808776264
+          }
+        },
+        "protected": {
+          "four_k": 0.27207601115717495,
+          "centre_k": 0.0431491519322762,
+          "by_condition_k": {
+            "west": 0.3474263194724827,
+            "east": 0.44525232120744107,
+            "south": 0.4893656518791758,
+            "north": 0.27207601115717495,
+            "centre": 0.0431491519322762
+          }
+        },
+        "contacts": {
+          "four_k": 0.27207601115717495,
+          "centre_k": 0.0431491519322762,
+          "by_condition_k": {
+            "west": 0.3474263194724827,
+            "east": 0.44525232120744107,
+            "south": 0.4893656518791758,
+            "north": 0.27207601115717495,
+            "centre": 0.0431491519322762
+          }
+        },
+        "contacts_matched": {
+          "four_k": 0.2641471151679582,
+          "centre_k": 0.0373632468594991,
+          "by_condition_k": {
+            "west": 0.3564041106072082,
+            "east": 0.34347620647901067,
+            "south": 0.2641471151679582,
+            "north": 0.2786561516145625,
+            "centre": 0.0373632468594991
+          }
+        }
+      },
+      "max_energy_balance_w": 1.2185807918285718e-12,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": [],
+      "pair_at_limiting_cell": {
+        "boundary": "west",
+        "cell_yx": [
+          40,
+          60
+        ],
+        "headroom_k": 0.0,
+        "parts": [
+          {
+            "chip": "CPU1_0",
+            "cost": 47.24221999536,
+            "gain_alone_k": -0.06325876875333236,
+            "change_at_cell_k": 0.06325876875333236
+          },
+          {
+            "chip": "Analog_6",
+            "cost": 47.39662998828,
+            "gain_alone_k": -0.09081156804048263,
+            "change_at_cell_k": -0.3055878858326473
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "north",
+        "cell_yx": [
+          39,
+          58
+        ],
+        "headroom_k": 0.0,
+        "parts": [
+          {
+            "chip": "CPU1_0",
+            "cost": 46.82837999396,
+            "gain_alone_k": -0.07574259681642026,
+            "change_at_cell_k": 0.061260539074851295
+          },
+          {
+            "chip": "Analog_6",
+            "cost": 47.13262998828,
+            "gain_alone_k": -0.17658939429941967,
+            "change_at_cell_k": -0.34537224134910716
+          }
+        ]
+      },
+      "previous_winner_during_generation": [
+        {
+          "reachable": false,
+          "upper_k": 0.28411170227422966
+        },
+        {
+          "reachable": false,
+          "upper_k": 0.28411170227422966
+        },
+        {
+          "reachable": false,
+          "upper_k": 0.28411170227422966
+        }
+      ]
+    },
+    "Case8": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.0,
+          "cost": 49.460340050900015,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "cheapest_passing_cost": null
+        },
+        "adaptive": {
+          "gain_k": 0.0,
+          "cost": 49.460340050900015,
+          "outside": false,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "cheapest_passing_cost": null
+        },
+        "fixed": {
+          "gain_k": 0.0,
+          "cost": 49.460340050900015,
+          "outside": false,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "cheapest_passing_cost": null
+        },
+        "singles": {
+          "gain_k": 0.0,
+          "cost": 49.460340050900015,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "cheapest_passing_cost": null
+        },
+        "matched": {
+          "gain_k": 0.0,
+          "cost": 49.460340050900015,
+          "outside": false,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "cheapest_passing_cost": null
+        },
+        "protected": {
+          "gain_k": 0.0,
+          "cost": 49.460340050900015,
+          "outside": false,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "cheapest_passing_cost": null
+        },
+        "contacts": {
+          "gain_k": 0.0,
+          "cost": 49.460340050900015,
+          "outside": false,
+          "novel_proposals": 7,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "cheapest_passing_cost": null
+        },
+        "contacts_matched": {
+          "gain_k": 0.0,
+          "cost": 49.460340050900015,
+          "outside": false,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 9.067555878162176,
+            "east": 8.511807867420599,
+            "south": 9.224084871445749,
+            "north": 8.261478354633079
+          },
+          "cheapest_passing_cost": null
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "adaptive": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "fixed": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "matched": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "protected": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "contacts": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "contacts_matched": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        }
+      },
+      "max_energy_balance_w": 6.394884621840902e-13,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": []
+    },
+    "Case9": {
+      "methods": {
+        "feedback": {
+          "gain_k": 1.6966089640047244,
+          "cost": 315.9651197900003,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 59.62603928575747,
+            "east": 77.47480523740637,
+            "south": 62.21530931266346,
+            "north": 75.66856028531384
+          },
+          "cheapest_passing_cost": 311.2112698604
+        },
+        "adaptive": {
+          "gain_k": 1.2895474830913827,
+          "cost": 323.6115197899998,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 59.64999888557661,
+            "east": 77.88186671831971,
+            "south": 62.91179304050044,
+            "north": 75.84305836791411
+          },
+          "cheapest_passing_cost": 323.4355197899998
+        },
+        "fixed": {
+          "gain_k": 1.2895474830913827,
+          "cost": 323.6115197899998,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 59.64999888557661,
+            "east": 77.88186671831971,
+            "south": 62.91179304050044,
+            "north": 75.84305836791411
+          },
+          "cheapest_passing_cost": 323.4355197899998
+        },
+        "singles": {
+          "gain_k": 1.6966089640047244,
+          "cost": 315.9651197900003,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 59.62603928575747,
+            "east": 77.47480523740637,
+            "south": 62.21530931266346,
+            "north": 75.66856028531384
+          },
+          "cheapest_passing_cost": 311.2112698604
+        },
+        "matched": {
+          "gain_k": 1.2733009412502696,
+          "cost": 323.4355197899998,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 59.60087683931019,
+            "east": 77.86054994397516,
+            "south": 62.94275430514347,
+            "north": 75.72105472335026
+          },
+          "cheapest_passing_cost": 323.4355197899998
+        },
+        "protected": {
+          "gain_k": 1.6966089640047244,
+          "cost": 315.9651197900003,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 59.62603928575747,
+            "east": 77.47480523740637,
+            "south": 62.21530931266346,
+            "north": 75.66856028531384
+          },
+          "cheapest_passing_cost": 315.9651197900003
+        },
+        "contacts": {
+          "gain_k": 1.6966089640047244,
+          "cost": 315.96511978999985,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 59.62603928575747,
+            "east": 77.47480523740637,
+            "south": 62.21530931266346,
+            "north": 75.66856028531384
+          },
+          "cheapest_passing_cost": 315.96511978999985
+        },
+        "contacts_matched": {
+          "gain_k": 1.6966089640047244,
+          "cost": 315.96511978999985,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 59.62603928575747,
+            "east": 77.47480523740637,
+            "south": 62.21530931266346,
+            "north": 75.66856028531384
+          },
+          "cheapest_passing_cost": 315.96511978999985
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 1.4889145756463051,
+          "centre_k": 1.288660820976176,
+          "by_condition_k": {
+            "west": 1.7181714192977608,
+            "east": 1.4889145756463051,
+            "south": 1.9568003250187473,
+            "north": 1.9846673634696117,
+            "centre": 1.288660820976176
+          }
+        },
+        "adaptive": {
+          "four_k": 1.106937989628193,
+          "centre_k": 1.2092213916485832,
+          "by_condition_k": {
+            "west": 1.725137093548355,
+            "east": 1.106937989628193,
+            "south": 1.3035124580952413,
+            "north": 1.7049539016421136,
+            "centre": 1.2092213916485832
+          }
+        },
+        "fixed": {
+          "four_k": 1.106937989628193,
+          "centre_k": 1.2092213916485832,
+          "by_condition_k": {
+            "west": 1.725137093548355,
+            "east": 1.106937989628193,
+            "south": 1.3035124580952413,
+            "north": 1.7049539016421136,
+            "centre": 1.2092213916485832
+          }
+        },
+        "matched": {
+          "four_k": 1.1172610954959339,
+          "centre_k": 1.2173531555919226,
+          "by_condition_k": {
+            "west": 1.7567819443463009,
+            "east": 1.1172610954959339,
+            "south": 1.294121842402845,
+            "north": 1.9097164670400275,
+            "centre": 1.2173531555919226
+          }
+        },
+        "protected": {
+          "four_k": 1.4889145756463051,
+          "centre_k": 1.288660820976176,
+          "by_condition_k": {
+            "west": 1.7181714192977608,
+            "east": 1.4889145756463051,
+            "south": 1.9568003250187473,
+            "north": 1.9846673634696117,
+            "centre": 1.288660820976176
+          }
+        },
+        "contacts": {
+          "four_k": 1.4889145756463051,
+          "centre_k": 1.288660820976176,
+          "by_condition_k": {
+            "west": 1.7181714192977608,
+            "east": 1.4889145756463051,
+            "south": 1.9568003250187473,
+            "north": 1.9846673634696117,
+            "centre": 1.288660820976176
+          }
+        },
+        "contacts_matched": {
+          "four_k": 1.4889145756463051,
+          "centre_k": 1.288660820976176,
+          "by_condition_k": {
+            "west": 1.7181714192977608,
+            "east": 1.4889145756463051,
+            "south": 1.9568003250187473,
+            "north": 1.9846673634696117,
+            "centre": 1.288660820976176
+          }
+        }
+      },
+      "max_energy_balance_w": 1.1766587704187259e-11,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": [
+        {
+          "action": {
+            "chips": [
+              "CPU2_7",
+              "CPU2_11"
+            ],
+            "indices": [
+              11,
+              15
+            ],
+            "from_um": [
+              [
+                4400.0,
+                53500.0
+              ],
+              [
+                36500.0,
+                6300.0
+              ]
+            ],
+            "to_um": [
+              [
+                33400.0,
+                24500.0
+              ],
+              [
+                21500.0,
+                32300.0
+              ]
+            ],
+            "cost": 315.96511979
+          },
+          "gain_k": 1.6754730490186773,
+          "improvement_k": -0.021135914986047055,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_7",
+              "CPU2_11"
+            ],
+            "indices": [
+              11,
+              15
+            ],
+            "from_um": [
+              [
+                4400.0,
+                53500.0
+              ],
+              [
+                36500.0,
+                6300.0
+              ]
+            ],
+            "to_um": [
+              [
+                33400.0,
+                25500.0
+              ],
+              [
+                20500.0,
+                32300.0
+              ]
+            ],
+            "cost": 315.61311979000004
+          },
+          "gain_k": 1.5835006452394964,
+          "improvement_k": -0.11310831876522798,
+          "outside_old": true
+        }
+      ],
+      "pair_at_limiting_cell": {
+        "boundary": "east",
+        "cell_yx": [
+          30,
+          23
+        ],
+        "headroom_k": 0.018176285843281903,
+        "parts": [
+          {
+            "chip": "CPU2_7",
+            "cost": 330.78343979000005,
+            "gain_alone_k": 0.22628281012444518,
+            "change_at_cell_k": -0.22735153876116954
+          },
+          {
+            "chip": "CPU2_11",
+            "cost": 325.75695979,
+            "gain_alone_k": -0.07671322820644377,
+            "change_at_cell_k": -1.0440196584869454
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "east",
+        "cell_yx": [
+          29,
+          23
+        ],
+        "headroom_k": 0.0,
+        "parts": [
+          {
+            "chip": "CPU2_7",
+            "cost": 327.79143979,
+            "gain_alone_k": -0.7463548854880742,
+            "change_at_cell_k": -1.6215815256744435
+          },
+          {
+            "chip": "CPU2_11",
+            "cost": 321.10255979000004,
+            "gain_alone_k": -0.7077990035896846,
+            "change_at_cell_k": -0.07502743833029513
+          }
+        ]
+      },
+      "previous_winner_during_generation": [
+        {
+          "reachable": false,
+          "upper_k": 1.6966089640049724
+        },
+        {
+          "reachable": false,
+          "upper_k": 1.6966089640049724
+        },
+        {
+          "reachable": false,
+          "upper_k": 1.6966089640049724
+        }
+      ]
+    },
+    "Case10": {
+      "methods": {
+        "feedback": {
+          "gain_k": 1.7947794619707338,
+          "cost": 143.3299397477199,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 39.76117588420709,
+            "east": 43.12167308462831,
+            "south": 33.7687676093542,
+            "north": 50.589993109244254
+          },
+          "cheapest_passing_cost": 122.53089974811994
+        },
+        "adaptive": {
+          "gain_k": 1.8776921885552582,
+          "cost": 143.2419397477199,
+          "outside": true,
+          "novel_proposals": 5,
+          "peak_above_ambient_k": {
+            "west": 39.79658963023947,
+            "east": 42.97138727124727,
+            "south": 33.685854882769675,
+            "north": 50.58898921660508
+          },
+          "cheapest_passing_cost": 136.30917982711995
+        },
+        "fixed": {
+          "gain_k": 1.3949525669190308,
+          "cost": 136.01937982711993,
+          "outside": true,
+          "novel_proposals": 24,
+          "peak_above_ambient_k": {
+            "west": 39.97522200110882,
+            "east": 40.98019237221967,
+            "south": 34.1685945044059,
+            "north": 43.303863543661095
+          },
+          "cheapest_passing_cost": 136.01937982711993
+        },
+        "singles": {
+          "gain_k": 1.7947794619707338,
+          "cost": 143.3299397477199,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 39.76117588420709,
+            "east": 43.12167308462831,
+            "south": 33.7687676093542,
+            "north": 50.589993109244254
+          },
+          "cheapest_passing_cost": 122.53089974811994
+        },
+        "matched": {
+          "gain_k": 1.8031872929852995,
+          "cost": 150.3016297077199,
+          "outside": true,
+          "novel_proposals": 4,
+          "peak_above_ambient_k": {
+            "west": 39.71559652631176,
+            "east": 43.311842894963554,
+            "south": 33.760359778339634,
+            "north": 51.07301464806578
+          },
+          "cheapest_passing_cost": 136.30917982711995
+        },
+        "protected": {
+          "gain_k": 1.8776921885552582,
+          "cost": 143.2419397477199,
+          "outside": true,
+          "novel_proposals": 5,
+          "peak_above_ambient_k": {
+            "west": 39.79658963023947,
+            "east": 42.97138727124727,
+            "south": 33.685854882769675,
+            "north": 50.58898921660508
+          },
+          "cheapest_passing_cost": 136.30917982711995
+        },
+        "contacts": {
+          "gain_k": 2.2442923711770675,
+          "cost": 147.9766298213199,
+          "outside": true,
+          "novel_proposals": 4,
+          "peak_above_ambient_k": {
+            "west": 39.315011642388185,
+            "east": 42.533077707394995,
+            "south": 33.319254700147866,
+            "north": 50.50759490729008
+          },
+          "cheapest_passing_cost": 136.30917982711995
+        },
+        "contacts_matched": {
+          "gain_k": 2.2442923711770675,
+          "cost": 147.9766298213199,
+          "outside": true,
+          "novel_proposals": 4,
+          "peak_above_ambient_k": {
+            "west": 39.315011642388185,
+            "east": 42.533077707394995,
+            "south": 33.319254700147866,
+            "north": 50.50759490729008
+          },
+          "cheapest_passing_cost": 136.30917982711995
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 1.8022818491971009,
+          "centre_k": 2.4221828894511077,
+          "by_condition_k": {
+            "west": 2.203989951463825,
+            "east": 2.0923392571137924,
+            "south": 1.8022818491971009,
+            "north": 2.5660578461574204,
+            "centre": 2.4221828894511077
+          }
+        },
+        "adaptive": {
+          "four_k": 1.8753372063556526,
+          "centre_k": 2.420885597544668,
+          "by_condition_k": {
+            "west": 2.1851935203622475,
+            "east": 2.2311961389394526,
+            "south": 1.8753372063556526,
+            "north": 2.5651690635271365,
+            "centre": 2.420885597544668
+          }
+        },
+        "fixed": {
+          "four_k": 1.624188083292978,
+          "centre_k": 3.2646510876501935,
+          "by_condition_k": {
+            "west": 1.624188083292978,
+            "east": 3.5875929127994084,
+            "south": 2.0653255518932667,
+            "north": 9.020884117717955,
+            "centre": 3.2646510876501935
+          }
+        },
+        "matched": {
+          "four_k": 1.8092560275223661,
+          "centre_k": 1.4622279690734956,
+          "by_condition_k": {
+            "west": 1.967747658072966,
+            "east": 1.9529865201496222,
+            "south": 1.8092560275223661,
+            "north": 2.0105143489460744,
+            "centre": 1.4622279690734956
+          }
+        },
+        "protected": {
+          "four_k": 1.8753372063556526,
+          "centre_k": 2.420885597544668,
+          "by_condition_k": {
+            "west": 2.1851935203622475,
+            "east": 2.2311961389394526,
+            "south": 1.8753372063556526,
+            "north": 2.5651690635271365,
+            "centre": 2.420885597544668
+          }
+        },
+        "contacts": {
+          "four_k": 2.3025564840751684,
+          "centre_k": 1.5545054477032352,
+          "by_condition_k": {
+            "west": 2.3182980981789854,
+            "east": 2.5120218596507016,
+            "south": 2.3025564840751684,
+            "north": 2.3759062850106574,
+            "centre": 1.5545054477032352
+          }
+        },
+        "contacts_matched": {
+          "four_k": 2.3025564840751684,
+          "centre_k": 1.5545054477032352,
+          "by_condition_k": {
+            "west": 2.3182980981789854,
+            "east": 2.5120218596507016,
+            "south": 2.3025564840751684,
+            "north": 2.3759062850106574,
+            "centre": 1.5545054477032352
+          }
+        }
+      },
+      "max_energy_balance_w": 9.43600753089413e-12,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": [
+        {
+          "action": {
+            "chips": [
+              "CPU2_2",
+              "CPU2_8"
+            ],
+            "indices": [
+              8,
+              14
+            ],
+            "from_um": [
+              [
+                9500.0,
+                40500.0
+              ],
+              [
+                40500.0,
+                9500.0
+              ]
+            ],
+            "to_um": [
+              [
+                35500.0,
+                28500.0
+              ],
+              [
+                25500.0,
+                32500.0
+              ]
+            ],
+            "cost": 148.24062982132
+          },
+          "gain_k": 2.243852870789155,
+          "improvement_k": -0.000439500387912517,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_2",
+              "CPU2_8"
+            ],
+            "indices": [
+              8,
+              14
+            ],
+            "from_um": [
+              [
+                9500.0,
+                40500.0
+              ],
+              [
+                40500.0,
+                9500.0
+              ]
+            ],
+            "to_um": [
+              [
+                34500.0,
+                29500.0
+              ],
+              [
+                25500.0,
+                32500.0
+              ]
+            ],
+            "cost": 148.54148979692
+          },
+          "gain_k": 2.161624113820281,
+          "improvement_k": -0.08266825735678651,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_2",
+              "CPU2_8"
+            ],
+            "indices": [
+              8,
+              14
+            ],
+            "from_um": [
+              [
+                9500.0,
+                40500.0
+              ],
+              [
+                40500.0,
+                9500.0
+              ]
+            ],
+            "to_um": [
+              [
+                34500.0,
+                28500.0
+              ],
+              [
+                26500.0,
+                32500.0
+              ]
+            ],
+            "cost": 147.91944982132
+          },
+          "gain_k": 2.28720616092086,
+          "improvement_k": 0.04291378974379256,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "CPU2_2",
+              "CPU2_8"
+            ],
+            "indices": [
+              8,
+              14
+            ],
+            "from_um": [
+              [
+                9500.0,
+                40500.0
+              ],
+              [
+                40500.0,
+                9500.0
+              ]
+            ],
+            "to_um": [
+              [
+                34500.0,
+                28500.0
+              ],
+              [
+                25500.0,
+                33500.0
+              ]
+            ],
+            "cost": 148.68062982132
+          },
+          "gain_k": 2.147666071649411,
+          "improvement_k": -0.09662629952765656,
+          "outside_old": true
+        }
+      ],
+      "pair_at_limiting_cell": {
+        "boundary": "south",
+        "cell_yx": [
+          67,
+          30
+        ],
+        "headroom_k": 0.04302125381823885,
+        "parts": [
+          {
+            "chip": "CPU2_1",
+            "cost": 146.14593974772,
+            "gain_alone_k": -0.18347619154734218,
+            "change_at_cell_k": 0.17905332617560532
+          },
+          {
+            "chip": "CPU2_2",
+            "cost": 151.67312974772,
+            "gain_alone_k": -0.12835877530854134,
+            "change_at_cell_k": -2.0137242609126673
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "south",
+        "cell_yx": [
+          67,
+          30
+        ],
+        "headroom_k": 0.04302125381823885,
+        "parts": [
+          {
+            "chip": "CPU2_2",
+            "cost": 148.52924977331998,
+            "gain_alone_k": -1.1290585987759272,
+            "change_at_cell_k": -3.2973393380470952
+          },
+          {
+            "chip": "CPU2_8",
+            "cost": 154.02450979571998,
+            "gain_alone_k": -1.1209117060855078,
+            "change_at_cell_k": 1.0960682206882524
+          }
+        ]
+      }
+    },
+    "ascend910": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.1490763502613479,
+          "cost": 25.509803921568626,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 9.249729483753518,
+            "east": 17.08548635919337,
+            "south": 19.482530406699897,
+            "north": 7.586375388893105
+          },
+          "cheapest_passing_cost": 25.509803921568626
+        },
+        "adaptive": {
+          "gain_k": 0.16005877367754984,
+          "cost": 24.464052287581698,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.238747060337316,
+            "east": 16.60872378089213,
+            "south": 19.285394388873815,
+            "north": 7.6846460612479435
+          },
+          "cheapest_passing_cost": 24.464052287581698
+        },
+        "fixed": {
+          "gain_k": 0.16005877367754984,
+          "cost": 24.464052287581698,
+          "outside": true,
+          "novel_proposals": 9,
+          "peak_above_ambient_k": {
+            "west": 9.238747060337316,
+            "east": 16.60872378089213,
+            "south": 19.285394388873815,
+            "north": 7.6846460612479435
+          },
+          "cheapest_passing_cost": 23.627450980392158
+        },
+        "singles": {
+          "gain_k": 0.1490763502613479,
+          "cost": 25.509803921568626,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 9.249729483753518,
+            "east": 17.08548635919337,
+            "south": 19.482530406699897,
+            "north": 7.586375388893105
+          },
+          "cheapest_passing_cost": 25.509803921568626
+        },
+        "matched": {
+          "gain_k": 0.16005877367754984,
+          "cost": 24.464052287581698,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 9.238747060337316,
+            "east": 16.60872378089213,
+            "south": 19.285394388873815,
+            "north": 7.6846460612479435
+          },
+          "cheapest_passing_cost": 24.464052287581698
+        },
+        "protected": {
+          "gain_k": 0.16005877367754984,
+          "cost": 24.464052287581698,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 9.238747060337316,
+            "east": 16.60872378089213,
+            "south": 19.285394388873815,
+            "north": 7.6846460612479435
+          },
+          "cheapest_passing_cost": 24.464052287581698
+        },
+        "contacts": {
+          "gain_k": 0.21853970619151397,
+          "cost": 25.300653594771237,
+          "outside": true,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 9.180266127823351,
+            "east": 16.762054388386574,
+            "south": 19.16976375458702,
+            "north": 7.6090309694622436
+          },
+          "cheapest_passing_cost": 24.882352941176467
+        },
+        "contacts_matched": {
+          "gain_k": 0.17821013627333127,
+          "cost": 24.882352941176467,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 9.115620224267305,
+            "east": 16.84266268342048,
+            "south": 19.130880387163415,
+            "north": 7.673511273233625
+          },
+          "cheapest_passing_cost": 24.882352941176467
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.18581231462451342,
+          "centre_k": 0.573678363399253,
+          "by_condition_k": {
+            "west": 0.2561835825268233,
+            "east": 1.1842784690172081,
+            "south": 0.8191548036241159,
+            "north": 0.18581231462451342,
+            "centre": 0.573678363399253
+          }
+        },
+        "adaptive": {
+          "four_k": 0.06112421798039236,
+          "centre_k": 0.7615719732953536,
+          "by_condition_k": {
+            "west": 0.13556007717598817,
+            "east": 1.6286223919926783,
+            "south": 1.041371093495158,
+            "north": 0.06112421798039236,
+            "centre": 0.7615719732953536
+          }
+        },
+        "fixed": {
+          "four_k": 0.06112421798039236,
+          "centre_k": 0.7615719732953536,
+          "by_condition_k": {
+            "west": 0.13556007717598817,
+            "east": 1.6286223919926783,
+            "south": 1.041371093495158,
+            "north": 0.06112421798039236,
+            "centre": 0.7615719732953536
+          }
+        },
+        "matched": {
+          "four_k": 0.06112421798039236,
+          "centre_k": 0.7615719732953536,
+          "by_condition_k": {
+            "west": 0.13556007717598817,
+            "east": 1.6286223919926783,
+            "south": 1.041371093495158,
+            "north": 0.06112421798039236,
+            "centre": 0.7615719732953536
+          }
+        },
+        "protected": {
+          "four_k": 0.06112421798039236,
+          "centre_k": 0.7615719732953536,
+          "by_condition_k": {
+            "west": 0.13556007717598817,
+            "east": 1.6286223919926783,
+            "south": 1.041371093495158,
+            "north": 0.06112421798039236,
+            "centre": 0.7615719732953536
+          }
+        },
+        "contacts": {
+          "four_k": 0.21452307805325432,
+          "centre_k": 0.7544926561262173,
+          "by_condition_k": {
+            "west": 0.21452307805325432,
+            "east": 1.4738756000969175,
+            "south": 1.1095068939539487,
+            "north": 0.2762718540805338,
+            "centre": 0.7544926561262173
+          }
+        },
+        "contacts_matched": {
+          "four_k": 0.1780116733804462,
+          "centre_k": 0.8158551743581697,
+          "by_condition_k": {
+            "west": 0.32165949097878155,
+            "east": 1.444541247429214,
+            "south": 1.107930377178235,
+            "north": 0.1780116733804462,
+            "centre": 0.8158551743581697
+          }
+        }
+      },
+      "max_energy_balance_w": 5.5919713304319885e-12,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": [
+        {
+          "action": {
+            "chips": [
+              "die_2",
+              "die_4"
+            ],
+            "indices": [
+              2,
+              4
+            ],
+            "from_um": [
+              [
+                7000.0,
+                43000.0
+              ],
+              [
+                7000.0,
+                23000.0
+              ]
+            ],
+            "to_um": [
+              [
+                32000.0,
+                25000.0
+              ],
+              [
+                6000.0,
+                29000.0
+              ]
+            ],
+            "cost": 25.091503267973856
+          },
+          "gain_k": 0.23052249354566356,
+          "improvement_k": 0.011982787354149593,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_2",
+              "die_4"
+            ],
+            "indices": [
+              2,
+              4
+            ],
+            "from_um": [
+              [
+                7000.0,
+                43000.0
+              ],
+              [
+                7000.0,
+                23000.0
+              ]
+            ],
+            "to_um": [
+              [
+                33000.0,
+                24000.0
+              ],
+              [
+                6000.0,
+                29000.0
+              ]
+            ],
+            "cost": 25.50980392156863
+          },
+          "gain_k": 0.2079832089720952,
+          "improvement_k": -0.010556497219418759,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_2",
+              "die_4"
+            ],
+            "indices": [
+              2,
+              4
+            ],
+            "from_um": [
+              [
+                7000.0,
+                43000.0
+              ],
+              [
+                7000.0,
+                23000.0
+              ]
+            ],
+            "to_um": [
+              [
+                33000.0,
+                26000.0
+              ],
+              [
+                6000.0,
+                29000.0
+              ]
+            ],
+            "cost": 25.091503267973856
+          },
+          "gain_k": 0.1999487476067472,
+          "improvement_k": -0.01859095858476678,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_2",
+              "die_4"
+            ],
+            "indices": [
+              2,
+              4
+            ],
+            "from_um": [
+              [
+                7000.0,
+                43000.0
+              ],
+              [
+                7000.0,
+                23000.0
+              ]
+            ],
+            "to_um": [
+              [
+                33000.0,
+                25000.0
+              ],
+              [
+                5000.0,
+                29000.0
+              ]
+            ],
+            "cost": 25.50980392156863
+          },
+          "gain_k": 0.21754838980461422,
+          "improvement_k": -0.0009913163868997543,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_2",
+              "die_4"
+            ],
+            "indices": [
+              2,
+              4
+            ],
+            "from_um": [
+              [
+                7000.0,
+                43000.0
+              ],
+              [
+                7000.0,
+                23000.0
+              ]
+            ],
+            "to_um": [
+              [
+                33000.0,
+                25000.0
+              ],
+              [
+                7000.0,
+                29000.0
+              ]
+            ],
+            "cost": 25.091503267973856
+          },
+          "gain_k": 0.21838415098468467,
+          "improvement_k": -0.00015555520682930535,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_2",
+              "die_4"
+            ],
+            "indices": [
+              2,
+              4
+            ],
+            "from_um": [
+              [
+                7000.0,
+                43000.0
+              ],
+              [
+                7000.0,
+                23000.0
+              ]
+            ],
+            "to_um": [
+              [
+                33000.0,
+                25000.0
+              ],
+              [
+                6000.0,
+                28000.0
+              ]
+            ],
+            "cost": 25.50980392156863
+          },
+          "gain_k": 0.2076083688437782,
+          "improvement_k": -0.01093133734773577,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_2",
+              "die_4"
+            ],
+            "indices": [
+              2,
+              4
+            ],
+            "from_um": [
+              [
+                7000.0,
+                43000.0
+              ],
+              [
+                7000.0,
+                23000.0
+              ]
+            ],
+            "to_um": [
+              [
+                33000.0,
+                25000.0
+              ],
+              [
+                6000.0,
+                30000.0
+              ]
+            ],
+            "cost": 25.091503267973856
+          },
+          "gain_k": 0.20571200047389127,
+          "improvement_k": -0.012827705717622706,
+          "outside_old": true
+        }
+      ],
+      "pair_at_limiting_cell": {
+        "boundary": "west",
+        "cell_yx": [
+          71,
+          46
+        ],
+        "headroom_k": 0.019006194063603488,
+        "parts": [
+          {
+            "chip": "die_2",
+            "cost": 24.673202614379086,
+            "gain_alone_k": 0.11662013950383443,
+            "change_at_cell_k": -0.14523884180144364
+          },
+          {
+            "chip": "die_4",
+            "cost": 26.137254901960784,
+            "gain_alone_k": -0.04819371632092739,
+            "change_at_cell_k": 0.004186262187499068
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "west",
+        "cell_yx": [
+          71,
+          46
+        ],
+        "headroom_k": 0.019006194063603488,
+        "parts": [
+          {
+            "chip": "die_2",
+            "cost": 26.34640522875817,
+            "gain_alone_k": -0.013963099562508852,
+            "change_at_cell_k": -0.24358939024034498
+          },
+          {
+            "chip": "die_4",
+            "cost": 25.30065359477124,
+            "gain_alone_k": -0.36207792610045786,
+            "change_at_cell_k": 0.044055878112436275
+          }
+        ]
+      }
+    },
+    "micro150": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.0,
+          "cost": 36.300000000000004,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 24.304363065056467,
+            "east": 40.138242574679424,
+            "south": 22.99909647945274,
+            "north": 34.02986639157933
+          },
+          "cheapest_passing_cost": null
+        },
+        "adaptive": {
+          "gain_k": 0.8439542357297753,
+          "cost": 34.80000000000002,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 23.460408829326692,
+            "east": 38.365607191580956,
+            "south": 22.13543745883333,
+            "north": 32.85758497417486
+          },
+          "cheapest_passing_cost": 34.80000000000002
+        },
+        "fixed": {
+          "gain_k": 0.8439542357297753,
+          "cost": 34.80000000000002,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 23.460408829326692,
+            "east": 38.365607191580956,
+            "south": 22.13543745883333,
+            "north": 32.85758497417486
+          },
+          "cheapest_passing_cost": 34.80000000000002
+        },
+        "singles": {
+          "gain_k": 0.0,
+          "cost": 36.300000000000004,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 24.304363065056467,
+            "east": 40.138242574679424,
+            "south": 22.99909647945274,
+            "north": 34.02986639157933
+          },
+          "cheapest_passing_cost": null
+        },
+        "matched": {
+          "gain_k": 0.8439542357297753,
+          "cost": 34.80000000000002,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 23.460408829326692,
+            "east": 38.365607191580956,
+            "south": 22.13543745883333,
+            "north": 32.85758497417486
+          },
+          "cheapest_passing_cost": 34.80000000000002
+        },
+        "protected": {
+          "gain_k": 0.8439542357297753,
+          "cost": 34.80000000000002,
+          "outside": true,
+          "novel_proposals": 2,
+          "peak_above_ambient_k": {
+            "west": 23.460408829326692,
+            "east": 38.365607191580956,
+            "south": 22.13543745883333,
+            "north": 32.85758497417486
+          },
+          "cheapest_passing_cost": 34.80000000000002
+        },
+        "contacts": {
+          "gain_k": 0.8439542357297753,
+          "cost": 34.80000000000002,
+          "outside": true,
+          "novel_proposals": 9,
+          "peak_above_ambient_k": {
+            "west": 23.460408829326692,
+            "east": 38.365607191580956,
+            "south": 22.13543745883333,
+            "north": 32.85758497417486
+          },
+          "cheapest_passing_cost": 34.80000000000002
+        },
+        "contacts_matched": {
+          "gain_k": 0.0,
+          "cost": 36.300000000000004,
+          "outside": false,
+          "novel_proposals": 3,
+          "peak_above_ambient_k": {
+            "west": 24.304363065056467,
+            "east": 40.138242574679424,
+            "south": 22.99909647945274,
+            "north": 34.02986639157933
+          },
+          "cheapest_passing_cost": null
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        },
+        "adaptive": {
+          "four_k": 0.6738172368339406,
+          "centre_k": 3.1916705684913182,
+          "by_condition_k": {
+            "west": 0.6738172368339406,
+            "east": 1.762558490523503,
+            "south": 0.7366835193454762,
+            "north": 1.2840338986917033,
+            "centre": 3.1916705684913182
+          }
+        },
+        "fixed": {
+          "four_k": 0.6738172368339406,
+          "centre_k": 3.1916705684913182,
+          "by_condition_k": {
+            "west": 0.6738172368339406,
+            "east": 1.762558490523503,
+            "south": 0.7366835193454762,
+            "north": 1.2840338986917033,
+            "centre": 3.1916705684913182
+          }
+        },
+        "matched": {
+          "four_k": 0.6738172368339406,
+          "centre_k": 3.1916705684913182,
+          "by_condition_k": {
+            "west": 0.6738172368339406,
+            "east": 1.762558490523503,
+            "south": 0.7366835193454762,
+            "north": 1.2840338986917033,
+            "centre": 3.1916705684913182
+          }
+        },
+        "protected": {
+          "four_k": 0.6738172368339406,
+          "centre_k": 3.1916705684913182,
+          "by_condition_k": {
+            "west": 0.6738172368339406,
+            "east": 1.762558490523503,
+            "south": 0.7366835193454762,
+            "north": 1.2840338986917033,
+            "centre": 3.1916705684913182
+          }
+        },
+        "contacts": {
+          "four_k": 0.6738172368339406,
+          "centre_k": 3.1916705684913182,
+          "by_condition_k": {
+            "west": 0.6738172368339406,
+            "east": 1.762558490523503,
+            "south": 0.7366835193454762,
+            "north": 1.2840338986917033,
+            "centre": 3.1916705684913182
+          }
+        },
+        "contacts_matched": {
+          "four_k": 0.0,
+          "centre_k": 0.0,
+          "by_condition_k": {
+            "west": 0.0,
+            "east": 0.0,
+            "south": 0.0,
+            "north": 0.0,
+            "centre": 0.0
+          }
+        }
+      },
+      "max_energy_balance_w": 8.213874025386758e-12,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": [
+        {
+          "action": {
+            "chips": [
+              "die_1",
+              "die_3"
+            ],
+            "indices": [
+              1,
+              3
+            ],
+            "from_um": [
+              [
+                38000.0,
+                18000.0
+              ],
+              [
+                5000.0,
+                13000.0
+              ]
+            ],
+            "to_um": [
+              [
+                36000.0,
+                19000.0
+              ],
+              [
+                8000.0,
+                13000.0
+              ]
+            ],
+            "cost": 34.5
+          },
+          "gain_k": 0.9102750317444936,
+          "improvement_k": 0.0663207960147183,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_1",
+              "die_3"
+            ],
+            "indices": [
+              1,
+              3
+            ],
+            "from_um": [
+              [
+                38000.0,
+                18000.0
+              ],
+              [
+                5000.0,
+                13000.0
+              ]
+            ],
+            "to_um": [
+              [
+                38000.0,
+                19000.0
+              ],
+              [
+                8000.0,
+                13000.0
+              ]
+            ],
+            "cost": 35.1
+          },
+          "gain_k": 0.09131708726955523,
+          "improvement_k": -0.7526371484602201,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_1",
+              "die_3"
+            ],
+            "indices": [
+              1,
+              3
+            ],
+            "from_um": [
+              [
+                38000.0,
+                18000.0
+              ],
+              [
+                5000.0,
+                13000.0
+              ]
+            ],
+            "to_um": [
+              [
+                37000.0,
+                18000.0
+              ],
+              [
+                8000.0,
+                13000.0
+              ]
+            ],
+            "cost": 35.1
+          },
+          "gain_k": 0.6971939788001116,
+          "improvement_k": -0.14676025692966377,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_1",
+              "die_3"
+            ],
+            "indices": [
+              1,
+              3
+            ],
+            "from_um": [
+              [
+                38000.0,
+                18000.0
+              ],
+              [
+                5000.0,
+                13000.0
+              ]
+            ],
+            "to_um": [
+              [
+                37000.0,
+                20000.0
+              ],
+              [
+                8000.0,
+                13000.0
+              ]
+            ],
+            "cost": 34.5
+          },
+          "gain_k": 0.7970906448894688,
+          "improvement_k": -0.04686359084030656,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_1",
+              "die_3"
+            ],
+            "indices": [
+              1,
+              3
+            ],
+            "from_um": [
+              [
+                38000.0,
+                18000.0
+              ],
+              [
+                5000.0,
+                13000.0
+              ]
+            ],
+            "to_um": [
+              [
+                37000.0,
+                19000.0
+              ],
+              [
+                7000.0,
+                13000.0
+              ]
+            ],
+            "cost": 35.1
+          },
+          "gain_k": 0.5597097099529975,
+          "improvement_k": -0.28424452577677783,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_1",
+              "die_3"
+            ],
+            "indices": [
+              1,
+              3
+            ],
+            "from_um": [
+              [
+                38000.0,
+                18000.0
+              ],
+              [
+                5000.0,
+                13000.0
+              ]
+            ],
+            "to_um": [
+              [
+                37000.0,
+                19000.0
+              ],
+              [
+                8000.0,
+                14000.0
+              ]
+            ],
+            "cost": 34.5
+          },
+          "gain_k": 0.6433462136753256,
+          "improvement_k": -0.20060802205444972,
+          "outside_old": true
+        }
+      ],
+      "pair_at_limiting_cell": {
+        "boundary": "west",
+        "cell_yx": [
+          43,
+          63
+        ],
+        "headroom_k": 0.26883500411553385,
+        "parts": [
+          {
+            "chip": "die_1",
+            "cost": 35.7,
+            "gain_alone_k": -0.0006139858106806173,
+            "change_at_cell_k": -0.6332412314833888
+          },
+          {
+            "chip": "die_3",
+            "cost": 35.4,
+            "gain_alone_k": -0.058521093965040905,
+            "change_at_cell_k": 0.05812199986914024
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "west",
+        "cell_yx": [
+          43,
+          63
+        ],
+        "headroom_k": 0.26883500411553385,
+        "parts": [
+          {
+            "chip": "die_1",
+            "cost": 35.7,
+            "gain_alone_k": -0.0006139858106806173,
+            "change_at_cell_k": -0.6332412314833888
+          },
+          {
+            "chip": "die_3",
+            "cost": 35.4,
+            "gain_alone_k": -0.058521093965040905,
+            "change_at_cell_k": 0.05812199986914024
+          }
+        ]
+      }
+    },
+    "multigpu": {
+      "methods": {
+        "feedback": {
+          "gain_k": 0.2535965109754059,
+          "cost": 26.666666666666664,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 22.156314164394775,
+            "east": 37.354695274520985,
+            "south": 34.567742835753855,
+            "north": 23.22278292278195
+          },
+          "cheapest_passing_cost": 26.666666666666664
+        },
+        "adaptive": {
+          "gain_k": 0.14830678255184893,
+          "cost": 27.703703703703706,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 24.271261458186924,
+            "east": 37.55961645683367,
+            "south": 34.912277147995376,
+            "north": 23.107185867993422
+          },
+          "cheapest_passing_cost": 27.703703703703706
+        },
+        "fixed": {
+          "gain_k": 0.14830678255184893,
+          "cost": 27.703703703703706,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 24.271261458186924,
+            "east": 37.55961645683367,
+            "south": 34.912277147995376,
+            "north": 23.107185867993422
+          },
+          "cheapest_passing_cost": 27.703703703703706
+        },
+        "singles": {
+          "gain_k": 0.2535965109754059,
+          "cost": 26.666666666666664,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 22.156314164394775,
+            "east": 37.354695274520985,
+            "south": 34.567742835753855,
+            "north": 23.22278292278195
+          },
+          "cheapest_passing_cost": 26.666666666666664
+        },
+        "matched": {
+          "gain_k": 0.14830678255184893,
+          "cost": 27.703703703703706,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 24.271261458186924,
+            "east": 37.55961645683367,
+            "south": 34.912277147995376,
+            "north": 23.107185867993422
+          },
+          "cheapest_passing_cost": 27.703703703703706
+        },
+        "protected": {
+          "gain_k": 0.2535965109754059,
+          "cost": 26.666666666666664,
+          "outside": false,
+          "novel_proposals": 0,
+          "peak_above_ambient_k": {
+            "west": 22.156314164394775,
+            "east": 37.354695274520985,
+            "south": 34.567742835753855,
+            "north": 23.22278292278195
+          },
+          "cheapest_passing_cost": 26.666666666666664
+        },
+        "contacts": {
+          "gain_k": 0.3219485492621956,
+          "cost": 27.555555555555554,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 22.226782146617865,
+            "east": 37.339234881197825,
+            "south": 34.625289033659804,
+            "north": 23.15443088449516
+          },
+          "cheapest_passing_cost": 27.555555555555554
+        },
+        "contacts_matched": {
+          "gain_k": 0.3219485492621956,
+          "cost": 27.555555555555554,
+          "outside": true,
+          "novel_proposals": 1,
+          "peak_above_ambient_k": {
+            "west": 22.226782146617865,
+            "east": 37.339234881197825,
+            "south": 34.625289033659804,
+            "north": 23.15443088449516
+          },
+          "cheapest_passing_cost": 27.555555555555554
+        }
+      },
+      "package": {
+        "previous": {
+          "four_k": 0.14783887950640917,
+          "centre_k": 0.050346306750498115,
+          "by_condition_k": {
+            "west": 2.596463916460408,
+            "east": 0.47110016171565405,
+            "south": 1.270921829495805,
+            "north": 0.14783887950640917,
+            "centre": 0.050346306750498115
+          }
+        },
+        "adaptive": {
+          "four_k": 0.1596616343319539,
+          "centre_k": -0.056451722037955676,
+          "by_condition_k": {
+            "west": 0.43681059641257036,
+            "east": 0.1596616343319539,
+            "south": 0.9129650468620412,
+            "north": 0.2977368680320467,
+            "centre": -0.056451722037955676
+          }
+        },
+        "fixed": {
+          "four_k": 0.1596616343319539,
+          "centre_k": -0.056451722037955676,
+          "by_condition_k": {
+            "west": 0.43681059641257036,
+            "east": 0.1596616343319539,
+            "south": 0.9129650468620412,
+            "north": 0.2977368680320467,
+            "centre": -0.056451722037955676
+          }
+        },
+        "matched": {
+          "four_k": 0.1596616343319539,
+          "centre_k": -0.056451722037955676,
+          "by_condition_k": {
+            "west": 0.43681059641257036,
+            "east": 0.1596616343319539,
+            "south": 0.9129650468620412,
+            "north": 0.2977368680320467,
+            "centre": -0.056451722037955676
+          }
+        },
+        "protected": {
+          "four_k": 0.14783887950640917,
+          "centre_k": 0.050346306750498115,
+          "by_condition_k": {
+            "west": 2.596463916460408,
+            "east": 0.47110016171565405,
+            "south": 1.270921829495805,
+            "north": 0.14783887950640917,
+            "centre": 0.050346306750498115
+          }
+        },
+        "contacts": {
+          "four_k": 0.20515908440063413,
+          "centre_k": 0.04141306055248606,
+          "by_condition_k": {
+            "west": 2.3833516584824253,
+            "east": 0.4804385250938026,
+            "south": 1.2213981911325504,
+            "north": 0.20515908440063413,
+            "centre": 0.04141306055248606
+          }
+        },
+        "contacts_matched": {
+          "four_k": 0.20515908440063413,
+          "centre_k": 0.04141306055248606,
+          "by_condition_k": {
+            "west": 2.3833516584824253,
+            "east": 0.4804385250938026,
+            "south": 1.2213981911325504,
+            "north": 0.20515908440063413,
+            "centre": 0.04141306055248606
+          }
+        }
+      },
+      "max_energy_balance_w": 8.910205906431656e-12,
+      "old_pairs_covered_by_retained_landings": 24,
+      "one_step_challenge": [
+        {
+          "action": {
+            "chips": [
+              "die_1",
+              "die_3"
+            ],
+            "indices": [
+              1,
+              3
+            ],
+            "from_um": [
+              [
+                31000.0,
+                37000.0
+              ],
+              [
+                8000.0,
+                10000.0
+              ]
+            ],
+            "to_um": [
+              [
+                29000.0,
+                36000.0
+              ],
+              [
+                40000.0,
+                12000.0
+              ]
+            ],
+            "cost": 27.25925925925926
+          },
+          "gain_k": 0.3013509945941486,
+          "improvement_k": -0.020597554668047025,
+          "outside_old": true
+        },
+        {
+          "action": {
+            "chips": [
+              "die_1",
+              "die_3"
+            ],
+            "indices": [
+              1,
+              3
+            ],
+            "from_um": [
+              [
+                31000.0,
+                37000.0
+              ],
+              [
+                8000.0,
+                10000.0
+              ]
+            ],
+            "to_um": [
+              [
+                29000.0,
+                36000.0
+              ],
+              [
+                41000.0,
+                11000.0
+              ]
+            ],
+            "cost": 27.25925925925926
+          },
+          "gain_k": 0.27461136595736235,
+          "improvement_k": -0.047337183304833275,
+          "outside_old": true
+        }
+      ],
+      "pair_at_limiting_cell": {
+        "boundary": "east",
+        "cell_yx": [
+          55,
+          30
+        ],
+        "headroom_k": 0.043645520830963846,
+        "parts": [
+          {
+            "chip": "die_1",
+            "cost": 27.40740740740741,
+            "gain_alone_k": -0.13938591704389225,
+            "change_at_cell_k": -0.2925781343677869
+          },
+          {
+            "chip": "die_2",
+            "cost": 28.074074074074073,
+            "gain_alone_k": -0.7223984106470098,
+            "change_at_cell_k": 0.1879168726468876
+          }
+        ]
+      },
+      "contact_pair_at_limiting_cell": {
+        "boundary": "north",
+        "cell_yx": [
+          29,
+          47
+        ],
+        "headroom_k": 0.015528943469490741,
+        "parts": [
+          {
+            "chip": "die_1",
+            "cost": 26.666666666666668,
+            "gain_alone_k": -0.7588760809590909,
+            "change_at_cell_k": -0.011593394434235904
+          },
+          {
+            "chip": "die_3",
+            "cost": 28.666666666666668,
+            "gain_alone_k": -0.6877278493874392,
+            "change_at_cell_k": -0.29482621135848674
+          }
+        ]
+      },
+      "previous_winner_during_generation": [
+        {
+          "reachable": false,
+          "upper_k": 0.3258893888097645
+        },
+        {
+          "reachable": false,
+          "upper_k": 0.3258893888097645
+        }
+      ]
+    }
+  },
+  "challenge_case": "Case4",
+  "challenge_package": {
+    "conditions": {
+      "west": {
+        "start": {
+          "cost": 245.43560151679998,
+          "peak_c": 106.84938863656946,
+          "residual_w": 5.002220859751105e-12,
+          "balance_w": 3.865352482534945e-12,
+          "watts": 153.5,
+          "cooling_k": 0.0
+        },
+        "chosen": {
+          "cost": 224.786692542,
+          "peak_c": 105.50187706956562,
+          "residual_w": 5.059064278611913e-12,
+          "balance_w": 2.8705926524708048e-12,
+          "watts": 153.5,
+          "cooling_k": 1.347511567003835
+        },
+        "neighbour": {
+          "cost": 224.09975952279999,
+          "peak_c": 105.39459928753325,
+          "residual_w": 3.240074875066057e-12,
+          "balance_w": 3.069544618483633e-12,
+          "watts": 153.5,
+          "cooling_k": 1.4547893490362043
+        }
+      },
+      "east": {
+        "start": {
+          "cost": 245.43560151679998,
+          "peak_c": 102.31853811930122,
+          "residual_w": 3.240074875066057e-12,
+          "balance_w": 1.3642420526593924e-12,
+          "watts": 153.5,
+          "cooling_k": 0.0
+        },
+        "chosen": {
+          "cost": 224.786692542,
+          "peak_c": 99.16268155819463,
+          "residual_w": 3.524291969370097e-12,
+          "balance_w": 5.087485988042317e-12,
+          "watts": 153.5,
+          "cooling_k": 3.1558565611065887
+        },
+        "neighbour": {
+          "cost": 224.09975952279999,
+          "peak_c": 100.41092613418435,
+          "residual_w": 3.296918293926865e-12,
+          "balance_w": 3.240074875066057e-12,
+          "watts": 153.5,
+          "cooling_k": 1.9076119851168727
+        }
+      },
+      "south": {
+        "start": {
+          "cost": 245.43560151679998,
+          "peak_c": 102.09813600456692,
+          "residual_w": 3.865352482534945e-12,
+          "balance_w": -2.0463630789890885e-12,
+          "watts": 153.5,
+          "cooling_k": 0.0
+        },
+        "chosen": {
+          "cost": 224.786692542,
+          "peak_c": 100.63534371998404,
+          "residual_w": 5.172751116333529e-12,
+          "balance_w": -1.7337242752546445e-12,
+          "watts": 153.5,
+          "cooling_k": 1.4627922845828891
+        },
+        "neighbour": {
+          "cost": 224.09975952279999,
+          "peak_c": 100.85001859270356,
+          "residual_w": 4.263256414560601e-12,
+          "balance_w": -1.6484591469634324e-12,
+          "watts": 153.5,
+          "cooling_k": 1.2481174118633618
+        }
+      },
+      "north": {
+        "start": {
+          "cost": 245.43560151679998,
+          "peak_c": 113.04712634496352,
+          "residual_w": 4.092726157978177e-12,
+          "balance_w": -6.536993168992922e-12,
+          "watts": 153.5,
+          "cooling_k": 0.0
+        },
+        "chosen": {
+          "cost": 224.786692542,
+          "peak_c": 111.8971792154656,
+          "residual_w": 5.002220859751105e-12,
+          "balance_w": 5.087485988042317e-12,
+          "watts": 153.5,
+          "cooling_k": 1.1499471294979173
+        },
+        "neighbour": {
+          "cost": 224.09975952279999,
+          "peak_c": 111.62673488344795,
+          "residual_w": 4.888534022029489e-12,
+          "balance_w": 4.519051799434237e-12,
+          "watts": 153.5,
+          "cooling_k": 1.420391461515564
+        }
+      },
+      "centre": {
+        "start": {
+          "cost": 245.43560151679998,
+          "peak_c": 80.17106713016628,
+          "residual_w": 3.723243935382925e-12,
+          "balance_w": 5.4853899200679734e-12,
+          "watts": 153.50000000000003,
+          "cooling_k": 0.0
+        },
+        "chosen": {
+          "cost": 224.786692542,
+          "peak_c": 78.71704393703982,
+          "residual_w": 2.7284841053187847e-12,
+          "balance_w": 2.8421709430404007e-13,
+          "watts": 153.5,
+          "cooling_k": 1.45402319312646
+        },
+        "neighbour": {
+          "cost": 224.09975952279999,
+          "peak_c": 78.72296162430861,
+          "residual_w": 2.5579538487363607e-12,
+          "balance_w": -1.4495071809506044e-12,
+          "watts": 153.5,
+          "cooling_k": 1.4481055058576686
+        }
+      }
+    },
+    "distinct_solves": 15
+  }
+}
