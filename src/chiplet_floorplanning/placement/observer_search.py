@@ -23,9 +23,10 @@ class SearchResult:
     best_gain_k: float
     checked: list
     observers_added: list
+    remaining_gain_bound_k: float = 0.
 
 
-def search_observers(initial_upper_k, costs, verify, observation=None, *, tighten=None):
+def search_observers(initial_upper_k, costs, verify, observation=None, *, tighten=None, max_checks=None):
     """Optimize over a finite bank, including staying put at index zero.
 
     verify(i) returns (exact worst-boundary gain, boundary and cell attaining it).
@@ -33,14 +34,18 @@ def search_observers(initial_upper_k, costs, verify, observation=None, *, tighte
     that fixed cell, for every candidate. Each value is an upper bound on gain.
     An optional more expensive candidate-specific upper bound is requested at
     most once, before a contender reaches its first whole-field verification.
+    With max_checks the primary peak objective stops at a 1e-7 K tie and the
+    last purchased witness also tightens the remaining finite-bank bound.
     """
     upper = np.asarray(initial_upper_k, dtype=float).copy()
     pending = set(range(1, len(upper)))
     best, gain = 0, 0.
     checked, added = [], []
     tightened = set()
-    while pending:
+    while pending and (max_checks is None or len(checked) < max_checks):
         candidate = min(pending, key=lambda i: (-upper[i], costs[i], i))
+        if max_checks is not None and upper[candidate] <= gain + 1e-7:
+            break
         if upper[candidate] < gain - 1e-8:
             break
         if tighten is not None and candidate not in tightened:
@@ -54,13 +59,14 @@ def search_observers(initial_upper_k, costs, verify, observation=None, *, tighte
         checked.append(candidate)
         if (-actual, costs[candidate], candidate) < (-gain, costs[best], best):
             best, gain = candidate, actual
-        if observation is None or upper[candidate] <= actual + 1e-8:
+        if observation is None or (max_checks is None and upper[candidate] <= actual + 1e-8):
             continue
-        if not any(upper[i] >= gain - 1e-8 for i in pending):
+        if max_checks is None and not any(upper[i] >= gain - 1e-8 for i in pending):
             break
         values = observation(witness)
         if abs(values[candidate] - actual) > 1e-8:
             raise ValueError("new observer did not reproduce the candidate's worst peak")
         upper = np.minimum(upper, values)
         added.append(witness)
-    return SearchResult(best, gain, checked, added)
+    remaining = max(0., max(upper[i] for i in pending) + 1e-8 - gain) if pending else 0.
+    return SearchResult(best, gain, checked, added, remaining)
