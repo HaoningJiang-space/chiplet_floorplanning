@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import numpy as np
 from scipy import sparse
 from scipy.optimize import brentq
-from scipy.sparse.linalg import spsolve
+from scipy.sparse.linalg import splu
 
 
 @dataclass(frozen=True)
@@ -135,7 +135,11 @@ def conjugate(solid, load, wall_ids, x_m, y_m, plate, q, reverse, solid_k, roof_
                           [-exchange.T,advection+sparse.diags(np.repeat(rate,nx)
                                              +np.asarray(exchange.sum(axis=0)).ravel())]],format='csc')
     rhs = np.r_[load,np.zeros(n*nx)]
-    rise = spsolve(matrix,rhs,permc_spec='MMD_AT_PLUS_A')
+    # With conduction, positive film conductances and upwind transport this is
+    # a weakly diagonally dominant M-matrix anchored at the inlet. Keep the
+    # diagonal pivots to avoid fill from exchanges between fluid and solid rows.
+    factor = splu(matrix, permc_spec='COLAMD', diag_pivot_thresh=0.0)
+    rise = factor.solve(rhs)
     outlet = rise[len(load)+stream[:,-1]]
     residual = np.max(abs(matrix@rise-rhs))
     error = float(rate@outlet-load.sum())

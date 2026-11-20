@@ -149,6 +149,8 @@ def experiment(source,checks):
                     expected=checks['network'][key]['uniform_load_checks'][name]['mixed_outlet_rise_k']
                     assert abs(stats['outlet_rise_k']-expected)<1e-5
                     scores[key]=stats
+                    print(f'{name}/{label} grid {resolution} {key}: '
+                          f'{stats["elapsed_s"]:.1f} s', flush=True)
                 rows[label][str(resolution)]=dict(assembly_s=assembly_s,directions=scores)
         decision={}
         for key in DIRECTIONS:

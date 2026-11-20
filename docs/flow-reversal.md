@@ -49,6 +49,8 @@ Case9 有 44 颗芯粒、7,656 根信号。按事先选定的端点分档规则�
 
 ## 如何解释流向
 
+即使水力上几乎均流，各槽接收的热功率也明显不同。Case9/A 正向的 144 个细网格支路出口介于 25.30–56.01 °C，而流量加权出口为 44.805 °C；反向分别为 25.29–55.75 °C 和 44.805 °C。Case3/A 正向支路出口为 25.00–52.30 °C，混合后仅 33.700 °C。全板平均出口可核对能量，局部流道和热源之间的相对位置才进入峰温比较。
+
 换热闭合采用矩形槽恒热流充分发展 Nusselt 数，入口段借用 Sieder–Tate 型平均换热的 1.86 系数，通过立方混合连接两种极限。对长度积分量作差得到每段平均系数，再用肋片效率折算三面有效湿周。这是研究板采用的近似，三面加热的矩形入口与原始圆管实验边界有差异。[Shah 与 London，第 VII 章](https://www.sciencedirect.com/book/monograph/9780120200511/laminar-flow-forced-convection-in-ducts) · [Sieder 与 Tate](https://pubs.acs.org/doi/10.1021/ie50324a027)
 
 流体段的稳态能量方程为 `ṁᵦ cₚ (Tᵦ,j − Tᵦ,上游) = Q壁→段`。把各段相加给出总出口焓升，但求局部峰温仍要保留上游顺序及固体横向扩散。交换端口同时改变上游热量的累积方向和热入口换热系数的分布，两项的独立贡献未在这个实验中辨识。恒黏度近似使流量分配由几何和泵功独立确定，实物中的温黏反馈可能引起重新分流。
@@ -64,3 +66,11 @@ python tools/flow_reversal.py evaluate --source results/physical-calibration/atp
 ```
 
 核验程序直接使用库中事先提交的布局文件。第一步的本机输出应与该文件逐字节相同。粗细网格共解 16 张整板温度场，耗时记录包括固体组装、有向固液矩阵组装与求解。独立铜试件、测试套件与初始几何投影单列。
+
+热点位置图可从已提交的温度与坐标直接重画，绘图使用 Matplotlib 3.7 或更高版本。
+
+最终求解器通过本机全部 233 项回归和两芯粒 CLI。两芯粒参考案例的功率为 3 W、峰温为 34.1886 °C。本轮四张液冷布局只比较稳态热与几何互连，未计算电气时序。
+
+```sh
+python tools/plot_flow_reversal.py --source results/physical-calibration/atplace-import-v1 --output results/flow-reversal-hotspots.png
+```
