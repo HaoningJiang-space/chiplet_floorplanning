@@ -114,7 +114,8 @@ def observer_nodes(pkg, field, owner, single, quota):
     return tuple(selected)
 
 
-def choose(bank, pkg, initial, mode):
+def choose(bank, pkg, initial, mode, *, trace_switches=False):
+    clock = perf_counter()
     pkg.rows.clear()
     peak = AMBIENT_C+initial[pkg.active].max()
     points = [point(bank, 0, peak)]
@@ -128,33 +129,91 @@ def choose(bank, pkg, initial, mode):
     for idx, cells in enumerate(pkg.slots):
         owner[cells] = idx
     stages = []
+    trace = []
+    floors = None
+    start_hot = int(pkg.active[np.argmax(initial[pkg.active])])
+
+    def gap():
+        pending = np.ones(len(bank.watts), dtype=bool)
+        pending[[v['map_id'] for v in points]] = False
+        if not pending.any():
+            return 0.
+        incumbent = min(v['peak_c'] for v in points)
+        return max(0., incumbent-floors[pending].min()+1e-8)
+
+    def lowest_unchecked():
+        checked = {v['map_id'] for v in points}
+        return min((i for i in range(len(floors)) if i not in checked),
+                   key=lambda i: (floors[i], bank.lengths_m[i], i), default=None)
+
+    def contenders():
+        possible = floors < min(v['peak_c'] for v in points)-TIE_K
+        possible[[v['map_id'] for v in points]] = False
+        return int(possible.sum())
 
     def witnesses(field, quota):
-        return observer_nodes(pkg, field, owner, mode == 'single', quota)
+        return observer_nodes(pkg, field, owner, mode in ('single', 'static'), quota)
 
     def observe(nodes):
+        nonlocal floors
         for node in nodes:
             if node not in pkg.rows and len(pkg.rows) >= RESPONSE_LIMIT:
                 raise ValueError('thermal response budget exhausted')
             pkg.observe(node)
         stages.append(list(nodes))
         rows = np.stack([pkg.rows[node] for node in nodes])
-        return peak-AMBIENT_C-(rows @ bank.watts.T).max(axis=0)
+        node_rise = (rows @ bank.watts.T).max(axis=0)
+        if trace_switches:
+            measured = AMBIENT_C+node_rise
+            floors = measured if floors is None else np.maximum(floors, measured)
+            if trace:
+                trace[-1].update(after_response_bound_k=gap(), responses=len(pkg.rows),
+                                 contenders_after_response=contenders(),
+                                 decision_elapsed_s=perf_counter()-clock)
+                old = trace[-1]['lowest_before_response']
+                if old is not None:
+                    trace[-1].update(old_nominee_updated_floor_c=float(floors[old]),
+                                     lowest_after_response=lowest_unchecked())
+        return peak-AMBIENT_C-node_rise
 
     def verify(k):
         field = pkg.temperatures(bank.watts[k])
-        actual = AMBIENT_C+field[pkg.active].max()
+        hot = int(pkg.active[np.argmax(field[pkg.active])])
+        actual = AMBIENT_C+field[hot]
+        if trace_switches:
+            previous = trace[-1]['hot_node'] if trace else start_hot
+            occupied_by = np.argsort(bank.assignments[k])
+            row = dict(map_id=int(k), before_bound_k=gap(), predicted_floor_c=float(floors[k]),
+                       hot_node=hot, previous_hot_node=previous, start_hot_node=start_hot,
+                       previous_hot_at_candidate_c=float(AMBIENT_C+field[previous]),
+                       hot_slot=int(owner[hot]), previous_hot_slot=int(owner[previous]),
+                       hot_die=int(occupied_by[owner[hot]]) if owner[hot] >= 0 else None,
+                       previous_location_die=int(occupied_by[owner[previous]]) if owner[previous]>=0 else None,
+                       excess_over_previous_k=float(field[hot]-field[previous]),
+                       excess_over_observers_k=float(field[hot]-field[list(pkg.rows)].max()))
         points.append(point(bank, k, actual))
+        if trace_switches:
+            nominee = lowest_unchecked()
+            row.update(peak_c=float(actual), incumbent_c=min(v['peak_c'] for v in points),
+                       after_check_bound_k=gap(), after_response_bound_k=gap(),
+                       contenders_after_check=contenders(), contenders_after_response=contenders(),
+                       lowest_before_response=nominee, lowest_after_response=nominee,
+                       old_nominee_floor_c=float(floors[nominee]) if nominee is not None else None,
+                       responses=len(pkg.rows), decision_elapsed_s=perf_counter()-clock)
+            trace.append(row)
         return peak-actual, witnesses(field, 3)
 
     upper = observe(witnesses(initial, 4))
-    result = search_observers(upper, bank.lengths_m, verify, observe, max_checks=CHECK_LIMIT)
+    result = search_observers(upper, bank.lengths_m, verify, None if mode=='static' else observe,
+                              max_checks=CHECK_LIMIT)
     floors = AMBIENT_C+(np.stack(list(pkg.rows.values())) @ bank.watts.T).max(axis=0)
     for v in points:
         floors[v['map_id']] = v['peak_c']
     report = finish(points, peak, result.remaining_gain_bound_k, len(pkg.rows), len(points)-1)
     assert abs(report['best']['peak_c']-min(floors)-report['remaining_bound_k']) < 2*TIE_K
     report.update(witnesses_by_stage=stages, peak_lower_bounds_c=floors.tolist())
+    if trace_switches:
+        report.update(trace=trace, start_hot_node=start_hot, start_hot_die=int(owner[start_hot]))
     return report
 
 
