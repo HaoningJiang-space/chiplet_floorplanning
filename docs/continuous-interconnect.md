@@ -1,8 +1,8 @@
 # 连续坐标下的受限散热布局
 
-**结果。** 两个有可行起点的 ATPlace 案例中，先按引脚与几何生成候选、再依次看温度，都保留了起点。改由五个热点的带符号温差直接求联合位移，在相同的逐网距离和总长上限下，Case7 降了 **1.31713 K**，Case8 降了 **1.55425 K**。Case1 在给定引脚、四种朝向、2 mm 逐链距离和 100 µm 间距下，几何上已经无解。三个案例只使用一个种子。
+**结果。** 两个有可行起点的 ATPlace 案例中，先按引脚与几何生成候选、再按温度选取，都保留了起点。改由五个起点热点的带符号温差直接求联合位移，在相同逐网距离和总长上限下，两种温差模型均能降温。只用均匀铜半空间的点源公式，Case7、8 分别降了 **1.63534、1.49730 K**；使用封装伴随分别降了 **1.31713、1.55425 K**。两种导数各赢一例。Case1 在给定引脚、四种朝向、2 mm 逐链距离和 100 µm 间距下，几何上已经无解。三个案例只使用一个种子。
 
-![Case7 与 Case8 整步的真实布局，虚线为起点，箭头按实际位移比例绘制，五颗提供起点响应的芯粒为橙色](evidence/continuous-reach-layouts.png)
+![Case7 与 Case8 使用封装伴随的整步布局，虚线为起点，箭头按实际位移比例绘制，五颗提供起点响应的芯粒为橙色](evidence/continuous-reach-layouts.png)
 
 | 方法 | Case7 可行峰温 °C / 该点总长 m | Case8 可行峰温 °C / 该点总长 m | Case7 / 8 从头用时 s | 每例新整板 / 响应 |
 |---|---|---|---|---|
@@ -11,7 +11,8 @@
 | 连续 relation_space 短端配置，评温前验逐网 | 80.68942 / 40.44773 | 80.47560 / 43.35755 | 15.31 / 4.28 | 2 / 0 |
 | 加可达约束联合生成，按总长选择 | 80.68942 / 40.44773 | 80.47560 / 43.35755 | 15.39 / 5.05 | 2 / 0 |
 | 同十个合法候选，按候选自己的三维投影选择 | 80.68942 / 40.44773 | 80.47560 / 43.35755 | 15.93 / 5.58 | 2 / 10 |
-| 起点热响应直接生成联合坐标，追加实验 | **79.37229 / 40.44131** | **78.92135 / 43.35139** | **13.19 / 2.86** | **2 / 5** |
+| 起点封装伴随直接生成联合坐标 | 79.37229 / 40.44131 | **78.92135 / 43.35139** | 13.19 / 2.86 | 2 / 5 |
+| 同一生成器，均匀铜半空间点源导数 | **79.05408 / 40.44183** | 78.97830 / 43.35200 | 12.71 / 2.04 | 2 / 0 |
 
 两种关系空间都从现有入口运行，固定 MILP 为 2 s、8 次退火步、2 条链。默认阶段分配在 Case7 提交的两点分别有 42、44 条超距；模型峰温也高于起点。Case8 的两个提议均可行，却分别为 85.35244、84.97888 °C。按更紧的引脚约束先生成，再用简化三维响应排名，在 Case7、8 找到的最冷新点分别为 81.81361、83.81734 °C，仍高于共同起点。十张图都能联合移动，单靠成组移动并不足以降温。[连续候选及共同评分](evidence/continuous-reach-results.json) · [关系空间默认配置和逐格出线复核](evidence/continuous-reach-baseline.json)
 
@@ -67,7 +68,9 @@ Case7 原生 ATPlace 已导出一个低温、几何合法、逐网超距的解�
 
 ### 同一坐标生成器的温差来源对照（测温前冻结）
 
-几何候选排序与直接生成同时改变了步长、位移选择方式和热信息。另做单因素对照：两臂都从同一整板起点取最热五颗的温度，保留相同朝向、分离关系、1 mm 半径、逐网和总长约束、最坏预测峰温目标、最小总位移择优、整步与半步的两次新整板验收。只替换温差导数。低成本臂用均匀铜半空间表面点热源的温升 P/(2πkr)，取模型铜扩散板的 k=400 W/(m·K)，芯粒间距离用中心距离，忽略自热平移项及边缘效应，以实际起点温度锚定。它使用零个伴随和两个新整板。若同一生成器凭这种简单导数已取得相同或更好的合法峰温，应保留该结果并收窄对五个伴随的贡献声明。
+几何候选排序与直接生成同时改变了步长、位移选择方式和热信息。两臂都从同一整板起点取最热五颗的温度，保留相同朝向、分离关系、1 mm 半径、逐网和总长约束、最坏预测峰温目标、最小总位移择优、整步与半步的两次新整板验收。只替换温差导数。低成本臂用均匀铜半空间表面点热源的温升 P/(2πkr)，取模型铜扩散板的 k=400 W/(m·K)，芯粒间距离用中心距离，忽略自热平移项及边缘效应，以实际起点温度锚定。它使用零个伴随和两个新整板。
+
+`61952f5` 在打开点源结果前冻结了这项对照。在 Case7，点源法比五个伴随又低 0.31821 K；在 Case8，五个伴随低 0.05695 K。点源臂的半步也能降温，在共同起点峰温上限下其已见最短线长为 40.35692、43.30531 m。两张点源赢家的最大单格出线率分别为 5.07%、4.00%，修正三维热场后的最大功率不平衡低于 3×10⁻¹¹ W。对整个连续域，各方法中最佳实测点的剩余降幅上界更新为 **31.7141、31.7614 K**。这两例支持按热点与互连共同生成位移，在本预算内没有出现必须使用五个封装伴随才能降温的案例。0.05695 K 为声明离散模型内的差值，没有对应实物或网格误差界。[相同生成器的低成本对照](evidence/continuous-reach-half-space.json)
 
 布局生成入口可直接用于另一张矩形双引脚网表。传入已有 `Problem`、合法 `Layout`、按网表顺序排列的每条距离上限（mm）和总预算（m）。返回的每个提议包含步长比例、完整位姿和一阶温度预测，供同一独立三维评价器验收。
 
@@ -87,9 +90,12 @@ $env:OMP_NUM_THREADS = '1'
 $geometry = 'docs/evidence/continuous-reach-geometry.json'
 python tools/compare_continuous_reach.py --source $cases --geometry $geometry --output results/continuous-local.json
 python tools/continuous_hot_move.py --source $cases --geometry $geometry --output results/continuous-directed.json
+python tools/continuous_hot_move.py --source $cases --geometry $geometry --gradient-model copper-half-space --output results/continuous-half-space.json
 python tools/continuous_mobility.py --source $cases --geometry $geometry --output results/continuous-mobility.json
 python tools/continuous_baseline_audit.py --source $cases --geometry $geometry --previous results/continuous-local.json --directed results/continuous-directed.json --output results/continuous-baseline.json
 python tools/continuous_atplace_reference.py run --source $cases --geometry $geometry --upstream $upstream --atpython $atpython --work results/continuous-native-replay --output results/continuous-native.json
+python tools/continuous_atplace_reference.py warm --geometry $geometry --upstream $upstream --atpython $atpython --work results/continuous-native-replay --external results/continuous-native.json --output results/continuous-warm.json
+python tools/continuous_atplace_reference.py repair --geometry $geometry --work results/continuous-native-replay --external results/continuous-native.json --warm results/continuous-warm.json --output results/continuous-repaired.json
 ```
 
 重做几何求解可运行 `python tools/continuous_reach_geometry.py --source $cases --output results/continuous-geometry.json`。以商业封装验证为目的时，仍需替换研究用逐链档位分配、封装材料与布线层设置，并提供对应实物或版图数据。以上排名不含封装 PDN、力学、RC 时序或详细绕障布线。

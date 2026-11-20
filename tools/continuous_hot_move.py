@@ -13,10 +13,14 @@ from chiplet_floorplanning.placement.pin_reach import heat_directed_moves, requi
 from chiplet_floorplanning.placement.thermal import AMBIENT_C, thermal_case_data
 from compare_continuous_reach import finish, point, verified
 from compare_large_pool import write_json
+from continuous_baseline_audit import escape_util
 from continuous_reach_geometry import inspect
 
 
 def isolated_motion(p, report, rec):
+    for row in report['verified']:
+        pose=Layout(np.array(row['centre_um']),np.array(row['rotation_deg']))
+        row['bin_escape_utilization']=escape_util(p,pose)
     start,best=(report['verified'][i] for i in (0,report['winner']))
     a,b=np.array(start['centre_um']),np.array(best['centre_um'])
     rot=np.array(start['rotation_deg'])
@@ -48,7 +52,7 @@ def isolated_motion(p, report, rec):
                                        fixed_angles=followers(pins),within_starting_cell=followers(cell))
 
 
-def experiment(source, frozen):
+def experiment(source, frozen, gradient_model):
     reports={}
     for name,rec in frozen['cases'].items():
         if rec['start'] is None:
@@ -61,7 +65,7 @@ def experiment(source, frozen):
         r=rec['start']
         start=Layout(np.array(r['centre_um']),np.array(r['rotation_deg']))
         reach,cap=np.array(rec['reach_mm']),rec['cap_m']
-        model,moves=heat_directed_moves(p,start,reach,cap)
+        model,moves=heat_directed_moves(p,start,reach,cap,gradient_model=gradient_model)
         rows=[dict(point(p,start,reach,cap),peak_c=model['start_peak_c'])]
         for fraction,layout,forecast in moves:
             row=point(p,layout,reach,cap)
@@ -77,8 +81,8 @@ def experiment(source, frozen):
         h=thermal_case_data(p,start,100,64)['thermal']['top_h_w_m2k']
         floor=AMBIENT_C+p.power_w.sum()/(h*.2**2)
         result=finish(rows,model['start_peak_c'],rec['geometry_s']+perf_counter()-t,len(rows)-1,
-                      len(model['hot_dies']),floor)
-        result.update(model,geometry_s=rec['geometry_s'])
+                      len(model['hot_dies']) if gradient_model=='package' else 0,floor)
+        result.update(model,geometry_s=rec['geometry_s'],gradient_model=gradient_model)
         reports[name]=result
         isolated_motion(p,result,rec)
         print(name,[(round(row['peak_c'],5),round(row['wire_m'],4)) for row in rows],flush=True)
@@ -90,6 +94,7 @@ if __name__=='__main__':
     for name in ('source','geometry','output'):
         parser.add_argument('--'+name,type=Path,required=True)
     parser.add_argument('--geometry-audit',action='store_true')
+    parser.add_argument('--gradient-model',choices=('package','copper-half-space'),default='package')
     args=parser.parse_args()
     frozen=json.loads(args.geometry.read_bytes())
     if args.geometry_audit:
@@ -102,4 +107,4 @@ if __name__=='__main__':
                 isolated_motion(Problem.from_imported(json.loads(raw)),report,rec)
         write_json(args.output,data)
     else:
-        write_json(args.output,experiment(args.source,frozen))
+        write_json(args.output,experiment(args.source,frozen,args.gradient_model))

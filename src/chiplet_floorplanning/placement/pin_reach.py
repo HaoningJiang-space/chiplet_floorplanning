@@ -148,12 +148,26 @@ class PinReachCell(TopologyLP):
         return None
 
 
-def heat_directed_moves(problem, start, reach_mm, total_m, gap_um=100, resolution=64):
+def half_space_gradients(problem, start, hot):
+    """Derivative of off-die surface point heating on a homogeneous copper half-space, K/mm."""
+    xy = start.centre_um / 1000
+    offsets = xy[hot, None, :] - xy[None, :, :]
+    distance = np.linalg.norm(offsets, axis=2)
+    rows = np.arange(len(hot))
+    distance[rows, hot] = np.inf
+    scale = 1000 / (2 * np.pi * 400.)  # use mm distances with conductivity in W/(m K)
+    gradients = offsets * (scale * problem.power_w[None, :] / distance**3)[:, :, None]
+    gradients[rows, hot] = -gradients.sum(axis=1)
+    return gradients
+
+
+def heat_directed_moves(problem, start, reach_mm, total_m, gap_um=100, resolution=64, gradient_model='package'):
     """Propose full/half joint translations from five hotspot responses at any admissible start.
 
     Pin limits follow the source net order. This objective uses absolute temperatures in °C,
     including when the input also carries limits for a separate temperature-margin study.
-    Call the 3D evaluator on returned layouts to choose a verified result.
+    'package' uses hotspot adjoints. 'copper-half-space' uses a point-source slope with the
+    same measured starting temperatures. Verify returned layouts with the 3D evaluator.
     """
     reach = np.asarray(reach_mm, dtype=float)
     if not is_legal(problem, start, gap_um):
@@ -167,7 +181,12 @@ def heat_directed_moves(problem, start, reach_mm, total_m, gap_um=100, resolutio
     if problem.limit_c is not None:
         peaks = peaks + problem.limit_c
     hot = np.argsort(-peaks, kind='stable')[:5].tolist()
-    grad = gradient(hot)[hot]
+    if gradient_model == 'package':
+        grad = gradient(hot)[hot]
+    elif gradient_model == 'copper-half-space':
+        grad = half_space_gradients(problem, start, hot)
+    else:
+        raise ValueError('unknown hotspot gradient model')
     radius = float(np.median(problem.size_um.min(axis=1))/2000)
     delta, prediction = cell.cool_direction(start, peaks[hot], grad, radius)
     seen = {layout_key(start)}

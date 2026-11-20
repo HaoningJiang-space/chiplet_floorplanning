@@ -5,7 +5,7 @@ import numpy as np
 
 from chiplet_floorplanning.placement import heat_directed_moves, is_legal
 from chiplet_floorplanning.placement.geometry import pin_manhattan_um
-from chiplet_floorplanning.placement.pin_reach import PinReachCell, reach_rows, required_travel_mm
+from chiplet_floorplanning.placement.pin_reach import PinReachCell, half_space_gradients, reach_rows, required_travel_mm
 from chiplet_floorplanning.placement.problem import Layout, Problem
 from chiplet_floorplanning.placement.thermal import solve, thermal_case_data
 from chiplet_floorplanning.placement.thermal_projection import projected_field
@@ -51,6 +51,15 @@ class ContinuousReachTest(unittest.TestCase):
         delta=np.array([[-1.,-1.],[0.,0.],[0.,0.],[0.,0.]])
         pins,_=required_travel_mm(p,start,[4.,4.25,8.],delta)
         np.testing.assert_allclose(pins[0],[0.,1.,.875,0.])
+
+    def test_copper_half_space_slopes_match_differentiated_temperature(self):
+        start=Layout(np.array([[3000.,3000.],[6000.,7000.]]),np.zeros(2,int))
+        grad=half_space_gradients(self.p,start,[0])
+        def rise(x):
+            return 3. / (2*np.pi*400.*np.hypot(x,4.)/1000)
+        slope=(rise(3.0001)-rise(2.9999))/.0002
+        self.assertAlmostEqual(grad[0,1,0],slope,places=8)
+        np.testing.assert_allclose(grad.sum(axis=1),0.)
 
     def test_public_entry_point_preserves_custom_signal_caps(self):
         start=Layout(np.array([[5000.,5000.],[10000.,6000.]]),np.array([0,90]))
