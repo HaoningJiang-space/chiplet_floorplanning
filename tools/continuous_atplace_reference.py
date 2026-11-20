@@ -51,6 +51,13 @@ def labels(out):
     np.save(out/'labels.npy',fields)
 
 
+def log_outcome(path):
+    lines=path.read_text(encoding='utf8',errors='replace')
+    return dict(initialization_missed='!Initial solution not found!' in lines,
+                weighted_legalization_missed='WL legalization returned no result' in lines,
+                displacement_export='!Legalized Floorplan of  Dis  found!' in lines)
+
+
 def audit_result(report, rec, p, sub):
     start=rec['start']
     accepted=[dict(peak_c=report['start_peak_c'],wire_m=start['wire_m'],origin='common start')]
@@ -64,6 +71,8 @@ def audit_result(report, rec, p, sub):
     report['reverse_m']=min(r['wire_m'] for r in accepted if r['peak_c']<=report['start_peak_c']+1e-7)
     report['cold_with_geometry_s']=report['cold_s']+rec['geometry_s']
     for name,stage in report['stages'].items():
+        if name.startswith('native-'):
+            stage.update(log_outcome(sub/(name+'.log')))
         if stage['exit']:
             lines=(sub/(name+'.log')).read_text(encoding='utf8',errors='replace').splitlines()
             stage['failure']=next((line for line in reversed(lines) if line.strip()),'no log message')
@@ -152,7 +161,7 @@ def warm(args):
             proc=subprocess.run([str(args.atpython.resolve()),str(Path(__file__).with_name('atplace_shared_fv.py')),
                                  str(args.upstream.resolve()),str(sub.resolve()),'shared',sys.executable,
                                  '--projected-labels','--native-limit-s','30'],stdout=log,stderr=subprocess.STDOUT)
-        result=dict(exit=proc.returncode,new_board_checks=0)
+        result=dict(exit=proc.returncode,new_board_checks=0,**log_outcome(sub/'shared-30.log'))
         if proc.returncode==0:
             pose=from_atplace(p,json.loads((sub/'shared.json').read_bytes()))
             row=inspect(p,pose,np.asarray(rec['reach_mm']),rec['cap_m'])
