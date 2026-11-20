@@ -8,6 +8,7 @@ from .geometry import boxes
 
 
 VERTICAL_MM2_K_W = 5.75
+LATERAL_W_K = 0.4
 
 
 def footprint(edges, lower, upper):
@@ -29,7 +30,7 @@ class CooledSheet:
         assert abs(contact_area.sum()-900) < 1e-8
         # k*t = 0.4 W/K laterally. Through-plane resistance uses mm² K/W.
         self.sink = contact_area.ravel() / (.5/.4 + 6.9/.4 + 1/.02)
-        self.factor = splu((.4 * kronsum(line, line) + diags(self.sink)).tocsc())
+        self.factor = splu((LATERAL_W_K * kronsum(line, line) + diags(self.sink)).tocsc())
         self.problem = problem
 
     def power_map(self, layout):
