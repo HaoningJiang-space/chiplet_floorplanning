@@ -13,12 +13,13 @@ from scipy.optimize import Bounds, LinearConstraint, linprog, milp
 from scipy import sparse
 
 from chiplet_floorplanning.placement import Layout, Problem, is_legal, pin_manhattan_um
-from chiplet_floorplanning.placement.geometry import pin_points_um, rotate
+from chiplet_floorplanning.placement.geometry import rotate
 from chiplet_floorplanning.placement.pin_reach import PinReachCell, reach_rows
 from chiplet_floorplanning.placement.lp import TopologyLP, legalize_relations
 from chiplet_floorplanning.placement.evaluate import sample_legal
 from common_relocation import ORIGINAL
-from compare_large_pool import write_json
+from continuous_metrics import inspect
+from evidence_io import write_json
 from import_atplace_cases import PIN
 
 
@@ -30,28 +31,6 @@ def limits(p):
         return np.full(len(p.pin_chip), 2.)
     peripheral = np.array([s.startswith(('MEMS','Analog')) for s in p.names])
     return np.where(peripheral[p.pin_chip].all(axis=1), 10., 25.)
-
-
-def inspect(p, layout, reach, cap):
-    pins = pin_points_um(p,layout)/1000
-    length = np.abs(pins[:,0]-pins[:,1]).sum(axis=1)
-    excess = length-reach
-    # Full-carrier cuts on 1 mm bin boundaries. The last partial bin contributes
-    # exactly its available track width. Tracks under the dies are usable.
-    side = np.array(p.carrier_um)/1000
-    cut = 0.
-    for axis in (0,1):
-        ends = np.sort(pins[:,:,axis],axis=1)
-        borders = np.arange(1.,side[axis])
-        cross = (np.searchsorted(np.sort(ends[:,0]),borders,side='left')
-                 - np.searchsorted(np.sort(ends[:,1]),borders,side='left'))
-        cut = max(cut, float(cross.max(initial=0)/np.floor(side[1-axis]*500)))
-    geom = is_legal(p,layout,100)
-    wire = float(length.sum()/1000)
-    return dict(legal=geom, wire_m=wire, max_net_mm=float(length.max()),
-                reach_violations=int((excess>1e-9).sum()),worst_excess_mm=max(0.,float(excess.max())),
-                full_cut_utilization=cut,
-                feasible=bool(geom and wire<=cap+1e-9 and excess.max()<=1e-9 and cut<=1.))
 
 
 def cycle_audit(p, reach):

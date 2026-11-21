@@ -11,8 +11,9 @@ from scipy.optimize import linprog
 from chiplet_floorplanning.placement import Layout
 from chiplet_floorplanning.placement.pin_reach import PinReachCell
 from chiplet_floorplanning.placement.successors import follower_landing, joint_endpoints, proxy_peaks
-from compare_large_pool import write_json
-from compare_successors import audit, load_case
+from continuous_metrics import GAP_UM
+from evidence_io import write_json
+from successor_protocol import audit, coolest_verified, load_case
 
 
 def omitted_hotspots(p,start,case):
@@ -49,7 +50,7 @@ def omitted_hotspots(p,start,case):
 
 
 def unlocked_witnesses(p,start,reach,cap,arm):
-    cell = PinReachCell(p,start,100,reach,cap)
+    cell = PinReachCell(p, start, GAP_UM, reach, cap)
     witnesses = []
     for row in arm['attempts']:
         if row['candidate'] is not None:
@@ -83,7 +84,7 @@ def unlocked_witnesses(p,start,reach,cap,arm):
 
 def restricted_minimum_wire(p,start,reach,cap,arm):
     """Can the certified followers alone meet the total cap at this verified winning leader endpoint?"""
-    best = min(arm['verified'],key=lambda r:(r['peak_c'],r['wire_m']))
+    best = coolest_verified(arm['verified'])
     if 'candidate' not in best:
         return None
     action = next(v for v in arm['attempts'] if v['candidate']==best['candidate'])
@@ -91,7 +92,7 @@ def restricted_minimum_wire(p,start,reach,cap,arm):
         return None
     # Use the sum of all per-net reaches as a redundant cap. The objective itself
     # finds the minimum over continuous coordinates, which also lower bounds snapped layouts.
-    cell = PinReachCell(p,start,100,reach,float(np.sum(reach))/1000)
+    cell = PinReachCell(p, start, GAP_UM, reach, float(np.sum(reach))/1000)
     bounds = cell.bounds.copy()
     for j,old in enumerate(start.centre_um.T.ravel()/1000):
         die,axis = j % p.count,j // p.count
@@ -128,7 +129,7 @@ def main():
         a,b=case['arms']['three'],case['arms']['all']
         assert a['bank']==b['bank'] and a['eligible']==b['eligible']
         # Rebuild the frozen strict bank using the final grid and motion checks.
-        _, strict, _ = joint_endpoints(p,start,reach,cap,np.array(case['start']['die_peaks_c']))
+        _, strict, _ = joint_endpoints(p, start, reach, cap, np.array(case['start']['die_peaks_c']), gap_um=GAP_UM)
         assert [audit(p,pose,reach,cap) for pose in strict]==a['bank']
         newer=second['cases'][name]
         assert newer['start']==case['start'] and newer['source_sha256']==case['source_sha256']

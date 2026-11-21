@@ -9,8 +9,8 @@ from scipy.optimize import linprog
 
 from chiplet_floorplanning.placement import Layout, Problem
 from chiplet_floorplanning.placement.pin_reach import PinReachCell
-from compare_large_pool import write_json
-from continuous_reach_geometry import inspect
+from continuous_metrics import inspect
+from evidence_io import write_json
 
 
 def audit(source,protocol):

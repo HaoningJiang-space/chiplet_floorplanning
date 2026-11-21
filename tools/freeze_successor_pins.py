@@ -6,8 +6,8 @@ import numpy as np
 from scipy.spatial.distance import pdist
 
 from chiplet_floorplanning.placement import Problem, pin_manhattan_um
-from compare_large_pool import write_json
-from compare_successors import EVIDENCE, ROOT, audit, load_case
+from evidence_io import write_json
+from successor_protocol import EVIDENCE, ROOT, audit, load_case
 from import_atplace_cases import parse_case
 
 

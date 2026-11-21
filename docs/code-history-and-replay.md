@@ -1,5 +1,9 @@
 # 代码精简与历史结果复现
 
+## 联合移动布局实验
+
+本轮从已同步的 `10767d0` 整理。运行对照用 [compare_successors.py](../tools/compare_successors.py)，复核冻结结果用 [audit_successors.py](../tools/audit_successors.py)。两者与绘图工具共用 [案例读取、准入与最佳解选择](../tools/successor_protocol.py)。连续布局的逐链距离、截面容量、局部逃逸容量和整板峰温计算集中在 [continuous_metrics.py](../tools/continuous_metrics.py)。[本地复现命令](successor-placement.md#本地复现)
+
 2026-11-13 按用户要求重构并删除不再使用的代码。删除前最后一个包含全部代码的提交是
 `f1df9fdd1bf69b714ce83a103cdeaef346d9abfe`（其父提交 `bd1e12b` 为全部 ATPlace Case1 阶段的最后结果）。
 

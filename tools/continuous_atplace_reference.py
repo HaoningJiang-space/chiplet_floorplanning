@@ -11,9 +11,9 @@ import numpy as np
 
 from atplace_compare import from_atplace
 from compare_atplace_margin import problem_at, write
-from compare_large_pool import write_json
-from continuous_baseline_audit import escape_util
-from continuous_reach_geometry import NAMES, PIN, inspect
+from continuous_metrics import escape_util, inspect
+from continuous_reach_geometry import NAMES, PIN
+from evidence_io import write_json
 from chiplet_floorplanning.placement.evaluate import sample_legal
 from chiplet_floorplanning.placement.pin_reach import PinReachCell
 from chiplet_floorplanning.placement.problem import Layout

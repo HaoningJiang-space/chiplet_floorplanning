@@ -12,8 +12,9 @@ from atplace_compare import from_atplace
 from chiplet_floorplanning.placement.pin_reach import PinReachCell
 from chiplet_floorplanning.placement.search import layout_key
 from chiplet_floorplanning.placement import thermal_projection
-from compare_atplace_margin import write
-from compare_successors import ROOT, audit, measure, result, shared_repair
+from continuous_metrics import GAP_UM
+from evidence_io import write_pretty_json
+from successor_protocol import ROOT, audit, measure, result, shared_repair
 from import_atplace_cases import PIN
 
 
@@ -23,14 +24,14 @@ def external_arm(p,start,reach,cap,base,encoded,args):
     sub = (args.work/p.name).resolve()
     sub.mkdir(parents=True,exist_ok=False)
     (sub/'source.json').write_bytes(encoded)
-    write(sub/'input.json', dict(name=p.name,cap_m=cap,names=p.names,start_um=start.centre_um.tolist(),
+    write_pretty_json(sub/'input.json', dict(name=p.name,cap_m=cap,names=p.names,start_um=start.centre_um.tolist(),
           angles=start.rotation_deg.tolist(),powers_w=p.power_w.tolist(),source_sha256=sha256(encoded).hexdigest(),
           upstream=PIN,fv_fingerprint=sha256(Path(thermal_projection.__file__).read_bytes()).hexdigest()))
     extra = []
     if p.name in ('Stagger12','Stagger12P'):
         params = json.loads((upstream/'cases/Case7/Thermal-aware.json').read_bytes())
         params['opt']['case_dir'] = str((ROOT/'examples'/p.name).resolve())
-        write(sub/'params.json',params)
+        write_pretty_json(sub/'params.json',params)
         extra = ['--param-file',str(sub/'params.json')]
     stages = {}
     for phase in ('train','shared'):
@@ -50,7 +51,7 @@ def external_arm(p,start,reach,cap,base,encoded,args):
     labels = len(np.load(labels_file,mmap_mode='r')) if labels_file.exists() else 0
     raw_row = None
     chosen = None
-    cell = PinReachCell(p,start,100,reach,cap)
+    cell = PinReachCell(p, start, GAP_UM, reach, cap)
     if (sub/'shared.json').exists():
         pose = from_atplace(p,json.loads((sub/'shared.json').read_bytes()))
         chosen,raw_row,handling = shared_repair(p,pose,cell,reach,cap)

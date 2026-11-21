@@ -15,9 +15,8 @@ from chiplet_floorplanning.placement import Layout, Problem
 from chiplet_floorplanning.placement.microchannels import Channels, CP, RHO, conjugate, duct_resistance, hydraulics
 from chiplet_floorplanning.placement.thermal import thermal_case_data
 from chiplet_floorplanning.power import rasterize
-from compare_large_pool import write_json
-from continuous_baseline_audit import escape_util
-from continuous_reach_geometry import inspect
+from continuous_metrics import escape_util, inspect
+from evidence_io import write_json
 
 
 PUMP_W, INLET_C = .20, 25.

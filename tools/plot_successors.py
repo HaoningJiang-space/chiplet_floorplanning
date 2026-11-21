@@ -9,7 +9,7 @@ from matplotlib.patches import Patch, Rectangle
 import numpy as np
 
 from chiplet_floorplanning.placement.geometry import boxes
-from compare_successors import load_case
+from successor_protocol import coolest_verified, load_case
 
 
 def main():
@@ -20,14 +20,16 @@ def main():
     args = parser.parse_args()
     cases = json.loads(args.results.read_bytes())['cases']
     if args.distinct_pins:
-        cases.pop('Stagger12')
+        cases.pop('Stagger12', None)
         cases.update(json.loads(args.distinct_pins.read_bytes())['cases'])
-    fig, axes = plt.subplots(1,len(cases),figsize=(12.4,4.7),layout='constrained')
+    figure_width = 12.4 * (len(cases) / 3)
+    fig, grid = plt.subplots(1, len(cases), squeeze=False, figsize=(figure_width, 4.7), layout='constrained')
+    axes = grid[0]
     teal, red, blue = '#19736b', '#ae332b', '#274876'
     for ax,(name,case) in zip(axes,cases.items()):
         p,start,*_ = load_case(name,args.source)
         arm = case['arms']['three']
-        best = min(arm['verified'],key=lambda r:(r['peak_c'],r['wire_m']))
+        best = coolest_verified(arm['verified'])
         original = start.centre_um/1000
         target = np.asarray(best['centre_um'])/1000
         bounds = boxes(p,start)/1000
@@ -54,7 +56,7 @@ def main():
                Patch(facecolor='none',edgecolor=teal,linestyle=':',label='Verified landing'),
                Line2D([],[],marker='o',markerfacecolor='none',color=blue,ls='none',label='Scored die'),
                Line2D([],[],marker='x',color=red,ls='none',label='Verified hottest die')]
-    fig.legend(handles=handles,loc='outside lower center',ncols=4,frameon=False)
+    fig.legend(handles=handles,loc='outside lower center',ncols=min(4, 2*len(cases)),frameon=False)
     fig.savefig(args.output,dpi=165,bbox_inches='tight')
 
 

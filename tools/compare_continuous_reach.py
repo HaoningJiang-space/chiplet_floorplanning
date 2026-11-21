@@ -13,20 +13,10 @@ from chiplet_floorplanning.placement.methods import Run, relation_space, shortes
 from chiplet_floorplanning.placement.lp import TopologyLP
 from chiplet_floorplanning.placement.pin_reach import PinReachCell
 from chiplet_floorplanning.placement.search import layout_key
-from chiplet_floorplanning.placement.thermal import AMBIENT_C, die_peaks_c, solve, thermal_case_data
+from chiplet_floorplanning.placement.thermal import AMBIENT_C, thermal_case_data
 from chiplet_floorplanning.placement.thermal_projection import projected_field
-from compare_large_pool import write_json
-from continuous_reach_geometry import inspect
-
-
-def verified(p,layout):
-    summary,rise,edges=solve(thermal_case_data(p,layout,100,64))
-    return summary,die_peaks_c(p,layout,rise,edges)
-
-
-def point(p,layout,reach,cap):
-    return dict(centre_um=layout.centre_um.tolist(),rotation_deg=layout.rotation_deg.tolist(),
-                **inspect(p,layout,reach,cap))
+from evidence_io import write_json
+from continuous_metrics import inspect, point, verified
 
 
 class AdmittedRun(Run):

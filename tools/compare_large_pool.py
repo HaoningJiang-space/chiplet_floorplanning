@@ -17,6 +17,7 @@ from chiplet_floorplanning.placement.problem import Layout
 from chiplet_floorplanning.placement.thermal import AMBIENT_C, solve, thermal_case_data
 from compare_dual_cap_slots import ProjectedRun, admissible, wire_metrics
 from compare_movable_power import fingerprint
+from evidence_io import write_json
 from large_pool_geometry import REV, SEED, inputs, instance, power_maps
 from scale_slot_margin import SlotPackage
 
@@ -32,11 +33,6 @@ class Bank:
     lengths_m: np.ndarray
     longest_mm: np.ndarray
     caps: tuple
-
-
-def write_json(path, value):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, allow_nan=False, separators=(',', ':'))+'\n', encoding='utf8')
 
 
 def load_bank(path, original, p, start):

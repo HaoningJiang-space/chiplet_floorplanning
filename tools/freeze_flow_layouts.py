@@ -9,9 +9,9 @@ import numpy as np
 from chiplet_floorplanning.placement import Layout, Problem
 from chiplet_floorplanning.placement.lp import legalize_relations
 from chiplet_floorplanning.placement.pin_reach import PinReachCell
-from continuous_baseline_audit import escape_util
-from continuous_reach_geometry import cycle_audit, inspect, limits, rectangular_audit, repair_orders
-from compare_large_pool import write_json
+from continuous_metrics import escape_util, inspect
+from continuous_reach_geometry import cycle_audit, limits, rectangular_audit, repair_orders
+from evidence_io import write_json
 
 EVIDENCE = Path(__file__).resolve().parents[1] / 'docs/evidence'
 

@@ -6,6 +6,7 @@
 不是实际布线长度或时序；热模型是声明材料的稳态有限体积模型，未经实测校准。
 
 - 研究记录总入口：[overall-research-status](docs/overall-research-status.md)
+- 当前联合移动布局实验用 `tools/compare_successors.py` 运行，结果用 `tools/audit_successors.py` 复核。[案例、预算与本地复现命令](docs/successor-placement.md#本地复现)
 - 指标定义：[tap-r3-metrics](docs/tap-r3-metrics.md)；物理准入：[physical-admission-contract](docs/physical-admission-contract.md)
 - 代码精简与历史结果复现：[code-history-and-replay](docs/code-history-and-replay.md)
 

@@ -20,6 +20,7 @@ from chiplet_floorplanning.placement.joint_generation import JointLandings
 from chiplet_floorplanning.placement.joint_margin import PairMargin
 from chiplet_floorplanning.placement.problem import Layout, Problem
 from chiplet_floorplanning.placement.thermal import AMBIENT_C, solve, thermal_case_data
+from evidence_io import write_pretty_json as write
 from direct_relocation import physical_cost
 from solve_joint_margin import starting_cells
 from transfer_placement import starting_cases
@@ -28,10 +29,6 @@ from transfer_placement import starting_cases
 ROOT = Path(__file__).resolve().parents[1]
 UPSTREAM = "fe3dbfdaf78dc0ddeac3a2cfc3a85ff0971f88df"
 NAMES = ("Case1", "Case4", "Case5")
-
-
-def write(path, data):
-    path.write_text(json.dumps(data, indent=2, allow_nan=False)+"\n", encoding="utf8", newline="\n")
 
 
 def problem_at(out):

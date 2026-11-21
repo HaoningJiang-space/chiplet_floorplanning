@@ -11,10 +11,9 @@ from chiplet_floorplanning.placement import Layout, Problem
 from chiplet_floorplanning.placement.geometry import pin_manhattan_um, violations
 from chiplet_floorplanning.placement.pin_reach import heat_directed_moves, required_travel_mm
 from chiplet_floorplanning.placement.thermal import AMBIENT_C, thermal_case_data
-from compare_continuous_reach import finish, point, verified
-from compare_large_pool import write_json
-from continuous_baseline_audit import escape_util
-from continuous_reach_geometry import inspect
+from compare_continuous_reach import finish
+from continuous_metrics import escape_util, inspect, point, verified
+from evidence_io import write_json
 
 
 def isolated_motion(p, report, rec):

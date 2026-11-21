@@ -7,87 +7,26 @@ from time import perf_counter
 
 import numpy as np
 
-from chiplet_floorplanning.placement import Evaluator, Layout, Problem
+from chiplet_floorplanning.placement import Evaluator
 from chiplet_floorplanning.placement.evaluate import thermal_key
 from chiplet_floorplanning.placement.methods import Run, relation_space
 from chiplet_floorplanning.placement.pin_reach import PinReachCell
 from chiplet_floorplanning.placement.successors import joint_endpoints, proxy_peaks, successor_order
-from compare_continuous_reach import point, verified
-from compare_large_pool import write_json
-from continuous_baseline_audit import escape_util
-from import_atplace_cases import parse_case
+from continuous_metrics import GAP_UM, THERMAL_RESOLUTION
+from evidence_io import write_json
+from successor_atplace import external_arm
+from successor_protocol import audit, load_case, measure, result, shared_repair
 
 
-ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = ROOT / 'docs/evidence'
 SEED = 20261119
-
-
-def load_case(name, source):
-    frozen = json.loads((EVIDENCE/'successor-freeze.json').read_bytes())
-    if name in ('Stagger12','Stagger12P'):
-        rec = (frozen['holdout'] if name=='Stagger12'
-               else json.loads((EVIDENCE/'successor-distinct-pins.json').read_bytes()))
-        raw = {}
-        for ext, digest in rec['files_sha256'].items():
-            data = (ROOT/'examples'/name/f'{name}.{ext}').read_bytes().replace(b'\r\n',b'\n')
-            assert sha256(data).hexdigest() == digest
-            raw[ext] = data.decode()
-        data = parse_case(name, raw['blocks'], raw['power'], raw['nets'])
-        data['power_provenance'] = 'declared synthetic held-out workload'
-        encoded = json.dumps(data, separators=(',',':')).encode()
-        start = Layout(np.array(rec['start_um'],float),np.array(rec['angles'],int))
-    else:
-        geom = (EVIDENCE/'continuous-reach-geometry.json').read_bytes()
-        # The historical JSON may have been checked out with Windows CRLF.
-        lf = geom.replace(b'\r\n',b'\n')
-        assert frozen['legacy_geometry_sha256'] in {
-            sha256(s).hexdigest() for s in (lf, lf.replace(b'\n',b'\r\n'))}
-        rec = json.loads(geom)['cases'][name]
-        encoded = (source/f'{name}.json').read_bytes()
-        assert sha256(encoded).hexdigest() == rec['source_sha256']
-        st = rec['start']
-        start = Layout(np.array(st['centre_um'],float),np.array(st['rotation_deg'],int))
-    return Problem.from_imported(json.loads(encoded)), start, np.array(rec['reach_mm']), rec['cap_m'], encoded
-
-
-def audit(p, pose, reach, cap):
-    row = point(p,pose,reach,cap)
-    row['bin_escape_utilization'] = escape_util(p,pose)
-    row['admitted'] = bool(row['feasible'] and row['bin_escape_utilization'] <= 1.)
-    return row
-
-
-def measure(p, pose, row):
-    summary, peaks = verified(p,pose)
-    return dict(row, peak_c=summary['peak_power_layer_c'], die_peaks_c=peaks.tolist(),
-                balance_w=summary['energy_balance_error_w'])
-
-
-def shared_repair(p, pose, cell, reach, cap):
-    original = audit(p,pose,reach,cap)
-    if original['admitted']:
-        return pose, original, 'raw'
-    fixed = cell.toward(pose.centre_um)
-    if fixed is not None and audit(p,fixed,reach,cap)['admitted']:
-        return fixed, original, 'projected'
-    return None, original, 'rejected'
-
-
-def result(rows, base, checks):
-    eligible = [row for row in rows if row['admitted']]
-    best = min(eligible,key=lambda row:(row['peak_c'],row['wire_m']))
-    reverse = min(row['wire_m'] for row in eligible if row['peak_c'] <= base['peak_c']+1e-7)
-    return dict(verified=rows, peak_c=best['peak_c'], wire_m=best['wire_m'],
-                cooling_k=base['peak_c']-best['peak_c'], reverse_m=reverse, new_board_checks=checks)
 
 
 def follower_arm(p, start, reach, cap, base, all_dies, compensate=False):
     peaks = np.array(base['die_peaks_c'])
-    radius, poses, attempts = joint_endpoints(p,start,reach,cap,peaks,compensate=compensate)
+    radius, poses, attempts = joint_endpoints(p, start, reach, cap, peaks, gap_um=GAP_UM, compensate=compensate)
     geometry = [audit(p,v,reach,cap) for v in poses]
     eligible = [i for i,g in enumerate(geometry) if g['admitted']]
-    risk = successor_order(p,start,peaks,radius)
+    risk = successor_order(p, start, peaks, radius, gap_um=GAP_UM)
     hottest = int(np.argmax(peaks))
     observed = [hottest, *risk]
     rows, decisions = [base], []
@@ -115,7 +54,7 @@ class ProjectedRun(Run):
     """Use the native proposal flow with the common admission/projection before each costly check."""
     def __init__(self, evaluator, start, reach, cap):
         super().__init__(evaluator,3,stall_rounds=2,max_rounds=3)
-        self.cell = PinReachCell(evaluator.problem,start,100,reach,cap)
+        self.cell = PinReachCell(evaluator.problem, start, GAP_UM, reach, cap)
         self.reach, self.cap, self.raw = reach, cap, []
 
     def evaluate(self, candidates):
@@ -131,7 +70,7 @@ class ProjectedRun(Run):
 
 
 def relation_arm(p,start,reach,cap,base):
-    with Evaluator(p,100,resolution=64) as evaluator:
+    with Evaluator(p, GAP_UM, resolution=THERMAL_RESOLUTION) as evaluator:
         evaluator.cache[thermal_key(p,start)] = np.r_[base['peak_c'],base['die_peaks_c']]
         evaluator.solves = 1
         run = ProjectedRun(evaluator,start,reach,cap)
@@ -155,7 +94,6 @@ def main():
     parser.add_argument('--compensate-from',type=Path,
                         help='Run the second-stage pair from the same measured starting fields.')
     args=parser.parse_args()
-    from successor_atplace import external_arm
     out = dict(seed=SEED,cases={})
     if args.compensate_from:
         raw = args.compensate_from.read_bytes()

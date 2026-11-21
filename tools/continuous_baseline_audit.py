@@ -9,10 +9,10 @@ import numpy as np
 
 from chiplet_floorplanning.placement import Evaluator, Layout, Problem
 from chiplet_floorplanning.placement.evaluate import thermal_key
-from chiplet_floorplanning.placement.geometry import pin_points_um
 from chiplet_floorplanning.placement.methods import Run, relation_space
-from compare_continuous_reach import finish, point, verified
-from compare_large_pool import write_json
+from compare_continuous_reach import finish
+from continuous_metrics import escape_util, point, verified
+from evidence_io import write_json
 
 
 class CountDirect(Run):
@@ -23,21 +23,6 @@ class CountDirect(Run):
         result = super().evaluate(candidates)
         self.direct += self.evaluator.solves-before
         return result
-
-
-def escape_util(p,lay):
-    side=np.array(p.carrier_um)/1000
-    shape=np.ceil(side).astype(int)
-    bins=np.clip(np.floor(pin_points_um(p,lay)/1000).astype(int),0,shape-1)
-    index=bins[:,:,0]+shape[0]*bins[:,:,1]
-    cross=index[index[:,0]!=index[:,1]].ravel()
-    demand=np.bincount(cross,minlength=int(np.prod(shape))).reshape(shape[::-1])
-    x,y=np.arange(shape[0]),np.arange(shape[1])
-    width,height=np.minimum(1.,side[0]-x),np.minimum(1.,side[1]-y)
-    sides_x=(x>0).astype(int)+(x+1<shape[0])
-    sides_y=(y>0).astype(int)+(y+1<shape[1])
-    cap=(height*500).astype(int)[:,None]*sides_x[None,:]+sides_y[:,None]*(width*500).astype(int)[None,:]
-    return float((demand/cap).max())
 
 
 def audit(source,freeze,previous,directed):
