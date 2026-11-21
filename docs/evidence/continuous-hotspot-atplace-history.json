@@ -1,0 +1,95 @@
+{
+  "Case7": {
+    "runs": [
+      {
+        "run": "historical",
+        "source_sha256": "be89a969da2a6d65206bc09de8967f0f21e8cabad1e9b534bb665cd5d72e8405",
+        "labels_npy_sha256": "384f7f4aa66d21ada18951b8eb0f02c9fd646dfa623e9ac9dbedb0dd60f579a5",
+        "prelegal_xy_array_sha256": "487462913934e1325928236bf72081ff6b275ec76e71cbcf99e673e533a87a62",
+        "native_legalization_messages": [
+          "!Legalized Floorplan of  Dis  WL  not found!",
+          "WL legalization returned no result; retrying with displacement only.",
+          "!Legalized Floorplan of  Dis  found!"
+        ],
+        "handling": "projected",
+        "new_board_checks": 2,
+        "peak_c": 79.4367461684426
+      },
+      {
+        "run": "current",
+        "source_sha256": "be89a969da2a6d65206bc09de8967f0f21e8cabad1e9b534bb665cd5d72e8405",
+        "labels_npy_sha256": "384f7f4aa66d21ada18951b8eb0f02c9fd646dfa623e9ac9dbedb0dd60f579a5",
+        "prelegal_xy_array_sha256": "487462913934e1325928236bf72081ff6b275ec76e71cbcf99e673e533a87a62",
+        "native_legalization_messages": [
+          "!Legalized Floorplan of  Dis  WL  found!"
+        ],
+        "handling": "projected",
+        "new_board_checks": 2,
+        "peak_c": 80.68941721604568
+      }
+    ],
+    "prelegal_xy_max_abs_difference_um": 0.0
+  },
+  "Case8": {
+    "runs": [
+      {
+        "run": "historical",
+        "source_sha256": "6e7c1278d7b3812f505283c613e30890a4b68dc6c1c9bb8b4b4e4a44e4ee4a1b",
+        "labels_npy_sha256": "0a7506ef6567ab97c844ac8770053bbd4c04c196fc46713c6004aee0cdeeaf99",
+        "prelegal_xy_array_sha256": "30a97dc04240c75e192fa4a29a47c17005a5b8dae909bb335b60ed03586bcb1d",
+        "native_legalization_messages": [
+          "!Legalized Floorplan of  Dis  WL  not found!",
+          "WL legalization returned no result; retrying with displacement only.",
+          "!Legalized Floorplan of  Dis  not found!"
+        ],
+        "handling": "projected pre-legalization target",
+        "new_board_checks": 2,
+        "peak_c": 80.46035250172855
+      },
+      {
+        "run": "current",
+        "source_sha256": "6e7c1278d7b3812f505283c613e30890a4b68dc6c1c9bb8b4b4e4a44e4ee4a1b",
+        "labels_npy_sha256": "0a7506ef6567ab97c844ac8770053bbd4c04c196fc46713c6004aee0cdeeaf99",
+        "prelegal_xy_array_sha256": "30a97dc04240c75e192fa4a29a47c17005a5b8dae909bb335b60ed03586bcb1d",
+        "native_legalization_messages": [
+          "!Legalized Floorplan of  Dis  WL  not found!",
+          "WL legalization returned no result; retrying with displacement only.",
+          "!Legalized Floorplan of  Dis  found!"
+        ],
+        "handling": "projected",
+        "new_board_checks": 1,
+        "peak_c": 80.47559645475204
+      }
+    ],
+    "prelegal_xy_max_abs_difference_um": 0.0
+  },
+  "Stagger12P": {
+    "runs": [
+      {
+        "run": "historical",
+        "source_sha256": "7ec627e28e299f3d746c7f393c73b77ea6ec2f5b6db4c442398456961d113af7",
+        "labels_npy_sha256": "e7bab8cae5aac2dd241a3a5a6c90a493d9a88be26177d5fbfc7b219ecddce21b",
+        "prelegal_xy_array_sha256": "7986a66fe76421236f6df0c9d7156ac8cd56f7ea8085342fa1b3ca44b1c8794d",
+        "native_legalization_messages": [
+          "!Legalized Floorplan of  Dis  WL  found!"
+        ],
+        "handling": "projected",
+        "new_board_checks": 2,
+        "peak_c": 111.77057061301146
+      },
+      {
+        "run": "current",
+        "source_sha256": "7ec627e28e299f3d746c7f393c73b77ea6ec2f5b6db4c442398456961d113af7",
+        "labels_npy_sha256": "e7bab8cae5aac2dd241a3a5a6c90a493d9a88be26177d5fbfc7b219ecddce21b",
+        "prelegal_xy_array_sha256": "7986a66fe76421236f6df0c9d7156ac8cd56f7ea8085342fa1b3ca44b1c8794d",
+        "native_legalization_messages": [
+          "!Legalized Floorplan of  Dis  WL  found!"
+        ],
+        "handling": "projected",
+        "new_board_checks": 2,
+        "peak_c": 111.77057061301146
+      }
+    ],
+    "prelegal_xy_max_abs_difference_um": 0.0
+  }
+}
