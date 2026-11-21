@@ -1,5 +1,43 @@
 # 以互连余量选联动芯粒，以少数潜在热点选落点
 
+## 为什么近期版本有两例落后于 ATPlace
+
+这次在 `dbdb462` 上做事后诊断。早期的 `relation_space` 对照按整条温度–线长前沿的双目标规则，在两种热模型下均取得 7 胜、1 平、0 负（8 个完整案例，每例约 1,000 次 FV）。Case9、10 的外部对照不完整。对于近期两次新核验的预算，另一个更贴近当前条件的历史对照是五热点连续位移。它让所有芯粒一起求解，先最小化五个起点热点中预测的最高温度，再以总位移最小打破平局。[早期对照的正式口径](atplace-comparison-v3-plan.md) · [五热点联合位移](continuous-interconnect.md)
+
+三例均复用本阶段的起点温场、引脚、逐链上限、总长上限、间距、朝向及完整三维评价。取五个最高起点温度，使用已有铜半空间导数和连续联合位移求解器，在最终投影中同样强制每个坐标的位移半径，消除旧实现最多约 1 µm 的超步。各核验一次全步和一次半步，任选已核验最佳点。该法使用零个额外热响应、零个训练标签。ATPlace 列沿用已核验的作者程序加可行化结果，每例另有五个降阶训练标签。三组均已参加过先前研究，这次比较用于定位退步。
+
+| 案例 | 每轴半径 mm | 近期三点法 °C | ATPlace + 可行化 °C | 五热点全步 °C | 五热点半步 °C | 全步引脚总长 m |
+|---|---:|---:|---:|---:|---:|---:|
+| Case7 | 1.0 | 80.08170 | 79.43675 | **79.05405** | 79.53465 | 40.443516 |
+| Case8 | 1.0 | 80.07350 | 80.46035 | **78.97854** | 79.47273 | 43.352290 |
+| Stagger12P | 2.8 | 112.02820 | 111.77057 | **110.84223** | 111.91865 | 1.491320 |
+
+把五热点全步坐标单独加入各自近期版本的合法候选池，沿用冻结的三个观测点、温差评分和线长平局规则作第一次选择。三个全步原本都在池外，加入后依次排第 1/10、1/22、1/20。两例更冷的 ATPlace 合规坐标若分别单独加入，在 Case7 和 Stagger12P 也都排第一。由此可定位这些已知更冷点是在候选生成阶段漏失。当前生成器只让两个指定主动者逐一走八向全步或半步，再让其他芯粒以最小总位移满足互连和几何约束。它可以算出谁必须跟随，同时会漏掉满足这些约束后仍值得主动移动的热源。本次插入试验不能判断所有未核验布局的排名。[六个核验坐标、温度、线长及逐例插入排名](evidence/continuous-generator-replay.json)
+
+### 重现严格半径的对照
+
+在本地复现环境中，对每例调用 `successor_protocol.load_case` 取得 `p, start, reach, cap`（前四个返回值），从对应首轮结果读取 `start.die_peaks_c` 为 `peaks`。下列计算复用原求解器；两步各自从共同起点投影。
+
+```python
+import numpy as np
+from chiplet_floorplanning.placement.pin_reach import PinReachCell, half_space_gradients
+from successor_protocol import audit, measure
+
+hot = np.argsort(-np.asarray(peaks), kind="stable")[:5]
+radius = np.median(p.size_um.min(axis=1)) / 2000
+cell = PinReachCell(p, start, 100, reach, cap)
+grad = half_space_gradients(p, start, hot)
+delta, _ = cell.cool_direction(start, np.asarray(peaks)[hot], grad, radius)
+for j, origin_mm in enumerate(start.centre_um.T.ravel() / 1000):
+    low, high = cell.bounds[j]
+    cell.bounds[j] = max(low, origin_mm-radius), min(high, origin_mm+radius)
+for fraction in (1., .5):
+    pose = cell.toward(start.centre_um + 1000*fraction*delta)
+    row = audit(p, pose, reach, cap)
+    assert row["admitted"] and abs(pose.centre_um-start.centre_um).max()/1000 <= radius+1e-10
+    print(fraction, row["wire_m"], measure(p, pose, row)["peak_c"])
+```
+
 ## 等预算布局结果
 
 表中每格为已核验最佳峰温（°C）及按统一口径计入的总用时（s）。每例实测一次起点成本并计入每个方法，Case7、Case8、Stagger12P 分别为 0.255、0.926、0.067 s。其余是该方法实际搜索、核验与记录耗时。补偿组读取已保存的起点热场，独立进程完全冷启动的总时长未测。三点法为允许总长补偿的版本，全芯粒列只改变同池评分位置。两列及两条基线在三个主例都用了两次新整板，各自保留起点。ATPlace2.5D 每例另用五个降阶训练标签，时间含冷启动训练、优化与坐标修复。外部方法使用本机 CPU 和单线程配置。部分时段同机还在跑回归测试。
