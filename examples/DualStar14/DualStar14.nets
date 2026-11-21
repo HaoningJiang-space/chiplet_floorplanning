@@ -1,0 +1,602 @@
+NumNets : 200
+NumPins : 400
+NetDegree : 2
+HubL B : %-48 %-38
+L0 B : %48 %-38
+NetDegree : 2
+HubL B : %-48 %-31.0909
+L0 B : %48 %-31.0909
+NetDegree : 2
+HubL B : %-48 %-24.1818
+L0 B : %48 %-24.1818
+NetDegree : 2
+HubL B : %-48 %-17.2727
+L0 B : %48 %-17.2727
+NetDegree : 2
+HubL B : %-48 %-10.3636
+L0 B : %48 %-10.3636
+NetDegree : 2
+HubL B : %-48 %-3.4545
+L0 B : %48 %-3.4545
+NetDegree : 2
+HubL B : %-48 %3.4545
+L0 B : %48 %3.4545
+NetDegree : 2
+HubL B : %-48 %10.3636
+L0 B : %48 %10.3636
+NetDegree : 2
+HubL B : %-48 %17.2727
+L0 B : %48 %17.2727
+NetDegree : 2
+HubL B : %-48 %24.1818
+L0 B : %48 %24.1818
+NetDegree : 2
+HubL B : %-48 %31.0909
+L0 B : %48 %31.0909
+NetDegree : 2
+HubL B : %-48 %38
+L0 B : %48 %38
+NetDegree : 2
+HubL B : %-38 %-48
+L1 B : %-38 %48
+NetDegree : 2
+HubL B : %-34.6957 %-48
+L1 B : %-31.0909 %48
+NetDegree : 2
+HubL B : %-31.3913 %-48
+L1 B : %-24.1818 %48
+NetDegree : 2
+HubL B : %-28.087 %-48
+L1 B : %-17.2727 %48
+NetDegree : 2
+HubL B : %-24.7826 %-48
+L1 B : %-10.3636 %48
+NetDegree : 2
+HubL B : %-21.4783 %-48
+L1 B : %-3.4545 %48
+NetDegree : 2
+HubL B : %-18.1739 %-48
+L1 B : %3.4545 %48
+NetDegree : 2
+HubL B : %-14.8696 %-48
+L1 B : %10.3636 %48
+NetDegree : 2
+HubL B : %-11.5652 %-48
+L1 B : %17.2727 %48
+NetDegree : 2
+HubL B : %-8.2609 %-48
+L1 B : %24.1818 %48
+NetDegree : 2
+HubL B : %-4.9565 %-48
+L1 B : %31.0909 %48
+NetDegree : 2
+HubL B : %-1.6522 %-48
+L1 B : %38 %48
+NetDegree : 2
+HubL B : %1.6522 %-48
+L2 B : %-38 %48
+NetDegree : 2
+HubL B : %4.9565 %-48
+L2 B : %-31.0909 %48
+NetDegree : 2
+HubL B : %8.2609 %-48
+L2 B : %-24.1818 %48
+NetDegree : 2
+HubL B : %11.5652 %-48
+L2 B : %-17.2727 %48
+NetDegree : 2
+HubL B : %14.8696 %-48
+L2 B : %-10.3636 %48
+NetDegree : 2
+HubL B : %18.1739 %-48
+L2 B : %-3.4545 %48
+NetDegree : 2
+HubL B : %21.4783 %-48
+L2 B : %3.4545 %48
+NetDegree : 2
+HubL B : %24.7826 %-48
+L2 B : %10.3636 %48
+NetDegree : 2
+HubL B : %28.087 %-48
+L2 B : %17.2727 %48
+NetDegree : 2
+HubL B : %31.3913 %-48
+L2 B : %24.1818 %48
+NetDegree : 2
+HubL B : %34.6957 %-48
+L2 B : %31.0909 %48
+NetDegree : 2
+HubL B : %38 %-48
+L2 B : %38 %48
+NetDegree : 2
+HubL B : %-38 %48
+L3 B : %-38 %-48
+NetDegree : 2
+HubL B : %-35.8286 %48
+L3 B : %-31.0909 %-48
+NetDegree : 2
+HubL B : %-33.6571 %48
+L3 B : %-24.1818 %-48
+NetDegree : 2
+HubL B : %-31.4857 %48
+L3 B : %-17.2727 %-48
+NetDegree : 2
+HubL B : %-29.3143 %48
+L3 B : %-10.3636 %-48
+NetDegree : 2
+HubL B : %-27.1429 %48
+L3 B : %-3.4545 %-48
+NetDegree : 2
+HubL B : %-24.9714 %48
+L3 B : %3.4545 %-48
+NetDegree : 2
+HubL B : %-22.8 %48
+L3 B : %10.3636 %-48
+NetDegree : 2
+HubL B : %-20.6286 %48
+L3 B : %17.2727 %-48
+NetDegree : 2
+HubL B : %-18.4571 %48
+L3 B : %24.1818 %-48
+NetDegree : 2
+HubL B : %-16.2857 %48
+L3 B : %31.0909 %-48
+NetDegree : 2
+HubL B : %-14.1143 %48
+L3 B : %38 %-48
+NetDegree : 2
+HubL B : %-11.9429 %48
+L4 B : %-38 %-48
+NetDegree : 2
+HubL B : %-9.7714 %48
+L4 B : %-31.0909 %-48
+NetDegree : 2
+HubL B : %-7.6 %48
+L4 B : %-24.1818 %-48
+NetDegree : 2
+HubL B : %-5.4286 %48
+L4 B : %-17.2727 %-48
+NetDegree : 2
+HubL B : %-3.2571 %48
+L4 B : %-10.3636 %-48
+NetDegree : 2
+HubL B : %-1.0857 %48
+L4 B : %-3.4545 %-48
+NetDegree : 2
+HubL B : %1.0857 %48
+L4 B : %3.4545 %-48
+NetDegree : 2
+HubL B : %3.2571 %48
+L4 B : %10.3636 %-48
+NetDegree : 2
+HubL B : %5.4286 %48
+L4 B : %17.2727 %-48
+NetDegree : 2
+HubL B : %7.6 %48
+L4 B : %24.1818 %-48
+NetDegree : 2
+HubL B : %9.7714 %48
+L4 B : %31.0909 %-48
+NetDegree : 2
+HubL B : %11.9429 %48
+L4 B : %38 %-48
+NetDegree : 2
+HubL B : %14.1143 %48
+L5 B : %-38 %-48
+NetDegree : 2
+HubL B : %16.2857 %48
+L5 B : %-31.0909 %-48
+NetDegree : 2
+HubL B : %18.4571 %48
+L5 B : %-24.1818 %-48
+NetDegree : 2
+HubL B : %20.6286 %48
+L5 B : %-17.2727 %-48
+NetDegree : 2
+HubL B : %22.8 %48
+L5 B : %-10.3636 %-48
+NetDegree : 2
+HubL B : %24.9714 %48
+L5 B : %-3.4545 %-48
+NetDegree : 2
+HubL B : %27.1429 %48
+L5 B : %3.4545 %-48
+NetDegree : 2
+HubL B : %29.3143 %48
+L5 B : %10.3636 %-48
+NetDegree : 2
+HubL B : %31.4857 %48
+L5 B : %17.2727 %-48
+NetDegree : 2
+HubL B : %33.6571 %48
+L5 B : %24.1818 %-48
+NetDegree : 2
+HubL B : %35.8286 %48
+L5 B : %31.0909 %-48
+NetDegree : 2
+HubL B : %38 %48
+L5 B : %38 %-48
+NetDegree : 2
+HubR B : %-38 %-48
+R0 B : %-38 %48
+NetDegree : 2
+HubR B : %-35.8286 %-48
+R0 B : %-31.0909 %48
+NetDegree : 2
+HubR B : %-33.6571 %-48
+R0 B : %-24.1818 %48
+NetDegree : 2
+HubR B : %-31.4857 %-48
+R0 B : %-17.2727 %48
+NetDegree : 2
+HubR B : %-29.3143 %-48
+R0 B : %-10.3636 %48
+NetDegree : 2
+HubR B : %-27.1429 %-48
+R0 B : %-3.4545 %48
+NetDegree : 2
+HubR B : %-24.9714 %-48
+R0 B : %3.4545 %48
+NetDegree : 2
+HubR B : %-22.8 %-48
+R0 B : %10.3636 %48
+NetDegree : 2
+HubR B : %-20.6286 %-48
+R0 B : %17.2727 %48
+NetDegree : 2
+HubR B : %-18.4571 %-48
+R0 B : %24.1818 %48
+NetDegree : 2
+HubR B : %-16.2857 %-48
+R0 B : %31.0909 %48
+NetDegree : 2
+HubR B : %-14.1143 %-48
+R0 B : %38 %48
+NetDegree : 2
+HubR B : %-11.9429 %-48
+R1 B : %-38 %48
+NetDegree : 2
+HubR B : %-9.7714 %-48
+R1 B : %-31.0909 %48
+NetDegree : 2
+HubR B : %-7.6 %-48
+R1 B : %-24.1818 %48
+NetDegree : 2
+HubR B : %-5.4286 %-48
+R1 B : %-17.2727 %48
+NetDegree : 2
+HubR B : %-3.2571 %-48
+R1 B : %-10.3636 %48
+NetDegree : 2
+HubR B : %-1.0857 %-48
+R1 B : %-3.4545 %48
+NetDegree : 2
+HubR B : %1.0857 %-48
+R1 B : %3.4545 %48
+NetDegree : 2
+HubR B : %3.2571 %-48
+R1 B : %10.3636 %48
+NetDegree : 2
+HubR B : %5.4286 %-48
+R1 B : %17.2727 %48
+NetDegree : 2
+HubR B : %7.6 %-48
+R1 B : %24.1818 %48
+NetDegree : 2
+HubR B : %9.7714 %-48
+R1 B : %31.0909 %48
+NetDegree : 2
+HubR B : %11.9429 %-48
+R1 B : %38 %48
+NetDegree : 2
+HubR B : %14.1143 %-48
+R2 B : %-38 %48
+NetDegree : 2
+HubR B : %16.2857 %-48
+R2 B : %-31.0909 %48
+NetDegree : 2
+HubR B : %18.4571 %-48
+R2 B : %-24.1818 %48
+NetDegree : 2
+HubR B : %20.6286 %-48
+R2 B : %-17.2727 %48
+NetDegree : 2
+HubR B : %22.8 %-48
+R2 B : %-10.3636 %48
+NetDegree : 2
+HubR B : %24.9714 %-48
+R2 B : %-3.4545 %48
+NetDegree : 2
+HubR B : %27.1429 %-48
+R2 B : %3.4545 %48
+NetDegree : 2
+HubR B : %29.3143 %-48
+R2 B : %10.3636 %48
+NetDegree : 2
+HubR B : %31.4857 %-48
+R2 B : %17.2727 %48
+NetDegree : 2
+HubR B : %33.6571 %-48
+R2 B : %24.1818 %48
+NetDegree : 2
+HubR B : %35.8286 %-48
+R2 B : %31.0909 %48
+NetDegree : 2
+HubR B : %38 %-48
+R2 B : %38 %48
+NetDegree : 2
+HubR B : %-38 %48
+R3 B : %-38 %-48
+NetDegree : 2
+HubR B : %-35.8286 %48
+R3 B : %-31.0909 %-48
+NetDegree : 2
+HubR B : %-33.6571 %48
+R3 B : %-24.1818 %-48
+NetDegree : 2
+HubR B : %-31.4857 %48
+R3 B : %-17.2727 %-48
+NetDegree : 2
+HubR B : %-29.3143 %48
+R3 B : %-10.3636 %-48
+NetDegree : 2
+HubR B : %-27.1429 %48
+R3 B : %-3.4545 %-48
+NetDegree : 2
+HubR B : %-24.9714 %48
+R3 B : %3.4545 %-48
+NetDegree : 2
+HubR B : %-22.8 %48
+R3 B : %10.3636 %-48
+NetDegree : 2
+HubR B : %-20.6286 %48
+R3 B : %17.2727 %-48
+NetDegree : 2
+HubR B : %-18.4571 %48
+R3 B : %24.1818 %-48
+NetDegree : 2
+HubR B : %-16.2857 %48
+R3 B : %31.0909 %-48
+NetDegree : 2
+HubR B : %-14.1143 %48
+R3 B : %38 %-48
+NetDegree : 2
+HubR B : %-11.9429 %48
+R4 B : %-38 %-48
+NetDegree : 2
+HubR B : %-9.7714 %48
+R4 B : %-31.0909 %-48
+NetDegree : 2
+HubR B : %-7.6 %48
+R4 B : %-24.1818 %-48
+NetDegree : 2
+HubR B : %-5.4286 %48
+R4 B : %-17.2727 %-48
+NetDegree : 2
+HubR B : %-3.2571 %48
+R4 B : %-10.3636 %-48
+NetDegree : 2
+HubR B : %-1.0857 %48
+R4 B : %-3.4545 %-48
+NetDegree : 2
+HubR B : %1.0857 %48
+R4 B : %3.4545 %-48
+NetDegree : 2
+HubR B : %3.2571 %48
+R4 B : %10.3636 %-48
+NetDegree : 2
+HubR B : %5.4286 %48
+R4 B : %17.2727 %-48
+NetDegree : 2
+HubR B : %7.6 %48
+R4 B : %24.1818 %-48
+NetDegree : 2
+HubR B : %9.7714 %48
+R4 B : %31.0909 %-48
+NetDegree : 2
+HubR B : %11.9429 %48
+R4 B : %38 %-48
+NetDegree : 2
+HubR B : %14.1143 %48
+R5 B : %-38 %-48
+NetDegree : 2
+HubR B : %16.2857 %48
+R5 B : %-31.0909 %-48
+NetDegree : 2
+HubR B : %18.4571 %48
+R5 B : %-24.1818 %-48
+NetDegree : 2
+HubR B : %20.6286 %48
+R5 B : %-17.2727 %-48
+NetDegree : 2
+HubR B : %22.8 %48
+R5 B : %-10.3636 %-48
+NetDegree : 2
+HubR B : %24.9714 %48
+R5 B : %-3.4545 %-48
+NetDegree : 2
+HubR B : %27.1429 %48
+R5 B : %3.4545 %-48
+NetDegree : 2
+HubR B : %29.3143 %48
+R5 B : %10.3636 %-48
+NetDegree : 2
+HubR B : %31.4857 %48
+R5 B : %17.2727 %-48
+NetDegree : 2
+HubR B : %33.6571 %48
+R5 B : %24.1818 %-48
+NetDegree : 2
+HubR B : %35.8286 %48
+R5 B : %31.0909 %-48
+NetDegree : 2
+HubR B : %38 %48
+R5 B : %38 %-48
+NetDegree : 2
+HubL B : %48 %-38
+HubR B : %-48 %-38
+NetDegree : 2
+HubL B : %48 %-36.2326
+HubR B : %-48 %-36.2326
+NetDegree : 2
+HubL B : %48 %-34.4651
+HubR B : %-48 %-34.4651
+NetDegree : 2
+HubL B : %48 %-32.6977
+HubR B : %-48 %-32.6977
+NetDegree : 2
+HubL B : %48 %-30.9302
+HubR B : %-48 %-30.9302
+NetDegree : 2
+HubL B : %48 %-29.1628
+HubR B : %-48 %-29.1628
+NetDegree : 2
+HubL B : %48 %-27.3953
+HubR B : %-48 %-27.3953
+NetDegree : 2
+HubL B : %48 %-25.6279
+HubR B : %-48 %-25.6279
+NetDegree : 2
+HubL B : %48 %-23.8605
+HubR B : %-48 %-23.8605
+NetDegree : 2
+HubL B : %48 %-22.093
+HubR B : %-48 %-22.093
+NetDegree : 2
+HubL B : %48 %-20.3256
+HubR B : %-48 %-20.3256
+NetDegree : 2
+HubL B : %48 %-18.5581
+HubR B : %-48 %-18.5581
+NetDegree : 2
+HubL B : %48 %-16.7907
+HubR B : %-48 %-16.7907
+NetDegree : 2
+HubL B : %48 %-15.0233
+HubR B : %-48 %-15.0233
+NetDegree : 2
+HubL B : %48 %-13.2558
+HubR B : %-48 %-13.2558
+NetDegree : 2
+HubL B : %48 %-11.4884
+HubR B : %-48 %-11.4884
+NetDegree : 2
+HubL B : %48 %-9.7209
+HubR B : %-48 %-9.7209
+NetDegree : 2
+HubL B : %48 %-7.9535
+HubR B : %-48 %-7.9535
+NetDegree : 2
+HubL B : %48 %-6.186
+HubR B : %-48 %-6.186
+NetDegree : 2
+HubL B : %48 %-4.4186
+HubR B : %-48 %-4.4186
+NetDegree : 2
+HubL B : %48 %-2.6512
+HubR B : %-48 %-2.6512
+NetDegree : 2
+HubL B : %48 %-0.8837
+HubR B : %-48 %-0.8837
+NetDegree : 2
+HubL B : %48 %0.8837
+HubR B : %-48 %0.8837
+NetDegree : 2
+HubL B : %48 %2.6512
+HubR B : %-48 %2.6512
+NetDegree : 2
+HubL B : %48 %4.4186
+HubR B : %-48 %4.4186
+NetDegree : 2
+HubL B : %48 %6.186
+HubR B : %-48 %6.186
+NetDegree : 2
+HubL B : %48 %7.9535
+HubR B : %-48 %7.9535
+NetDegree : 2
+HubL B : %48 %9.7209
+HubR B : %-48 %9.7209
+NetDegree : 2
+HubL B : %48 %11.4884
+HubR B : %-48 %11.4884
+NetDegree : 2
+HubL B : %48 %13.2558
+HubR B : %-48 %13.2558
+NetDegree : 2
+HubL B : %48 %15.0233
+HubR B : %-48 %15.0233
+NetDegree : 2
+HubL B : %48 %16.7907
+HubR B : %-48 %16.7907
+NetDegree : 2
+L5 B : %48 %-38
+HubR B : %-48 %18.5581
+NetDegree : 2
+L5 B : %48 %-31.0909
+HubR B : %-48 %20.3256
+NetDegree : 2
+L5 B : %48 %-24.1818
+HubR B : %-48 %22.093
+NetDegree : 2
+L5 B : %48 %-17.2727
+HubR B : %-48 %23.8605
+NetDegree : 2
+L5 B : %48 %-10.3636
+HubR B : %-48 %25.6279
+NetDegree : 2
+L5 B : %48 %-3.4545
+HubR B : %-48 %27.3953
+NetDegree : 2
+L5 B : %48 %3.4545
+HubR B : %-48 %29.1628
+NetDegree : 2
+L5 B : %48 %10.3636
+HubR B : %-48 %30.9302
+NetDegree : 2
+L5 B : %48 %17.2727
+HubR B : %-48 %32.6977
+NetDegree : 2
+L5 B : %48 %24.1818
+HubR B : %-48 %34.4651
+NetDegree : 2
+L5 B : %48 %31.0909
+HubR B : %-48 %36.2326
+NetDegree : 2
+L5 B : %48 %38
+HubR B : %-48 %38
+NetDegree : 2
+R0 B : %-48 %-38
+HubL B : %48 %18.5581
+NetDegree : 2
+R0 B : %-48 %-31.0909
+HubL B : %48 %20.3256
+NetDegree : 2
+R0 B : %-48 %-24.1818
+HubL B : %48 %22.093
+NetDegree : 2
+R0 B : %-48 %-17.2727
+HubL B : %48 %23.8605
+NetDegree : 2
+R0 B : %-48 %-10.3636
+HubL B : %48 %25.6279
+NetDegree : 2
+R0 B : %-48 %-3.4545
+HubL B : %48 %27.3953
+NetDegree : 2
+R0 B : %-48 %3.4545
+HubL B : %48 %29.1628
+NetDegree : 2
+R0 B : %-48 %10.3636
+HubL B : %48 %30.9302
+NetDegree : 2
+R0 B : %-48 %17.2727
+HubL B : %48 %32.6977
+NetDegree : 2
+R0 B : %-48 %24.1818
+HubL B : %48 %34.4651
+NetDegree : 2
+R0 B : %-48 %31.0909
+HubL B : %48 %36.2326
+NetDegree : 2
+R0 B : %-48 %38
+HubL B : %48 %38

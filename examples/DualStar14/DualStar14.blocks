@@ -1,0 +1,19 @@
+NumSoftRectangularBlocks : 0
+NumHardRectilinearBlocks : 14
+NumTerminals : 0
+InterposerWidth : 38000
+InterposerHeight : 26000
+HubL hardrectilinear 4 (0, 0) (0, 4800) (5200, 4800) (5200, 0)
+HubR hardrectilinear 4 (0, 0) (0, 4800) (5200, 4800) (5200, 0)
+L0 hardrectilinear 4 (0, 0) (0, 4000) (4500, 4000) (4500, 0)
+L1 hardrectilinear 4 (0, 0) (0, 4200) (4800, 4200) (4800, 0)
+L2 hardrectilinear 4 (0, 0) (0, 4600) (4000, 4600) (4000, 0)
+L3 hardrectilinear 4 (0, 0) (0, 4800) (4200, 4800) (4200, 0)
+L4 hardrectilinear 4 (0, 0) (0, 4400) (5000, 4400) (5000, 0)
+L5 hardrectilinear 4 (0, 0) (0, 4600) (4400, 4600) (4400, 0)
+R0 hardrectilinear 4 (0, 0) (0, 4000) (4500, 4000) (4500, 0)
+R1 hardrectilinear 4 (0, 0) (0, 4200) (4800, 4200) (4800, 0)
+R2 hardrectilinear 4 (0, 0) (0, 4600) (4000, 4600) (4000, 0)
+R3 hardrectilinear 4 (0, 0) (0, 4800) (4200, 4800) (4200, 0)
+R4 hardrectilinear 4 (0, 0) (0, 4400) (5000, 4400) (5000, 0)
+R5 hardrectilinear 4 (0, 0) (0, 4600) (4400, 4600) (4400, 0)
