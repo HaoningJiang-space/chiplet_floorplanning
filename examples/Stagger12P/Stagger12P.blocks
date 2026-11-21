@@ -1,0 +1,17 @@
+NumSoftRectangularBlocks : 0
+NumHardRectilinearBlocks : 12
+NumTerminals : 0
+InterposerWidth : 40000
+InterposerHeight : 30000
+Tile00 hardrectilinear 4 (0, 0) (0, 6000) (6000, 6000) (6000, 0)
+Tile01 hardrectilinear 4 (0, 0) (0, 5200) (7400, 5200) (7400, 0)
+Tile02 hardrectilinear 4 (0, 0) (0, 7400) (5200, 7400) (5200, 0)
+Tile03 hardrectilinear 4 (0, 0) (0, 6000) (6600, 6000) (6600, 0)
+Tile04 hardrectilinear 4 (0, 0) (0, 6000) (6000, 6000) (6000, 0)
+Tile05 hardrectilinear 4 (0, 0) (0, 5200) (7400, 5200) (7400, 0)
+Tile06 hardrectilinear 4 (0, 0) (0, 7400) (5200, 7400) (5200, 0)
+Tile07 hardrectilinear 4 (0, 0) (0, 6000) (6600, 6000) (6600, 0)
+Tile08 hardrectilinear 4 (0, 0) (0, 6000) (6000, 6000) (6000, 0)
+Tile09 hardrectilinear 4 (0, 0) (0, 5200) (7400, 5200) (7400, 0)
+Tile10 hardrectilinear 4 (0, 0) (0, 7400) (5200, 7400) (5200, 0)
+Tile11 hardrectilinear 4 (0, 0) (0, 6000) (6600, 6000) (6600, 0)
