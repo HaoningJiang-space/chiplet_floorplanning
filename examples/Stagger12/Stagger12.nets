@@ -1,0 +1,1010 @@
+NumNets : 336
+NumPins : 672
+NetDegree : 2
+Tile00 B : %48 %-15
+Tile01 B : %-48 %-15
+NetDegree : 2
+Tile00 B : %48 %-13
+Tile01 B : %-48 %-13
+NetDegree : 2
+Tile00 B : %48 %-11
+Tile01 B : %-48 %-11
+NetDegree : 2
+Tile00 B : %48 %-9
+Tile01 B : %-48 %-9
+NetDegree : 2
+Tile00 B : %48 %-7
+Tile01 B : %-48 %-7
+NetDegree : 2
+Tile00 B : %48 %-5
+Tile01 B : %-48 %-5
+NetDegree : 2
+Tile00 B : %48 %-3
+Tile01 B : %-48 %-3
+NetDegree : 2
+Tile00 B : %48 %-1
+Tile01 B : %-48 %-1
+NetDegree : 2
+Tile00 B : %48 %1
+Tile01 B : %-48 %1
+NetDegree : 2
+Tile00 B : %48 %3
+Tile01 B : %-48 %3
+NetDegree : 2
+Tile00 B : %48 %5
+Tile01 B : %-48 %5
+NetDegree : 2
+Tile00 B : %48 %7
+Tile01 B : %-48 %7
+NetDegree : 2
+Tile00 B : %48 %9
+Tile01 B : %-48 %9
+NetDegree : 2
+Tile00 B : %48 %11
+Tile01 B : %-48 %11
+NetDegree : 2
+Tile00 B : %48 %13
+Tile01 B : %-48 %13
+NetDegree : 2
+Tile00 B : %48 %15
+Tile01 B : %-48 %15
+NetDegree : 2
+Tile01 B : %48 %-15
+Tile02 B : %-48 %-15
+NetDegree : 2
+Tile01 B : %48 %-13
+Tile02 B : %-48 %-13
+NetDegree : 2
+Tile01 B : %48 %-11
+Tile02 B : %-48 %-11
+NetDegree : 2
+Tile01 B : %48 %-9
+Tile02 B : %-48 %-9
+NetDegree : 2
+Tile01 B : %48 %-7
+Tile02 B : %-48 %-7
+NetDegree : 2
+Tile01 B : %48 %-5
+Tile02 B : %-48 %-5
+NetDegree : 2
+Tile01 B : %48 %-3
+Tile02 B : %-48 %-3
+NetDegree : 2
+Tile01 B : %48 %-1
+Tile02 B : %-48 %-1
+NetDegree : 2
+Tile01 B : %48 %1
+Tile02 B : %-48 %1
+NetDegree : 2
+Tile01 B : %48 %3
+Tile02 B : %-48 %3
+NetDegree : 2
+Tile01 B : %48 %5
+Tile02 B : %-48 %5
+NetDegree : 2
+Tile01 B : %48 %7
+Tile02 B : %-48 %7
+NetDegree : 2
+Tile01 B : %48 %9
+Tile02 B : %-48 %9
+NetDegree : 2
+Tile01 B : %48 %11
+Tile02 B : %-48 %11
+NetDegree : 2
+Tile01 B : %48 %13
+Tile02 B : %-48 %13
+NetDegree : 2
+Tile01 B : %48 %15
+Tile02 B : %-48 %15
+NetDegree : 2
+Tile02 B : %48 %-15
+Tile03 B : %-48 %-15
+NetDegree : 2
+Tile02 B : %48 %-13
+Tile03 B : %-48 %-13
+NetDegree : 2
+Tile02 B : %48 %-11
+Tile03 B : %-48 %-11
+NetDegree : 2
+Tile02 B : %48 %-9
+Tile03 B : %-48 %-9
+NetDegree : 2
+Tile02 B : %48 %-7
+Tile03 B : %-48 %-7
+NetDegree : 2
+Tile02 B : %48 %-5
+Tile03 B : %-48 %-5
+NetDegree : 2
+Tile02 B : %48 %-3
+Tile03 B : %-48 %-3
+NetDegree : 2
+Tile02 B : %48 %-1
+Tile03 B : %-48 %-1
+NetDegree : 2
+Tile02 B : %48 %1
+Tile03 B : %-48 %1
+NetDegree : 2
+Tile02 B : %48 %3
+Tile03 B : %-48 %3
+NetDegree : 2
+Tile02 B : %48 %5
+Tile03 B : %-48 %5
+NetDegree : 2
+Tile02 B : %48 %7
+Tile03 B : %-48 %7
+NetDegree : 2
+Tile02 B : %48 %9
+Tile03 B : %-48 %9
+NetDegree : 2
+Tile02 B : %48 %11
+Tile03 B : %-48 %11
+NetDegree : 2
+Tile02 B : %48 %13
+Tile03 B : %-48 %13
+NetDegree : 2
+Tile02 B : %48 %15
+Tile03 B : %-48 %15
+NetDegree : 2
+Tile04 B : %48 %-15
+Tile05 B : %-48 %-15
+NetDegree : 2
+Tile04 B : %48 %-13
+Tile05 B : %-48 %-13
+NetDegree : 2
+Tile04 B : %48 %-11
+Tile05 B : %-48 %-11
+NetDegree : 2
+Tile04 B : %48 %-9
+Tile05 B : %-48 %-9
+NetDegree : 2
+Tile04 B : %48 %-7
+Tile05 B : %-48 %-7
+NetDegree : 2
+Tile04 B : %48 %-5
+Tile05 B : %-48 %-5
+NetDegree : 2
+Tile04 B : %48 %-3
+Tile05 B : %-48 %-3
+NetDegree : 2
+Tile04 B : %48 %-1
+Tile05 B : %-48 %-1
+NetDegree : 2
+Tile04 B : %48 %1
+Tile05 B : %-48 %1
+NetDegree : 2
+Tile04 B : %48 %3
+Tile05 B : %-48 %3
+NetDegree : 2
+Tile04 B : %48 %5
+Tile05 B : %-48 %5
+NetDegree : 2
+Tile04 B : %48 %7
+Tile05 B : %-48 %7
+NetDegree : 2
+Tile04 B : %48 %9
+Tile05 B : %-48 %9
+NetDegree : 2
+Tile04 B : %48 %11
+Tile05 B : %-48 %11
+NetDegree : 2
+Tile04 B : %48 %13
+Tile05 B : %-48 %13
+NetDegree : 2
+Tile04 B : %48 %15
+Tile05 B : %-48 %15
+NetDegree : 2
+Tile05 B : %48 %-15
+Tile06 B : %-48 %-15
+NetDegree : 2
+Tile05 B : %48 %-13
+Tile06 B : %-48 %-13
+NetDegree : 2
+Tile05 B : %48 %-11
+Tile06 B : %-48 %-11
+NetDegree : 2
+Tile05 B : %48 %-9
+Tile06 B : %-48 %-9
+NetDegree : 2
+Tile05 B : %48 %-7
+Tile06 B : %-48 %-7
+NetDegree : 2
+Tile05 B : %48 %-5
+Tile06 B : %-48 %-5
+NetDegree : 2
+Tile05 B : %48 %-3
+Tile06 B : %-48 %-3
+NetDegree : 2
+Tile05 B : %48 %-1
+Tile06 B : %-48 %-1
+NetDegree : 2
+Tile05 B : %48 %1
+Tile06 B : %-48 %1
+NetDegree : 2
+Tile05 B : %48 %3
+Tile06 B : %-48 %3
+NetDegree : 2
+Tile05 B : %48 %5
+Tile06 B : %-48 %5
+NetDegree : 2
+Tile05 B : %48 %7
+Tile06 B : %-48 %7
+NetDegree : 2
+Tile05 B : %48 %9
+Tile06 B : %-48 %9
+NetDegree : 2
+Tile05 B : %48 %11
+Tile06 B : %-48 %11
+NetDegree : 2
+Tile05 B : %48 %13
+Tile06 B : %-48 %13
+NetDegree : 2
+Tile05 B : %48 %15
+Tile06 B : %-48 %15
+NetDegree : 2
+Tile06 B : %48 %-15
+Tile07 B : %-48 %-15
+NetDegree : 2
+Tile06 B : %48 %-13
+Tile07 B : %-48 %-13
+NetDegree : 2
+Tile06 B : %48 %-11
+Tile07 B : %-48 %-11
+NetDegree : 2
+Tile06 B : %48 %-9
+Tile07 B : %-48 %-9
+NetDegree : 2
+Tile06 B : %48 %-7
+Tile07 B : %-48 %-7
+NetDegree : 2
+Tile06 B : %48 %-5
+Tile07 B : %-48 %-5
+NetDegree : 2
+Tile06 B : %48 %-3
+Tile07 B : %-48 %-3
+NetDegree : 2
+Tile06 B : %48 %-1
+Tile07 B : %-48 %-1
+NetDegree : 2
+Tile06 B : %48 %1
+Tile07 B : %-48 %1
+NetDegree : 2
+Tile06 B : %48 %3
+Tile07 B : %-48 %3
+NetDegree : 2
+Tile06 B : %48 %5
+Tile07 B : %-48 %5
+NetDegree : 2
+Tile06 B : %48 %7
+Tile07 B : %-48 %7
+NetDegree : 2
+Tile06 B : %48 %9
+Tile07 B : %-48 %9
+NetDegree : 2
+Tile06 B : %48 %11
+Tile07 B : %-48 %11
+NetDegree : 2
+Tile06 B : %48 %13
+Tile07 B : %-48 %13
+NetDegree : 2
+Tile06 B : %48 %15
+Tile07 B : %-48 %15
+NetDegree : 2
+Tile08 B : %48 %-15
+Tile09 B : %-48 %-15
+NetDegree : 2
+Tile08 B : %48 %-13
+Tile09 B : %-48 %-13
+NetDegree : 2
+Tile08 B : %48 %-11
+Tile09 B : %-48 %-11
+NetDegree : 2
+Tile08 B : %48 %-9
+Tile09 B : %-48 %-9
+NetDegree : 2
+Tile08 B : %48 %-7
+Tile09 B : %-48 %-7
+NetDegree : 2
+Tile08 B : %48 %-5
+Tile09 B : %-48 %-5
+NetDegree : 2
+Tile08 B : %48 %-3
+Tile09 B : %-48 %-3
+NetDegree : 2
+Tile08 B : %48 %-1
+Tile09 B : %-48 %-1
+NetDegree : 2
+Tile08 B : %48 %1
+Tile09 B : %-48 %1
+NetDegree : 2
+Tile08 B : %48 %3
+Tile09 B : %-48 %3
+NetDegree : 2
+Tile08 B : %48 %5
+Tile09 B : %-48 %5
+NetDegree : 2
+Tile08 B : %48 %7
+Tile09 B : %-48 %7
+NetDegree : 2
+Tile08 B : %48 %9
+Tile09 B : %-48 %9
+NetDegree : 2
+Tile08 B : %48 %11
+Tile09 B : %-48 %11
+NetDegree : 2
+Tile08 B : %48 %13
+Tile09 B : %-48 %13
+NetDegree : 2
+Tile08 B : %48 %15
+Tile09 B : %-48 %15
+NetDegree : 2
+Tile09 B : %48 %-15
+Tile10 B : %-48 %-15
+NetDegree : 2
+Tile09 B : %48 %-13
+Tile10 B : %-48 %-13
+NetDegree : 2
+Tile09 B : %48 %-11
+Tile10 B : %-48 %-11
+NetDegree : 2
+Tile09 B : %48 %-9
+Tile10 B : %-48 %-9
+NetDegree : 2
+Tile09 B : %48 %-7
+Tile10 B : %-48 %-7
+NetDegree : 2
+Tile09 B : %48 %-5
+Tile10 B : %-48 %-5
+NetDegree : 2
+Tile09 B : %48 %-3
+Tile10 B : %-48 %-3
+NetDegree : 2
+Tile09 B : %48 %-1
+Tile10 B : %-48 %-1
+NetDegree : 2
+Tile09 B : %48 %1
+Tile10 B : %-48 %1
+NetDegree : 2
+Tile09 B : %48 %3
+Tile10 B : %-48 %3
+NetDegree : 2
+Tile09 B : %48 %5
+Tile10 B : %-48 %5
+NetDegree : 2
+Tile09 B : %48 %7
+Tile10 B : %-48 %7
+NetDegree : 2
+Tile09 B : %48 %9
+Tile10 B : %-48 %9
+NetDegree : 2
+Tile09 B : %48 %11
+Tile10 B : %-48 %11
+NetDegree : 2
+Tile09 B : %48 %13
+Tile10 B : %-48 %13
+NetDegree : 2
+Tile09 B : %48 %15
+Tile10 B : %-48 %15
+NetDegree : 2
+Tile10 B : %48 %-15
+Tile11 B : %-48 %-15
+NetDegree : 2
+Tile10 B : %48 %-13
+Tile11 B : %-48 %-13
+NetDegree : 2
+Tile10 B : %48 %-11
+Tile11 B : %-48 %-11
+NetDegree : 2
+Tile10 B : %48 %-9
+Tile11 B : %-48 %-9
+NetDegree : 2
+Tile10 B : %48 %-7
+Tile11 B : %-48 %-7
+NetDegree : 2
+Tile10 B : %48 %-5
+Tile11 B : %-48 %-5
+NetDegree : 2
+Tile10 B : %48 %-3
+Tile11 B : %-48 %-3
+NetDegree : 2
+Tile10 B : %48 %-1
+Tile11 B : %-48 %-1
+NetDegree : 2
+Tile10 B : %48 %1
+Tile11 B : %-48 %1
+NetDegree : 2
+Tile10 B : %48 %3
+Tile11 B : %-48 %3
+NetDegree : 2
+Tile10 B : %48 %5
+Tile11 B : %-48 %5
+NetDegree : 2
+Tile10 B : %48 %7
+Tile11 B : %-48 %7
+NetDegree : 2
+Tile10 B : %48 %9
+Tile11 B : %-48 %9
+NetDegree : 2
+Tile10 B : %48 %11
+Tile11 B : %-48 %11
+NetDegree : 2
+Tile10 B : %48 %13
+Tile11 B : %-48 %13
+NetDegree : 2
+Tile10 B : %48 %15
+Tile11 B : %-48 %15
+NetDegree : 2
+Tile00 B : %-15 %48
+Tile04 B : %-15 %-48
+NetDegree : 2
+Tile00 B : %-13 %48
+Tile04 B : %-13 %-48
+NetDegree : 2
+Tile00 B : %-11 %48
+Tile04 B : %-11 %-48
+NetDegree : 2
+Tile00 B : %-9 %48
+Tile04 B : %-9 %-48
+NetDegree : 2
+Tile00 B : %-7 %48
+Tile04 B : %-7 %-48
+NetDegree : 2
+Tile00 B : %-5 %48
+Tile04 B : %-5 %-48
+NetDegree : 2
+Tile00 B : %-3 %48
+Tile04 B : %-3 %-48
+NetDegree : 2
+Tile00 B : %-1 %48
+Tile04 B : %-1 %-48
+NetDegree : 2
+Tile00 B : %1 %48
+Tile04 B : %1 %-48
+NetDegree : 2
+Tile00 B : %3 %48
+Tile04 B : %3 %-48
+NetDegree : 2
+Tile00 B : %5 %48
+Tile04 B : %5 %-48
+NetDegree : 2
+Tile00 B : %7 %48
+Tile04 B : %7 %-48
+NetDegree : 2
+Tile00 B : %9 %48
+Tile04 B : %9 %-48
+NetDegree : 2
+Tile00 B : %11 %48
+Tile04 B : %11 %-48
+NetDegree : 2
+Tile00 B : %13 %48
+Tile04 B : %13 %-48
+NetDegree : 2
+Tile00 B : %15 %48
+Tile04 B : %15 %-48
+NetDegree : 2
+Tile01 B : %-15 %48
+Tile05 B : %-15 %-48
+NetDegree : 2
+Tile01 B : %-13 %48
+Tile05 B : %-13 %-48
+NetDegree : 2
+Tile01 B : %-11 %48
+Tile05 B : %-11 %-48
+NetDegree : 2
+Tile01 B : %-9 %48
+Tile05 B : %-9 %-48
+NetDegree : 2
+Tile01 B : %-7 %48
+Tile05 B : %-7 %-48
+NetDegree : 2
+Tile01 B : %-5 %48
+Tile05 B : %-5 %-48
+NetDegree : 2
+Tile01 B : %-3 %48
+Tile05 B : %-3 %-48
+NetDegree : 2
+Tile01 B : %-1 %48
+Tile05 B : %-1 %-48
+NetDegree : 2
+Tile01 B : %1 %48
+Tile05 B : %1 %-48
+NetDegree : 2
+Tile01 B : %3 %48
+Tile05 B : %3 %-48
+NetDegree : 2
+Tile01 B : %5 %48
+Tile05 B : %5 %-48
+NetDegree : 2
+Tile01 B : %7 %48
+Tile05 B : %7 %-48
+NetDegree : 2
+Tile01 B : %9 %48
+Tile05 B : %9 %-48
+NetDegree : 2
+Tile01 B : %11 %48
+Tile05 B : %11 %-48
+NetDegree : 2
+Tile01 B : %13 %48
+Tile05 B : %13 %-48
+NetDegree : 2
+Tile01 B : %15 %48
+Tile05 B : %15 %-48
+NetDegree : 2
+Tile02 B : %-15 %48
+Tile06 B : %-15 %-48
+NetDegree : 2
+Tile02 B : %-13 %48
+Tile06 B : %-13 %-48
+NetDegree : 2
+Tile02 B : %-11 %48
+Tile06 B : %-11 %-48
+NetDegree : 2
+Tile02 B : %-9 %48
+Tile06 B : %-9 %-48
+NetDegree : 2
+Tile02 B : %-7 %48
+Tile06 B : %-7 %-48
+NetDegree : 2
+Tile02 B : %-5 %48
+Tile06 B : %-5 %-48
+NetDegree : 2
+Tile02 B : %-3 %48
+Tile06 B : %-3 %-48
+NetDegree : 2
+Tile02 B : %-1 %48
+Tile06 B : %-1 %-48
+NetDegree : 2
+Tile02 B : %1 %48
+Tile06 B : %1 %-48
+NetDegree : 2
+Tile02 B : %3 %48
+Tile06 B : %3 %-48
+NetDegree : 2
+Tile02 B : %5 %48
+Tile06 B : %5 %-48
+NetDegree : 2
+Tile02 B : %7 %48
+Tile06 B : %7 %-48
+NetDegree : 2
+Tile02 B : %9 %48
+Tile06 B : %9 %-48
+NetDegree : 2
+Tile02 B : %11 %48
+Tile06 B : %11 %-48
+NetDegree : 2
+Tile02 B : %13 %48
+Tile06 B : %13 %-48
+NetDegree : 2
+Tile02 B : %15 %48
+Tile06 B : %15 %-48
+NetDegree : 2
+Tile03 B : %-15 %48
+Tile07 B : %-15 %-48
+NetDegree : 2
+Tile03 B : %-13 %48
+Tile07 B : %-13 %-48
+NetDegree : 2
+Tile03 B : %-11 %48
+Tile07 B : %-11 %-48
+NetDegree : 2
+Tile03 B : %-9 %48
+Tile07 B : %-9 %-48
+NetDegree : 2
+Tile03 B : %-7 %48
+Tile07 B : %-7 %-48
+NetDegree : 2
+Tile03 B : %-5 %48
+Tile07 B : %-5 %-48
+NetDegree : 2
+Tile03 B : %-3 %48
+Tile07 B : %-3 %-48
+NetDegree : 2
+Tile03 B : %-1 %48
+Tile07 B : %-1 %-48
+NetDegree : 2
+Tile03 B : %1 %48
+Tile07 B : %1 %-48
+NetDegree : 2
+Tile03 B : %3 %48
+Tile07 B : %3 %-48
+NetDegree : 2
+Tile03 B : %5 %48
+Tile07 B : %5 %-48
+NetDegree : 2
+Tile03 B : %7 %48
+Tile07 B : %7 %-48
+NetDegree : 2
+Tile03 B : %9 %48
+Tile07 B : %9 %-48
+NetDegree : 2
+Tile03 B : %11 %48
+Tile07 B : %11 %-48
+NetDegree : 2
+Tile03 B : %13 %48
+Tile07 B : %13 %-48
+NetDegree : 2
+Tile03 B : %15 %48
+Tile07 B : %15 %-48
+NetDegree : 2
+Tile04 B : %-15 %48
+Tile08 B : %-15 %-48
+NetDegree : 2
+Tile04 B : %-13 %48
+Tile08 B : %-13 %-48
+NetDegree : 2
+Tile04 B : %-11 %48
+Tile08 B : %-11 %-48
+NetDegree : 2
+Tile04 B : %-9 %48
+Tile08 B : %-9 %-48
+NetDegree : 2
+Tile04 B : %-7 %48
+Tile08 B : %-7 %-48
+NetDegree : 2
+Tile04 B : %-5 %48
+Tile08 B : %-5 %-48
+NetDegree : 2
+Tile04 B : %-3 %48
+Tile08 B : %-3 %-48
+NetDegree : 2
+Tile04 B : %-1 %48
+Tile08 B : %-1 %-48
+NetDegree : 2
+Tile04 B : %1 %48
+Tile08 B : %1 %-48
+NetDegree : 2
+Tile04 B : %3 %48
+Tile08 B : %3 %-48
+NetDegree : 2
+Tile04 B : %5 %48
+Tile08 B : %5 %-48
+NetDegree : 2
+Tile04 B : %7 %48
+Tile08 B : %7 %-48
+NetDegree : 2
+Tile04 B : %9 %48
+Tile08 B : %9 %-48
+NetDegree : 2
+Tile04 B : %11 %48
+Tile08 B : %11 %-48
+NetDegree : 2
+Tile04 B : %13 %48
+Tile08 B : %13 %-48
+NetDegree : 2
+Tile04 B : %15 %48
+Tile08 B : %15 %-48
+NetDegree : 2
+Tile05 B : %-15 %48
+Tile09 B : %-15 %-48
+NetDegree : 2
+Tile05 B : %-13 %48
+Tile09 B : %-13 %-48
+NetDegree : 2
+Tile05 B : %-11 %48
+Tile09 B : %-11 %-48
+NetDegree : 2
+Tile05 B : %-9 %48
+Tile09 B : %-9 %-48
+NetDegree : 2
+Tile05 B : %-7 %48
+Tile09 B : %-7 %-48
+NetDegree : 2
+Tile05 B : %-5 %48
+Tile09 B : %-5 %-48
+NetDegree : 2
+Tile05 B : %-3 %48
+Tile09 B : %-3 %-48
+NetDegree : 2
+Tile05 B : %-1 %48
+Tile09 B : %-1 %-48
+NetDegree : 2
+Tile05 B : %1 %48
+Tile09 B : %1 %-48
+NetDegree : 2
+Tile05 B : %3 %48
+Tile09 B : %3 %-48
+NetDegree : 2
+Tile05 B : %5 %48
+Tile09 B : %5 %-48
+NetDegree : 2
+Tile05 B : %7 %48
+Tile09 B : %7 %-48
+NetDegree : 2
+Tile05 B : %9 %48
+Tile09 B : %9 %-48
+NetDegree : 2
+Tile05 B : %11 %48
+Tile09 B : %11 %-48
+NetDegree : 2
+Tile05 B : %13 %48
+Tile09 B : %13 %-48
+NetDegree : 2
+Tile05 B : %15 %48
+Tile09 B : %15 %-48
+NetDegree : 2
+Tile06 B : %-15 %48
+Tile10 B : %-15 %-48
+NetDegree : 2
+Tile06 B : %-13 %48
+Tile10 B : %-13 %-48
+NetDegree : 2
+Tile06 B : %-11 %48
+Tile10 B : %-11 %-48
+NetDegree : 2
+Tile06 B : %-9 %48
+Tile10 B : %-9 %-48
+NetDegree : 2
+Tile06 B : %-7 %48
+Tile10 B : %-7 %-48
+NetDegree : 2
+Tile06 B : %-5 %48
+Tile10 B : %-5 %-48
+NetDegree : 2
+Tile06 B : %-3 %48
+Tile10 B : %-3 %-48
+NetDegree : 2
+Tile06 B : %-1 %48
+Tile10 B : %-1 %-48
+NetDegree : 2
+Tile06 B : %1 %48
+Tile10 B : %1 %-48
+NetDegree : 2
+Tile06 B : %3 %48
+Tile10 B : %3 %-48
+NetDegree : 2
+Tile06 B : %5 %48
+Tile10 B : %5 %-48
+NetDegree : 2
+Tile06 B : %7 %48
+Tile10 B : %7 %-48
+NetDegree : 2
+Tile06 B : %9 %48
+Tile10 B : %9 %-48
+NetDegree : 2
+Tile06 B : %11 %48
+Tile10 B : %11 %-48
+NetDegree : 2
+Tile06 B : %13 %48
+Tile10 B : %13 %-48
+NetDegree : 2
+Tile06 B : %15 %48
+Tile10 B : %15 %-48
+NetDegree : 2
+Tile07 B : %-15 %48
+Tile11 B : %-15 %-48
+NetDegree : 2
+Tile07 B : %-13 %48
+Tile11 B : %-13 %-48
+NetDegree : 2
+Tile07 B : %-11 %48
+Tile11 B : %-11 %-48
+NetDegree : 2
+Tile07 B : %-9 %48
+Tile11 B : %-9 %-48
+NetDegree : 2
+Tile07 B : %-7 %48
+Tile11 B : %-7 %-48
+NetDegree : 2
+Tile07 B : %-5 %48
+Tile11 B : %-5 %-48
+NetDegree : 2
+Tile07 B : %-3 %48
+Tile11 B : %-3 %-48
+NetDegree : 2
+Tile07 B : %-1 %48
+Tile11 B : %-1 %-48
+NetDegree : 2
+Tile07 B : %1 %48
+Tile11 B : %1 %-48
+NetDegree : 2
+Tile07 B : %3 %48
+Tile11 B : %3 %-48
+NetDegree : 2
+Tile07 B : %5 %48
+Tile11 B : %5 %-48
+NetDegree : 2
+Tile07 B : %7 %48
+Tile11 B : %7 %-48
+NetDegree : 2
+Tile07 B : %9 %48
+Tile11 B : %9 %-48
+NetDegree : 2
+Tile07 B : %11 %48
+Tile11 B : %11 %-48
+NetDegree : 2
+Tile07 B : %13 %48
+Tile11 B : %13 %-48
+NetDegree : 2
+Tile07 B : %15 %48
+Tile11 B : %15 %-48
+NetDegree : 2
+Tile00 B : %48 %-15
+Tile05 B : %-48 %-15
+NetDegree : 2
+Tile00 B : %48 %-13
+Tile05 B : %-48 %-13
+NetDegree : 2
+Tile00 B : %48 %-11
+Tile05 B : %-48 %-11
+NetDegree : 2
+Tile00 B : %48 %-9
+Tile05 B : %-48 %-9
+NetDegree : 2
+Tile00 B : %48 %-7
+Tile05 B : %-48 %-7
+NetDegree : 2
+Tile00 B : %48 %-5
+Tile05 B : %-48 %-5
+NetDegree : 2
+Tile00 B : %48 %-3
+Tile05 B : %-48 %-3
+NetDegree : 2
+Tile00 B : %48 %-1
+Tile05 B : %-48 %-1
+NetDegree : 2
+Tile00 B : %48 %1
+Tile05 B : %-48 %1
+NetDegree : 2
+Tile00 B : %48 %3
+Tile05 B : %-48 %3
+NetDegree : 2
+Tile00 B : %48 %5
+Tile05 B : %-48 %5
+NetDegree : 2
+Tile00 B : %48 %7
+Tile05 B : %-48 %7
+NetDegree : 2
+Tile00 B : %48 %9
+Tile05 B : %-48 %9
+NetDegree : 2
+Tile00 B : %48 %11
+Tile05 B : %-48 %11
+NetDegree : 2
+Tile00 B : %48 %13
+Tile05 B : %-48 %13
+NetDegree : 2
+Tile00 B : %48 %15
+Tile05 B : %-48 %15
+NetDegree : 2
+Tile02 B : %48 %-15
+Tile07 B : %-48 %-15
+NetDegree : 2
+Tile02 B : %48 %-13
+Tile07 B : %-48 %-13
+NetDegree : 2
+Tile02 B : %48 %-11
+Tile07 B : %-48 %-11
+NetDegree : 2
+Tile02 B : %48 %-9
+Tile07 B : %-48 %-9
+NetDegree : 2
+Tile02 B : %48 %-7
+Tile07 B : %-48 %-7
+NetDegree : 2
+Tile02 B : %48 %-5
+Tile07 B : %-48 %-5
+NetDegree : 2
+Tile02 B : %48 %-3
+Tile07 B : %-48 %-3
+NetDegree : 2
+Tile02 B : %48 %-1
+Tile07 B : %-48 %-1
+NetDegree : 2
+Tile02 B : %48 %1
+Tile07 B : %-48 %1
+NetDegree : 2
+Tile02 B : %48 %3
+Tile07 B : %-48 %3
+NetDegree : 2
+Tile02 B : %48 %5
+Tile07 B : %-48 %5
+NetDegree : 2
+Tile02 B : %48 %7
+Tile07 B : %-48 %7
+NetDegree : 2
+Tile02 B : %48 %9
+Tile07 B : %-48 %9
+NetDegree : 2
+Tile02 B : %48 %11
+Tile07 B : %-48 %11
+NetDegree : 2
+Tile02 B : %48 %13
+Tile07 B : %-48 %13
+NetDegree : 2
+Tile02 B : %48 %15
+Tile07 B : %-48 %15
+NetDegree : 2
+Tile05 B : %-48 %-15
+Tile08 B : %48 %-15
+NetDegree : 2
+Tile05 B : %-48 %-13
+Tile08 B : %48 %-13
+NetDegree : 2
+Tile05 B : %-48 %-11
+Tile08 B : %48 %-11
+NetDegree : 2
+Tile05 B : %-48 %-9
+Tile08 B : %48 %-9
+NetDegree : 2
+Tile05 B : %-48 %-7
+Tile08 B : %48 %-7
+NetDegree : 2
+Tile05 B : %-48 %-5
+Tile08 B : %48 %-5
+NetDegree : 2
+Tile05 B : %-48 %-3
+Tile08 B : %48 %-3
+NetDegree : 2
+Tile05 B : %-48 %-1
+Tile08 B : %48 %-1
+NetDegree : 2
+Tile05 B : %-48 %1
+Tile08 B : %48 %1
+NetDegree : 2
+Tile05 B : %-48 %3
+Tile08 B : %48 %3
+NetDegree : 2
+Tile05 B : %-48 %5
+Tile08 B : %48 %5
+NetDegree : 2
+Tile05 B : %-48 %7
+Tile08 B : %48 %7
+NetDegree : 2
+Tile05 B : %-48 %9
+Tile08 B : %48 %9
+NetDegree : 2
+Tile05 B : %-48 %11
+Tile08 B : %48 %11
+NetDegree : 2
+Tile05 B : %-48 %13
+Tile08 B : %48 %13
+NetDegree : 2
+Tile05 B : %-48 %15
+Tile08 B : %48 %15
+NetDegree : 2
+Tile07 B : %-48 %-15
+Tile10 B : %48 %-15
+NetDegree : 2
+Tile07 B : %-48 %-13
+Tile10 B : %48 %-13
+NetDegree : 2
+Tile07 B : %-48 %-11
+Tile10 B : %48 %-11
+NetDegree : 2
+Tile07 B : %-48 %-9
+Tile10 B : %48 %-9
+NetDegree : 2
+Tile07 B : %-48 %-7
+Tile10 B : %48 %-7
+NetDegree : 2
+Tile07 B : %-48 %-5
+Tile10 B : %48 %-5
+NetDegree : 2
+Tile07 B : %-48 %-3
+Tile10 B : %48 %-3
+NetDegree : 2
+Tile07 B : %-48 %-1
+Tile10 B : %48 %-1
+NetDegree : 2
+Tile07 B : %-48 %1
+Tile10 B : %48 %1
+NetDegree : 2
+Tile07 B : %-48 %3
+Tile10 B : %48 %3
+NetDegree : 2
+Tile07 B : %-48 %5
+Tile10 B : %48 %5
+NetDegree : 2
+Tile07 B : %-48 %7
+Tile10 B : %48 %7
+NetDegree : 2
+Tile07 B : %-48 %9
+Tile10 B : %48 %9
+NetDegree : 2
+Tile07 B : %-48 %11
+Tile10 B : %48 %11
+NetDegree : 2
+Tile07 B : %-48 %13
+Tile10 B : %48 %13
+NetDegree : 2
+Tile07 B : %-48 %15
+Tile10 B : %48 %15

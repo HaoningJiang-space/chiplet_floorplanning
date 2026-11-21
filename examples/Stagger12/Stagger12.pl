@@ -1,0 +1,12 @@
+Tile00 0 0
+Tile01 0 0
+Tile02 0 0
+Tile03 0 0
+Tile04 0 0
+Tile05 0 0
+Tile06 0 0
+Tile07 0 0
+Tile08 0 0
+Tile09 0 0
+Tile10 0 0
+Tile11 0 0
