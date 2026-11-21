@@ -6,6 +6,7 @@ from pathlib import Path
 from time import perf_counter
 
 import numpy as np
+from scipy.optimize import linprog
 
 from chiplet_floorplanning.placement import Layout
 from chiplet_floorplanning.placement.pin_reach import PinReachCell
@@ -80,6 +81,37 @@ def unlocked_witnesses(p,start,reach,cap,arm):
     return witnesses
 
 
+def restricted_minimum_wire(p,start,reach,cap,arm):
+    """Can the certified followers alone meet the total cap at this verified winning leader endpoint?"""
+    best = min(arm['verified'],key=lambda r:(r['peak_c'],r['wire_m']))
+    if 'candidate' not in best:
+        return None
+    action = next(v for v in arm['attempts'] if v['candidate']==best['candidate'])
+    if not action['opened']:
+        return None
+    # Use the sum of all per-net reaches as a redundant cap. The objective itself
+    # finds the minimum over continuous coordinates, which also lower bounds snapped layouts.
+    cell = PinReachCell(p,start,100,reach,float(np.sum(reach))/1000)
+    bounds = cell.bounds.copy()
+    for j,old in enumerate(start.centre_um.T.ravel()/1000):
+        die,axis = j % p.count,j // p.count
+        low,high = bounds[j]
+        if die==action['leader']:
+            low=high=old+action['step_mm'][axis]
+        elif die in action['followers']:
+            low,high=max(low,old-arm['radius_mm']),min(high,old+arm['radius_mm'])
+        else:
+            low=high=old
+        bounds[j]=low,high
+    res=linprog(cell.length,A_ub=cell.A,b_ub=cell.b,bounds=bounds,method='highs')
+    record=dict(leader=p.names[action['leader']],step_mm=action['step_mm'],
+                allowed_followers=[p.names[i] for i in action['followers']],lp_status=res.message)
+    if res.success:
+        wire=(res.fun+cell.internal_mm)/1000
+        record.update(min_wire_m=wire,excess_over_cap_m=wire-cap)
+    return record
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     for flag in ('source','results','compensated','output'):
@@ -109,6 +141,7 @@ def main():
                 checked=audit(p,Layout(np.array(row['centre_um']),np.array(row['rotation_deg'])),reach,cap)
                 assert checked['admitted'] and abs(checked['wire_m']-row['wire_m'])<1e-10
         out[name]=dict(thermal=omitted_hotspots(p,start,case),
+                       best_restricted_group=restricted_minimum_wire(p,start,reach,cap,expanded),
                        unlocked=unlocked_witnesses(p,start,reach,cap,a),
                        observed_miss_vs_all_k=max(0.,a['peak_c']-b['peak_c']),
                        observed_miss_vs_any_k=a['peak_c']-min(r['peak_c'] for r in case['arms'].values()),
