@@ -6,7 +6,8 @@
 不是实际布线长度或时序；热模型是声明材料的稳态有限体积模型，未经实测校准。
 
 - 研究记录总入口：[overall-research-status](docs/overall-research-status.md)
-- 当前联合移动布局实验用 `tools/compare_successors.py` 运行，结果用 `tools/audit_successors.py` 复核。[案例、预算与本地复现命令](docs/successor-placement.md#本地复现)
+- 当前小预算主基线为五热点连续联合位移。所有芯粒的平移坐标一起求解，三热点消融只改温度目标的行数。[四例对照与本地复现](docs/continuous-hotspot-count.md)
+- 早期限定主动芯粒的生成规则及其反例可单独复现。[受限生成器实验](docs/successor-placement.md)
 - 指标定义：[tap-r3-metrics](docs/tap-r3-metrics.md)；物理准入：[physical-admission-contract](docs/physical-admission-contract.md)
 - 代码精简与历史结果复现：[code-history-and-replay](docs/code-history-and-replay.md)
 

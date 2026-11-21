@@ -18,10 +18,9 @@ EVIDENCE = ROOT / "docs/evidence"
 def load_case(name, source):
     """Return the problem, starting layout, per-net reach (mm), wire cap (m) and frozen input bytes."""
     frozen = json.loads((EVIDENCE / 'successor-freeze.json').read_bytes())
-    if name in ('Stagger12', 'Stagger12P'):
-        rec = frozen['holdout'] if name == 'Stagger12' else json.loads(
-            (EVIDENCE / 'successor-distinct-pins.json').read_bytes()
-        )
+    fixtures = {'Stagger12P': 'successor-distinct-pins.json', 'DualStar14': 'continuous-hotspot-holdout.json'}
+    if name == 'Stagger12' or name in fixtures:
+        rec = frozen['holdout'] if name == 'Stagger12' else json.loads((EVIDENCE / fixtures[name]).read_bytes())
         raw = {}
         for ext, digest in rec['files_sha256'].items():
             path = ROOT / 'examples' / name / f'{name}.{ext}'

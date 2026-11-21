@@ -161,6 +161,21 @@ def half_space_gradients(problem, start, hot):
     return gradients
 
 
+def continuous_hotspot_moves(problem, start, reach_mm, total_m, start_peaks_c, hotspot_count=5, gap_um=100):
+    """Move all dies jointly using the hottest measured dies as objective rows.
+
+    Inputs are an admitted start and its absolute per-die peak temperatures (°C).
+    Both proposals lie in the starting geometry cell and half-short-side radius.
+    """
+    peaks = np.asarray(start_peaks_c, dtype=float)
+    if peaks.shape != (problem.count,) or not np.isfinite(peaks).all() or hotspot_count < 1:
+        raise ValueError('expected one measured peak per die and a positive hotspot count')
+    hot = np.argsort(-peaks, kind='stable')[:hotspot_count]
+    cell = PinReachCell(problem, start, gap_um, np.asarray(reach_mm, dtype=float), total_m)
+    grad = half_space_gradients(problem, start, hot)
+    return _joint_proposals(problem, start, cell, peaks, hot, grad, strict_radius=True)
+
+
 def heat_directed_moves(problem, start, reach_mm, total_m, gap_um=100, resolution=64, gradient_model='package'):
     """Propose full/half joint translations from five hotspot responses at any admissible start.
 
@@ -187,16 +202,27 @@ def heat_directed_moves(problem, start, reach_mm, total_m, gap_um=100, resolutio
         grad = half_space_gradients(problem, start, hot)
     else:
         raise ValueError('unknown hotspot gradient model')
+    return _joint_proposals(problem, start, cell, peaks, hot, grad, strict_radius=False)
+
+
+def _joint_proposals(problem, start, cell, peaks, hot, grad, strict_radius):
     radius = float(np.median(problem.size_um.min(axis=1))/2000)
     delta, prediction = cell.cool_direction(start, peaks[hot], grad, radius)
+    if strict_radius:
+        # Keep the same trust region when the pin-budget rounding retry reprojects.
+        for j, origin in enumerate(start.centre_um.T.ravel()/1000):
+            low, high = cell.bounds[j]
+            cell.bounds[j] = max(low, origin-radius), min(high, origin+radius)
     seen = {layout_key(start)}
     moves = []
     for fraction in (1., .5):
         pose = cell.toward(start.centre_um+1000*delta*fraction)
         if pose is None or layout_key(pose) in seen:
             continue
-        seen.add(layout_key(pose))
         actual_delta = (pose.centre_um-start.centre_um)/1000
+        if strict_radius and np.abs(actual_delta).max() > radius+1e-9:
+            continue  # A fractional-µm radius can fall between two legal grid points.
+        seen.add(layout_key(pose))
         forecast = (peaks[hot]+np.einsum('ijk,jk->i',grad,actual_delta)).max()
         moves.append((fraction, pose, float(forecast)))
     return dict(start_peak_c=float(peaks.max()),hot_dies=[problem.names[i] for i in hot],

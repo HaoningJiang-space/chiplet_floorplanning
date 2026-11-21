@@ -3,7 +3,7 @@ import unittest
 
 import numpy as np
 
-from chiplet_floorplanning.placement import heat_directed_moves, is_legal
+from chiplet_floorplanning.placement import continuous_hotspot_moves, heat_directed_moves, is_legal
 from chiplet_floorplanning.placement.geometry import pin_manhattan_um
 from chiplet_floorplanning.placement.pin_reach import PinReachCell, half_space_gradients, reach_rows, required_travel_mm
 from chiplet_floorplanning.placement.problem import Layout, Problem
@@ -74,6 +74,18 @@ class ContinuousReachTest(unittest.TestCase):
             new=pin_manhattan_um(self.p,pose)/1000
             self.assertTrue(np.all(new<=limits+1e-9))
             self.assertLessEqual(new.sum()/1000,start_m+1e-9)
+
+    def test_fewer_observers_leave_cold_die_free_and_keep_bounded_projection(self):
+        start = Layout(np.array([[5000.,5000.],[10000.,6000.]]),np.array([0,90]))
+        length_mm = pin_manhattan_um(self.p,start)/1000
+        model, moves = continuous_hotspot_moves(self.p,start,length_mm+3.,length_mm.sum()/1000+.004,
+                                                [80.,70.],hotspot_count=1)
+        self.assertEqual(model['hot_dies'], ['a'])
+        self.assertEqual(len(moves), 2)
+        for _, pose, _ in moves:
+            travel = abs(pose.centre_um-start.centre_um)
+            self.assertGreater(travel[1].max(), 0)
+            self.assertLessEqual(travel.max(), 1000*model['radius_mm'])
 
     def test_absolute_peak_for_problem_with_per_die_temperature_limits(self):
         problem=replace(self.p, limit_c=np.array([95.,65.]))

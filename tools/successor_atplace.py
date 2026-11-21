@@ -28,7 +28,7 @@ def external_arm(p,start,reach,cap,base,encoded,args):
           angles=start.rotation_deg.tolist(),powers_w=p.power_w.tolist(),source_sha256=sha256(encoded).hexdigest(),
           upstream=PIN,fv_fingerprint=sha256(Path(thermal_projection.__file__).read_bytes()).hexdigest()))
     extra = []
-    if p.name in ('Stagger12','Stagger12P'):
+    if p.name in ('Stagger12','Stagger12P','DualStar14'):
         params = json.loads((upstream/'cases/Case7/Thermal-aware.json').read_bytes())
         params['opt']['case_dir'] = str((ROOT/'examples'/p.name).resolve())
         write_pretty_json(sub/'params.json',params)
