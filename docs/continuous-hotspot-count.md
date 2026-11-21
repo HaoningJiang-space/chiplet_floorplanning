@@ -56,6 +56,8 @@ DualStar14 在同一检查中得到 −0.544 K。三点全步动了 14 颗，起
 
 ## 本地复现
 
+本轮本地 236 项回归全部通过。双芯粒命令行验证与评价通过，3 W 总功率，参考峰温 34.1886 °C。
+
 使用主项目 Python 环境和作者 ATPlace2.5D 固定提交 `fe3dbfd` 的独立 CPU 环境。用仓库现有导入器生成 Case7/8 的输入，另两张合成网表直接读取版本库。编排器依照冻结次序启动 12 个独立进程；输出保存每个起点与实际落点、逐芯粒峰温、线长、准入、方法阶段耗时和冷启动总耗时。
 
 ```powershell
@@ -66,3 +68,9 @@ $upstream = 'local/atplace-local-baseline'
 python tools/import_atplace_cases.py --source $upstream --output "$experiment/source"
 python tools/compare_continuous_hotspots.py --source "$experiment/source" --upstream $upstream --atpython local/atplace-env/Scripts/python.exe --work "$experiment/cold" --output "$experiment/result.json"
 ```
+
+## Chat 按 ICCAD 标准独立复核
+
+Chat 在发布后通过已连接的 GitHub 只读核查从 `5cfb746` 到 `ab8fca22d584d9c71f768212afc288184946a86f` 的三次阶段提交，读取实现、协议、测试及三份原始证据。结论为**阶段通过，完整论文倾向 Weak Reject**。审稿人从逐臂记录复算留出例三点相对五点的 0.13208346 K，确认所有平移自由度均被保留，Case8 外部法实际一次新核验，并确认历史 ATPlace 的限时合法化差异。
+
+审稿人指出，Case8 在代理模型中删去两行后的余量只有 0.024 K，双星例已出现观测集外热点；单次不到 1% 的时间差和一个合成例的 0.132 K 均不足以证明普适优势。其建议是在相同双星起点与几何域上改变观测数量，检查哪些温度约束真正决定联合方向，以及何时覆盖实际接替热点。此建议属于下一轮问题；本阶段按冻结预算结题。
