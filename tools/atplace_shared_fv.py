@@ -16,6 +16,7 @@ def main():
     ap.add_argument("case_dir", type=Path)
     ap.add_argument("stage", choices=["train", "shared", "native"])
     ap.add_argument("project_python")
+    ap.add_argument("--param-file", type=Path, help="Author-format configuration for an external netlist.")
     ap.add_argument("--export-guard",action="store_true",
                     help="Reserve CBC text and float32 coordinate precision inside the same physical cap.")
     ap.add_argument("--projected-labels", action="store_true")
@@ -41,7 +42,7 @@ def main():
         pulp.PULP_CBC_CMD = serial_cbc
     case = json.loads((out/"input.json").read_bytes())
     name = case["name"]
-    params = cli.load_params(upstream/"cases"/name/"Thermal-aware.json", name, out, mode="thermal")
+    params = cli.load_params(args.param_file or upstream/"cases"/name/"Thermal-aware.json", name, out, mode="thermal")
     params.num_threads = params.thermal_num_threads = 1
     params.ilp_solver = "pulp"
     params.training_seed = params.random_seed = 20261119
